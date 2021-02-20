@@ -1,0 +1,17 @@
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\bin\Debug\netcoreapp2.1\RMGWebApi.deps.json
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\bin\Debug\netcoreapp2.1\RMGWebApi.runtimeconfig.json
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\bin\Debug\netcoreapp2.1\RMGWebApi.runtimeconfig.dev.json
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\bin\Debug\netcoreapp2.1\RMGWebApi.dll
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\bin\Debug\netcoreapp2.1\RMGWebApi.pdb
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.csprojAssemblyReference.cache
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.AssemblyInfoInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.AssemblyInfo.cs
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.csproj.CoreCompileInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.RazorAssemblyInfo.cache
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.RazorAssemblyInfo.cs
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.RazorTargetAssemblyInfo.cache
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.dll
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.pdb
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp2.1\RMGWebApi.genruntimeconfig.cache

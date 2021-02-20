@@ -1,0 +1,12 @@
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\bin\Debug\netcoreapp3.1\Contracts.deps.json
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\bin\Debug\netcoreapp3.1\Contracts.dll
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\bin\Debug\netcoreapp3.1\Contracts.pdb
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\bin\Debug\netcoreapp3.1\Entities.dll
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\bin\Debug\netcoreapp3.1\Entities.pdb
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\obj\Debug\netcoreapp3.1\Contracts.csprojAssemblyReference.cache
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\obj\Debug\netcoreapp3.1\Contracts.AssemblyInfoInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\obj\Debug\netcoreapp3.1\Contracts.AssemblyInfo.cs
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\obj\Debug\netcoreapp3.1\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\obj\Debug\netcoreapp3.1\Contracts.csproj.CopyComplete
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\obj\Debug\netcoreapp3.1\Contracts.dll
+C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RepositoryPattern\obj\Debug\netcoreapp3.1\Contracts.pdb
