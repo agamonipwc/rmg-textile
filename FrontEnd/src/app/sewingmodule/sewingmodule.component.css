@@ -31,4 +31,67 @@
     background-color: #aa2417;
     color: #ffffff;
   }
-  
+  .dropdown-button{
+  width: 150px;
+  border: 1px solid #aa2417;
+  border-radius: 0px !important;
+  background-color: #aa2417;
+  color: #ffffff;
+  height: 23px;
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+.dropdown-label{
+  color: #000000;
+  font-size: 12px;
+}
+
+.custom-li{
+  height: 21px !important;
+}
+
+.dropdownmenu{
+  height: 110px;
+  overflow-y: scroll;
+  width: 152px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.btn.focus, .btn:focus{
+  box-shadow: none !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #6d6d6d; 
+}
+
+  .dropdown {
+    /* position: relative;
+    left: 50px;
+    top: 50px; */
+  }
+ ul{
+   list-style: none;
+ }
+.form-control:focus{
+  box-shadow: none !important;
+}
+.ngx-datepicker-container[_ngcontent-hin-c4] .ngx-datepicker-input[_ngcontent-hin-c4]{
+  background-color: #aa2417 !important;
+  border: #aa2417 !important;
+}
+.col-3{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

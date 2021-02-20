@@ -7,8 +7,10 @@ namespace RMGWebApi
 {
     public class KPIViewModel
     {
-        public int year { get; set; }
-        public int month { get; set; }
-        public int lineNo { get; set; }
+        public List<int> Year { get; set; }
+        public List<int> Month { get; set; }
+        public List<double> Line{ get; set; }
+        //public List<string> Unit { get; set; }
+        //public List<string> Location { get; set; }
     }
 }

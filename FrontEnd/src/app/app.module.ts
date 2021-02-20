@@ -12,6 +12,9 @@ import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import more from 'highcharts/highcharts-more.src';
 import solidGauge from 'highcharts/modules/solid-gauge.src';
 import { SewingmoduleComponent } from './sewingmodule/sewingmodule.component';
+import{NgDatepickerModule} from 'ng2-datepicker';
+// import drilldown from 'highcharts/modules/drilldown.src';
+// import exporting from 'highcharts/modules/exporting.src';
 
 export function highchartsModules() {
   // apply Highcharts Modules to this array
@@ -27,7 +30,7 @@ export function highchartsModules() {
     SewingmoduleComponent
   ],
   imports: [
-    BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, ChartModule
+    BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, ChartModule,NgDatepickerModule
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } // add as factory to your providers

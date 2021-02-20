@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="font-family: 'Arial, Helvetica';">
   <a class="navbar-brand" href="#"><img style="height: 34px;" src="../../assets/img/PwC_Outline_Logo_White.png" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,55 +16,84 @@
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5">
   <ul class="nav nav-pills flex-column">
     <li class="nav-item">
-      <a class="nav-link active" href="overallperformance" data-toggle="pill" (click)="tabNavigation($event)"><span id="overallperformance_span" class="d-none d-md-inline font-weight-bold">Module Performance</span></a>
+      <div class="ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Year</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu">
+          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="yearSelectAll" /><span class="select-text" id="yearSelectText"> Select</span> All</label></a></li>
+          <li class="custom-li" *ngFor="let option of year"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[year]' type="checkbox" class="option justone year" [value]="option.id" id={{option.id}}/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
     </li>
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="operationmodule" data-toggle="pill" (click)="tabNavigation($event)"><span id="operationmodule_span" class="d-none d-md-inline font-weight-bold">Operation Module</span></a>
+    <li class="nav-item mt-3">
+      <div class="ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Month</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu"> 
+          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="monthSelectAll"/><span id="monthSelectText" class="select-text"> Select</span> All</label></a></li>
+          <li class="custom-li" *ngFor="let option of month"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[month]' type="checkbox" class="option justone month" [value]="option.id" id={{option.id}}/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="process" data-toggle="pill" (click)="tabNavigation($event)"><span id="process_span" class="d-none d-md-inline font-weight-bold">Process</span></a>
+    <li class="nav-item mt-3">
+      <div class="dropdown ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Line</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu">
+          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li>
+          <li class="custom-li" *ngFor="let option of line"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.id" id={{option.id}}/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
+    </li>
+    <!-- <li class="nav-item mt-3">
+      <div class="dropdown ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Unit</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu">
+          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="unitSelectAll"/><span id="unitSelectText" class="select-text"> Select</span> All</label></a></li>
+          <li class="custom-li" *ngFor="let option of unit"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[]' type="checkbox" class="option justone unit" [value]="option.id"/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item mt-3">
+      <div class="dropdown ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Location</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu">
+          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="locationSelectAll"/><span id="locationSelectText" class="select-text"> Select</span> All</label></a></li>
+          <li class="custom-li" *ngFor="let option of location"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[]' type="checkbox" class="option justone location" [value]="option.id"/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
     </li> -->
   </ul>
 </nav>
-<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3 main">
+<main role="main" class="col-sm-9 ml-sm-auto col-md-10 main">
   <section class="text-center placeholders" id="dashboardsection">
     <div class="tab-pane fade show active hide-show" id="overallperformance" role="tabpanel" aria-labelledby="OverallPerformance-tab">
       <h3 class="text-center">Sewing KPI(s) </h3>
       <hr class="footer" />
       <div class="row align-items-center h-100">
-        <div class="col-4">
-          <label>Select Year</label>
-          <select class="form-control" [(ngModel)]="selectedYear" (change)="getSewingKPIAnalysis()">
-            <option *ngFor="let option of year" [value]="option.id">
-              {{option.name}}
-            </option>
-          </select>
+        <div class="col-1" style="font-size: 12px;">Start Date</div>
+        <div class="col-2" style="margin-left: -25px;">
+          <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker>
+        </div>
+        <div class="col-1 ml-4" style="font-size: 12px;">End Date</div>
+        <div class="col-2" style="margin-left: -25px;">
+          <ng-datepicker [(ngModel)]="endDate" [options]="options"></ng-datepicker>
         </div>
         <div class="col-4">
-          <label>Select Month</label>
-          <select class="form-control" [(ngModel)]="selectedMonth" (change)="getSewingKPIAnalysis()">
-            <option *ngFor="let option of month" [value]="option.id">
-              {{option.name}}
-            </option>
-          </select>
-        </div>
-        <div class="col-4">
-          <label>Select Line</label>
-          <select class="form-control" [(ngModel)]="selectedLine" (change)="getSewingKPIAnalysis()">
-            <option *ngFor="let option of line" [value]="option.id">
-              {{option.name}}
-            </option>
-          </select>
+          <button class="custom-button" (click)="getSewingKPIAnalysis()">Show Analysis</button>
         </div>
       </div>
       <div class="row align-items-center h-100 mt-2">
-        <div class="col-4 mt-3" *ngFor="let element of kpiCards; let i = index">
-          <div class="card card-style" [ngStyle]="{'background-color': element.backgroundColor}">
+        <div class="col-3 mt-3 ml-3" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #container style="width: 200px; height: 175px;"></div>
+          <!-- <p class="card-text text-white" [ngStyle]="{'color': capacityCalculationHeadingColor}">Capacity Utilisation</p> -->
+          <!-- <div class="card card-style">
             <div class="card-body text-center">
-              <h6 class="card-title text-white">{{element.kpiname}}</h6>
-              <p class="card-text text-white">{{element.weightageScore}}</p>
+              
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- <div class="col-4 mt-2">
           <div class="card card-style card-status">
