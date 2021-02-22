@@ -17,5 +17,10 @@ namespace Entities
         public DbSet<Unit> Unit { get; set; }
         public DbSet<Production> Production { get; set; }
         public DbSet<StyleData> StyleData { get; set; }
+        public DbSet<WorkingHrs> WorkingHrs { get; set; }
+        public DbSet<OperatorNos> OperatorNos { get; set; }
+        public DbSet<Helpers> Helpers { get; set; }
+        public DbSet<DHU> DHU { get; set; }
+        public DbSet<Rejection> Rejection { get; set; }
     }
 }

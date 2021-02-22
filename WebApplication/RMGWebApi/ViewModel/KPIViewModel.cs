@@ -10,7 +10,65 @@ namespace RMGWebApi
         public List<int> Year { get; set; }
         public List<int> Month { get; set; }
         public List<double> Line{ get; set; }
-        //public List<string> Unit { get; set; }
-        //public List<string> Location { get; set; }
+    }
+
+    public class WorkingHoursViewModel
+    {
+        public double WorkingHrsData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
+
+    public class OperatorViewModel
+    {
+        public double OperatorData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
+    public class HelpersViewModel
+    {
+        public double HelperData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
+    public class ProductionViewModel
+    {
+        public double ProdData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
+
+    public class RejectionViewModel
+    {
+        public double RejectionData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
+
+    public class AlterationViewModel
+    {
+        public double AlterationData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
+
+    public class StyleDataViewModel
+    {
+        public double StyleData { get; set; }
+        public double Line { get; set; }
+    }
+
+    public class DHUViewModel
+    {
+        public double DHUData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
     }
 }

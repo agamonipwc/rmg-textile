@@ -14,6 +14,8 @@ namespace RMGWebApi.Controllers
     {
         private readonly  RepositoryContext _rmgDbContext;
         CustomResponse customResponse = new CustomResponse();
+        List<string> lineChartColors = new List<string>() { "#eb8c00", "#d04a02", "#6e2a35", "#003dab", "#db536a" };
+        List<string> columnChartColor = new List<string>() { "#0089eb", "#175c2c", "#a43e50", "#deb8ff", "#eb8c00" };
         public KPICalculationController(RepositoryContext rmgDbContext)
         {
             _rmgDbContext = rmgDbContext;
@@ -52,7 +54,12 @@ namespace RMGWebApi.Controllers
             //var defectsPerHundredResult = CalculateDefectsPerHundredUnits(kpiViewModel);
             //var defectsPercentage = CalculateDefectPercentage(kpiViewModel);
             //var rejectionPercentage = CalculateRejectionPercentage(kpiViewModel);
-            var kpiResults = new { CapaCityCalculation = CapacityCalculation(kpiViewModel), StatusCode = 200};
+            var kpiResults = new {
+                CapaCityCalculation = CapacityCalculation(kpiViewModel),
+                Efficiency = CalculateEfficiency(kpiViewModel),
+                DefectRejectDHUPercentage = CalculateDHUDefectRejection(kpiViewModel),
+                StatusCode = 200
+            };
             //kpiResults.Add(defectsPerHundredResult.data);
             //kpiResults.Add(defectsPercentage.data);
             //kpiResults.Add(rejectionPercentage.data);
@@ -65,7 +72,7 @@ namespace RMGWebApi.Controllers
             double sumofStyleDataLineWise = 0;
             var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line })
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
                 .Select(grp => new { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
             var styleDataByLineWise = _rmgDbContext.StyleData.Where(x =>
                 kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line })
@@ -125,9 +132,223 @@ namespace RMGWebApi.Controllers
             });
         }
 
-        private void CalculateDHU(KPIViewModel kpiViewModel)
+        private JsonResult CalculateEfficiency(KPIViewModel kpiViewModel)
         {
+            var styleDataByLineWise = _rmgDbContext.StyleData.Where(x =>
+                kpiViewModel.Line.Contains(x.Line))
+                .Select(grp => new StyleDataViewModel{ StyleData = grp.SewingSAM, Line = grp.Line }).Sum(x=> x.StyleData);
 
+            var workingHoursByLineWise = _rmgDbContext.WorkingHrs.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year})
+                .Select(grp => new WorkingHoursViewModel { WorkingHrsData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month}).ToList();
+
+            var operatorNosByLineWise = _rmgDbContext.OperatorNos.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year})
+                .Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month,}).ToList();
+
+            var helpersByLineWise = _rmgDbContext.Helpers.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year})
+                .Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month,}).ToList();
+
+            var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year})
+                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month}).ToList();
+
+            List<EfficiencyViewModel> efficiencyViews = new List<EfficiencyViewModel>();
+            List<EfficiencyWeitageViewModel> efficiencyWeitageViewModels = new List<EfficiencyWeitageViewModel>();
+            List<string> monthCategory = new List<string>();
+            foreach(var element in kpiViewModel.Month)
+            {
+                switch (element)
+                {
+                    case 1:
+                        monthCategory.Add("Jan");
+                        break;
+                    case 2:
+                        monthCategory.Add("Feb");
+                        break;
+                    case 3:
+                        monthCategory.Add("Mar");
+                        break;
+                    case 4:
+                        monthCategory.Add("Apr");
+                        break;
+                    case 5:
+                        monthCategory.Add("May");
+                        break;
+                    case 6:
+                        monthCategory.Add("Jun");
+                        break;
+                    case 7:
+                        monthCategory.Add("July");
+                        break;
+                    case 8:
+                        monthCategory.Add("Aug");
+                        break;
+                    case 9:
+                        monthCategory.Add("Sep");
+                        break;
+                    case 10:
+                        monthCategory.Add("Oct");
+                        break;
+                    case 11:
+                        monthCategory.Add("Nov");
+                        break;
+                    case 12:
+                        monthCategory.Add("Dec");
+                        break;
+                }
+            }
+            
+            for (int index = 0; index< kpiViewModel.Year.Count; index++)
+            {
+                List<double> efficiencyPercentageValues = new List<double>();
+                List<double> efficiencyWeitageValues = new List<double>();
+                var query = (from s in workingHoursByLineWise
+                             join cs in operatorNosByLineWise on new { s.Month, s.Year} equals new { cs.Month, cs.Year}
+                             join os in helpersByLineWise on new { s.Month, s.Year } equals new { os.Month, os.Year}
+                             join x in productionDataByYearGroup on new { s.Month, s.Year } equals new { x.Month, x.Year}
+                             where s.Year == kpiViewModel.Year[index]
+                             select new EfficiencyParameters
+                             {
+                                 efficiency = Math.Round((x.ProdData * styleDataByLineWise) / (s.WorkingHrsData * (cs.OperatorData + os.HelperData))),
+                                 
+                                 Month = s.Month.ToString(),
+                                 Year = s.Year.ToString(),
+                             }).ToList();
+
+                foreach(var queryElement in query)
+                {
+                    double weightage = 0;
+                    if(queryElement.efficiency == 0)
+                    {
+                        weightage = 0.15 * 0;
+                    }
+                    else if(queryElement.efficiency > 0 && queryElement.efficiency <= 25)
+                    {
+                        weightage = 0.15 * 1;
+                    }
+                    else if (queryElement.efficiency >=26 && queryElement.efficiency <= 50)
+                    {
+                        weightage = 0.15 * 2;
+                    }
+                    else if (queryElement.efficiency >=51 && queryElement.efficiency <= 80)
+                    {
+                        weightage = 0.15 * 3;
+                    }
+                    else if (queryElement.efficiency > 81 && queryElement.efficiency <= 90)
+                    {
+                        weightage = 0.15 * 4;
+                    }
+                    else
+                    {
+                        weightage = 0.15 * 5;
+                    }
+                    efficiencyPercentageValues.Add(queryElement.efficiency);
+                    efficiencyWeitageValues.Add(weightage);
+                }
+                efficiencyWeitageViewModels.Add(new EfficiencyWeitageViewModel
+                {
+                    name = string.Join('_',"%eff", kpiViewModel.Year[index].ToString()),
+                    data = efficiencyPercentageValues,
+                    type= "spline",
+                    color = lineChartColors[index],
+                    tooltip = new { valueSuffix = "%" }
+                });
+                efficiencyWeitageViewModels.Add(new EfficiencyWeitageViewModel
+                {
+                    name = string.Join('_', "score", kpiViewModel.Year[index].ToString()),
+                    data = efficiencyWeitageValues,
+                    type = "column", 
+                    yAxis = 1,
+                    color = lineChartColors[index],
+                    tooltip = new { valueSuffix  = ""}
+                });
+            }
+            return Json(new
+            {
+                efficiencyResponse = efficiencyViews,
+                efficiencyWeitageResponse = efficiencyWeitageViewModels, 
+                monthCategory = monthCategory
+            });
+        }
+
+        private JsonResult CalculateDHUDefectRejection(KPIViewModel kpiViewModel)
+        {
+            double avgProductionDataByYearGroup = 0;
+            var productionData = _rmgDbContext.Production.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
+                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month }).ToList();
+
+            if(productionData.Count > 0)
+            {
+                avgProductionDataByYearGroup = productionData.Average(x => x.ProdData);
+            }
+
+            var rejectionData = _rmgDbContext.Rejection.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
+                .Select(grp => new RejectionViewModel { RejectionData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month }).ToList();
+
+            double avgRejectionDataByYearGroup = 0;
+            if(rejectionData.Count > 0)
+            {
+                avgRejectionDataByYearGroup = rejectionData.Average(x => x.RejectionData);
+            }
+
+            var alterationData = _rmgDbContext.Rejection.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
+                .Select(grp => new AlterationViewModel { AlterationData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month }).ToList();
+            
+            double avgAlterationDataByYearGroup = 0;
+            if(alterationData.Count > 0)
+            {
+                avgAlterationDataByYearGroup = alterationData.Average(x => x.AlterationData);
+            }
+            List<DHURejectDefect> seriesData = new List<DHURejectDefect>();
+            if (avgProductionDataByYearGroup > 0)
+            {
+                var percentageDefection = Math.Round(((avgRejectionDataByYearGroup + avgAlterationDataByYearGroup) / avgProductionDataByYearGroup), 2);
+                var percentageRejection = Math.Round((avgRejectionDataByYearGroup / avgProductionDataByYearGroup), 2);
+
+                double percentageDHU = 0;
+                var dhuData = _rmgDbContext.DHU.Where(x =>
+                    kpiViewModel.Year.Contains(x.Date.Year) &&
+                    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
+                    .Select(grp => new DHUViewModel { DHUData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month }).ToList();
+                if(dhuData.Count > 0)
+                {
+                    percentageDHU = Math.Round(dhuData.Average(x => x.DHUData),2);
+                }
+                var acceptedPercentage = Math.Round((100 - (percentageDHU + percentageRejection + percentageDefection)), 2);
+                seriesData.Add(new DHURejectDefect
+                {
+                    name = "D.H.U",
+                    y = percentageDHU
+                });
+                seriesData.Add(new DHURejectDefect
+                {
+                    name = "Defect",
+                    y = percentageDefection
+                });
+                seriesData.Add(new DHURejectDefect
+                {
+                    name = "Reject",
+                    y = percentageRejection
+                });
+                seriesData.Add(new DHURejectDefect
+                {
+                    name = "Accept",
+                    y = acceptedPercentage
+                });
+            }
+            return Json(seriesData);
         }
 
         //private CustomResponse CalculateEfficiency(KPIViewModel kpiViewModel)

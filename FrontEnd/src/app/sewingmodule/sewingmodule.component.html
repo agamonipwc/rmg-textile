@@ -21,7 +21,7 @@
         <span class="caret"></span></button>
         <ul class="dropdownmenu">
           <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="yearSelectAll" /><span class="select-text" id="yearSelectText"> Select</span> All</label></a></li>
-          <li class="custom-li" *ngFor="let option of year"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[year]' type="checkbox" class="option justone year" [value]="option.id" id={{option.id}}/> {{option.name}}</label></a></li>
+          <li class="custom-li" *ngFor="let option of year"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[year]' type="checkbox" class="option justone year" [value]="option.id" [id]="'year_' + option.id"/> {{option.name}}</label></a></li>
         </ul>
       </div>
     </li>
@@ -31,7 +31,7 @@
         <span class="caret"></span></button>
         <ul class="dropdownmenu"> 
           <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="monthSelectAll"/><span id="monthSelectText" class="select-text"> Select</span> All</label></a></li>
-          <li class="custom-li" *ngFor="let option of month"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[month]' type="checkbox" class="option justone month" [value]="option.id" id={{option.id}}/> {{option.name}}</label></a></li>
+          <li class="custom-li" *ngFor="let option of month"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[month]' type="checkbox" class="option justone month" [value]="option.id" [id]="'month_' + option.id"/> {{option.name}}</label></a></li>
         </ul>
       </div>
     </li>
@@ -41,9 +41,12 @@
         <span class="caret"></span></button>
         <ul class="dropdownmenu">
           <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li>
-          <li class="custom-li" *ngFor="let option of line"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.id" id={{option.id}}/> {{option.name}}</label></a></li>
+          <li class="custom-li" *ngFor="let option of line"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.id" [id]="'line_' + option.id"/> {{option.name}}</label></a></li>
         </ul>
       </div>
+    </li>
+    <li class="nav-item mt-3">
+      <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
     </li>
     <!-- <li class="nav-item mt-3">
       <div class="dropdown ml-2">
@@ -72,7 +75,7 @@
     <div class="tab-pane fade show active hide-show" id="overallperformance" role="tabpanel" aria-labelledby="OverallPerformance-tab">
       <h3 class="text-center">Sewing KPI(s) </h3>
       <hr class="footer" />
-      <div class="row align-items-center h-100">
+      <!-- <div class="row align-items-center h-100">
         <div class="col-1" style="font-size: 12px;">Start Date</div>
         <div class="col-2" style="margin-left: -25px;">
           <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker>
@@ -84,17 +87,20 @@
         <div class="col-4">
           <button class="custom-button" (click)="getSewingKPIAnalysis()">Show Analysis</button>
         </div>
-      </div>
+      </div> -->
       <div class="row align-items-center h-100 mt-2">
-        <div class="col-3 mt-3 ml-3" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
+        <div class="col-3 mt-3 card-style" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
           <div #container style="width: 200px; height: 175px;"></div>
-          <!-- <p class="card-text text-white" [ngStyle]="{'color': capacityCalculationHeadingColor}">Capacity Utilisation</p> -->
-          <!-- <div class="card card-style">
-            <div class="card-body text-center">
-              
-            </div>
-          </div> -->
         </div>
+        <div class="col-4 mt-3 ml-2 card-style" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #efficiencyContainer style="width: 350px; height: 175px;"></div>
+        </div>
+        <div class="col-4 mt-3 ml-2 card-style" id="dhuRejectDefectVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #dhuRejectDefectContainer style="width: 200px; height: 175px;"></div>
+        </div>
+        <!-- <div class="col-4 mt-3 ml-3" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #efficiencyContainer style="width: 250px; height: 175px;"></div>
+        </div> -->
         <!-- <div class="col-4 mt-2">
           <div class="card card-style card-status">
             <div class="card-body text-center">

@@ -11,6 +11,7 @@ import Drilldown from 'highcharts/modules/drilldown';
 Drilldown(Highcharts);
 // Load the exporting module.
 import Exporting from 'highcharts/modules/exporting';
+import { style } from '@angular/animations';
 // Initialize exporting module.
 Exporting(Highcharts);
 
@@ -22,10 +23,12 @@ Exporting(Highcharts);
 export class SewingmoduleComponent implements OnInit {
   userBackendUrl : any = environment.backendUrl + 'kpicalculation';
   @ViewChild("container", { read: ElementRef }) container: ElementRef;
-  kpiCards : any = [];
+  @ViewChild("efficiencyContainer", { read: ElementRef }) efficiencyContainer: ElementRef;
+  @ViewChild("dhuRejectDefectContainer", { read: ElementRef }) dhuRejectDefectContainer: ElementRef;
   year :any = [
     {id: 2019, name: '2019'},
-    {id: 2021, name: '2021'}
+    {id: 2021, name: '2021'},
+    {id: 2022, name: '2022'}
   ]
   startDate : Date;
   endDate : Date;
@@ -99,9 +102,19 @@ export class SewingmoduleComponent implements OnInit {
           _this.location.push({id:element.Id, name: element.Name})
         });
         var year= this.startDate.getFullYear();
-        var month = this.startDate.getMonth() + 1;
-        $("#"+year).prop('checked', true);
-        $("#"+month).prop('checked', true);
+        var month = this.startDate.getMonth();
+        $("#year_"+year).prop('checked', true);
+        $("#month_"+month).prop('checked', true);
+        $("#line_"+_this.line[0].id).prop('checked', true);
+        _this.selectedYear.push(parseInt($("#year_"+year).val()));
+        _this.selectedMonth.push(parseInt($("#month_"+month).val()));
+        _this.selectedLine.push(1);
+        var KPIView = {
+          Year : _this.selectedYear,
+          Month : _this.selectedMonth,
+          Line : _this.selectedLine
+        }
+        _this.callCapacityUtilizationApi(KPIView);
       }
     });
   }
@@ -123,16 +136,22 @@ export class SewingmoduleComponent implements OnInit {
     this.selectedYear = yearSelected;
     this.selectedLine = lineSelected;
     this.selectedMonth = monthSelected;
-
-    this.kpiCards = [];
     var KPIView = {
       Year : this.selectedYear,
       Month : this.selectedMonth,
-      Line : this.selectedLine
+      Line : [1,2]
     }
+    this.callCapacityUtilizationApi(KPIView);
+    // this.callEfficiencyCalculationApi(KPIView);
+  }
+
+  callCapacityUtilizationApi(KPIView){
+    var _this = this;
     this.http.post<any>(this.userBackendUrl, KPIView).subscribe(responsedata => {
       if(responsedata.StatusCode == 200){
         $("#capacityVisual").show();
+        $("#efficiencyVisual").show();
+        $("#dhuRejectDefectVisual").show();
         _this.capacityCalculationHeadingColor = responsedata["CapaCityCalculation"]["Value"]["colorCode"]
         Highcharts.chart(this.container.nativeElement, {
           // Created pie chart using Highchart
@@ -190,6 +209,7 @@ export class SewingmoduleComponent implements OnInit {
       
           plotOptions: {
             solidgauge: {
+              size: 150,
               dataLabels: {
                   y: 5,
                   borderWidth: 0,
@@ -208,7 +228,7 @@ export class SewingmoduleComponent implements OnInit {
               name : "Cumulative",
               data: [{
                 y: responsedata["CapaCityCalculation"]["Value"]["capacityCalculation"],
-                drilldown: "A"
+                drilldown: null
               }],
               dataLabels: {
               format:
@@ -233,14 +253,149 @@ export class SewingmoduleComponent implements OnInit {
           //   }]
           // }
         })
+
+        Highcharts.chart(this.efficiencyContainer.nativeElement, {
+          chart: {
+              zoomType: 'xy',
+              width : 350,
+              marginleft: 10
+          },
+          exporting: {
+            enabled: false
+          },
+          title: {
+              text: '%Efficiency vs Weightage',
+              style: {'font-family': 'Arial, Helvetica', 'font-size': '17px', 'color': _this.capacityCalculationHeadingColor}
+          },
+          xAxis: [{
+              categories: responsedata["Efficiency"]["Value"]["monthCategory"],
+              crosshair: true
+          }],
+          credits: {enabled: false},
+          yAxis: [{ 
+              labels: {
+                  format: '{value}',
+                  style: {
+                      // color: "#eb8c00",
+                      style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                  }
+              },
+              title: {
+                  text: '% Efficiency',
+                  style: {
+                      // color: "#d04a02",
+                      style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                  }
+              }
+          }, { // Secondary yAxis
+              title: {
+                  text: 'Weightage',
+                  style: {
+                      // color: "#eb8c00",
+                      style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                  }
+              },
+              labels: {
+                  format: '{value}',
+                  style: {
+                      // color: "#d04a02",
+                      style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                  }
+              },
+              opposite: true
+          }],
+          tooltip: {
+              shared: true
+          },
+          // plotOptions: {
+          //   line: {
+          //     // dataLabels: {
+          //     //     enabled: true
+          //     // },
+          //     size: 150,
+          //     enableMouseTracking: false
+          //   },
+          //   column: {
+          //       // dataLabels: {
+          //       //     enabled: true
+          //       // },
+          //     size: 150,
+          //     enableMouseTracking: false
+          //   },
+          // },
+          legend: {
+              layout: 'vertical',
+              align: 'left',
+              x: 120,
+              verticalAlign: 'bottom',
+              y: 100,
+              floating: true,
+              backgroundColor:
+                  Highcharts.defaultOptions.legend.backgroundColor || // theme
+                  'rgba(255,255,255,0.25)'
+          },
+          series: responsedata["Efficiency"]["Value"]["efficiencyWeitageResponse"]
+          
+        });
+
+        //customize pie chart color
+        var pieColors = (function () {
+          var colors = [],
+              base = "#d04a02",
+              i;
+          for (i = 0; i < 10; i += 1) {
+              colors.push(Highcharts.color(base).brighten((i - 3) / 7).get());
+          }
+          return colors;
+        }());
+        Highcharts.chart(this.dhuRejectDefectContainer.nativeElement, {
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+            width: 300,
+          },
+          title: {
+            text: 'Defect vs Reject vs Alter',
+            style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'color': _this.capacityCalculationHeadingColor}
+          },
+          accessibility: {
+              point: {
+                  valueSuffix: '%'
+              }
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  size: 100,
+                  colors: pieColors,
+                  dataLabels: {
+                      enabled: true,
+                      format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                      style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                  }
+              }
+          },
+          exporting: {
+            enabled: false
+          },
+          credits: {enabled: false},
+          series: [{
+              data: responsedata["DefectRejectDHUPercentage"]["Value"]
+          }]
+        });
       }
       else{
         // _this.validationMsg = data["message"];
         return;
       }
     })
+
   }
 
+  
   selectAllOptions(){
     $('.yearSelectAll').click(function() {
       // var yearSelected = [];
