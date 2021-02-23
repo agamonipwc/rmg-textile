@@ -22,5 +22,7 @@ namespace Entities
         public DbSet<Helpers> Helpers { get; set; }
         public DbSet<DHU> DHU { get; set; }
         public DbSet<Rejection> Rejection { get; set; }
+        public DbSet<Machinery> Machinery { get; set; }
+        public DbSet<WIP> WIP { get; set; }
     }
 }

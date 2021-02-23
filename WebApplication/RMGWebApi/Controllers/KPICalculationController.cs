@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Mvc;
 using RMGWebApi.Utility;
+using RMGWebApi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,20 +50,13 @@ namespace RMGWebApi.Controllers
         [HttpPost]
         public JsonResult Post(KPIViewModel kpiViewModel)
         {
-            //List<dynamic> kpiResults = new List<dynamic>();
-            //var efficiencyResult = CalculateEfficiency(kpiViewModel);
-            //var defectsPerHundredResult = CalculateDefectsPerHundredUnits(kpiViewModel);
-            //var defectsPercentage = CalculateDefectPercentage(kpiViewModel);
-            //var rejectionPercentage = CalculateRejectionPercentage(kpiViewModel);
             var kpiResults = new {
                 CapaCityCalculation = CapacityCalculation(kpiViewModel),
                 Efficiency = CalculateEfficiency(kpiViewModel),
                 DefectRejectDHUPercentage = CalculateDHUDefectRejection(kpiViewModel),
+                MMRWIPInline= CalculateMMRInlineWIP(kpiViewModel),
                 StatusCode = 200
             };
-            //kpiResults.Add(defectsPerHundredResult.data);
-            //kpiResults.Add(defectsPercentage.data);
-            //kpiResults.Add(rejectionPercentage.data);
             return Json(kpiResults);
         }
 
@@ -72,203 +66,234 @@ namespace RMGWebApi.Controllers
             double sumofStyleDataLineWise = 0;
             var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-                .Select(grp => new { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line, x.Date.Month, x.Date.Year })
+                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+           
             var styleDataByLineWise = _rmgDbContext.StyleData.Where(x =>
                 kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line })
-                .Select(grp => new { StyleData = grp.Average(c => c.PlannedProductionpcs), Line = grp.Key.Line }).ToList();
+                .Select(grp => new StyleDataViewModel{ StyleData = grp.Average(c => c.PlannedProductionpcs), Line = grp.Key.Line }).ToList();
+            
             for (int index = 0; index < productionDataByYearGroup.Count; index++)
             {
                 sumofProductionDataLineWise += productionDataByYearGroup[index].ProdData;
             }
+
             for (int index = 0; index < styleDataByLineWise.Count; index++)
             {
                 sumofStyleDataLineWise += styleDataByLineWise[index].StyleData;
             }
-            var capacityCalculation = Math.Round((sumofProductionDataLineWise / sumofStyleDataLineWise)*100);
-            int gainedWeightage = 0;
-            if(capacityCalculation == 0)
+
+            var capacityUtilized = Math.Round((sumofProductionDataLineWise / sumofStyleDataLineWise)*100);
+            var capacityNonUtilized = Math.Round(100 - capacityUtilized);
+
+            var productionDataByLineGroup = _rmgDbContext.Production.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line})
+                .Select(grp => new { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+
+            CapacityUtilizationNested capacityUtilizationNested = new CapacityUtilizationNested();
+            List<int> dataList = new List<int>();
+            var query = (from s in productionDataByLineGroup
+                         join cs in styleDataByLineWise on new { s.Line } equals new { cs.Line }
+                         select new CapacityUtilizationParameter
+                         {
+                             parameterValue = Convert.ToInt32( Math.Round((s.ProdData / cs.StyleData) * 100)),
+                             line = s.Line.ToString()
+                        }).ToList();
+            
+            foreach(var element in query)
             {
-                gainedWeightage = 0;
+                dataList.Add(element.parameterValue);
+                //capacityUtilizationNested.data.Add(element.parameterValue);
             }
-            else if(capacityCalculation > 0 && capacityCalculation<=25){
-                gainedWeightage = 1;
-            }
-            else if (capacityCalculation >= 26 && capacityCalculation <= 50)
+            capacityUtilizationNested.nestedData = dataList;
+            capacityUtilizationNested.id = "utilized";
+            capacityUtilizationNested.type = "column";
+
+            CapacityUtilizationSeries capacityUtilizationSeries = new CapacityUtilizationSeries();
+            List<CapacityUtilizationDrilldown> capacityUtilizationDrilldowns = new List<CapacityUtilizationDrilldown>();
+            capacityUtilizationDrilldowns.Add(new CapacityUtilizationDrilldown
             {
-                gainedWeightage = 2;
-            }
-            else if (capacityCalculation >= 51 && capacityCalculation <= 80)
+                drilldown = "utilized",
+                y = Convert.ToInt32(capacityUtilized)
+            });
+            capacityUtilizationDrilldowns.Add(new CapacityUtilizationDrilldown
             {
-                gainedWeightage = 3;
-            }
-            else if (capacityCalculation >= 81 && capacityCalculation <= 90)
-            {
-                gainedWeightage = 4;
-            }
-            else
-            {
-                gainedWeightage = 5;
-            }
-            var weitageCalculation = Math.Round(gainedWeightage * 0.10,2);
-            string colorCode = "";
-            if (weitageCalculation < 0.16)
-            {
-                colorCode = "#e0301e";
-            }
-            else if(weitageCalculation >= 0.16 && weitageCalculation< 0.32)
-            {
-                colorCode = "#ffb600";
-            }
-            else
-            {
-                colorCode = "#175d2d";
-            }
+                drilldown = "",
+                y = Convert.ToInt32(capacityNonUtilized)
+            });
+            capacityUtilizationSeries.data = capacityUtilizationDrilldowns;
+            capacityUtilizationSeries.colorByPoint = true;
+            capacityUtilizationSeries.name = "Capacity";
+            //int gainedWeightage = 0;
+            //if(capacityCalculation == 0)
+            //{
+            //    gainedWeightage = 0;
+            //}
+            //else if(capacityCalculation > 0 && capacityCalculation<=25){
+            //    gainedWeightage = 1;
+            //}
+            //else if (capacityCalculation >= 26 && capacityCalculation <= 50)
+            //{
+            //    gainedWeightage = 2;
+            //}
+            //else if (capacityCalculation >= 51 && capacityCalculation <= 80)
+            //{
+            //    gainedWeightage = 3;
+            //}
+            //else if (capacityCalculation >= 81 && capacityCalculation <= 90)
+            //{
+            //    gainedWeightage = 4;
+            //}
+            //else
+            //{
+            //    gainedWeightage = 5;
+            //}
+            //var weitageCalculation = Math.Round(gainedWeightage * 0.10,2);
+            //string colorCode = "";
+            //if (weitageCalculation < 0.16)
+            //{
+            //    colorCode = "#e0301e";
+            //}
+            //else if(weitageCalculation >= 0.16 && weitageCalculation< 0.32)
+            //{
+            //    colorCode = "#ffb600";
+            //}
+            //else
+            //{
+            //    colorCode = "#175d2d";
+            //}
             return Json(new
             {
-                capacityCalculation = capacityCalculation,
-                colorCode = colorCode,
-                target = 85
+                capacityUtilizationSeries = capacityUtilizationSeries,
+                capacityUtilizationNested = capacityUtilizationNested
             });
         }
 
         private JsonResult CalculateEfficiency(KPIViewModel kpiViewModel)
         {
             var styleDataByLineWise = _rmgDbContext.StyleData.Where(x =>
-                kpiViewModel.Line.Contains(x.Line))
-                .Select(grp => new StyleDataViewModel{ StyleData = grp.SewingSAM, Line = grp.Line }).Sum(x=> x.StyleData);
+                kpiViewModel.Line.Contains(x.Line)).GroupBy(x=> new { x.Line })
+                .Select(grp => new StyleDataViewModel{ StyleData = grp.Average(x=> x.SewingSAM), Line = grp.Key.Line }).ToList();
 
             var workingHoursByLineWise = _rmgDbContext.WorkingHrs.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year})
-                .Select(grp => new WorkingHoursViewModel { WorkingHrsData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month}).ToList();
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line})
+                .Select(grp => new WorkingHoursViewModel { WorkingHrsData = grp.Average(c => c.Data), Line = grp.Key.Line}).ToList();
 
             var operatorNosByLineWise = _rmgDbContext.OperatorNos.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year})
-                .Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month,}).ToList();
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+                .Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             var helpersByLineWise = _rmgDbContext.Helpers.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year})
-                .Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month,}).ToList();
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line})
+                .Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year})
-                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month}).ToList();
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line})
+                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             List<EfficiencyViewModel> efficiencyViews = new List<EfficiencyViewModel>();
             List<EfficiencyWeitageViewModel> efficiencyWeitageViewModels = new List<EfficiencyWeitageViewModel>();
             List<string> monthCategory = new List<string>();
-            foreach(var element in kpiViewModel.Month)
+            foreach(var element in kpiViewModel.Line)
             {
                 switch (element)
                 {
                     case 1:
-                        monthCategory.Add("Jan");
+                        monthCategory.Add("Line1");
                         break;
                     case 2:
-                        monthCategory.Add("Feb");
+                        monthCategory.Add("Line2");
                         break;
                     case 3:
-                        monthCategory.Add("Mar");
+                        monthCategory.Add("Line3");
                         break;
                     case 4:
-                        monthCategory.Add("Apr");
+                        monthCategory.Add("Line4");
                         break;
                     case 5:
-                        monthCategory.Add("May");
+                        monthCategory.Add("Line5");
                         break;
-                    case 6:
-                        monthCategory.Add("Jun");
-                        break;
-                    case 7:
-                        monthCategory.Add("July");
-                        break;
-                    case 8:
-                        monthCategory.Add("Aug");
-                        break;
-                    case 9:
-                        monthCategory.Add("Sep");
-                        break;
-                    case 10:
-                        monthCategory.Add("Oct");
-                        break;
-                    case 11:
-                        monthCategory.Add("Nov");
-                        break;
-                    case 12:
-                        monthCategory.Add("Dec");
-                        break;
+                    //case 6:
+                    //    monthCategory.Add("Jun");
+                    //    break;
+                    //case 7:
+                    //    monthCategory.Add("July");
+                    //    break;
+                    //case 8:
+                    //    monthCategory.Add("Aug");
+                    //    break;
+                    //case 9:
+                    //    monthCategory.Add("Sep");
+                    //    break;
+                    //case 10:
+                    //    monthCategory.Add("Oct");
+                    //    break;
+                    //case 11:
+                    //    monthCategory.Add("Nov");
+                    //    break;
+                    //case 12:
+                    //    monthCategory.Add("Dec");
+                    //    break;
                 }
             }
-            
-            for (int index = 0; index< kpiViewModel.Year.Count; index++)
-            {
-                List<double> efficiencyPercentageValues = new List<double>();
-                List<double> efficiencyWeitageValues = new List<double>();
-                var query = (from s in workingHoursByLineWise
-                             join cs in operatorNosByLineWise on new { s.Month, s.Year} equals new { cs.Month, cs.Year}
-                             join os in helpersByLineWise on new { s.Month, s.Year } equals new { os.Month, os.Year}
-                             join x in productionDataByYearGroup on new { s.Month, s.Year } equals new { x.Month, x.Year}
-                             where s.Year == kpiViewModel.Year[index]
-                             select new EfficiencyParameters
-                             {
-                                 efficiency = Math.Round((x.ProdData * styleDataByLineWise) / (s.WorkingHrsData * (cs.OperatorData + os.HelperData))),
-                                 
-                                 Month = s.Month.ToString(),
-                                 Year = s.Year.ToString(),
-                             }).ToList();
 
-                foreach(var queryElement in query)
-                {
-                    double weightage = 0;
-                    if(queryElement.efficiency == 0)
-                    {
-                        weightage = 0.15 * 0;
-                    }
-                    else if(queryElement.efficiency > 0 && queryElement.efficiency <= 25)
-                    {
-                        weightage = 0.15 * 1;
-                    }
-                    else if (queryElement.efficiency >=26 && queryElement.efficiency <= 50)
-                    {
-                        weightage = 0.15 * 2;
-                    }
-                    else if (queryElement.efficiency >=51 && queryElement.efficiency <= 80)
-                    {
-                        weightage = 0.15 * 3;
-                    }
-                    else if (queryElement.efficiency > 81 && queryElement.efficiency <= 90)
-                    {
-                        weightage = 0.15 * 4;
-                    }
-                    else
-                    {
-                        weightage = 0.15 * 5;
-                    }
-                    efficiencyPercentageValues.Add(queryElement.efficiency);
-                    efficiencyWeitageValues.Add(weightage);
-                }
-                efficiencyWeitageViewModels.Add(new EfficiencyWeitageViewModel
-                {
-                    name = string.Join('_',"%eff", kpiViewModel.Year[index].ToString()),
-                    data = efficiencyPercentageValues,
-                    type= "spline",
-                    color = lineChartColors[index],
-                    tooltip = new { valueSuffix = "%" }
-                });
-                efficiencyWeitageViewModels.Add(new EfficiencyWeitageViewModel
-                {
-                    name = string.Join('_', "score", kpiViewModel.Year[index].ToString()),
-                    data = efficiencyWeitageValues,
-                    type = "column", 
-                    yAxis = 1,
-                    color = lineChartColors[index],
-                    tooltip = new { valueSuffix  = ""}
-                });
+            List<double> efficiencyPercentageValues = new List<double>();
+            List<double> efficiencyWeitageValues = new List<double>();
+            var query = (from s in workingHoursByLineWise
+                         join cs in operatorNosByLineWise on new { s.Line } equals new { cs.Line }
+                         join os in helpersByLineWise on new { s.Line } equals new { os.Line }
+                         join x in productionDataByYearGroup on new { s.Line } equals new { x.Line }
+                         join style in styleDataByLineWise on new {s.Line} equals new {style.Line}
+                         select new EfficiencyParameters
+                         {
+                             efficiency = (Math.Round((x.ProdData * style.StyleData) / (s.WorkingHrsData * (cs.OperatorData + os.HelperData)), 2))*100,
+                             Month = s.Line.ToString(),
+                             //Year = s.Year.ToString(),
+                         }).ToList();
+
+            foreach (var queryElement in query)
+            {
+                //double weightage = 0;
+                //if (queryElement.efficiency == 0)
+                //{
+                //    weightage = 0.15 * 0;
+                //}
+                //else if (queryElement.efficiency > 0 && queryElement.efficiency <= 25)
+                //{
+                //    weightage = 0.15 * 1;
+                //}
+                //else if (queryElement.efficiency >= 26 && queryElement.efficiency <= 50)
+                //{
+                //    weightage = 0.15 * 2;
+                //}
+                //else if (queryElement.efficiency >= 51 && queryElement.efficiency <= 80)
+                //{
+                //    weightage = 0.15 * 3;
+                //}
+                //else if (queryElement.efficiency > 81 && queryElement.efficiency <= 90)
+                //{
+                //    weightage = 0.15 * 4;
+                //}
+                //else
+                //{
+                //    weightage = 0.15 * 5;
+                //}
+                efficiencyPercentageValues.Add(queryElement.efficiency);
+                //efficiencyWeitageValues.Add(weightage);
             }
+            efficiencyWeitageViewModels.Add(new EfficiencyWeitageViewModel
+            {
+                name = string.Join(' ', "Efficiency on ", kpiViewModel.Year[0].ToString()),
+                data = efficiencyPercentageValues,
+                type = "spline",
+                color = lineChartColors[0],
+                tooltip = new { valueSuffix = "%" }
+            });
             return Json(new
             {
                 efficiencyResponse = efficiencyViews,
@@ -282,8 +307,8 @@ namespace RMGWebApi.Controllers
             double avgProductionDataByYearGroup = 0;
             var productionData = _rmgDbContext.Production.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
-                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month }).ToList();
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             if(productionData.Count > 0)
             {
@@ -292,8 +317,8 @@ namespace RMGWebApi.Controllers
 
             var rejectionData = _rmgDbContext.Rejection.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
-                .Select(grp => new RejectionViewModel { RejectionData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month }).ToList();
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+                .Select(grp => new RejectionViewModel { RejectionData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             double avgRejectionDataByYearGroup = 0;
             if(rejectionData.Count > 0)
@@ -303,8 +328,8 @@ namespace RMGWebApi.Controllers
 
             var alterationData = _rmgDbContext.Rejection.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
-                .Select(grp => new AlterationViewModel { AlterationData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month }).ToList();
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line})
+                .Select(grp => new AlterationViewModel { AlterationData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
             
             double avgAlterationDataByYearGroup = 0;
             if(alterationData.Count > 0)
@@ -326,7 +351,7 @@ namespace RMGWebApi.Controllers
                 {
                     percentageDHU = Math.Round(dhuData.Average(x => x.DHUData),2);
                 }
-                var acceptedPercentage = Math.Round((100 - (percentageDHU + percentageRejection + percentageDefection)), 2);
+                var acceptedPercentage = (Math.Round((100 - (percentageDHU + percentageRejection + percentageDefection)), 2));
                 seriesData.Add(new DHURejectDefect
                 {
                     name = "D.H.U",
@@ -349,6 +374,175 @@ namespace RMGWebApi.Controllers
                 });
             }
             return Json(seriesData);
+        }
+
+        private JsonResult CalculateMMRInlineWIP(KPIViewModel kpiViewModel)
+        {
+            var operatorNosByLineWise = _rmgDbContext.OperatorNos.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+                .Select(grp => new OperatorViewModel { OperatorData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+
+            var helpersByLineWise = _rmgDbContext.Helpers.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+                .Select(grp => new HelpersViewModel { HelperData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+
+            var checkersByLineWise = _rmgDbContext.Helpers.Where(x =>
+               kpiViewModel.Year.Contains(x.Date.Year) &&
+               kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+               .Select(grp => new CheckersViewModel { CheckerData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+
+            var machineryByLineWise = _rmgDbContext.Helpers.Where(x =>
+               kpiViewModel.Year.Contains(x.Date.Year) &&
+               kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+               .Select(grp => new MachineryViewModel { MechineryData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+
+            var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+                .Select(grp => new ProductionViewModel { ProdData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+
+            var wipDataByYearGroup = _rmgDbContext.Production.Where(x =>
+                kpiViewModel.Year.Contains(x.Date.Year) &&
+                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+                .Select(grp => new WIPViewModel { WIPData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+            
+            List<string> monthCategory = new List<string>();
+            foreach (var element in kpiViewModel.Line)
+            {
+                switch (element)
+                {
+                    case 1:
+                        monthCategory.Add("Line1");
+                        break;
+                    case 2:
+                        monthCategory.Add("Line2");
+                        break;
+                    case 3:
+                        monthCategory.Add("Line3");
+                        break;
+                    case 4:
+                        monthCategory.Add("Line4");
+                        break;
+                    case 5:
+                        monthCategory.Add("Line5");
+                        break;
+                    //case 6:
+                    //    monthCategory.Add("Jun");
+                    //    break;
+                    //case 7:
+                    //    monthCategory.Add("July");
+                    //    break;
+                    //case 8:
+                    //    monthCategory.Add("Aug");
+                    //    break;
+                    //case 9:
+                    //    monthCategory.Add("Sep");
+                    //    break;
+                    //case 10:
+                    //    monthCategory.Add("Oct");
+                    //    break;
+                    //case 11:
+                    //    monthCategory.Add("Nov");
+                    //    break;
+                    //case 12:
+                    //    monthCategory.Add("Dec");
+                    //    break;
+                }
+            }
+            //List<MMRInlineMonthlyViewModel> mmRMonthlyViewModels = new List<MMRInlineMonthlyViewModel>();
+            List<double> wipYearWiseWeitageValues = new List<double>();
+
+            //for (int index = 0; index < kpiViewModel.Year.Count; index++)
+            //{
+            //    List<double> mmrYearWiseWeightageValues = new List<double>();
+            //    List<double> wipYearWiseWeitageValues = new List<double>();
+
+            //}
+            var query = (from op in operatorNosByLineWise
+                         join he in helpersByLineWise on new { op.Line } equals new { he.Line }
+                         join ch in checkersByLineWise on new { op.Line } equals new { ch.Line }
+                         join prod in productionDataByYearGroup on new { op.Line } equals new { prod.Line }
+                         join m in machineryByLineWise on new { op.Line } equals new { m.Line }
+                         join wp in wipDataByYearGroup on new { op.Line } equals new { wp.Line }
+                         select new MMRInlineWIPParameter
+                         {
+                             //mmrValue = ((op.OperatorData + he.HelperData + ch.CheckerData) / prod.ProdData),
+                             Month = op.Line.ToString(),
+                             //Year = op.Year.ToString(),
+                             wipValue = Math.Round((wp.WIPData / prod.ProdData),2)
+                         }).ToList();
+
+            foreach (var queryElement in query)
+            {
+                //double mmrweightage = 0;
+                //double wipweightage = 0;
+                //if(queryElement.mmrValue > 0)
+                //{
+                //    if ((queryElement.mmrValue >= 0.8 && queryElement.mmrValue <= 1))
+                //    {
+                //        mmrweightage = 0.15 * 3;
+                //    }
+                //    else if (queryElement.mmrValue >= 1.1 && queryElement.mmrValue <= 1.5)
+                //    {
+                //        mmrweightage = 0.15 * 2;
+                //    }
+                //    else
+                //    {
+                //        mmrweightage = 0.15 * 1;
+                //    }
+                //}
+                //if (queryElement.wipValue > 0)
+                //{
+                //    if ((queryElement.wipValue >= 0.8 && queryElement.wipValue <= 1))
+                //    {
+                //        wipweightage = 0.15 * 3;
+                //    }
+                //    else if (queryElement.wipValue >= 1.1 && queryElement.wipValue <= 1.5)
+                //    {
+                //        wipweightage = 0.15 * 2;
+                //    }
+                //    else
+                //    {
+                //        wipweightage = 0.15 * 1;
+                //    }
+                //}
+
+                wipYearWiseWeitageValues.Add(queryElement.wipValue);
+            }
+            //List<MMRWIPChartData> chartDatas = new List<MMRWIPChartData>();
+            //if (mmRMonthlyViewModels.Count > 0)
+            //{
+            //    var groupByMonthMMRInline = mmRMonthlyViewModels.GroupBy(x => x.month).Select(grp => new MMRInlineMonthlyViewModel
+            //    {
+            //        mmrdata = grp.Average(c => c.mmrdata),
+            //        wipdata = grp.Average(c => c.wipdata),
+            //        month = grp.Key
+            //    }).ToList();
+            //    List<double> mmrStackData = new List<double>();
+            //    List<double> wipStackData = new List<double>();
+            //    foreach (var element in groupByMonthMMRInline)
+            //    {
+            //        mmrStackData.Add(Math.Round(element.mmrdata, 3));
+            //        wipStackData.Add(Math.Round(element.wipdata, 3));
+            //    }
+            //    chartDatas.Add(new MMRWIPChartData
+            //    {
+            //        name = "MMR",
+            //        data = mmrStackData
+            //    });
+            //    chartDatas.Add(new MMRWIPChartData
+            //    {
+            //        name = "WIP",
+            //        data = wipStackData
+            //    });
+            //}
+            return Json(new {
+                chartDatas = wipYearWiseWeitageValues,
+                monthCategory = monthCategory,
+                name = "Inline WIP"
+            });
         }
 
         //private CustomResponse CalculateEfficiency(KPIViewModel kpiViewModel)

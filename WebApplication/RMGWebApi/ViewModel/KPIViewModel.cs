@@ -34,6 +34,28 @@ namespace RMGWebApi
         public int Month { get; set; }
         public double Line { get; set; }
     }
+    public class CheckersViewModel
+    {
+        public double CheckerData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
+
+    public class MachineryViewModel
+    {
+        public double MechineryData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
+    public class WIPViewModel
+    {
+        public double WIPData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+    }
     public class ProductionViewModel
     {
         public double ProdData { get; set; }

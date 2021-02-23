@@ -45,9 +45,9 @@
         </ul>
       </div>
     </li>
-    <li class="nav-item mt-3">
+    <!-- <li class="nav-item mt-3">
       <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
-    </li>
+    </li> -->
     <!-- <li class="nav-item mt-3">
       <div class="dropdown ml-2">
         <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Unit</span>
@@ -89,68 +89,35 @@
         </div>
       </div> -->
       <div class="row align-items-center h-100 mt-2">
-        <div class="col-3 mt-3 card-style" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #container style="width: 200px; height: 175px;"></div>
+        <div class="ml-3 col-3 mt-4 mr-4 p-4 card-style card-status" id="dhuCard" style="display: none; height: auto; min-height: max-content; font-size: 16px;">
+          
+        </div>
+        <div class="col-3 mt-4 mr-4 p-4 card-style card-status" id="defectCard" style="display: none; height: auto; min-height: max-content; font-size: 16px;">
+          
+        </div>
+        <div class="col-3 mt-4 p-4 card-style card-status" id="rejectCard" style="display: none; height: auto; min-height: max-content; font-size: 16px;">
+          
+        </div>
+        <div class="col-4 mt-3 card-style" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #container style="height: 350px;width: 350px;"></div>
         </div>
         <div class="col-4 mt-3 ml-2 card-style" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #efficiencyContainer style="width: 350px; height: 175px;"></div>
+          <div #efficiencyContainer style="width: 350px;height: 350px;"></div>
         </div>
-        <div class="col-4 mt-3 ml-2 card-style" id="dhuRejectDefectVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #dhuRejectDefectContainer style="width: 200px; height: 175px;"></div>
+        <div class="col-3 mt-3 ml-2 card-style" id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #mmrWIPContainer style="width: 350px;height: 350px;"></div>
         </div>
-        <!-- <div class="col-4 mt-3 ml-3" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #efficiencyContainer style="width: 250px; height: 175px;"></div>
-        </div> -->
-        <!-- <div class="col-4 mt-2">
-          <div class="card card-style card-status">
-            <div class="card-body text-center">
-              <h6 class="card-title text-white">Defects Per Hundred Units (D.H.U.)</h6>
-              <p class="card-text text-white">Status: Green</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-4 mt-2">
-          <div class="card card-style card-status">
-            <div class="card-body text-center">
-              <h6 class="card-title text-white">Defect %</h6>
-              <p class="card-text text-white">Status: Green</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-4 mt-2">
-          <div class="card card-style card-status">
-            <div class="card-body text-center">
-              <h6 class="card-title text-white">Rejection %</h6>
-              <p class="card-text text-white">Status: Green</p>
-            </div>
-          </div>
+        
+        <!-- <div class="col-3 mt-3 ml-2 card-style" id="dhuRejectDefectVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #dhuRejectDefectContainer style="width: 200px;"></div>
         </div> -->
       </div>
 
-      <div class="row align-items-center h-100 mt-3">
-        <!-- <div class="col-4">
-          <div class="card card-style card-status">
-            <div class="card-body text-center">
-              <h6 class="card-title text-white">Rejection %</h6>
-              <p class="card-text text-white">Status: Green</p>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-4">
-          <div class="card card-style">
-            <div class="card-body text-center">
-              <div [chart]="socialSustainabilityGaugeFormat"></div>
-            </div>
-          </div>
+      <!-- <div class="row align-items-center h-100 mt-1">
+        <div class="col-4 mt-3 ml-2 card-style" id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #mmrWIPContainer style="width: 350px;height: 270px;"></div>
         </div>
-        <div class="col-4">
-          <div class="card card-style">
-            <div class="card-body text-center">
-              <div [chart]="environmentalSustainabilityGaugeChart"></div>
-            </div>
-          </div>
-        </div> -->
-      </div>
+      </div> -->
       
     </div>
   </section>
