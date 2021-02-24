@@ -62,21 +62,21 @@
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart]="operationGaugeFormat"></div>
+              <!-- <div [chart]="operationGaugeFormat"></div> -->
             </div>
           </div>
         </div>
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart]="socialSustainabilityGaugeFormat"></div>
+              <!-- <div [chart]="socialSustainabilityGaugeFormat"></div> -->
             </div>
           </div>
         </div>
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart]="environmentalSustainabilityGaugeChart"></div>
+              <!-- <div [chart]="environmentalSustainabilityGaugeChart"></div> -->
             </div>
           </div>
         </div>
@@ -116,21 +116,21 @@
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart] = "gaugeInline"></div>
+              <!-- <div [chart] = "gaugeInline"></div> -->
             </div>
           </div>
         </div>
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart] = "gaugeProcess"></div>
+              <!-- <div [chart] = "gaugeProcess"></div> -->
             </div>
           </div>
         </div>
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart] = "gaugeOutward"></div>
+              <!-- <div [chart] = "gaugeOutward"></div> -->
             </div>
           </div>
         </div>
@@ -139,8 +139,8 @@
     <div class="tab-pane fade hide-show" id="process" role="tabpanel" aria-labelledby="OperationModule-tab">
       <h3 class="text-center">Process wise Performance</h3>
       <hr class="footer" />
-      <div class="row align-items-center h-100 mt-2">
-        <!-- <div class="d-flex flex-column col-4">
+      <!-- <div class="row align-items-center h-100 mt-2">
+        <div class="d-flex flex-column col-4">
           <div class="card card-style card-status-green">
             <div class="card-body text-center">
               <h6 class="card-text">Fabric Store</h6>
@@ -153,7 +153,7 @@
               <h6 class="card-text">30%</h6>
             </div>
           </div>
-        </div> -->
+        </div>
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
@@ -168,15 +168,15 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row align-items-center h-100 mt-3">
+      </div> -->
+      <!-- <div class="row align-items-center h-100 mt-3">
         <div class="d-flex flex-column col-4">
-          <!-- <div class="card card-style card-status-yellow">
+          <div class="card card-style card-status-yellow">
             <div class="card-body text-center">
               <h6 class="card-text">Spreading & Cutting</h6>
               <h6 class="card-text">59%</h6>
             </div>
-          </div> -->
+          </div>
           
           <div class="card card-style mt-3">
             <div class="card-body text-center">
@@ -185,12 +185,12 @@
           </div>
         </div>
         <div class="col-4 d-flex flex-column">
-          <!-- <div class="card card-style card-status-red" (click)="sewingNavigation()" style="cursor: pointer;">
+          <div class="card card-style card-status-red" (click)="sewingNavigation()" style="cursor: pointer;">
             <div class="card-body text-center">
               <h6 class="card-text">Sewing</h6>
               <h6 class="card-text">25%</h6>
             </div>
-          </div> -->
+          </div>
           <div class="card card-style mt-3">
             <div class="card-body text-center">
               <div [chart]="sewingGaugeFormat"></div>
@@ -198,19 +198,21 @@
           </div>
         </div>
         <div class="d-flex flex-column col-4">
-          <!-- <div class="card card-style card-status-yellow">
+          <div class="card card-style card-status-yellow">
             <div class="card-body text-center">
               <h6 class="card-text">Finishing & Packaging</h6>
               <h6 class="card-text">55%</h6>
             </div>
-          </div> -->
+          </div>
           <div class="card card-style mt-3">
             <div class="card-body text-center">
               <div [chart]="finishingPackingGaugeFormat"></div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
+    
+      <div [chart]="processBubble"></div>
     </div>
   </section>
 </main>

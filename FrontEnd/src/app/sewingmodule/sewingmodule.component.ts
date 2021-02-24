@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { DatepickerOptions } from 'ng2-datepicker';
 import * as enLocale from 'date-fns/locale/en';
 import * as  Highcharts from 'highcharts';
+//import {Chart} from 'highcharts';
 import  More from 'highcharts/highcharts-more';
 More(Highcharts);
 import Drilldown from 'highcharts/modules/drilldown';
@@ -12,6 +13,7 @@ Drilldown(Highcharts);
 // Load the exporting module.
 import Exporting from 'highcharts/modules/exporting';
 import { style } from '@angular/animations';
+import { Chart } from 'angular-highcharts';
 // Initialize exporting module.
 Exporting(Highcharts);
 
@@ -72,8 +74,15 @@ export class SewingmoduleComponent implements OnInit {
   selectedUnit = [];
   selectedLocation = [];
   capacityCalculationHeadingColor = "";
-  // capacityCalcGaugeFormat : Chart;
-  // columnsOptions : Chart;
+
+
+  productionLine : Chart;
+  rejectionLine : Chart;
+  dhuLine : Chart;
+  productionUnit : Chart;
+  rejectionUnit : Chart;
+  dhuUnit : Chart;
+  
 
   constructor(private http: HttpClient,) {
     this.startDate = new Date();
@@ -85,6 +94,8 @@ export class SewingmoduleComponent implements OnInit {
     $("#footer").css("margin-left", "15%");
     this.selectAllOptions();
     this.getFilterData();
+    this.getLineWiseCharts();
+    this.getUnitWiseCharts();
     // this.getSewingKPIAnalysis();
     
   }
@@ -143,6 +154,732 @@ export class SewingmoduleComponent implements OnInit {
     }
     this.callCapacityUtilizationApi(KPIView);
     // this.callEfficiencyCalculationApi(KPIView);
+  }
+
+  getLineWiseCharts(){
+
+    this.productionLine = new Chart({
+      chart: {
+          type: 'spline'
+      },
+      title: {
+          text: 'Production Efficiency'
+      },
+      
+      xAxis: {
+          type: 'category'
+      },
+      colors: [
+                '#ffb600',
+                '#db536a',
+                '#e0301e',
+                '#eb8c00', 
+                '#db536a', 
+                '#d93954', 
+                '#e0301e', 
+                '#d04a02', 
+                '#92A8CD'
+                
+          ],
+  
+  
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: true
+              },
+          column: {
+                colorByPoint: true
+            }
+          }
+      },
+  
+      series: [{
+          name: 'Line 1',
+          data: [{
+              name: '2019',
+              y: 500,
+              drilldown: 'Line1-2019'
+          }, {
+              name: '2020',
+              y: 550,
+              drilldown: 'Line1-2020'
+          }, {
+              name: '2021',
+              y: 400,
+              drilldown: 'Line1-2021'
+          }]
+      }, {
+          name: 'Line 2',
+          data: [{
+              name: '2019',
+              y: 436,
+              drilldown: 'Line2-2019'
+          }, {
+              name: '2020',
+              y: 478,
+              drilldown: 'Line2-2020'
+          }, {
+              name: '2021',
+              y: 499,
+              drilldown: 'Line2-2021'
+          }]
+      }],
+      drilldown: {
+          series: [{
+              id: 'Line1-2019',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 348],
+                  ['Feb', 299],
+                  ['Mar', 301],
+                  ['Apr', 340],
+                  ['May',265],
+                  ['Jun',321]
+              ]
+          }, {
+              id: 'Line1-2020',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 248],
+                  ['Feb', 229],
+                  ['Mar', 201],
+                  ['Apr', 240],
+                  ['May',265],
+                  ['Jun',221]
+              ]
+          }, {
+              id: 'Line1-2021',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 348],
+                  ['Feb', 299],
+                  ['Mar', 301],
+                  ['Apr', 340],
+                  ['May',265],
+                  ['Jun',321]
+              ]
+          }, {id: 'Line2-2019',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 348],
+                  ['Feb', 299],
+                  ['Mar', 301],
+                  ['Apr', 340],
+                  ['May',265],
+                  ['Jun',321]
+              ]
+          }, {
+              id: 'Line2-2020',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 248],
+                  ['Feb', 229],
+                  ['Mar', 201],
+                  ['Apr', 240],
+                  ['May',265],
+                  ['Jun',221]
+              ]
+          }, {
+              id: 'Line2-2021',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 348],
+                  ['Feb', 299],
+                  ['Mar', 301],
+                  ['Apr', 340],
+                  ['May',265],
+                  ['Jun',321]
+                ]
+          }]
+      }
+  });
+
+    this.rejectionLine = new Chart({
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Rejection Percentage'
+      },
+      
+      xAxis: {
+          type: 'category'
+      },
+      colors: [
+            '#ffb600',
+            '#db536a',
+            '#e0301e',
+            '#eb8c00', 
+            '#db536a', 
+            '#d93954', 
+            '#e0301e', 
+            '#d04a02', 
+            '#92A8CD'
+                
+          ],
+
+
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: true
+              },
+          column: {
+                colorByPoint: true
+            }
+          }
+      },
+
+      series: [{
+          name: 'Line 1',
+          data: [{
+              name: '2019',
+              y: 23,
+              drilldown: 'Line1-2019'
+          }, {
+              name: '2020',
+              y: 36,
+              drilldown: 'Line1-2020'
+          }, {
+              name: '2021',
+              y: 40,
+              drilldown: 'Line1-2021'
+          }]
+      }, {
+          name: 'Line 2',
+          data: [{
+              name: '2019',
+              y: 47,
+              drilldown: 'Line2-2019'
+          }, {
+              name: '2020',
+              y: 46,
+              drilldown: 'Line2-2020'
+          }, {
+              name: '2021',
+              y: 29,
+              drilldown: 'Line2-2021'
+          }]
+      }],
+      drilldown: {
+          series: [{
+              id: 'Line1-2019',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 48],
+                  ['Feb', 29],
+                  ['Mar', 30],
+                  ['Apr', 30],
+                  ['May',25],
+                  ['Jun',21]
+              ]
+          }, {
+              id: 'Line1-2020',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 28],
+                  ['Feb', 29],
+                  ['Mar', 21],
+                  ['Apr', 20],
+                  ['May',26],
+                  ['Jun',22]
+              ]
+          }, {
+              id: 'Line1-2021',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 31],
+                  ['Apr', 34],
+                  ['May',25],
+                  ['Jun',32]
+              ]
+          }, {id: 'Line2-2019',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 30],
+                  ['Apr', 30],
+                  ['May',25],
+                  ['Jun',32]
+              ]
+          }, {
+              id: 'Line2-2020',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 24],
+                  ['Feb', 29],
+                  ['Mar', 21],
+                  ['Apr', 20],
+                  ['May',26],
+                  ['Jun',21]
+              ]
+          }, {
+              id: 'Line2-2021',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 19],
+                  ['Apr', 34],
+                  ['May',29],
+                  ['Jun',41]
+                ]
+          }]
+      }
+  });
+
+    this.dhuLine = new Chart({
+
+      title: {
+          text: 'Annual DHU Analysis'
+      },
+
+      colors: [
+                '#ffb600',
+                '#db536a',
+                '#e0301e',
+                '#eb8c00', 
+                '#db536a', 
+                '#d93954', 
+                '#e0301e', 
+                '#d04a02', 
+                '#92A8CD'
+        
+            ],
+  
+      yAxis: {
+          title: {
+              text: 'DHU %'
+          },
+          
+          plotLines: [{
+      color: 'red', // Color value
+      dashStyle: 'dash', // Style of the plot line. Default to solid
+      value: 1.80, // Value of where the line will appear
+      width: 2, // Width of the line,
+      label: {
+          text: 'Permissible DHU'
+        }
+    }]
+      },
+  
+      xAxis: {
+          accessibility: {
+              rangeDescription: 'Range: 2019 to 2021'
+          }
+      },
+  
+      legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle'
+      },
+  
+      plotOptions: {
+          series: {
+              label: {
+                  connectorAllowed: false
+              },
+              pointStart: 2010
+          },
+          column: {
+            colorByPoint: true
+        }
+      },
+  
+      series: [{
+          name: 'Line 1',
+          data: [1.50,1.17,1.25]
+      }, {
+          name: 'Line 1',
+          data: [1.00,1.95,0.79]
+      }],
+  
+      responsive: {
+          rules: [{
+              condition: {
+                  maxWidth: 500
+              },
+              chartOptions: {
+                  legend: {
+                      layout: 'horizontal',
+                      align: 'center',
+                      verticalAlign: 'bottom'
+                  }
+              }
+          }]
+      }
+  
+  });
+  }
+
+  getUnitWiseCharts(){
+
+    this.productionUnit = new Chart({
+      chart: {
+          type: 'spline'
+      },
+      title: {
+          text: 'Production Efficiency'
+      },
+      
+      xAxis: {
+          type: 'category'
+      },
+      colors: [
+            '#ffb600',
+            '#db536a',
+            '#e0301e',
+            '#eb8c00', 
+            '#db536a', 
+            '#d93954', 
+            '#e0301e', 
+            '#d04a02', 
+            '#92A8CD'
+                
+          ],
+  
+  
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: true
+              },
+          column: {
+                colorByPoint: true
+            }
+          }
+      },
+  
+      series: [{
+          name: 'Unit 1',
+          data: [{
+              name: '2019',
+              y: 500,
+              drilldown: 'Line1-2019'
+          }, {
+              name: '2020',
+              y: 550,
+              drilldown: 'Line1-2020'
+          }, {
+              name: '2021',
+              y: 400,
+              drilldown: 'Line1-2021'
+          }]
+      }, {
+          name: 'Unit 2',
+          data: [{
+              name: '2019',
+              y: 436,
+              drilldown: 'Line2-2019'
+          }, {
+              name: '2020',
+              y: 478,
+              drilldown: 'Line2-2020'
+          }, {
+              name: '2021',
+              y: 499,
+              drilldown: 'Line2-2021'
+          }]
+      }],
+      drilldown: {
+          series: [{
+              id: 'Line1-2019',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 348],
+                  ['Feb', 299],
+                  ['Mar', 301],
+                  ['Apr', 340],
+                  ['May',265],
+                  ['Jun',321]
+              ]
+          }, {
+              id: 'Line1-2020',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 248],
+                  ['Feb', 229],
+                  ['Mar', 201],
+                  ['Apr', 240],
+                  ['May',265],
+                  ['Jun',221]
+              ]
+          }, {
+              id: 'Line1-2021',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 348],
+                  ['Feb', 299],
+                  ['Mar', 301],
+                  ['Apr', 340],
+                  ['May',265],
+                  ['Jun',321]
+              ]
+          }, {id: 'Line2-2019',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 348],
+                  ['Feb', 299],
+                  ['Mar', 301],
+                  ['Apr', 340],
+                  ['May',265],
+                  ['Jun',321]
+              ]
+          }, {
+              id: 'Line2-2020',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 248],
+                  ['Feb', 229],
+                  ['Mar', 201],
+                  ['Apr', 240],
+                  ['May',265],
+                  ['Jun',221]
+              ]
+          }, {
+              id: 'Line2-2021',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 348],
+                  ['Feb', 299],
+                  ['Mar', 301],
+                  ['Apr', 340],
+                  ['May',265],
+                  ['Jun',321]
+                ]
+          }]
+      }
+  });
+
+    this.rejectionUnit = new Chart({
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Rejection Percentage'
+      },
+      
+      xAxis: {
+          type: 'category'
+      },
+      colors: [
+                '#ffb600',
+                '#db536a',
+                '#e0301e',
+                '#eb8c00', 
+                '#db536a', 
+                '#d93954', 
+                '#e0301e', 
+                '#d04a02', 
+                '#92A8CD'
+                
+          ],
+
+
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: true
+              },
+          column: {
+                colorByPoint: true
+            }
+          }
+      },
+
+      series: [{
+          name: 'Unit 1',
+          data: [{
+              name: '2019',
+              y: 23,
+              drilldown: 'Line1-2019'
+          }, {
+              name: '2020',
+              y: 36,
+              drilldown: 'Line1-2020'
+          }, {
+              name: '2021',
+              y: 40,
+              drilldown: 'Line1-2021'
+          }]
+      }, {
+          name: 'Unit 2',
+          data: [{
+              name: '2019',
+              y: 47,
+              drilldown: 'Line2-2019'
+          }, {
+              name: '2020',
+              y: 46,
+              drilldown: 'Line2-2020'
+          }, {
+              name: '2021',
+              y: 29,
+              drilldown: 'Line2-2021'
+          }]
+      }],
+      drilldown: {
+          series: [{
+              id: 'Line1-2019',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 48],
+                  ['Feb', 29],
+                  ['Mar', 30],
+                  ['Apr', 30],
+                  ['May',25],
+                  ['Jun',21]
+              ]
+          }, {
+              id: 'Line1-2020',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 28],
+                  ['Feb', 29],
+                  ['Mar', 21],
+                  ['Apr', 20],
+                  ['May',26],
+                  ['Jun',22]
+              ]
+          }, {
+              id: 'Line1-2021',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 31],
+                  ['Apr', 34],
+                  ['May',25],
+                  ['Jun',32]
+              ]
+          }, {id: 'Line2-2019',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 30],
+                  ['Apr', 30],
+                  ['May',25],
+                  ['Jun',32]
+              ]
+          }, {
+              id: 'Line2-2020',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 24],
+                  ['Feb', 29],
+                  ['Mar', 21],
+                  ['Apr', 20],
+                  ['May',26],
+                  ['Jun',21]
+              ]
+          }, {
+              id: 'Line2-2021',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 19],
+                  ['Apr', 34],
+                  ['May',29],
+                  ['Jun',41]
+                ]
+          }]
+      }
+  });
+
+    this.dhuUnit = new Chart({
+
+      title: {
+          text: 'Annual DHU Analysis'
+      },
+
+      colors: [
+        '#ffb600',
+        '#db536a',
+        '#e0301e',
+        '#eb8c00', 
+        '#db536a', 
+        '#d93954', 
+        '#e0301e', 
+        '#d04a02', 
+        '#92A8CD'
+        
+  ],
+  
+      yAxis: {
+          title: {
+              text: 'DHU %'
+          },
+          
+          plotLines: [{
+      color: 'red', // Color value
+      dashStyle: 'dash', // Style of the plot line. Default to solid
+      value: 1.80, // Value of where the line will appear
+      width: 2, // Width of the line,
+      label: {
+          text: 'Permissible DHU'
+        }
+    }]
+      },
+  
+      xAxis: {
+          accessibility: {
+              rangeDescription: 'Range: 2019 to 2021'
+          }
+      },
+  
+      legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle'
+      },
+  
+      plotOptions: {
+          series: {
+              label: {
+                  connectorAllowed: false
+              },
+              pointStart: 2010
+          },
+          column: {
+            colorByPoint: true
+        }
+      },
+  
+      series: [{
+          name: 'Unit 1',
+          data: [1.50,1.17,1.25]
+      }, {
+          name: 'Unit 2',
+          data: [1.89,1.95,0.79]
+      }],
+  
+      responsive: {
+          rules: [{
+              condition: {
+                  maxWidth: 500
+              },
+              chartOptions: {
+                  legend: {
+                      layout: 'horizontal',
+                      align: 'center',
+                      verticalAlign: 'bottom'
+                  }
+              }
+          }]
+      }
+  
+  });
   }
 
   callCapacityUtilizationApi(KPIView){
@@ -395,6 +1132,7 @@ export class SewingmoduleComponent implements OnInit {
 
   }
 
+
   
   selectAllOptions(){
     $('.yearSelectAll').click(function() {
@@ -471,5 +1209,19 @@ export class SewingmoduleComponent implements OnInit {
       }
       this.selectedUnit = unitSelected;
     });
+  }
+
+  activeTab = 'kpi';
+
+  kpi(activeTab){
+    this.activeTab = activeTab;
+  }
+
+  detailedAnalysis(activeTab){
+    this.activeTab = activeTab;
+  }
+
+  unitAnalysis(activeTab){
+    this.activeTab = activeTab;
   }
 }

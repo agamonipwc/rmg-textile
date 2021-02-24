@@ -21,6 +21,7 @@ export class ModuleperformanceComponent implements OnInit {
   gaugeInline: Chart;
   gaugeOutward: Chart;
   gaugeProcess: Chart;
+  processBubble : Chart;
   constructor(private _router: Router) { }
 
   ngOnInit() {
@@ -35,6 +36,7 @@ export class ModuleperformanceComponent implements OnInit {
     this.createSewingOverview();
     this.createFinishingPackingOverview();
     this.createOperationoduleChart();
+    this.createProcessOverview();
   }
 
   tabNavigation(event){
@@ -804,6 +806,83 @@ export class ModuleperformanceComponent implements OnInit {
               valueSuffix: ' percentage'
           }
       }]
+    });
+  }
+
+  createProcessOverview(){
+    this.processBubble = new Chart({
+        chart: {
+            type: 'packedbubble',
+            height: '100%'
+        },
+        title: {
+            text: 'Lets visualize where the processes stand'
+        },
+        tooltip: {
+            useHTML: true,
+            pointFormat: '<b>{point.name}:</b> {point.value}<sub></sub>'
+        },
+        plotOptions: {
+            packedbubble: {
+                minSize: '20%',
+                maxSize: '100%',
+                zMin: 0,
+                zMax: 1000,
+                layoutAlgorithm: {
+                    gravitationalConstant: 0.05,
+                    splitSeries: true,
+                    seriesInteraction: false,
+                    dragBetweenSeries: true,
+                    parentNodeLimit: true
+                },
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}',
+                    filter: {
+                        property: 'y',
+                        operator: '>',
+                        value: 2
+                    },
+                    style: {
+                        color: 'black',
+                        textOutline: 'none',
+                        fontWeight: 'normal'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Good',
+            color: '#175d2d',
+            data: [{
+                name: 'Fabric',
+                value: 76
+            }, {
+                name: 'Finishing',
+                value: 80
+            }]
+        }, {
+            name: 'Warning',
+            color: '#ffb600',
+            data: [{
+                name: "Spreading & Cutting",
+                value: 67
+            }
+            ]
+        }, {
+            name: 'Needs Attention',
+            color:'#e0301e',
+            data: [{
+                name: "Sewing",
+                value: 30
+            },
+            {
+                name: "Trim Store",
+                value: 34.1
+            }
+            ]
+        
+        }]
     });
   }
 
