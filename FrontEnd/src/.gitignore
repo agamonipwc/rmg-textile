@@ -1,3 +1,6 @@
 node_modules
 FrontEnd\node_modules
-package-lock.json
+FrontEnd\package-lock.json
+
+..\FrontEnd\node_modules
+..\FrontEnd\package-lock.json

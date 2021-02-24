@@ -812,77 +812,71 @@ export class ModuleperformanceComponent implements OnInit {
   createProcessOverview(){
     this.processBubble = new Chart({
         chart: {
-            type: 'packedbubble',
-            height: '100%'
+            polar: true,
+            type: 'line'
         },
         title: {
-            text: 'Lets visualize where the processes stand'
+            text: 'Lets see where each process stands',
+            x: -80
         },
+    
+        pane: {
+            size: '80%'
+        },
+    
+        xAxis: {
+            categories: ['Fabric Store', 'Spreading & Cutting', 'Trim Store', 'Sewing', 'Finishing & Packing'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+    
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 1,
+            min: 0
+        },
+    
         tooltip: {
-            useHTML: true,
-            pointFormat: '<b>{point.name}:</b> {point.value}<sub></sub>'
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}%</b><br/>'
         },
-        plotOptions: {
-            packedbubble: {
-                minSize: '20%',
-                maxSize: '100%',
-                zMin: 0,
-                zMax: 1000,
-                layoutAlgorithm: {
-                    gravitationalConstant: 0.05,
-                    splitSeries: true,
-                    seriesInteraction: false,
-                    dragBetweenSeries: true,
-                    parentNodeLimit: true
+    
+        legend: {
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+        },
+    
+        series: [{
+            name: 'Market Standard',
+            color:'black',
+            data: [89, 70, 70, 75, 85],
+            pointPlacement: 'on'
+        }, {
+            name: 'Actual Standard',
+            color:'#eb8c00',
+            data: [73, 62, 31, 30, 74],
+            pointPlacement: 'on'
+        }],
+    
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
                 },
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.name}',
-                    filter: {
-                        property: 'y',
-                        operator: '>',
-                        value: 2
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
                     },
-                    style: {
-                        color: 'black',
-                        textOutline: 'none',
-                        fontWeight: 'normal'
+                    pane: {
+                        size: '70%'
                     }
                 }
-            }
-        },
-        series: [{
-            name: 'Good',
-            color: '#175d2d',
-            data: [{
-                name: 'Fabric',
-                value: 76
-            }, {
-                name: 'Finishing',
-                value: 80
             }]
-        }, {
-            name: 'Warning',
-            color: '#ffb600',
-            data: [{
-                name: "Spreading & Cutting",
-                value: 67
-            }
-            ]
-        }, {
-            name: 'Needs Attention',
-            color:'#e0301e',
-            data: [{
-                name: "Sewing",
-                value: 30
-            },
-            {
-                name: "Trim Store",
-                value: 34.1
-            }
-            ]
-        
-        }]
+        }
+    
     });
   }
 
