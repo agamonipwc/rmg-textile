@@ -73,8 +73,85 @@
 <main role="main" class="col-sm-9 ml-sm-auto col-md-10 main">
   <section class="text-center placeholders" id="dashboardsection">
     <div class="tab-pane fade show active hide-show" id="overallperformance" role="tabpanel" aria-labelledby="OverallPerformance-tab">
-      <h3 class="text-center">Sewing KPI(s) </h3>
-      <hr class="footer" />
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link active" style="font-size: large;" href="#kpi" [ngClass]="{ 'active':activeTab==='search'}" (click)="kpi('kpi')"
+             data-toggle="tab">KPI</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="font-size: large;" href="#detailedAnalysis" [ngClass]="{ 'active':activeTab==='detailedAnalysis'}" data-toggle="tab"
+             (click)="detailedAnalysis('detailedAnalysis')">Line Competence</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="font-size: large;" href="#unitAnalysis" [ngClass]="{ 'active':activeTab==='unitAnalysis'}" data-toggle="tab"
+             (click)="unitAnalysis('unitAnalysis')">Unit Competence</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane" id="kpi" [ngClass]="{ 'active':activeTab==='kpi'}"> 
+          <div class="row align-items-center">
+            <div class="col-4 mt-3 ">
+              <div class="card-status">
+                <div class="pt-4 pb-4" id="dhuCard" style="display: none; height: auto; min-height: max-content; font-size: 16px; width: 350px;">
+                </div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" [ngStyle]= "dhuStyle" [innerHTML]="dhuStyle.width"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 mt-3">
+              <div class="card-status">
+                <div class="ml-2 pt-4 pb-4" id="defectCard" style="display: none; height: auto; min-height: max-content; font-size: 16px; width: 350px;"></div>
+                <div class="progress" >
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" [ngStyle]= "defectStyle" [innerHTML]="defectStyle.width"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 mt-3">
+              <div class="card-status ">
+                <div class="pt-4 pb-4 ml-3" id="rejectCard" style="display: none; height: auto; min-height: max-content; font-size: 16px; width: 300px;"></div>
+                  <div class="progress" >
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" [ngStyle]= "rejectStyle" [innerHTML]="rejectStyle.width"></div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row align-items-center h-100">
+            <div class="col-4" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
+              <div #container style="height: 350px;width: 350px;"></div>
+            </div>
+            <div class="col-4" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
+              <div #efficiencyContainer style="width: 350px;height: 350px;"></div>
+            </div>
+            <div class="col-4 " id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
+              <div #mmrWIPContainer style="width: 350px;height: 350px;"></div>
+            </div>
+            
+            <!-- <div class="col-3 mt-3 ml-2 " id="dhuRejectDefectVisual" style="display: none; height: auto; min-height: max-content;">
+              <div #dhuRejectDefectContainer style="width: 200px;"></div>
+            </div> -->
+          </div>
+
+        </div>
+        <div class="tab-pane" id="detailedAnalysis" [ngClass]="{ 'active':activeTab==='detailedAnalysis'}">
+          <div class="row align-items-center h-100 mt-3">
+              <div [chart]="productionLine" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="rejectionLine" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="dhuLine" class="col-4" style="width: 350px; height: 350px;"></div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="unitAnalysis" [ngClass]="{ 'active':activeTab==='unitAnalysis'}">
+          <div class="row align-items-center h-100 mt-3">
+              <div [chart]="productionUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="rejectionUnit" class="col-4 " style="width: 200px; height: 300px;"></div>
+              <div [chart]="dhuUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- <h3 class="text-center">Sewing KPI(s) </h3> -->
+      <!-- <hr class="footer" /> -->
       <!-- <div class="row align-items-center h-100">
         <div class="col-1" style="font-size: 12px;">Start Date</div>
         <div class="col-2" style="margin-left: -25px;">
@@ -88,33 +165,8 @@
           <button class="custom-button" (click)="getSewingKPIAnalysis()">Show Analysis</button>
         </div>
       </div> -->
-      <div class="row align-items-center h-100 mt-2">
-        <div class="ml-3 col-3 mt-4 mr-4 p-4 card-style card-status" id="dhuCard" style="display: none; height: auto; min-height: max-content; font-size: 16px;">
-          
-        </div>
-        <div class="col-3 mt-4 mr-4 p-4 card-style card-status" id="defectCard" style="display: none; height: auto; min-height: max-content; font-size: 16px;">
-          
-        </div>
-        <div class="col-3 mt-4 p-4 card-style card-status" id="rejectCard" style="display: none; height: auto; min-height: max-content; font-size: 16px;">
-          
-        </div>
-        <div class="col-4 mt-3 card-style" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #container style="height: 350px;width: 350px;"></div>
-        </div>
-        <div class="col-4 mt-3 ml-2 card-style" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #efficiencyContainer style="width: 350px;height: 350px;"></div>
-        </div>
-        <div class="col-3 mt-3 ml-2 card-style" id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #mmrWIPContainer style="width: 350px;height: 350px;"></div>
-        </div>
-        
-        <!-- <div class="col-3 mt-3 ml-2 card-style" id="dhuRejectDefectVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #dhuRejectDefectContainer style="width: 200px;"></div>
-        </div> -->
-      </div>
-
       <!-- <div class="row align-items-center h-100 mt-1">
-        <div class="col-4 mt-3 ml-2 card-style" id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
+        <div class="col-4 mt-3 ml-2 " id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
           <div #mmrWIPContainer style="width: 350px;height: 270px;"></div>
         </div>
       </div> -->

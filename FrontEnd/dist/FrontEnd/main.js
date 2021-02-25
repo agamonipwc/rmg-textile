@@ -160,6 +160,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! highcharts/modules/solid-gauge.src */ "./node_modules/highcharts/modules/solid-gauge.src.js");
 /* harmony import */ var highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./sewingmodule/sewingmodule.component */ "./src/app/sewingmodule/sewingmodule.component.ts");
+/* harmony import */ var ng2_datepicker__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ng2-datepicker */ "./node_modules/ng2-datepicker/dist/bundles/ng2-datepicker.umd.js");
+/* harmony import */ var ng2_datepicker__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(ng2_datepicker__WEBPACK_IMPORTED_MODULE_15__);
 
 
 
@@ -175,6 +177,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+// import drilldown from 'highcharts/modules/drilldown.src';
+// import exporting from 'highcharts/modules/exporting.src';
 function highchartsModules() {
     // apply Highcharts Modules to this array
     return [highcharts_highcharts_more_src__WEBPACK_IMPORTED_MODULE_12___default.a, highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_13___default.a];
@@ -192,7 +197,7 @@ var AppModule = /** @class */ (function () {
                 _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_14__["SewingmoduleComponent"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["ChartModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["ChartModule"], ng2_datepicker__WEBPACK_IMPORTED_MODULE_15__["NgDatepickerModule"]
             ],
             providers: [
                 { provide: angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["HIGHCHARTS_MODULES"], useFactory: highchartsModules } // add as factory to your providers
@@ -1566,7 +1571,7 @@ var RegisterModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bottom: 0;\r\n    left: 0;\r\n    z-index: 1000;\r\n    padding: 20px 0;\r\n    overflow-x: hidden;\r\n    overflow-y: auto;\r\n    border-right: 1px solid #eee;\r\n    width: 250px;\r\n  }\r\n  \r\n  .sidebar .nav-item {\r\n    width: 100%;\r\n  }\r\n  \r\n  .bg-dark{\r\n    background-color: #d04a02 !important;\r\n  }\r\n  \r\n  @media (min-width: 250px) .ml-sm-auto, .mx-sm-auto {\r\n      margin-left: auto !important;\r\n  }\r\n  \r\n  .card-style{\r\n    box-shadow: 1px 1px 1px 1px #7d7d7d;\r\n  }\r\n  \r\n  .card{\r\n    border-radius: 0rem !important;\r\n  }\r\n  \r\n  .card-status{\r\n    background-color: #aa2417;\r\n    color: #ffffff;\r\n  }\r\n  \r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2V3aW5nbW9kdWxlL3Nld2luZ21vZHVsZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZUFBZTtJQUNmLFFBQVE7SUFDUixTQUFTO0lBQ1QsT0FBTztJQUNQLGFBQWE7SUFDYixlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLGdCQUFnQjtJQUNoQiw0QkFBNEI7SUFDNUIsWUFBWTtFQUNkOztFQUVBO0lBQ0UsV0FBVztFQUNiOztFQUNBO0lBQ0Usb0NBQW9DO0VBQ3RDOztFQUVBO01BQ0ksNEJBQTRCO0VBQ2hDOztFQUNBO0lBQ0UsbUNBQW1DO0VBQ3JDOztFQUNBO0lBQ0UsOEJBQThCO0VBQ2hDOztFQUNBO0lBQ0UseUJBQXlCO0lBQ3pCLGNBQWM7RUFDaEIiLCJmaWxlIjoic3JjL2FwcC9zZXdpbmdtb2R1bGUvc2V3aW5nbW9kdWxlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2lkZWJhciB7XHJcbiAgICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgICB0b3A6IDBweDtcclxuICAgIGJvdHRvbTogMDtcclxuICAgIGxlZnQ6IDA7XHJcbiAgICB6LWluZGV4OiAxMDAwO1xyXG4gICAgcGFkZGluZzogMjBweCAwO1xyXG4gICAgb3ZlcmZsb3cteDogaGlkZGVuO1xyXG4gICAgb3ZlcmZsb3cteTogYXV0bztcclxuICAgIGJvcmRlci1yaWdodDogMXB4IHNvbGlkICNlZWU7XHJcbiAgICB3aWR0aDogMjUwcHg7XHJcbiAgfVxyXG4gIFxyXG4gIC5zaWRlYmFyIC5uYXYtaXRlbSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICB9XHJcbiAgLmJnLWRhcmt7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZDA0YTAyICFpbXBvcnRhbnQ7XHJcbiAgfVxyXG4gIFxyXG4gIEBtZWRpYSAobWluLXdpZHRoOiAyNTBweCkgLm1sLXNtLWF1dG8sIC5teC1zbS1hdXRvIHtcclxuICAgICAgbWFyZ2luLWxlZnQ6IGF1dG8gIWltcG9ydGFudDtcclxuICB9XHJcbiAgLmNhcmQtc3R5bGV7XHJcbiAgICBib3gtc2hhZG93OiAxcHggMXB4IDFweCAxcHggIzdkN2Q3ZDtcclxuICB9XHJcbiAgLmNhcmR7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwcmVtICFpbXBvcnRhbnQ7XHJcbiAgfVxyXG4gIC5jYXJkLXN0YXR1c3tcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNhYTI0MTc7XHJcbiAgICBjb2xvcjogI2ZmZmZmZjtcclxuICB9XHJcbiAgIl19 */"
+module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bottom: 0;\r\n    left: 0;\r\n    z-index: 1000;\r\n    padding: 20px 0;\r\n    overflow-x: hidden;\r\n    overflow-y: auto;\r\n    border-right: 1px solid #eee;\r\n    width: 250px;\r\n  }\r\n  \r\n  .sidebar .nav-item {\r\n    width: 100%;\r\n  }\r\n  \r\n  .bg-dark{\r\n    background-color: #d04a02 !important;\r\n  }\r\n  \r\n  @media (min-width: 250px) .ml-sm-auto, .mx-sm-auto {\r\n      margin-left: auto !important;\r\n  }\r\n  \r\n  .card-style{\r\n    box-shadow: 1px 1px 1px 1px #7d7d7d;\r\n  }\r\n  \r\n  .card{\r\n    border-radius: 0rem !important;\r\n  }\r\n  \r\n  .card-status{\r\n    background-color: #aa2417;\r\n    color: #ffffff;\r\n  }\r\n  \r\n  .dropdown-button{\r\n  width: 150px;\r\n  border: 1px solid #aa2417;\r\n  border-radius: 0px !important;\r\n  background-color: #aa2417;\r\n  color: #ffffff;\r\n  height: 23px;\r\n  font-size: 12px;\r\n  padding-bottom: 10px;\r\n}\r\n  \r\n  .dropdown-label{\r\n  color: #000000;\r\n  font-size: 12px;\r\n}\r\n  \r\n  .custom-li{\r\n  height: 21px !important;\r\n}\r\n  \r\n  .dropdownmenu{\r\n  height: 110px;\r\n  overflow-y: scroll;\r\n  width: 152px;\r\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n}\r\n  \r\n  .btn.focus, .btn:focus{\r\n  box-shadow: none !important;\r\n}\r\n  \r\n  /* Scrollbar Styling */\r\n  \r\n  ::-webkit-scrollbar {\r\n  width: 5px;\r\n}\r\n  \r\n  ::-webkit-scrollbar-track {\r\n  background-color: #ebebeb;\r\n  border-radius: 10px;\r\n}\r\n  \r\n  ::-webkit-scrollbar-thumb {\r\n  border-radius: 10px;\r\n  background: #6d6d6d; \r\n}\r\n  \r\n  .dropdown {\r\n    /* position: relative;\r\n    left: 50px;\r\n    top: 50px; */\r\n  }\r\n  \r\n  ul{\r\n   list-style: none;\r\n }\r\n  \r\n  .form-control:focus{\r\n  box-shadow: none !important;\r\n}\r\n  \r\n  .ngx-datepicker-container[_ngcontent-hin-c4] .ngx-datepicker-input[_ngcontent-hin-c4]{\r\n  background-color: #aa2417 !important;\r\n  border: #aa2417 !important;\r\n}\r\n  \r\n  /* .col-3{\r\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n} */\r\n  \r\n  .highcharts-exporting-group{\r\n  display: none !important;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2V3aW5nbW9kdWxlL3Nld2luZ21vZHVsZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZUFBZTtJQUNmLFFBQVE7SUFDUixTQUFTO0lBQ1QsT0FBTztJQUNQLGFBQWE7SUFDYixlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLGdCQUFnQjtJQUNoQiw0QkFBNEI7SUFDNUIsWUFBWTtFQUNkOztFQUVBO0lBQ0UsV0FBVztFQUNiOztFQUNBO0lBQ0Usb0NBQW9DO0VBQ3RDOztFQUVBO01BQ0ksNEJBQTRCO0VBQ2hDOztFQUNBO0lBQ0UsbUNBQW1DO0VBQ3JDOztFQUNBO0lBQ0UsOEJBQThCO0VBQ2hDOztFQUNBO0lBQ0UseUJBQXlCO0lBQ3pCLGNBQWM7RUFDaEI7O0VBQ0E7RUFDQSxZQUFZO0VBQ1oseUJBQXlCO0VBQ3pCLDZCQUE2QjtFQUM3Qix5QkFBeUI7RUFDekIsY0FBYztFQUNkLFlBQVk7RUFDWixlQUFlO0VBQ2Ysb0JBQW9CO0FBQ3RCOztFQUNBO0VBQ0UsY0FBYztFQUNkLGVBQWU7QUFDakI7O0VBRUE7RUFDRSx1QkFBdUI7QUFDekI7O0VBRUE7RUFDRSxhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWiw0RUFBNEU7QUFDOUU7O0VBQ0E7RUFDRSwyQkFBMkI7QUFDN0I7O0VBRUEsc0JBQXNCOztFQUN0QjtFQUNFLFVBQVU7QUFDWjs7RUFFQTtFQUNFLHlCQUF5QjtFQUV6QixtQkFBbUI7QUFDckI7O0VBRUE7RUFFRSxtQkFBbUI7RUFDbkIsbUJBQW1CO0FBQ3JCOztFQUVFO0lBQ0U7O2dCQUVZO0VBQ2Q7O0VBQ0Q7R0FDRSxnQkFBZ0I7Q0FDbEI7O0VBQ0Q7RUFDRSwyQkFBMkI7QUFDN0I7O0VBQ0E7RUFDRSxvQ0FBb0M7RUFDcEMsMEJBQTBCO0FBQzVCOztFQUNBOztHQUVHOztFQUNIO0VBQ0Usd0JBQXdCO0FBQzFCIiwiZmlsZSI6InNyYy9hcHAvc2V3aW5nbW9kdWxlL3Nld2luZ21vZHVsZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNpZGViYXIge1xyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgdG9wOiAwcHg7XHJcbiAgICBib3R0b206IDA7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgei1pbmRleDogMTAwMDtcclxuICAgIHBhZGRpbmc6IDIwcHggMDtcclxuICAgIG92ZXJmbG93LXg6IGhpZGRlbjtcclxuICAgIG92ZXJmbG93LXk6IGF1dG87XHJcbiAgICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCAjZWVlO1xyXG4gICAgd2lkdGg6IDI1MHB4O1xyXG4gIH1cclxuICBcclxuICAuc2lkZWJhciAubmF2LWl0ZW0ge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgfVxyXG4gIC5iZy1kYXJre1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2QwNGEwMiAhaW1wb3J0YW50O1xyXG4gIH1cclxuICBcclxuICBAbWVkaWEgKG1pbi13aWR0aDogMjUwcHgpIC5tbC1zbS1hdXRvLCAubXgtc20tYXV0byB7XHJcbiAgICAgIG1hcmdpbi1sZWZ0OiBhdXRvICFpbXBvcnRhbnQ7XHJcbiAgfVxyXG4gIC5jYXJkLXN0eWxle1xyXG4gICAgYm94LXNoYWRvdzogMXB4IDFweCAxcHggMXB4ICM3ZDdkN2Q7XHJcbiAgfVxyXG4gIC5jYXJke1xyXG4gICAgYm9yZGVyLXJhZGl1czogMHJlbSAhaW1wb3J0YW50O1xyXG4gIH1cclxuICAuY2FyZC1zdGF0dXN7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjYWEyNDE3O1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG4gIC5kcm9wZG93bi1idXR0b257XHJcbiAgd2lkdGg6IDE1MHB4O1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICNhYTI0MTc7XHJcbiAgYm9yZGVyLXJhZGl1czogMHB4ICFpbXBvcnRhbnQ7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2FhMjQxNztcclxuICBjb2xvcjogI2ZmZmZmZjtcclxuICBoZWlnaHQ6IDIzcHg7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG4gIHBhZGRpbmctYm90dG9tOiAxMHB4O1xyXG59XHJcbi5kcm9wZG93bi1sYWJlbHtcclxuICBjb2xvcjogIzAwMDAwMDtcclxuICBmb250LXNpemU6IDEycHg7XHJcbn1cclxuXHJcbi5jdXN0b20tbGl7XHJcbiAgaGVpZ2h0OiAyMXB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5kcm9wZG93bm1lbnV7XHJcbiAgaGVpZ2h0OiAxMTBweDtcclxuICBvdmVyZmxvdy15OiBzY3JvbGw7XHJcbiAgd2lkdGg6IDE1MnB4O1xyXG4gIGJveC1zaGFkb3c6IDAgNHB4IDhweCAwIHJnYmEoMCwgMCwgMCwgMC4yKSwgMCA2cHggMjBweCAwIHJnYmEoMCwgMCwgMCwgMC4xOSk7XHJcbn1cclxuLmJ0bi5mb2N1cywgLmJ0bjpmb2N1c3tcclxuICBib3gtc2hhZG93OiBub25lICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi8qIFNjcm9sbGJhciBTdHlsaW5nICovXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gIHdpZHRoOiA1cHg7XHJcbn1cclxuXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXItdHJhY2sge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNlYmViZWI7XHJcbiAgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbn1cclxuXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWIge1xyXG4gIC13ZWJraXQtYm9yZGVyLXJhZGl1czogMTBweDtcclxuICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gIGJhY2tncm91bmQ6ICM2ZDZkNmQ7IFxyXG59XHJcblxyXG4gIC5kcm9wZG93biB7XHJcbiAgICAvKiBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBsZWZ0OiA1MHB4O1xyXG4gICAgdG9wOiA1MHB4OyAqL1xyXG4gIH1cclxuIHVse1xyXG4gICBsaXN0LXN0eWxlOiBub25lO1xyXG4gfVxyXG4uZm9ybS1jb250cm9sOmZvY3Vze1xyXG4gIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcclxufVxyXG4ubmd4LWRhdGVwaWNrZXItY29udGFpbmVyW19uZ2NvbnRlbnQtaGluLWM0XSAubmd4LWRhdGVwaWNrZXItaW5wdXRbX25nY29udGVudC1oaW4tYzRde1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNhYTI0MTcgIWltcG9ydGFudDtcclxuICBib3JkZXI6ICNhYTI0MTcgIWltcG9ydGFudDtcclxufVxyXG4vKiAuY29sLTN7XHJcbiAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDZweCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjE5KTtcclxufSAqL1xyXG4uaGlnaGNoYXJ0cy1leHBvcnRpbmctZ3JvdXB7XHJcbiAgZGlzcGxheTogbm9uZSAhaW1wb3J0YW50O1xyXG59Il19 */"
 
 /***/ }),
 
@@ -1577,7 +1582,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"/sewing-module\">Home <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n    <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4>\n  </div>\n</nav>\n<nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5\">\n  <ul class=\"nav nav-pills flex-column\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link active\" href=\"overallperformance\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"overallperformance_span\" class=\"d-none d-md-inline font-weight-bold\">Module Performance</span></a>\n    </li>\n    <!-- <li class=\"nav-item\">\n      <a class=\"nav-link\" href=\"operationmodule\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"operationmodule_span\" class=\"d-none d-md-inline font-weight-bold\">Operation Module</span></a>\n    </li>\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" href=\"process\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"process_span\" class=\"d-none d-md-inline font-weight-bold\">Process</span></a>\n    </li> -->\n  </ul>\n</nav>\n<main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 pt-3 main\">\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\n    <div class=\"tab-pane fade show active hide-show\" id=\"overallperformance\" role=\"tabpanel\" aria-labelledby=\"OverallPerformance-tab\">\n      <h3 class=\"text-center\">Sewing KPI(s) </h3>\n      <hr class=\"footer\" />\n      <div class=\"row align-items-center h-100\">\n        <div class=\"col-4\">\n          <label>Select Year</label>\n          <select class=\"form-control\" [(ngModel)]=\"selectedYear\" (change)=\"getSewingKPIAnalysis()\">\n            <option *ngFor=\"let option of year\" [value]=\"option.id\">\n              {{option.name}}\n            </option>\n          </select>\n        </div>\n        <div class=\"col-4\">\n          <label>Select Month</label>\n          <select class=\"form-control\" [(ngModel)]=\"selectedMonth\" (change)=\"getSewingKPIAnalysis()\">\n            <option *ngFor=\"let option of month\" [value]=\"option.id\">\n              {{option.name}}\n            </option>\n          </select>\n        </div>\n        <div class=\"col-4\">\n          <label>Select Line</label>\n          <select class=\"form-control\" [(ngModel)]=\"selectedLine\" (change)=\"getSewingKPIAnalysis()\">\n            <option *ngFor=\"let option of line\" [value]=\"option.id\">\n              {{option.name}}\n            </option>\n          </select>\n        </div>\n      </div>\n      <div class=\"row align-items-center h-100 mt-2\">\n        <div class=\"col-4 mt-3\" *ngFor=\"let element of kpiCards; let i = index\">\n          <div class=\"card card-style\" [ngStyle]=\"{'background-color': element.backgroundColor}\">\n            <div class=\"card-body text-center\">\n              <h6 class=\"card-title text-white\">{{element.kpiname}}</h6>\n              <p class=\"card-text text-white\">{{element.weightageScore}}</p>\n            </div>\n          </div>\n        </div>\n        <!-- <div class=\"col-4 mt-2\">\n          <div class=\"card card-style card-status\">\n            <div class=\"card-body text-center\">\n              <h6 class=\"card-title text-white\">Defects Per Hundred Units (D.H.U.)</h6>\n              <p class=\"card-text text-white\">Status: Green</p>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-4 mt-2\">\n          <div class=\"card card-style card-status\">\n            <div class=\"card-body text-center\">\n              <h6 class=\"card-title text-white\">Defect %</h6>\n              <p class=\"card-text text-white\">Status: Green</p>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-4 mt-2\">\n          <div class=\"card card-style card-status\">\n            <div class=\"card-body text-center\">\n              <h6 class=\"card-title text-white\">Rejection %</h6>\n              <p class=\"card-text text-white\">Status: Green</p>\n            </div>\n          </div>\n        </div> -->\n      </div>\n\n      <div class=\"row align-items-center h-100 mt-3\">\n        <!-- <div class=\"col-4\">\n          <div class=\"card card-style card-status\">\n            <div class=\"card-body text-center\">\n              <h6 class=\"card-title text-white\">Rejection %</h6>\n              <p class=\"card-text text-white\">Status: Green</p>\n            </div>\n          </div>\n        </div> -->\n        <!-- <div class=\"col-4\">\n          <div class=\"card card-style\">\n            <div class=\"card-body text-center\">\n              <div [chart]=\"socialSustainabilityGaugeFormat\"></div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-4\">\n          <div class=\"card card-style\">\n            <div class=\"card-body text-center\">\n              <div [chart]=\"environmentalSustainabilityGaugeChart\"></div>\n            </div>\n          </div>\n        </div> -->\n      </div>\n      \n    </div>\n  </section>\n</main>\n"
+module.exports = "\r\n<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/sewing-module\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n    </ul>\r\n    <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4>\r\n  </div>\r\n</nav>\r\n<nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <ul class=\"nav nav-pills flex-column\">\r\n    <li class=\"nav-item\">\r\n      <div class=\"ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Year</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\">\r\n          <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"yearSelectAll\" /><span class=\"select-text\" id=\"yearSelectText\"> Select</span> All</label></a></li>\r\n          <li class=\"custom-li\" *ngFor=\"let option of year\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[year]' type=\"checkbox\" class=\"option justone year\" [value]=\"option.id\" [id]=\"'year_' + option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li>\r\n    <li class=\"nav-item mt-3\">\r\n      <div class=\"ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Month</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\"> \r\n          <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"monthSelectAll\"/><span id=\"monthSelectText\" class=\"select-text\"> Select</span> All</label></a></li>\r\n          <li class=\"custom-li\" *ngFor=\"let option of month\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[month]' type=\"checkbox\" class=\"option justone month\" [value]=\"option.id\" [id]=\"'month_' + option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li>\r\n    <li class=\"nav-item mt-3\">\r\n      <div class=\"dropdown ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Line</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\">\r\n          <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"lineSelectAll\"/><span id=\"lineSelectText\" class=\"select-text\"> Select</span> All</label></a></li>\r\n          <li class=\"custom-li\" *ngFor=\"let option of line\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[line]' type=\"checkbox\" class=\"option justone line\" [value]=\"option.id\" [id]=\"'line_' + option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li>\r\n    <!-- <li class=\"nav-item mt-3\">\r\n      <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n    </li> -->\r\n    <!-- <li class=\"nav-item mt-3\">\r\n      <div class=\"dropdown ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Unit</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\">\r\n          <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"unitSelectAll\"/><span id=\"unitSelectText\" class=\"select-text\"> Select</span> All</label></a></li>\r\n          <li class=\"custom-li\" *ngFor=\"let option of unit\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li>\r\n    <li class=\"nav-item mt-3\">\r\n      <div class=\"dropdown ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Location</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\">\r\n          <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"locationSelectAll\"/><span id=\"locationSelectText\" class=\"select-text\"> Select</span> All</label></a></li>\r\n          <li class=\"custom-li\" *ngFor=\"let option of location\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[]' type=\"checkbox\" class=\"option justone location\" [value]=\"option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li> -->\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 main\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"tab-pane fade show active hide-show\" id=\"overallperformance\" role=\"tabpanel\" aria-labelledby=\"OverallPerformance-tab\">\r\n      <h3 class=\"text-center\">Sewing KPI(s) </h3>\r\n      <hr class=\"footer\" />\r\n      <!-- <div class=\"row align-items-center h-100\">\r\n        <div class=\"col-1\" style=\"font-size: 12px;\">Start Date</div>\r\n        <div class=\"col-2\" style=\"margin-left: -25px;\">\r\n          <ng-datepicker [(ngModel)]=\"startDate\" [options]=\"options\"></ng-datepicker>\r\n        </div>\r\n        <div class=\"col-1 ml-4\" style=\"font-size: 12px;\">End Date</div>\r\n        <div class=\"col-2\" style=\"margin-left: -25px;\">\r\n          <ng-datepicker [(ngModel)]=\"endDate\" [options]=\"options\"></ng-datepicker>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <button class=\"custom-button\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"row align-items-center h-100 mt-2\">\r\n        <div class=\"ml-3 col-3 mt-4 mr-4 p-4 card-style card-status\" id=\"dhuCard\" style=\"display: none; height: auto; min-height: max-content; font-size: 16px;\">\r\n          \r\n        </div>\r\n        <div class=\"col-3 mt-4 mr-4 p-4 card-style card-status\" id=\"defectCard\" style=\"display: none; height: auto; min-height: max-content; font-size: 16px;\">\r\n          \r\n        </div>\r\n        <div class=\"col-3 mt-4 p-4 card-style card-status\" id=\"rejectCard\" style=\"display: none; height: auto; min-height: max-content; font-size: 16px;\">\r\n          \r\n        </div>\r\n        <div class=\"col-4 mt-3 card-style\" id=\"capacityVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n          <div #container style=\"height: 350px;width: 350px;\"></div>\r\n        </div>\r\n        <div class=\"col-4 mt-3 ml-2 card-style\" id=\"efficiencyVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n          <div #efficiencyContainer style=\"width: 350px;height: 350px;\"></div>\r\n        </div>\r\n        <div class=\"col-3 mt-3 ml-2 card-style\" id=\"mmrWIPVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n          <div #mmrWIPContainer style=\"width: 350px;height: 350px;\"></div>\r\n        </div>\r\n        \r\n        <!-- <div class=\"col-3 mt-3 ml-2 card-style\" id=\"dhuRejectDefectVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n          <div #dhuRejectDefectContainer style=\"width: 200px;\"></div>\r\n        </div> -->\r\n      </div>\r\n\r\n      <!-- <div class=\"row align-items-center h-100 mt-1\">\r\n        <div class=\"col-4 mt-3 ml-2 card-style\" id=\"mmrWIPVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n          <div #mmrWIPContainer style=\"width: 350px;height: 270px;\"></div>\r\n        </div>\r\n      </div> -->\r\n      \r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -1597,19 +1602,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns/locale/en */ "./node_modules/date-fns/locale/en/index.js");
+/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
+/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
 
 
+
+
+
+highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+
+highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+// Load the exporting module.
+
+// Initialize exporting module.
+highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_9___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
 var SewingmoduleComponent = /** @class */ (function () {
+    // capacityCalcGaugeFormat : Chart;
+    // columnsOptions : Chart;
     function SewingmoduleComponent(http) {
         this.http = http;
         this.userBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'kpicalculation';
-        this.kpiCards = [];
         this.year = [
-            { id: 2019, name: '2019' }
+            { id: 2019, name: '2019' },
+            { id: 2021, name: '2021' },
+            { id: 2022, name: '2022' }
         ];
+        this.options = {
+            locale: date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__,
+            minYear: 1970,
+            maxYear: 2030,
+            displayFormat: 'MMM D[,] YYYY',
+            barTitleFormat: 'MMMM YYYY',
+            dayNamesFormat: 'dd',
+            firstCalendarDay: 0,
+            minDate: new Date(Date.now()),
+            // maxDate: new Date(Date.now()),  // Maximal selectable date
+            barTitleIfEmpty: 'Click to select a date',
+            placeholder: 'Click to select a date',
+            addClass: 'form-control',
+            addStyle: {},
+            fieldId: 'my-date-picker',
+            useEmptyBarTitle: false,
+        };
         this.month = [
             { id: 1, name: 'January' },
             { id: 2, name: 'February' },
@@ -1624,39 +1669,423 @@ var SewingmoduleComponent = /** @class */ (function () {
             { id: 11, name: 'November' },
             { id: 12, name: 'December' },
         ];
-        this.line = [
-            { id: 1, name: 'Line 1' },
-            { id: 2, name: 'Line 2' },
-            { id: 3, name: 'Line 3' },
-            { id: 4, name: 'Line 4' },
-            { id: 5, name: 'Line 5' }
-        ];
-        this.selectedYear = "2019";
-        this.selectedMonth = "1";
-        this.selectedLine = "1";
+        this.line = [];
+        this.unit = [];
+        this.location = [];
+        this.selectedYear = [];
+        this.selectedMonth = [];
+        this.selectedLine = [];
+        this.selectedUnit = [];
+        this.selectedLocation = [];
+        this.capacityCalculationHeadingColor = "";
+        this.startDate = new Date();
+        this.endDate = new Date();
     }
     SewingmoduleComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").css("margin-left", "15%");
-        this.getSewingKPIAnalysis();
+        this.selectAllOptions();
+        this.getFilterData();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".footer").hide();
+        // this.getSewingKPIAnalysis();
+    };
+    SewingmoduleComponent.prototype.getFilterData = function () {
+        var _this_1 = this;
+        var _this = this;
+        this.http.get(this.userBackendUrl).subscribe(function (data) {
+            if (data.statusCode == 200) {
+                data.responseData.lineMasterData.forEach(function (element) {
+                    _this.line.push({ id: element.Id, name: element.Name });
+                });
+                data.responseData.unitMasterData.forEach(function (element) {
+                    _this.unit.push({ id: element.Id, name: element.Name });
+                });
+                data.responseData.locationMasterData.forEach(function (element) {
+                    _this.location.push({ id: element.Id, name: element.Name });
+                });
+                var year = _this_1.startDate.getFullYear();
+                var month = _this_1.startDate.getMonth();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#year_" + year).prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#month_" + month).prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_" + _this.line[0].id).prop('checked', true);
+                _this.selectedYear.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#year_" + year).val()));
+                _this.selectedMonth.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#month_" + month).val()));
+                _this.selectedLine.push(1);
+                var KPIView = {
+                    Year: _this.selectedYear,
+                    Month: _this.selectedMonth,
+                    Line: [1, 2, 3, 4]
+                    // Line : _this.selectedLine
+                };
+                _this.callCapacityUtilizationApi(KPIView);
+            }
+        });
     };
     SewingmoduleComponent.prototype.getSewingKPIAnalysis = function () {
         var _this = this;
-        this.kpiCards = [];
+        var lineSelected = [];
+        var monthSelected = [];
+        var yearSelected = [];
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[line]"]:checked').each(function (i) {
+            lineSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[month]"]:checked').each(function (i) {
+            monthSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[year]"]:checked').each(function (i) {
+            yearSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
+        });
+        this.selectedYear = yearSelected;
+        this.selectedLine = lineSelected;
+        this.selectedMonth = monthSelected;
         var KPIView = {
-            year: parseInt(this.selectedYear),
-            month: parseInt(this.selectedMonth),
-            lineNo: parseInt(this.selectedLine)
+            Year: this.selectedYear,
+            Month: this.selectedMonth,
+            Line: [1, 2, 3, 4]
         };
-        this.http.post(this.userBackendUrl, KPIView).subscribe(function (data) {
-            if (data.length > 0) {
-                data.forEach(function (element) {
-                    _this.kpiCards.push({
-                        "kpiname": element.Value.kpiname,
-                        "status": element.Value.status,
-                        "backgroundColor": element.Value.backgroundColor,
-                        "weightageScore": element.Value.weightageScore
-                    });
+        this.callCapacityUtilizationApi(KPIView);
+        // this.callEfficiencyCalculationApi(KPIView);
+    };
+    SewingmoduleComponent.prototype.callCapacityUtilizationApi = function (KPIView) {
+        var _this_1 = this;
+        var _this = this;
+        this.http.post(this.userBackendUrl, KPIView).subscribe(function (responsedata) {
+            if (responsedata.StatusCode == 200) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#capacityVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#efficiencyVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuRejectDefectVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#mmrWIPVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuCard").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#defectCard").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#rejectCard").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuCard").html("% D.H.U is: " + responsedata["DefectRejectDHUPercentage"]["Value"][0]["y"]);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#defectCard").html("% Defect is: " + responsedata["DefectRejectDHUPercentage"]["Value"][1]["y"]);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#rejectCard").html("% Reject is: " + responsedata["DefectRejectDHUPercentage"]["Value"][2]["y"]);
+                _this.capacityCalculationHeadingColor = responsedata["CapaCityCalculation"]["Value"]["colorCode"];
+                var pieColors = (function () {
+                    var colors = [], base = "#eb8c00", i;
+                    for (i = 0; i < 10; i += 1) {
+                        colors.push(highcharts__WEBPACK_IMPORTED_MODULE_6__["color"](base).brighten((i - 3) / 7).get());
+                    }
+                    return colors;
+                }());
+                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.container.nativeElement, {
+                    chart: {
+                        type: 'pie',
+                        width: 360,
+                    },
+                    title: {
+                        text: 'Capacity Calculation',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '18px', 'color': _this.capacityCalculationHeadingColor }
+                    },
+                    credits: { enabled: false },
+                    exporting: {
+                        enabled: false
+                    },
+                    // subtitle: {
+                    //     text: 'Click the slices to view versions. Source: netmarketshare.com.'
+                    // },
+                    xAxis: {
+                        categories: ['Line1', 'Line2', 'Line3', 'Line4']
+                        // showEmpty: false
+                    },
+                    yAxis: {
+                        showEmpty: false
+                    },
+                    plotOptions: {
+                        // series: {
+                        //     dataLabels: {
+                        //         enabled: true,
+                        //         format: '{point.name}: {point.y:.1f}%'
+                        //     }
+                        // }
+                        pie: {
+                            size: 180,
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                            },
+                            colors: pieColors,
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b><br/>'
+                    },
+                    series: [responsedata["CapaCityCalculation"]["Value"]["capacityUtilizationSeries"]],
+                    drilldown: {
+                        series: [
+                            {
+                                "type": "column",
+                                name: 'Capacity in line',
+                                "id": "utilized",
+                                "data": responsedata["CapaCityCalculation"]["Value"]["capacityUtilizationNested"]["nestedData"]
+                            }
+                        ]
+                    }
+                });
+                // Highcharts.chart(this.container.nativeElement, {
+                //   // Created pie chart using Highchart
+                //   chart: {
+                //     type: 'solidgauge',
+                //     width : 250,
+                //     marginleft: 20
+                //   },
+                //   title: {
+                //     text: 'Capacity Calculation',
+                //     style: {'font-family': 'Arial, Helvetica', 'font-size': '17px', 'color': _this.capacityCalculationHeadingColor}
+                //   },
+                //   credits: {enabled: false},
+                //   pane: {
+                //       center: ['50%', '85%'],
+                //       size: '140%',
+                //       startAngle: -90,
+                //       endAngle: 90,
+                //       background: {
+                //           backgroundColor: '#ffffff',
+                //           innerRadius: '60%',
+                //           outerRadius: '100%',
+                //           shape: 'arc'
+                //       }
+                //   },
+                //   exporting: {
+                //       enabled: false
+                //   },
+                //   tooltip: {
+                //     enabled: false
+                //   },
+                //   yAxis: {
+                //       stops: [
+                //         [0.3, '#e0301e'],
+                //         [0.6, '#ffb600'],
+                //         [1, '#175d2d']
+                //       ],
+                //       lineWidth: 0,
+                //       tickWidth: 0,
+                //       minorTickInterval: null,
+                //       tickAmount: 2,
+                //       title: {
+                //           y: -70
+                //       },
+                //       labels: {
+                //           y: 16
+                //       },
+                //       min: 0,
+                //       max: 100,
+                //   },
+                //   plotOptions: {
+                //     solidgauge: {
+                //       size: 150,
+                //       dataLabels: {
+                //           y: 5,
+                //           borderWidth: 0,
+                //           useHTML: true
+                //       },
+                //       events: {
+                //         click: function() {
+                //             // document.getElementById('back').style.display = "block";
+                //             // Highcharts.chart('container', columnsOptions);
+                //         }
+                //     }
+                //     }
+                //   },
+                //   series: [
+                //     {
+                //       name : "Cumulative",
+                //       data: [{
+                //         y: responsedata["CapaCityCalculation"]["Value"]["capacityCalculation"],
+                //         drilldown: null
+                //       }],
+                //       dataLabels: {
+                //       format:
+                //         '<div style="text-align:center">' +
+                //         '<span style="font-size:15px">{y}%</span><br/>' +
+                //         '</div>'
+                //       },
+                //     }
+                //   ],
+                //   // drilldown: {
+                //   //   series: [{
+                //   //     type:'pie',
+                //   //     name: 'Cumulative',
+                //   //     id: 'A',
+                //   //     data: [
+                //   //       ['Win 7', 55.03],
+                //   //       ['Win XP', 15.83],
+                //   //       ['Win Vista', 3.59],
+                //   //       ['Win 8', 7.56],
+                //   //       ['Win 8.1', 6.18]
+                //   //     ]
+                //   //   }]
+                //   // }
+                // })
+                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.efficiencyContainer.nativeElement, {
+                    chart: {
+                        zoomType: 'xy',
+                        width: 360,
+                        marginleft: 10
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    title: {
+                        text: '%Efficiency vs Line',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '17px', 'color': _this.capacityCalculationHeadingColor }
+                    },
+                    xAxis: [{
+                            categories: responsedata["Efficiency"]["Value"]["monthCategory"],
+                            crosshair: false
+                        }],
+                    credits: { enabled: false },
+                    yAxis: [{
+                            labels: {
+                                format: '{value}',
+                                style: {
+                                    // color: "#eb8c00",
+                                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                                }
+                            },
+                            title: {
+                                text: '% Efficiency',
+                                style: {
+                                    // color: "#d04a02",
+                                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                                }
+                            }
+                        }
+                    ],
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'left',
+                        x: 120,
+                        verticalAlign: 'bottom',
+                        y: 100,
+                        floating: true,
+                        backgroundColor: highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].legend.backgroundColor || // theme
+                            'rgba(255,255,255,0.25)'
+                    },
+                    series: responsedata["Efficiency"]["Value"]["efficiencyWeitageResponse"]
+                });
+                //customize pie chart color
+                // var pieColors = (function () {
+                //   var colors = [],
+                //       base = "#d04a02",
+                //       i;
+                //   for (i = 0; i < 10; i += 1) {
+                //       colors.push(Highcharts.color(base).brighten((i - 3) / 7).get());
+                //   }
+                //   return colors;
+                // }());
+                // Highcharts.chart(this.dhuRejectDefectContainer.nativeElement, {
+                //   chart: {
+                //     plotBackgroundColor: null,
+                //     plotBorderWidth: null,
+                //     plotShadow: false,
+                //     type: 'pie',
+                //     width: 300,
+                //   },
+                //   title: {
+                //     text: 'Defect vs Reject vs Alter',
+                //     style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'color': _this.capacityCalculationHeadingColor}
+                //   },
+                //   accessibility: {
+                //       point: {
+                //           valueSuffix: '%'
+                //       }
+                //   },
+                //   plotOptions: {
+                //       pie: {
+                //           allowPointSelect: true,
+                //           cursor: 'pointer',
+                //           size: 100,
+                //           colors: pieColors,
+                //           dataLabels: {
+                //               enabled: true,
+                //               format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                //               style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                //           }
+                //       }
+                //   },
+                //   exporting: {
+                //     enabled: false
+                //   },
+                //   credits: {enabled: false},
+                //   series: [{
+                //       data: responsedata["DefectRejectDHUPercentage"]["Value"]
+                //   }]
+                // });
+                var stackedChartcolors = ["#eb8c00", "#ffb600", "#d04a02"], dark = -0.5;
+                stackedChartcolors[1] = highcharts__WEBPACK_IMPORTED_MODULE_6__["Color"](stackedChartcolors[0]).brighten(dark).get();
+                stackedChartcolors[2] = highcharts__WEBPACK_IMPORTED_MODULE_6__["Color"](stackedChartcolors[2]).brighten(dark).get();
+                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.mmrWIPContainer.nativeElement, {
+                    chart: {
+                        type: 'column',
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        width: 300,
+                    },
+                    colors: stackedChartcolors,
+                    title: {
+                        text: 'Inline WIP vs Line',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '15px' }
+                    },
+                    xAxis: {
+                        categories: responsedata["MMRWIPInline"]["Value"]["monthCategory"]
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Total consumption'
+                        },
+                        stackLabels: {
+                            enabled: true,
+                            style: {
+                                // fontWeight: 'bold',
+                                color: (highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].title.style &&
+                                    highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].title.style.color) || 'gray'
+                            }
+                        }
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    legend: {
+                        align: 'right',
+                        x: -30,
+                        verticalAlign: 'top',
+                        y: 25,
+                        floating: true,
+                        backgroundColor: highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].legend.backgroundColor || 'white',
+                        borderColor: '#CCC',
+                        borderWidth: 1,
+                        shadow: false
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{point.x}</b><br/>',
+                        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                    },
+                    plotOptions: {
+                        column: {
+                            // stacking: 'normal',
+                            pointPadding: 0.2,
+                            borderWidth: 0,
+                            // dataLabels: {
+                            //     enabled: true
+                            // },
+                            size: 200
+                        }
+                    },
+                    series: [{
+                            name: responsedata["MMRWIPInline"]["Value"]["name"],
+                            data: responsedata["MMRWIPInline"]["Value"]["chartDatas"]
+                        }]
                 });
             }
             else {
@@ -1665,6 +2094,99 @@ var SewingmoduleComponent = /** @class */ (function () {
             }
         });
     };
+    SewingmoduleComponent.prototype.selectAllOptions = function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.yearSelectAll').click(function () {
+            // var yearSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.year').prop('checked', true);
+                // $('input[name="options[year]"]:checked').each(function(i){
+                //   yearSelected.push(parseInt($(this).val()));
+                // });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#yearSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.year').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#yearSelectText").html(' Select');
+            }
+            // this.selectedYear = yearSelected;
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.monthSelectAll').click(function () {
+            // var monthSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.month').prop('checked', true);
+                // $('input[name="options[month]"]:checked').each(function(i){
+                //   monthSelected.push(parseInt($(this).val()));
+                // });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#monthSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.month').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#monthSelectText").html(' Select');
+            }
+            // this.selectedMonth = monthSelected;
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.lineSelectAll').click(function () {
+            // var lineSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.line').prop('checked', true);
+                // $('input[name="options[line]"]:checked').each(function(i){
+                //   lineSelected.push(parseInt($(this).val()));
+                // });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#lineSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.line').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#lineSelectText").html(' Select');
+            }
+            // this.selectedLine = lineSelected;
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.locationSelectAll').click(function () {
+            var locationSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.location').prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[]"]:checked').each(function (i) {
+                    locationSelected.push(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val());
+                });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#locationSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.location').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#locationSelectText").html(' Select');
+            }
+            this.selectedLocation = locationSelected;
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unitSelectAll').click(function () {
+            var unitSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unit').prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[]"]:checked').each(function (i) {
+                    unitSelected.push(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val());
+                });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unitSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unit').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unitSelectText").html(' Select');
+            }
+            this.selectedUnit = unitSelected;
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("container", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "container", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("efficiencyContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "efficiencyContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("dhuRejectDefectContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "dhuRejectDefectContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("mmrWIPContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "mmrWIPContainer", void 0);
     SewingmoduleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-sewingmodule',

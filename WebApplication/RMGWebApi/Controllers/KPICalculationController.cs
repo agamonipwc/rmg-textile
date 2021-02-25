@@ -50,6 +50,7 @@ namespace RMGWebApi.Controllers
         [HttpPost]
         public JsonResult Post(KPIViewModel kpiViewModel)
         {
+            
             var kpiResults = new {
                 CapaCityCalculation = CapacityCalculation(kpiViewModel),
                 Efficiency = CalculateEfficiency(kpiViewModel),
@@ -243,7 +244,7 @@ namespace RMGWebApi.Controllers
             }
 
             List<double> efficiencyPercentageValues = new List<double>();
-            List<double> efficiencyWeitageValues = new List<double>();
+            //List<double> efficiencyWeitageValues = new List<double>();
             var query = (from s in workingHoursByLineWise
                          join cs in operatorNosByLineWise on new { s.Line } equals new { cs.Line }
                          join os in helpersByLineWise on new { s.Line } equals new { os.Line }
@@ -342,7 +343,37 @@ namespace RMGWebApi.Controllers
                 var percentageDefection = Math.Round(((avgRejectionDataByYearGroup + avgAlterationDataByYearGroup) / avgProductionDataByYearGroup), 2);
                 var percentageRejection = Math.Round((avgRejectionDataByYearGroup / avgProductionDataByYearGroup), 2);
 
+                double defectionWeightage = 0;
+                if(percentageDefection >=0 && percentageDefection <= 5)
+                {
+                    defectionWeightage = 0.1 * 3;
+                }
+                else if (percentageDefection >= 6 && percentageDefection <= 20)
+                {
+                    defectionWeightage = 0.1 * 2;
+                }
+                else
+                {
+                    defectionWeightage = 0.1 * 1;
+                }
+                double rejectionWeitage = 0;
+                if (rejectionWeitage >= 0 && percentageDefection <= 1)
+                {
+                    defectionWeightage = 0.1 * 3;
+                }
+                else if (percentageDefection >= 2 && percentageDefection <= 5)
+                {
+                    defectionWeightage = 0.1 * 2;
+                }
+                else
+                {
+                    defectionWeightage = 0.1 * 1;
+                }
+
                 double percentageDHU = 0;
+                string dhuColor = "";
+                string defectColor = "";
+                string rejectColor = "";
                 var dhuData = _rmgDbContext.DHU.Where(x =>
                     kpiViewModel.Year.Contains(x.Date.Year) &&
                     kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
@@ -350,28 +381,104 @@ namespace RMGWebApi.Controllers
                 if(dhuData.Count > 0)
                 {
                     percentageDHU = Math.Round(dhuData.Average(x => x.DHUData),2);
+                    double weightagetage = 0;
+                    if (percentageDHU > 11)
+                    {
+                        weightagetage = (0 * 0.05);
+                    }
+                    else if (percentageDHU <= 11 && percentageDHU > 10)
+                    {
+                        weightagetage = 1 * 0.05;
+                    }
+                    else if (percentageDHU <= 10 && percentageDHU > 9)
+                    {
+                        weightagetage = 2 * 0.05;
+                    }
+                    else if (percentageDHU <= 9 && percentageDHU > 8)
+                    {
+                        weightagetage = 3 * 0.05;
+                    }
+                    else if (percentageDHU <= 8 && percentageDHU > 6)
+                    {
+                        weightagetage = 4 * 0.05;
+                    }
+                    else
+                    {
+                        weightagetage = 5 * 0.05;
+                    }
+
+                    if(weightagetage < 0.08)
+                    {
+                        dhuColor = "#175d2d";
+                    }
+                    else if(weightagetage >=0.08 && weightagetage < 0.16)
+                    {
+                        dhuColor = "#ffb600";
+                    }
+                    else
+                    {
+                        dhuColor = "#e0301e";
+                    }
                 }
                 var acceptedPercentage = (Math.Round((100 - (percentageDHU + percentageRejection + percentageDefection)), 2));
+                #region Color code calculation of defect
+                if (defectionWeightage < 0.1)
+                {
+                    defectColor = "#175d2d";
+                }
+                else if (defectionWeightage > 0.1 && defectionWeightage <= 0.2)
+                {
+                    defectColor = "#ffb600";
+                }
+                else
+                {
+                    defectColor = "#e0301e";
+                }
+                #endregion
+
+                #region Color code calculation of reject
+                if (rejectionWeitage < 0.1)
+                {
+                    defectColor = "#175d2d";
+                }
+                else if (defectionWeightage > 0.1 && defectionWeightage <= 0.2)
+                {
+                    defectColor = "#ffb600";
+                }
+                else
+                {
+                    defectColor = "#e0301e";
+                }
+                #endregion
+
+                #region Adding calculated data into json response
                 seriesData.Add(new DHURejectDefect
                 {
                     name = "D.H.U",
-                    y = percentageDHU
+                    y = percentageDHU,
+                    colorCode = dhuColor,
+                    PercentageValue = Convert.ToInt32(Math.Round(percentageDHU))
                 });
                 seriesData.Add(new DHURejectDefect
                 {
                     name = "Defect",
-                    y = percentageDefection
+                    y = percentageDefection,
+                    colorCode = defectColor,
+                    PercentageValue = Convert.ToInt32(Math.Round(percentageDefection))
                 });
                 seriesData.Add(new DHURejectDefect
                 {
                     name = "Reject",
-                    y = percentageRejection
+                    y = percentageRejection,
+                    colorCode = rejectColor,
+                    PercentageValue = Convert.ToInt32(Math.Round(percentageRejection))
                 });
                 seriesData.Add(new DHURejectDefect
                 {
                     name = "Accept",
                     y = acceptedPercentage
                 });
+                #endregion
             }
             return Json(seriesData);
         }
@@ -381,32 +488,32 @@ namespace RMGWebApi.Controllers
             var operatorNosByLineWise = _rmgDbContext.OperatorNos.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
                 kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-                .Select(grp => new OperatorViewModel { OperatorData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+                .Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             var helpersByLineWise = _rmgDbContext.Helpers.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
                 kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-                .Select(grp => new HelpersViewModel { HelperData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+                .Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             var checkersByLineWise = _rmgDbContext.Helpers.Where(x =>
                kpiViewModel.Year.Contains(x.Date.Year) &&
                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-               .Select(grp => new CheckersViewModel { CheckerData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+               .Select(grp => new CheckersViewModel { CheckerData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             var machineryByLineWise = _rmgDbContext.Helpers.Where(x =>
                kpiViewModel.Year.Contains(x.Date.Year) &&
                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-               .Select(grp => new MachineryViewModel { MechineryData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+               .Select(grp => new MachineryViewModel { MechineryData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
                 kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-                .Select(grp => new ProductionViewModel { ProdData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             var wipDataByYearGroup = _rmgDbContext.Production.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
                 kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-                .Select(grp => new WIPViewModel { WIPData = grp.Sum(c => c.Data), Line = grp.Key.Line }).ToList();
+                .Select(grp => new WIPViewModel { WIPData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
             
             List<string> monthCategory = new List<string>();
             foreach (var element in kpiViewModel.Line)

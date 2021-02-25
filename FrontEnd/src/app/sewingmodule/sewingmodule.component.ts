@@ -8,6 +8,7 @@ import * as  Highcharts from 'highcharts';
 import  More from 'highcharts/highcharts-more';
 More(Highcharts);
 import Drilldown from 'highcharts/modules/drilldown';
+import { Chart } from 'angular-highcharts';
 Drilldown(Highcharts);
 // Load the exporting module.
 import Exporting from 'highcharts/modules/exporting';
@@ -73,8 +74,17 @@ export class SewingmoduleComponent implements OnInit {
   selectedUnit = [];
   selectedLocation = [];
   capacityCalculationHeadingColor = "";
-  // capacityCalcGaugeFormat : Chart;
-  // columnsOptions : Chart;
+
+  dhuStyle : any = {};
+  defectStyle : any= {};
+  rejectStyle : any = {};
+  
+  productionLine : Chart;
+  rejectionLine : Chart;
+  dhuLine : Chart;
+  productionUnit : Chart;
+  rejectionUnit : Chart;
+  dhuUnit : Chart;
 
   constructor(private http: HttpClient,) {
     this.startDate = new Date();
@@ -160,9 +170,29 @@ export class SewingmoduleComponent implements OnInit {
         $("#dhuCard").show();
         $("#defectCard").show();
         $("#rejectCard").show();
+        // $("#dhuCard").html("% D.H.U");
+        // $("#defectCard").html("% Defect");
+        // $("#rejectCard").html("% Reject");
+
+        _this.dhuStyle = {
+          backgroundColor : responsedata["DefectRejectDHUPercentage"]["Value"][0]["colorCode"],
+          width : responsedata["DefectRejectDHUPercentage"]["Value"][0]["PercentageValue"],
+        }
+
+        _this.defectStyle = {
+          backgroundColor : responsedata["DefectRejectDHUPercentage"]["Value"][1]["colorCode"],
+          width : responsedata["DefectRejectDHUPercentage"]["Value"][1]["PercentageValue"],
+        }
+
+        _this.rejectStyle = {
+          backgroundColor : responsedata["DefectRejectDHUPercentage"]["Value"][2]["colorCode"],
+          width : responsedata["DefectRejectDHUPercentage"]["Value"][2]["PercentageValue"],
+        }
+
         $("#dhuCard").html("% D.H.U is: " + responsedata["DefectRejectDHUPercentage"]["Value"][0]["y"]);
         $("#defectCard").html("% Defect is: " + responsedata["DefectRejectDHUPercentage"]["Value"][1]["y"]);
         $("#rejectCard").html("% Reject is: " + responsedata["DefectRejectDHUPercentage"]["Value"][2]["y"]);
+
         _this.capacityCalculationHeadingColor = responsedata["CapaCityCalculation"]["Value"]["colorCode"];
         var pieColors = (function () {
           var colors = [],
@@ -178,6 +208,18 @@ export class SewingmoduleComponent implements OnInit {
             type: 'pie',
             width: 360,
             },
+            colors: [
+              '#ffb600',
+              '#db536a',
+              '#e0301e',
+              '#eb8c00', 
+              '#db536a', 
+              '#d93954', 
+              '#e0301e', 
+              '#d04a02', 
+              '#92A8CD'
+              
+            ],
             title: {
               text: 'Capacity Calculation',
               style: {'font-family': 'Arial, Helvetica', 'font-size': '18px', 'color': _this.capacityCalculationHeadingColor}
@@ -210,7 +252,7 @@ export class SewingmoduleComponent implements OnInit {
                     format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                     style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
                   },
-                  colors: pieColors,
+                  // colors: pieColors,
                 }
             },
 
@@ -338,6 +380,18 @@ export class SewingmoduleComponent implements OnInit {
               width : 360,
               marginleft: 10
           },
+          colors: [
+            '#ffb600',
+            '#db536a',
+            '#e0301e',
+            '#eb8c00', 
+            '#db536a', 
+            '#d93954', 
+            '#e0301e', 
+            '#d04a02', 
+            '#92A8CD'
+            
+          ],
           exporting: {
             enabled: false
           },
@@ -443,9 +497,20 @@ export class SewingmoduleComponent implements OnInit {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            width: 300,
+            width: 350,
           },
-          colors: stackedChartcolors,
+          colors: [
+            '#ffb600',
+            '#db536a',
+            '#e0301e',
+            '#eb8c00', 
+            '#db536a', 
+            '#d93954', 
+            '#e0301e', 
+            '#d04a02', 
+            '#92A8CD'
+            
+      ],
           title: {
             text: 'Inline WIP vs Line',
             style: {'font-family': 'Arial, Helvetica', 'font-size': '15px'}
@@ -591,5 +656,585 @@ export class SewingmoduleComponent implements OnInit {
       }
       this.selectedUnit = unitSelected;
     });
+  }
+
+  getLineWiseCharts(){
+    var linewiseChartBackendUrl = environment.backendUrl + 'drilldownlinewise';
+    var KPIView = {
+        Year : [2021],
+        Month : [1,2],
+        Line : [1,2,3,4]
+    }
+    var _this = this;
+    this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
+        _this.productionLine = new Chart({
+            chart: {
+                type: 'spline',
+                width: 350,
+            },
+            title: {
+                text: 'Production Efficiency'
+            },
+            exporting: {
+              enabled: false
+            },
+            credits: {enabled: false},
+            xAxis: {
+                type: 'category',
+                // categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+            },
+            colors: [
+                  '#ffb600',
+                  '#db536a',
+                  '#e0301e',
+                  '#571f01', 
+                  '#db536a', 
+                  '#d93954', 
+                  '#e0301e', 
+                  '#d04a02', 
+                  '#92A8CD'
+                ],
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    size:350,
+                column: {
+                      colorByPoint: true
+                  }
+                }
+            },
+            series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionMonthDrilldowns"],
+            drilldown: {
+                series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
+            }
+        });
+
+        _this.dhuLine = new Chart({
+          chart:{
+            width: 350,
+          },
+          title: {
+              text: 'Annual DHU Analysis',
+          },
+          exporting: {
+            enabled: false
+          },
+          credits: {enabled: false},
+          colors: [
+                    '#ffb600',
+                    '#db536a',
+                    '#e0301e',
+                    '#eb8c00', 
+                    '#db536a', 
+                    '#d93954', 
+                    '#e0301e', 
+                    '#d04a02', 
+                    '#92A8CD'
+            
+                ],
+      
+          yAxis: {
+              title: {
+                  text: 'DHU %'
+              },
+              
+              plotLines: [{
+              // color: 'red', // Color value
+              // dashStyle: 'dash', // Style of the plot line. Default to solid
+              // value: 1.80, // Value of where the line will appear
+              // width: 2, // Width of the line,
+              // label: {
+              //     text: 'Permissible DHU'
+              // }
+            }]
+          },
+      
+          xAxis: {
+              accessibility: {
+                  rangeDescription: 'Range: 2019 to 2021'
+              },
+              categories:responsedata["DHULineWiseAnalysis"]["Value"]["categories"]
+          },
+      
+          legend: {
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'middle'
+          },
+      
+          plotOptions: {
+              series: {
+                  label: {
+                      connectorAllowed: false
+                  },
+                  size:350
+                  // pointStart: 
+              },
+              column: {
+                colorByPoint: true
+            }
+          },
+      
+          series: responsedata["DHULineWiseAnalysis"]["Value"]["series"],
+      
+          responsive: {
+              rules: [{
+                  condition: {
+                      maxWidth: 500
+                  },
+                  chartOptions: {
+                      legend: {
+                          layout: 'horizontal',
+                          align: 'center',
+                          verticalAlign: 'bottom'
+                      }
+                  }
+              }]
+          }
+      
+        });
+    })
+    
+
+    this.rejectionLine = new Chart({
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Rejection Percentage'
+      },
+      
+      xAxis: {
+          type: 'category'
+      },
+      colors: [
+            '#ffb600',
+            '#db536a',
+            '#e0301e',
+            '#eb8c00', 
+            '#db536a', 
+            '#d93954', 
+            '#e0301e', 
+            '#d04a02', 
+            '#92A8CD'
+                
+          ],
+
+
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: true
+              },
+          column: {
+                colorByPoint: true
+            }
+          }
+      },
+
+      series: [{
+          name: 'Line 1',
+          data: [{
+              name: '2019',
+              y: 23,
+              drilldown: 'Line1-2019'
+          }, {
+              name: '2020',
+              y: 36,
+              drilldown: 'Line1-2020'
+          }, {
+              name: '2021',
+              y: 40,
+              drilldown: 'Line1-2021'
+          }]
+      }, {
+          name: 'Line 2',
+          data: [{
+              name: '2019',
+              y: 47,
+              drilldown: 'Line2-2019'
+          }, {
+              name: '2020',
+              y: 46,
+              drilldown: 'Line2-2020'
+          }, {
+              name: '2021',
+              y: 29,
+              drilldown: 'Line2-2021'
+          }]
+      }],
+      drilldown: {
+          series: [{
+              id: 'Line1-2019',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 48],
+                  ['Feb', 29],
+                  ['Mar', 30],
+                  ['Apr', 30],
+                  ['May',25],
+                  ['Jun',21]
+              ]
+          }, {
+              id: 'Line1-2020',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 28],
+                  ['Feb', 29],
+                  ['Mar', 21],
+                  ['Apr', 20],
+                  ['May',26],
+                  ['Jun',22]
+              ]
+          }, {
+              id: 'Line1-2021',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 31],
+                  ['Apr', 34],
+                  ['May',25],
+                  ['Jun',32]
+              ]
+          }, {id: 'Line2-2019',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 30],
+                  ['Apr', 30],
+                  ['May',25],
+                  ['Jun',32]
+              ]
+          }, {
+              id: 'Line2-2020',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 24],
+                  ['Feb', 29],
+                  ['Mar', 21],
+                  ['Apr', 20],
+                  ['May',26],
+                  ['Jun',21]
+              ]
+          }, {
+              id: 'Line2-2021',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 19],
+                  ['Apr', 34],
+                  ['May',29],
+                  ['Jun',41]
+                ]
+          }]
+      }
+    });
+    
+  }
+
+  getUnitWiseCharts(){
+    var linewiseChartBackendUrl = environment.backendUrl + 'drilldownunitwise';
+    var KPIView = {
+        Year : [2021],
+        Month : [1,2],
+        Unit : [1,2]
+    }
+    var _this = this;
+    _this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
+      this.productionUnit = new Chart({
+        chart: {
+            type: 'spline',
+            width: 350,
+        },
+        title: {
+            text: 'Production Efficiency'
+        },
+        exporting: {
+          enabled: false
+        },
+        credits: {enabled: false},
+        xAxis: {
+            type: 'category'
+        },
+        colors: [
+              '#ffb600',
+              '#db536a',
+              '#e0301e',
+              '#eb8c00', 
+              '#db536a', 
+              '#d93954', 
+              '#e0301e', 
+              '#d04a02', 
+              '#92A8CD'
+                  
+            ],
+    
+    
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true
+                },
+            column: {
+                  colorByPoint: true
+              }
+            }
+        },
+    
+        series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionMonthDrilldowns"],
+        drilldown: {
+          series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
+        }
+      });
+      this.dhuUnit = new Chart({
+        chart:{
+          width: 350,
+        },
+        title: {
+            text: 'Annual DHU Analysis'
+        },
+        exporting: {
+          enabled: false
+        },
+        credits: {enabled: false},
+        colors: [
+          '#ffb600',
+          '#db536a',
+          '#e0301e',
+          '#eb8c00', 
+          '#db536a', 
+          '#d93954', 
+          '#e0301e', 
+          '#d04a02', 
+          '#92A8CD'
+        ],
+    
+        yAxis: {
+            title: {
+                text: 'DHU %'
+            },
+            
+            plotLines: [{
+            // color: 'red', // Color value
+            // dashStyle: 'dash', // Style of the plot line. Default to solid
+            // value: 1.80, // Value of where the line will appear
+            // width: 2, // Width of the line,
+            // label: {
+            //   text: 'Permissible DHU'
+            // }
+          }]
+        },
+    
+        xAxis: {
+            accessibility: {
+                rangeDescription: 'Range: 2019 to 2021'
+            },
+            categories:responsedata["DHUUnitWiseAnalysis"]["Value"]["categories"]
+        },
+    
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+    
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                size:350
+                // pointStart: 2010
+            },
+            column: {
+              colorByPoint: true
+          }
+        },
+    
+        series: responsedata["DHUUnitWiseAnalysis"]["Value"]["series"],
+    
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    
+      });
+    })
+    
+
+    this.rejectionUnit = new Chart({
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Rejection Percentage'
+      },
+      
+      xAxis: {
+          type: 'category'
+      },
+      colors: [
+                '#ffb600',
+                '#db536a',
+                '#e0301e',
+                '#eb8c00', 
+                '#db536a', 
+                '#d93954', 
+                '#e0301e', 
+                '#d04a02', 
+                '#92A8CD'
+                
+          ],
+
+
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: true
+              },
+          column: {
+                colorByPoint: true
+            }
+          }
+      },
+
+      series: [{
+          name: 'Unit 1',
+          data: [{
+              name: '2019',
+              y: 23,
+              drilldown: 'Line1-2019'
+          }, {
+              name: '2020',
+              y: 36,
+              drilldown: 'Line1-2020'
+          }, {
+              name: '2021',
+              y: 40,
+              drilldown: 'Line1-2021'
+          }]
+      }, {
+          name: 'Unit 2',
+          data: [{
+              name: '2019',
+              y: 47,
+              drilldown: 'Line2-2019'
+          }, {
+              name: '2020',
+              y: 46,
+              drilldown: 'Line2-2020'
+          }, {
+              name: '2021',
+              y: 29,
+              drilldown: 'Line2-2021'
+          }]
+      }],
+      drilldown: {
+          series: [{
+              id: 'Line1-2019',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 48],
+                  ['Feb', 29],
+                  ['Mar', 30],
+                  ['Apr', 30],
+                  ['May',25],
+                  ['Jun',21]
+              ]
+          }, {
+              id: 'Line1-2020',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 28],
+                  ['Feb', 29],
+                  ['Mar', 21],
+                  ['Apr', 20],
+                  ['May',26],
+                  ['Jun',22]
+              ]
+          }, {
+              id: 'Line1-2021',
+              name: 'Line 1 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 31],
+                  ['Apr', 34],
+                  ['May',25],
+                  ['Jun',32]
+              ]
+          }, {id: 'Line2-2019',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 30],
+                  ['Apr', 30],
+                  ['May',25],
+                  ['Jun',32]
+              ]
+          }, {
+              id: 'Line2-2020',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 24],
+                  ['Feb', 29],
+                  ['Mar', 21],
+                  ['Apr', 20],
+                  ['May',26],
+                  ['Jun',21]
+              ]
+          }, {
+              id: 'Line2-2021',
+              name: 'Line 2 Monthly data',
+              data: [
+                  ['Jan', 38],
+                  ['Feb', 29],
+                  ['Mar', 19],
+                  ['Apr', 34],
+                  ['May',29],
+                  ['Jun',41]
+                ]
+          }]
+      }
+    });
+    
+  }
+
+  //activate tabs of sewing module
+  activeTab = 'kpi';
+
+  kpi(activeTab){
+    this.activeTab = activeTab;
+    this.getSewingKPIAnalysis();
+  }
+
+  detailedAnalysis(activeTab){
+    this.activeTab = activeTab;
+    this.getLineWiseCharts();
+  }
+
+  unitAnalysis(activeTab){
+    this.activeTab = activeTab;
+    this.getUnitWiseCharts();
   }
 }

@@ -9,7 +9,8 @@ namespace RMGWebApi
     {
         public List<int> Year { get; set; }
         public List<int> Month { get; set; }
-        public List<double> Line{ get; set; }
+        public List<double> Line { get; set; }
+        public List<double> Unit{ get; set; }
     }
 
     public class WorkingHoursViewModel
@@ -18,6 +19,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
 
     public class OperatorViewModel
@@ -26,6 +30,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
     public class HelpersViewModel
     {
@@ -33,6 +40,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
     public class CheckersViewModel
     {
@@ -40,6 +50,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
 
     public class MachineryViewModel
@@ -48,6 +61,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
     public class WIPViewModel
     {
@@ -55,6 +71,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
     public class ProductionViewModel
     {
@@ -62,6 +81,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
 
     public class RejectionViewModel
@@ -70,6 +92,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
 
     public class AlterationViewModel
@@ -78,6 +103,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
     }
 
     public class StyleDataViewModel
@@ -92,5 +120,9 @@ namespace RMGWebApi
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
+        public int DayFlag { get; set; }
     }
 }

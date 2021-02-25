@@ -9,5 +9,7 @@ namespace RMGWebApi.Utility
     {
         public string name { get; set; }
         public double y { get; set; }
+        public string colorCode { get; set; }
+        public int PercentageValue { get; set; }
     }
 }
