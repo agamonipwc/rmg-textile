@@ -88,234 +88,247 @@ export class ModuleperformanceComponent implements OnInit {
   createOperationOverView(){
     //create gauge chart format
     this.operationGaugeFormat = new Chart({
-      chart: {
-          type: 'solidgauge',
-          height: '100%',
-          width: 300,
-          backgroundColor: 'transparent'
-      },
-      credits: {enabled: false},
-      title: {
-          text: 'Operations Overview <br>',
-          y: 250,
-          style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
-      },
-      pane: {
-        startAngle: -90,
-        endAngle: 90,
-        background: {
-            backgroundColor: 'white',
-            innerRadius: '60%',
-            outerRadius: '90%',
-            shape: 'arc',
-            borderColor: 'transparent',
+        chart: {
+            type: 'solidgauge',
+            height: '100%',
+            width:300
+        },
+    
+        title: {
+            text: 'Operation',
+            style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
+        },
+    
+        pane: {
+            center: ['50%', '85%'],
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+                backgroundColor: '#EEE',
+                innerRadius: '60%',
+                outerRadius: '100%',
+                shape: 'arc'
+            }
+        },
+    
+        exporting: {
+            enabled: false
+        },
+    
+        tooltip: {
+            enabled: false
+        },
+        yAxis: {
+            min: 0,
+            max: 100,
+            stops: [
+                [0.1, '#DF5353'], // green
+                [0.5, '#DDDF0D'], // yellow
+                [0.9, '#175d2d'] // red
+            ],
+            lineWidth: 0,
+            tickWidth: 0,
+            minorTickInterval: null,
+            tickAmount: 2,
+            title: {
+                y: -70
+            },
+            labels: {
+                y: 16
+            }
+        },
+    
+        credits: {
+            enabled: false
+        },
+    
+        series: [{
+            name: 'Environmental Sustainability',
+            data: [60],
+            dataLabels: {
+                format:
+                    '<div style="text-align:center">' +
+                    '<span style="font-size:25px">{y}%</span><br/>' +
+                    '<span style="font-size:12px;opacity:0.4"></span>' +
+                    '</div>'
+            },
+            tooltip: {
+                valueSuffix: '%'
+            }
+        }],
+        plotOptions: {
+            solidgauge: {
+                dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                }
+            }
         }
-      },
-      tooltip: {
-          enabled: false
-      },
-      yAxis: {
-          stops: [
-              [0.3, '#e0301e'],
-              [0.6, '#ffb600'],
-              [1, '#175d2d']
-          ],
-          length: 5,
-          lineWidth: 0,
-          minorTicks: false,
-          tickAmount: 0,
-          tickColor: 'transparent',
-          labels: {
-              enabled: true,
-          },
-          // title: {
-          //   text: 'Performance'
-          // },
-          min: 0,
-          max: 100,
-          plotBands: [
-              { from: 0, to: 35, color: '#e0301e', outerRadius: '132'},
-              { from: 36, to: 69, color: '#ffb600', outerRadius: '132'},
-              { from: 70, to: 100, color: '#175d2d', outerRadius: '132'},
-          ]
-      },
-      plotOptions: {
-          solidgauge: {
-              threshold: 50,
-              dataLabels: {
-                style: {'fontSize': '36px', 'font-family': 'Arial, Helvetica', 'fontWeight': 'light'},
-                y: -50,
-                borderWidth: 0
-              }
-          }
-      },
-      series: [
-        {
-          data: [80],
-          dataLabels: {
-          format:
-            '<div style="text-align:center">' +
-            '<span style="font-size:25px">{y}</span><br/>' +
-            '</div>'
-          },
-        }
-      ]
     });
   }
 
   createSocialSustainablityOverview(){
     this.socialSustainabilityGaugeFormat = new Chart({
-      chart: {
-          type: 'solidgauge',
-          height: '100%',
-          width: 300,
-          backgroundColor: 'transparent'
-      },
-      credits: {enabled: false},
-      title: {
-          text: 'Social Sustainability <br>',
-          y: 250,
-          style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
-      },
-      subtitle: {
-        text: '(In Percentage)',
-        y: 300,
-        style: {'font-family': 'Arial, Helvetica', 'font-size': '14px'}
-    },
-      pane: {
-        startAngle: -90,
-        endAngle: 90,
-        background: {
-            backgroundColor: 'white',
-            innerRadius: '60%',
-            outerRadius: '90%',
-            shape: 'arc',
-            borderColor: 'transparent',
+        chart: {
+            type: 'solidgauge',
+            height: '100%',
+            width:300
+        },
+    
+        title: {
+            text: 'Social Sustainability',
+            style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
+        },
+    
+        pane: {
+            center: ['50%', '85%'],
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+                backgroundColor: '#EEE',
+                innerRadius: '60%',
+                outerRadius: '100%',
+                shape: 'arc'
+            }
+        },
+    
+        exporting: {
+            enabled: false
+        },
+    
+        tooltip: {
+            enabled: false
+        },
+        yAxis: {
+            min: 0,
+            max: 100,
+            stops: [
+                [0.1, '#DF5353'], // green
+                [0.5, '#DDDF0D'], // yellow
+                [0.9, '#175d2d'] // red
+            ],
+            lineWidth: 0,
+            tickWidth: 0,
+            minorTickInterval: null,
+            tickAmount: 2,
+            title: {
+                y: -70
+            },
+            labels: {
+                y: 16
+            }
+        },
+    
+        credits: {
+            enabled: false
+        },
+    
+        series: [{
+            name: 'Environmental Sustainability',
+            data: [30],
+            dataLabels: {
+                format:
+                    '<div style="text-align:center">' +
+                    '<span style="font-size:25px">{y}%</span><br/>' +
+                    '<span style="font-size:12px;opacity:0.4"></span>' +
+                    '</div>'
+            },
+            tooltip: {
+                valueSuffix: '%'
+            }
+        }],
+        plotOptions: {
+            solidgauge: {
+                dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                }
+            }
         }
-      },
-      tooltip: {
-          enabled: false
-      },
-      yAxis: {
-          stops: [
-              [0.3, '#e0301e'],
-              [0.6, '#ffb600'],
-              [1, '#175d2d']
-          ],
-          length: 5,
-          lineWidth: 0,
-          minorTicks: false,
-          tickAmount: 0,
-          tickColor: 'transparent',
-          labels: {
-              enabled: true,
-          },
-          min: 0,
-          max: 100,
-          // title: {
-          //   text: 'Performance'
-          // },
-          plotBands: [
-              { from: 0, to: 35, color: '#e0301e', outerRadius: '132'},
-              { from: 36, to: 69, color: '#ffb600', outerRadius: '132'},
-              { from: 70, to: 100, color: '#175d2d', outerRadius: '132'},
-          ]
-      },
-      plotOptions: {
-          solidgauge: {
-              threshold: 50,
-              dataLabels: {
-                style: {'fontSize': '36px', 'font-family': 'Arial, Helvetica', 'fontWeight': 'light'},
-                y: -50,
-                borderWidth: 0
-              }
-          }
-      },
-      series: [
-        {
-          data: [25],
-          dataLabels: {
-          format:
-            '<div style="text-align:center">' +
-            '<span style="font-size:25px">{y}</span><br/>' +
-            '</div>'
-          },
-        }
-      ]
     });
   }
 
   createEnvironmentalSustainablityOverview(){
     this.environmentalSustainabilityGaugeChart = new Chart({
-      chart: {
-          type: 'solidgauge',
-          height: '100%',
-          width: 300,
-          backgroundColor: 'transparent'
-      },
-      credits: {enabled: false},
-      title: {
-          text: 'Environmental Sustainability<br>',
-          y: 250,
-          style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
-      },
-      pane: {
-        startAngle: -90,
-        endAngle: 90,
-        background: {
-            backgroundColor: 'white',
-            innerRadius: '60%',
-            outerRadius: '90%',
-            shape: 'arc',
-            borderColor: 'transparent',
+        chart: {
+            type: 'solidgauge',
+            height: '100%',
+            width:300
+        },
+    
+        title: {
+            text: 'Environmental Sustainability',
+            style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
+        },
+    
+        pane: {
+            center: ['50%', '85%'],
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+                backgroundColor: '#EEE',
+                innerRadius: '60%',
+                outerRadius: '100%',
+                shape: 'arc'
+            }
+        },
+    
+        exporting: {
+            enabled: false
+        },
+    
+        tooltip: {
+            enabled: false
+        },
+        yAxis: {
+            min: 0,
+            max: 100,
+            stops: [
+                [0.1, '#DF5353'], // green
+                [0.5, '#DDDF0D'], // yellow
+                [0.9, '#175d2d'] // red
+            ],
+            lineWidth: 0,
+            tickWidth: 0,
+            minorTickInterval: null,
+            tickAmount: 2,
+            title: {
+                y: -70
+            },
+            labels: {
+                y: 16
+            }
+        },
+    
+        credits: {
+            enabled: false
+        },
+    
+        series: [{
+            name: 'Environmental Sustainability',
+            data: [80],
+            dataLabels: {
+                format:
+                    '<div style="text-align:center">' +
+                    '<span style="font-size:25px">{y}%</span><br/>' +
+                    '<span style="font-size:12px;opacity:0.4"></span>' +
+                    '</div>'
+            },
+            tooltip: {
+                valueSuffix: '%'
+            }
+        }],
+        plotOptions: {
+            solidgauge: {
+                dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                }
+            }
         }
-      },
-      tooltip: {
-          enabled: false
-      },
-      yAxis: {
-          stops: [
-              [0.3, '#e0301e'],
-              [0.6, '#ffb600'],
-              [1, '#175d2d']
-          ],
-          length: 5,
-          lineWidth: 0,
-          minorTicks: false,
-          tickAmount: 0,
-          tickColor: 'transparent',
-          labels: {
-              enabled: true,
-          },
-          min: 0,
-          max: 100,
-          plotBands: [
-              { from: 0, to: 35, color: '#e0301e', outerRadius: '132'},
-              { from: 36, to: 69, color: '#ffb600', outerRadius: '132'},
-              { from: 70, to: 100, color: '#175d2d', outerRadius: '132'},
-          ]
-      },
-      plotOptions: {
-          solidgauge: {
-              threshold: 50,
-              dataLabels: {
-                style: {'fontSize': '36px', 'font-family': 'Arial, Helvetica', 'fontWeight': 'light'},
-                y: -50,
-                borderWidth: 0
-              }
-          }
-      },
-      series: [
-        {
-          data: [55],
-          dataLabels: {
-          format:
-            '<div style="text-align:center">' +
-            '<span style="font-size:25px">{y}</span><br/>' +
-            '</div>'
-          },
-        }
-      ]
     });
   }
 
@@ -899,204 +912,242 @@ export class ModuleperformanceComponent implements OnInit {
             chart: {
                 type: 'solidgauge',
                 height: '100%',
-                width: 300,
-                backgroundColor: 'transparent'
+                width:300
             },
-            credits: {enabled: false},
+        
             title: {
                 text: 'Inward',
-                y: 250,
-                style: {'font-family': 'Arial, Helvetica',},
+                style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
             },
+        
             pane: {
+                center: ['50%', '85%'],
                 startAngle: -90,
                 endAngle: 90,
                 background: {
-                    backgroundColor: 'white',
+                    backgroundColor: '#EEE',
                     innerRadius: '60%',
-                    outerRadius: '90%',
-                    shape: 'arc',
-                    borderColor: 'transparent',
+                    outerRadius: '100%',
+                    shape: 'arc'
                 }
             },
+        
+            exporting: {
+                enabled: false
+            },
+        
             tooltip: {
                 enabled: false
             },
             yAxis: {
-                stops: [
-                    [0.3, '#e0301e'],
-                    [0.6, '#ffb600'],
-                    [1, '#175d2d']
-                ],
-                length: 5,
-                lineWidth: 0,
-                minorTicks: false,
-                tickAmount: 0,
-                tickColor: 'transparent',
-                labels: {
-                    enabled: true,
-                },
                 min: 0,
                 max: 100,
-                plotBands: [
-                    { from: 0, to: 35, color: '#e0301e', outerRadius: '132'},
-                    { from: 36, to: 69, color: '#ffb600', outerRadius: '132'},
-                    { from: 70, to: 100, color: '#175d2d', outerRadius: '132'},
-                ]
-            },
-            plotOptions: {
-                solidgauge: {
-                    threshold: 50,
-                    dataLabels: {
-                        style: {'fontSize': '36px', 'font-family': 'Arial, Helvetica', 'fontWeight': 'light'},
-                        y: -50,
-                        borderWidth: 0
-                      }
+                stops: [
+                    [0.1, '#DF5353'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#175d2d'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
                 }
             },
-            series: [
-                {
-                    data: [80],
-                    tooltip: {
-                        valueSuffix: ' percentage'
-                    }
+        
+            credits: {
+                enabled: false
+            },
+        
+            series: [{
+                name: 'Inward',
+                data: [60],
+                dataLabels: {
+                    format:
+                        '<div style="text-align:center">' +
+                        '<span style="font-size:25px">{y}%</span><br/>' +
+                        '<span style="font-size:12px;opacity:0.4"></span>' +
+                        '</div>'
                 },
-            ]
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
         });
 
         this.gaugeProcess = new Chart({
             chart: {
                 type: 'solidgauge',
                 height: '100%',
-                width: 300,
-                backgroundColor: 'transparent'
+                width:300
             },
-            credits: {enabled: false},
+        
             title: {
                 text: 'Process',
-                y: 250,
-                style: {'font-family': 'Arial, Helvetica',},
+                style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
             },
+        
             pane: {
+                center: ['50%', '85%'],
                 startAngle: -90,
                 endAngle: 90,
                 background: {
-                    backgroundColor: 'white',
+                    backgroundColor: '#EEE',
                     innerRadius: '60%',
-                    outerRadius: '90%',
-                    shape: 'arc',
-                    borderColor: 'transparent',
+                    outerRadius: '100%',
+                    shape: 'arc'
                 }
             },
+        
+            exporting: {
+                enabled: false
+            },
+        
             tooltip: {
                 enabled: false
             },
             yAxis: {
-                stops: [
-                    [0.3, '#e0301e'],
-                    [0.6, '#ffb600'],
-                    [1, '#175d2d']
-                ],
-                length: 5,
-                lineWidth: 0,
-                minorTicks: false,
-                tickAmount: 0,
-                tickColor: 'transparent',
-                labels: {
-                    enabled: true,
-                },
                 min: 0,
                 max: 100,
-                plotBands: [
-                    { from: 0, to: 35, color: '#e0301e', outerRadius: '132'},
-                    { from: 36, to: 69, color: '#ffb600', outerRadius: '132'},
-                    { from: 70, to: 100, color: '#175d2d', outerRadius: '132'},
-                ]
+                stops: [
+            [0.1, '#DF5353'], // green
+            [0.5, '#DDDF0D'], // yellow
+            [0.9, '#175d2d'] // red
+        ],
+        lineWidth: 0,
+        tickWidth: 0,
+        minorTickInterval: null,
+        tickAmount: 2,
+        title: {
+            y: -70
+        },
+        labels: {
+            y: 16
+        }
             },
+        
+            credits: {
+                enabled: false
+            },
+        
+            series: [{
+                name: 'Environmental Sustainability',
+                data: [35],
+                dataLabels: {
+                    format:
+                        '<div style="text-align:center">' +
+                        '<span style="font-size:25px">{y}%</span><br/>' +
+                        '<span style="font-size:12px;opacity:0.4"></span>' +
+                        '</div>'
+                },
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
             plotOptions: {
                 solidgauge: {
-                    threshold: 50,
                     dataLabels: {
-                        style: {'fontSize': '36px', 'font-family': 'Arial, Helvetica', 'fontWeight': 'light'},
-                        y: -50,
-                        borderWidth: 0
-                      }
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    },
+                    color:"#175d2d"
                 }
-            },
-            series: [
-                {
-                    data: [30],
-                    tooltip: {
-                        valueSuffix: ' percentage'
-                    }
-                }
-            ]
+            }
         });
 
         this.gaugeOutward = new Chart({
             chart: {
                 type: 'solidgauge',
                 height: '100%',
-                width: 300,
-                backgroundColor: 'transparent'
+                width:300
             },
-            credits: {enabled: false},
+        
             title: {
                 text: 'Outward',
-                y: 250,
-                style: {'font-family': 'Arial, Helvetica',},
+                style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
             },
+        
             pane: {
+                center: ['50%', '85%'],
                 startAngle: -90,
                 endAngle: 90,
                 background: {
-                    backgroundColor: 'white',
+                    backgroundColor: '#EEE',
                     innerRadius: '60%',
-                    outerRadius: '90%',
-                    shape: 'arc',
-                    borderColor: 'transparent',
+                    outerRadius: '100%',
+                    shape: 'arc'
                 }
             },
+        
+            exporting: {
+                enabled: false
+            },
+        
             tooltip: {
                 enabled: false
             },
             yAxis: {
-                stops: [
-                    [0.3, '#e0301e'],
-                    [0.6, '#ffb600'],
-                    [1, '#175d2d']
-                ],
-                length: 5,
-                lineWidth: 0,
-                minorTicks: false,
-                tickAmount: 0,
-                tickColor: 'transparent',
-                labels: {
-                    enabled: true,
-                },
                 min: 0,
                 max: 100,
-                plotBands: [
-                    { from: 0, to: 35, color: '#e0301e', outerRadius: '132'},
-                    { from: 36, to: 69, color: '#ffb600', outerRadius: '132'},
-                    { from: 70, to: 100, color: '#175d2d', outerRadius: '132'},
-                ]
+                stops: [
+                    [0.1, '#DF5353'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#175d2d'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
             },
+        
+            credits: {
+                enabled: false
+            },
+        
+            series: [{
+                name: 'Environmental Sustainability',
+                data: [80],
+                dataLabels: {
+                    format:
+                        '<div style="text-align:center">' +
+                        '<span style="font-size:25px">{y}%</span><br/>' +
+                        '<span style="font-size:12px;opacity:0.4"></span>' +
+                        '</div>'
+                },
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
             plotOptions: {
                 solidgauge: {
-                    threshold: 50,
                     dataLabels: {
-                        style: {'fontSize': '36px', 'font-family': 'Arial, Helvetica', 'fontWeight': 'light'},
-                        y: -50,
-                        borderWidth: 0
-                      }
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    },
+                    color:"#175d2d"
                 }
-            },
-            series: [
-                {
-                    data: [68]
-                }
-            ]
+            }
         });
     }
 }
