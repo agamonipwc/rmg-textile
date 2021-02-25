@@ -14,6 +14,7 @@ namespace RMGWebApi.ViewModel
     public class CapacityUtilizationDrilldown {
         public string drilldown { get; set; }
         public int y { get; set; }
+        public string name { get; set; }
     }
 
     public class CapacityUtilizationNested
@@ -21,6 +22,7 @@ namespace RMGWebApi.ViewModel
         public string type { get; set; }
         public string id { get; set; }
         public List<int> nestedData { get; set; }
+        
     }
 
     public class CapacityUtilizationParameter

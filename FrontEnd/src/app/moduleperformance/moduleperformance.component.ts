@@ -21,11 +21,17 @@ export class ModuleperformanceComponent implements OnInit {
   gaugeInline: Chart;
   gaugeOutward: Chart;
   gaugeProcess: Chart;
+  processBubble : Chart;
+  onclickStyle: any ={
+      cursor: "pointer"
+  }
   constructor(private _router: Router) { }
 
   ngOnInit() {
     $("#topnavbar").hide();
     $("#footer").css("margin-left", "15%");
+    $("#footer").hide();
+    $(".footer").hide();
     this.createOperationOverView();
     this.createSocialSustainablityOverview();
     this.createEnvironmentalSustainablityOverview();
@@ -35,6 +41,7 @@ export class ModuleperformanceComponent implements OnInit {
     this.createSewingOverview();
     this.createFinishingPackingOverview();
     this.createOperationoduleChart();
+    this.createProcessOverview();
   }
 
   tabNavigation(event){
@@ -804,6 +811,81 @@ export class ModuleperformanceComponent implements OnInit {
               valueSuffix: ' percentage'
           }
       }]
+    });
+  }
+
+  createProcessOverview(){
+    this.processBubble = new Chart({
+        chart: {
+            polar: true,
+            type: 'line',
+        },
+        title: {
+            text: "Let's see where each process stands",
+            style: {'font-family': 'Arial, Helvetica'},
+            // x: -80
+        },
+        credits: {enabled: false},
+        exporting: {
+            enabled: false
+        },
+        pane: {
+            size: '100%'
+        },
+    
+        xAxis: {
+            categories: ['Fabric Store', 'Spreading & Cutting', 'Trim Store', 'Sewing', 'Finishing & Packing'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+    
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 1,
+            min: 0
+        },
+    
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}%</b><br/>'
+        },
+    
+        legend: {
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+        },
+    
+        series: [{
+            name: 'Market Score',
+            color:'black',
+            data: [89, 70, 70, 75, 85],
+            pointPlacement: 'on'
+        }, {
+            name: 'Actual Score',
+            color:'#eb8c00',
+            data: [73, 62, 31, 30, 74],
+            pointPlacement: 'on'
+        }],
+    
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    },
+                    pane: {
+                        size: '70%'
+                    }
+                }
+            }]
+        }
+    
     });
   }
 

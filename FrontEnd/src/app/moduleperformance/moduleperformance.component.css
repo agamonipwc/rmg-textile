@@ -24,8 +24,10 @@
   .card-style{
     box-shadow: 1px 1px 1px 1px #7d7d7d;
   }
-  .card{
+  .custom-card{
     border-radius: 0rem !important;
+    background-color: #ffffff;
+    width: 184px;
   }
   .card-status-green{
     background-color: #175d2d;

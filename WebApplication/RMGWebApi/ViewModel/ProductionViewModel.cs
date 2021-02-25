@@ -21,8 +21,8 @@ namespace RMGWebApi.ViewModel
     {
         public string id { get; set; }
         public string name { get; set; }
-        //public List<Tuple<string, int>> data { get; set; }
-        public List<int> data { get; set; }
+        public List<object[]> data { get; set; }
+        //public List<int> data { get; set; }
     }
 
 
@@ -30,7 +30,7 @@ namespace RMGWebApi.ViewModel
     {
         public string id { get; set; }
         public string name { get; set; }
-        //public List<Tuple<string, int>> data { get; set; }
+        //public object[] data { get; set; }
         public int data { get; set; }
     }
 }

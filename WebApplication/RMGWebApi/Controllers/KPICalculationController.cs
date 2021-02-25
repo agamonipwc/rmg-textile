@@ -116,12 +116,14 @@ namespace RMGWebApi.Controllers
             capacityUtilizationDrilldowns.Add(new CapacityUtilizationDrilldown
             {
                 drilldown = "utilized",
-                y = Convert.ToInt32(capacityUtilized)
+                y = Convert.ToInt32(capacityUtilized), 
+                name = "Utilized"
             });
             capacityUtilizationDrilldowns.Add(new CapacityUtilizationDrilldown
             {
                 drilldown = "",
-                y = Convert.ToInt32(capacityNonUtilized)
+                y = Convert.ToInt32(capacityNonUtilized),
+                name = "Non-Utilized"
             });
             capacityUtilizationSeries.data = capacityUtilizationDrilldowns;
             capacityUtilizationSeries.colorByPoint = true;
@@ -372,8 +374,11 @@ namespace RMGWebApi.Controllers
 
                 double percentageDHU = 0;
                 string dhuColor = "";
+                string dhuTextColor = "";
                 string defectColor = "";
+                string defectTextColor = "";
                 string rejectColor = "";
+                string rejectTextColor = "";
                 var dhuData = _rmgDbContext.DHU.Where(x =>
                     kpiViewModel.Year.Contains(x.Date.Year) &&
                     kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
@@ -425,29 +430,35 @@ namespace RMGWebApi.Controllers
                 if (defectionWeightage < 0.1)
                 {
                     defectColor = "#175d2d";
+                    defectTextColor = "#ffffff";
                 }
                 else if (defectionWeightage > 0.1 && defectionWeightage <= 0.2)
                 {
                     defectColor = "#ffb600";
+                    defectTextColor = "#ffffff";
                 }
                 else
                 {
                     defectColor = "#e0301e";
+                    defectTextColor = "#000000";
                 }
                 #endregion
 
                 #region Color code calculation of reject
                 if (rejectionWeitage < 0.1)
                 {
-                    defectColor = "#175d2d";
+                    rejectColor = "#175d2d";
+                    rejectTextColor = "#ffffff";
                 }
                 else if (defectionWeightage > 0.1 && defectionWeightage <= 0.2)
                 {
-                    defectColor = "#ffb600";
+                    rejectColor = "#ffb600";
+                    rejectTextColor = "#ffffff";
                 }
                 else
                 {
-                    defectColor = "#e0301e";
+                    rejectColor = "#e0301e";
+                    rejectTextColor = "#000000";
                 }
                 #endregion
 
@@ -464,14 +475,16 @@ namespace RMGWebApi.Controllers
                     name = "Defect",
                     y = percentageDefection,
                     colorCode = defectColor,
-                    PercentageValue = Convert.ToInt32(Math.Round(percentageDefection))
+                    PercentageValue = Convert.ToInt32(Math.Round(percentageDefection)),
+                    textColor = defectTextColor
                 });
                 seriesData.Add(new DHURejectDefect
                 {
                     name = "Reject",
                     y = percentageRejection,
                     colorCode = rejectColor,
-                    PercentageValue = Convert.ToInt32(Math.Round(percentageRejection))
+                    PercentageValue = Convert.ToInt32(Math.Round(percentageRejection)),
+                    textColor = rejectTextColor
                 });
                 seriesData.Add(new DHURejectDefect
                 {
