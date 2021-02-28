@@ -1,4 +1,4 @@
-/FrontEnd/node_module
-/FrontEnd/package.json
-/FrontEnd/package-lock.json
-/WebApplication/.vs
+FrontEnd/node_module/
+**.json
+FrontEnd/package-lock.json
+WebApplication/.vs
