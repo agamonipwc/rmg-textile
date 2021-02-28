@@ -1,8 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as $ from '../../assets/lib/jquery/dist/jquery.js';
 import {Chart} from 'angular-highcharts';
 import { style } from '@angular/animations';
 import { Router } from '@angular/router';
+import * as Highcharts from 'highcharts';
+declare var require: any;
+let Boost = require('highcharts/modules/boost');
+let noData = require('highcharts/modules/no-data-to-display');
+let More = require('highcharts/highcharts-more');
+let Exporting = require('highcharts/modules/exporting');
+// let Accessibility = require('highcharts/modules/');
+Boost(Highcharts);
+noData(Highcharts);
+More(Highcharts);
+noData(Highcharts);
+Exporting(Highcharts);
+// import * as  Highcharts from 'highcharts';
+// import more from 'highcharts/highcharts-more';
+// more(Highcharts);
+// import Drilldown from 'highcharts/modules/drilldown';
+// Drilldown(Highcharts);
+// import Exporting from 'highcharts/modules/exporting';
+// Exporting(Highcharts);
 
 @Component({
   selector: 'app-moduleperformance',
@@ -10,6 +29,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./moduleperformance.component.css']
 })
 export class ModuleperformanceComponent implements OnInit {
+@ViewChild("processBubble", { read: ElementRef }) processBubble: ElementRef;
   operationGaugeFormat: Chart;
   socialSustainabilityGaugeFormat : Chart;
   environmentalSustainabilityGaugeChart : Chart;
@@ -21,7 +41,7 @@ export class ModuleperformanceComponent implements OnInit {
   gaugeInline: Chart;
   gaugeOutward: Chart;
   gaugeProcess: Chart;
-  processBubble : Chart;
+//   processBubble : Chart;
   onclickStyle: any ={
       cursor: "pointer"
   }
@@ -122,8 +142,8 @@ export class ModuleperformanceComponent implements OnInit {
             min: 0,
             max: 100,
             stops: [
-                [0.1, '#DF5353'], // green
-                [0.5, '#DDDF0D'], // yellow
+                [0.1, '#e0301e'], // green
+                [0.5, '#ffb600'], // yellow
                 [0.9, '#175d2d'] // red
             ],
             lineWidth: 0,
@@ -204,8 +224,8 @@ export class ModuleperformanceComponent implements OnInit {
             min: 0,
             max: 100,
             stops: [
-                [0.1, '#DF5353'], // green
-                [0.5, '#DDDF0D'], // yellow
+                [0.1, '#e0301e'], // green
+                [0.5, '#ffb600'], // yellow
                 [0.9, '#175d2d'] // red
             ],
             lineWidth: 0,
@@ -286,8 +306,8 @@ export class ModuleperformanceComponent implements OnInit {
             min: 0,
             max: 100,
             stops: [
-                [0.1, '#DF5353'], // green
-                [0.5, '#DDDF0D'], // yellow
+                [0.1, '#e0301e'], // green
+                [0.5, '#ffb600'], // yellow
                 [0.9, '#175d2d'] // red
             ],
             lineWidth: 0,
@@ -828,78 +848,228 @@ export class ModuleperformanceComponent implements OnInit {
   }
 
   createProcessOverview(){
-    this.processBubble = new Chart({
+      Highcharts.chart(this.processBubble.nativeElement,{
         chart: {
-            polar: true,
-            type: 'line',
+            type: 'packedbubble',
+            height: '100%'
         },
         title: {
-            text: "Let's see where each process stands",
-            style: {'font-family': 'Arial, Helvetica'},
-            // x: -80
+            text: 'Carbon emissions around the world (2014)'
         },
-        credits: {enabled: false},
-        exporting: {
-            enabled: false
-        },
-        pane: {
-            size: '100%'
-        },
-    
-        xAxis: {
-            categories: ['Fabric Store', 'Spreading & Cutting', 'Trim Store', 'Sewing', 'Finishing & Packing'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-    
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 1,
-            min: 0
-        },
-    
         tooltip: {
-            shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}%</b><br/>'
+            useHTML: true,
+            pointFormat: '<b>{point.name}:</b> {point.value}m CO<sub>2</sub>'
         },
-    
-        legend: {
-            align: 'right',
-            verticalAlign: 'middle',
-            layout: 'vertical'
-        },
-    
-        series: [{
-            name: 'Market Score',
-            color:'black',
-            data: [89, 70, 70, 75, 85],
-            pointPlacement: 'on'
-        }, {
-            name: 'Actual Score',
-            color:'#eb8c00',
-            data: [73, 62, 31, 30, 74],
-            pointPlacement: 'on'
-        }],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
+        plotOptions: {
+            packedbubble: {
+                minSize: '20%',
+                maxSize: '100%',
+                zMin: 0,
+                zMax: 1000,
+                layoutAlgorithm: {
+                    gravitationalConstant: 0.05,
+                    splitSeries: true,
+                    seriesInteraction: false,
+                    dragBetweenSeries: true,
+                    parentNodeLimit: true
                 },
-                chartOptions: {
-                    legend: {
-                        align: 'center',
-                        verticalAlign: 'bottom',
-                        layout: 'horizontal'
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}',
+                    filter: {
+                        property: 'y',
+                        operator: '>',
+                        value: 250
                     },
-                    pane: {
-                        size: '70%'
+                    style: {
+                        color: 'black',
+                        textOutline: 'none',
+                        fontWeight: 'normal'
                     }
                 }
+            }
+        },
+        series: [
+        {
+            name: 'Europe',
+            data: [{
+                name: 'Germany',
+                value: 767.1
+            }, {
+                name: 'Croatia',
+                value: 20.7
+            },
+            {
+                name: "Belgium",
+                value: 97.2
+            },
+            {
+                name: "Czech Republic",
+                value: 111.7
+            },
+            {
+                name: "Netherlands",
+                value: 158.1
+            }]
+        }, 
+        {
+            name: 'Africa',
+            data: [{
+                name: "Senegal",
+                value: 8.2
+            },
+            {
+                name: "Cameroon",
+                value: 9.2
+            },
+            {
+                name: "Zimbabwe",
+                value: 13.1
+            },
+            {
+                name: "Ghana",
+                value: 14.1
+            },
+            {
+                name: "Kenya",
+                value: 14.1
+            }]
+        }, 
+        {
+            name: 'Oceania',
+            data: [{
+                name: "Australia",
+                value: 409.4
+            },
+            {
+                name: "New Zealand",
+                value: 34.1
+            },
+            {
+                name: "Papua New Guinea",
+                value: 7.1
+            }]
+        }, 
+        {
+            name: 'North America',
+            data: [{
+                name: "Costa Rica",
+                value: 7.6
+            },
+            {
+                name: "Honduras",
+                value: 8.4
+            },
+            {
+                name: "Jamaica",
+                value: 8.3
+            },
+            {
+                name: "Panama",
+                value: 10.2
+            },
+            {
+                name: "Guatemala",
+                value: 12
+            }]
+        }, 
+        {
+            name: 'South America',
+            data: [{
+                name: "El Salvador",
+                value: 7.2
+            },
+            {
+                name: "Uruguay",
+                value: 8.1
+            },
+            {
+                name: "Bolivia",
+                value: 17.8
+            },
+            {
+                name: "Trinidad and Tobago",
+                value: 34
+            },
+            {
+                name: "Ecuador",
+                value: 43
             }]
         }
+        ]
+      })
+    // this.processBubble = new Chart({
+    //     chart: {
+    //         polar: true,
+    //         type: 'line',
+    //     },
+    //     title: {
+    //         text: "Let's see where each process stands",
+    //         style: {'font-family': 'Arial, Helvetica'},
+    //         // x: -80
+    //     },
+    //     credits: {enabled: false},
+    //     exporting: {
+    //         enabled: false
+    //     },
+    //     pane: {
+    //         size: '100%'
+    //     },
     
-    });
+    //     xAxis: {
+    //         categories: ['Fabric Store', 'Spreading & Cutting', 'Trim Store', 'Sewing', 'Finishing & Packing'],
+    //         tickmarkPlacement: 'on',
+    //         lineWidth: 0
+    //     },
+    
+    //     yAxis: {
+    //         gridLineInterpolation: 'polygon',
+    //         lineWidth: 1,
+    //         min: 0
+    //     },
+    
+    //     tooltip: {
+    //         shared: true,
+    //         pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}%</b><br/>'
+    //     },
+    
+    //     legend: {
+    //         align: 'right',
+    //         verticalAlign: 'middle',
+    //         layout: 'vertical'
+    //     },
+    
+    //     series: [{
+    //         name: 'Market Score',
+    //         color:'black',
+    //         data: [89, 70, 70, 75, 85],
+    //         pointPlacement: 'on'
+    //     }, {
+    //         name: 'Actual Score',
+    //         color:'#eb8c00',
+    //         data: [73, 62, 31, 30, 74],
+    //         pointPlacement: 'on'
+    //     }],
+    
+    //     responsive: {
+    //         rules: [{
+    //             condition: {
+    //                 maxWidth: 500
+    //             },
+    //             chartOptions: {
+    //                 legend: {
+    //                     align: 'center',
+    //                     verticalAlign: 'bottom',
+    //                     layout: 'horizontal'
+    //                 },
+    //                 pane: {
+    //                     size: '70%'
+    //                 }
+    //             }
+    //         }]
+    //     }
+    
+    // });
   }
 
   sewingNavigation(){
@@ -943,8 +1113,8 @@ export class ModuleperformanceComponent implements OnInit {
                 min: 0,
                 max: 100,
                 stops: [
-                    [0.1, '#DF5353'], // green
-                    [0.5, '#DDDF0D'], // yellow
+                    [0.1, '#e0301e'], // green
+                    [0.5, '#ffb600'], // yellow
                     [0.9, '#175d2d'] // red
                 ],
                 lineWidth: 0,
@@ -1023,8 +1193,8 @@ export class ModuleperformanceComponent implements OnInit {
                 min: 0,
                 max: 100,
                 stops: [
-            [0.1, '#DF5353'], // green
-            [0.5, '#DDDF0D'], // yellow
+            [0.1, '#e0301e'], // green
+            [0.5, '#ffb600'], // yellow
             [0.9, '#175d2d'] // red
         ],
         lineWidth: 0,
@@ -1104,8 +1274,8 @@ export class ModuleperformanceComponent implements OnInit {
                 min: 0,
                 max: 100,
                 stops: [
-                    [0.1, '#DF5353'], // green
-                    [0.5, '#DDDF0D'], // yellow
+                    [0.1, '#e0301e'], // green
+                    [0.5, '#ffb600'], // yellow
                     [0.9, '#175d2d'] // red
                 ],
                 lineWidth: 0,

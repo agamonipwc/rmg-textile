@@ -11,7 +11,7 @@ namespace Entities.DataModels
     {
         [Key]
         public int Id { get; set; }
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
         public string Day { get; set; }
         public double Unit { get; set; }
         public string Location { get; set; }

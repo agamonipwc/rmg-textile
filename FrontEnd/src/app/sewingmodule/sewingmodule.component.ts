@@ -86,10 +86,10 @@ export class SewingmoduleComponent implements OnInit {
   rejectionUnit : Chart;
   dhuUnit : Chart;
   
-  machineryLine : Chart;
+  WIPLine : Chart;
   alterationLine : Chart;
   workingLine : Chart;
-  machineryUnit : Chart;
+  WIPUnit : Chart;
   alterationUnit : Chart;
   workingUnit : Chart;
 
@@ -688,13 +688,13 @@ export class SewingmoduleComponent implements OnInit {
       this.selectedUnit = unitSelected;
     });
   }
-
+  //not to change api
   getProductivityLineWiseCharts(){
     $("#productivityLine").show();
     var linewiseChartBackendUrl = environment.backendUrl + 'drilldownlinewise';
     var KPIView = {
         Year : [2021],
-        Month : [1,2],
+        Month : [1],
         Line : [1,2,3,4]
     }
     var _this = this;
@@ -909,13 +909,13 @@ export class SewingmoduleComponent implements OnInit {
       });
     })
   }
-
+  // not to change api
   getProductivityUnitWiseCharts(){
     $("#productivityLine").hide();
     var linewiseChartBackendUrl = environment.backendUrl + 'drilldownunitwise';
     var KPIView = {
         Year : [2021],
-        Month : [1,2],
+        Month : [1],
         Unit : [1,2]
     }
     var _this = this;
@@ -1117,23 +1117,24 @@ export class SewingmoduleComponent implements OnInit {
     })
   }
 
+  
   getEfficiencyLineWiseCharts(){
     $("#workEfficiencyLine").show();
-    var linewiseChartBackendUrl = environment.backendUrl + 'drilldownlinewise';
+    var linewiseChartBackendUrl = environment.backendUrl + 'DrilldownProductivityLinewise';
     var KPIView = {
         Year : [2021],
-        Month : [1,2],
+        Month : [1],
         Line : [1,2,3,4]
     }
     var _this = this;
     this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
-      _this.machineryLine = new Chart({
+      _this.WIPLine = new Chart({
           chart: {
               type: 'spline',
               width: 350,
           },
           title: {
-              text: 'Monthly Machinery on 2021',
+              text: 'Monthly WIP on 2021',
               style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
           },
           exporting: {
@@ -1340,15 +1341,15 @@ export class SewingmoduleComponent implements OnInit {
 
   getEfficiencyUnitWiseCharts(){
     $("#workEfficiencyLine").hide();
-    var linewiseChartBackendUrl = environment.backendUrl + 'drilldownunitwise';
+    var linewiseChartBackendUrl = environment.backendUrl + 'DrilldownProductivityUnitwise';
     var KPIView = {
         Year : [2021],
-        Month : [1,2],
+        Month : [1],
         Unit : [1,2]
     }
     var _this = this;
     _this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
-      this.machineryUnit = new Chart({
+      this.WIPUnit = new Chart({
         chart: {
             type: 'spline',
             width: 350,
@@ -1364,7 +1365,7 @@ export class SewingmoduleComponent implements OnInit {
           }
         ],
         title: {
-            text: 'Monthly Machinery on 2021',
+            text: 'Monthly WIP on 2021',
             style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
         },
         exporting: {
@@ -1545,10 +1546,10 @@ export class SewingmoduleComponent implements OnInit {
 
   getResourceStrengthLineWiseCharts(){
     $("#resourceStrengthLine").show();
-    var linewiseChartBackendUrl = environment.backendUrl + 'drilldownlinewise';
+    var linewiseChartBackendUrl = environment.backendUrl + 'DrilldownResourceStrengthLinewise';
     var KPIView = {
         Year : [2021],
-        Month : [1,2],
+        Month : [1],
         Line : [1,2,3,4]
     }
     var _this = this;
@@ -1778,10 +1779,10 @@ export class SewingmoduleComponent implements OnInit {
 
   getResourceStrengthUnitWiseCharts(){
     $("#resourceStrengthLine").hide();
-    var linewiseChartBackendUrl = environment.backendUrl + 'drilldownunitwise';
+    var linewiseChartBackendUrl = environment.backendUrl + 'DrilldownResourceStengthUnitwise';
     var KPIView = {
         Year : [2021],
-        Month : [1,2],
+        Month : [1],
         Unit : [1,2]
     }
     var _this = this;

@@ -24,5 +24,7 @@ namespace Entities
         public DbSet<Rejection> Rejection { get; set; }
         public DbSet<Machinery> Machinery { get; set; }
         public DbSet<WIP> WIP { get; set; }
+        public DbSet<Alteration> Alteration { get; set; }
+        public DbSet<Checkers> Checkers { get; set; }
     }
 }

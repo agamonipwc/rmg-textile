@@ -23,7 +23,7 @@ namespace RMGWebApi.Controllers
         {
             var kpiResults = new
             {
-                ProductionLineWiseAnalysis = CalculateProductionDataLineWise(kpiViewModel),
+                ProductionLineWiseAnalysis = CalculateAlterationDataLineWise(kpiViewModel),
                 DHULineWiseAnalysis = CalculateDHUDataLineWise(kpiViewModel),
                 RejectionLineWiseAnalysis = CalculateRejectionDataLineWise(kpiViewModel),
                 StatusCode = 200
@@ -31,12 +31,12 @@ namespace RMGWebApi.Controllers
             return Json(kpiResults);
         }
 
-        private JsonResult CalculateProductionDataLineWise(KPIViewModel kpiViewModel)
+        private JsonResult CalculateAlterationDataLineWise(KPIViewModel kpiViewModel)
         {
-            var productionDataGroupingByLineDay = _rmgDbContext.Production.Where(x =>
+            var productionDataGroupingByLineDay = _rmgDbContext.Alteration.Where(x =>
                 kpiViewModel.Year.Contains(x.Date.Year) &&
                 kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Day, x.Line, x.Date.Month })
-                .Select(grp => new ProductionViewModel { ProdData = grp.Sum(c => c.Data), Day = grp.Key.Day, Line = grp.Key.Line, Month = grp.Key.Month }).ToList();
+                .Select(grp => new AlterationViewModel { AlterationData = grp.Sum(c => c.Data), Day = grp.Key.Day, Line = grp.Key.Line, Month = grp.Key.Month }).ToList();
 
             foreach (var element in productionDataGroupingByLineDay)
             {
@@ -54,7 +54,7 @@ namespace RMGWebApi.Controllers
                 productionMonthDrilldowns = productionDataGroupingByLineDay.Where(x => x.Line == element).GroupBy(x => new { x.Line, x.Month, x.MonthName }).Select(grp => new ProductionMonthDrilldown
                 {
                     name = grp.Key.MonthName,
-                    y = Convert.ToInt32(grp.Sum(x => x.ProdData)),
+                    y = Convert.ToInt32(grp.Sum(x => x.AlterationData)),
                     drilldown = string.Join('-', string.Join("", "Line", grp.Key.Line.ToString()), grp.Key.MonthName.ToString())
                 }).ToList();
                 productionSeries.Add(new ProductionSeries
@@ -72,7 +72,7 @@ namespace RMGWebApi.Controllers
                 {
                     name = grp.Key.Day,
                     id = grp.Key.Line.ToString(),
-                    data = Convert.ToInt32(grp.Sum(x => x.ProdData))
+                    data = Convert.ToInt32(grp.Sum(x => x.AlterationData))
                 }).ToList();
 
                 foreach (var element in kpiViewModel.Line)

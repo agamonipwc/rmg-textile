@@ -24,6 +24,28 @@ namespace RMGWebApi
         public double Unit { get; set; }
     }
 
+    public class CheckersViewModel
+    {
+        public double CheckersData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
+    }
+
+    public class AlterationViewModel
+    {
+        public double AlterationData { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public double Line { get; set; }
+        public string Day { get; set; }
+        public string MonthName { get; set; }
+        public double Unit { get; set; }
+    }
+
     public class OperatorViewModel
     {
         public double OperatorData { get; set; }
@@ -44,17 +66,7 @@ namespace RMGWebApi
         public string MonthName { get; set; }
         public double Unit { get; set; }
     }
-    public class CheckersViewModel
-    {
-        public double CheckerData { get; set; }
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public double Line { get; set; }
-        public string Day { get; set; }
-        public string MonthName { get; set; }
-        public double Unit { get; set; }
-    }
-
+    
     public class MachineryViewModel
     {
         public double MechineryData { get; set; }
@@ -89,17 +101,6 @@ namespace RMGWebApi
     public class RejectionViewModel
     {
         public double RejectionData { get; set; }
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public double Line { get; set; }
-        public string Day { get; set; }
-        public string MonthName { get; set; }
-        public double Unit { get; set; }
-    }
-
-    public class AlterationViewModel
-    {
-        public double AlterationData { get; set; }
         public int Year { get; set; }
         public int Month { get; set; }
         public double Line { get; set; }

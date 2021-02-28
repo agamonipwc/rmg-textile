@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModuleperformanceComponent } from './moduleperformance/moduleperformance.component';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
-import more from 'highcharts/highcharts-more.src';
+// import more from 'highcharts/highcharts-more.src';
 import solidGauge from 'highcharts/modules/solid-gauge.src';
 import { SewingmoduleComponent } from './sewingmodule/sewingmodule.component';
 import{NgDatepickerModule} from 'ng2-datepicker';
@@ -18,7 +18,7 @@ import{NgDatepickerModule} from 'ng2-datepicker';
 
 export function highchartsModules() {
   // apply Highcharts Modules to this array
-  return [more, solidGauge];
+  return [solidGauge];
 }
 
 @NgModule({

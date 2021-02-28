@@ -511,7 +511,7 @@ namespace RMGWebApi.Controllers
             var checkersByLineWise = _rmgDbContext.Helpers.Where(x =>
                kpiViewModel.Year.Contains(x.Date.Year) &&
                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-               .Select(grp => new CheckersViewModel { CheckerData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+               .Select(grp => new CheckersViewModel { CheckersData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
             var machineryByLineWise = _rmgDbContext.Helpers.Where(x =>
                kpiViewModel.Year.Contains(x.Date.Year) &&
