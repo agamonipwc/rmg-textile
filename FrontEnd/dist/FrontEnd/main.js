@@ -416,24 +416,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
-/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
-/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
 
 
 
-
-highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_6___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
-
-highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_7___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
-
-highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+var Boost = __webpack_require__(/*! highcharts/modules/boost */ "./node_modules/highcharts/modules/boost.js");
+var noData = __webpack_require__(/*! highcharts/modules/no-data-to-display */ "./node_modules/highcharts/modules/no-data-to-display.js");
+var More = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
+var Exporting = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
+// let Accessibility = require('highcharts/modules/');
+Boost(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+noData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+More(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+noData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+Exporting(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+// import * as  Highcharts from 'highcharts';
+// import more from 'highcharts/highcharts-more';
+// more(Highcharts);
+// import Drilldown from 'highcharts/modules/drilldown';
+// Drilldown(Highcharts);
+// import Exporting from 'highcharts/modules/exporting';
+// Exporting(Highcharts);
 var ModuleperformanceComponent = /** @class */ (function () {
     function ModuleperformanceComponent(_router) {
         this._router = _router;
