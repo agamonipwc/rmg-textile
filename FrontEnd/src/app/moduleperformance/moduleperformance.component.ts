@@ -1,35 +1,32 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as $ from '../../assets/lib/jquery/dist/jquery.js';
 import {Chart} from 'angular-highcharts';
-import { style } from '@angular/animations';
 import { Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
-let More = require('highcharts/highcharts-more');
+let more = require("highcharts/highcharts-more");
 let Exporting = require('highcharts/modules/exporting');
-// let Accessibility = require('highcharts/modules/');
+let Sunburst = require('highcharts/modules/sunburst');
 Boost(Highcharts);
 noData(Highcharts);
-More(Highcharts);
+more(Highcharts);
 noData(Highcharts);
 Exporting(Highcharts);
-// import * as  Highcharts from 'highcharts';
-// import more from 'highcharts/highcharts-more';
-// more(Highcharts);
-// import Drilldown from 'highcharts/modules/drilldown';
-// Drilldown(Highcharts);
-// import Exporting from 'highcharts/modules/exporting';
-// Exporting(Highcharts);
-
+const ExportData = require('highcharts/modules/export-data');
+ExportData(Highcharts);
+const Accessibility = require('highcharts/modules/accessibility');
+Accessibility(Highcharts);
+Sunburst(Highcharts);
 @Component({
   selector: 'app-moduleperformance',
   templateUrl: './moduleperformance.component.html',
   styleUrls: ['./moduleperformance.component.css']
 })
 export class ModuleperformanceComponent implements OnInit {
-@ViewChild("processBubble", { read: ElementRef }) processBubble: ElementRef;
+    Highcharts = Highcharts;
+    // @ViewChild("processBubble", { read: ElementRef }) processBubble: ElementRef;
   operationGaugeFormat: Chart;
   socialSustainabilityGaugeFormat : Chart;
   environmentalSustainabilityGaugeChart : Chart;
@@ -41,10 +38,11 @@ export class ModuleperformanceComponent implements OnInit {
   gaugeInline: Chart;
   gaugeOutward: Chart;
   gaugeProcess: Chart;
-//   processBubble : Chart;
+  processBubble : Chart;
   onclickStyle: any ={
       cursor: "pointer"
   }
+
   constructor(private _router: Router) { }
 
   ngOnInit() {
@@ -52,6 +50,8 @@ export class ModuleperformanceComponent implements OnInit {
     $("#footer").css("margin-left", "15%");
     $("#footer").hide();
     $(".footer").hide();
+    this.to_left();
+    this.to_right();
     this.createOperationOverView();
     this.createSocialSustainablityOverview();
     this.createEnvironmentalSustainablityOverview();
@@ -848,156 +848,203 @@ export class ModuleperformanceComponent implements OnInit {
   }
 
   createProcessOverview(){
-      Highcharts.chart(this.processBubble.nativeElement,{
+    var data = [
+        {
+            id: '0.0',
+            parent: '',
+            name: 'Alpine Garments'
+        }, 
+        {
+            id: '1.3',
+            parent: '0.0',
+            name: 'Operations',
+            value : 30
+        }, 
+        {
+            id: '1.1',
+            parent: '0.0',
+            name: 'Social Sustainability',
+            value : 70
+        }, 
+        {
+            id: '1.2',
+            parent: '0.0',
+            name: 'Environmental Sustainability',
+            value : 60
+        },
+        {
+            id: '2.1',
+            parent: '1.3',
+            name: 'Inward',
+            value : 30
+        },
+        {
+            id: '2.2',
+            parent: '1.3',
+            name: 'Processes',
+            value : 40
+        },
+        {
+            id: '2.3',
+            parent: '1.3',
+            name: 'Processes',
+            value : 60
+        },
+        //starting nested chart
+        {
+            id: '3.1',
+            parent: '2.3',
+            name: 'Fabric & Trims store ',
+            value : 30
+        },
+        {
+            id: '3.2',
+            parent: '2.3',
+            name: 'Spreading & Cutting',
+            value : 40
+        },
+        {
+            id: '3.3',
+            parent: '2.3',
+            name: 'Sewing',
+            value : 60
+        },
+        {
+            id: '3.4',
+            parent: '2.3',
+            name: 'Finishing & packaging',
+            value : 60
+        },
+        // starting sub modules of Social Sustain
+        {
+            id: '3.5',
+            parent: '1.1',
+            name: 'Worker health & safety',
+            value : 60
+        },
+        {
+            id: '3.6',
+            parent: '1.1',
+            name: 'Worker health & safety',
+            value : 30
+        },
+        {
+            id: '3.7',
+            parent: '1.1',
+            name: 'Working hrs',
+            value : 36
+        },
+        {
+            id: '3.8',
+            parent: '1.1',
+            name: 'Compensation & benefits',
+            value : 65
+        },
+        {
+            id: '3.9',
+            parent: '1.1',
+            name: 'Skill developement',
+            value : 45
+        },
+        {
+            id: '4.1',
+            parent: '1.1',
+            name: 'HR Practices',
+            value : 33
+        },
+        {
+            id: '4.2',
+            parent: '1.1',
+            name: 'Facilites',
+            value : 55
+        },
+        //starting submoudule of enviroment
+        {
+            id: '4.3',
+            parent: '1.2',
+            name: 'Resource Management',
+            value : 57
+        },
+        {
+            id: '4.4',
+            parent: '1.2',
+            name: 'Waste Management',
+            value : 23
+        },
+        {
+            id: '4.5',
+            parent: '1.2',
+            name: 'Environment Management Plan',
+            value : 78
+        }
+    ];
+    
+    // Splice in transparent for the center circle
+    Highcharts.getOptions().colors.splice(0, 0, 'transparent');
+    
+    
+    this.processBubble = new Chart( {
         chart: {
-            type: 'packedbubble',
-            height: '100%'
+            // height: '100%'
+        },
+        colors: [,'#e0301e', '#ffb600', '#175d2d', '#e0301e','#ffb600', '#175d2d', '#e0301e', '#ffb600'],
+        credits: {enabled: false},
+        exporting: {
+          enabled: false
         },
         title: {
-            text: 'Carbon emissions around the world (2014)'
+            text: 'Overall Performance of Factory'
         },
-        tooltip: {
-            useHTML: true,
-            pointFormat: '<b>{point.name}:</b> {point.value}m CO<sub>2</sub>'
-        },
-        plotOptions: {
-            packedbubble: {
-                minSize: '20%',
-                maxSize: '100%',
-                zMin: 0,
-                zMax: 1000,
-                layoutAlgorithm: {
-                    gravitationalConstant: 0.05,
-                    splitSeries: true,
-                    seriesInteraction: false,
-                    dragBetweenSeries: true,
-                    parentNodeLimit: true
+        series: [{
+            type: "sunburst",
+            data: data,
+            size: 500,
+            allowDrillToNode: true,
+            cursor: 'pointer',
+            dataLabels: {
+                format: '{point.name}',
+                filter: {
+                    property: 'innerArcLength',
+                    operator: '>',
+                    value: 16
                 },
+                rotationMode: 'circular'
+            },
+            levels: [{
+                level: 1,
+                levelIsConstant: false,
                 dataLabels: {
-                    enabled: true,
-                    format: '{point.name}',
-                    filter: {
-                        property: 'y',
-                        operator: '>',
-                        value: 250
-                    },
-                    style: {
-                        color: 'black',
-                        textOutline: 'none',
-                        fontWeight: 'normal'
-                    }
+                    color : "#000000"
+                    // filter: {
+                    //     property: 'outerArcLength',
+                    //     operator: '>',
+                    //     value: 64
+                    // }
                 }
-            }
-        },
-        series: [
-        {
-            name: 'Europe',
-            data: [{
-                name: 'Germany',
-                value: 767.1
             }, {
-                name: 'Croatia',
-                value: 20.7
+                level: 2,
+                colorByPoint: true
             },
             {
-                name: "Belgium",
-                value: 97.2
-            },
-            {
-                name: "Czech Republic",
-                value: 111.7
-            },
-            {
-                name: "Netherlands",
-                value: 158.1
+                level: 3,
+                colorVariation: {
+                    key: 'brightness',
+                    to: -0.3
+                }
+            }, {
+                level: 4,
+                colorVariation: {
+                    key: 'brightness',
+                    to: 0.3
+                }
             }]
-        }, 
-        {
-            name: 'Africa',
-            data: [{
-                name: "Senegal",
-                value: 8.2
-            },
-            {
-                name: "Cameroon",
-                value: 9.2
-            },
-            {
-                name: "Zimbabwe",
-                value: 13.1
-            },
-            {
-                name: "Ghana",
-                value: 14.1
-            },
-            {
-                name: "Kenya",
-                value: 14.1
-            }]
-        }, 
-        {
-            name: 'Oceania',
-            data: [{
-                name: "Australia",
-                value: 409.4
-            },
-            {
-                name: "New Zealand",
-                value: 34.1
-            },
-            {
-                name: "Papua New Guinea",
-                value: 7.1
-            }]
-        }, 
-        {
-            name: 'North America',
-            data: [{
-                name: "Costa Rica",
-                value: 7.6
-            },
-            {
-                name: "Honduras",
-                value: 8.4
-            },
-            {
-                name: "Jamaica",
-                value: 8.3
-            },
-            {
-                name: "Panama",
-                value: 10.2
-            },
-            {
-                name: "Guatemala",
-                value: 12
-            }]
-        }, 
-        {
-            name: 'South America',
-            data: [{
-                name: "El Salvador",
-                value: 7.2
-            },
-            {
-                name: "Uruguay",
-                value: 8.1
-            },
-            {
-                name: "Bolivia",
-                value: 17.8
-            },
-            {
-                name: "Trinidad and Tobago",
-                value: 34
-            },
-            {
-                name: "Ecuador",
-                value: 43
-            }]
+    
+        }],
+        tooltip: {
+            headerFormat: "",
+            pointFormat: 'Performance of <b>{point.name}</b> is <b>{point.value}%</b>'
         }
-        ]
-      })
+    });
     // this.processBubble = new Chart({
     //     chart: {
     //         polar: true,
@@ -1320,4 +1367,17 @@ export class ModuleperformanceComponent implements OnInit {
             }
         });
     }
+    shift_left(){
+        $('#animationTextDisplay').removeClass('slide-right').addClass('slide-left');
+    }
+    shitft_right(){
+        $('#animationTextDisplay').removeClass('slide-left').addClass('slide-right');
+    }
+    to_left() {
+        setInterval(this.shift_left, 10000);
+    };
+    to_right() {
+        setInterval(this.shitft_right, 20000);
+    };
 }
+

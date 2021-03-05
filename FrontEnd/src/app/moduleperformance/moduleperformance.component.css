@@ -41,4 +41,37 @@
     background-color: #ffb600;
     color: #ffffff;
   }
-  
+
+/* Text decoration display */
+
+div.slide-right h5{
+  -moz-animation: 10s slide-right;
+  -webkit-animation: 10s slide-right;
+  -o-animation: 10s slide-right;
+  animation: 10s slide-right;
+  margin:0;
+}
+div.slide-left h5{
+  -moz-animation: 10s slide-left;
+  -webkit-animation: 10s slide-left;
+  -o-animation: 10s slide-left;
+  animation: 10s slide-left;
+  margin:0;
+}
+@-webkit-keyframes slide-right { from { margin-left: 40%;width: 100%; }
+  to {margin-left: 0%;width: 100%;} }
+@-moz-keyframes slide-right { from { margin-left: 40%;width: 100%; }
+  to {margin-left: 0%;width: 100%;} }
+ @-o-keyframes slide-right { from { margin-left: 40%;width: 100%; }
+  to {margin-left: 0%;width: 100%;} }
+@keyframes slide-right { from { margin-left: 40%;width: 100%; }
+  to {margin-left: 0%;width: 100%;} }
+
+@-webkit-keyframes slide-left { from {margin-left: 0%;width: 100%;}
+ to {margin-left: 0%;width: 100%;} }
+@-moz-keyframes slide-left { from {margin-left: 0%;width: 100%;}
+ to {margin-left: 0%;width: 100%;} }
+@-o-keyframes slide-left { from {margin-left: 0%;width: 100%;}
+ to {margin-left: 0%;width: 100%;} }
+@keyframes slide-left { from {margin-left: 0%;width: 100%;}
+ to {margin-left: 0%;width: 100%;} }

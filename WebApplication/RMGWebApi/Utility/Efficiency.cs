@@ -10,6 +10,7 @@ namespace RMGWebApi.Utility
         public double efficiency { get; set; }
         public string Year { get; set; }
         public string Month { get; set; }
+        public string Dailydate { get; set; }
     }
     public class EfficiencyViewModel
     {

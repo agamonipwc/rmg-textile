@@ -26,5 +26,13 @@ namespace Entities
         public DbSet<WIP> WIP { get; set; }
         public DbSet<Alteration> Alteration { get; set; }
         public DbSet<Checkers> Checkers { get; set; }
+        public DbSet<Misc> Misc { get; set; }
+        public DbSet<UnplannedDowntime> UnplannedDowntime { get; set; }
+        public DbSet<WorkerAttendance> WorkerAttendance { get; set; }
+        public DbSet<OperatorSkill> OperatorSkill { get; set; }
+        public DbSet<Module> Module { get; set; }
+        public DbSet<KPI> KPI { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Recommendation> Recommendation { get; set; }
     }
 }

@@ -18,222 +18,138 @@
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5">
   <ul class="nav nav-pills flex-column">
     <li class="nav-item">
-      <div class="ml-2">
-        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Year</span>
-        <span class="caret"></span></button>
-        <ul class="dropdownmenu">
-          <!-- <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="yearSelectAll" /><span class="select-text" id="yearSelectText"> Select</span> All</label></a></li> -->
-          <li class="custom-li" *ngFor="let option of year"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[year]' type="checkbox" class="option justone year" [value]="option.id" [id]="'year_' + option.id"/> {{option.name}}</label></a></li>
-        </ul>
-      </div>
+      <a class="nav-link" id="dashbaord_href" href="#" (click)="dashboardNavigation()" data-toggle="pill"><span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span></a>
     </li>
-    <li class="nav-item mt-3">
-      <div class="ml-2">
-        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Month</span>
-        <span class="caret"></span></button>
-        <ul class="dropdownmenu"> 
-          <!-- <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="monthSelectAll"/><span id="monthSelectText" class="select-text"> Select</span> All</label></a></li> -->
-          <li class="custom-li" *ngFor="let option of month"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[month]' type="checkbox" class="option justone month" [value]="option.id" [id]="'month_' + option.id"/> {{option.name}}</label></a></li>
-        </ul>
-      </div>
+    <li class="nav-item">
+      <a class="nav-link" id="moduleperformance_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
     </li>
-    <li class="nav-item mt-3">
-      <div class="dropdown ml-2">
-        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Line</span>
-        <span class="caret"></span></button>
-        <ul class="dropdownmenu">
-          <!-- <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li> -->
-          <li class="custom-li" *ngFor="let option of line"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.id" [id]="'line_' + option.id" checked/> {{option.name}}</label></a></li>
-        </ul>
-      </div>
+    <li class="nav-item">
+      <a class="nav-link" id="operationmodule_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="operationmodule_span" class="d-none d-md-inline">Social Sustainablity</span></a>
     </li>
-    <!-- <li class="nav-item mt-3">
-      <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
-    </li> -->
-    <!-- <li class="nav-item mt-3">
-      <div class="dropdown ml-2">
-        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Unit</span>
-        <span class="caret"></span></button>
-        <ul class="dropdownmenu">
-          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="unitSelectAll"/><span id="unitSelectText" class="select-text"> Select</span> All</label></a></li>
-          <li class="custom-li" *ngFor="let option of unit"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[]' type="checkbox" class="option justone unit" [value]="option.id"/> {{option.name}}</label></a></li>
-        </ul>
-      </div>
+    <li class="nav-item">
+      <a class="nav-link" id="environmental_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="environmental_span" class="d-none d-md-inline">Environmental Sustainability</span></a>
     </li>
-    <li class="nav-item mt-3">
-      <div class="dropdown ml-2">
-        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Location</span>
-        <span class="caret"></span></button>
-        <ul class="dropdownmenu">
-          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="locationSelectAll"/><span id="locationSelectText" class="select-text"> Select</span> All</label></a></li>
-          <li class="custom-li" *ngFor="let option of location"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[]' type="checkbox" class="option justone location" [value]="option.id"/> {{option.name}}</label></a></li>
-        </ul>
-      </div>
-    </li> -->
+    <li class="nav-item">
+      <a class="nav-link" id="outward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="outward_span" class="d-none d-md-inline">Outward</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="processes_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="processes_span" class="d-none d-md-inline">Processes</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="inward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="inward_span" class="d-none d-md-inline">Inward</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="fabric_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="fabric_span" class="d-none d-md-inline">Fabric & Trims Store </span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="spreading_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="spreading_span" class="d-none d-md-inline">Spreading & Cutting</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="sewing_href" href="sewing" (click)="tabNavigation($event)" data-toggle="pill"><span id="sewing_span" class="d-none d-md-inline">Sewing</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="finishing_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="finishing_span" class="d-none d-md-inline">Finishing & Packaging</span></a>
+    </li>
   </ul>
 </nav>
 <main role="main" class="col-sm-9 ml-sm-auto col-md-10 main">
   <section class="text-center placeholders" id="dashboardsection">
-    <div class="tab-pane fade show active hide-show" id="overallperformance" role="tabpanel" aria-labelledby="OverallPerformance-tab">
+    <div class="tab-pane active" id="sewing" role="tabpanel" aria-labelledby="ModulePerformance-tab">
+      <h5 style="font-weight: bold;">Sewing Department</h5>
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <a class="nav-link" style="font-size: large;" href="#kpi" [ngClass]="{ 'active':activeTab==='search'}" (click)="kpi('kpi')"
-             data-toggle="pill">KPI</a>
+          <a class="nav-link submodule" id="kpipage1_href" style="font-size: large;" href="#kpipage1" [ngClass]="{ 'active':activeTab==='kpipage1'}" data-toggle="pill"
+          (click)="kpipag1('kpipage1')">Page 1</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="font-size: large;" href="#workEfficiency" [ngClass]="{ 'active':activeTab==='workEfficiency'}" data-toggle="pill"
-             (click)="workEfficiency('workEfficiency')">Am I Productive</a>
+          <a class="nav-link submodule" id="kpipage2_href" style="font-size: large;" href="#kpipage2" [ngClass]="{ 'active':activeTab==='kpipage2'}" data-toggle="pill"
+          (click)="kpipag2('kpipag2')">Page 2</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="font-size: large;" href="#resourceStrength" [ngClass]="{ 'active':activeTab==='resourceStrength'}" data-toggle="pill"
-             (click)="productivity('resourceStrength')">Resource Strength</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="font-size: large;" href="#productivity" [ngClass]="{ 'active':activeTab==='productivity'}" data-toggle="pill"
-             (click)="productivity('productivity')">Working Efficiently</a>
+          <a class="nav-link submodule">
+            <p class="mt-1" style="font-style: italic; color: #933401; text-align: left; font-size: small;">Note: Please click on each button below to see KPI overview.</p>
+          </a>
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane" id="kpi" [ngClass]="{ 'active':activeTab==='kpi'}"> 
-          <div class="row align-items-center">
-            <div class="col-4 mt-3 ">
-              <div class="card-status" [ngStyle]= "dhuStyle">
-                <div class="pt-4 pb-4 reveal-text" id="dhuCard" style="display: none; height: auto; min-height: max-content; font-size: 16px; width: 350px;">
-                </div>
-                <!-- <div class="progress">
-                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" [ngStyle]= "dhuStyle" [innerHTML]="dhuStyle.width"></div>
-                </div> -->
-              </div>
-            </div>
-            <div class="col-4 mt-3">
-              <div class="card-status" [ngStyle]= "defectStyle">
-                <div class="ml-2 pt-4 pb-4 reveal-text" id="defectCard" style="display: none; height: auto; min-height: max-content; font-size: 16px; width: 350px;"></div>
-                <!-- <div class="progress" >
-                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" [ngStyle]= "defectStyle" [innerHTML]="defectStyle.width"></div>
-                </div> -->
-              </div>
-            </div>
-            <div class="col-4 mt-3">
-              <div class="card-status" [ngStyle]= "rejectStyle">
-                <div class="pt-4 pb-4 ml-3 reveal-text" id="rejectCard" style="display: none; height: auto; min-height: max-content; font-size: 16px; width: 300px;"></div>
-                  <!-- <div class="progress" >
-                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" [ngStyle]= "rejectStyle" [innerHTML]="rejectStyle.width"></div>
-                </div> -->
-              </div>
-              
-            </div>
-          </div>
+        <div class="tab-pane" id="kpipage1" [ngClass]="{ 'active':activeTab==='kpipage1'}">
+          <!-- <p style="font-style: italic; color: #933401; text-align: left;">Note: Please click on each button below to see KPI overview.</p> -->
+          <h6 style="font-weight: bold;">Factory performance as on 31.01.2021</h6> 
+          <!-- <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker> -->
           <div class="row align-items-center h-100 mt-3">
-            <div class="col-4" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
-              <div #container style="height: 350px;width: 350px;"></div>
+            <div class="col-2 ml-4" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" (click)="navigateEfficiency()" style="cursor: pointer;">% Efficiency</button></div>
+                <div #efficiencyContainer style="height: 350px;"></div>
+              </div>
             </div>
-            <div class="col-4" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
-              <div #efficiencyContainer style="width: 350px;height: 350px;"></div>
+            <div class="col-2 ml-4" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">% Capacity</button></div>
+                <div #capacityUtilizationContainer style="height: 350px"></div>
+              </div>
             </div>
-            <div class="col-4 " id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
-              <div #mmrWIPContainer style="width: 350px;height: 350px;"></div>
+            <div class="col-2 ml-4" id="wipVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">WIP</button></div>
+                <div #wipContainer style="height: 350px;"></div>
+              </div>
             </div>
-            
-            <!-- <div class="col-3 mt-3 ml-2 " id="dhuRejectDefectVisual" style="display: none; height: auto; min-height: max-content;">
-              <div #dhuRejectDefectContainer style="width: 200px;"></div>
-            </div> -->
+    
+            <div class="col-2 ml-4" id="mmrVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">MMR</button></div>
+                <div #mmrContainer style="height: 350px;"></div>
+              </div>
+            </div>
+            <div class="col-2 ml-4" id="machineDowntimeVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Machine Downtime</button></div>
+                <div #machineDowntimeContainer style="height: 350px;"></div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="tab-pane" id="kpipage2" [ngClass]="{ 'active':activeTab==='kpipage2'}">
+          <h6 style="font-weight: bold;">Factory performance as on 31.01.2021</h6> 
+          <!-- <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker> -->
+          <div class="row align-items-center h-100 mt-3">
+            <div class="col-2 ml-4" id="dhuVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">DHU</button></div>
+                <div #dhuContainer style="height: 350px;"></div>
+              </div>
+            </div>
+            <div class="col-2 ml-4" id="defectVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Defect%</button></div>
+                <div #defectContainer style="height: 350px;"></div>
+              </div>
+            </div>
+            <div class="col-2 ml-4" id="rejectionVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Rejection%</button></div>
+                <div #rejectionContainer style="height: 350px;"></div>
+              </div>
+            </div>
+            <div class="col-2 ml-4" id="absentismVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Absentism</button></div>
+                <div #absentismContainer style="height: 350px;"></div>
+              </div>
+            </div>
 
-        </div>
-        <div class="tab-pane" id="workEfficiency" [ngClass]="{ 'active':activeTab==='workEfficiency'}">
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link active" style="font-size: large;" href="#workEfficiencyLine" data-toggle="pill" (click)="getEfficiencyLineWiseCharts()">Line Competency</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="font-size: large;" href="#workEfficiencyUnit" data-toggle="pill" (click)="getEfficiencyUnitWiseCharts()">Unit Competency</a>
-            </li>
-          </ul>
-          <div class="tab-pane fade show active" id="workEfficiencyLine">
-            <div class="row align-items-center h-100 mt-5">
-              <div [chart]="WIPLine" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="alterationLine" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="workingLine" class="col-4" style="width: 350px; height: 350px;"></div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="workEfficiencyUnit">
-            <div class="row align-items-center h-100 mt-5">
-              <div [chart]="WIPUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="alterationUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="workingUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane" id="productivity" [ngClass]="{ 'active':activeTab==='productivity'}">
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link active" style="font-size: large;" href="#productivityLine" data-toggle="pill" (click)="getProductivityLineWiseCharts()">Line Competency</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="font-size: large;" href="#productivityUnit" data-toggle="pill" (click)="getProductivityUnitWiseCharts()">Unit Competency</a>
-            </li>
-          </ul>
-          <div class="tab-pane fade show active" id="productivityLine">
-            <div class="row align-items-center h-100 mt-5">
-              <div [chart]="productionLine" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="rejectionLine" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="dhuLine" class="col-4" style="width: 350px; height: 350px;"></div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="productivityUnit">
-            <div class="row align-items-center h-100 mt-5">
-              <div [chart]="productionUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="rejectionUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="dhuUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane" id="resourceStrength" [ngClass]="{ 'active':activeTab==='resourceStrength'}">
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link active" style="font-size: large;" href="#resourceStrengthLine" data-toggle="pill" (click)="getResourceStrengthLineWiseCharts()">Line Competency</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="font-size: large;" href="#resourceStrengthUnit" data-toggle="pill" (click)="getResourceStrengthUnitWiseCharts()">Unit Competency</a>
-            </li>
-          </ul>
-          <div class="tab-pane fade show active" id="resourceStrengthLine">
-            <div class="row align-items-center h-100 mt-5">
-              <div [chart]="operatorLine" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="helperLine" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="checkerLine" class="col-4" style="width: 350px; height: 350px;"></div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="resourceStrengthUnit">
-            <div class="row align-items-center h-100 mt-5">
-              <div [chart]="operatorUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="helperUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
-              <div [chart]="checkerUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+            <div class="col-2 ml-4" id="multiskillVisual" style="display: none; height: auto; min-height: max-content;">
+              <div class="d-flex flex-column">
+                <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Multiskill %</button></div>
+                <div #multiskillContainer style="height: 350px;"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- <h3 class="text-center">Sewing KPI(s) </h3> -->
-      <!-- <hr class="footer" /> -->
-      <!-- <div class="row align-items-center h-100">
-        <div class="col-1" style="font-size: 12px;">Start Date</div>
-        <div class="col-2" style="margin-left: -25px;">
-          <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker>
-        </div>
-        <div class="col-1 ml-4" style="font-size: 12px;">End Date</div>
-        <div class="col-2" style="margin-left: -25px;">
-          <ng-datepicker [(ngModel)]="endDate" [options]="options"></ng-datepicker>
-        </div>
-        <div class="col-4">
-          <button class="custom-button" (click)="getSewingKPIAnalysis()">Show Analysis</button>
-        </div>
-      </div> -->
-      <!-- <div class="row align-items-center h-100 mt-1">
-        <div class="col-4 mt-3 ml-2 " id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
-          <div #mmrWIPContainer style="width: 350px;height: 270px;"></div>
-        </div>
-      </div> -->
       
     </div>
+    
   </section>
 </main>

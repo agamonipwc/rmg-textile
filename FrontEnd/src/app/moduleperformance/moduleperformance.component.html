@@ -1,3 +1,4 @@
+<!-- <link rel="stylesheet" href="../../../node_modules/ng2-org-chart/styles.css"> -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="font-family: 'Arial, Helvetica';">
   <a class="navbar-brand" href="#"><img style="height: 34px;" src="../../assets/img/PwC_Outline_Logo_White.png" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,73 +19,130 @@
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5">
   <ul class="nav nav-pills flex-column">
     <li class="nav-item">
-      <a class="nav-link active" id="moduleperformance_href" href="moduleperformance" data-toggle="pill" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline font-weight-bold">Module Performance</span></a>
+      <a class="nav-link active" id="dashbaord_href" href="dashbaord" data-toggle="pill" (click)="tabNavigation($event)"><span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="operationmodule_href" href="operationmodule" data-toggle="pill" (click)="tabNavigation($event)"><span id="operationmodule_span" class="d-none d-md-inline font-weight-bold">Operation Module</span></a>
+      <a class="nav-link" id="moduleperformance_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="process_href" href="process" data-toggle="pill" (click)="tabNavigation($event)"><span id="process_span" class="d-none d-md-inline font-weight-bold">Process</span></a>
+      <a class="nav-link" id="operationmodule_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="operationmodule_span" class="d-none d-md-inline">Social Sustainablity</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="environmental_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="environmental_span" class="d-none d-md-inline">Environmental Sustainability</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="outward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="outward_span" class="d-none d-md-inline">Outward</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="processes_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="processes_span" class="d-none d-md-inline">Processes</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="inward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="inward_span" class="d-none d-md-inline">Inward</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="fabric_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="fabric_span" class="d-none d-md-inline">Fabric & Trims Store </span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="spreading_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="spreading_span" class="d-none d-md-inline">Spreading & Cutting</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="sewing_href" href="#" style="cursor: pointer;" data-toggle="pill" (click)="sewingNavigation()"><span id="sewing_span" class="d-none d-md-inline">Sewing</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="finishing_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="finishing_span" class="d-none d-md-inline">Finishing & Packaging</span></a>
     </li>
   </ul>
 </nav>
 
 <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3 main">
   <section class="text-center placeholders" id="dashboardsection">
-    <div class="tab-pane fade hide-show" id="moduleperformance" role="tabpanel" aria-labelledby="ModulePerformance-tab">
-      <h3 class="text-center">Module wise performance  </h3>
+    <div class="tab-pane active" id="dashbaord" role="tabpanel" aria-labelledby="ModulePerformance-tab">
+        <!-- <h3 class="text-center">Module wise performance  </h3> -->
+        <div class="row align-items-center h-100 mt-3">
+          <div class="col-6">
+            <div class="card">
+              <div class="card-body pt-3">
+                <div class="slide-right" id="animationTextDisplay">
+                  <h5 style="font-size: 15px; font-weight: bold;">Will the tool save resources for my sewing department ?</h5>
+                  <ul class="mt-4">
+                    <li class="mt-2">
+                      <div>
+                        <span style="font-weight: bold;">Near Real time</span><span> tracking of Line efficiency and quality parameters</span>
+                      </div>
+                    </li>
+                    <li class="mt-2">
+                      <div>
+                        <span style="font-weight: bold;">Strength Value</span><span> determination for stitching various products line wise/section wise</span>
+                      </div>
+                    </li>
+                    <li class="mt-2">
+                      <span style="font-weight: bold;">Threshold alert</span><span> for bottlenecks, low quality or high downtime in sewing lines. The alert also shows the action to be taken and the responsible person.</span>
+                    </li>
+                  </ul>
+                  <p  style="font-size: 17px;">
+                    Your supervisor manages 3 lines, in one of which there is a style changeover is going on so he/she is engaged there. In the meantime due to some machine fault another line running Polo -Ts starts facing challenge in placket finish operation. The tool alerts the issue in realtime to him. He can then rectify the fault ASAP preventing more alterations.
+                  </p>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div [chart]="processBubble" style="height: 480px;"></div>
+          </div>
+          
+          
+          <!-- <div class="col-4">
+            <div class="card card-style">
+              <div class="card-body text-center">
+                <div [chart]="operationGaugeFormat" style="cursor: pointer;" (click)="navigateToOperation('operationmodule')"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card card-style">
+              <div class="card-body text-center">
+                <div [chart]="socialSustainabilityGaugeFormat"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card card-style">
+              <div class="card-body text-center">
+                <div [chart]="environmentalSustainabilityGaugeChart"></div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+        
+    </div>
+    <!-- <div class="tab-pane fade hide-show" id="operationmodule" role="tabpanel" aria-labelledby="OperationModule-tab">
+      <h3 class="text-center">Operation wise performance  </h3>
       <div class="row align-items-center h-100 mt-3">
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart]="operationGaugeFormat" style="cursor: pointer;" (click)="navigateToOperation('operationmodule')"></div>
+              <div [chart] = "gaugeInline"></div>
             </div>
           </div>
         </div>
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart]="socialSustainabilityGaugeFormat"></div>
+              <div [chart] = "gaugeProcess" style="cursor: pointer;" (click)="navigateToOperation('process')"></div>
             </div>
           </div>
         </div>
         <div class="col-4">
           <div class="card card-style">
             <div class="card-body text-center">
-              <div [chart]="environmentalSustainabilityGaugeChart"></div>
+              <div [chart] = "gaugeOutward"></div>
             </div>
-          </div>
-        </div>
-      </div>
-      
-  </div>
-  <div class="tab-pane fade hide-show" id="operationmodule" role="tabpanel" aria-labelledby="OperationModule-tab">
-    <h3 class="text-center">Operation wise performance  </h3>
-    <div class="row align-items-center h-100 mt-3">
-      <div class="col-4">
-        <div class="card card-style">
-          <div class="card-body text-center">
-            <div [chart] = "gaugeInline"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card card-style">
-          <div class="card-body text-center">
-            <div [chart] = "gaugeProcess" style="cursor: pointer;" (click)="navigateToOperation('process')"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card card-style">
-          <div class="card-body text-center">
-            <div [chart] = "gaugeOutward"></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-    <div class="tab-pane fade show active hide-show" id="process" role="tabpanel" aria-labelledby="OperationModule-tab">
+    <div class="tab-pane fade show hide-show" id="process" role="tabpanel" aria-labelledby="OperationModule-tab">
       <h3 class="text-center">How I am Performing</h3>
       <div class="row">
         <div class="col-2">
@@ -137,11 +195,39 @@
 
       </div>
       <div class="row mt-3">
-        <div class="col-12">
-          <div #processBubble style="height: 370px;"></div>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body pt-3">
+              <div class="slide-right" id="animationTextDisplay">
+                <h5 style="font-size: 15px; font-weight: bold;">Will the tool save resources for my sewing department ?</h5>
+                <ul class="mt-4">
+                  <li class="mt-2">
+                    <div>
+                      <span style="font-weight: bold;">Near Real time</span><span> tracking of Line efficiency and quality parameters</span>
+                    </div>
+                  </li>
+                  <li class="mt-2">
+                    <div>
+                      <span style="font-weight: bold;">Strength Value</span><span> determination for stitching various products line wise/section wise</span>
+                    </div>
+                  </li>
+                  <li class="mt-2">
+                    <span style="font-weight: bold;">Threshold alert</span><span> for bottlenecks, low quality or high downtime in sewing lines. The alert also shows the action to be taken and the responsible person.</span>
+                  </li>
+                </ul>
+                <p  style="font-size: 17px;">
+                  Your supervisor manages 3 lines, in one of which there is a style changeover is going on so he/she is engaged there. In the meantime due to some machine fault another line running Polo -Ts starts facing challenge in placket finish operation. The tool alerts the issue in realtime to him. He can then rectify the fault ASAP preventing more alterations.
+                </p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div [chart]="processBubble" style="height: 370px;"></div>
         </div>
       </div>
       
-    </div>
+    </div> -->
   </section>
 </main>

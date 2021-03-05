@@ -43,6 +43,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./register/register.module */ "./src/app/register/register.module.ts");
 /* harmony import */ var _moduleperformance_moduleperformance_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./moduleperformance/moduleperformance.component */ "./src/app/moduleperformance/moduleperformance.component.ts");
 /* harmony import */ var _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./sewingmodule/sewingmodule.component */ "./src/app/sewingmodule/sewingmodule.component.ts");
+/* harmony import */ var _efficiency_efficiency_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./efficiency/efficiency.component */ "./src/app/efficiency/efficiency.component.ts");
+
 
 
 
@@ -57,7 +59,8 @@ var routes = [
     { path: "register", component: _register_register_component__WEBPACK_IMPORTED_MODULE_4__["RegisterComponent"] },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'module-performance', component: _moduleperformance_moduleperformance_component__WEBPACK_IMPORTED_MODULE_7__["ModuleperformanceComponent"] },
-    { path: 'sewing-module', component: _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_8__["SewingmoduleComponent"] }
+    { path: 'sewing-module', component: _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_8__["SewingmoduleComponent"] },
+    { path: 'efficiency-overview', component: _efficiency_efficiency_component__WEBPACK_IMPORTED_MODULE_9__["EfficiencyComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -96,7 +99,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<app-header></app-header>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<app-header></app-header>\r\n<router-outlet></router-outlet>\r\n<app-footer></app-footer>\r\n"
 
 /***/ }),
 
@@ -155,11 +158,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _moduleperformance_moduleperformance_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./moduleperformance/moduleperformance.component */ "./src/app/moduleperformance/moduleperformance.component.ts");
 /* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
-/* harmony import */ var highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! highcharts/modules/solid-gauge.src */ "./node_modules/highcharts/modules/solid-gauge.src.js");
-/* harmony import */ var highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./sewingmodule/sewingmodule.component */ "./src/app/sewingmodule/sewingmodule.component.ts");
-/* harmony import */ var ng2_datepicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ng2-datepicker */ "./node_modules/ng2-datepicker/dist/bundles/ng2-datepicker.umd.js");
-/* harmony import */ var ng2_datepicker__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(ng2_datepicker__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var highcharts_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! highcharts-angular */ "./node_modules/highcharts-angular/fesm2015/highcharts-angular.js");
+/* harmony import */ var ng2_org_chart__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ng2-org-chart */ "./node_modules/ng2-org-chart/ng2-org-chart.es5.js");
+/* harmony import */ var highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! highcharts/modules/solid-gauge.src */ "./node_modules/highcharts/modules/solid-gauge.src.js");
+/* harmony import */ var highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./sewingmodule/sewingmodule.component */ "./src/app/sewingmodule/sewingmodule.component.ts");
+/* harmony import */ var ng2_datepicker__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ng2-datepicker */ "./node_modules/ng2-datepicker/dist/bundles/ng2-datepicker.umd.js");
+/* harmony import */ var ng2_datepicker__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(ng2_datepicker__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _efficiency_efficiency_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./efficiency/efficiency.component */ "./src/app/efficiency/efficiency.component.ts");
+
+
 
 
 
@@ -176,11 +184,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import drilldown from 'highcharts/modules/drilldown.src';
-// import exporting from 'highcharts/modules/exporting.src';
+
 function highchartsModules() {
     // apply Highcharts Modules to this array
-    return [highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_12___default.a];
+    return [highcharts_modules_solid_gauge_src__WEBPACK_IMPORTED_MODULE_14___default.a];
 }
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -192,10 +199,15 @@ var AppModule = /** @class */ (function () {
                 _login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"],
                 _register_register_component__WEBPACK_IMPORTED_MODULE_7__["RegisterComponent"],
                 _moduleperformance_moduleperformance_component__WEBPACK_IMPORTED_MODULE_10__["ModuleperformanceComponent"],
-                _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_13__["SewingmoduleComponent"]
+                _sewingmodule_sewingmodule_component__WEBPACK_IMPORTED_MODULE_15__["SewingmoduleComponent"],
+                _efficiency_efficiency_component__WEBPACK_IMPORTED_MODULE_17__["EfficiencyComponent"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["ChartModule"], ng2_datepicker__WEBPACK_IMPORTED_MODULE_14__["NgDatepickerModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
+                highcharts_angular__WEBPACK_IMPORTED_MODULE_12__["HighchartsChartModule"],
+                angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["ChartModule"],
+                ng2_datepicker__WEBPACK_IMPORTED_MODULE_16__["NgDatepickerModule"],
+                ng2_org_chart__WEBPACK_IMPORTED_MODULE_13__["OrgChartModule"]
             ],
             providers: [
                 { provide: angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["HIGHCHARTS_MODULES"], useFactory: highchartsModules } // add as factory to your providers
@@ -204,6 +216,972 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/efficiency/efficiency.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/efficiency/efficiency.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bottom: 0;\r\n    left: 0;\r\n    z-index: 1000;\r\n    padding: 20px 0;\r\n    overflow-x: hidden;\r\n    overflow-y: auto;\r\n    border-right: 1px solid #eee;\r\n    width: 250px;\r\n  }\r\n  \r\n  .sidebar .nav-item {\r\n    width: 100%;\r\n  }\r\n  \r\n  .bg-dark{\r\n    background-color: #d04a02 !important;\r\n  }\r\n  \r\n  @media (min-width: 250px) .ml-sm-auto, .mx-sm-auto {\r\n      margin-left: auto !important;\r\n  }\r\n  \r\n  .card-style{\r\n    box-shadow: 1px 1px 1px 1px #7d7d7d;\r\n  }\r\n  \r\n  .card{\r\n    border-radius: 0rem !important;\r\n  }\r\n  \r\n  .card-status{\r\n    background-color: #ffffff;\r\n    color: #000000;\r\n    width: 350px;\r\n  }\r\n  \r\n  .dropdown-button{\r\n  width: 150px;\r\n  border: 1px solid #aa2417;\r\n  border-radius: 0px !important;\r\n  background-color: #aa2417;\r\n  color: #ffffff;\r\n  height: 23px;\r\n  font-size: 12px;\r\n  padding-bottom: 10px;\r\n}\r\n  \r\n  .dropdown-label{\r\n  color: #000000;\r\n  font-size: 12px;\r\n}\r\n  \r\n  .custom-li{\r\n  height: 21px !important;\r\n}\r\n  \r\n  .dropdownmenu{\r\n  height: 110px;\r\n  overflow-y: scroll;\r\n  width: 152px;\r\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n}\r\n  \r\n  .btn.focus, .btn:focus{\r\n  box-shadow: none !important;\r\n}\r\n  \r\n  /* Scrollbar Styling */\r\n  \r\n  ::-webkit-scrollbar {\r\n  width: 5px;\r\n}\r\n  \r\n  ::-webkit-scrollbar-track {\r\n  background-color: #ebebeb;\r\n  border-radius: 10px;\r\n}\r\n  \r\n  ::-webkit-scrollbar-thumb {\r\n  border-radius: 10px;\r\n  background: #6d6d6d; \r\n}\r\n  \r\n  .dropdown {\r\n    /* position: relative;\r\n    left: 50px;\r\n    top: 50px; */\r\n  }\r\n  \r\n  ul{\r\n   list-style: none;\r\n }\r\n  \r\n  .form-control:focus{\r\n  box-shadow: none !important;\r\n}\r\n  \r\n  .ngx-datepicker-container[_ngcontent-hin-c4] .ngx-datepicker-input[_ngcontent-hin-c4]{\r\n  background-color: #aa2417 !important;\r\n  border: #aa2417 !important;\r\n}\r\n  \r\n  /* .col-3{\r\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n} */\r\n  \r\n  .highcharts-exporting-group{\r\n  display: none !important;\r\n}\r\n  \r\n  /* Reveal text css*/\r\n  \r\n  :root {\r\n\t--delay: 0;\r\n\t--duration: 800ms;\r\n\t--iterations: 1;\r\n}\r\n  \r\n  /* •·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•· */\r\n  \r\n  .reveal-text,\r\n.reveal-text::after {\r\n\t-webkit-animation-delay: var(--animation-delay, 2s);\r\n\t        animation-delay: var(--animation-delay, 2s);\r\n\t-webkit-animation-iteration-count: var(--iterations, 1);\r\n\t        animation-iteration-count: var(--iterations, 1);\r\n\t-webkit-animation-duration: var(--duration, 800ms);\r\n\t        animation-duration: var(--duration, 800ms);\r\n\t-webkit-animation-fill-mode: both;\r\n\t        animation-fill-mode: both;\r\n\t-webkit-animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);\r\n\t        animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);\r\n}\r\n  \r\n  .reveal-text {\r\n\t--animation-delay: var(--delay, 0);\r\n\t--animation-duration: var(--duration, 800ms);\r\n\t--animation-iterations: var(--iterations, 1);\r\n\tposition: relative;\r\n\tfont-size: 10vw;\r\n\t-webkit-animation-name: clip-text;\r\n\t        animation-name: clip-text;\r\n\tcolor: #FFF;\r\n\twhite-space: nowrap;\r\n\tcursor: default\r\n\t\r\n}\r\n  \r\n  .reveal-text::after {\r\n\t\tcontent: \"\";\r\n\t\tposition: absolute;\r\n\t\tz-index: 999;\r\n\t\ttop: 0;\r\n\t\tleft: 0;\r\n\t\tright: 0;\r\n\t\tbottom: 0;\r\n\t\tbackground-color: #ffecbd;\r\n\t\ttransform: scaleX(0);\r\n\t\ttransform-origin: 0 50%;\r\n\t\tpointer-events: none;\r\n\t\t-webkit-animation-name: text-revealer;\r\n\t\t        animation-name: text-revealer;\r\n\t}\r\n  \r\n  @-webkit-keyframes clip-text {\r\n\tfrom {\r\n\t\t-webkit-clip-path: inset(0 100% 0 0);\r\n\t\t        clip-path: inset(0 100% 0 0);\r\n\t}\r\n\tto {\r\n\t\t-webkit-clip-path: inset(0 0 0 0);\r\n\t\t        clip-path: inset(0 0 0 0);\r\n\t}\r\n}\r\n  \r\n  @keyframes clip-text {\r\n\tfrom {\r\n\t\t-webkit-clip-path: inset(0 100% 0 0);\r\n\t\t        clip-path: inset(0 100% 0 0);\r\n\t}\r\n\tto {\r\n\t\t-webkit-clip-path: inset(0 0 0 0);\r\n\t\t        clip-path: inset(0 0 0 0);\r\n\t}\r\n}\r\n  \r\n  @-webkit-keyframes text-revealer {\r\n\t\r\n\t0%, 50% {\r\n\t\ttransform-origin: 0 50%;\r\n\t}\r\n\t\r\n\t60%, 100% {\r\n\t\ttransform-origin: 100% 50%;\t\t\r\n\t}\r\n\r\n\t\r\n\t60% {\r\n\t\ttransform: scaleX(1);\r\n\t}\r\n\t\r\n\t100% {\r\n\t\ttransform: scaleX(0);\r\n\t}\r\n}\r\n  \r\n  @keyframes text-revealer {\r\n\t\r\n\t0%, 50% {\r\n\t\ttransform-origin: 0 50%;\r\n\t}\r\n\t\r\n\t60%, 100% {\r\n\t\ttransform-origin: 100% 50%;\t\t\r\n\t}\r\n\r\n\t\r\n\t60% {\r\n\t\ttransform: scaleX(1);\r\n\t}\r\n\t\r\n\t100% {\r\n\t\ttransform: scaleX(0);\r\n\t}\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZWZmaWNpZW5jeS9lZmZpY2llbmN5LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsUUFBUTtJQUNSLFNBQVM7SUFDVCxPQUFPO0lBQ1AsYUFBYTtJQUNiLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsZ0JBQWdCO0lBQ2hCLDRCQUE0QjtJQUM1QixZQUFZO0VBQ2Q7O0VBRUE7SUFDRSxXQUFXO0VBQ2I7O0VBQ0E7SUFDRSxvQ0FBb0M7RUFDdEM7O0VBRUE7TUFDSSw0QkFBNEI7RUFDaEM7O0VBQ0E7SUFDRSxtQ0FBbUM7RUFDckM7O0VBQ0E7SUFDRSw4QkFBOEI7RUFDaEM7O0VBQ0E7SUFDRSx5QkFBeUI7SUFDekIsY0FBYztJQUNkLFlBQVk7RUFDZDs7RUFDQTtFQUNBLFlBQVk7RUFDWix5QkFBeUI7RUFDekIsNkJBQTZCO0VBQzdCLHlCQUF5QjtFQUN6QixjQUFjO0VBQ2QsWUFBWTtFQUNaLGVBQWU7RUFDZixvQkFBb0I7QUFDdEI7O0VBQ0E7RUFDRSxjQUFjO0VBQ2QsZUFBZTtBQUNqQjs7RUFFQTtFQUNFLHVCQUF1QjtBQUN6Qjs7RUFFQTtFQUNFLGFBQWE7RUFDYixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLDRFQUE0RTtBQUM5RTs7RUFDQTtFQUNFLDJCQUEyQjtBQUM3Qjs7RUFFQSxzQkFBc0I7O0VBQ3RCO0VBQ0UsVUFBVTtBQUNaOztFQUVBO0VBQ0UseUJBQXlCO0VBRXpCLG1CQUFtQjtBQUNyQjs7RUFFQTtFQUVFLG1CQUFtQjtFQUNuQixtQkFBbUI7QUFDckI7O0VBRUU7SUFDRTs7Z0JBRVk7RUFDZDs7RUFDRDtHQUNFLGdCQUFnQjtDQUNsQjs7RUFDRDtFQUNFLDJCQUEyQjtBQUM3Qjs7RUFDQTtFQUNFLG9DQUFvQztFQUNwQywwQkFBMEI7QUFDNUI7O0VBQ0E7O0dBRUc7O0VBQ0g7RUFDRSx3QkFBd0I7QUFDMUI7O0VBRUEsbUJBQW1COztFQUVuQjtDQUNDLFVBQVU7Q0FDVixpQkFBaUI7Q0FDakIsZUFBZTtBQUNoQjs7RUFDQSw2REFBNkQ7O0VBRzdEOztDQUVDLG1EQUFtRDtTQUMzQywyQ0FBMkM7Q0FDbkQsdURBQXVEO1NBQy9DLCtDQUErQztDQUN2RCxrREFBa0Q7U0FDMUMsMENBQTBDO0NBQ2xELGlDQUFpQztTQUN6Qix5QkFBeUI7Q0FDakMsaUVBQWlFO1NBQ3pELHlEQUF5RDtBQUNsRTs7RUFFQTtDQUNDLGtDQUFrQztDQUNsQyw0Q0FBNEM7Q0FDNUMsNENBQTRDO0NBQzVDLGtCQUFrQjtDQUNsQixlQUFlO0NBQ2YsaUNBQWlDO1NBQ3pCLHlCQUF5QjtDQUNqQyxXQUFXO0NBQ1gsbUJBQW1CO0NBQ25COztBQUVEOztFQUVBO0VBQ0UsV0FBVztFQUNYLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osTUFBTTtFQUNOLE9BQU87RUFDUCxRQUFRO0VBQ1IsU0FBUztFQUNULHlCQUF5QjtFQUN6QixvQkFBb0I7RUFDcEIsdUJBQXVCO0VBQ3ZCLG9CQUFvQjtFQUNwQixxQ0FBcUM7VUFDN0IsNkJBQTZCO0NBQ3RDOztFQUdEO0NBQ0M7RUFDQyxvQ0FBb0M7VUFDNUIsNEJBQTRCO0NBQ3JDO0NBQ0E7RUFDQyxpQ0FBaUM7VUFDekIseUJBQXlCO0NBQ2xDO0FBQ0Q7O0VBR0E7Q0FDQztFQUNDLG9DQUFvQztVQUM1Qiw0QkFBNEI7Q0FDckM7Q0FDQTtFQUNDLGlDQUFpQztVQUN6Qix5QkFBeUI7Q0FDbEM7QUFDRDs7RUFHQTs7Q0FFQztFQUNDLHVCQUF1QjtDQUN4Qjs7Q0FFQTtFQUNDLDBCQUEwQjtDQUMzQjs7O0NBR0E7RUFDQyxvQkFBb0I7Q0FDckI7O0NBRUE7RUFDQyxvQkFBb0I7Q0FDckI7QUFDRDs7RUFHQTs7Q0FFQztFQUNDLHVCQUF1QjtDQUN4Qjs7Q0FFQTtFQUNDLDBCQUEwQjtDQUMzQjs7O0NBR0E7RUFDQyxvQkFBb0I7Q0FDckI7O0NBRUE7RUFDQyxvQkFBb0I7Q0FDckI7QUFDRCIsImZpbGUiOiJzcmMvYXBwL2VmZmljaWVuY3kvZWZmaWNpZW5jeS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNpZGViYXIge1xyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgdG9wOiAwcHg7XHJcbiAgICBib3R0b206IDA7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgei1pbmRleDogMTAwMDtcclxuICAgIHBhZGRpbmc6IDIwcHggMDtcclxuICAgIG92ZXJmbG93LXg6IGhpZGRlbjtcclxuICAgIG92ZXJmbG93LXk6IGF1dG87XHJcbiAgICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCAjZWVlO1xyXG4gICAgd2lkdGg6IDI1MHB4O1xyXG4gIH1cclxuICBcclxuICAuc2lkZWJhciAubmF2LWl0ZW0ge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgfVxyXG4gIC5iZy1kYXJre1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2QwNGEwMiAhaW1wb3J0YW50O1xyXG4gIH1cclxuICBcclxuICBAbWVkaWEgKG1pbi13aWR0aDogMjUwcHgpIC5tbC1zbS1hdXRvLCAubXgtc20tYXV0byB7XHJcbiAgICAgIG1hcmdpbi1sZWZ0OiBhdXRvICFpbXBvcnRhbnQ7XHJcbiAgfVxyXG4gIC5jYXJkLXN0eWxle1xyXG4gICAgYm94LXNoYWRvdzogMXB4IDFweCAxcHggMXB4ICM3ZDdkN2Q7XHJcbiAgfVxyXG4gIC5jYXJke1xyXG4gICAgYm9yZGVyLXJhZGl1czogMHJlbSAhaW1wb3J0YW50O1xyXG4gIH1cclxuICAuY2FyZC1zdGF0dXN7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xyXG4gICAgY29sb3I6ICMwMDAwMDA7XHJcbiAgICB3aWR0aDogMzUwcHg7XHJcbiAgfVxyXG4gIC5kcm9wZG93bi1idXR0b257XHJcbiAgd2lkdGg6IDE1MHB4O1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICNhYTI0MTc7XHJcbiAgYm9yZGVyLXJhZGl1czogMHB4ICFpbXBvcnRhbnQ7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2FhMjQxNztcclxuICBjb2xvcjogI2ZmZmZmZjtcclxuICBoZWlnaHQ6IDIzcHg7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG4gIHBhZGRpbmctYm90dG9tOiAxMHB4O1xyXG59XHJcbi5kcm9wZG93bi1sYWJlbHtcclxuICBjb2xvcjogIzAwMDAwMDtcclxuICBmb250LXNpemU6IDEycHg7XHJcbn1cclxuXHJcbi5jdXN0b20tbGl7XHJcbiAgaGVpZ2h0OiAyMXB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5kcm9wZG93bm1lbnV7XHJcbiAgaGVpZ2h0OiAxMTBweDtcclxuICBvdmVyZmxvdy15OiBzY3JvbGw7XHJcbiAgd2lkdGg6IDE1MnB4O1xyXG4gIGJveC1zaGFkb3c6IDAgNHB4IDhweCAwIHJnYmEoMCwgMCwgMCwgMC4yKSwgMCA2cHggMjBweCAwIHJnYmEoMCwgMCwgMCwgMC4xOSk7XHJcbn1cclxuLmJ0bi5mb2N1cywgLmJ0bjpmb2N1c3tcclxuICBib3gtc2hhZG93OiBub25lICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi8qIFNjcm9sbGJhciBTdHlsaW5nICovXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gIHdpZHRoOiA1cHg7XHJcbn1cclxuXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXItdHJhY2sge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNlYmViZWI7XHJcbiAgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbn1cclxuXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWIge1xyXG4gIC13ZWJraXQtYm9yZGVyLXJhZGl1czogMTBweDtcclxuICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gIGJhY2tncm91bmQ6ICM2ZDZkNmQ7IFxyXG59XHJcblxyXG4gIC5kcm9wZG93biB7XHJcbiAgICAvKiBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBsZWZ0OiA1MHB4O1xyXG4gICAgdG9wOiA1MHB4OyAqL1xyXG4gIH1cclxuIHVse1xyXG4gICBsaXN0LXN0eWxlOiBub25lO1xyXG4gfVxyXG4uZm9ybS1jb250cm9sOmZvY3Vze1xyXG4gIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcclxufVxyXG4ubmd4LWRhdGVwaWNrZXItY29udGFpbmVyW19uZ2NvbnRlbnQtaGluLWM0XSAubmd4LWRhdGVwaWNrZXItaW5wdXRbX25nY29udGVudC1oaW4tYzRde1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNhYTI0MTcgIWltcG9ydGFudDtcclxuICBib3JkZXI6ICNhYTI0MTcgIWltcG9ydGFudDtcclxufVxyXG4vKiAuY29sLTN7XHJcbiAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDZweCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjE5KTtcclxufSAqL1xyXG4uaGlnaGNoYXJ0cy1leHBvcnRpbmctZ3JvdXB7XHJcbiAgZGlzcGxheTogbm9uZSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4vKiBSZXZlYWwgdGV4dCBjc3MqL1xyXG5cclxuOnJvb3Qge1xyXG5cdC0tZGVsYXk6IDA7XHJcblx0LS1kdXJhdGlvbjogODAwbXM7XHJcblx0LS1pdGVyYXRpb25zOiAxO1xyXG59XHJcbi8qIOKAosK34oCiwrfigKLCt+KAosK34oCiwrfigKLCt+KAosK34oCiwrfigKLCt+KAosK34oCiwrfigKLCt+KAosK34oCiwrfigKLCt+KAosK34oCiwrfigKLCt+KAosK34oCiwrfigKLCt+KAosK34oCiwrfigKLCt+KAosK34oCiwrfigKLCt+KAosK3ICovXHJcblxyXG5cclxuLnJldmVhbC10ZXh0LFxyXG4ucmV2ZWFsLXRleHQ6OmFmdGVyIHtcclxuXHQtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogdmFyKC0tYW5pbWF0aW9uLWRlbGF5LCAycyk7XHJcblx0ICAgICAgICBhbmltYXRpb24tZGVsYXk6IHZhcigtLWFuaW1hdGlvbi1kZWxheSwgMnMpO1xyXG5cdC13ZWJraXQtYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogdmFyKC0taXRlcmF0aW9ucywgMSk7XHJcblx0ICAgICAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiB2YXIoLS1pdGVyYXRpb25zLCAxKTtcclxuXHQtd2Via2l0LWFuaW1hdGlvbi1kdXJhdGlvbjogdmFyKC0tZHVyYXRpb24sIDgwMG1zKTtcclxuXHQgICAgICAgIGFuaW1hdGlvbi1kdXJhdGlvbjogdmFyKC0tZHVyYXRpb24sIDgwMG1zKTtcclxuXHQtd2Via2l0LWFuaW1hdGlvbi1maWxsLW1vZGU6IGJvdGg7XHJcblx0ICAgICAgICBhbmltYXRpb24tZmlsbC1tb2RlOiBib3RoO1xyXG5cdC13ZWJraXQtYW5pbWF0aW9uLXRpbWluZy1mdW5jdGlvbjogY3ViaWMtYmV6aWVyKDAuMCwgMC4wLCAwLjIsIDEpO1xyXG5cdCAgICAgICAgYW5pbWF0aW9uLXRpbWluZy1mdW5jdGlvbjogY3ViaWMtYmV6aWVyKDAuMCwgMC4wLCAwLjIsIDEpO1xyXG59XHJcblxyXG4ucmV2ZWFsLXRleHQge1xyXG5cdC0tYW5pbWF0aW9uLWRlbGF5OiB2YXIoLS1kZWxheSwgMCk7XHJcblx0LS1hbmltYXRpb24tZHVyYXRpb246IHZhcigtLWR1cmF0aW9uLCA4MDBtcyk7XHJcblx0LS1hbmltYXRpb24taXRlcmF0aW9uczogdmFyKC0taXRlcmF0aW9ucywgMSk7XHJcblx0cG9zaXRpb246IHJlbGF0aXZlO1xyXG5cdGZvbnQtc2l6ZTogMTB2dztcclxuXHQtd2Via2l0LWFuaW1hdGlvbi1uYW1lOiBjbGlwLXRleHQ7XHJcblx0ICAgICAgICBhbmltYXRpb24tbmFtZTogY2xpcC10ZXh0O1xyXG5cdGNvbG9yOiAjRkZGO1xyXG5cdHdoaXRlLXNwYWNlOiBub3dyYXA7XHJcblx0Y3Vyc29yOiBkZWZhdWx0XHJcblx0XHJcbn1cclxuXHJcbi5yZXZlYWwtdGV4dDo6YWZ0ZXIge1xyXG5cdFx0Y29udGVudDogXCJcIjtcclxuXHRcdHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuXHRcdHotaW5kZXg6IDk5OTtcclxuXHRcdHRvcDogMDtcclxuXHRcdGxlZnQ6IDA7XHJcblx0XHRyaWdodDogMDtcclxuXHRcdGJvdHRvbTogMDtcclxuXHRcdGJhY2tncm91bmQtY29sb3I6ICNmZmVjYmQ7XHJcblx0XHR0cmFuc2Zvcm06IHNjYWxlWCgwKTtcclxuXHRcdHRyYW5zZm9ybS1vcmlnaW46IDAgNTAlO1xyXG5cdFx0cG9pbnRlci1ldmVudHM6IG5vbmU7XHJcblx0XHQtd2Via2l0LWFuaW1hdGlvbi1uYW1lOiB0ZXh0LXJldmVhbGVyO1xyXG5cdFx0ICAgICAgICBhbmltYXRpb24tbmFtZTogdGV4dC1yZXZlYWxlcjtcclxuXHR9XHJcblxyXG5cclxuQC13ZWJraXQta2V5ZnJhbWVzIGNsaXAtdGV4dCB7XHJcblx0ZnJvbSB7XHJcblx0XHQtd2Via2l0LWNsaXAtcGF0aDogaW5zZXQoMCAxMDAlIDAgMCk7XHJcblx0XHQgICAgICAgIGNsaXAtcGF0aDogaW5zZXQoMCAxMDAlIDAgMCk7XHJcblx0fVxyXG5cdHRvIHtcclxuXHRcdC13ZWJraXQtY2xpcC1wYXRoOiBpbnNldCgwIDAgMCAwKTtcclxuXHRcdCAgICAgICAgY2xpcC1wYXRoOiBpbnNldCgwIDAgMCAwKTtcclxuXHR9XHJcbn1cclxuXHJcblxyXG5Aa2V5ZnJhbWVzIGNsaXAtdGV4dCB7XHJcblx0ZnJvbSB7XHJcblx0XHQtd2Via2l0LWNsaXAtcGF0aDogaW5zZXQoMCAxMDAlIDAgMCk7XHJcblx0XHQgICAgICAgIGNsaXAtcGF0aDogaW5zZXQoMCAxMDAlIDAgMCk7XHJcblx0fVxyXG5cdHRvIHtcclxuXHRcdC13ZWJraXQtY2xpcC1wYXRoOiBpbnNldCgwIDAgMCAwKTtcclxuXHRcdCAgICAgICAgY2xpcC1wYXRoOiBpbnNldCgwIDAgMCAwKTtcclxuXHR9XHJcbn1cclxuXHJcblxyXG5ALXdlYmtpdC1rZXlmcmFtZXMgdGV4dC1yZXZlYWxlciB7XHJcblx0XHJcblx0MCUsIDUwJSB7XHJcblx0XHR0cmFuc2Zvcm0tb3JpZ2luOiAwIDUwJTtcclxuXHR9XHJcblx0XHJcblx0NjAlLCAxMDAlIHtcclxuXHRcdHRyYW5zZm9ybS1vcmlnaW46IDEwMCUgNTAlO1x0XHRcclxuXHR9XHJcblxyXG5cdFxyXG5cdDYwJSB7XHJcblx0XHR0cmFuc2Zvcm06IHNjYWxlWCgxKTtcclxuXHR9XHJcblx0XHJcblx0MTAwJSB7XHJcblx0XHR0cmFuc2Zvcm06IHNjYWxlWCgwKTtcclxuXHR9XHJcbn1cclxuXHJcblxyXG5Aa2V5ZnJhbWVzIHRleHQtcmV2ZWFsZXIge1xyXG5cdFxyXG5cdDAlLCA1MCUge1xyXG5cdFx0dHJhbnNmb3JtLW9yaWdpbjogMCA1MCU7XHJcblx0fVxyXG5cdFxyXG5cdDYwJSwgMTAwJSB7XHJcblx0XHR0cmFuc2Zvcm0tb3JpZ2luOiAxMDAlIDUwJTtcdFx0XHJcblx0fVxyXG5cclxuXHRcclxuXHQ2MCUge1xyXG5cdFx0dHJhbnNmb3JtOiBzY2FsZVgoMSk7XHJcblx0fVxyXG5cdFxyXG5cdDEwMCUge1xyXG5cdFx0dHJhbnNmb3JtOiBzY2FsZVgoMCk7XHJcblx0fVxyXG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/efficiency/efficiency.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/efficiency/efficiency.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/sewing-module\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/module-performance\">Module <span class=\"sr-only\"></span></a>\r\n      </li>\r\n    </ul>\r\n    <!-- <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4> -->\r\n  </div>\r\n</nav>\r\n<nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <ul class=\"nav nav-pills flex-column\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"dashbaord_href\" href=\"#\" data-toggle=\"pill\" (click)=\"dashboardNavigation()\"><span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"moduleperformance_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"operationmodule_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"operationmodule_span\" class=\"d-none d-md-inline\">Social Sustainablity</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"environmental_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"environmental_span\" class=\"d-none d-md-inline\">Environmental Sustainability</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"outward_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"outward_span\" class=\"d-none d-md-inline\">Outward</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"processes_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"processes_span\" class=\"d-none d-md-inline\">Processes</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"inward_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"inward_span\" class=\"d-none d-md-inline\">Inward</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"fabric_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"fabric_span\" class=\"d-none d-md-inline\">Fabric & Trims Store </span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"spreading_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"spreading_span\" class=\"d-none d-md-inline\">Spreading & Cutting</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"sewing_href\" href=\"#\" (click)=\"sewingNavigation()\" data-toggle=\"pill\"><span id=\"sewing_span\" class=\"d-none d-md-inline\">Sewing</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"finishing_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"finishing_span\" class=\"d-none d-md-inline\">Finishing & Packaging</span></a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 main\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"tab-pane fade show active hide-show\" id=\"overallperformance\" role=\"tabpanel\" aria-labelledby=\"OverallPerformance-tab\">\r\n      <ul class=\"nav nav-pills\">\r\n        <li>\r\n          <h4>Sewing - Low Efficiency Monitor</h4>\r\n        </li>\r\n        <li class=\"nav-item\" style=\"margin-left: 30%;\">\r\n          <a class=\"nav-link active\" href=\"#kpi\" [ngClass]=\"{ 'active':activeTab==='search'}\" (click)=\"kpi('kpi')\"\r\n            data-toggle=\"tab\">Efficiency</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#detailedAnalysis\" [ngClass]=\"{ 'active':activeTab==='detailedAnalysis'}\" data-toggle=\"tab\"\r\n            (click)=\"detailedAnalysis('detailedAnalysis')\">Explore Historical Data</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#unitAnalysis\" [ngClass]=\"{ 'active':activeTab==='unitAnalysis'}\" data-toggle=\"tab\"\r\n            (click)=\"unitAnalysis('unitAnalysis')\">Guidance</a>\r\n        </li>\r\n      </ul>\r\n      <div class=\"tab-content\">\r\n        <div class=\"tab-pane\" id=\"kpi\" [ngClass]=\"{ 'active':activeTab==='kpi'}\"> \r\n\r\n          <div class=\"row align-items-center\">\r\n            <div [chart]=\"productionUnit\" class=\"col-sm-12\" style=\"width: 100px; height: 200px;\"></div>\r\n          </div>\r\n          <div class=\"row align-items-center mt-3\">\r\n            <div [chart]=\"productionLine1\" class=\"col-sm-3\" style=\"height: 230px;\"></div>\r\n            <div [chart]=\"operatorLine1\" class=\"col-sm-3\" style=\"height: 230px;\"></div>\r\n            <div [chart]=\"productionLine2\" class=\"col-sm-3\" style=\"height: 230px;\"></div>\r\n            <div [chart]=\"operatorLine2\" class=\"col-sm-3\" style=\"height: 230px;\"></div>\r\n          </div>\r\n          <div class=\"row align-items-center h-100 mt-3\">\r\n            \r\n          </div>\r\n\r\n        </div>\r\n\r\n          <div class=\"tab-pane\" id=\"detailedAnalysis\" [ngClass]=\"{ 'active':activeTab==='detailedAnalysis'}\">\r\n            <div class=\"row align-items-center h-100 mt-3\">\r\n              <div class=\"col-2\">\r\n                <div class=\"d-flex flex-column\">\r\n                  <span style=\"text-align: left !important;\">Start Date</span>\r\n                  <ng-datepicker [(ngModel)]=\"startDate\" [options]=\"options\"></ng-datepicker>\r\n                </div>\r\n              </div>\r\n              <div class=\"col-2 ml-4\">\r\n                <div class=\"d-flex flex-column\">\r\n                  <span style=\"text-align: left !important;\">End Date</span>\r\n                  <ng-datepicker [(ngModel)]=\"endDate\" [options]=\"options\"></ng-datepicker>\r\n                </div>\r\n              </div>\r\n              <div class=\"col-2 ml-4 mt-3\">\r\n                <button class=\"custom-button\">Show Analysis</button>\r\n              </div>\r\n            </div>\r\n            <div class=\"row align-items-center h-100 mt-3\">\r\n                <!-- <div [chart]=\"efficiencyHistoryLocationWise\" class=\"col-4\" style=\"height: 350px;\"></div> -->\r\n                <div [chart]=\"efficiencyHistoryUnitWise\" class=\"col-6\" style=\"height: 350px;\"></div>\r\n                <div [chart]=\"efficiencyHistoryLineWise\" class=\"col-6\" style=\"height: 350px;\"></div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"tab-pane\" id=\"unitAnalysis\" [ngClass]=\"{ 'active':activeTab==='unitAnalysis'}\">\r\n            <div class=\"row align-items-center h-100 mt-3\">\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n  </section>\r\n</main>"
+
+/***/ }),
+
+/***/ "./src/app/efficiency/efficiency.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/efficiency/efficiency.component.ts ***!
+  \****************************************************/
+/*! exports provided: EfficiencyComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EfficiencyComponent", function() { return EfficiencyComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/lib/jquery/dist/jquery.js */ "./src/assets/lib/jquery/dist/jquery.js");
+/* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns/locale/en */ "./node_modules/date-fns/locale/en/index.js");
+/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
+/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
+
+
+
+
+
+
+
+
+//import {Chart} from 'highcharts';
+
+highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+
+highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+// Load the exporting module.
+
+
+// Initialize exporting module.
+highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_10___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+var EfficiencyComponent = /** @class */ (function () {
+    function EfficiencyComponent(http, _router) {
+        this.http = http;
+        this._router = _router;
+        this.userBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'kpicalculation';
+        this.year = [
+            { id: 2019, name: '2019' },
+            { id: 2021, name: '2021' },
+            { id: 2022, name: '2022' }
+        ];
+        this.startDate = new Date("01/01/2021");
+        this.endDate = new Date("01/10/2021");
+        // this.startDate = new Date("01/01/2021");
+        //   this.endDate = new Date("01/10/2021");
+        this.options = {
+            locale: date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__,
+            minYear: 1970,
+            maxYear: 2030,
+            displayFormat: 'MMM D[,] YYYY',
+            barTitleFormat: 'MMMM YYYY',
+            dayNamesFormat: 'dd',
+            firstCalendarDay: 0,
+            minDate: this.startDate,
+            // maxDate: new Date(Date.now()),  // Maximal selectable date
+            barTitleIfEmpty: 'Click to select a date',
+            placeholder: 'Click to select a date',
+            addClass: 'form-control',
+            addStyle: {},
+            fieldId: 'my-date-picker',
+            useEmptyBarTitle: false,
+        };
+        this.month = [
+            { id: 1, name: 'January' },
+            { id: 2, name: 'February' },
+            { id: 3, name: 'March' },
+            { id: 4, name: 'April' },
+            { id: 5, name: 'May' },
+            { id: 6, name: 'June' },
+            { id: 7, name: 'July' },
+            { id: 8, name: 'August' },
+            { id: 9, name: 'September' },
+            { id: 10, name: 'October' },
+            { id: 11, name: 'November' },
+            { id: 12, name: 'December' },
+        ];
+        this.line = [];
+        this.unit = [];
+        this.location = [];
+        this.selectedYear = [];
+        this.selectedMonth = [];
+        this.selectedLine = [];
+        this.selectedUnit = [];
+        this.selectedLocation = [];
+        this.capacityCalculationHeadingColor = "";
+        this.activeTab = 'kpi';
+    }
+    EfficiencyComponent.prototype.ngOnInit = function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").css("margin-left", "15%");
+        this.selectAllOptions();
+        this.getFilterData();
+        this.getEfficiencyCharts();
+        this.getEfficiencyHistoryCharts();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".footer").hide();
+        // this.getSewingKPIAnalysis();
+    };
+    EfficiencyComponent.prototype.getFilterData = function () {
+        var _this_1 = this;
+        var _this = this;
+        this.http.get(this.userBackendUrl).subscribe(function (data) {
+            if (data.statusCode == 200) {
+                data.responseData.lineMasterData.forEach(function (element) {
+                    _this.line.push({ id: element.Id, name: element.Name });
+                });
+                data.responseData.unitMasterData.forEach(function (element) {
+                    _this.unit.push({ id: element.Id, name: element.Name });
+                });
+                data.responseData.locationMasterData.forEach(function (element) {
+                    _this.location.push({ id: element.Id, name: element.Name });
+                });
+                var year = _this_1.startDate.getFullYear();
+                var month = _this_1.startDate.getMonth();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#year_" + year).prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#month_" + month).prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_" + _this.line[0].id).prop('checked', true);
+                _this.selectedYear.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#year_" + year).val()));
+                _this.selectedMonth.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#month_" + month).val()));
+                _this.selectedLine.push(1);
+                var KPIView = {
+                    Year: _this.selectedYear,
+                    Month: _this.selectedMonth,
+                    Line: _this.selectedLine
+                };
+                _this.callCapacityUtilizationApi(KPIView);
+            }
+        });
+    };
+    EfficiencyComponent.prototype.getSewingKPIAnalysis = function () {
+        var _this = this;
+        var lineSelected = [];
+        var monthSelected = [];
+        var yearSelected = [];
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[line]"]:checked').each(function (i) {
+            lineSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[month]"]:checked').each(function (i) {
+            monthSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[year]"]:checked').each(function (i) {
+            yearSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
+        });
+        this.selectedYear = yearSelected;
+        this.selectedLine = lineSelected;
+        this.selectedMonth = monthSelected;
+        var KPIView = {
+            Year: this.selectedYear,
+            Month: this.selectedMonth,
+            Line: [1, 2]
+        };
+        this.callCapacityUtilizationApi(KPIView);
+        // this.callEfficiencyCalculationApi(KPIView);
+    };
+    EfficiencyComponent.prototype.getEfficiencyCharts = function () {
+        this.productionLine1 = new angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["Chart"]({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Production Efficiency',
+                style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px' },
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: { enabled: false },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: 'Efficiency %',
+                min: 0,
+                max: 100
+            },
+            colors: [
+                '#eb8c00',
+                '#db536a',
+                '#e0301e',
+                '#eb8c00',
+                '#db536a',
+                '#d93954',
+                '#e0301e',
+                '#92A8CD'
+            ],
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    column: {
+                        colorByPoint: true
+                    }
+                }
+            },
+            series: [{
+                    name: 'Line 1',
+                    data: [{
+                            name: '01/01/2021',
+                            y: 46
+                        }, {
+                            name: '01/02/2021',
+                            y: 38
+                        }, {
+                            name: '01/03/2021',
+                            y: 47
+                        }, {
+                            name: '01/04/2021',
+                            y: 35
+                        }, {
+                            name: '01/05/2021',
+                            y: 31
+                        }]
+                }],
+        });
+        this.operatorLine1 = new angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["Chart"]({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Operator Performance',
+                style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px' },
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: { enabled: false },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: 'Efficiency %'
+            },
+            colors: [
+                '#eb8c00',
+                '#db536a',
+                '#e0301e',
+                '#eb8c00',
+                '#db536a',
+                '#d93954',
+                '#e0301e',
+                '#92A8CD'
+            ],
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    column: {
+                        colorByPoint: true
+                    }
+                }
+            },
+            series: [{
+                    name: 'Line 1',
+                    data: [{
+                            name: 'Op1',
+                            y: 43
+                        }, {
+                            name: 'Op2',
+                            y: 27
+                        }, {
+                            name: 'Op3',
+                            y: 32
+                        }, {
+                            name: 'Op4',
+                            y: 48
+                        }]
+                }],
+        });
+        this.productionLine2 = new angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["Chart"]({
+            chart: {
+                type: 'spline'
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: { enabled: false },
+            title: {
+                text: 'Production Efficiency',
+                style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px' },
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: 'Efficiency %',
+                min: 0,
+                max: 100
+            },
+            colors: [
+                '#d04a02',
+                '#db536a',
+                '#eb8c00',
+                '#db536a',
+                '#d93954',
+                '#e0301e',
+                '#d04a02',
+                '#92A8CD'
+            ],
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    column: {
+                        colorByPoint: true
+                    }
+                }
+            },
+            series: [{
+                    name: 'Line 2',
+                    data: [{
+                            name: '01/01/2021',
+                            y: 22
+                        }, {
+                            name: '01/02/2021',
+                            y: 29
+                        }, {
+                            name: '01/03/2021',
+                            y: 29
+                        }, {
+                            name: '01/04/2021',
+                            y: 27
+                        }, {
+                            name: '01/05/2021',
+                            y: 25
+                        }]
+                }],
+        });
+        this.operatorLine2 = new angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["Chart"]({
+            chart: {
+                type: 'column'
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: { enabled: false },
+            title: {
+                text: 'Operator Performance',
+                style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px' },
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: 'Efficiency %'
+            },
+            colors: [
+                '#d04a02',
+                '#db536a',
+                '#e0301e',
+                '#eb8c00',
+                '#db536a',
+                '#d93954',
+                '#e0301e',
+                '#d04a02',
+                '#92A8CD'
+            ],
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    column: {
+                        colorByPoint: true
+                    }
+                }
+            },
+            series: [{
+                    name: 'Line 2',
+                    data: [{
+                            name: 'Op1',
+                            y: 50
+                        }, {
+                            name: 'Op2',
+                            y: 52
+                        }, {
+                            name: 'Op3',
+                            y: 40
+                        },
+                        {
+                            name: 'Op4',
+                            y: 32
+                        }]
+                }],
+        });
+    };
+    EfficiencyComponent.prototype.getEfficiencyHistoryCharts = function () {
+        this.productionUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["Chart"]({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Unit Production Efficiency',
+                style: { 'font-family': 'Arial, Helvetica' },
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: { enabled: false },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: 'Efficiency %',
+                min: 0,
+                max: 100
+            },
+            colors: [
+                '#db536a',
+                '#ffb600',
+                '#e0301e',
+                '#eb8c00',
+                '#db536a',
+                '#d93954',
+                '#e0301e',
+                '#d04a02',
+                '#92A8CD'
+            ],
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    column: {
+                        colorByPoint: true
+                    }
+                }
+            },
+            series: [{
+                    name: 'Unit 2',
+                    data: [{
+                            name: '01/01/2021',
+                            y: 37
+                        }, {
+                            name: '01/02/2021',
+                            y: 30
+                        }, {
+                            name: '01/03/2021',
+                            y: 45
+                        }, {
+                            name: '01/04/2021',
+                            y: 24
+                        }, {
+                            name: '01/05/2021',
+                            y: 29
+                        }
+                    ]
+                }],
+        });
+        var dateModel = {
+            "StartDate": "2021-01-01",
+            "EndDate": "2021-01-10"
+        };
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "DrilldownProductivityLinewise";
+        var _this = this;
+        this.http.post(url, dateModel).subscribe(function (responsedata) {
+            var colors = [
+                '#ffb600',
+                '#d04a02',
+                '#db536a',
+                '#e0301e',
+                '#eb8c00',
+                '#db536a',
+                '#d93954',
+                '#e0301e',
+            ];
+            // _this.efficiencyHistoryLocationWise = new Chart({
+            // chart: {
+            //     type: 'spline'
+            // },
+            // title: {
+            //     text: 'Efficiency Overview Location Wise',
+            //     style: {'font-family': 'Arial, Helvetica', 'font-size': '13px'},
+            // },
+            // xAxis: {
+            //     type: 'category'
+            // },
+            // yAxis: {
+            //   title: 'Efficiency %',
+            //   min: 0,
+            //   max: 120
+            // },
+            // colors: [
+            //     '#ffb600',
+            //     '#db536a',
+            //     '#e0301e',
+            //     '#eb8c00', 
+            //     '#db536a', 
+            //     '#d93954', 
+            //     '#e0301e', 
+            //     '#d04a02', 
+            //     '#92A8CD'
+            // ],
+            // plotOptions: {
+            //     series: {
+            //         borderWidth: 0,
+            //         dataLabels: {
+            //             enabled: true
+            //         },
+            //     column: {
+            //           colorByPoint: true
+            //       }
+            //     }
+            // },
+            // series: responsedata["EfficiencyLocationData"]["Value"]["productionSeries"]
+            // });
+            _this.efficiencyHistoryLineWise = new angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["Chart"]({
+                chart: {
+                    type: 'spline'
+                },
+                exporting: {
+                    enabled: false
+                },
+                credits: { enabled: false },
+                title: {
+                    text: 'Efficiency Overview Line Wise',
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '15px' },
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: '% score'
+                    },
+                    min: 0,
+                    max: 120,
+                    plotLines: [{
+                            color: '#175d2d',
+                            width: 5,
+                            value: 85,
+                        }]
+                },
+                colors: colors,
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true
+                        },
+                        column: {
+                            colorByPoint: true
+                        }
+                    }
+                },
+                series: responsedata["EfficiencyLineData"]["Value"]["productionSeries"]
+            });
+            _this.efficiencyHistoryUnitWise = new angular_highcharts__WEBPACK_IMPORTED_MODULE_11__["Chart"]({
+                chart: {
+                    type: 'spline'
+                },
+                exporting: {
+                    enabled: false
+                },
+                credits: { enabled: false },
+                title: {
+                    text: 'Efficiency Overview Unit Wise',
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '15px' },
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: '% score'
+                    },
+                    min: 0,
+                    max: 120,
+                    labels: {
+                        style: {
+                            fontSize: '10px',
+                            'font-family': 'Arial, Helvetica'
+                        },
+                    },
+                    plotLines: [{
+                            color: '#175d2d',
+                            width: 5,
+                            value: 85,
+                        }]
+                },
+                colors: colors,
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true
+                        },
+                        column: {
+                            colorByPoint: true
+                        }
+                    }
+                },
+                series: responsedata["EfficiencyUnitData"]["Value"]["productionSeries"]
+            });
+        });
+    };
+    EfficiencyComponent.prototype.callCapacityUtilizationApi = function (KPIView) {
+        var _this_1 = this;
+        var _this = this;
+        this.http.post(this.userBackendUrl, KPIView).subscribe(function (responsedata) {
+            if (responsedata.StatusCode == 200) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#capacityVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#efficiencyVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuRejectDefectVisual").show();
+                _this.capacityCalculationHeadingColor = responsedata["CapaCityCalculation"]["Value"]["colorCode"];
+                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.container.nativeElement, {
+                    // Created pie chart using Highchart
+                    chart: {
+                        type: 'solidgauge',
+                        width: 250,
+                        marginleft: 20
+                    },
+                    title: {
+                        text: 'Capacity Calculation',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '17px', 'color': _this.capacityCalculationHeadingColor }
+                    },
+                    credits: { enabled: false },
+                    pane: {
+                        center: ['50%', '85%'],
+                        size: '140%',
+                        startAngle: -90,
+                        endAngle: 90,
+                        background: {
+                            backgroundColor: '#ffffff',
+                            innerRadius: '60%',
+                            outerRadius: '100%',
+                            shape: 'arc'
+                        }
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        enabled: false
+                    },
+                    yAxis: {
+                        stops: [
+                            [0.3, '#e0301e'],
+                            [0.6, '#ffb600'],
+                            [1, '#175d2d']
+                        ],
+                        lineWidth: 0,
+                        tickWidth: 0,
+                        minorTickInterval: null,
+                        tickAmount: 2,
+                        title: {
+                            y: -70
+                        },
+                        labels: {
+                            y: 16
+                        },
+                        min: 0,
+                        max: 100,
+                    },
+                    plotOptions: {
+                        solidgauge: {
+                            size: 150,
+                            dataLabels: {
+                                y: 5,
+                                borderWidth: 0,
+                                useHTML: true
+                            },
+                            events: {
+                                click: function () {
+                                    // document.getElementById('back').style.display = "block";
+                                    // Highcharts.chart('container', columnsOptions);
+                                }
+                            }
+                        }
+                    },
+                    series: [
+                        {
+                            name: "Cumulative",
+                            data: [{
+                                    y: responsedata["CapaCityCalculation"]["Value"]["capacityCalculation"],
+                                    drilldown: null
+                                }],
+                            dataLabels: {
+                                format: '<div style="text-align:center">' +
+                                    '<span style="font-size:15px">{y}%</span><br/>' +
+                                    '</div>'
+                            },
+                        }
+                    ],
+                });
+                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.efficiencyContainer.nativeElement, {
+                    chart: {
+                        zoomType: 'xy',
+                        width: 350,
+                        marginleft: 10
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    title: {
+                        text: '%Efficiency vs Weightage',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '17px', 'color': _this.capacityCalculationHeadingColor }
+                    },
+                    xAxis: [{
+                            categories: responsedata["Efficiency"]["Value"]["monthCategory"],
+                            crosshair: true
+                        }],
+                    credits: { enabled: false },
+                    yAxis: [{
+                            labels: {
+                                format: '{value}',
+                                style: {
+                                    // color: "#eb8c00",
+                                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                                }
+                            },
+                            title: {
+                                text: '% Efficiency',
+                                style: {
+                                    // color: "#d04a02",
+                                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                                }
+                            }
+                        }, {
+                            title: {
+                                text: 'Weightage',
+                                style: {
+                                    // color: "#eb8c00",
+                                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                                }
+                            },
+                            labels: {
+                                format: '{value}',
+                                style: {
+                                    // color: "#d04a02",
+                                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                                }
+                            },
+                            opposite: true
+                        }],
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'left',
+                        x: 120,
+                        verticalAlign: 'bottom',
+                        y: 100,
+                        floating: true,
+                        backgroundColor: highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].legend.backgroundColor || // theme
+                            'rgba(255,255,255,0.25)'
+                    },
+                    series: responsedata["Efficiency"]["Value"]["efficiencyWeitageResponse"]
+                });
+                //customize pie chart color
+                var pieColors = (function () {
+                    var colors = [], base = "#d04a02", i;
+                    for (i = 0; i < 10; i += 1) {
+                        colors.push(highcharts__WEBPACK_IMPORTED_MODULE_6__["color"](base).brighten((i - 3) / 7).get());
+                    }
+                    return colors;
+                }());
+                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.dhuRejectDefectContainer.nativeElement, {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        width: 300,
+                    },
+                    title: {
+                        text: 'Defect vs Reject vs Alter',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'color': _this.capacityCalculationHeadingColor }
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            size: 100,
+                            colors: pieColors,
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                            }
+                        }
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    series: [{
+                            data: responsedata["DefectRejectDHUPercentage"]["Value"]
+                        }]
+                });
+            }
+            else {
+                // _this.validationMsg = data["message"];
+                return;
+            }
+        });
+    };
+    EfficiencyComponent.prototype.selectAllOptions = function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.yearSelectAll').click(function () {
+            // var yearSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.year').prop('checked', true);
+                // $('input[name="options[year]"]:checked').each(function(i){
+                //   yearSelected.push(parseInt($(this).val()));
+                // });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#yearSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.year').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#yearSelectText").html(' Select');
+            }
+            // this.selectedYear = yearSelected;
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.monthSelectAll').click(function () {
+            // var monthSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.month').prop('checked', true);
+                // $('input[name="options[month]"]:checked').each(function(i){
+                //   monthSelected.push(parseInt($(this).val()));
+                // });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#monthSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.month').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#monthSelectText").html(' Select');
+            }
+            // this.selectedMonth = monthSelected;
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.lineSelectAll').click(function () {
+            // var lineSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.line').prop('checked', true);
+                // $('input[name="options[line]"]:checked').each(function(i){
+                //   lineSelected.push(parseInt($(this).val()));
+                // });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#lineSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.line').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#lineSelectText").html(' Select');
+            }
+            // this.selectedLine = lineSelected;
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.locationSelectAll').click(function () {
+            var locationSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.location').prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[]"]:checked').each(function (i) {
+                    locationSelected.push(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val());
+                });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#locationSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.location').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#locationSelectText").html(' Select');
+            }
+            this.selectedLocation = locationSelected;
+        });
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unitSelectAll').click(function () {
+            var unitSelected = [];
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unit').prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[]"]:checked').each(function (i) {
+                    unitSelected.push(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val());
+                });
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unitSelectText").html(' Deselect');
+            }
+            else {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unit').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unitSelectText").html(' Select');
+            }
+            this.selectedUnit = unitSelected;
+        });
+    };
+    EfficiencyComponent.prototype.kpi = function (activeTab) {
+        this.activeTab = activeTab;
+    };
+    EfficiencyComponent.prototype.detailedAnalysis = function (activeTab) {
+        this.activeTab = activeTab;
+    };
+    EfficiencyComponent.prototype.unitAnalysis = function (activeTab) {
+        this.activeTab = activeTab;
+    };
+    EfficiencyComponent.prototype.dashboardNavigation = function () {
+        this._router.navigate(['module-performance']);
+    };
+    EfficiencyComponent.prototype.sewingNavigation = function () {
+        this._router.navigate(['sewing-module']);
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("container", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], EfficiencyComponent.prototype, "container", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("efficiencyContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], EfficiencyComponent.prototype, "efficiencyContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("dhuRejectDefectContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], EfficiencyComponent.prototype, "dhuRejectDefectContainer", void 0);
+    EfficiencyComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-sewingmodule',
+            template: __webpack_require__(/*! ./efficiency.component.html */ "./src/app/efficiency/efficiency.component.html"),
+            styles: [__webpack_require__(/*! ./efficiency.component.css */ "./src/app/efficiency/efficiency.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]])
+    ], EfficiencyComponent);
+    return EfficiencyComponent;
 }());
 
 
@@ -228,7 +1206,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"icon\" type=\"image/png\" href=\"../../assets/img/icons/favicon.ico\"/>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/animate/animate.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/css-hamburgers/hamburgers.min.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/animsition/css/animsition.min.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/select2/select2.min.css\">\t\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/daterangepicker/daterangepicker.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/css/util.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/css/main.css\">\n<div class=\"limiter\" style=\"margin-top: 2%;\">\n  <div class=\"container-login100\">\n    <div class=\"login100-more\" style=\"background-image: url('../../assets/img/GettyImages-584866442.jpg');\">\n    </div>\n    <div class=\"wrap-login100 p-l-50 p-r-50 p-t-10 p-b-50\">\n      <form class=\"login100-form validate-form\">\n        <span class=\"login100-form-title p-b-34\">\n          Login Your Account \n        </span>\n\n        <div class=\"wrap-input100 validate-input\" data-validate=\"Username is required\">\n          <span class=\"label-input100\">Username</span>\n          <input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username...\" [(ngModel)]=\"username\">\n          <span class=\"focus-input100\"></span>\n        </div>\n\n        <div class=\"wrap-input100 validate-input\" data-validate = \"Password is required\">\n          <span class=\"label-input100\">Password</span>\n          <input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"*************\" [(ngModel)]=\"password\">\n          <span class=\"focus-input100\"></span>\n        </div>\n        <div class=\"container-login100-form-btn\">\n          <div class=\"wrap-login100-form-btn\">\n            <div class=\"login100-form-bgbtn\"></div>\n            <button class=\"login100-form-btn\" (click)=\"login()\">\n              Sign in\n            </button>\n          </div>\n\n          <a routerLink = \"/register\" class=\"dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30\">\n            Sign up\n            <i class=\"fa fa-long-arrow-right m-l-5\"></i>\n          </a>\n        </div>\n        <div [innerHTML]=\"validationMsg\" style=\"margin-top: 2%; color:#e0301e;\">\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<link rel=\"icon\" type=\"image/png\" href=\"../../assets/img/icons/favicon.ico\"/>\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/animate/animate.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/css-hamburgers/hamburgers.min.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/animsition/css/animsition.min.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/select2/select2.min.css\">\t\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/daterangepicker/daterangepicker.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/css/util.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/css/main.css\">\r\n<div class=\"limiter\" style=\"margin-top: 2%;\">\r\n  <div class=\"container-login100\">\r\n    <div class=\"login100-more\" style=\"background-image: url('../../assets/img/GettyImages-584866442.jpg');\">\r\n    </div>\r\n    <div class=\"wrap-login100 p-l-50 p-r-50 p-t-10 p-b-50\">\r\n      <form class=\"login100-form validate-form\">\r\n        <span class=\"login100-form-title p-b-34\">\r\n          Login Your Account \r\n        </span>\r\n\r\n        <div class=\"wrap-input100 validate-input\" data-validate=\"Username is required\">\r\n          <span class=\"label-input100\">Username</span>\r\n          <input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username...\" [(ngModel)]=\"username\">\r\n          <span class=\"focus-input100\"></span>\r\n        </div>\r\n\r\n        <div class=\"wrap-input100 validate-input\" data-validate = \"Password is required\">\r\n          <span class=\"label-input100\">Password</span>\r\n          <input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"*************\" [(ngModel)]=\"password\">\r\n          <span class=\"focus-input100\"></span>\r\n        </div>\r\n        <div class=\"container-login100-form-btn\">\r\n          <div class=\"wrap-login100-form-btn\">\r\n            <div class=\"login100-form-bgbtn\"></div>\r\n            <button class=\"login100-form-btn\" (click)=\"login()\">\r\n              Sign in\r\n            </button>\r\n          </div>\r\n\r\n          <a routerLink = \"/register\" class=\"dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30\">\r\n            Sign up\r\n            <i class=\"fa fa-long-arrow-right m-l-5\"></i>\r\n          </a>\r\n        </div>\r\n        <div [innerHTML]=\"validationMsg\" style=\"margin-top: 2%; color:#e0301e;\">\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -383,7 +1361,7 @@ var LoginModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bottom: 0;\r\n    left: 0;\r\n    z-index: 1000;\r\n    padding: 20px 0;\r\n    overflow-x: hidden;\r\n    overflow-y: auto;\r\n    border-right: 1px solid #eee;\r\n    width: 250px;\r\n  }\r\n  \r\n  .sidebar .nav-item {\r\n    width: 100%;\r\n  }\r\n  \r\n  .bg-dark{\r\n    background-color: #d04a02 !important;\r\n  }\r\n  \r\n  @media (min-width: 250px) .ml-sm-auto, .mx-sm-auto {\r\n      margin-left: auto !important;\r\n  }\r\n  \r\n  .card-style{\r\n    box-shadow: 1px 1px 1px 1px #7d7d7d;\r\n  }\r\n  \r\n  .custom-card{\r\n    border-radius: 0rem !important;\r\n    background-color: #ffffff;\r\n    width: 184px;\r\n  }\r\n  \r\n  .card-status-green{\r\n    background-color: #175d2d;\r\n    color: #ffffff;\r\n  }\r\n  \r\n  .card-status-red{\r\n    background-color: #e0301e;\r\n    color: #ffffff;\r\n  }\r\n  \r\n  .card-status-yellow{\r\n    background-color: #ffb600;\r\n    color: #ffffff;\r\n  }\r\n  \r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcGVyZm9ybWFuY2UvbW9kdWxlcGVyZm9ybWFuY2UuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGVBQWU7SUFDZixRQUFRO0lBQ1IsU0FBUztJQUNULE9BQU87SUFDUCxhQUFhO0lBQ2IsZUFBZTtJQUNmLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsNEJBQTRCO0lBQzVCLFlBQVk7RUFDZDs7RUFFQTtJQUNFLFdBQVc7RUFDYjs7RUFDQTtJQUNFLG9DQUFvQztFQUN0Qzs7RUFFQTtNQUNJLDRCQUE0QjtFQUNoQzs7RUFDQTtJQUNFLG1DQUFtQztFQUNyQzs7RUFDQTtJQUNFLDhCQUE4QjtJQUM5Qix5QkFBeUI7SUFDekIsWUFBWTtFQUNkOztFQUNBO0lBQ0UseUJBQXlCO0lBQ3pCLGNBQWM7RUFDaEI7O0VBQ0E7SUFDRSx5QkFBeUI7SUFDekIsY0FBYztFQUNoQjs7RUFDQTtJQUNFLHlCQUF5QjtJQUN6QixjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcGVyZm9ybWFuY2UvbW9kdWxlcGVyZm9ybWFuY2UuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zaWRlYmFyIHtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogMHB4O1xyXG4gICAgYm90dG9tOiAwO1xyXG4gICAgbGVmdDogMDtcclxuICAgIHotaW5kZXg6IDEwMDA7XHJcbiAgICBwYWRkaW5nOiAyMHB4IDA7XHJcbiAgICBvdmVyZmxvdy14OiBoaWRkZW47XHJcbiAgICBvdmVyZmxvdy15OiBhdXRvO1xyXG4gICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgI2VlZTtcclxuICAgIHdpZHRoOiAyNTBweDtcclxuICB9XHJcbiAgXHJcbiAgLnNpZGViYXIgLm5hdi1pdGVtIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gIH1cclxuICAuYmctZGFya3tcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNkMDRhMDIgIWltcG9ydGFudDtcclxuICB9XHJcbiAgXHJcbiAgQG1lZGlhIChtaW4td2lkdGg6IDI1MHB4KSAubWwtc20tYXV0bywgLm14LXNtLWF1dG8ge1xyXG4gICAgICBtYXJnaW4tbGVmdDogYXV0byAhaW1wb3J0YW50O1xyXG4gIH1cclxuICAuY2FyZC1zdHlsZXtcclxuICAgIGJveC1zaGFkb3c6IDFweCAxcHggMXB4IDFweCAjN2Q3ZDdkO1xyXG4gIH1cclxuICAuY3VzdG9tLWNhcmR7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwcmVtICFpbXBvcnRhbnQ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xyXG4gICAgd2lkdGg6IDE4NHB4O1xyXG4gIH1cclxuICAuY2FyZC1zdGF0dXMtZ3JlZW57XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTc1ZDJkO1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG4gIC5jYXJkLXN0YXR1cy1yZWR7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTAzMDFlO1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG4gIC5jYXJkLXN0YXR1cy15ZWxsb3d7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZiNjAwO1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG4gICJdfQ== */"
+module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bottom: 0;\r\n    left: 0;\r\n    z-index: 1000;\r\n    padding: 20px 0;\r\n    overflow-x: hidden;\r\n    overflow-y: auto;\r\n    border-right: 1px solid #eee;\r\n    width: 250px;\r\n  }\r\n  \r\n  .sidebar .nav-item {\r\n    width: 100%;\r\n  }\r\n  \r\n  .bg-dark{\r\n    background-color: #d04a02 !important;\r\n  }\r\n  \r\n  @media (min-width: 250px) .ml-sm-auto, .mx-sm-auto {\r\n      margin-left: auto !important;\r\n  }\r\n  \r\n  .card-style{\r\n    box-shadow: 1px 1px 1px 1px #7d7d7d;\r\n  }\r\n  \r\n  .custom-card{\r\n    border-radius: 0rem !important;\r\n    background-color: #ffffff;\r\n    width: 184px;\r\n  }\r\n  \r\n  .card-status-green{\r\n    background-color: #175d2d;\r\n    color: #ffffff;\r\n  }\r\n  \r\n  .card-status-red{\r\n    background-color: #e0301e;\r\n    color: #ffffff;\r\n  }\r\n  \r\n  .card-status-yellow{\r\n    background-color: #ffb600;\r\n    color: #ffffff;\r\n  }\r\n  \r\n  /* Text decoration display */\r\n  \r\n  div.slide-right h5{\r\n  -webkit-animation: 10s slide-right;\r\n  animation: 10s slide-right;\r\n  margin:0;\r\n}\r\n  \r\n  div.slide-left h5{\r\n  -webkit-animation: 10s slide-left;\r\n  animation: 10s slide-left;\r\n  margin:0;\r\n}\r\n  \r\n  @-webkit-keyframes slide-right { from { margin-left: 40%;width: 100%; }\r\n  to {margin-left: 0%;width: 100%;} }\r\n  \r\n  @keyframes slide-right { from { margin-left: 40%;width: 100%; }\r\n  to {margin-left: 0%;width: 100%;} }\r\n  \r\n  @-webkit-keyframes slide-left { from {margin-left: 0%;width: 100%;}\r\n to {margin-left: 0%;width: 100%;} }\r\n  \r\n  @keyframes slide-left { from {margin-left: 0%;width: 100%;}\r\n to {margin-left: 0%;width: 100%;} }\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcGVyZm9ybWFuY2UvbW9kdWxlcGVyZm9ybWFuY2UuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGVBQWU7SUFDZixRQUFRO0lBQ1IsU0FBUztJQUNULE9BQU87SUFDUCxhQUFhO0lBQ2IsZUFBZTtJQUNmLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsNEJBQTRCO0lBQzVCLFlBQVk7RUFDZDs7RUFFQTtJQUNFLFdBQVc7RUFDYjs7RUFDQTtJQUNFLG9DQUFvQztFQUN0Qzs7RUFFQTtNQUNJLDRCQUE0QjtFQUNoQzs7RUFDQTtJQUNFLG1DQUFtQztFQUNyQzs7RUFDQTtJQUNFLDhCQUE4QjtJQUM5Qix5QkFBeUI7SUFDekIsWUFBWTtFQUNkOztFQUNBO0lBQ0UseUJBQXlCO0lBQ3pCLGNBQWM7RUFDaEI7O0VBQ0E7SUFDRSx5QkFBeUI7SUFDekIsY0FBYztFQUNoQjs7RUFDQTtJQUNFLHlCQUF5QjtJQUN6QixjQUFjO0VBQ2hCOztFQUVGLDRCQUE0Qjs7RUFFNUI7RUFFRSxrQ0FBa0M7RUFFbEMsMEJBQTBCO0VBQzFCLFFBQVE7QUFDVjs7RUFDQTtFQUVFLGlDQUFpQztFQUVqQyx5QkFBeUI7RUFDekIsUUFBUTtBQUNWOztFQUNBLGlDQUFpQyxPQUFPLGdCQUFnQixDQUFDLFdBQVcsRUFBRTtFQUNwRSxJQUFJLGVBQWUsQ0FBQyxXQUFXLENBQUMsRUFBRTs7RUFLcEMseUJBQXlCLE9BQU8sZ0JBQWdCLENBQUMsV0FBVyxFQUFFO0VBQzVELElBQUksZUFBZSxDQUFDLFdBQVcsQ0FBQyxFQUFFOztFQUVwQyxnQ0FBZ0MsTUFBTSxlQUFlLENBQUMsV0FBVyxDQUFDO0NBQ2pFLElBQUksZUFBZSxDQUFDLFdBQVcsQ0FBQyxFQUFFOztFQUtuQyx3QkFBd0IsTUFBTSxlQUFlLENBQUMsV0FBVyxDQUFDO0NBQ3pELElBQUksZUFBZSxDQUFDLFdBQVcsQ0FBQyxFQUFFIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcGVyZm9ybWFuY2UvbW9kdWxlcGVyZm9ybWFuY2UuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zaWRlYmFyIHtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogMHB4O1xyXG4gICAgYm90dG9tOiAwO1xyXG4gICAgbGVmdDogMDtcclxuICAgIHotaW5kZXg6IDEwMDA7XHJcbiAgICBwYWRkaW5nOiAyMHB4IDA7XHJcbiAgICBvdmVyZmxvdy14OiBoaWRkZW47XHJcbiAgICBvdmVyZmxvdy15OiBhdXRvO1xyXG4gICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgI2VlZTtcclxuICAgIHdpZHRoOiAyNTBweDtcclxuICB9XHJcbiAgXHJcbiAgLnNpZGViYXIgLm5hdi1pdGVtIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gIH1cclxuICAuYmctZGFya3tcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNkMDRhMDIgIWltcG9ydGFudDtcclxuICB9XHJcbiAgXHJcbiAgQG1lZGlhIChtaW4td2lkdGg6IDI1MHB4KSAubWwtc20tYXV0bywgLm14LXNtLWF1dG8ge1xyXG4gICAgICBtYXJnaW4tbGVmdDogYXV0byAhaW1wb3J0YW50O1xyXG4gIH1cclxuICAuY2FyZC1zdHlsZXtcclxuICAgIGJveC1zaGFkb3c6IDFweCAxcHggMXB4IDFweCAjN2Q3ZDdkO1xyXG4gIH1cclxuICAuY3VzdG9tLWNhcmR7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwcmVtICFpbXBvcnRhbnQ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xyXG4gICAgd2lkdGg6IDE4NHB4O1xyXG4gIH1cclxuICAuY2FyZC1zdGF0dXMtZ3JlZW57XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTc1ZDJkO1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG4gIC5jYXJkLXN0YXR1cy1yZWR7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTAzMDFlO1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG4gIC5jYXJkLXN0YXR1cy15ZWxsb3d7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZiNjAwO1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG5cclxuLyogVGV4dCBkZWNvcmF0aW9uIGRpc3BsYXkgKi9cclxuXHJcbmRpdi5zbGlkZS1yaWdodCBoNXtcclxuICAtbW96LWFuaW1hdGlvbjogMTBzIHNsaWRlLXJpZ2h0O1xyXG4gIC13ZWJraXQtYW5pbWF0aW9uOiAxMHMgc2xpZGUtcmlnaHQ7XHJcbiAgLW8tYW5pbWF0aW9uOiAxMHMgc2xpZGUtcmlnaHQ7XHJcbiAgYW5pbWF0aW9uOiAxMHMgc2xpZGUtcmlnaHQ7XHJcbiAgbWFyZ2luOjA7XHJcbn1cclxuZGl2LnNsaWRlLWxlZnQgaDV7XHJcbiAgLW1vei1hbmltYXRpb246IDEwcyBzbGlkZS1sZWZ0O1xyXG4gIC13ZWJraXQtYW5pbWF0aW9uOiAxMHMgc2xpZGUtbGVmdDtcclxuICAtby1hbmltYXRpb246IDEwcyBzbGlkZS1sZWZ0O1xyXG4gIGFuaW1hdGlvbjogMTBzIHNsaWRlLWxlZnQ7XHJcbiAgbWFyZ2luOjA7XHJcbn1cclxuQC13ZWJraXQta2V5ZnJhbWVzIHNsaWRlLXJpZ2h0IHsgZnJvbSB7IG1hcmdpbi1sZWZ0OiA0MCU7d2lkdGg6IDEwMCU7IH1cclxuICB0byB7bWFyZ2luLWxlZnQ6IDAlO3dpZHRoOiAxMDAlO30gfVxyXG5ALW1vei1rZXlmcmFtZXMgc2xpZGUtcmlnaHQgeyBmcm9tIHsgbWFyZ2luLWxlZnQ6IDQwJTt3aWR0aDogMTAwJTsgfVxyXG4gIHRvIHttYXJnaW4tbGVmdDogMCU7d2lkdGg6IDEwMCU7fSB9XHJcbiBALW8ta2V5ZnJhbWVzIHNsaWRlLXJpZ2h0IHsgZnJvbSB7IG1hcmdpbi1sZWZ0OiA0MCU7d2lkdGg6IDEwMCU7IH1cclxuICB0byB7bWFyZ2luLWxlZnQ6IDAlO3dpZHRoOiAxMDAlO30gfVxyXG5Aa2V5ZnJhbWVzIHNsaWRlLXJpZ2h0IHsgZnJvbSB7IG1hcmdpbi1sZWZ0OiA0MCU7d2lkdGg6IDEwMCU7IH1cclxuICB0byB7bWFyZ2luLWxlZnQ6IDAlO3dpZHRoOiAxMDAlO30gfVxyXG5cclxuQC13ZWJraXQta2V5ZnJhbWVzIHNsaWRlLWxlZnQgeyBmcm9tIHttYXJnaW4tbGVmdDogMCU7d2lkdGg6IDEwMCU7fVxyXG4gdG8ge21hcmdpbi1sZWZ0OiAwJTt3aWR0aDogMTAwJTt9IH1cclxuQC1tb3ota2V5ZnJhbWVzIHNsaWRlLWxlZnQgeyBmcm9tIHttYXJnaW4tbGVmdDogMCU7d2lkdGg6IDEwMCU7fVxyXG4gdG8ge21hcmdpbi1sZWZ0OiAwJTt3aWR0aDogMTAwJTt9IH1cclxuQC1vLWtleWZyYW1lcyBzbGlkZS1sZWZ0IHsgZnJvbSB7bWFyZ2luLWxlZnQ6IDAlO3dpZHRoOiAxMDAlO31cclxuIHRvIHttYXJnaW4tbGVmdDogMCU7d2lkdGg6IDEwMCU7fSB9XHJcbkBrZXlmcmFtZXMgc2xpZGUtbGVmdCB7IGZyb20ge21hcmdpbi1sZWZ0OiAwJTt3aWR0aDogMTAwJTt9XHJcbiB0byB7bWFyZ2luLWxlZnQ6IDAlO3dpZHRoOiAxMDAlO30gfVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -394,7 +1372,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"/module-performance\">Home <span class=\"sr-only\">(current)</span></a>\n      </li>\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"/sewing-module\">Sewing<span class=\"sr-only\"></span></a>\n      </li>\n    </ul>\n    <!-- <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4> -->\n  </div>\n</nav>\n<nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5\">\n  <ul class=\"nav nav-pills flex-column\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link active\" id=\"moduleperformance_href\" href=\"moduleperformance\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline font-weight-bold\">Module Performance</span></a>\n    </li>\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" id=\"operationmodule_href\" href=\"operationmodule\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"operationmodule_span\" class=\"d-none d-md-inline font-weight-bold\">Operation Module</span></a>\n    </li>\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" id=\"process_href\" href=\"process\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"process_span\" class=\"d-none d-md-inline font-weight-bold\">Process</span></a>\n    </li>\n  </ul>\n</nav>\n\n<main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 pt-3 main\">\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\n    <div class=\"tab-pane fade hide-show\" id=\"moduleperformance\" role=\"tabpanel\" aria-labelledby=\"ModulePerformance-tab\">\n      <h3 class=\"text-center\">Module wise performance  </h3>\n      <div class=\"row align-items-center h-100 mt-3\">\n        <div class=\"col-4\">\n          <div class=\"card card-style\">\n            <div class=\"card-body text-center\">\n              <div [chart]=\"operationGaugeFormat\" style=\"cursor: pointer;\" (click)=\"navigateToOperation('operationmodule')\"></div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-4\">\n          <div class=\"card card-style\">\n            <div class=\"card-body text-center\">\n              <div [chart]=\"socialSustainabilityGaugeFormat\"></div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-4\">\n          <div class=\"card card-style\">\n            <div class=\"card-body text-center\">\n              <div [chart]=\"environmentalSustainabilityGaugeChart\"></div>\n            </div>\n          </div>\n        </div>\n      </div>\n      \n  </div>\n  <div class=\"tab-pane fade hide-show\" id=\"operationmodule\" role=\"tabpanel\" aria-labelledby=\"OperationModule-tab\">\n    <h3 class=\"text-center\">Operation wise performance  </h3>\n    <div class=\"row align-items-center h-100 mt-3\">\n      <div class=\"col-4\">\n        <div class=\"card card-style\">\n          <div class=\"card-body text-center\">\n            <div [chart] = \"gaugeInline\"></div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-4\">\n        <div class=\"card card-style\">\n          <div class=\"card-body text-center\">\n            <div [chart] = \"gaugeProcess\" style=\"cursor: pointer;\" (click)=\"navigateToOperation('process')\"></div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-4\">\n        <div class=\"card card-style\">\n          <div class=\"card-body text-center\">\n            <div [chart] = \"gaugeOutward\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n    <div class=\"tab-pane fade show active hide-show\" id=\"process\" role=\"tabpanel\" aria-labelledby=\"OperationModule-tab\">\n      <h3 class=\"text-center\">How I am Performing</h3>\n      <div class=\"row\">\n        <div class=\"col-2\">\n          <div class=\"custom-card pl-1 pr-1 pt-2 pb-1\">\n            <h6 style=\"font-size: smaller;\">Fabric Store</h6>\n            <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">73<span class=\"text-c-green m-l-10\"></span></h6>\n            <div class=\"progress\"> \n                <div class=\"progress-bar progress-bar-striped card-status-green\" style=\"width: 73%\" aria-valuenow=\"73\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\n            </div>\n          </div>\n        </div>\n      <div class=\"col-2 ml-4\">\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\n          <h6 style=\"font-size: smaller;\">Spreading & Cutting</h6>\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">62<span class=\"text-c-green m-l-10\"></span></h6>\n          <div class=\"progress\"> \n              <div class=\"progress-bar progress-bar-striped card-status-yellow\" style=\"width: 62%\" aria-valuenow=\"62\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-2 ml-4\">\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\n          <h6 style=\"font-size: smaller;\">Trim Store</h6>\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">31<span class=\"text-c-green m-l-10\"></span></h6>\n          <div class=\"progress\"> \n              <div class=\"progress-bar progress-bar-striped card-status-red\" style=\"width: 31%\" aria-valuenow=\"31\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col-2 ml-4\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">\n          <h6 style=\"font-size: smaller;\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">Sewing</h6>\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">30<span class=\"text-c-green m-l-10\"></span></h6>\n          <div class=\"progress\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\"> \n              <div class=\"progress-bar progress-bar-striped card-status-red\" style=\"width: 30%\" aria-valuenow=\"30\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"col-2 ml-4\">\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\n          <h6 style=\"font-size: smaller;\">Finishing & Packing</h6>\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">70<span class=\"text-c-green m-l-10\"></span></h6>\n          <div class=\"progress\"> \n              <div class=\"progress-bar progress-bar-striped card-status-green\" style=\"width: 70%\" aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\n          </div>\n        </div>\n      </div>\n\n      </div>\n      <div class=\"row mt-3\">\n        <div class=\"col-12\">\n          <div #processBubble style=\"height: 370px;\"></div>\n        </div>\n      </div>\n      \n    </div>\n  </section>\n</main>"
+module.exports = "<!-- <link rel=\"stylesheet\" href=\"../../../node_modules/ng2-org-chart/styles.css\"> -->\r\n<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/module-performance\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/sewing-module\">Sewing<span class=\"sr-only\"></span></a>\r\n      </li>\r\n    </ul>\r\n    <!-- <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4> -->\r\n  </div>\r\n</nav>\r\n<nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <ul class=\"nav nav-pills flex-column\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link active\" id=\"dashbaord_href\" href=\"dashbaord\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"moduleperformance_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"operationmodule_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"operationmodule_span\" class=\"d-none d-md-inline\">Social Sustainablity</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"environmental_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"environmental_span\" class=\"d-none d-md-inline\">Environmental Sustainability</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"outward_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"outward_span\" class=\"d-none d-md-inline\">Outward</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"processes_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"processes_span\" class=\"d-none d-md-inline\">Processes</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"inward_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"inward_span\" class=\"d-none d-md-inline\">Inward</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"fabric_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"fabric_span\" class=\"d-none d-md-inline\">Fabric & Trims Store </span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"spreading_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"spreading_span\" class=\"d-none d-md-inline\">Spreading & Cutting</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"sewing_href\" href=\"#\" style=\"cursor: pointer;\" data-toggle=\"pill\" (click)=\"sewingNavigation()\"><span id=\"sewing_span\" class=\"d-none d-md-inline\">Sewing</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"finishing_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"finishing_span\" class=\"d-none d-md-inline\">Finishing & Packaging</span></a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n<main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 pt-3 main\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"tab-pane active\" id=\"dashbaord\" role=\"tabpanel\" aria-labelledby=\"ModulePerformance-tab\">\r\n        <!-- <h3 class=\"text-center\">Module wise performance  </h3> -->\r\n        <div class=\"row align-items-center h-100 mt-3\">\r\n          <div class=\"col-6\">\r\n            <div class=\"card\">\r\n              <div class=\"card-body pt-3\">\r\n                <div class=\"slide-right\" id=\"animationTextDisplay\">\r\n                  <h5 style=\"font-size: 15px; font-weight: bold;\">Will the tool save resources for my sewing department ?</h5>\r\n                  <ul class=\"mt-4\">\r\n                    <li class=\"mt-2\">\r\n                      <div>\r\n                        <span style=\"font-weight: bold;\">Near Real time</span><span> tracking of Line efficiency and quality parameters</span>\r\n                      </div>\r\n                    </li>\r\n                    <li class=\"mt-2\">\r\n                      <div>\r\n                        <span style=\"font-weight: bold;\">Strength Value</span><span> determination for stitching various products line wise/section wise</span>\r\n                      </div>\r\n                    </li>\r\n                    <li class=\"mt-2\">\r\n                      <span style=\"font-weight: bold;\">Threshold alert</span><span> for bottlenecks, low quality or high downtime in sewing lines. The alert also shows the action to be taken and the responsible person.</span>\r\n                    </li>\r\n                  </ul>\r\n                  <p  style=\"font-size: 17px;\">\r\n                    Your supervisor manages 3 lines, in one of which there is a style changeover is going on so he/she is engaged there. In the meantime due to some machine fault another line running Polo -Ts starts facing challenge in placket finish operation. The tool alerts the issue in realtime to him. He can then rectify the fault ASAP preventing more alterations.\r\n                  </p>\r\n                </div>\r\n                \r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-6\">\r\n            <div [chart]=\"processBubble\" style=\"height: 480px;\"></div>\r\n          </div>\r\n          \r\n          \r\n          <!-- <div class=\"col-4\">\r\n            <div class=\"card card-style\">\r\n              <div class=\"card-body text-center\">\r\n                <div [chart]=\"operationGaugeFormat\" style=\"cursor: pointer;\" (click)=\"navigateToOperation('operationmodule')\"></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-4\">\r\n            <div class=\"card card-style\">\r\n              <div class=\"card-body text-center\">\r\n                <div [chart]=\"socialSustainabilityGaugeFormat\"></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-4\">\r\n            <div class=\"card card-style\">\r\n              <div class=\"card-body text-center\">\r\n                <div [chart]=\"environmentalSustainabilityGaugeChart\"></div>\r\n              </div>\r\n            </div>\r\n          </div> -->\r\n        </div>\r\n        \r\n    </div>\r\n    <!-- <div class=\"tab-pane fade hide-show\" id=\"operationmodule\" role=\"tabpanel\" aria-labelledby=\"OperationModule-tab\">\r\n      <h3 class=\"text-center\">Operation wise performance  </h3>\r\n      <div class=\"row align-items-center h-100 mt-3\">\r\n        <div class=\"col-4\">\r\n          <div class=\"card card-style\">\r\n            <div class=\"card-body text-center\">\r\n              <div [chart] = \"gaugeInline\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <div class=\"card card-style\">\r\n            <div class=\"card-body text-center\">\r\n              <div [chart] = \"gaugeProcess\" style=\"cursor: pointer;\" (click)=\"navigateToOperation('process')\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <div class=\"card card-style\">\r\n            <div class=\"card-body text-center\">\r\n              <div [chart] = \"gaugeOutward\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"tab-pane fade show hide-show\" id=\"process\" role=\"tabpanel\" aria-labelledby=\"OperationModule-tab\">\r\n      <h3 class=\"text-center\">How I am Performing</h3>\r\n      <div class=\"row\">\r\n        <div class=\"col-2\">\r\n          <div class=\"custom-card pl-1 pr-1 pt-2 pb-1\">\r\n            <h6 style=\"font-size: smaller;\">Fabric Store</h6>\r\n            <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">73<span class=\"text-c-green m-l-10\"></span></h6>\r\n            <div class=\"progress\"> \r\n                <div class=\"progress-bar progress-bar-striped card-status-green\" style=\"width: 73%\" aria-valuenow=\"73\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      <div class=\"col-2 ml-4\">\r\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\r\n          <h6 style=\"font-size: smaller;\">Spreading & Cutting</h6>\r\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">62<span class=\"text-c-green m-l-10\"></span></h6>\r\n          <div class=\"progress\"> \r\n              <div class=\"progress-bar progress-bar-striped card-status-yellow\" style=\"width: 62%\" aria-valuenow=\"62\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-2 ml-4\">\r\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\r\n          <h6 style=\"font-size: smaller;\">Trim Store</h6>\r\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">31<span class=\"text-c-green m-l-10\"></span></h6>\r\n          <div class=\"progress\"> \r\n              <div class=\"progress-bar progress-bar-striped card-status-red\" style=\"width: 31%\" aria-valuenow=\"31\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-2 ml-4\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">\r\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">\r\n          <h6 style=\"font-size: smaller;\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">Sewing</h6>\r\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">30<span class=\"text-c-green m-l-10\"></span></h6>\r\n          <div class=\"progress\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\"> \r\n              <div class=\"progress-bar progress-bar-striped card-status-red\" style=\"width: 30%\" aria-valuenow=\"30\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-2 ml-4\">\r\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\r\n          <h6 style=\"font-size: smaller;\">Finishing & Packing</h6>\r\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">70<span class=\"text-c-green m-l-10\"></span></h6>\r\n          <div class=\"progress\"> \r\n              <div class=\"progress-bar progress-bar-striped card-status-green\" style=\"width: 70%\" aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      </div>\r\n      <div class=\"row mt-3\">\r\n        <div class=\"col-6\">\r\n          <div class=\"card\">\r\n            <div class=\"card-body pt-3\">\r\n              <div class=\"slide-right\" id=\"animationTextDisplay\">\r\n                <h5 style=\"font-size: 15px; font-weight: bold;\">Will the tool save resources for my sewing department ?</h5>\r\n                <ul class=\"mt-4\">\r\n                  <li class=\"mt-2\">\r\n                    <div>\r\n                      <span style=\"font-weight: bold;\">Near Real time</span><span> tracking of Line efficiency and quality parameters</span>\r\n                    </div>\r\n                  </li>\r\n                  <li class=\"mt-2\">\r\n                    <div>\r\n                      <span style=\"font-weight: bold;\">Strength Value</span><span> determination for stitching various products line wise/section wise</span>\r\n                    </div>\r\n                  </li>\r\n                  <li class=\"mt-2\">\r\n                    <span style=\"font-weight: bold;\">Threshold alert</span><span> for bottlenecks, low quality or high downtime in sewing lines. The alert also shows the action to be taken and the responsible person.</span>\r\n                  </li>\r\n                </ul>\r\n                <p  style=\"font-size: 17px;\">\r\n                  Your supervisor manages 3 lines, in one of which there is a style changeover is going on so he/she is engaged there. In the meantime due to some machine fault another line running Polo -Ts starts facing challenge in placket finish operation. The tool alerts the issue in realtime to him. He can then rectify the fault ASAP preventing more alterations.\r\n                </p>\r\n              </div>\r\n              \r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-6\">\r\n          <div [chart]=\"processBubble\" style=\"height: 370px;\"></div>\r\n        </div>\r\n      </div>\r\n      \r\n    </div> -->\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -424,25 +1402,23 @@ __webpack_require__.r(__webpack_exports__);
 
 var Boost = __webpack_require__(/*! highcharts/modules/boost */ "./node_modules/highcharts/modules/boost.js");
 var noData = __webpack_require__(/*! highcharts/modules/no-data-to-display */ "./node_modules/highcharts/modules/no-data-to-display.js");
-var More = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
+var more = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
 var Exporting = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
-// let Accessibility = require('highcharts/modules/');
+var Sunburst = __webpack_require__(/*! highcharts/modules/sunburst */ "./node_modules/highcharts/modules/sunburst.js");
 Boost(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 noData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
-More(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+more(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 noData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 Exporting(highcharts__WEBPACK_IMPORTED_MODULE_5__);
-// import * as  Highcharts from 'highcharts';
-// import more from 'highcharts/highcharts-more';
-// more(Highcharts);
-// import Drilldown from 'highcharts/modules/drilldown';
-// Drilldown(Highcharts);
-// import Exporting from 'highcharts/modules/exporting';
-// Exporting(Highcharts);
+var ExportData = __webpack_require__(/*! highcharts/modules/export-data */ "./node_modules/highcharts/modules/export-data.js");
+ExportData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+var Accessibility = __webpack_require__(/*! highcharts/modules/accessibility */ "./node_modules/highcharts/modules/accessibility.js");
+Accessibility(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+Sunburst(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 var ModuleperformanceComponent = /** @class */ (function () {
     function ModuleperformanceComponent(_router) {
         this._router = _router;
-        //   processBubble : Chart;
+        this.Highcharts = highcharts__WEBPACK_IMPORTED_MODULE_5__;
         this.onclickStyle = {
             cursor: "pointer"
         };
@@ -452,6 +1428,8 @@ var ModuleperformanceComponent = /** @class */ (function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").css("margin-left", "15%");
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").hide();
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".footer").hide();
+        this.to_left();
+        this.to_right();
         this.createOperationOverView();
         this.createSocialSustainablityOverview();
         this.createEnvironmentalSustainablityOverview();
@@ -1196,155 +2174,198 @@ var ModuleperformanceComponent = /** @class */ (function () {
         });
     };
     ModuleperformanceComponent.prototype.createProcessOverview = function () {
-        highcharts__WEBPACK_IMPORTED_MODULE_5__["chart"](this.processBubble.nativeElement, {
+        var data = [
+            {
+                id: '0.0',
+                parent: '',
+                name: 'Alpine Garments'
+            },
+            {
+                id: '1.3',
+                parent: '0.0',
+                name: 'Operations',
+                value: 30
+            },
+            {
+                id: '1.1',
+                parent: '0.0',
+                name: 'Social Sustainability',
+                value: 70
+            },
+            {
+                id: '1.2',
+                parent: '0.0',
+                name: 'Environmental Sustainability',
+                value: 60
+            },
+            {
+                id: '2.1',
+                parent: '1.3',
+                name: 'Inward',
+                value: 30
+            },
+            {
+                id: '2.2',
+                parent: '1.3',
+                name: 'Processes',
+                value: 40
+            },
+            {
+                id: '2.3',
+                parent: '1.3',
+                name: 'Processes',
+                value: 60
+            },
+            //starting nested chart
+            {
+                id: '3.1',
+                parent: '2.3',
+                name: 'Fabric & Trims store ',
+                value: 30
+            },
+            {
+                id: '3.2',
+                parent: '2.3',
+                name: 'Spreading & Cutting',
+                value: 40
+            },
+            {
+                id: '3.3',
+                parent: '2.3',
+                name: 'Sewing',
+                value: 60
+            },
+            {
+                id: '3.4',
+                parent: '2.3',
+                name: 'Finishing & packaging',
+                value: 60
+            },
+            // starting sub modules of Social Sustain
+            {
+                id: '3.5',
+                parent: '1.1',
+                name: 'Worker health & safety',
+                value: 60
+            },
+            {
+                id: '3.6',
+                parent: '1.1',
+                name: 'Worker health & safety',
+                value: 30
+            },
+            {
+                id: '3.7',
+                parent: '1.1',
+                name: 'Working hrs',
+                value: 36
+            },
+            {
+                id: '3.8',
+                parent: '1.1',
+                name: 'Compensation & benefits',
+                value: 65
+            },
+            {
+                id: '3.9',
+                parent: '1.1',
+                name: 'Skill developement',
+                value: 45
+            },
+            {
+                id: '4.1',
+                parent: '1.1',
+                name: 'HR Practices',
+                value: 33
+            },
+            {
+                id: '4.2',
+                parent: '1.1',
+                name: 'Facilites',
+                value: 55
+            },
+            //starting submoudule of enviroment
+            {
+                id: '4.3',
+                parent: '1.2',
+                name: 'Resource Management',
+                value: 57
+            },
+            {
+                id: '4.4',
+                parent: '1.2',
+                name: 'Waste Management',
+                value: 23
+            },
+            {
+                id: '4.5',
+                parent: '1.2',
+                name: 'Environment Management Plan',
+                value: 78
+            }
+        ];
+        // Splice in transparent for the center circle
+        highcharts__WEBPACK_IMPORTED_MODULE_5__["getOptions"]().colors.splice(0, 0, 'transparent');
+        this.processBubble = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
             chart: {
-                type: 'packedbubble',
-                height: '100%'
+            // height: '100%'
+            },
+            colors: [, '#e0301e', '#ffb600', '#175d2d', '#e0301e', '#ffb600', '#175d2d', '#e0301e', '#ffb600'],
+            credits: { enabled: false },
+            exporting: {
+                enabled: false
             },
             title: {
-                text: 'Carbon emissions around the world (2014)'
+                text: 'Overall Performance of Factory'
             },
-            tooltip: {
-                useHTML: true,
-                pointFormat: '<b>{point.name}:</b> {point.value}m CO<sub>2</sub>'
-            },
-            plotOptions: {
-                packedbubble: {
-                    minSize: '20%',
-                    maxSize: '100%',
-                    zMin: 0,
-                    zMax: 1000,
-                    layoutAlgorithm: {
-                        gravitationalConstant: 0.05,
-                        splitSeries: true,
-                        seriesInteraction: false,
-                        dragBetweenSeries: true,
-                        parentNodeLimit: true
-                    },
+            series: [{
+                    type: "sunburst",
+                    data: data,
+                    size: 500,
+                    allowDrillToNode: true,
+                    cursor: 'pointer',
                     dataLabels: {
-                        enabled: true,
                         format: '{point.name}',
                         filter: {
-                            property: 'y',
+                            property: 'innerArcLength',
                             operator: '>',
-                            value: 250
+                            value: 16
                         },
-                        style: {
-                            color: 'black',
-                            textOutline: 'none',
-                            fontWeight: 'normal'
-                        }
-                    }
-                }
-            },
-            series: [
-                {
-                    name: 'Europe',
-                    data: [{
-                            name: 'Germany',
-                            value: 767.1
+                        rotationMode: 'circular'
+                    },
+                    levels: [{
+                            level: 1,
+                            levelIsConstant: false,
+                            dataLabels: {
+                                color: "#000000"
+                                // filter: {
+                                //     property: 'outerArcLength',
+                                //     operator: '>',
+                                //     value: 64
+                                // }
+                            }
                         }, {
-                            name: 'Croatia',
-                            value: 20.7
+                            level: 2,
+                            colorByPoint: true
                         },
                         {
-                            name: "Belgium",
-                            value: 97.2
-                        },
-                        {
-                            name: "Czech Republic",
-                            value: 111.7
-                        },
-                        {
-                            name: "Netherlands",
-                            value: 158.1
+                            level: 3,
+                            colorVariation: {
+                                key: 'brightness',
+                                to: -0.3
+                            }
+                        }, {
+                            level: 4,
+                            colorVariation: {
+                                key: 'brightness',
+                                to: 0.3
+                            }
                         }]
-                },
-                {
-                    name: 'Africa',
-                    data: [{
-                            name: "Senegal",
-                            value: 8.2
-                        },
-                        {
-                            name: "Cameroon",
-                            value: 9.2
-                        },
-                        {
-                            name: "Zimbabwe",
-                            value: 13.1
-                        },
-                        {
-                            name: "Ghana",
-                            value: 14.1
-                        },
-                        {
-                            name: "Kenya",
-                            value: 14.1
-                        }]
-                },
-                {
-                    name: 'Oceania',
-                    data: [{
-                            name: "Australia",
-                            value: 409.4
-                        },
-                        {
-                            name: "New Zealand",
-                            value: 34.1
-                        },
-                        {
-                            name: "Papua New Guinea",
-                            value: 7.1
-                        }]
-                },
-                {
-                    name: 'North America',
-                    data: [{
-                            name: "Costa Rica",
-                            value: 7.6
-                        },
-                        {
-                            name: "Honduras",
-                            value: 8.4
-                        },
-                        {
-                            name: "Jamaica",
-                            value: 8.3
-                        },
-                        {
-                            name: "Panama",
-                            value: 10.2
-                        },
-                        {
-                            name: "Guatemala",
-                            value: 12
-                        }]
-                },
-                {
-                    name: 'South America',
-                    data: [{
-                            name: "El Salvador",
-                            value: 7.2
-                        },
-                        {
-                            name: "Uruguay",
-                            value: 8.1
-                        },
-                        {
-                            name: "Bolivia",
-                            value: 17.8
-                        },
-                        {
-                            name: "Trinidad and Tobago",
-                            value: 34
-                        },
-                        {
-                            name: "Ecuador",
-                            value: 43
-                        }]
-                }
-            ]
+                }],
+            tooltip: {
+                headerFormat: "",
+                pointFormat: 'Performance of <b>{point.name}</b> is <b>{point.value}%</b>'
+            }
         });
         // this.processBubble = new Chart({
         //     chart: {
@@ -1635,10 +2656,20 @@ var ModuleperformanceComponent = /** @class */ (function () {
             }
         });
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("processBubble", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
-    ], ModuleperformanceComponent.prototype, "processBubble", void 0);
+    ModuleperformanceComponent.prototype.shift_left = function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#animationTextDisplay').removeClass('slide-right').addClass('slide-left');
+    };
+    ModuleperformanceComponent.prototype.shitft_right = function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#animationTextDisplay').removeClass('slide-left').addClass('slide-right');
+    };
+    ModuleperformanceComponent.prototype.to_left = function () {
+        setInterval(this.shift_left, 10000);
+    };
+    ;
+    ModuleperformanceComponent.prototype.to_right = function () {
+        setInterval(this.shitft_right, 20000);
+    };
+    ;
     ModuleperformanceComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-moduleperformance',
@@ -1672,7 +2703,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"icon\" type=\"image/png\" href=\"../../assets/img/icons/favicon.ico\"/>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/animate/animate.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/css-hamburgers/hamburgers.min.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/animsition/css/animsition.min.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/select2/select2.min.css\">\t\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/daterangepicker/daterangepicker.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/css/util.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/css/main.css\">\n<div class=\"limiter\" style=\"margin-top: 2%;\">\n  <div class=\"container-login100\">\n    <div class=\"login100-more\" style=\"background-image: url('../../assets/img/backgroung_img1.jpg');\">\n    </div>\n    <div class=\"wrap-login100 p-l-50 p-r-50 p-t-10 p-b-50\">\n      <form class=\"login100-form validate-form\">\n        <span class=\"login100-form-title p-b-34\">\n          Register Your Account \n        </span>\n\n        <div class=\"wrap-input100 validate-input\" data-validate=\"Name is required\">\n          <span class=\"label-input100\">Full Name</span>\n          <input class=\"input100\" type=\"text\" name=\"name\" placeholder=\"Name...\" [(ngModel)]=\"fullname\">\n          <span class=\"focus-input100\"></span>\n        </div>\n\n        <div class=\"wrap-input100 validate-input\" data-validate = \"Valid email is required: ex@abc.xyz\">\n          <span class=\"label-input100\">Email</span>\n          <input class=\"input100\" type=\"text\" name=\"email\" placeholder=\"Email addess...\" [(ngModel)]=\"emailaddress\">\n          <span class=\"focus-input100\"></span>\n        </div>\n\n        <div class=\"wrap-input100 validate-input\" data-validate=\"Username is required\">\n          <span class=\"label-input100\">Username</span>\n          <input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username...\" [(ngModel)]=\"username\">\n          <span class=\"focus-input100\"></span>\n        </div>\n\n        <div class=\"wrap-input100 validate-input\" data-validate = \"Password is required\">\n          <span class=\"label-input100\">Password</span>\n          <input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"*************\" [(ngModel)]=\"password\">\n          <span class=\"focus-input100\"></span>\n        </div>\n\n        <div class=\"wrap-input100 validate-input\" data-validate = \"Confirm Password is required\">\n          <span class=\"label-input100\">Confirm Password</span>\n          <input class=\"input100\" type=\"password\" name=\"repeat-pass\" placeholder=\"*************\" [(ngModel)]=\"confirmpassword\">\n          <span class=\"focus-input100\"></span>\n        </div>\n\n        <div class=\"container-login100-form-btn\">\n          <div class=\"wrap-login100-form-btn\">\n            <div class=\"login100-form-bgbtn\"></div>\n            <button class=\"login100-form-btn\" (click)=\"register()\">\n              Sign Up\n            </button>\n          </div>\n\n          <a routerLink = \"/login\" class=\"dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30\">\n            Sign in\n            <i class=\"fa fa-long-arrow-right m-l-5\"></i>\n          </a>\n        </div>\n        <div [innerHTML]=\"validationMsg\" style=\"margin-top: 2%; color:#e0301e;\">\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n"
+module.exports = "<link rel=\"icon\" type=\"image/png\" href=\"../../assets/img/icons/favicon.ico\"/>\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/animate/animate.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/css-hamburgers/hamburgers.min.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/animsition/css/animsition.min.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/select2/select2.min.css\">\t\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/vendor/daterangepicker/daterangepicker.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/css/util.css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../assets/css/main.css\">\r\n<div class=\"limiter\" style=\"margin-top: 2%;\">\r\n  <div class=\"container-login100\">\r\n    <div class=\"login100-more\" style=\"background-image: url('../../assets/img/backgroung_img1.jpg');\">\r\n    </div>\r\n    <div class=\"wrap-login100 p-l-50 p-r-50 p-t-10 p-b-50\">\r\n      <form class=\"login100-form validate-form\">\r\n        <span class=\"login100-form-title p-b-34\">\r\n          Register Your Account \r\n        </span>\r\n\r\n        <div class=\"wrap-input100 validate-input\" data-validate=\"Name is required\">\r\n          <span class=\"label-input100\">Full Name</span>\r\n          <input class=\"input100\" type=\"text\" name=\"name\" placeholder=\"Name...\" [(ngModel)]=\"fullname\">\r\n          <span class=\"focus-input100\"></span>\r\n        </div>\r\n\r\n        <div class=\"wrap-input100 validate-input\" data-validate = \"Valid email is required: ex@abc.xyz\">\r\n          <span class=\"label-input100\">Email</span>\r\n          <input class=\"input100\" type=\"text\" name=\"email\" placeholder=\"Email addess...\" [(ngModel)]=\"emailaddress\">\r\n          <span class=\"focus-input100\"></span>\r\n        </div>\r\n\r\n        <div class=\"wrap-input100 validate-input\" data-validate=\"Username is required\">\r\n          <span class=\"label-input100\">Username</span>\r\n          <input class=\"input100\" type=\"text\" name=\"username\" placeholder=\"Username...\" [(ngModel)]=\"username\">\r\n          <span class=\"focus-input100\"></span>\r\n        </div>\r\n\r\n        <div class=\"wrap-input100 validate-input\" data-validate = \"Password is required\">\r\n          <span class=\"label-input100\">Password</span>\r\n          <input class=\"input100\" type=\"password\" name=\"pass\" placeholder=\"*************\" [(ngModel)]=\"password\">\r\n          <span class=\"focus-input100\"></span>\r\n        </div>\r\n\r\n        <div class=\"wrap-input100 validate-input\" data-validate = \"Confirm Password is required\">\r\n          <span class=\"label-input100\">Confirm Password</span>\r\n          <input class=\"input100\" type=\"password\" name=\"repeat-pass\" placeholder=\"*************\" [(ngModel)]=\"confirmpassword\">\r\n          <span class=\"focus-input100\"></span>\r\n        </div>\r\n\r\n        <div class=\"container-login100-form-btn\">\r\n          <div class=\"wrap-login100-form-btn\">\r\n            <div class=\"login100-form-bgbtn\"></div>\r\n            <button class=\"login100-form-btn\" (click)=\"register()\">\r\n              Sign Up\r\n            </button>\r\n          </div>\r\n\r\n          <a routerLink = \"/login\" class=\"dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30\">\r\n            Sign in\r\n            <i class=\"fa fa-long-arrow-right m-l-5\"></i>\r\n          </a>\r\n        </div>\r\n        <div [innerHTML]=\"validationMsg\" style=\"margin-top: 2%; color:#e0301e;\">\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1840,7 +2871,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/sewing-module\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/module-performance\">Module <span class=\"sr-only\"></span></a>\r\n      </li>\r\n    </ul>\r\n    <!-- <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4> -->\r\n  </div>\r\n</nav>\r\n<nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <ul class=\"nav nav-pills flex-column\">\r\n    <li class=\"nav-item\">\r\n      <div class=\"ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Year</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\">\r\n          <!-- <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"yearSelectAll\" /><span class=\"select-text\" id=\"yearSelectText\"> Select</span> All</label></a></li> -->\r\n          <li class=\"custom-li\" *ngFor=\"let option of year\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[year]' type=\"checkbox\" class=\"option justone year\" [value]=\"option.id\" [id]=\"'year_' + option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li>\r\n    <li class=\"nav-item mt-3\">\r\n      <div class=\"ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Month</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\"> \r\n          <!-- <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"monthSelectAll\"/><span id=\"monthSelectText\" class=\"select-text\"> Select</span> All</label></a></li> -->\r\n          <li class=\"custom-li\" *ngFor=\"let option of month\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[month]' type=\"checkbox\" class=\"option justone month\" [value]=\"option.id\" [id]=\"'month_' + option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li>\r\n    <li class=\"nav-item mt-3\">\r\n      <div class=\"dropdown ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Line</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\">\r\n          <!-- <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"lineSelectAll\"/><span id=\"lineSelectText\" class=\"select-text\"> Select</span> All</label></a></li> -->\r\n          <li class=\"custom-li\" *ngFor=\"let option of line\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[line]' type=\"checkbox\" class=\"option justone line\" [value]=\"option.id\" [id]=\"'line_' + option.id\" checked/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li>\r\n    <!-- <li class=\"nav-item mt-3\">\r\n      <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n    </li> -->\r\n    <!-- <li class=\"nav-item mt-3\">\r\n      <div class=\"dropdown ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Unit</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\">\r\n          <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"unitSelectAll\"/><span id=\"unitSelectText\" class=\"select-text\"> Select</span> All</label></a></li>\r\n          <li class=\"custom-li\" *ngFor=\"let option of unit\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li>\r\n    <li class=\"nav-item mt-3\">\r\n      <div class=\"dropdown ml-2\">\r\n        <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Location</span>\r\n        <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdownmenu\">\r\n          <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"locationSelectAll\"/><span id=\"locationSelectText\" class=\"select-text\"> Select</span> All</label></a></li>\r\n          <li class=\"custom-li\" *ngFor=\"let option of location\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[]' type=\"checkbox\" class=\"option justone location\" [value]=\"option.id\"/> {{option.name}}</label></a></li>\r\n        </ul>\r\n      </div>\r\n    </li> -->\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 main\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"tab-pane fade show active hide-show\" id=\"overallperformance\" role=\"tabpanel\" aria-labelledby=\"OverallPerformance-tab\">\r\n      <ul class=\"nav nav-pills\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" style=\"font-size: large;\" href=\"#kpi\" [ngClass]=\"{ 'active':activeTab==='search'}\" (click)=\"kpi('kpi')\"\r\n             data-toggle=\"pill\">KPI</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" style=\"font-size: large;\" href=\"#workEfficiency\" [ngClass]=\"{ 'active':activeTab==='workEfficiency'}\" data-toggle=\"pill\"\r\n             (click)=\"workEfficiency('workEfficiency')\">Am I Productive</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" style=\"font-size: large;\" href=\"#resourceStrength\" [ngClass]=\"{ 'active':activeTab==='resourceStrength'}\" data-toggle=\"pill\"\r\n             (click)=\"productivity('resourceStrength')\">Resource Strength</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" style=\"font-size: large;\" href=\"#productivity\" [ngClass]=\"{ 'active':activeTab==='productivity'}\" data-toggle=\"pill\"\r\n             (click)=\"productivity('productivity')\">Working Efficiently</a>\r\n        </li>\r\n      </ul>\r\n      <div class=\"tab-content\">\r\n        <div class=\"tab-pane\" id=\"kpi\" [ngClass]=\"{ 'active':activeTab==='kpi'}\"> \r\n          <div class=\"row align-items-center\">\r\n            <div class=\"col-4 mt-3 \">\r\n              <div class=\"card-status\" [ngStyle]= \"dhuStyle\">\r\n                <div class=\"pt-4 pb-4 reveal-text\" id=\"dhuCard\" style=\"display: none; height: auto; min-height: max-content; font-size: 16px; width: 350px;\">\r\n                </div>\r\n                <!-- <div class=\"progress\">\r\n                  <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"100\" [ngStyle]= \"dhuStyle\" [innerHTML]=\"dhuStyle.width\"></div>\r\n                </div> -->\r\n              </div>\r\n            </div>\r\n            <div class=\"col-4 mt-3\">\r\n              <div class=\"card-status\" [ngStyle]= \"defectStyle\">\r\n                <div class=\"ml-2 pt-4 pb-4 reveal-text\" id=\"defectCard\" style=\"display: none; height: auto; min-height: max-content; font-size: 16px; width: 350px;\"></div>\r\n                <!-- <div class=\"progress\" >\r\n                  <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" [ngStyle]= \"defectStyle\" [innerHTML]=\"defectStyle.width\"></div>\r\n                </div> -->\r\n              </div>\r\n            </div>\r\n            <div class=\"col-4 mt-3\">\r\n              <div class=\"card-status\" [ngStyle]= \"rejectStyle\">\r\n                <div class=\"pt-4 pb-4 ml-3 reveal-text\" id=\"rejectCard\" style=\"display: none; height: auto; min-height: max-content; font-size: 16px; width: 300px;\"></div>\r\n                  <!-- <div class=\"progress\" >\r\n                    <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" [ngStyle]= \"rejectStyle\" [innerHTML]=\"rejectStyle.width\"></div>\r\n                </div> -->\r\n              </div>\r\n              \r\n            </div>\r\n          </div>\r\n          <div class=\"row align-items-center h-100 mt-3\">\r\n            <div class=\"col-4\" id=\"capacityVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div #container style=\"height: 350px;width: 350px;\"></div>\r\n            </div>\r\n            <div class=\"col-4\" id=\"efficiencyVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div #efficiencyContainer style=\"width: 350px;height: 350px;\"></div>\r\n            </div>\r\n            <div class=\"col-4 \" id=\"mmrWIPVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div #mmrWIPContainer style=\"width: 350px;height: 350px;\"></div>\r\n            </div>\r\n            \r\n            <!-- <div class=\"col-3 mt-3 ml-2 \" id=\"dhuRejectDefectVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div #dhuRejectDefectContainer style=\"width: 200px;\"></div>\r\n            </div> -->\r\n          </div>\r\n\r\n        </div>\r\n        <div class=\"tab-pane\" id=\"workEfficiency\" [ngClass]=\"{ 'active':activeTab==='workEfficiency'}\">\r\n          <ul class=\"nav nav-pills\">\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link active\" style=\"font-size: large;\" href=\"#workEfficiencyLine\" data-toggle=\"pill\" (click)=\"getEfficiencyLineWiseCharts()\">Line Competency</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link\" style=\"font-size: large;\" href=\"#workEfficiencyUnit\" data-toggle=\"pill\" (click)=\"getEfficiencyUnitWiseCharts()\">Unit Competency</a>\r\n            </li>\r\n          </ul>\r\n          <div class=\"tab-pane fade show active\" id=\"workEfficiencyLine\">\r\n            <div class=\"row align-items-center h-100 mt-5\">\r\n              <div [chart]=\"WIPLine\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"alterationLine\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"workingLine\" class=\"col-4\" style=\"width: 350px; height: 350px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"tab-pane fade\" id=\"workEfficiencyUnit\">\r\n            <div class=\"row align-items-center h-100 mt-5\">\r\n              <div [chart]=\"WIPUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"alterationUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"workingUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"tab-pane\" id=\"productivity\" [ngClass]=\"{ 'active':activeTab==='productivity'}\">\r\n          <ul class=\"nav nav-pills\">\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link active\" style=\"font-size: large;\" href=\"#productivityLine\" data-toggle=\"pill\" (click)=\"getProductivityLineWiseCharts()\">Line Competency</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link\" style=\"font-size: large;\" href=\"#productivityUnit\" data-toggle=\"pill\" (click)=\"getProductivityUnitWiseCharts()\">Unit Competency</a>\r\n            </li>\r\n          </ul>\r\n          <div class=\"tab-pane fade show active\" id=\"productivityLine\">\r\n            <div class=\"row align-items-center h-100 mt-5\">\r\n              <div [chart]=\"productionLine\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"rejectionLine\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"dhuLine\" class=\"col-4\" style=\"width: 350px; height: 350px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"tab-pane fade\" id=\"productivityUnit\">\r\n            <div class=\"row align-items-center h-100 mt-5\">\r\n              <div [chart]=\"productionUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"rejectionUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"dhuUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"tab-pane\" id=\"resourceStrength\" [ngClass]=\"{ 'active':activeTab==='resourceStrength'}\">\r\n          <ul class=\"nav nav-pills\">\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link active\" style=\"font-size: large;\" href=\"#resourceStrengthLine\" data-toggle=\"pill\" (click)=\"getResourceStrengthLineWiseCharts()\">Line Competency</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link\" style=\"font-size: large;\" href=\"#resourceStrengthUnit\" data-toggle=\"pill\" (click)=\"getResourceStrengthUnitWiseCharts()\">Unit Competency</a>\r\n            </li>\r\n          </ul>\r\n          <div class=\"tab-pane fade show active\" id=\"resourceStrengthLine\">\r\n            <div class=\"row align-items-center h-100 mt-5\">\r\n              <div [chart]=\"operatorLine\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"helperLine\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"checkerLine\" class=\"col-4\" style=\"width: 350px; height: 350px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"tab-pane fade\" id=\"resourceStrengthUnit\">\r\n            <div class=\"row align-items-center h-100 mt-5\">\r\n              <div [chart]=\"operatorUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"helperUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n              <div [chart]=\"checkerUnit\" class=\"col-4 \" style=\"width: 350px; height: 350px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <h3 class=\"text-center\">Sewing KPI(s) </h3> -->\r\n      <!-- <hr class=\"footer\" /> -->\r\n      <!-- <div class=\"row align-items-center h-100\">\r\n        <div class=\"col-1\" style=\"font-size: 12px;\">Start Date</div>\r\n        <div class=\"col-2\" style=\"margin-left: -25px;\">\r\n          <ng-datepicker [(ngModel)]=\"startDate\" [options]=\"options\"></ng-datepicker>\r\n        </div>\r\n        <div class=\"col-1 ml-4\" style=\"font-size: 12px;\">End Date</div>\r\n        <div class=\"col-2\" style=\"margin-left: -25px;\">\r\n          <ng-datepicker [(ngModel)]=\"endDate\" [options]=\"options\"></ng-datepicker>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <button class=\"custom-button\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n        </div>\r\n      </div> -->\r\n      <!-- <div class=\"row align-items-center h-100 mt-1\">\r\n        <div class=\"col-4 mt-3 ml-2 \" id=\"mmrWIPVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n          <div #mmrWIPContainer style=\"width: 350px;height: 270px;\"></div>\r\n        </div>\r\n      </div> -->\r\n      \r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/sewing-module\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/module-performance\">Module <span class=\"sr-only\"></span></a>\r\n      </li>\r\n    </ul>\r\n    <!-- <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4> -->\r\n  </div>\r\n</nav>\r\n<nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <ul class=\"nav nav-pills flex-column\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"dashbaord_href\" href=\"#\" (click)=\"dashboardNavigation()\" data-toggle=\"pill\"><span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"moduleperformance_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"operationmodule_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"operationmodule_span\" class=\"d-none d-md-inline\">Social Sustainablity</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"environmental_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"environmental_span\" class=\"d-none d-md-inline\">Environmental Sustainability</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"outward_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"outward_span\" class=\"d-none d-md-inline\">Outward</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"processes_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"processes_span\" class=\"d-none d-md-inline\">Processes</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"inward_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"inward_span\" class=\"d-none d-md-inline\">Inward</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"fabric_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"fabric_span\" class=\"d-none d-md-inline\">Fabric & Trims Store </span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"spreading_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"spreading_span\" class=\"d-none d-md-inline\">Spreading & Cutting</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"sewing_href\" href=\"sewing\" (click)=\"tabNavigation($event)\" data-toggle=\"pill\"><span id=\"sewing_span\" class=\"d-none d-md-inline\">Sewing</span></a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" id=\"finishing_href\" href=\"#\" data-toggle=\"pill\" (click)=\"tabNavigation($event)\"><span id=\"finishing_span\" class=\"d-none d-md-inline\">Finishing & Packaging</span></a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 main\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"tab-pane active\" id=\"sewing\" role=\"tabpanel\" aria-labelledby=\"ModulePerformance-tab\">\r\n      <h5>Sewing Department</h5>\r\n      <ul class=\"nav nav-pills\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link submodule\" id=\"kpipage1_href\" style=\"font-size: large;\" href=\"#kpipage1\" [ngClass]=\"{ 'active':activeTab==='kpipage1'}\" data-toggle=\"pill\"\r\n          (click)=\"kpipag1('kpipage1')\">Page 1</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link submodule\" id=\"kpipage2_href\" style=\"font-size: large;\" href=\"#kpipage2\" [ngClass]=\"{ 'active':activeTab==='kpipage2'}\" data-toggle=\"pill\"\r\n          (click)=\"kpipag2('kpipag2')\">Page 2</a>\r\n        </li>\r\n      </ul>\r\n      <div class=\"tab-content\">\r\n        <div class=\"tab-pane\" id=\"kpipage1\" [ngClass]=\"{ 'active':activeTab==='kpipage1'}\">\r\n          <h6 style=\"font-weight: bold;\">Factory performance as on 31.01.2021</h6> \r\n          <!-- <ng-datepicker [(ngModel)]=\"startDate\" [options]=\"options\"></ng-datepicker> -->\r\n          <div class=\"row align-items-center h-100 mt-3\">\r\n            <div class=\"col-2 ml-4\" id=\"efficiencyVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateEfficiency()\" style=\"cursor: pointer;\">% Efficiency</button></div>\r\n                <div #efficiencyContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-2 ml-4\" id=\"capacityVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">% Capacity</button></div>\r\n                <div #capacityUtilizationContainer style=\"height: 350px\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-2 ml-4\" id=\"wipVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">WIP</button></div>\r\n                <div #wipContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n    \r\n            <div class=\"col-2 ml-4\" id=\"mmrVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">MMR</button></div>\r\n                <div #mmrContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-2 ml-4\" id=\"machineDowntimeVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">Machine Downtime</button></div>\r\n                <div #machineDowntimeContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"tab-pane\" id=\"kpipage2\" [ngClass]=\"{ 'active':activeTab==='kpipage2'}\">\r\n          <h6 style=\"font-weight: bold;\">Factory performance as on 31.01.2021</h6> \r\n          <!-- <ng-datepicker [(ngModel)]=\"startDate\" [options]=\"options\"></ng-datepicker> -->\r\n          <div class=\"row align-items-center h-100 mt-3\">\r\n            <div class=\"col-2 ml-4\" id=\"dhuVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">DHU</button></div>\r\n                <div #dhuContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-2 ml-4\" id=\"defectVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">Defect%</button></div>\r\n                <div #defectContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-2 ml-4\" id=\"rejectionVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">Rejection%</button></div>\r\n                <div #rejectionContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-2 ml-4\" id=\"absentismVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">Absentism</button></div>\r\n                <div #absentismContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-2 ml-4\" id=\"multiskillVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n              <div class=\"d-flex flex-column\">\r\n                <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\">Multiskill %</button></div>\r\n                <div #multiskillContainer style=\"height: 350px;\"></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      \r\n    </div>\r\n    \r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -1856,21 +2887,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SewingmoduleComponent", function() { return SewingmoduleComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/lib/jquery/dist/jquery.js */ "./src/assets/lib/jquery/dist/jquery.js");
-/* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns/locale/en */ "./node_modules/date-fns/locale/en/index.js");
-/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
-/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
-/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
-/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
-/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/lib/jquery/dist/jquery.js */ "./src/assets/lib/jquery/dist/jquery.js");
+/* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! date-fns/locale/en */ "./node_modules/date-fns/locale/en/index.js");
+/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale_en__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
+/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_11__);
 
 
 
@@ -1879,25 +2911,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+
+highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 
 
-highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
-// Load the exporting module.
+highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default()(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 
-// Initialize exporting module.
-highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_10___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_11___default()(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 var SewingmoduleComponent = /** @class */ (function () {
-    function SewingmoduleComponent(http) {
+    function SewingmoduleComponent(http, _router) {
         this.http = http;
-        this.userBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'kpicalculation';
+        this._router = _router;
+        this.userBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + 'kpicalculation';
         this.year = [
             { id: 2019, name: '2019' },
             { id: 2021, name: '2021' },
             { id: 2022, name: '2022' }
         ];
         this.options = {
-            locale: date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__,
+            locale: date_fns_locale_en__WEBPACK_IMPORTED_MODULE_6__,
             minYear: 1970,
             maxYear: 2030,
             displayFormat: 'MMM D[,] YYYY',
@@ -1945,560 +2977,858 @@ var SewingmoduleComponent = /** @class */ (function () {
         this.endDate = new Date();
     }
     SewingmoduleComponent.prototype.ngOnInit = function () {
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").css("margin-left", "15%");
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#topnavbar").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#footer").css("margin-left", "15%");
         this.selectAllOptions();
         this.getFilterData();
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").hide();
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".footer").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#footer").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".footer").hide();
         setInterval(function () {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuCard").addClass("reveal-text");
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#defectCard").addClass("reveal-text");
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#rejectCard").addClass("reveal-text");
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dhuCard").addClass("reveal-text");
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#defectCard").addClass("reveal-text");
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#rejectCard").addClass("reveal-text");
             setTimeout(function () {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuCard").removeClass("reveal-text");
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#defectCard").removeClass("reveal-text");
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#rejectCard").removeClass("reveal-text");
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dhuCard").removeClass("reveal-text");
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#defectCard").removeClass("reveal-text");
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#rejectCard").removeClass("reveal-text");
             }, 1500);
         }, 3000);
+        this.kpipag1("kpipag1");
         // this.kpi("kpi");
         // this.getSewingKPIAnalysis();
     };
     SewingmoduleComponent.prototype.getFilterData = function () {
-        var _this_1 = this;
-        var _this = this;
-        this.http.get(this.userBackendUrl).subscribe(function (data) {
-            if (data.statusCode == 200) {
-                data.responseData.lineMasterData.forEach(function (element) {
-                    _this.line.push({ id: element.Id, name: element.Name });
-                });
-                data.responseData.unitMasterData.forEach(function (element) {
-                    _this.unit.push({ id: element.Id, name: element.Name });
-                });
-                data.responseData.locationMasterData.forEach(function (element) {
-                    _this.location.push({ id: element.Id, name: element.Name });
-                });
-                var year = _this_1.startDate.getFullYear();
-                var month = _this_1.startDate.getMonth();
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#year_" + year).prop('checked', true);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#month_" + month).prop('checked', true);
-                _this.line.forEach(function (element) {
-                    var id = element.id.toString();
-                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_" + id).prop('checked', true);
-                });
-                _this.selectedYear.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#year_" + year).val()));
-                _this.selectedMonth.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#month_" + month).val()));
-                _this.selectedLine.push(1);
-                var KPIView = {
-                    Year: _this.selectedYear,
-                    Month: _this.selectedMonth,
-                    Line: [1, 2, 3, 4]
-                    // Line : _this.selectedLine
-                };
-                _this.callCapacityUtilizationApi(KPIView);
-            }
-        });
-    };
-    SewingmoduleComponent.prototype.getSewingKPIAnalysis = function () {
-        var _this = this;
-        var lineSelected = [];
-        var monthSelected = [];
-        var yearSelected = [];
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[line]"]:checked').each(function (i) {
-            lineSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
-        });
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[month]"]:checked').each(function (i) {
-            monthSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
-        });
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[year]"]:checked').each(function (i) {
-            yearSelected.push(parseInt(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val()));
-        });
-        this.selectedYear = yearSelected;
-        this.selectedLine = lineSelected;
-        this.selectedMonth = monthSelected;
         var KPIView = {
-            Year: this.selectedYear,
-            Month: this.selectedMonth,
+            Year: [2021],
+            Month: [1, 2, 3],
             Line: [1, 2, 3, 4]
+            // Line : _this.selectedLine
         };
-        this.callCapacityUtilizationApi(KPIView);
-        // this.callEfficiencyCalculationApi(KPIView);
+        this.calculateFirstPageKPIs(KPIView);
+        // var _this = this;
+        // this.http.get<any>(this.userBackendUrl).subscribe(data=>{
+        //   if(data.statusCode == 200){
+        //     data.responseData.lineMasterData.forEach(element => {
+        //       _this.line.push({id:element.Id, name: element.Name});
+        //     });
+        //     data.responseData.unitMasterData.forEach(element => {
+        //       _this.unit.push({id:element.Id, name: element.Name});
+        //     });
+        //     data.responseData.locationMasterData.forEach(element => {
+        //       _this.location.push({id:element.Id, name: element.Name})
+        //     });
+        //     var year= this.startDate.getFullYear();
+        //     var month = this.startDate.getMonth();
+        //     $("#year_"+year).prop('checked', true);
+        //     $("#month_"+month).prop('checked', true);
+        //     _this.line.forEach(element => {
+        //       var id = element.id.toString();
+        //       $("#line_"+id).prop('checked', true);
+        //     });
+        //     _this.selectedYear.push(parseInt($("#year_"+year).val()));
+        //     _this.selectedMonth.push(parseInt($("#month_"+month).val()));
+        //     _this.selectedLine.push(1);
+        //   }
+        // });
     };
-    SewingmoduleComponent.prototype.callCapacityUtilizationApi = function (KPIView) {
+    // getSewingKPIAnalysis(){
+    //   var _this = this;
+    //   var lineSelected = [];
+    //   var monthSelected = [];
+    //   var  yearSelected = [];
+    //   $('input[name="options[line]"]:checked').each(function(i){
+    //     lineSelected.push(parseInt($(this).val()));
+    //   });
+    //   $('input[name="options[month]"]:checked').each(function(i){
+    //     monthSelected.push(parseInt($(this).val()));
+    //   });
+    //   $('input[name="options[year]"]:checked').each(function(i){
+    //     yearSelected.push(parseInt($(this).val()));
+    //   });
+    //   this.selectedYear = yearSelected;
+    //   this.selectedLine = lineSelected;
+    //   this.selectedMonth = monthSelected;
+    //   var KPIView = {
+    //     Year : this.selectedYear,
+    //     Month : this.selectedMonth,
+    //     Line : [1,2,3,4]
+    //   }
+    //   this.calculateFirstPageKPIs(KPIView);
+    //   // this.callEfficiencyCalculationApi(KPIView);
+    // }
+    SewingmoduleComponent.prototype.calculateFirstPageKPIs = function (KPIView) {
         var _this_1 = this;
         var _this = this;
         this.http.post(this.userBackendUrl, KPIView).subscribe(function (responsedata) {
             if (responsedata.StatusCode == 200) {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#capacityVisual").show();
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#efficiencyVisual").show();
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuRejectDefectVisual").show();
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#mmrWIPVisual").show();
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuCard").show();
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#defectCard").show();
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#rejectCard").show();
-                // $("#dhuCard").html("% D.H.U");
-                // $("#defectCard").html("% Defect");
-                // $("#rejectCard").html("% Reject");
-                _this.dhuStyle = {
-                    backgroundColor: responsedata["DefectRejectDHUPercentage"]["Value"][0]["colorCode"],
-                };
-                _this.defectStyle = {
-                    backgroundColor: responsedata["DefectRejectDHUPercentage"]["Value"][1]["colorCode"],
-                    color: responsedata["DefectRejectDHUPercentage"]["Value"][1]["textColor"]
-                    // width : responsedata["DefectRejectDHUPercentage"]["Value"][1]["PercentageValue"],
-                };
-                _this.rejectStyle = {
-                    backgroundColor: responsedata["DefectRejectDHUPercentage"]["Value"][2]["colorCode"],
-                    color: responsedata["DefectRejectDHUPercentage"]["Value"][2]["textColor"]
-                    // width : responsedata["DefectRejectDHUPercentage"]["Value"][2]["PercentageValue"],
-                };
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dhuCard").html("% D.H.U is: " + responsedata["DefectRejectDHUPercentage"]["Value"][0]["y"]);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#defectCard").html("% Defect is: " + responsedata["DefectRejectDHUPercentage"]["Value"][1]["y"]);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#rejectCard").html("% Reject is: " + responsedata["DefectRejectDHUPercentage"]["Value"][2]["y"]);
-                _this.capacityCalculationHeadingColor = responsedata["CapaCityCalculation"]["Value"]["colorCode"];
-                var pieColors = (function () {
-                    var colors = [], base = "#eb8c00", i;
-                    for (i = 0; i < 10; i += 1) {
-                        colors.push(highcharts__WEBPACK_IMPORTED_MODULE_6__["color"](base).brighten((i - 3) / 7).get());
-                    }
-                    return colors;
-                }());
-                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.container.nativeElement, {
-                    chart: {
-                        type: 'pie',
-                        width: 360,
-                    },
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#efficiencyVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#capacityVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#wipVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#mmrVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#machineDowntimeVisual").show();
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.efficiencyContainer.nativeElement, {
                     colors: [
-                        '#ffb600',
-                        '#db536a',
-                        '#e0301e',
-                        '#eb8c00',
-                        '#db536a',
-                        '#d93954',
-                        '#e0301e',
-                        '#d04a02',
-                        '#92A8CD'
+                        responsedata["Efficiency"]["Value"]["colorCode"]
                     ],
-                    title: {
-                        text: 'Monthly Capacity on 2021',
-                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '16px' }
-                    },
-                    credits: { enabled: false },
                     exporting: {
                         enabled: false
                     },
-                    // subtitle: {
-                    //     text: 'Click the slices to view versions. Source: netmarketshare.com.'
-                    // },
+                    credits: { enabled: false },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: '% Efficiency',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' },
+                    },
                     xAxis: {
-                        categories: ['Line1', 'Line2', 'Line3', 'Line4']
-                        // showEmpty: false
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
                     },
                     yAxis: {
-                        showEmpty: false
-                    },
-                    plotOptions: {
-                        // series: {
-                        //     dataLabels: {
-                        //         enabled: true,
-                        //         format: '{point.name}: {point.y:.1f}%'
-                        //     }
-                        // }
-                        pie: {
-                            size: 125,
-                            dataLabels: {
-                                enabled: true,
-                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
+                        min: 0,
+                        max: 5,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
                             },
                         }
                     },
+                    legend: {
+                        enabled: false
+                    },
                     tooltip: {
-                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b><br/>'
+                        pointFormat: '% Efficiency: <b>{point.y:.1f}</b>'
                     },
-                    series: [responsedata["CapaCityCalculation"]["Value"]["capacityUtilizationSeries"]],
-                    drilldown: {
-                        series: [
-                            {
-                                "type": "column",
-                                name: 'Capacity in line',
-                                "id": "utilized",
-                                "data": responsedata["CapaCityCalculation"]["Value"]["capacityUtilizationNested"]["nestedData"]
+                    series: [{
+                            name: 'Efficiency',
+                            data: [
+                                responsedata["Efficiency"]["Value"]["efficiencyResponse"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
                             }
-                        ]
-                    }
+                        }]
                 });
-                // Highcharts.chart(this.container.nativeElement, {
-                //   // Created pie chart using Highchart
-                //   chart: {
-                //     type: 'solidgauge',
-                //     width : 250,
-                //     marginleft: 20
-                //   },
-                //   title: {
-                //     text: 'Capacity Calculation',
-                //     style: {'font-family': 'Arial, Helvetica', 'font-size': '17px', 'color': _this.capacityCalculationHeadingColor}
-                //   },
-                //   credits: {enabled: false},
-                //   pane: {
-                //       center: ['50%', '85%'],
-                //       size: '140%',
-                //       startAngle: -90,
-                //       endAngle: 90,
-                //       background: {
-                //           backgroundColor: '#ffffff',
-                //           innerRadius: '60%',
-                //           outerRadius: '100%',
-                //           shape: 'arc'
-                //       }
-                //   },
-                //   exporting: {
-                //       enabled: false
-                //   },
-                //   tooltip: {
-                //     enabled: false
-                //   },
-                //   yAxis: {
-                //       stops: [
-                //         [0.3, '#e0301e'],
-                //         [0.6, '#ffb600'],
-                //         [1, '#175d2d']
-                //       ],
-                //       lineWidth: 0,
-                //       tickWidth: 0,
-                //       minorTickInterval: null,
-                //       tickAmount: 2,
-                //       title: {
-                //           y: -70
-                //       },
-                //       labels: {
-                //           y: 16
-                //       },
-                //       min: 0,
-                //       max: 100,
-                //   },
-                //   plotOptions: {
-                //     solidgauge: {
-                //       size: 150,
-                //       dataLabels: {
-                //           y: 5,
-                //           borderWidth: 0,
-                //           useHTML: true
-                //       },
-                //       events: {
-                //         click: function() {
-                //             // document.getElementById('back').style.display = "block";
-                //             // Highcharts.chart('container', columnsOptions);
-                //         }
-                //     }
-                //     }
-                //   },
-                //   series: [
-                //     {
-                //       name : "Cumulative",
-                //       data: [{
-                //         y: responsedata["CapaCityCalculation"]["Value"]["capacityCalculation"],
-                //         drilldown: null
-                //       }],
-                //       dataLabels: {
-                //       format:
-                //         '<div style="text-align:center">' +
-                //         '<span style="font-size:15px">{y}%</span><br/>' +
-                //         '</div>'
-                //       },
-                //     }
-                //   ],
-                //   // drilldown: {
-                //   //   series: [{
-                //   //     type:'pie',
-                //   //     name: 'Cumulative',
-                //   //     id: 'A',
-                //   //     data: [
-                //   //       ['Win 7', 55.03],
-                //   //       ['Win XP', 15.83],
-                //   //       ['Win Vista', 3.59],
-                //   //       ['Win 8', 7.56],
-                //   //       ['Win 8.1', 6.18]
-                //   //     ]
-                //   //   }]
-                //   // }
-                // })
-                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.efficiencyContainer.nativeElement, {
-                    chart: {
-                        zoomType: 'xy',
-                        width: 360,
-                        marginleft: 10
-                    },
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.capacityUtilizationContainer.nativeElement, {
                     colors: [
-                        '#ffb600',
-                        '#db536a',
-                        '#e0301e',
-                        '#eb8c00',
-                        '#db536a',
-                        '#d93954',
-                        '#e0301e',
-                        '#d04a02',
-                        '#92A8CD'
+                        responsedata["CapaCityCalculation"]["Value"]["colorCode"]
                     ],
                     exporting: {
                         enabled: false
                     },
-                    title: {
-                        text: 'Monthly %Efficiency on 2021',
-                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '17px' }
-                    },
-                    xAxis: [{
-                            categories: responsedata["Efficiency"]["Value"]["monthCategory"],
-                            crosshair: false
-                        }],
                     credits: { enabled: false },
-                    yAxis: [{
-                            labels: {
-                                format: '{value}',
-                                style: {
-                                    // color: "#eb8c00",
-                                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
-                                }
-                            },
-                            title: {
-                                text: '% Efficiency',
-                                style: {
-                                    // color: "#d04a02",
-                                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '8px' }
-                                }
-                            }
-                        }
-                    ],
-                    tooltip: {
-                        shared: true
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'left',
-                        x: 120,
-                        verticalAlign: 'bottom',
-                        y: 100,
-                        floating: true,
-                        backgroundColor: highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].legend.backgroundColor || // theme
-                            'rgba(255,255,255,0.25)'
-                    },
-                    series: responsedata["Efficiency"]["Value"]["efficiencyWeitageResponse"]
-                });
-                //customize pie chart color
-                // var pieColors = (function () {
-                //   var colors = [],
-                //       base = "#d04a02",
-                //       i;
-                //   for (i = 0; i < 10; i += 1) {
-                //       colors.push(Highcharts.color(base).brighten((i - 3) / 7).get());
-                //   }
-                //   return colors;
-                // }());
-                // Highcharts.chart(this.dhuRejectDefectContainer.nativeElement, {
-                //   chart: {
-                //     plotBackgroundColor: null,
-                //     plotBorderWidth: null,
-                //     plotShadow: false,
-                //     type: 'pie',
-                //     width: 300,
-                //   },
-                //   title: {
-                //     text: 'Defect vs Reject vs Alter',
-                //     style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'color': _this.capacityCalculationHeadingColor}
-                //   },
-                //   accessibility: {
-                //       point: {
-                //           valueSuffix: '%'
-                //       }
-                //   },
-                //   plotOptions: {
-                //       pie: {
-                //           allowPointSelect: true,
-                //           cursor: 'pointer',
-                //           size: 100,
-                //           colors: pieColors,
-                //           dataLabels: {
-                //               enabled: true,
-                //               format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                //               style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-                //           }
-                //       }
-                //   },
-                //   exporting: {
-                //     enabled: false
-                //   },
-                //   credits: {enabled: false},
-                //   series: [{
-                //       data: responsedata["DefectRejectDHUPercentage"]["Value"]
-                //   }]
-                // });
-                var stackedChartcolors = ["#eb8c00", "#ffb600", "#d04a02"], dark = -0.5;
-                stackedChartcolors[1] = highcharts__WEBPACK_IMPORTED_MODULE_6__["Color"](stackedChartcolors[0]).brighten(dark).get();
-                stackedChartcolors[2] = highcharts__WEBPACK_IMPORTED_MODULE_6__["Color"](stackedChartcolors[2]).brighten(dark).get();
-                highcharts__WEBPACK_IMPORTED_MODULE_6__["chart"](_this_1.mmrWIPContainer.nativeElement, {
                     chart: {
-                        type: 'column',
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        width: 350,
+                        type: 'column'
                     },
-                    colors: [
-                        '#ffb600',
-                        '#db536a',
-                        '#e0301e',
-                        '#eb8c00',
-                        '#db536a',
-                        '#d93954',
-                        '#e0301e',
-                        '#d04a02',
-                        '#92A8CD'
-                    ],
                     title: {
-                        text: 'Monthly Inline WIP on 2021',
-                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '17px' }
+                        text: '% Utilized Capacity',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
                     },
                     xAxis: {
-                        categories: responsedata["MMRWIPInline"]["Value"]["monthCategory"]
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
                     },
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Total consumption'
+                            text: '% score',
+                            enabled: false
                         },
-                        stackLabels: {
-                            enabled: true,
+                        labels: {
                             style: {
-                                // fontWeight: 'bold',
-                                color: (highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].title.style &&
-                                    highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].title.style.color) || 'gray'
-                            }
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
                         }
                     },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: '% Capacity Utilization: <b>{point.y:.1f}</b>'
+                    },
+                    series: [{
+                            name: 'Capacity Utilization',
+                            data: [
+                                responsedata["CapaCityCalculation"]["Value"]["capacityUtilizationResponse"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.wipContainer.nativeElement, {
+                    colors: [
+                        responsedata["MMRWIPInline"]["Value"]["wipColorCode"]
+                    ],
                     exporting: {
                         enabled: false
                     },
                     credits: { enabled: false },
-                    legend: {
-                        align: 'right',
-                        x: -30,
-                        verticalAlign: 'top',
-                        y: 25,
-                        floating: true,
-                        backgroundColor: highcharts__WEBPACK_IMPORTED_MODULE_6__["defaultOptions"].legend.backgroundColor || 'white',
-                        borderColor: '#CCC',
-                        borderWidth: 1,
-                        shadow: false
+                    chart: {
+                        type: 'column'
                     },
-                    tooltip: {
-                        headerFormat: '<b>{point.x}</b><br/>',
-                        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                    title: {
+                        text: 'Inline WIP',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
                     },
-                    plotOptions: {
-                        column: {
-                            // stacking: 'normal',
-                            pointPadding: 0.2,
-                            borderWidth: 0,
-                            // dataLabels: {
-                            //     enabled: true
-                            // },
-                            size: 200
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
                         }
                     },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: 'Inline WIP: <b>{point.y:.1f}</b>'
+                    },
                     series: [{
-                            name: responsedata["MMRWIPInline"]["Value"]["name"],
-                            data: responsedata["MMRWIPInline"]["Value"]["chartDatas"]
+                            name: 'Inline WIP',
+                            data: [
+                                responsedata["MMRWIPInline"]["Value"]["inlineWIPResponse"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.mmrContainer.nativeElement, {
+                    colors: [
+                        responsedata["MMRWIPInline"]["Value"]["mmrColorCode"]
+                    ],
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Man Machine Ratio',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: 'MMR: <b>{point.y:.1f}</b>'
+                    },
+                    series: [{
+                            name: 'MMR',
+                            data: [
+                                responsedata["MMRWIPInline"]["Value"]["mmrResponse"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.machineDowntimeContainer.nativeElement, {
+                    colors: [
+                        responsedata["MMRWIPInline"]["Value"]["machineDowntimeColorCode"]
+                    ],
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Machine Downtime',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: 'Machine Downtime: <b>{point.y:.1f}</b>'
+                    },
+                    series: [{
+                            name: 'Machine Downtime',
+                            data: [
+                                responsedata["MMRWIPInline"]["Value"]["machineDowntimeRespponse"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
                         }]
                 });
             }
             else {
-                // _this.validationMsg = data["message"];
                 return;
             }
         });
     };
+    SewingmoduleComponent.prototype.calculateSecondPageKPIs = function (KPIView) {
+        var _this_1 = this;
+        var _this = this;
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + "SecondPageKPI";
+        this.http.post(url, KPIView).subscribe(function (responsedata) {
+            if (responsedata.StatusCode == 200) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dhuVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#defectVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#rejectionVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#absentismVisual").show();
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#multiskillVisual").show();
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.dhuContainer.nativeElement, {
+                    colors: [
+                        responsedata["DefectRejectDHUPercentage"]["Value"]["dhuColor"]
+                    ],
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: '% DHU',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: '% DHU: <b>{point.y:.1f}</b>'
+                    },
+                    series: [{
+                            name: 'DHU',
+                            data: [
+                                responsedata["DefectRejectDHUPercentage"]["Value"]["percentageDHU"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.rejectionContainer.nativeElement, {
+                    colors: [
+                        responsedata["DefectRejectDHUPercentage"]["Value"]["rejectColor"]
+                    ],
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: '% Rejection',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: '% Rejection: <b>{point.y:.1f}</b>'
+                    },
+                    series: [{
+                            name: 'Rejection',
+                            data: [
+                                responsedata["DefectRejectDHUPercentage"]["Value"]["percentageRejection"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.defectContainer.nativeElement, {
+                    colors: [
+                        responsedata["DefectRejectDHUPercentage"]["Value"]["defectColor"]
+                    ],
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: '% Defect',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: '% Defect: <b>{point.y:.1f}</b>'
+                    },
+                    series: [{
+                            name: '% Defect',
+                            data: [
+                                responsedata["DefectRejectDHUPercentage"]["Value"]["percentageDefection"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.absentismContainer.nativeElement, {
+                    colors: [
+                        responsedata["AbsentismMultiskill"]["Value"]["absentismColor"]
+                    ],
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Absentism',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: 'Absentism: <b>{point.y:.1f}</b>'
+                    },
+                    series: [{
+                            name: 'Absentism',
+                            data: [
+                                responsedata["AbsentismMultiskill"]["Value"]["absentismData"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
+                highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.multiskillContainer.nativeElement, {
+                    colors: [
+                        responsedata["AbsentismMultiskill"]["Value"]["multiskillColor"]
+                    ],
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: { enabled: false },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: '% Multi Skill',
+                        style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            },
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '% score',
+                            enabled: false
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '10px',
+                                'font-family': 'Arial, Helvetica'
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: 'Multi Skill: <b>{point.y:.1f}</b>'
+                    },
+                    series: [{
+                            name: 'Multi Skill',
+                            data: [
+                                responsedata["AbsentismMultiskill"]["Value"]["multiskillData"]
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}',
+                                y: 10,
+                                style: {
+                                    fontSize: '10px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
+            }
+            else {
+                return;
+            }
+        });
+    };
+    SewingmoduleComponent.prototype.tabNavigation = function (event) {
+        var target = event.target || event.srcElement || event.currentTarget;
+        var idAttr = target.id.split('_')[0];
+        var all = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".tab-pane.fade.show.active").map(function () {
+            return this.id;
+        }).get();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + all[0]).removeClass('show').removeClass('active');
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + idAttr).addClass('show').addClass('active');
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + idAttr).show();
+        var allHideShowClass = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".hide-show.tab-pane.fade").map(function () {
+            return this.id;
+        }).get();
+        allHideShowClass.forEach(function (element) {
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + element).hasClass('active') == false) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + element).hide();
+            }
+        });
+    };
     SewingmoduleComponent.prototype.selectAllOptions = function () {
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.yearSelectAll').click(function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.yearSelectAll').click(function () {
             // var yearSelected = [];
-            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.year').prop('checked', true);
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.year').prop('checked', true);
                 // $('input[name="options[year]"]:checked').each(function(i){
                 //   yearSelected.push(parseInt($(this).val()));
                 // });
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#yearSelectText").html(' Deselect');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#yearSelectText").html(' Deselect');
             }
             else {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.year').prop('checked', false);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#yearSelectText").html(' Select');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.year').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#yearSelectText").html(' Select');
             }
             // this.selectedYear = yearSelected;
         });
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.monthSelectAll').click(function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.monthSelectAll').click(function () {
             // var monthSelected = [];
-            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.month').prop('checked', true);
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.month').prop('checked', true);
                 // $('input[name="options[month]"]:checked').each(function(i){
                 //   monthSelected.push(parseInt($(this).val()));
                 // });
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#monthSelectText").html(' Deselect');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#monthSelectText").html(' Deselect');
             }
             else {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.month').prop('checked', false);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#monthSelectText").html(' Select');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.month').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#monthSelectText").html(' Select');
             }
             // this.selectedMonth = monthSelected;
         });
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.lineSelectAll').click(function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.lineSelectAll').click(function () {
             // var lineSelected = [];
-            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.line').prop('checked', true);
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.line').prop('checked', true);
                 // $('input[name="options[line]"]:checked').each(function(i){
                 //   lineSelected.push(parseInt($(this).val()));
                 // });
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#lineSelectText").html(' Deselect');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#lineSelectText").html(' Deselect');
             }
             else {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.line').prop('checked', false);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#lineSelectText").html(' Select');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.line').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#lineSelectText").html(' Select');
             }
             // this.selectedLine = lineSelected;
         });
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.locationSelectAll').click(function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.locationSelectAll').click(function () {
             var locationSelected = [];
-            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.location').prop('checked', true);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[]"]:checked').each(function (i) {
-                    locationSelected.push(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val());
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.location').prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('input[name="options[]"]:checked').each(function (i) {
+                    locationSelected.push(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).val());
                 });
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#locationSelectText").html(' Deselect');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#locationSelectText").html(' Deselect');
             }
             else {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.location').prop('checked', false);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#locationSelectText").html(' Select');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.location').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#locationSelectText").html(' Select');
             }
             this.selectedLocation = locationSelected;
         });
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unitSelectAll').click(function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.unitSelectAll').click(function () {
             var unitSelected = [];
-            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).is(':checked')) {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unit').prop('checked', true);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('input[name="options[]"]:checked').each(function (i) {
-                    unitSelected.push(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this).val());
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).is(':checked')) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.unit').prop('checked', true);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('input[name="options[]"]:checked').each(function (i) {
+                    unitSelected.push(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).val());
                 });
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unitSelectText").html(' Deselect');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#unitSelectText").html(' Deselect');
             }
             else {
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.unit').prop('checked', false);
-                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unitSelectText").html(' Select');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.unit').prop('checked', false);
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#unitSelectText").html(' Select');
             }
             this.selectedUnit = unitSelected;
         });
     };
     //not to change api
     SewingmoduleComponent.prototype.getProductivityLineWiseCharts = function () {
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#productivityLine").show();
-        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'drilldownlinewise';
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#productivityLine").show();
+        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + 'drilldownlinewise';
         var KPIView = {
             Year: [2021],
             Month: [1],
@@ -2506,7 +3836,7 @@ var SewingmoduleComponent = /** @class */ (function () {
         };
         var _this = this;
         this.http.post(linewiseChartBackendUrl, KPIView).subscribe(function (responsedata) {
-            _this.productionLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.productionLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'spline',
                     width: 350,
@@ -2560,7 +3890,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                     series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
                 }
             });
-            _this.dhuLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.dhuLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     width: 350,
                 },
@@ -2646,7 +3976,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                         }]
                 }
             });
-            _this.rejectionLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.rejectionLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'column',
                     width: 350
@@ -2704,8 +4034,8 @@ var SewingmoduleComponent = /** @class */ (function () {
     // not to change api
     SewingmoduleComponent.prototype.getProductivityUnitWiseCharts = function () {
         var _this_1 = this;
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#productivityLine").hide();
-        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'drilldownunitwise';
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#productivityLine").hide();
+        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + 'drilldownunitwise';
         var KPIView = {
             Year: [2021],
             Month: [1],
@@ -2713,7 +4043,7 @@ var SewingmoduleComponent = /** @class */ (function () {
         };
         var _this = this;
         _this.http.post(linewiseChartBackendUrl, KPIView).subscribe(function (responsedata) {
-            _this_1.productionUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.productionUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'spline',
                     width: 350,
@@ -2766,7 +4096,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                     series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
                 }
             });
-            _this_1.dhuUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.dhuUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     width: 350,
                 },
@@ -2838,7 +4168,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                         }]
                 }
             });
-            _this_1.rejectionUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.rejectionUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'column',
                     width: 350
@@ -2894,8 +4224,8 @@ var SewingmoduleComponent = /** @class */ (function () {
         });
     };
     SewingmoduleComponent.prototype.getEfficiencyLineWiseCharts = function () {
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#workEfficiencyLine").show();
-        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'DrilldownProductivityLinewise';
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#workEfficiencyLine").show();
+        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + 'DrilldownProductivityLinewise';
         var KPIView = {
             Year: [2021],
             Month: [1],
@@ -2903,7 +4233,7 @@ var SewingmoduleComponent = /** @class */ (function () {
         };
         var _this = this;
         this.http.post(linewiseChartBackendUrl, KPIView).subscribe(function (responsedata) {
-            _this.WIPLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.WIPLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'spline',
                     width: 350,
@@ -2957,7 +4287,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                     series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
                 }
             });
-            _this.alterationLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.alterationLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     width: 350,
                 },
@@ -3043,7 +4373,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                         }]
                 }
             });
-            _this.workingLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.workingLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'column',
                     width: 350
@@ -3100,8 +4430,8 @@ var SewingmoduleComponent = /** @class */ (function () {
     };
     SewingmoduleComponent.prototype.getEfficiencyUnitWiseCharts = function () {
         var _this_1 = this;
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#workEfficiencyLine").hide();
-        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'DrilldownProductivityUnitwise';
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#workEfficiencyLine").hide();
+        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + 'DrilldownProductivityUnitwise';
         var KPIView = {
             Year: [2021],
             Month: [1],
@@ -3109,7 +4439,7 @@ var SewingmoduleComponent = /** @class */ (function () {
         };
         var _this = this;
         _this.http.post(linewiseChartBackendUrl, KPIView).subscribe(function (responsedata) {
-            _this_1.WIPUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.WIPUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'spline',
                     width: 350,
@@ -3162,7 +4492,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                     series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
                 }
             });
-            _this_1.alterationUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.alterationUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     width: 350,
                 },
@@ -3234,7 +4564,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                         }]
                 }
             });
-            _this_1.workingUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.workingUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'column',
                     width: 350
@@ -3290,8 +4620,8 @@ var SewingmoduleComponent = /** @class */ (function () {
         });
     };
     SewingmoduleComponent.prototype.getResourceStrengthLineWiseCharts = function () {
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#resourceStrengthLine").show();
-        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'DrilldownResourceStrengthLinewise';
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#resourceStrengthLine").show();
+        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + 'DrilldownResourceStrengthLinewise';
         var KPIView = {
             Year: [2021],
             Month: [1],
@@ -3299,7 +4629,7 @@ var SewingmoduleComponent = /** @class */ (function () {
         };
         var _this = this;
         this.http.post(linewiseChartBackendUrl, KPIView).subscribe(function (responsedata) {
-            _this.operatorLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.operatorLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'spline',
                     width: 350,
@@ -3353,7 +4683,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                     series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
                 }
             });
-            _this.helperLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.helperLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     width: 350,
                 },
@@ -3439,7 +4769,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                         }]
                 }
             });
-            _this.checkerLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this.checkerLine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'column',
                     width: 350
@@ -3508,8 +4838,8 @@ var SewingmoduleComponent = /** @class */ (function () {
     };
     SewingmoduleComponent.prototype.getResourceStrengthUnitWiseCharts = function () {
         var _this_1 = this;
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#resourceStrengthLine").hide();
-        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + 'DrilldownResourceStengthUnitwise';
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#resourceStrengthLine").hide();
+        var linewiseChartBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + 'DrilldownResourceStengthUnitwise';
         var KPIView = {
             Year: [2021],
             Month: [1],
@@ -3517,7 +4847,7 @@ var SewingmoduleComponent = /** @class */ (function () {
         };
         var _this = this;
         _this.http.post(linewiseChartBackendUrl, KPIView).subscribe(function (responsedata) {
-            _this_1.operatorUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.operatorUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'spline',
                     width: 350,
@@ -3570,7 +4900,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                     series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
                 }
             });
-            _this_1.helperUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.helperUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     width: 350,
                 },
@@ -3642,7 +4972,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                         }]
                 }
             });
-            _this_1.checkerUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
+            _this_1.checkerUnit = new angular_highcharts__WEBPACK_IMPORTED_MODULE_10__["Chart"]({
                 chart: {
                     type: 'column',
                     width: 350
@@ -3699,7 +5029,7 @@ var SewingmoduleComponent = /** @class */ (function () {
     };
     SewingmoduleComponent.prototype.kpi = function (activeTab) {
         this.activeTab = activeTab;
-        this.getSewingKPIAnalysis();
+        // this.getSewingKPIAnalysis();
     };
     SewingmoduleComponent.prototype.workEfficiency = function (activeTab) {
         this.activeTab = activeTab;
@@ -3713,29 +5043,97 @@ var SewingmoduleComponent = /** @class */ (function () {
     SewingmoduleComponent.prototype.resourceStrength = function (activeTab) {
         this.activeTab = activeTab;
     };
+    SewingmoduleComponent.prototype.kpipag1 = function (activeTab) {
+        this.activeTab = activeTab;
+        var activatedhref = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".submodule.active").map(function () {
+            return this.id;
+        }).get();
+        activatedhref.forEach(function (element) {
+            if (element != activeTab) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + element).removeClass('active');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + element.split('_')[0]).hide();
+            }
+        });
+        var KPIView = {
+            Year: this.selectedYear,
+            Month: this.selectedMonth,
+            Line: [1, 2, 3, 4]
+        };
+        this.calculateFirstPageKPIs(KPIView);
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + activeTab).show();
+    };
+    SewingmoduleComponent.prototype.kpipag2 = function (activeTab) {
+        var activatedhref = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".submodule.active").map(function () {
+            return this.id;
+        }).get();
+        activatedhref.forEach(function (element) {
+            if (element != activeTab) {
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + element).removeClass('active');
+                _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#" + element.split('_')[0]).hide();
+            }
+        });
+        this.activeTab = activeTab;
+        var KPIView = {
+            Year: this.selectedYear,
+            Month: this.selectedMonth,
+            Line: [1, 2, 3, 4]
+        };
+        this.calculateSecondPageKPIs(KPIView);
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#kpipage2").show();
+    };
+    SewingmoduleComponent.prototype.navigateEfficiency = function () {
+        this._router.navigate(['efficiency-overview']);
+    };
+    SewingmoduleComponent.prototype.dashboardNavigation = function () {
+        this._router.navigate(['module-performance']);
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("container", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("dhuContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
-    ], SewingmoduleComponent.prototype, "container", void 0);
+    ], SewingmoduleComponent.prototype, "dhuContainer", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("efficiencyContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
     ], SewingmoduleComponent.prototype, "efficiencyContainer", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("dhuRejectDefectContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("defectContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
-    ], SewingmoduleComponent.prototype, "dhuRejectDefectContainer", void 0);
+    ], SewingmoduleComponent.prototype, "defectContainer", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("mmrWIPContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("rejectionContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
-    ], SewingmoduleComponent.prototype, "mmrWIPContainer", void 0);
+    ], SewingmoduleComponent.prototype, "rejectionContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("multiskillContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "multiskillContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("wipContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "wipContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("capacityUtilizationContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "capacityUtilizationContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("mmrContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "mmrContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("machineDowntimeContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "machineDowntimeContainer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("absentismContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], SewingmoduleComponent.prototype, "absentismContainer", void 0);
     SewingmoduleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-sewingmodule',
             template: __webpack_require__(/*! ./sewingmodule.component.html */ "./src/app/sewingmodule/sewingmodule.component.html"),
             styles: [__webpack_require__(/*! ./sewingmodule.component.css */ "./src/app/sewingmodule/sewingmodule.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], SewingmoduleComponent);
     return SewingmoduleComponent;
 }());
@@ -3801,7 +5199,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"stylesheet\" href=\"../../../../assets/lib/bootstrap/dist/css/bootstrap.min.css\" />\n<link rel=\"stylesheet\" href=\"../../../../assets/css/site.css\" />\n<link rel=\"stylesheet\" href=\"../../../../assets/css/style.css\" />\n<hr class=\"footer\" />\n<footer style=\"font-family: Arial, Helvetica;\" id=\"footer\">\n    <p>\n        © 2021 PricewaterhouseCoopers India Private Limited. All rights reserved. In this document, PwC refers to PricewaterhouseCoopers India Private Limited, which is a member firm of PricewaterhouseCoopers International Limited, each member firm of which is a separate legal entity.\n    </p>\n</footer>"
+module.exports = "<link rel=\"stylesheet\" href=\"../../../../assets/lib/bootstrap/dist/css/bootstrap.min.css\" />\r\n<link rel=\"stylesheet\" href=\"../../../../assets/css/site.css\" />\r\n<link rel=\"stylesheet\" href=\"../../../../assets/css/style.css\" />\r\n<hr class=\"footer\" />\r\n<footer style=\"font-family: Arial, Helvetica;\" id=\"footer\">\r\n    <p>\r\n        © 2021 PricewaterhouseCoopers India Private Limited. All rights reserved. In this document, PwC refers to PricewaterhouseCoopers India Private Limited, which is a member firm of PricewaterhouseCoopers International Limited, each member firm of which is a separate legal entity.\r\n    </p>\r\n</footer>"
 
 /***/ }),
 
@@ -3857,7 +5255,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\" style=\"margin-top: -3%;\" id=\"topnavbar\">\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"padding-left:26px !important;height:55px;width:96px\" src=\"../../../../assets/img/pwclogo.gif\" /></a>\n  <span class=\"siteTitleLandingPage navbar-text\">Digital Diagnostic Tool</span>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\" style=\"margin-top: -3%;\" id=\"topnavbar\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"padding-left:26px !important;height:55px;width:96px\" src=\"../../../../assets/img/pwclogo.gif\" /></a>\r\n  <span class=\"siteTitleLandingPage navbar-text\">Digital Diagnostic Tool</span>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -14841,7 +16239,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\agamonig192\Documents\RMG Textile\Source Code\FrontEnd\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\FrontEnd\src\main.ts */"./src/main.ts");
 
 
 /***/ })

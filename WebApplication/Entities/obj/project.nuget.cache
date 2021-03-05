@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zj30NbpRoMIB9bgoVb9/R/BpSTERMc9t9JUeSblKTANLART5mwnhf7bYFgUV8+HGL8fVJtCrVtWwyQsj1aQlbg==",
+  "dgSpecHash": "NJso+zp6lOqMF+4q0Z0jrjg0RAlIwG2BKOV2eU2G5D5G7TTFWHdUaPk3spLcqZ3rxVOlRpDpfEyJ4Th7e5NlXg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\agamonig192\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.3\\microsoft.entityframeworkcore.5.0.3.nupkg.sha512",
     "C:\\Users\\agamonig192\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.3\\microsoft.entityframeworkcore.abstractions.5.0.3.nupkg.sha512",

@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RMGWebApi.Utility;
 using RMGWebApi.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,16 @@ namespace RMGWebApi.Controllers
             _rmgDbContext = rmgDbContext;
         }
         [HttpPost]
-        public JsonResult Post(KPIViewModel kpiViewModel)
+        public JsonResult Post(DateRangeViewModel dateRangeViewModel)
         {
             var kpiResults = new
             {
-                ProductionLineWiseAnalysis = CalculateWIPDataLineWise(kpiViewModel),
-                DHULineWiseAnalysis = CalculateProductionDataLineWise(kpiViewModel),
-                RejectionLineWiseAnalysis = CalculateWorkingHrsDataLineWise(kpiViewModel),
+                //ProductionLineWiseAnalysis = CalculateWIPDataLineWise(kpiViewModel),
+                //DHULineWiseAnalysis = CalculateProductionDataLineWise(kpiViewModel),
+                //RejectionLineWiseAnalysis = CalculateWorkingHrsDataLineWise(kpiViewModel),
+                EfficiencyLocationData = CalculateEfficiencyLocationWise(dateRangeViewModel),
+                EfficiencyLineData = CalculateEfficiencyLineWise(dateRangeViewModel),
+                EfficiencyUnitData = CalculateEfficiencyUnitWise(dateRangeViewModel),
                 StatusCode = 200
             };
             return Json(kpiResults);
@@ -208,6 +212,183 @@ namespace RMGWebApi.Controllers
             });
         }
 
+        private JsonResult CalculateEfficiencyLocationWise(DateRangeViewModel dateRangeViewModel) {
+            DateTime? startDate = Convert.ToDateTime(dateRangeViewModel.StartDate);
+            DateTime? endDate = Convert.ToDateTime(dateRangeViewModel.EndDate);
+            var productionDataLocationWise = _rmgDbContext.Production.Where(x=> x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Location }).
+                Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Date= grp.Key.Date, Location= grp.Key.Location}).ToList();
+
+            var styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
+
+            var workingHrsDataLocationWise = _rmgDbContext.WorkingHrs.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Location }).
+                Select(grp => new WorkingHoursViewModel { WorkingHrsData = grp.Average(c => c.Data), Date = grp.Key.Date, Location = grp.Key.Location }).ToList();
+
+            var operatorsDataLocationWise = _rmgDbContext.OperatorNos.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Location }).
+                Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Date = grp.Key.Date, Location = grp.Key.Location }).ToList();
+
+            var helperDataLocationWise = _rmgDbContext.Helpers.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Location }).
+                Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Date = grp.Key.Date, Location = grp.Key.Location }).ToList();
+            List<ProductionSeries> productionSeries = new List<ProductionSeries>();
+            for(int index = 1; index<=2; index++)
+            {
+                List<ProductionMonthDrilldown> productionMonths = new List<ProductionMonthDrilldown>();
+                var query = (from s in workingHrsDataLocationWise
+                             join cs in operatorsDataLocationWise on new { s.Location, s.Date } equals new { cs.Location, cs.Date }
+                             join os in helperDataLocationWise on new { s.Location, s.Date } equals new { os.Location, os.Date }
+                             join x in productionDataLocationWise on new { s.Location, s.Date } equals new { x.Location, x.Date }
+                             where s.Location == index
+                             select new EfficiencyParameters
+                             {
+                                 efficiency = (Math.Round((x.ProdData * styleData) / (s.WorkingHrsData * (cs.OperatorData + os.HelperData)), 2)) * 100,
+                                 Dailydate = s.Date.Value.ToString("dd/MM/yyyy")
+                             }).ToList();
+                foreach (var element in query)
+                {
+                    ProductionMonthDrilldown productionMonthDrilldown = new ProductionMonthDrilldown();
+                    productionMonthDrilldown.name = element.Dailydate;
+                    productionMonthDrilldown.y = Convert.ToInt32(element.efficiency);
+                    productionMonths.Add(productionMonthDrilldown);
+                }
+                string locationame = "";
+                if(index == 1)
+                {
+                    locationame = "Gurgaon";
+                }
+                else
+                {
+                    locationame = "Delhi";
+                }
+                productionSeries.Add(new ProductionSeries
+                {
+                    name = locationame,
+                    data = productionMonths
+                });
+            }
+
+            return Json(new {
+                productionSeries = productionSeries
+            });
+        }
+
+        private JsonResult CalculateEfficiencyLineWise(DateRangeViewModel dateRangeViewModel)
+        {
+            DateTime? startDate = Convert.ToDateTime(dateRangeViewModel.StartDate);
+            DateTime? endDate = Convert.ToDateTime(dateRangeViewModel.EndDate);
+            var productionDataLocationWise = _rmgDbContext.Production.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Line }).
+                Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Date = grp.Key.Date, Line = grp.Key.Line }).ToList();
+
+            var styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
+
+            var workingHrsDataLocationWise = _rmgDbContext.WorkingHrs.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Line }).
+                Select(grp => new WorkingHoursViewModel { WorkingHrsData = grp.Average(c => c.Data), Date = grp.Key.Date, Line = grp.Key.Line }).ToList();
+
+            var operatorsDataLocationWise = _rmgDbContext.OperatorNos.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Line }).
+                Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Date = grp.Key.Date, Line = grp.Key.Line }).ToList();
+
+            var helperDataLocationWise = _rmgDbContext.Helpers.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Line }).
+                Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Date = grp.Key.Date, Line = grp.Key.Line }).ToList();
+            List<ProductionSeries> productionSeries = new List<ProductionSeries>();
+            var lineMasterData = _rmgDbContext.Line.ToList();
+            foreach (var lineElement in lineMasterData)
+            {
+                List<ProductionMonthDrilldown> productionMonths = new List<ProductionMonthDrilldown>();
+                var query = (from s in workingHrsDataLocationWise
+                             join cs in operatorsDataLocationWise on new { s.Line, s.Date } equals new { cs.Line, cs.Date }
+                             join os in helperDataLocationWise on new { s.Line, s.Date } equals new { os.Line, os.Date }
+                             join x in productionDataLocationWise on new { s.Line, s.Date } equals new { x.Line, x.Date }
+                             where s.Line == lineElement.Id
+                             select new EfficiencyParameters
+                             {
+                                 efficiency = (Math.Round((x.ProdData * styleData) / (s.WorkingHrsData * (cs.OperatorData + os.HelperData)), 2)) * 100,
+                                 //Month = s.Line.ToString(),
+                                 //Year = s.Year.ToString(),
+                                 Dailydate = s.Date.Value.ToString("dd/MM/yyyy")
+                             }).ToList();
+                foreach (var element in query)
+                {
+                    ProductionMonthDrilldown productionMonthDrilldown = new ProductionMonthDrilldown();
+                    productionMonthDrilldown.name = element.Dailydate;
+                    productionMonthDrilldown.y = Convert.ToInt32(element.efficiency);
+                    productionMonths.Add(productionMonthDrilldown);
+                }
+                productionSeries.Add(new ProductionSeries
+                {
+                    name = lineElement.Name,
+                    data = productionMonths
+                });
+            }
+
+            return Json(new
+            {
+                productionSeries = productionSeries
+            });
+        }
+
+        private JsonResult CalculateEfficiencyUnitWise(DateRangeViewModel dateRangeViewModel)
+        {
+            DateTime? startDate = Convert.ToDateTime(dateRangeViewModel.StartDate);
+            DateTime? endDate = Convert.ToDateTime(dateRangeViewModel.EndDate);
+            var productionDataLocationWise = _rmgDbContext.Production.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Unit }).
+                Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Date = grp.Key.Date, Unit = grp.Key.Unit }).ToList();
+
+            var styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
+
+            var workingHrsDataLocationWise = _rmgDbContext.WorkingHrs.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Unit }).
+                Select(grp => new WorkingHoursViewModel { WorkingHrsData = grp.Average(c => c.Data), Date = grp.Key.Date, Unit = grp.Key.Unit }).ToList();
+
+            var operatorsDataLocationWise = _rmgDbContext.OperatorNos.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Unit }).
+                Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Date = grp.Key.Date, Unit = grp.Key.Unit }).ToList();
+
+            var helperDataLocationWise = _rmgDbContext.Helpers.Where(x => x.Date >= startDate.Value && x.Date <= endDate.Value)
+                .GroupBy(x => new { x.Date, x.Unit }).
+                Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Date = grp.Key.Date, Unit = grp.Key.Unit }).ToList();
+            List<ProductionSeries> productionSeries = new List<ProductionSeries>();
+            var unitMasterData = _rmgDbContext.Unit.ToList();
+            foreach (var unitElement in unitMasterData)
+            {
+                List<ProductionMonthDrilldown> productionMonths = new List<ProductionMonthDrilldown>();
+                var query = (from s in workingHrsDataLocationWise
+                             join cs in operatorsDataLocationWise on new { s.Unit, s.Date } equals new { cs.Unit, cs.Date }
+                             join os in helperDataLocationWise on new { s.Unit, s.Date } equals new { os.Unit, os.Date }
+                             join x in productionDataLocationWise on new { s.Unit, s.Date } equals new { x.Unit, x.Date }
+                             where s.Unit == unitElement.Id
+                             select new EfficiencyParameters
+                             {
+                                 efficiency = (Math.Round((x.ProdData * styleData) / (s.WorkingHrsData * (cs.OperatorData + os.HelperData)), 2)) * 100,
+                                 //Month = s.Line.ToString(),
+                                 //Year = s.Year.ToString(),
+                                 Dailydate = s.Date.Value.ToString("dd/MM/yyyy")
+                             }).ToList();
+                foreach (var element in query)
+                {
+                    ProductionMonthDrilldown productionMonthDrilldown = new ProductionMonthDrilldown();
+                    productionMonthDrilldown.name = element.Dailydate;
+                    productionMonthDrilldown.y = Convert.ToInt32(element.efficiency);
+                    productionMonths.Add(productionMonthDrilldown);
+                }
+                productionSeries.Add(new ProductionSeries
+                {
+                    name = unitElement.Name,
+                    data = productionMonths
+                });
+            }
+
+            return Json(new
+            {
+                productionSeries = productionSeries
+            });
+        }
 
         private string getMonthName(int monthId)
         {

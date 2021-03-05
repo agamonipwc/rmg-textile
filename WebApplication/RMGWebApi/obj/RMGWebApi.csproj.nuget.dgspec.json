@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\RMGWebApi\\RMGWebApi.csproj": {}
+    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\RMGWebApi\\RMGWebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\RMGWebApi\\RMGWebApi.csproj": {
+    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\RMGWebApi\\RMGWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\RMGWebApi\\RMGWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\RMGWebApi\\RMGWebApi.csproj",
         "projectName": "RMGWebApi",
-        "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\RMGWebApi\\RMGWebApi.csproj",
+        "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\RMGWebApi\\RMGWebApi.csproj",
         "packagesPath": "C:\\Users\\agamonig192\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\RMGWebApi\\obj\\",
+        "outputPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\RMGWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\agamonig192\\AppData\\Roaming\\NuGet\\NuGet.Config",

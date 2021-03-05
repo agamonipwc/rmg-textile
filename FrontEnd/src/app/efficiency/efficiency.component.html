@@ -1,0 +1,151 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="font-family: 'Arial, Helvetica';">
+  <a class="navbar-brand" href="#"><img style="height: 34px;" src="../../assets/img/PwC_Outline_Logo_White.png" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/sewing-module">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/module-performance">Module <span class="sr-only"></span></a>
+      </li>
+    </ul>
+    <!-- <h4 class="text-sm-center mt-2 ml-5" style="color: #ffffff;">Digital Diagnostic Tool</h4> -->
+  </div>
+</nav>
+<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="nav-link" id="dashbaord_href" href="#" data-toggle="pill" (click)="dashboardNavigation()"><span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="moduleperformance_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="operationmodule_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="operationmodule_span" class="d-none d-md-inline">Social Sustainablity</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="environmental_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="environmental_span" class="d-none d-md-inline">Environmental Sustainability</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="outward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="outward_span" class="d-none d-md-inline">Outward</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="processes_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="processes_span" class="d-none d-md-inline">Processes</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="inward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="inward_span" class="d-none d-md-inline">Inward</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="fabric_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="fabric_span" class="d-none d-md-inline">Fabric & Trims Store </span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="spreading_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="spreading_span" class="d-none d-md-inline">Spreading & Cutting</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="sewing_href" href="#" (click)="sewingNavigation()" data-toggle="pill"><span id="sewing_span" class="d-none d-md-inline">Sewing</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="finishing_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="finishing_span" class="d-none d-md-inline">Finishing & Packaging</span></a>
+    </li>
+  </ul>
+</nav>
+<main role="main" class="col-sm-9 ml-sm-auto col-md-10 main">
+  <section class="text-center placeholders" id="dashboardsection">
+    <div class="tab-pane fade show active hide-show" id="overallperformance" role="tabpanel" aria-labelledby="OverallPerformance-tab">
+      <ul class="nav nav-pills">
+        <li>
+          <h4>Sewing - Low Efficiency Monitor</h4>
+        </li>
+        <li class="nav-item" style="margin-left: 30%;">
+          <a class="nav-link active" href="#kpi" [ngClass]="{ 'active':activeTab==='search'}" (click)="kpi('kpi')"
+            data-toggle="tab">Efficiency</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#detailedAnalysis" [ngClass]="{ 'active':activeTab==='detailedAnalysis'}" data-toggle="tab"
+            (click)="detailedAnalysis('detailedAnalysis')">Explore Historical Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#guidance" [ngClass]="{ 'active':activeTab==='guidance'}" data-toggle="tab"
+            (click)="guidance('guidance')">Guidance</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane" id="kpi" [ngClass]="{ 'active':activeTab==='kpi'}"> 
+
+          <div class="row align-items-center">
+            <div [chart]="productionUnit" class="col-sm-12" style="width: 100px; height: 200px;"></div>
+          </div>
+          <div class="row align-items-center mt-3">
+            <div [chart]="productionLine1" class="col-sm-3" style="height: 230px;"></div>
+            <div [chart]="operatorLine1" class="col-sm-3" style="height: 230px;"></div>
+            <div [chart]="productionLine2" class="col-sm-3" style="height: 230px;"></div>
+            <div [chart]="operatorLine2" class="col-sm-3" style="height: 230px;"></div>
+          </div>
+          <div class="row align-items-center h-100 mt-3">
+            
+          </div>
+
+        </div>
+
+        <div class="tab-pane" id="detailedAnalysis" [ngClass]="{ 'active':activeTab==='detailedAnalysis'}">
+          <div class="row align-items-center h-100 mt-3">
+            <div class="col-2">
+              <div class="d-flex flex-column">
+                <span style="text-align: left !important;">Start Date</span>
+                <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker>
+              </div>
+            </div>
+            <div class="col-2 ml-4">
+              <div class="d-flex flex-column">
+                <span style="text-align: left !important;">End Date</span>
+                <ng-datepicker [(ngModel)]="endDate" [options]="options"></ng-datepicker>
+              </div>
+            </div>
+            <div class="col-2 ml-4 mt-3">
+              <button class="custom-button">Show Analysis</button>
+            </div>
+          </div>
+          <div class="row align-items-center h-100 mt-3">
+              <!-- <div [chart]="efficiencyHistoryLocationWise" class="col-4" style="height: 350px;"></div> -->
+              <div [chart]="efficiencyHistoryUnitWise" class="col-6" style="height: 350px;"></div>
+              <div [chart]="efficiencyHistoryLineWise" class="col-6" style="height: 350px;"></div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="guidance" [ngClass]="{ 'active':activeTab==='guidance'}">
+          <div class="row align-items-center h-100">
+            <div class="col-12 text-left">
+              <p style="font-size: 16px; color: #d93954;">Dear User,</p>
+            </div>
+            <div class="col-12 text-left">
+              <p style="font-size: 16px; color: #d93954;">There are multiple reasons for low efficiency. You may like to apply the following recommendations based on the issue identified:</p>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-12">
+              <table #dataTable class="display table table-striped" style="width:100%; overflow-y: scroll;">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Reasons</th>
+                    <th>Sub-Reasons</th>
+                    <th>Recommendations</th>
+                  </tr>
+                </thead>
+                <tbody style="background: #ffffff;">
+                  <tr *ngFor="let item of recommendationData.allRecommendations; let i=index" style="text-align: left;">
+                    <td>{{item.Reasons}}</td>
+                    <td>{{item.SubReasons}}</td>
+                    <td>{{item.Recommendations}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

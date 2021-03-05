@@ -570,11 +570,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Repository\\Repository.csproj",
+      "projectUniqueName": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Repository\\Repository.csproj",
+      "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\agamonig192\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Repository\\obj\\",
+      "outputPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\agamonig192\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -591,11 +591,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Contracts\\Contracts.csproj": {
-              "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Contracts\\Contracts.csproj"
+            "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Contracts\\Contracts.csproj": {
+              "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Contracts\\Contracts.csproj"
             },
-            "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\Entities.csproj"
+            "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\Entities.csproj"
             }
           }
         }

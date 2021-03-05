@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YMUyszh5jFpzF8MLC9xNV3eG7eEAtsAovu7LZG2Xgq8ufhRAp2uDPrags3sTV80rlSqQTX8n/M2uJPb98vURXQ==",
+  "dgSpecHash": "X0UZMbdPId971F5FCITIvHAV1q2vAaQnnqKeRFZCCfciwvMLmVGJzZfotvTZsrR6pMxxxnPXub4YM3faNAgA/g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\RMGWebApi\\RMGWebApi.csproj",
+  "projectFilePath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\RMGWebApi\\RMGWebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\agamonig192\\.nuget\\packages\\microsoft.aspnetcore.razor.design\\2.1.2\\microsoft.aspnetcore.razor.design.2.1.2.nupkg.sha512",
     "C:\\Users\\agamonig192\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

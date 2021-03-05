@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Contracts\\Contracts.csproj": {}
+    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Contracts\\Contracts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Contracts\\Contracts.csproj": {
+    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Contracts\\Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Contracts\\Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Contracts\\Contracts.csproj",
         "projectName": "Contracts",
-        "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Contracts\\Contracts.csproj",
+        "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Contracts\\Contracts.csproj",
         "packagesPath": "C:\\Users\\agamonig192\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Contracts\\obj\\",
+        "outputPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\agamonig192\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\Entities.csproj"
+              "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\Entities.csproj"
               }
             }
           }
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\Entities.csproj": {
+    "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\agamonig192\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Source Code\\WebApplication\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\agamonig192\\Documents\\RMG Textile\\Branch Agamoni\\rmg-textile\\WebApplication\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\agamonig192\\AppData\\Roaming\\NuGet\\NuGet.Config",

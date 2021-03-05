@@ -13,6 +13,12 @@ namespace RMGWebApi
         public List<double> Unit{ get; set; }
     }
 
+    public class DateRangeViewModel
+    {
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+    }
+
     public class WorkingHoursViewModel
     {
         public double WorkingHrsData { get; set; }
@@ -22,6 +28,8 @@ namespace RMGWebApi
         public string Day { get; set; }
         public string MonthName { get; set; }
         public double Unit { get; set; }
+        public double Location { get; set; }
+        public DateTime? Date { get; set; }
     }
 
     public class CheckersViewModel
@@ -55,6 +63,8 @@ namespace RMGWebApi
         public string Day { get; set; }
         public string MonthName { get; set; }
         public double Unit { get; set; }
+        public double Location { get; set; }
+        public DateTime? Date { get; set; }
     }
     public class HelpersViewModel
     {
@@ -65,8 +75,9 @@ namespace RMGWebApi
         public string Day { get; set; }
         public string MonthName { get; set; }
         public double Unit { get; set; }
+        public double Location { get; set; }
+        public DateTime? Date { get; set; }
     }
-    
     public class MachineryViewModel
     {
         public double MechineryData { get; set; }
@@ -96,6 +107,8 @@ namespace RMGWebApi
         public string Day { get; set; }
         public string MonthName { get; set; }
         public double Unit { get; set; }
+        public double Location { get; set; }
+        public DateTime? Date { get; set; }
     }
 
     public class RejectionViewModel
