@@ -37,9 +37,9 @@ export class EfficiencyComponent implements OnInit {
     {id: 2021, name: '2021'},
     {id: 2022, name: '2022'}
   ]
-  startDate : Date = new Date("01/01/2021");
-  endDate : Date = new Date("01/10/2021");
-  // this.startDate = new Date("01/01/2021");
+  startDate : Date = new Date("01/25/2021");
+  endDate : Date = new Date("01/31/2021");
+  // this.startDate = new Date("01/27/2021");
   //   this.endDate = new Date("01/10/2021");
   options: DatepickerOptions = {
     locale: enLocale,
@@ -195,10 +195,10 @@ export class EfficiencyComponent implements OnInit {
      },
       colors: [
                 '#eb8c00',
-                '#db536a',
+                
                 '#e0301e',
                 '#eb8c00', 
-                '#db536a', 
+                 
                 '#d93954', 
                 '#e0301e',  
                 '#92A8CD'
@@ -221,19 +221,19 @@ export class EfficiencyComponent implements OnInit {
       series: [{
           name: 'Line 1',
           data: [{
-            name: '01/01/2021',
+            name: '01/27/2021',
             y: 46
         }, {
-            name: '01/02/2021',
+            name: '01/28/2021',
             y: 38
         }, {
-            name: '01/03/2021',
+            name: '01/29/2021',
             y: 47
         }, {
-            name: '01/04/2021',
+            name: '01/30/2021',
             y: 35
         }, {
-            name: '01/05/2021',
+            name: '01/31/2021',
             y: 31
         }]
       }],
@@ -260,10 +260,10 @@ export class EfficiencyComponent implements OnInit {
      },
       colors: [
             '#eb8c00',
-            '#db536a',
+            
             '#e0301e',
             '#eb8c00', 
-            '#db536a', 
+             
             '#d93954', 
             '#e0301e',  
             '#92A8CD'
@@ -325,9 +325,9 @@ export class EfficiencyComponent implements OnInit {
     },
     colors: [
               '#d04a02',
-              '#db536a',
+              
               '#eb8c00', 
-              '#db536a', 
+               
               '#d93954', 
               '#e0301e', 
               '#d04a02', 
@@ -351,19 +351,19 @@ export class EfficiencyComponent implements OnInit {
     series: [{
         name: 'Line 2',
         data: [{
-            name: '01/01/2021',
+            name: '01/27/2021',
             y: 22
         }, {
-            name: '01/02/2021',
+            name: '01/28/2021',
             y: 29
         }, {
-            name: '01/03/2021',
+            name: '01/29/2021',
             y: 29
         }, {
-            name: '01/04/2021',
+            name: '01/30/2021',
             y: 27
         }, {
-            name: '01/05/2021',
+            name: '01/31/2021',
             y: 25
         }]
     }],
@@ -391,10 +391,10 @@ export class EfficiencyComponent implements OnInit {
     },
     colors: [
           '#d04a02',
-          '#db536a',
+          
           '#e0301e',
           '#eb8c00', 
-          '#db536a', 
+           
           '#d93954', 
           '#e0301e', 
           '#d04a02', 
@@ -460,11 +460,9 @@ export class EfficiencyComponent implements OnInit {
         max: 100
       },
       colors: [
-            '#db536a',
-            '#ffb600',
             '#e0301e',
+            '#ffb600',
             '#eb8c00', 
-            '#db536a', 
             '#d93954', 
             '#e0301e', 
             '#d04a02', 
@@ -485,21 +483,21 @@ export class EfficiencyComponent implements OnInit {
       },
   
       series: [{
-          name: 'Unit 2',
+          name: 'Okhla',
           data: [{
-              name: '01/01/2021',
+              name: '01/27/2021',
               y: 37
           }, {
-              name: '01/02/2021',
+              name: '01/28/2021',
               y: 30
           }, {
-              name: '01/03/2021',
+              name: '01/29/2021',
               y: 45
           },{
-            name: '01/04/2021',
+            name: '01/30/2021',
             y: 24
           }, {
-            name: '01/05/2021',
+            name: '01/31/2021',
             y: 29
             }
         ]
@@ -507,8 +505,8 @@ export class EfficiencyComponent implements OnInit {
       
   });
   var dateModel = {
-    "StartDate" : "2021-01-01",
-    "EndDate" : "2021-01-10"
+    "StartDate" : "2021-01-25",
+    "EndDate" : "2021-01-31"
   }
   var url = environment.backendUrl + "DrilldownProductivityLinewise";
   var _this = this;
@@ -516,10 +514,10 @@ export class EfficiencyComponent implements OnInit {
     var colors = [
       '#ffb600',
       '#d04a02',
-      '#db536a',
+      
       '#e0301e',
       '#eb8c00', 
-      '#db536a', 
+       
       '#d93954', 
       '#e0301e', 
     ];
@@ -541,10 +539,10 @@ export class EfficiencyComponent implements OnInit {
       // },
       // colors: [
       //     '#ffb600',
-      //     '#db536a',
+      //     
       //     '#e0301e',
       //     '#eb8c00', 
-      //     '#db536a', 
+      //      
       //     '#d93954', 
       //     '#e0301e', 
       //     '#d04a02', 
@@ -589,6 +587,7 @@ export class EfficiencyComponent implements OnInit {
             color: '#175d2d',
             width: 2,
             value: 85,
+            dashStyle: "ShortDash"
           }]
         },
         tooltip: {
@@ -640,6 +639,7 @@ export class EfficiencyComponent implements OnInit {
             color: '#175d2d',
             width: 2,
             value: 85,
+            
           }]
         },
         tooltip: {

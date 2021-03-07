@@ -177,7 +177,7 @@ namespace RMGWebApi.Controllers
 
             object[] objectArray = new object[2];
             objectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            objectArray[1] = capacityUtilized;
+            objectArray[1] = gainedWeightage;
             return Json(new
             {
                 capacityUtilizationResponse = objectArray,
@@ -538,19 +538,23 @@ namespace RMGWebApi.Controllers
             var unplnnedDowntimeData = _rmgDbContext.UnplannedDowntime.Where(x => x.Date == date).Average(x => x.Data);
             #region Inline WIP
             var inlineWIPLevel = Math.Round((wipData / productionData),2);
+            int scoreCardWIP = 0;
             #region Calculate weightage
             double weightage = 0;
             if(inlineWIPLevel >= 0.8 && inlineWIPLevel <= 1)
             {
                 weightage = 0.10 * 3;
+                scoreCardWIP = 3;
             }
             if (inlineWIPLevel > 1 && inlineWIPLevel <= 1.5)
             {
                 weightage = 0.10 * 2;
+                scoreCardWIP = 2;
             }
             if (inlineWIPLevel >= 1.6 && inlineWIPLevel <= 2)
             {
                 weightage = 0.10 * 1;
+                scoreCardWIP = 2;
             }
             #endregion
             #region Calculate color code
@@ -570,24 +574,28 @@ namespace RMGWebApi.Controllers
             #endregion
             object[] wipObjectArray = new object[2];
             wipObjectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            wipObjectArray[1] = inlineWIPLevel;
+            wipObjectArray[1] = scoreCardWIP;
             #endregion
 
             #region MMR
             var mmrLevel = Math.Round(((operatorNosData + helpersData + checkersData)/machineryData), 2);
             #region Calculate weightage
             double mmrweightage = 0;
+            int scoreCardMMR = 3;
             if (mmrLevel == 1)
             {
                 mmrweightage = 0.15 * 3;
+                scoreCardMMR = 3;
             }
             if (mmrLevel > 1 && mmrLevel <= 1.5)
             {
                 mmrweightage = 0.15 * 2;
+                scoreCardMMR = 2;
             }
             if (mmrLevel >= 1.6)
             {
                 mmrweightage = 0.15 * 1;
+                scoreCardMMR = 1;
             }
             #endregion
             #region Calculate color code
@@ -607,24 +615,28 @@ namespace RMGWebApi.Controllers
             #endregion
             object[] mmrObjectArray = new object[2];
             mmrObjectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            mmrObjectArray[1] = mmrLevel;
+            mmrObjectArray[1] = scoreCardMMR;
             #endregion
 
             #region Machine Downtime
             var machineDowntime = Math.Round((((miscData + unplnnedDowntimeData) / workingHoursData)*100));
             #region weightage calculation
             double machineDowntimeWeitage = 0;
+            int machineDowntimeScoreCard = 0;
             if(machineDowntime>= 0 && machineDowntime <= 5)
             {
                 machineDowntimeWeitage = 0.10 * 3;
+                machineDowntimeScoreCard = 3;
             }
             else if (machineDowntime >= 6 && machineDowntime <= 10)
             {
                 machineDowntimeWeitage = 0.10 * 2;
+                machineDowntimeScoreCard = 2;
             }
             else
             {
                 machineDowntimeWeitage = 0.10 * 1;
+                machineDowntimeScoreCard = 2;
             }
             #endregion
             #region colorcode calculation
@@ -643,7 +655,7 @@ namespace RMGWebApi.Controllers
             }
             object[] machineDowntimeObject = new object[2];
             machineDowntimeObject[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            machineDowntimeObject[1] = machineDowntime;
+            machineDowntimeObject[1] = machineDowntimeScoreCard;
             #endregion
             #endregion
             return Json(new

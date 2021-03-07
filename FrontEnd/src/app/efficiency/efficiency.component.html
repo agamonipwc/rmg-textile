@@ -74,7 +74,11 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane" id="kpi" [ngClass]="{ 'active':activeTab==='kpi'}"> 
-
+          <div class="row align-items-center h-100 mt-3">
+            <div class="col-12">
+              <p class="text-left" style="font-weight: bold; font-style: italic; font-size: 15px;">Analysis of Last 5 days data from 31 Jan,2021</p>
+            </div>
+          </div>
           <div class="row align-items-center">
             <div [chart]="productionUnit" class="col-sm-12" style="width: 100px; height: 200px;"></div>
           </div>
@@ -84,10 +88,6 @@
             <div [chart]="productionLine2" class="col-sm-3" style="height: 230px;"></div>
             <div [chart]="operatorLine2" class="col-sm-3" style="height: 230px;"></div>
           </div>
-          <div class="row align-items-center h-100 mt-3">
-            
-          </div>
-
         </div>
 
         <div class="tab-pane" id="detailedAnalysis" [ngClass]="{ 'active':activeTab==='detailedAnalysis'}">

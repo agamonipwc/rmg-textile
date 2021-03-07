@@ -26,3 +26,7 @@ select * from Module
 select * from Recommendation
 
 create table Department(Id int not null Identity(1,1), Primary Key(Id), Name varchar(max))
+insert into Department(Name) values('Sewing')
+insert into Department(Name) values('Spreading & Cutting')
+insert into Department(Name) values('Fabric & Trims Store')
+insert into Department(Name) values('Finishing & Packaging')

@@ -1,23 +1,69 @@
-<!-- <link rel="stylesheet" href="../../../node_modules/ng2-org-chart/styles.css"> -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="font-family: 'Arial, Helvetica';">
   <a class="navbar-brand" href="#"><img style="height: 34px;" src="../../assets/img/PwC_Outline_Logo_White.png" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
+    <!-- <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/module-performance">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/sewing-module">Sewing<span class="sr-only"></span></a>
       </li>
-    </ul>
+    </ul> -->
     <!-- <h4 class="text-sm-center mt-2 ml-5" style="color: #ffffff;">Digital Diagnostic Tool</h4> -->
   </div>
 </nav>
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5">
-  <ul class="nav nav-pills flex-column">
+  <ul class="tree">
+
+    <li (click)="tabNavigation($event)" id="dashbaord_href">
+      <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
+    </li>
+  
+    <li>
+      <a id="moduleperformance_href" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
+      <ul>
+        <li>
+          Inward
+        </li>
+  
+        <li>
+          Processes
+          <ul>
+            <li>
+              Fabric & Trims Store 
+            </li>
+  
+            <li>
+              Spreading & Cutting
+            </li>
+            <li>
+              Sewing 
+            </li>
+            <li>
+              Finishing & Packaging
+            </li>
+          </ul>
+        </li>
+  
+        <li>
+          Outward
+        </li>
+      </ul>
+    </li>
+  
+    <li>
+      Social Sustainability
+    </li>
+
+    <li>
+      Environmental Sustainability
+    </li>
+  
+  </ul>
+  <!-- <ul class="nav nav-pills flex-column">
     <li class="nav-item">
       <a class="nav-link active" id="dashbaord_href" href="dashbaord" data-toggle="pill" (click)="tabNavigation($event)"><span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span></a>
     </li>
@@ -51,35 +97,32 @@
     <li class="nav-item">
       <a class="nav-link" id="finishing_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="finishing_span" class="d-none d-md-inline">Finishing & Packaging</span></a>
     </li>
-  </ul>
+  </ul> -->
 </nav>
 
 <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3 main">
   <section class="text-center placeholders" id="dashboardsection">
     <div class="tab-pane active" id="dashbaord" role="tabpanel" aria-labelledby="ModulePerformance-tab">
         <!-- <h3 class="text-center">Module wise performance  </h3> -->
-        <div class="row align-items-center h-100 mt-3">
-          <div class="col-6">
-            <div class="card">
+        <div class="row">
+          <div class="col-3">
+            <p class="greenStatus">Green Color : Good Performance</p>
+          </div>
+          <div class="col-3">
+            <p class="yellowStatus">Yellow Color : Moderate Performance</p>
+          </div>
+          <div class="col-3">
+            <p class="redStatus">Red Color : Poor Performance</p>
+          </div>
+        </div>
+        <div class="row align-items-center h-100">
+          <div class="col-4">
+            <div class="card" style="height: 480px;">
               <div class="card-body pt-3">
                 <div class="slide-right" id="animationTextDisplay">
                   <h5 style="font-size: 15px; font-weight: bold;">Will the tool save resources for my sewing department ?</h5>
-                  <ul class="mt-4">
-                    <li class="mt-2">
-                      <div>
-                        <span style="font-weight: bold;">Near Real time</span><span> tracking of Line efficiency and quality parameters</span>
-                      </div>
-                    </li>
-                    <li class="mt-2">
-                      <div>
-                        <span style="font-weight: bold;">Strength Value</span><span> determination for stitching various products line wise/section wise</span>
-                      </div>
-                    </li>
-                    <li class="mt-2">
-                      <span style="font-weight: bold;">Threshold alert</span><span> for bottlenecks, low quality or high downtime in sewing lines. The alert also shows the action to be taken and the responsible person.</span>
-                    </li>
-                  </ul>
-                  <p  style="font-size: 17px;">
+                  
+                  <p class="mt-4" style="font-size: 17px; text-align: left;">
                     Your supervisor manages 3 lines, in one of which there is a style changeover is going on so he/she is engaged there. In the meantime due to some machine fault another line running Polo -Ts starts facing challenge in placket finish operation. The tool alerts the issue in realtime to him. He can then rectify the fault ASAP preventing more alterations.
                   </p>
                 </div>
@@ -87,7 +130,7 @@
               </div>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-8">
             <div [chart]="processBubble" style="height: 480px;"></div>
           </div>
           

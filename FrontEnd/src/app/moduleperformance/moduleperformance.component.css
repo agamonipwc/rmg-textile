@@ -75,3 +75,138 @@ div.slide-left h5{
  to {margin-left: 0%;width: 100%;} }
 @keyframes slide-left { from {margin-left: 0%;width: 100%;}
  to {margin-left: 0%;width: 100%;} }
+
+ .highcharts-label.highcharts-no-data{
+   display: none !important;
+ }
+
+
+/* Side nav with sub menu*/
+
+ul {
+  margin: 0;
+  padding-left: 25px;
+  line-height: 2em;
+  list-style: none;
+  background-color: #fff;
+}
+ul li {
+  position: relative;
+}
+ul li:before {
+  position: absolute;
+  top: 0;
+  left: -15px;
+  display: block;
+  width: 15px;
+  height: 1em;
+  content: "";
+  border-bottom: 1px dotted #666;
+  border-left: 1px dotted #666;
+}
+/* hide the vertical line on the first item */
+ul.tree > li:first-child:before {
+  border-left: none;
+}
+ul li:after {
+  position: absolute;
+  top: 1.1em;
+  bottom: 1px;
+  left: -15px;
+  display: block;
+  content: "";
+  border-left: 1px dotted #666;
+}
+
+/* hide the lines on the last item */
+ul li:last-child:after {
+  display: none;
+}
+
+/* inserted via JS  */
+.js-toggle-icon {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 14px;
+  margin-right: 2px;
+  margin-left: -23px;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #666;
+  border-radius: 2px;
+}
+
+
+/* Text highligting*/
+.greenStatus {
+  position: relative;
+}
+.greenStatus:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 95%;
+  height: 55%;
+  z-index: -1; /* Place the pseudo element right under the content */
+  top: 13px;
+  left: 0;
+  background: linear-gradient(to top, #175d2d 50%, transparent 50%);
+  animation-name: highlight;
+  animation-duration: 0.75s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; /* Make the animation run back and forth */
+}
+
+.yellowStatus {
+  position: relative;
+}
+.yellowStatus:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 95%;
+  height: 55%;
+  z-index: -1; /* Place the pseudo element right under the content */
+  top: 13px;
+  left: 0;
+  background: linear-gradient(to top, #ffb600 50%, transparent 50%);
+  animation-name: highlight;
+  animation-duration: 0.75s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; /* Make the animation run back and forth */
+}
+
+.redStatus {
+  position: relative;
+}
+.redStatus:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 95%;
+  height: 55%;
+  z-index: -1; /* Place the pseudo element right under the content */
+  top: 13px;
+  left: 0;
+  background: linear-gradient(to top, #e0301e 50%, transparent 50%);
+  animation-name: highlight;
+  animation-duration: 0.75s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; /* Make the animation run back and forth */
+}
+
+@keyframes highlight {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  50% {
+    width: 100%;
+    opacity: 1;
+  }
+
+}

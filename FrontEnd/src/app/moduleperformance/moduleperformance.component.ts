@@ -50,6 +50,25 @@ export class ModuleperformanceComponent implements OnInit {
     $("#footer").css("margin-left", "15%");
     $("#footer").hide();
     $(".footer").hide();
+
+    $(function() {
+        // Hide all lists except the outermost.
+        $('ul.tree ul').hide();
+      
+        $('.tree li > ul').each(function(i) {
+          var $subUl = $(this);
+          var $parentLi = $subUl.parent('li');
+          var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+      
+          $parentLi.addClass('has-children');
+          
+          $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+            $(this).text( $(this).text() == '+' ? '-' : '+' );
+            $subUl.slideToggle('fast');
+          });
+        });
+    });
+
     this.to_left();
     this.to_right();
     this.createOperationOverView();
@@ -852,7 +871,8 @@ export class ModuleperformanceComponent implements OnInit {
         {
             id: '0.0',
             parent: '',
-            name: 'Alpine Garments'
+            name: 'Alpine Garments',
+            value : 50
         }, 
         {
             id: '1.3',
@@ -987,7 +1007,7 @@ export class ModuleperformanceComponent implements OnInit {
         chart: {
             // height: '100%'
         },
-        colors: [,'#e0301e', '#ffb600', '#175d2d', '#e0301e','#ffb600', '#175d2d', '#e0301e', '#ffb600'],
+        colors: ['#dedede','#e0301e', '#ffb600', '#175d2d', '#e0301e','#ffb600', '#175d2d', '#e0301e', '#ffb600'],
         credits: {enabled: false},
         exporting: {
           enabled: false
@@ -995,6 +1015,9 @@ export class ModuleperformanceComponent implements OnInit {
         title: {
             text: 'Overall Performance of Factory'
         },
+        // subtitle:{
+        //     text: '<li>Status Green : Good Performance</li><li>Status Yellow : Moderate Performance</li>'
+        // },
         series: [{
             type: "sunburst",
             data: data,
@@ -1380,4 +1403,3 @@ export class ModuleperformanceComponent implements OnInit {
         setInterval(this.shitft_right, 20000);
     };
 }
-

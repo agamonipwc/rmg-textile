@@ -297,6 +297,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
+              max: 5,
               title: {
                   text: '% score',
                   enabled : false
@@ -361,7 +362,8 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 0,
+              min: 1,
+              max: 3,
               title: {
                   text: '% score',
                   enabled : false
@@ -426,7 +428,8 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 0,
+              min: 1,
+              max : 3,
               title: {
                   text: '% score',
                   enabled : false
@@ -491,7 +494,8 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 0,
+              min: 1,
+              max: 3,
               title: {
                   text: '% score',
                   enabled : false
@@ -574,6 +578,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
+              max:5,
               title: {
                   text: '% score',
                   enabled : false
@@ -638,7 +643,8 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 0,
+              min: 1,
+              max : 3,
               title: {
                   text: '% score',
                   enabled : false
@@ -704,6 +710,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
+              max:3,
               title: {
                   text: '% score',
                   enabled : false
@@ -769,6 +776,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
+              max : 3,
               title: {
                   text: '% score',
                   enabled : false
@@ -833,7 +841,8 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 0,
+            min: 0,
+            max : 3,
               title: {
                   text: '% score',
                   enabled : false
