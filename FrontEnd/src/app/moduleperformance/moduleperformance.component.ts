@@ -3,6 +3,9 @@ import * as $ from '../../assets/lib/jquery/dist/jquery.js';
 import {Chart} from 'angular-highcharts';
 import { Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.js';
+import { data } from 'jquery';
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -25,7 +28,7 @@ Sunburst(Highcharts);
   styleUrls: ['./moduleperformance.component.css']
 })
 export class ModuleperformanceComponent implements OnInit {
-    Highcharts = Highcharts;
+   Highcharts = Highcharts;
     // @ViewChild("processBubble", { read: ElementRef }) processBubble: ElementRef;
   operationGaugeFormat: Chart;
   socialSustainabilityGaugeFormat : Chart;
@@ -39,11 +42,14 @@ export class ModuleperformanceComponent implements OnInit {
   gaugeOutward: Chart;
   gaugeProcess: Chart;
   processBubble : Chart;
+  scatterChart : Chart;
   onclickStyle: any ={
       cursor: "pointer"
   }
+  locationOptions :any = [];
+  unitOptions : any = [];
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, private http: HttpClient) { }
 
   ngOnInit() {
     $("#topnavbar").hide();
@@ -71,6 +77,7 @@ export class ModuleperformanceComponent implements OnInit {
 
     this.to_left();
     this.to_right();
+    this.getMasterData();
     this.createOperationOverView();
     this.createSocialSustainablityOverview();
     this.createEnvironmentalSustainablityOverview();
@@ -1068,82 +1075,87 @@ export class ModuleperformanceComponent implements OnInit {
             pointFormat: 'Performance of <b>{point.name}</b> is <b>{point.value}%</b>'
         }
     });
-    // this.processBubble = new Chart({
-    //     chart: {
-    //         polar: true,
-    //         type: 'line',
-    //     },
-    //     title: {
-    //         text: "Let's see where each process stands",
-    //         style: {'font-family': 'Arial, Helvetica'},
-    //         // x: -80
-    //     },
-    //     credits: {enabled: false},
-    //     exporting: {
-    //         enabled: false
-    //     },
-    //     pane: {
-    //         size: '100%'
-    //     },
     
-    //     xAxis: {
-    //         categories: ['Fabric Store', 'Spreading & Cutting', 'Trim Store', 'Sewing', 'Finishing & Packing'],
-    //         tickmarkPlacement: 'on',
-    //         lineWidth: 0
-    //     },
+    this.scatterChart = new Chart({
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Efficency Versus Operators'
+        },
+        xAxis: {
+            title: {
+                enabled: false,
+                text: 'Efficiency (%)'
+            },
+            labels:{
+                enabled : false
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true,
+        },
+        yAxis: {
+            title: {
+                text: 'Efficiency (%)'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 100,
+            y: 70,
+            floating: true,
+            backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+            borderWidth: 1
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: 'OP{point.x} has efficiency of {point.y}%'
+                }
+            }
+        },
+        series: [{
+            name: 'Efficiency',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[1, 51.6], [2, 59.0], [3, 49.2], [4, 63.0], [5, 53.6],
+                [6, 59.0], [7, 47.6], [8, 69.8], [9, 66.8], [10, 75.2],
+                [11, 55.2], [12, 54.2], [13, 62.5], [14, 42.0], [15, 50.0],
+                [16, 56.6], [17, 105.2], [18, 51.8], [19, 63.4], [20, 59.0]]
     
-    //     yAxis: {
-    //         gridLineInterpolation: 'polygon',
-    //         lineWidth: 1,
-    //         min: 0
-    //     },
-    
-    //     tooltip: {
-    //         shared: true,
-    //         pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}%</b><br/>'
-    //     },
-    
-    //     legend: {
-    //         align: 'right',
-    //         verticalAlign: 'middle',
-    //         layout: 'vertical'
-    //     },
-    
-    //     series: [{
-    //         name: 'Market Score',
-    //         color:'black',
-    //         data: [89, 70, 70, 75, 85],
-    //         pointPlacement: 'on'
-    //     }, {
-    //         name: 'Actual Score',
-    //         color:'#eb8c00',
-    //         data: [73, 62, 31, 30, 74],
-    //         pointPlacement: 'on'
-    //     }],
-    
-    //     responsive: {
-    //         rules: [{
-    //             condition: {
-    //                 maxWidth: 500
-    //             },
-    //             chartOptions: {
-    //                 legend: {
-    //                     align: 'center',
-    //                     verticalAlign: 'bottom',
-    //                     layout: 'horizontal'
-    //                 },
-    //                 pane: {
-    //                     size: '70%'
-    //                 }
-    //             }
-    //         }]
-    //     }
-    
-    // });
+        }]
+    })
   }
 
   sewingNavigation(){
       this._router.navigate(['sewing-module']);
+  }
+
+  getMasterData(){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    this.http.get<any>(masterDataUrl).subscribe(responsedata =>{
+        console.log("---------data---------",responsedata);
+    })
   }
 
   createOperationoduleChart(){
@@ -1402,4 +1414,4 @@ export class ModuleperformanceComponent implements OnInit {
     to_right() {
         setInterval(this.shitft_right, 20000);
     };
-}
+ }

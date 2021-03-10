@@ -83,17 +83,17 @@ div.slide-left h5{
 
 /* Side nav with sub menu*/
 
-ul {
+.cutom-treestructure {
   margin: 0;
   padding-left: 25px;
   line-height: 2em;
   list-style: none;
   background-color: #fff;
 }
-ul li {
+.cutom-treestructure li {
   position: relative;
 }
-ul li:before {
+.cutom-treestructure li:before {
   position: absolute;
   top: 0;
   left: -15px;
@@ -108,7 +108,7 @@ ul li:before {
 ul.tree > li:first-child:before {
   border-left: none;
 }
-ul li:after {
+.cutom-treestructure li:after {
   position: absolute;
   top: 1.1em;
   bottom: 1px;
@@ -119,7 +119,7 @@ ul li:after {
 }
 
 /* hide the lines on the last item */
-ul li:last-child:after {
+.cutom-treestructure li:last-child:after {
   display: none;
 }
 
@@ -209,4 +209,63 @@ ul li:last-child:after {
     opacity: 1;
   }
 
+}
+
+
+
+.dropdown-button{
+  width: 150px;
+  border: 1px solid #aa2417;
+  border-radius: 0px !important;
+  background-color: #aa2417;
+  color: #ffffff;
+  height: 32px;
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+.dropdown-label{
+  color: #000000;
+  font-size: 12px;
+}
+
+.custom-li{
+  height: 21px !important;
+  padding-top: 3px;
+}
+
+.dropdownmenu{
+  height: 110px;
+  overflow-y: scroll;
+  width: 152px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #ffffff;
+}
+.btn.focus, .btn:focus{
+  box-shadow: none !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #6d6d6d; 
+}
+
+.dropdown {
+  /* position: relative;
+  left: 50px;
+  top: 50px; */
+}
+ul{
+  list-style: none;
 }
