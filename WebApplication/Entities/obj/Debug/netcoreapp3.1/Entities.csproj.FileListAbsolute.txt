@@ -16,3 +16,12 @@ C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\Entities\o
 C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.dll
 C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.pdb
 C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.csprojAssemblyReference.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\bin\Debug\netcoreapp3.1\Entities.deps.json
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\bin\Debug\netcoreapp3.1\Entities.dll
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\bin\Debug\netcoreapp3.1\Entities.pdb
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.csprojAssemblyReference.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfoInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfo.cs
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.csproj.CoreCompileInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.dll
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Entities\obj\Debug\netcoreapp3.1\Entities.pdb

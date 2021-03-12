@@ -3,58 +3,81 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/sewing-module">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/module-performance">Module <span class="sr-only"></span></a>
-      </li>
-    </ul>
-    <!-- <h4 class="text-sm-center mt-2 ml-5" style="color: #ffffff;">Digital Diagnostic Tool</h4> -->
-  </div>
 </nav>
-<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5">
-  <ul class="nav nav-pills flex-column">
-    <li class="nav-item">
-      <a class="nav-link" id="dashbaord_href" href="#" data-toggle="pill" (click)="dashboardNavigation()"><span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span></a>
+<nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
+  <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
+  <ul class="tree cutom-treestructure mt-3">
+    <li (click)="dashboardNavigation()" id="dashbaord_href" style="cursor: pointer;">
+      <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" id="moduleperformance_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
+  
+    <li>
+      <a id="moduleperformance_href" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
+      <ul class="cutom-treestructure">
+        <li>
+          Inward
+        </li>
+  
+        <li>
+          Processes
+          <ul class="ml-4">
+            <li>
+              Fabric & Trims Store 
+            </li>
+  
+            <li>
+              Spreading & Cutting
+            </li>
+            <li (click)="sewingNavigation()" style="cursor: pointer;">
+              Sewing 
+            </li>
+            <li>
+              Finishing & Packaging
+            </li>
+          </ul>
+        </li>
+  
+        <li>
+          Outward
+        </li>
+      </ul>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" id="operationmodule_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="operationmodule_span" class="d-none d-md-inline">Social Sustainablity</span></a>
+  
+    <li>
+      Social Sustainability
     </li>
-    <li class="nav-item">
-      <a class="nav-link" id="environmental_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="environmental_span" class="d-none d-md-inline">Environmental Sustainability</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="outward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="outward_span" class="d-none d-md-inline">Outward</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="processes_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="processes_span" class="d-none d-md-inline">Processes</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="inward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="inward_span" class="d-none d-md-inline">Inward</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="fabric_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="fabric_span" class="d-none d-md-inline">Fabric & Trims Store </span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="spreading_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="spreading_span" class="d-none d-md-inline">Spreading & Cutting</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="sewing_href" href="#" (click)="sewingNavigation()" data-toggle="pill"><span id="sewing_span" class="d-none d-md-inline">Sewing</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="finishing_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="finishing_span" class="d-none d-md-inline">Finishing & Packaging</span></a>
+
+    <li>
+      Environmental Sustainability
     </li>
   </ul>
 </nav>
-<main role="main" class="col-sm-9 ml-sm-auto col-md-10 main">
+<main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <div class="tab-pane fade show active hide-show" id="overallperformance" role="tabpanel" aria-labelledby="OverallPerformance-tab">
+    <h5 style="text-align: center; font-weight: bold;">Operators Analysis of last 5 days</h5>
+    <div class="row align-items-center mt-3">
+      <div class="col-4">
+        <div class="d-flex flex-row">
+          <span class="pt-2 pr-2" style="text-align: center !important;">Start Date</span>
+          <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker>
+        </div>
+      </div>
+      <div class="col-4 ml-2">
+        <div class="d-flex flex-row">
+          <span class="pt-2 pr-2" style="text-align: center !important;">End Date</span>
+          <ng-datepicker [(ngModel)]="endDate" [options]="options"></ng-datepicker>
+        </div>
+      </div>
+      <div class="col-3">
+        <button class="custom-button">Show Analysis</button>
+      </div>
+    </div>
+    <div class="row align-items-center mt-3">
+      <div class="col-12">
+        <div [chart]="operatorScatter"></div>
+      </div>
+    </div>
+    <!-- <div class="tab-pane fade show active hide-show" id="overallperformance" role="tabpanel" aria-labelledby="OverallPerformance-tab">
       <ul class="nav nav-pills">
         <li>
           <h4>Sewing - Low Efficiency Monitor</h4>
@@ -109,7 +132,7 @@
             </div>
           </div>
           <div class="row align-items-center h-100 mt-3">
-              <!-- <div [chart]="efficiencyHistoryLocationWise" class="col-4" style="height: 350px;"></div> -->
+              <div [chart]="efficiencyHistoryLocationWise" class="col-4" style="height: 350px;"></div>
               <div [chart]="efficiencyHistoryUnitWise" class="col-6" style="height: 350px;"></div>
               <div [chart]="efficiencyHistoryLineWise" class="col-6" style="height: 350px;"></div>
           </div>
@@ -146,6 +169,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 </main>

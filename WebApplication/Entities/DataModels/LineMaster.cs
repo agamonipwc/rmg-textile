@@ -12,5 +12,7 @@ namespace Entities.DataModels
         [Key]
         public int Id{get; set; }
         public string Name { get; set; }
+        public int LocationId { get; set; }
+        public double UnitId { get; set; }
     }
 }

@@ -30,3 +30,21 @@ insert into Department(Name) values('Sewing')
 insert into Department(Name) values('Spreading & Cutting')
 insert into Department(Name) values('Fabric & Trims Store')
 insert into Department(Name) values('Finishing & Packaging')
+
+select * from Location
+select * from Line
+select * from Unit
+
+alter table Line Add LocationId float
+alter table Unit Add LocationId float
+alter table Line Add UnitId float
+
+update Line set LocationId = 1 where id = 1;
+update Line set LocationId = 1 where id = 2;
+update Line set LocationId = 2 where id = 3;
+update Line set LocationId = 2 where id = 4;
+
+update Line set UnitId = 1 where id = 1;
+update Line set UnitId = 1 where id = 2;
+update Line set UnitId = 2 where id = 3;
+update Line set UnitId = 2 where id = 4;

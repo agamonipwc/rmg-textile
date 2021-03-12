@@ -16,9 +16,9 @@
   </div>
 </nav>
 <nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
-  <ul class="tree cutom-treestructure">
-
-    <li (click)="tabNavigation($event)" id="dashbaord_href">
+  <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
+  <ul class="tree cutom-treestructure mt-3">
+    <li (click)="dashboardNavigation()" id="dashbaord_href" style="cursor: pointer;">
       <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
     </li>
   
@@ -31,7 +31,7 @@
   
         <li>
           Processes
-          <ul>
+          <ul class="ml-4">
             <li>
               Fabric & Trims Store 
             </li>
@@ -39,7 +39,7 @@
             <li>
               Spreading & Cutting
             </li>
-            <li>
+            <li (click)="sewingNavigation()" style="cursor: pointer;">
               Sewing 
             </li>
             <li>
@@ -63,49 +63,108 @@
     </li>
   
   </ul>
-  <!-- <ul class="nav nav-pills flex-column">
-    <li class="nav-item">
-      <a class="nav-link active" id="dashbaord_href" href="dashbaord" data-toggle="pill" (click)="tabNavigation($event)"><span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="moduleperformance_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="operationmodule_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="operationmodule_span" class="d-none d-md-inline">Social Sustainablity</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="environmental_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="environmental_span" class="d-none d-md-inline">Environmental Sustainability</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="outward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="outward_span" class="d-none d-md-inline">Outward</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="processes_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="processes_span" class="d-none d-md-inline">Processes</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="inward_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="inward_span" class="d-none d-md-inline">Inward</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="fabric_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="fabric_span" class="d-none d-md-inline">Fabric & Trims Store </span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="spreading_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="spreading_span" class="d-none d-md-inline">Spreading & Cutting</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="sewing_href" href="#" style="cursor: pointer;" data-toggle="pill" (click)="sewingNavigation()"><span id="sewing_span" class="d-none d-md-inline">Sewing</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="finishing_href" href="#" data-toggle="pill" (click)="tabNavigation($event)"><span id="finishing_span" class="d-none d-md-inline">Finishing & Packaging</span></a>
-    </li>
-  </ul> -->
 </nav>
 
 <div role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <div class="row">
-      <div class="col-9">
+    <h5 style="text-align: center; font-weight: bold;">Overall Factory Score on 31.01.2021</h5>
+    <div class="row mt-3">
+      <div class="col-9" style="background-color: #ffffff;">
+        <div class="row mt-3">
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Operations <i class="fas fa-caret-down"></i></button>
+          <div class="col-9">
+            <div class="progress" style="height:30px">
+              <div class="progress-bar" style="width:65%;height:30px; background-color: #175d2d;">Score : 65</div>
+            </div>
+          </div>
+        </div>
+        <div class="collapse" id="collapseOperationDiv">
+          <div class="row mt-3" >
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Inward</button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">Score : 50</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseProcessesDiv" aria-expanded="false" aria-controls="collapseProcessesDiv">Processes <i class="fas fa-caret-down"></i></button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">Score : 30</div>
+              </div>
+            </div>
+          </div>
+          <div class="collapse" id="collapseProcessesDiv">
+            <div class="row mt-3" >
+              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Fabric & Trims Store</button>
+              <div class="col-9">
+                <div class="progress" style="height:30px">
+                  <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">Score : 50</div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Sewing <i class="fas fa-caret-down"></i></button>
+              <div class="col-9">
+                <div class="progress" style="height:30px">
+                  <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">Score : 30</div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Spreading & Cutting</button>
+              <div class="col-9">
+                <div class="progress" style="height:30px">
+                  <div class="progress-bar" style="width:70%;height:30px; background-color: #175d2d;">Score : 70</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Outward</button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">Score : 80</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Social Sustainablity</button>
+          <div class="col-9">
+            <div class="progress" style="height:30px">
+              <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">Score : 50</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Environmental Sustainability</button>
+          <div class="col-9">
+            <div class="progress" style="height:30px">
+              <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">Score : 30</div>
+            </div>
+          </div>
+        </div>
 
+
+        <!-- <div class="d-flex flex-column mb-3">
+          <div id="operationGaugeFormat">
+            <div class="d-flex flex-row">
+              <div class="p-2">Flex item 1</div>
+              <div class="p-2">
+                <div class="progress" style="height:20px">
+                  <div class="progress-bar" style="width:50%;height:20px"></div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          <div [chart]="operationGaugeFormat"></div>
+          <div> <button class="custom-button">Drilldown Operations</button></div>
+        </div> -->
       </div>
+
       <div class="col-3">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
@@ -116,7 +175,7 @@
                   <span class="caret"></span></button>
                   <ul class="dropdownmenu">
                     <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="locationSelectAll" /><span class="select-text" id="locationSelectText"> Select</span> All</label></a></li>
-                    <li class="custom-li" *ngFor="let option of locationOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' type="checkbox" class="option justone location" [value]="option.id" [id]="'location_' + option.id"/> {{option.name}}</label></a></li>
+                    <li class="custom-li" *ngFor="let option of locationOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' type="checkbox" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}</label></a></li>
                   </ul>
                 </div>
               </li>
@@ -126,43 +185,39 @@
                   <span class="caret"></span></button>
                   <ul class="dropdownmenu"> 
                     <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="unitSelectAll"/><span id="unitSelectText" class="select-text"> Select</span> All</label></a></li>
-                    <li class="custom-li" *ngFor="let option of unitOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[unit]' type="checkbox" class="option justone unit" [value]="option.id" [id]="'unit_' + option.id"/> {{option.name}}</label></a></li>
+                    <li class="custom-li" *ngFor="let option of unitOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[unit]' type="checkbox" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
                   </ul>
                 </div>
               </li>
-              <!-- <li class="nav-item mt-3">
-                <div class="dropdown ml-2">
+              <li class="nav-item mt-3">
+                <div class="ml-2">
                   <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Line</span>
                   <span class="caret"></span></button>
-                  <ul class="dropdownmenu">
+                  <ul class="dropdownmenu"> 
                     <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li>
-                    <li class="custom-li" *ngFor="let option of line"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.id" [id]="'line_' + option.id"/> {{option.name}}</label></a></li>
+                    <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
                   </ul>
                 </div>
-              </li> -->
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">Start Date</span>
+                    <input type="date" placeholder="Start Date">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">End Date</span>
+                    <input type="date" placeholder="Start Date">
+                  </div>
+                </div>
+              </li>
               <li class="nav-item mt-3">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
               </li>
-              <!-- <li class="nav-item mt-3">
-                <div class="dropdown ml-2">
-                  <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Unit</span>
-                  <span class="caret"></span></button>
-                  <ul class="dropdownmenu">
-                    <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="unitSelectAll"/><span id="unitSelectText" class="select-text"> Select</span> All</label></a></li>
-                    <li class="custom-li" *ngFor="let option of unit"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[]' type="checkbox" class="option justone unit" [value]="option.id"/> {{option.name}}</label></a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item mt-3">
-                <div class="dropdown ml-2">
-                  <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Location</span>
-                  <span class="caret"></span></button>
-                  <ul class="dropdownmenu">
-                    <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="locationSelectAll"/><span id="locationSelectText" class="select-text"> Select</span> All</label></a></li>
-                    <li class="custom-li" *ngFor="let option of location"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[]' type="checkbox" class="option justone location" [value]="option.id"/> {{option.name}}</label></a></li>
-                  </ul>
-                </div>
-              </li> -->
             </ul>
           </nav>
         </div>
@@ -187,7 +242,7 @@
                 <div class="slide-right" id="animationTextDisplay">
                   <h5 style="font-size: 15px; font-weight: bold;">Will the tool save resources for my sewing department ?</h5>
                   
-                  <p class="mt-4" style="font-size: 17px; text-align: left;">
+                  <p class="mt-4" style="font-size: 17px; text-align: left; font-size: 12px">
                     Your supervisor manages 3 lines, in one of which there is a style changeover is going on so he/she is engaged there. In the meantime due to some machine fault another line running Polo -Ts starts facing challenge in placket finish operation. The tool alerts the issue in realtime to him. He can then rectify the fault ASAP preventing more alterations.
                   </p>
                 </div>

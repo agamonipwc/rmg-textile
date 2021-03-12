@@ -53,10 +53,9 @@ namespace RMGWebApi.Controllers
         {
             
             var kpiResults = new {
-                CapaCityCalculation = CapacityCalculation(kpiViewModel),
+                //CapaCityCalculation = CapacityCalculation(kpiViewModel),
                 Efficiency = CalculateEfficiency(kpiViewModel),
-                //DefectRejectDHUPercentage = CalculateDHUDefectRejection(kpiViewModel),
-                MMRWIPInline= CalculateMMRInlineWIP(kpiViewModel),
+                //MMRWIPInline = CalculateMMRInlineWIP(kpiViewModel),
                 StatusCode = 200
             };
             return Json(kpiResults);
@@ -132,40 +131,40 @@ namespace RMGWebApi.Controllers
             //capacityUtilizationSeries.colorByPoint = true;
             //capacityUtilizationSeries.name = "Capacity";
             #region weightage calculation
-            int gainedWeightage = 0;
-            if (capacityUtilized == 0)
-            {
-                gainedWeightage = 0;
-            }
-            else if (capacityUtilized > 0 && capacityUtilized <= 25)
-            {
-                gainedWeightage = 1;
-            }
-            else if (capacityUtilized >= 26 && capacityUtilized <= 50)
-            {
-                gainedWeightage = 2;
-            }
-            else if (capacityUtilized >= 51 && capacityUtilized <= 80)
-            {
-                gainedWeightage = 3;
-            }
-            else if (capacityUtilized >= 81 && capacityUtilized <= 90)
-            {
-                gainedWeightage = 4;
-            }
-            else
-            {
-                gainedWeightage = 5;
-            }
+            //int gainedWeightage = 0;
+            //if (capacityUtilized == 0)
+            //{
+            //    gainedWeightage = 0;
+            //}
+            //else if (capacityUtilized > 0 && capacityUtilized <= 25)
+            //{
+            //    gainedWeightage = 1;
+            //}
+            //else if (capacityUtilized >= 26 && capacityUtilized <= 50)
+            //{
+            //    gainedWeightage = 2;
+            //}
+            //else if (capacityUtilized >= 51 && capacityUtilized <= 80)
+            //{
+            //    gainedWeightage = 3;
+            //}
+            //else if (capacityUtilized >= 81 && capacityUtilized <= 90)
+            //{
+            //    gainedWeightage = 4;
+            //}
+            //else
+            //{
+            //    gainedWeightage = 5;
+            //}
             #endregion
-            var weitageCalculation = Math.Round(gainedWeightage * 0.10, 2);
+            //var weitageCalculation = Math.Round(gainedWeightage * 0.10, 2);
             #region color code calculation
             string colorCode = "";
-            if (weitageCalculation < 0.16)
+            if (capacityUtilized >= 0 && capacityUtilized <= 50)
             {
                 colorCode = "#e0301e";
             }
-            else if (weitageCalculation >= 0.16 && weitageCalculation < 0.32)
+            else if (capacityUtilized >= 51 && capacityUtilized <= 75)
             {
                 colorCode = "#ffb600";
             }
@@ -177,7 +176,7 @@ namespace RMGWebApi.Controllers
 
             object[] objectArray = new object[2];
             objectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            objectArray[1] = gainedWeightage;
+            objectArray[1] = capacityUtilized;
             return Json(new
             {
                 capacityUtilizationResponse = objectArray,
@@ -187,12 +186,75 @@ namespace RMGWebApi.Controllers
 
         private JsonResult CalculateEfficiency(KPIViewModel kpiViewModel)
         {
-            var styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
-            var workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == date).Average(x => x.Data);
-            var operatorNosData= _rmgDbContext.OperatorNos.Where(x=> x.Date == date).Average(x => x.Data);
-            var helpersData = _rmgDbContext.Helpers.Where(x => x.Date == date).Average(x => x.Data);
-            var productionData = _rmgDbContext.Production.Where(x => x.Date == date).Average(x => x.Data);
-            var efficiency = (Math.Round((productionData * styleData) / (workingHoursData * (operatorNosData + helpersData)), 2)) * 100;
+            double styleData = 0;
+            double workingHoursData = 0;
+            double operatorNosData = 0;
+            double helpersData = 0;
+            double productionData = 0;
+            double efficiency = 0;
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            
+            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
+            {
+                styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
+                workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == startDate).Average(x => x.Data);
+                operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == startDate).Average(x => x.Data);
+                helpersData = _rmgDbContext.Helpers.Where(x => x.Date == startDate).Average(x => x.Data);
+                productionData = _rmgDbContext.Production.Where(x => x.Date == startDate).Average(x => x.Data);
+            }
+            else
+            {
+                if (kpiViewModel.Location.Count > 0)
+                {
+                    var linesBasedOnLocations = _rmgDbContext.Line.Where(x => kpiViewModel.Location.Contains(x.LocationId)).Select(x => x.Id).ToList();
+                    
+                    var selectedLinesList = linesBasedOnLocations.ConvertAll<double>(delegate (int i) { return i; });
+                    
+                    styleData = _rmgDbContext.StyleData.Where(x =>
+                            selectedLinesList.Contains(x.Line)).Average(x => x.SewingSAM);
+
+                    workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                    operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                    helpersData = _rmgDbContext.Helpers.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                    productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+
+                }
+                else
+                {
+                    if (kpiViewModel.Unit.Count > 0)
+                    {
+                        var linesBasedOnUnits = _rmgDbContext.Line.Where(x => kpiViewModel.Unit.Contains(x.UnitId)).Select(x => x.Id).ToList();
+                        var selectedLinesList = linesBasedOnUnits.ConvertAll<double>(delegate (int i) { return i; });
+
+                        styleData = _rmgDbContext.StyleData.Where(x =>
+                            selectedLinesList.Contains(x.Line)).Average(x => x.SewingSAM);
+
+                        workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                        operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                        helpersData = _rmgDbContext.Helpers.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                        productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+
+                    }
+                    else
+                    {
+                        styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
+                        workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                        operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                        helpersData = _rmgDbContext.Helpers.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                        productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+
+                    }
+                }
+            }
+
+            efficiency = (Math.Round((productionData * styleData) / (workingHoursData * (operatorNosData + helpersData)), 2)) * 100;
+
+
+            //var workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == date).Average(x => x.Data);
+            //var operatorNosData= _rmgDbContext.OperatorNos.Where(x=> x.Date == date).Average(x => x.Data);
+            //var helpersData = _rmgDbContext.Helpers.Where(x => x.Date == date).Average(x => x.Data);
+            //var productionData = _rmgDbContext.Production.Where(x => x.Date == date).Average(x => x.Data);
+            //var efficiency = (Math.Round((productionData * styleData) / (workingHoursData * (operatorNosData + helpersData)), 2)) * 100;
 
             //var styleDataByLineWise = _rmgDbContext.StyleData.Where(x =>
             //    kpiViewModel.Line.Contains(x.Line)).GroupBy(x=> new { x.Line })
@@ -269,47 +331,47 @@ namespace RMGWebApi.Controllers
             //    color = lineChartColors[0],
             //    tooltip = new { valueSuffix = "%" }
             //});
-            double weightageScore = 0;
-            int scoreCard = 0;
+            //double weightageScore = 0;
+            //int scoreCard = 0;
             #region calculate weightage
-            if(efficiency == 0)
-            {
-                weightageScore = efficiency * 0;
-                scoreCard = 0;
-            }
-            else if (efficiency > 0 && efficiency <= 25)
-            {
-                weightageScore = efficiency * 1;
-                scoreCard = 1;
-            }
-            else if (efficiency >= 26 && efficiency <= 50)
-            {
-                weightageScore = efficiency * 2;
-                scoreCard = 2;
-            }
-            else if (efficiency >= 51 && efficiency <= 80)
-            {
-                weightageScore = efficiency * 3;
-                scoreCard = 3;
-            }
-            else if (efficiency >= 81 && efficiency <=90)
-            {
-                weightageScore = efficiency * 4;
-                scoreCard = 4;
-            }
-            else
-            {
-                weightageScore = efficiency * 5;
-                scoreCard = 5;
-            }
+            //if(efficiency == 0)
+            //{
+            //    weightageScore = efficiency * 0;
+            //    scoreCard = 0;
+            //}
+            //else if (efficiency > 0 && efficiency <= 25)
+            //{
+            //    weightageScore = efficiency * 1;
+            //    scoreCard = 1;
+            //}
+            //else if (efficiency >= 26 && efficiency <= 50)
+            //{
+            //    weightageScore = efficiency * 2;
+            //    scoreCard = 2;
+            //}
+            //else if (efficiency >= 51 && efficiency <= 80)
+            //{
+            //    weightageScore = efficiency * 3;
+            //    scoreCard = 3;
+            //}
+            //else if (efficiency >= 81 && efficiency <=90)
+            //{
+            //    weightageScore = efficiency * 4;
+            //    scoreCard = 4;
+            //}
+            //else
+            //{
+            //    weightageScore = efficiency * 5;
+            //    scoreCard = 5;
+            //}
             #endregion
             #region Calculate color code
             string colorCode = "";
-            if(weightageScore < 0.25)
+            if(efficiency >= 0 && efficiency<=50)
             {
                 colorCode = "#e0301e";
             }
-            else if (weightageScore >= 0.25 && weightageScore < 0.5)
+            else if (efficiency >= 51 && efficiency <=75)
             {
                 colorCode = "#ffb600";
             }
@@ -320,7 +382,7 @@ namespace RMGWebApi.Controllers
             #endregion
             object[] objectArray = new object[2];
             objectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            objectArray[1] = scoreCard;
+            objectArray[1] = efficiency;
             return Json(new
             {
                 efficiencyResponse = objectArray,
@@ -328,201 +390,6 @@ namespace RMGWebApi.Controllers
             });
 
 
-        }
-
-        private JsonResult CalculateDHUDefectRejection(KPIViewModel kpiViewModel)
-        {
-            double avgProductionDataByYearGroup = 0;
-            var productionData = _rmgDbContext.Production.Where(x =>
-                kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-                .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
-
-            if(productionData.Count > 0)
-            {
-                avgProductionDataByYearGroup = productionData.Average(x => x.ProdData);
-            }
-
-            var rejectionData = _rmgDbContext.Rejection.Where(x =>
-                kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-                .Select(grp => new RejectionViewModel { RejectionData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
-
-            double avgRejectionDataByYearGroup = 0;
-            if(rejectionData.Count > 0)
-            {
-                avgRejectionDataByYearGroup = rejectionData.Average(x => x.RejectionData);
-            }
-
-            var alterationData = _rmgDbContext.Rejection.Where(x =>
-                kpiViewModel.Year.Contains(x.Date.Year) &&
-                kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line})
-                .Select(grp => new AlterationViewModel { AlterationData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
-            
-            double avgAlterationDataByYearGroup = 0;
-            if(alterationData.Count > 0)
-            {
-                avgAlterationDataByYearGroup = alterationData.Average(x => x.AlterationData);
-            }
-            List<DHURejectDefect> seriesData = new List<DHURejectDefect>();
-            if (avgProductionDataByYearGroup > 0)
-            {
-                //var percentageDefection = Math.Round(((avgRejectionDataByYearGroup + avgAlterationDataByYearGroup) / avgProductionDataByYearGroup), 2);
-                //var percentageRejection = Math.Round((avgRejectionDataByYearGroup / avgProductionDataByYearGroup), 2);
-
-                var percentageDefection = 0.07;
-                var percentageRejection = 0.03;
-
-
-                double defectionWeightage = 0;
-                if(percentageDefection >=0 && percentageDefection <= 5)
-                {
-                    defectionWeightage = 0.1 * 3;
-                }
-                else if (percentageDefection >= 6 && percentageDefection <= 20)
-                {
-                    defectionWeightage = 0.1 * 2;
-                }
-                else
-                {
-                    defectionWeightage = 0.1 * 1;
-                }
-                double rejectionWeitage = 0;
-                if (rejectionWeitage >= 0 && percentageDefection <= 1)
-                {
-                    defectionWeightage = 0.1 * 3;
-                }
-                else if (percentageDefection >= 2 && percentageDefection <= 5)
-                {
-                    defectionWeightage = 0.1 * 2;
-                }
-                else
-                {
-                    defectionWeightage = 0.1 * 1;
-                }
-
-                double percentageDHU = 9.9;
-                string dhuColor = "";
-                string dhuTextColor = "";
-                string defectColor = "";
-                string defectTextColor = "";
-                string rejectColor = "";
-                string rejectTextColor = "";
-                var dhuData = _rmgDbContext.DHU.Where(x =>
-                    kpiViewModel.Year.Contains(x.Date.Year) &&
-                    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Date.Month, x.Date.Year })
-                    .Select(grp => new DHUViewModel { DHUData = grp.Average(c => c.Data), Year = grp.Key.Year, Month = grp.Key.Month }).ToList();
-                if(dhuData.Count > 0)
-                {
-                    //percentageDHU = Math.Round(dhuData.Average(x => x.DHUData),2);
-                    double weightagetage = 0;
-                    if (percentageDHU > 11)
-                    {
-                        weightagetage = (0 * 0.05);
-                    }
-                    else if (percentageDHU <= 11 && percentageDHU > 10)
-                    {
-                        weightagetage = 1 * 0.05;
-                    }
-                    else if (percentageDHU <= 10 && percentageDHU > 9)
-                    {
-                        weightagetage = 2 * 0.05;
-                    }
-                    else if (percentageDHU <= 9 && percentageDHU > 8)
-                    {
-                        weightagetage = 3 * 0.05;
-                    }
-                    else if (percentageDHU <= 8 && percentageDHU > 6)
-                    {
-                        weightagetage = 4 * 0.05;
-                    }
-                    else
-                    {
-                        weightagetage = 5 * 0.05;
-                    }
-
-                    if(weightagetage < 0.08)
-                    {
-                        dhuColor = "#175d2d";
-                    }
-                    else if(weightagetage >=0.08 && weightagetage < 0.16)
-                    {
-                        dhuColor = "#ffb600";
-                    }
-                    else
-                    {
-                        dhuColor = "#e0301e";
-                    }
-                }
-                var acceptedPercentage = (Math.Round((100 - (percentageDHU + percentageRejection + percentageDefection)), 2));
-                #region Color code calculation of defect
-                if (defectionWeightage < 0.1)
-                {
-                    defectColor = "#175d2d";
-                    defectTextColor = "#ffffff";
-                }
-                else if (defectionWeightage > 0.1 && defectionWeightage <= 0.2)
-                {
-                    defectColor = "#ffb600";
-                    defectTextColor = "#ffffff";
-                }
-                else
-                {
-                    defectColor = "#e0301e";
-                    defectTextColor = "#000000";
-                }
-                #endregion
-
-                #region Color code calculation of reject
-                if (rejectionWeitage < 0.1)
-                {
-                    rejectColor = "#175d2d";
-                    rejectTextColor = "#ffffff";
-                }
-                else if (defectionWeightage > 0.1 && defectionWeightage <= 0.2)
-                {
-                    rejectColor = "#ffb600";
-                    rejectTextColor = "#ffffff";
-                }
-                else
-                {
-                    rejectColor = "#e0301e";
-                    rejectTextColor = "#000000";
-                }
-                #endregion
-
-                #region Adding calculated data into json response
-                seriesData.Add(new DHURejectDefect
-                {
-                    name = "D.H.U",
-                    y = percentageDHU,
-                    colorCode = "rgb(255, 182, 0)",
-                    PercentageValue = Convert.ToInt32(Math.Round(percentageDHU))
-                });
-                seriesData.Add(new DHURejectDefect
-                {
-                    name = "Defect",
-                    y = percentageDefection,
-                    colorCode = defectColor,
-                    PercentageValue = Convert.ToInt32(Math.Round(percentageDefection)),
-                    textColor = defectTextColor
-                });
-                seriesData.Add(new DHURejectDefect
-                {
-                    name = "Reject",
-                    y = percentageRejection,
-                    colorCode = rejectColor,
-                    PercentageValue = Convert.ToInt32(Math.Round(percentageRejection)),
-                    textColor = rejectTextColor
-                });
-                seriesData.Add(new DHURejectDefect
-                {
-                    name = "Accept",
-                    y = acceptedPercentage
-                });
-                #endregion
-            }
-            return Json(seriesData);
         }
 
         private JsonResult CalculateMMRInlineWIP(KPIViewModel kpiViewModel)
@@ -540,122 +407,122 @@ namespace RMGWebApi.Controllers
             var inlineWIPLevel = Math.Round((wipData / productionData),2);
             int scoreCardWIP = 0;
             #region Calculate weightage
-            double weightage = 0;
-            if(inlineWIPLevel >= 0.8 && inlineWIPLevel <= 1)
-            {
-                weightage = 0.10 * 3;
-                scoreCardWIP = 3;
-            }
-            if (inlineWIPLevel > 1 && inlineWIPLevel <= 1.5)
-            {
-                weightage = 0.10 * 2;
-                scoreCardWIP = 2;
-            }
-            if (inlineWIPLevel >= 1.6 && inlineWIPLevel <= 2)
-            {
-                weightage = 0.10 * 1;
-                scoreCardWIP = 2;
-            }
+            //double weightage = 0;
+            //if(inlineWIPLevel >= 0.8 && inlineWIPLevel <= 1)
+            //{
+            //    weightage = 0.10 * 3;
+            //    scoreCardWIP = 3;
+            //}
+            //if (inlineWIPLevel > 1 && inlineWIPLevel <= 1.5)
+            //{
+            //    weightage = 0.10 * 2;
+            //    scoreCardWIP = 2;
+            //}
+            //if (inlineWIPLevel >= 1.6 && inlineWIPLevel <= 2)
+            //{
+            //    weightage = 0.10 * 1;
+            //    scoreCardWIP = 2;
+            //}
             #endregion
             #region Calculate color code
             string wipColorCode = "";
-            if (weightage < 0.1)
+            if (wipData > 2 || wipData < 0.8)
             {
                 wipColorCode = "#e0301e";
             }
-            else if (weightage >= 0.1 && weightage <= 0.2)
+            else if (wipData >= 1.2 && wipData <= 2)
             {
                 wipColorCode = "#ffb600";
             }
-            else if(weightage > 0.2 && weightage <= 0.3)
+            else if(wipData >= 0.8 && wipData <= 1.2)
             {
                 wipColorCode = "#175d2d";
             }
             #endregion
             object[] wipObjectArray = new object[2];
             wipObjectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            wipObjectArray[1] = scoreCardWIP;
+            wipObjectArray[1] = inlineWIPLevel;
             #endregion
 
             #region MMR
             var mmrLevel = Math.Round(((operatorNosData + helpersData + checkersData)/machineryData), 2);
             #region Calculate weightage
-            double mmrweightage = 0;
-            int scoreCardMMR = 3;
-            if (mmrLevel == 1)
-            {
-                mmrweightage = 0.15 * 3;
-                scoreCardMMR = 3;
-            }
-            if (mmrLevel > 1 && mmrLevel <= 1.5)
-            {
-                mmrweightage = 0.15 * 2;
-                scoreCardMMR = 2;
-            }
-            if (mmrLevel >= 1.6)
-            {
-                mmrweightage = 0.15 * 1;
-                scoreCardMMR = 1;
-            }
+            //double mmrweightage = 0;
+            //int scoreCardMMR = 3;
+            //if (mmrLevel == 1)
+            //{
+            //    mmrweightage = 0.15 * 3;
+            //    scoreCardMMR = 3;
+            //}
+            //if (mmrLevel > 1 && mmrLevel <= 1.5)
+            //{
+            //    mmrweightage = 0.15 * 2;
+            //    scoreCardMMR = 2;
+            //}
+            //if (mmrLevel >= 1.6)
+            //{
+            //    mmrweightage = 0.15 * 1;
+            //    scoreCardMMR = 1;
+            //}
             #endregion
             #region Calculate color code
             string mmrColorCode = "";
-            if (mmrweightage < 0.15)
+            if (mmrLevel >= 1.6)
             {
                 mmrColorCode = "#e0301e";
             }
-            else if (mmrweightage >= 0.15 && mmrweightage <= 0.3)
+            else if (mmrLevel > 1 && mmrLevel <= 1.5)
             {
                 mmrColorCode = "#ffb600";
             }
-            else if (weightage > 0.3 && weightage <= 0.45)
+            else if (mmrLevel <= 1)
             {
                 mmrColorCode = "#175d2d";
             }
             #endregion
             object[] mmrObjectArray = new object[2];
             mmrObjectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            mmrObjectArray[1] = scoreCardMMR;
+            mmrObjectArray[1] = mmrLevel;
             #endregion
 
             #region Machine Downtime
             var machineDowntime = Math.Round((((miscData + unplnnedDowntimeData) / workingHoursData)*100));
             #region weightage calculation
-            double machineDowntimeWeitage = 0;
-            int machineDowntimeScoreCard = 0;
-            if(machineDowntime>= 0 && machineDowntime <= 5)
-            {
-                machineDowntimeWeitage = 0.10 * 3;
-                machineDowntimeScoreCard = 3;
-            }
-            else if (machineDowntime >= 6 && machineDowntime <= 10)
-            {
-                machineDowntimeWeitage = 0.10 * 2;
-                machineDowntimeScoreCard = 2;
-            }
-            else
-            {
-                machineDowntimeWeitage = 0.10 * 1;
-                machineDowntimeScoreCard = 2;
-            }
+            //double machineDowntimeWeitage = 0;
+            //int machineDowntimeScoreCard = 0;
+            //if(machineDowntime>= 0 && machineDowntime <= 5)
+            //{
+            //    machineDowntimeWeitage = 0.10 * 3;
+            //    machineDowntimeScoreCard = 3;
+            //}
+            //else if (machineDowntime >= 6 && machineDowntime <= 10)
+            //{
+            //    machineDowntimeWeitage = 0.10 * 2;
+            //    machineDowntimeScoreCard = 2;
+            //}
+            //else
+            //{
+            //    machineDowntimeWeitage = 0.10 * 1;
+            //    machineDowntimeScoreCard = 2;
+            //}
             #endregion
             #region colorcode calculation
             string machineDowntimeColorCode = "";
-            if (machineDowntimeWeitage < 0.1)
+            if (machineDowntime >= 0 && machineDowntime <= 5)
             {
                 machineDowntimeColorCode = "#e0301e";
             }
-            else if (machineDowntimeWeitage >= 0.1 && machineDowntimeWeitage <= 0.2)
+            else if (machineDowntime >= 6 && machineDowntime <= 10)
             {
                 machineDowntimeColorCode = "#ffb600";
             }
-            else if (machineDowntimeWeitage > 0.2 && weightage <= 0.3)
+            else
             {
                 machineDowntimeColorCode = "#175d2d";
             }
             object[] machineDowntimeObject = new object[2];
             machineDowntimeObject[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            machineDowntimeObject[1] = machineDowntimeScoreCard;
+            machineDowntimeObject[1] = machineDowntime;
             #endregion
             #endregion
             return Json(new

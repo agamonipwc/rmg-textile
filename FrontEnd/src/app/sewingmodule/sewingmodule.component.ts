@@ -32,11 +32,7 @@ export class SewingmoduleComponent implements OnInit {
   @ViewChild("mmrContainer", { read: ElementRef }) mmrContainer: ElementRef;
   @ViewChild("machineDowntimeContainer", { read: ElementRef }) machineDowntimeContainer: ElementRef;
   @ViewChild("absentismContainer", { read: ElementRef }) absentismContainer: ElementRef;
-  year :any = [
-    {id: 2019, name: '2019'},
-    {id: 2021, name: '2021'},
-    {id: 2022, name: '2022'}
-  ]
+ 
   startDate : Date;
   endDate : Date;
   options: DatepickerOptions = {
@@ -56,54 +52,18 @@ export class SewingmoduleComponent implements OnInit {
     fieldId: 'my-date-picker', // ID to assign to the input field. Defaults to datepicker-<counter>
     useEmptyBarTitle: false, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown 
   };
-  month : any = [
-    {id: 1, name: 'January'},
-    {id: 2, name: 'February'},
-    {id: 3, name: 'March'},
-    {id: 4, name: 'April'},
-    {id: 5, name: 'May'},
-    {id: 6, name: 'June'},
-    {id: 7, name: 'July'},
-    {id: 8, name: 'August'},
-    {id: 9, name: 'September'},
-    {id: 10, name: 'October'},
-    {id: 11, name: 'November'},
-    {id: 12, name: 'December'},
-  ]
-  line : any = []
-  unit : any = [];
-  location : any = [];
-  selectedYear = [];
-  selectedMonth = [];
+
+  lineOptions : any = []
+  unitOptions : any = [];
+  locationOptions : any = [];
+  
   selectedLine = [];
   selectedUnit = [];
   selectedLocation = [];
-  capacityCalculationHeadingColor = "";
 
   dhuStyle : any = {};
   defectStyle : any= {};
   rejectStyle : any = {};
-  
-  productionLine : Chart;
-  rejectionLine : Chart;
-  dhuLine : Chart;
-  productionUnit : Chart;
-  rejectionUnit : Chart;
-  dhuUnit : Chart;
-  
-  WIPLine : Chart;
-  alterationLine : Chart;
-  workingLine : Chart;
-  WIPUnit : Chart;
-  alterationUnit : Chart;
-  workingUnit : Chart;
-
-  operatorLine : Chart;
-  helperLine : Chart;
-  checkerLine : Chart;
-  operatorUnit : Chart;
-  helperUnit : Chart;
-  checkerUnit : Chart;
 
   constructor(private http: HttpClient,private _router: Router) {
     this.startDate = new Date();
@@ -115,84 +75,54 @@ export class SewingmoduleComponent implements OnInit {
     $("#footer").css("margin-left", "15%");
     this.selectAllOptions();
     this.getFilterData();
+    this.getMasterData();
     $("#footer").hide();
     $(".footer").hide();
 
-    setInterval(function(){
-      $("#dhuCard").addClass("reveal-text");
-      $("#defectCard").addClass("reveal-text");
-      $("#rejectCard").addClass("reveal-text");
-      setTimeout(function(){
-        $("#dhuCard").removeClass("reveal-text");
-        $("#defectCard").removeClass("reveal-text");
-        $("#rejectCard").removeClass("reveal-text");
-      }, 1500);
-    }, 3000);
-    this.kpipag1("kpipag1");
+    // setInterval(function(){
+    //   $("#dhuCard").addClass("reveal-text");
+    //   $("#defectCard").addClass("reveal-text");
+    //   $("#rejectCard").addClass("reveal-text");
+    //   setTimeout(function(){
+    //     $("#dhuCard").removeClass("reveal-text");
+    //     $("#defectCard").removeClass("reveal-text");
+    //     $("#rejectCard").removeClass("reveal-text");
+    //   }, 1500);
+    // }, 3000);
+    // this.kpipag1("kpipag1");
     // this.kpi("kpi");
     // this.getSewingKPIAnalysis();
+
+    $(function() {
+      // Hide all lists except the outermost.
+      $('ul.tree ul').hide();
+    
+      $('.tree li > ul').each(function(i) {
+        var $subUl = $(this);
+        var $parentLi = $subUl.parent('li');
+        var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+    
+        $parentLi.addClass('has-children');
+        
+        $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+          $(this).text( $(this).text() == '+' ? '-' : '+' );
+          $subUl.slideToggle('fast');
+        });
+      });
+    });
     
   }
   getFilterData(){
     var KPIView = {
-      Year : [2021],
-      Month : [1,2,3],
-      Line : [1,2,3,4]
-      // Line : _this.selectedLine
+      Line : [],
+      Location : [],
+      Unit : [],
+      StartDate : "2021-01-31 00:00:00.000",
+      EndDate : "2021-01-31 00:00:00.000",
     }
     this.calculateFirstPageKPIs(KPIView);
-    // var _this = this;
-    // this.http.get<any>(this.userBackendUrl).subscribe(data=>{
-    //   if(data.statusCode == 200){
-    //     data.responseData.lineMasterData.forEach(element => {
-    //       _this.line.push({id:element.Id, name: element.Name});
-    //     });
-    //     data.responseData.unitMasterData.forEach(element => {
-    //       _this.unit.push({id:element.Id, name: element.Name});
-    //     });
-    //     data.responseData.locationMasterData.forEach(element => {
-    //       _this.location.push({id:element.Id, name: element.Name})
-    //     });
-    //     var year= this.startDate.getFullYear();
-    //     var month = this.startDate.getMonth();
-    //     $("#year_"+year).prop('checked', true);
-    //     $("#month_"+month).prop('checked', true);
-    //     _this.line.forEach(element => {
-    //       var id = element.id.toString();
-    //       $("#line_"+id).prop('checked', true);
-    //     });
-    //     _this.selectedYear.push(parseInt($("#year_"+year).val()));
-    //     _this.selectedMonth.push(parseInt($("#month_"+month).val()));
-    //     _this.selectedLine.push(1);
-    //   }
-    // });
+    this.calculateSecondPageKPIs(KPIView);
   }
-  
-  // getSewingKPIAnalysis(){
-  //   var _this = this;
-  //   var lineSelected = [];
-  //   var monthSelected = [];
-  //   var  yearSelected = [];
-  //   $('input[name="options[line]"]:checked').each(function(i){
-  //     lineSelected.push(parseInt($(this).val()));
-  //   });
-  //   $('input[name="options[month]"]:checked').each(function(i){
-  //     monthSelected.push(parseInt($(this).val()));
-  //   });
-  //   $('input[name="options[year]"]:checked').each(function(i){
-  //     yearSelected.push(parseInt($(this).val()));
-  //   });
-  //   this.selectedYear = yearSelected;
-  //   this.selectedLine = lineSelected;
-  //   this.selectedMonth = monthSelected;
-  //   var KPIView = {
-  //     Year : this.selectedYear,
-  //     Month : this.selectedMonth,
-  //     Line : [1,2,3,4]
-  //   }
-  //   this.calculateFirstPageKPIs(KPIView);
-  //   // this.callEfficiencyCalculationApi(KPIView);
-  // }
 
   calculateFirstPageKPIs(KPIView){
     var _this = this;
@@ -231,9 +161,9 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max: 5,
+              max: 100,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -247,7 +177,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: '% Efficiency: <b>{point.y:.1f}</b>'
+              pointFormat: '% Efficiency: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'Efficiency',
@@ -297,9 +228,9 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max: 5,
+              max: 100,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -313,7 +244,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: '% Capacity Utilization: <b>{point.y:.1f}</b>'
+              pointFormat: '% Capacity Utilization: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'Capacity Utilization',
@@ -362,10 +294,10 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 1,
-              max: 3,
+              min: 0,
+              max: 5,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -379,7 +311,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: 'Inline WIP: <b>{point.y:.1f}</b>'
+              pointFormat: 'Inline WIP: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'Inline WIP',
@@ -428,10 +361,10 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 1,
-              max : 3,
+              min: 0,
+              max : 2,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -445,7 +378,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: 'MMR: <b>{point.y:.1f}</b>'
+              pointFormat: 'MMR: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'MMR',
@@ -494,10 +428,10 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 1,
-              max: 3,
+              min: 0,
+              max: 20,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -511,7 +445,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: 'Machine Downtime: <b>{point.y:.1f}</b>'
+              pointFormat: 'Machine Downtime: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'Machine Downtime',
@@ -541,7 +476,6 @@ export class SewingmoduleComponent implements OnInit {
   }
 
   calculateSecondPageKPIs(KPIView){
-    var _this = this;
     var url = environment.backendUrl + "SecondPageKPI";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
       if(responsedata.StatusCode == 200){
@@ -578,9 +512,9 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max:5,
+              max: 13,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -594,7 +528,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: '% DHU: <b>{point.y:.1f}</b>'
+              pointFormat: '% DHU: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'DHU',
@@ -643,10 +578,10 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
-              min: 1,
-              max : 3,
+              min: 0,
+              max : 15,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -660,7 +595,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: '% Rejection: <b>{point.y:.1f}</b>'
+              pointFormat: '% Rejection: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'Rejection',
@@ -710,9 +646,9 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max:3,
+              max:50,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -726,7 +662,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: '% Defect: <b>{point.y:.1f}</b>'
+              pointFormat: '% Defect: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: '% Defect',
@@ -776,9 +713,9 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max : 3,
+              max : 100,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -792,7 +729,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: 'Absentism: <b>{point.y:.1f}</b>'
+              pointFormat: 'Absentism: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'Absentism',
@@ -842,9 +780,9 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
             min: 0,
-            max : 3,
+            max : 100,
               title: {
-                  text: '% score',
+                  text: 'Value',
                   enabled : false
               },
               labels: {
@@ -858,7 +796,8 @@ export class SewingmoduleComponent implements OnInit {
               enabled: false
           },
           tooltip: {
-              pointFormat: 'Multi Skill: <b>{point.y:.1f}</b>'
+              pointFormat: 'Multi Skill: <b>{point.y:.1f}</b>',
+              enabled: false,
           },
           series: [{
               name: 'Multi Skill',
@@ -982,1299 +921,6 @@ export class SewingmoduleComponent implements OnInit {
       this.selectedUnit = unitSelected;
     });
   }
-  //not to change api
-  getProductivityLineWiseCharts(){
-    $("#productivityLine").show();
-    var linewiseChartBackendUrl = environment.backendUrl + 'drilldownlinewise';
-    var KPIView = {
-        Year : [2021],
-        Month : [1],
-        Line : [1,2,3,4]
-    }
-    var _this = this;
-    this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
-      _this.productionLine = new Chart({
-          chart: {
-              type: 'spline',
-              width: 350,
-          },
-          yAxis: [{ 
-            title: {
-                text: 'pcs',
-                style: {
-                    // color: "#d04a02",
-                    style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-                }
-              }
-            }
-          ],
-          title: {
-              text: 'Monthly Alteration on 2021',
-              style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-          },
-          exporting: {
-            enabled: false
-          },
-          credits: {enabled: false},
-          xAxis: {
-              type: 'category',
-              // categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-          },
-          colors: [
-                '#ffb600',
-                '#db536a',
-                '#e0301e',
-                '#571f01', 
-                '#db536a', 
-                '#d93954', 
-                '#e0301e', 
-                '#d04a02', 
-                '#92A8CD'
-              ],
-          plotOptions: {
-              series: {
-                  borderWidth: 0,
-                  dataLabels: {
-                      enabled: true
-                  },
-                  size:350,
-              column: {
-                    colorByPoint: true
-                }
-              }
-          },
-          series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionMonthDrilldowns"],
-          drilldown: {
-              series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
-          }
-      });
-
-      _this.dhuLine = new Chart({
-        chart:{
-          width: 350,
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        title: {
-            text: 'Monthly DHU Analysis on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        colors: [
-                  '#ffb600',
-                  '#db536a',
-                  '#e0301e',
-                  '#eb8c00', 
-                  '#db536a', 
-                  '#d93954', 
-                  '#e0301e', 
-                  '#d04a02', 
-                  '#92A8CD'
-          
-              ],
-    
-        // yAxis: {
-        //     title: {
-        //         text: 'DHU %'
-        //     },
-            
-        //     plotLines: [{
-        //     // color: 'red', // Color value
-        //     // dashStyle: 'dash', // Style of the plot line. Default to solid
-        //     // value: 1.80, // Value of where the line will appear
-        //     // width: 2, // Width of the line,
-        //     // label: {
-        //     //     text: 'Permissible DHU'
-        //     // }
-        //   }]
-        // },
-    
-        xAxis: {
-            // accessibility: {
-            //     rangeDescription: 'Range: 2019 to 2021'
-            // },
-            categories:responsedata["DHULineWiseAnalysis"]["Value"]["categories"]
-        },
-    
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                size:350
-                // pointStart: 
-            },
-            column: {
-              colorByPoint: true
-          }
-        },
-    
-        series: responsedata["DHULineWiseAnalysis"]["Value"]["series"],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-      });
-
-      _this.rejectionLine = new Chart({
-        chart: {
-            type: 'column',
-            width : 350
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        title: {
-            text: 'Monthly Rejection on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-              '#ffb600',
-              '#db536a',
-              '#e0301e',
-              '#eb8c00', 
-              '#db536a', 
-              '#d93954', 
-              '#e0301e', 
-              '#d04a02', 
-              '#92A8CD'
-            ],
-  
-  
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-  
-        series: responsedata["RejectionLineWiseAnalysis"]["Value"]["rejectionMonthDrilldowns"],
-        drilldown: {
-            series: responsedata["RejectionLineWiseAnalysis"]["Value"]["rejectionDrilldownMonthSeries"]
-        }
-      });
-    })
-  }
-  // not to change api
-  getProductivityUnitWiseCharts(){
-    $("#productivityLine").hide();
-    var linewiseChartBackendUrl = environment.backendUrl + 'drilldownunitwise';
-    var KPIView = {
-        Year : [2021],
-        Month : [1],
-        Unit : [1,2]
-    }
-    var _this = this;
-    _this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
-      this.productionUnit = new Chart({
-        chart: {
-            type: 'spline',
-            width: 350,
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        title: {
-            text: 'Monthly Alteration on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-              '#ffb600',
-              '#db536a',
-              '#e0301e',
-              '#eb8c00', 
-              '#db536a', 
-              '#d93954', 
-              '#e0301e', 
-              '#d04a02', 
-              '#92A8CD'
-                  
-            ],
-    
-    
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-    
-        series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionMonthDrilldowns"],
-        drilldown: {
-          series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
-        }
-      });
-      this.dhuUnit = new Chart({
-        chart:{
-          width: 350,
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        title: {
-            text: 'Weekly DHU Analysis on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        colors: [
-          '#ffb600',
-          '#db536a',
-          '#e0301e',
-          '#eb8c00', 
-          '#db536a', 
-          '#d93954', 
-          '#e0301e', 
-          '#d04a02', 
-          '#92A8CD'
-        ],
-    
-        
-        xAxis: {
-            // accessibility: {
-            //     rangeDescription: 'Range: 2019 to 2021'
-            // },
-            categories:responsedata["DHUUnitWiseAnalysis"]["Value"]["categories"]
-        },
-    
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                size:350
-                // pointStart: 2010
-            },
-            column: {
-              colorByPoint: true
-          }
-        },
-    
-        series: responsedata["DHUUnitWiseAnalysis"]["Value"]["series"],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-      });
-      this.rejectionUnit = new Chart({
-        chart: {
-            type: 'column',
-            width : 350
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        title: {
-            text: 'Monthly Rejection on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-                  '#ffb600',
-                  '#db536a',
-                  '#e0301e',
-                  '#eb8c00', 
-                  '#db536a', 
-                  '#d93954', 
-                  '#e0301e', 
-                  '#d04a02', 
-                  '#92A8CD'
-                  
-            ],
-  
-  
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-  
-        series: responsedata["RejectionUnitWiseAnalysis"]["Value"]["rejectionMonthDrilldowns"],
-        drilldown: {
-            series: responsedata["RejectionUnitWiseAnalysis"]["Value"]["rejectionDrilldownMonthSeries"]
-        }
-      });
-    })
-  }
-  
-  getEfficiencyLineWiseCharts(){
-    $("#workEfficiencyLine").show();
-    var linewiseChartBackendUrl = environment.backendUrl + 'DrilldownProductivityLinewise';
-    var KPIView = {
-        Year : [2021],
-        Month : [1],
-        Line : [1,2,3,4]
-    }
-    var _this = this;
-    this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
-      _this.WIPLine = new Chart({
-          chart: {
-              type: 'spline',
-              width: 350,
-          },
-          title: {
-              text: 'Monthly WIP on 2021',
-              style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-          },
-          exporting: {
-            enabled: false
-          },
-          credits: {enabled: false},
-          xAxis: {
-              type: 'category',
-              // categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-          },
-          yAxis: [{ 
-            title: {
-                text: 'Nos',
-                style: {
-                    // color: "#d04a02",
-                    style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-                }
-              }
-            }
-          ],
-          colors: [
-                '#ffb600',
-                '#db536a',
-                '#e0301e',
-                '#571f01', 
-                '#db536a', 
-                '#d93954', 
-                '#e0301e', 
-                '#d04a02', 
-                '#92A8CD'
-              ],
-          plotOptions: {
-              series: {
-                  borderWidth: 0,
-                  dataLabels: {
-                      enabled: true
-                  },
-                  size:350,
-              column: {
-                    colorByPoint: true
-                }
-              }
-          },
-          series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionMonthDrilldowns"],
-          drilldown: {
-              series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
-          }
-      });
-
-      _this.alterationLine = new Chart({
-        chart:{
-          width: 350,
-        },
-        title: {
-            text: 'Monthly Production on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        credits: {enabled: false},
-        colors: [
-                  '#ffb600',
-                  '#db536a',
-                  '#e0301e',
-                  '#eb8c00', 
-                  '#db536a', 
-                  '#d93954', 
-                  '#e0301e', 
-                  '#d04a02', 
-                  '#92A8CD'
-          
-              ],
-    
-        // yAxis: {
-        //     title: {
-        //         text: 'DHU %'
-        //     },
-            
-        //     plotLines: [{
-        //     // color: 'red', // Color value
-        //     // dashStyle: 'dash', // Style of the plot line. Default to solid
-        //     // value: 1.80, // Value of where the line will appear
-        //     // width: 2, // Width of the line,
-        //     // label: {
-        //     //     text: 'Permissible DHU'
-        //     // }
-        //   }]
-        // },
-    
-        xAxis: {
-            // accessibility: {
-            //     rangeDescription: 'Range: 2019 to 2021'
-            // },
-            categories:responsedata["DHULineWiseAnalysis"]["Value"]["categories"]
-        },
-    
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                size:350
-                // pointStart: 
-            },
-            column: {
-              colorByPoint: true
-          }
-        },
-    
-        series: responsedata["DHULineWiseAnalysis"]["Value"]["series"],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-      });
-
-      _this.workingLine = new Chart({
-        chart: {
-            type: 'column',
-            width : 350
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        title: {
-            text: 'Monthly Working on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-              '#ffb600',
-              '#db536a',
-              '#e0301e',
-              '#eb8c00', 
-              '#db536a', 
-              '#d93954', 
-              '#e0301e', 
-              '#d04a02', 
-              '#92A8CD'
-            ],
-  
-  
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-  
-        series: responsedata["RejectionLineWiseAnalysis"]["Value"]["rejectionMonthDrilldowns"],
-        drilldown: {
-            series: responsedata["RejectionLineWiseAnalysis"]["Value"]["rejectionDrilldownMonthSeries"]
-        }
-      });
-    })
-  }
-
-  getEfficiencyUnitWiseCharts(){
-    $("#workEfficiencyLine").hide();
-    var linewiseChartBackendUrl = environment.backendUrl + 'DrilldownProductivityUnitwise';
-    var KPIView = {
-        Year : [2021],
-        Month : [1],
-        Unit : [1,2]
-    }
-    var _this = this;
-    _this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
-      this.WIPUnit = new Chart({
-        chart: {
-            type: 'spline',
-            width: 350,
-        },
-        yAxis: [{ 
-          title: {
-              text: 'Nos',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        title: {
-            text: 'Monthly WIP on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-              '#ffb600',
-              '#db536a',
-              '#e0301e',
-              '#eb8c00', 
-              '#db536a', 
-              '#d93954', 
-              '#e0301e', 
-              '#d04a02', 
-              '#92A8CD'
-                  
-            ],
-    
-    
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-    
-        series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionMonthDrilldowns"],
-        drilldown: {
-          series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
-        }
-      });
-      this.alterationUnit = new Chart({
-        chart:{
-          width: 350,
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        title: {
-            text: 'Monthly Production on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        colors: [
-          '#ffb600',
-          '#db536a',
-          '#e0301e',
-          '#eb8c00', 
-          '#db536a', 
-          '#d93954', 
-          '#e0301e', 
-          '#d04a02', 
-          '#92A8CD'
-        ],
-        xAxis: {
-            // accessibility: {
-            //     rangeDescription: 'Range: 2019 to 2021'
-            // },
-            categories:responsedata["DHUUnitWiseAnalysis"]["Value"]["categories"]
-        },
-    
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                size:350
-                // pointStart: 2010
-            },
-            column: {
-              colorByPoint: true
-          }
-        },
-    
-        series: responsedata["DHUUnitWiseAnalysis"]["Value"]["series"],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-      });
-      this.workingUnit = new Chart({
-        chart: {
-            type: 'column',
-            width : 350
-        },
-        exporting: {
-          enabled: false
-        },
-        yAxis: [{ 
-          title: {
-              text: 'pcs',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        credits: {enabled: false},
-        title: {
-            text: 'Monthly Working on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-                  '#ffb600',
-                  '#db536a',
-                  '#e0301e',
-                  '#eb8c00', 
-                  '#db536a', 
-                  '#d93954', 
-                  '#e0301e', 
-                  '#d04a02', 
-                  '#92A8CD'
-                  
-            ],
-  
-  
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-  
-        series: responsedata["RejectionUnitWiseAnalysis"]["Value"]["rejectionMonthDrilldowns"],
-        drilldown: {
-            series: responsedata["RejectionUnitWiseAnalysis"]["Value"]["rejectionDrilldownMonthSeries"]
-        }
-      });
-    })
-  }
-
-  getResourceStrengthLineWiseCharts(){
-    $("#resourceStrengthLine").show();
-    var linewiseChartBackendUrl = environment.backendUrl + 'DrilldownResourceStrengthLinewise';
-    var KPIView = {
-        Year : [2021],
-        Month : [1],
-        Line : [1,2,3,4]
-    }
-    var _this = this;
-    this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
-      _this.operatorLine = new Chart({
-          chart: {
-              type: 'spline',
-              width: 350,
-          },
-          yAxis: [{ 
-            title: {
-                text: 'Nos',
-                style: {
-                    // color: "#d04a02",
-                    style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-                }
-              }
-            }
-          ],
-          title: {
-              text: 'Monthly Operator Count on 2021',
-              style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-          },
-          exporting: {
-            enabled: false
-          },
-          credits: {enabled: false},
-          xAxis: {
-              type: 'category',
-              // categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-          },
-          colors: [
-                '#ffb600',
-                '#db536a',
-                '#e0301e',
-                '#571f01', 
-                '#db536a', 
-                '#d93954', 
-                '#e0301e', 
-                '#d04a02', 
-                '#92A8CD'
-              ],
-          plotOptions: {
-              series: {
-                  borderWidth: 0,
-                  dataLabels: {
-                      enabled: true
-                  },
-                  size:350,
-              column: {
-                    colorByPoint: true
-                }
-              }
-          },
-          series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionMonthDrilldowns"],
-          drilldown: {
-              series: responsedata["ProductionLineWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
-          }
-      });
-
-      _this.helperLine = new Chart({
-        chart:{
-          width: 350,
-        },
-        yAxis: [{ 
-          title: {
-              text: 'Nos',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        title: {
-            text: 'Monthly Helpers Count on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        colors: [
-                  '#ffb600',
-                  '#db536a',
-                  '#e0301e',
-                  '#eb8c00', 
-                  '#db536a', 
-                  '#d93954', 
-                  '#e0301e', 
-                  '#d04a02', 
-                  '#92A8CD'
-          
-              ],
-    
-        // yAxis: {
-        //     title: {
-        //         text: 'DHU %'
-        //     },
-            
-        //     plotLines: [{
-        //     // color: 'red', // Color value
-        //     // dashStyle: 'dash', // Style of the plot line. Default to solid
-        //     // value: 1.80, // Value of where the line will appear
-        //     // width: 2, // Width of the line,
-        //     // label: {
-        //     //     text: 'Permissible DHU'
-        //     // }
-        //   }]
-        // },
-    
-        xAxis: {
-            // accessibility: {
-            //     rangeDescription: 'Range: 2019 to 2021'
-            // },
-            categories:responsedata["DHULineWiseAnalysis"]["Value"]["categories"]
-        },
-    
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                size:350
-                // pointStart: 
-            },
-            column: {
-              colorByPoint: true
-          }
-        },
-    
-        series: responsedata["DHULineWiseAnalysis"]["Value"]["series"],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-      });
-
-      _this.checkerLine = new Chart({
-        chart: {
-            type: 'column',
-            width : 350
-        },
-        exporting: {
-          enabled: false
-        },
-        yAxis: [{ 
-          title: {
-              text: 'Nos',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        credits: {enabled: false},
-        title: {
-            text: 'Monthly Checkers Count on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-      //   yAxis: {
-      //     min: 0,
-      //     stackLabels: {
-      //         enabled: true,
-      //         style: {
-      //             // fontWeight: 'bold',
-      //             color: ( 
-      //                 '#2d2d2d' && '#7d7d7d'
-      //             )
-      //         }
-      //     }
-      // },
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-              '#ffb600',
-              '#db536a',
-              '#e0301e',
-              '#eb8c00', 
-              '#db536a', 
-              '#d93954', 
-              '#e0301e', 
-              '#d04a02', 
-              '#92A8CD'
-            ],
-  
-  
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-  
-        series: responsedata["RejectionLineWiseAnalysis"]["Value"]["rejectionMonthDrilldowns"],
-        drilldown: {
-            series: responsedata["RejectionLineWiseAnalysis"]["Value"]["rejectionDrilldownMonthSeries"]
-        }
-      });
-    })
-  }
-
-  getResourceStrengthUnitWiseCharts(){
-    $("#resourceStrengthLine").hide();
-    var linewiseChartBackendUrl = environment.backendUrl + 'DrilldownResourceStengthUnitwise';
-    var KPIView = {
-        Year : [2021],
-        Month : [1],
-        Unit : [1,2]
-    }
-    var _this = this;
-    _this.http.post<any>(linewiseChartBackendUrl, KPIView).subscribe(responsedata => {
-      this.operatorUnit = new Chart({
-        chart: {
-            type: 'spline',
-            width: 350,
-        },
-        yAxis: [{ 
-          title: {
-              text: 'Nos',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        title: {
-            text: 'Monthly Operator Count on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-              '#ffb600',
-              '#db536a',
-              '#e0301e',
-              '#eb8c00', 
-              '#db536a', 
-              '#d93954', 
-              '#e0301e', 
-              '#d04a02', 
-              '#92A8CD'
-                  
-            ],
-    
-    
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-    
-        series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionMonthDrilldowns"],
-        drilldown: {
-          series: responsedata["ProductionUnitWiseAnalysis"]["Value"]["productionDrilldownMonthSeries"]
-        }
-      });
-      this.helperUnit = new Chart({
-        chart:{
-          width: 350,
-        },
-        yAxis: [{ 
-          title: {
-              text: 'Nos',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        title: {
-            text: 'Monthly Helpers Count on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        colors: [
-          '#ffb600',
-          '#db536a',
-          '#e0301e',
-          '#eb8c00', 
-          '#db536a', 
-          '#d93954', 
-          '#e0301e', 
-          '#d04a02', 
-          '#92A8CD'
-        ],
-    
-        xAxis: {
-            // accessibility: {
-            //     rangeDescription: 'Range: 2019 to 2021'
-            // },
-            categories:responsedata["DHUUnitWiseAnalysis"]["Value"]["categories"]
-        },
-    
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                size:350
-                // pointStart: 2010
-            },
-            column: {
-              colorByPoint: true
-          }
-        },
-    
-        series: responsedata["DHUUnitWiseAnalysis"]["Value"]["series"],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-      });
-      this.checkerUnit = new Chart({
-        chart: {
-            type: 'column',
-            width : 350
-        },
-        yAxis: [{ 
-          title: {
-              text: 'Nos',
-              style: {
-                  // color: "#d04a02",
-                  style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
-              }
-            }
-          }
-        ],
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        title: {
-            text: 'Monthly Checkers Count on 2021',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
-        },
-        
-        xAxis: {
-            type: 'category'
-        },
-        colors: [
-                  '#ffb600',
-                  '#db536a',
-                  '#e0301e',
-                  '#eb8c00', 
-                  '#db536a', 
-                  '#d93954', 
-                  '#e0301e', 
-                  '#d04a02', 
-                  '#92A8CD'
-                  
-            ],
-  
-  
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                },
-            column: {
-                  colorByPoint: true
-              }
-            }
-        },
-  
-        series: responsedata["RejectionUnitWiseAnalysis"]["Value"]["rejectionMonthDrilldowns"],
-        drilldown: {
-            series: responsedata["RejectionUnitWiseAnalysis"]["Value"]["rejectionDrilldownMonthSeries"]
-        }
-      });
-    })
-  }
   //activate tabs of sewing module
   activeTab = 'kpi';
 
@@ -2282,62 +928,93 @@ export class SewingmoduleComponent implements OnInit {
     this.activeTab = activeTab;
     // this.getSewingKPIAnalysis();
   }
-  workEfficiency(activeTab){
-    this.activeTab = activeTab;
-    // this.getLineWiseCharts();
-  }
-  productivity(activeTab){
-    this.activeTab = activeTab;
-    this.getProductivityLineWiseCharts();
-    // this.getUnitWiseCharts();
-  }
-  resourceStrength(activeTab){
-    this.activeTab = activeTab;
-  }
-  kpipag1(activeTab){
-    this.activeTab = activeTab;
-    var activatedhref = $(".submodule.active").map(function() {
-      return this.id;
-    }).get();
-    activatedhref.forEach(element => {
-      if(element != activeTab){
-        $("#"+ element).removeClass('active');
-        $("#" + element.split('_')[0]).hide();
-      }
-    });
-    var KPIView = {
-      Year : this.selectedYear,
-      Month : this.selectedMonth,
-      Line : [1,2,3,4]
-    }
-    this.calculateFirstPageKPIs(KPIView);
-    $("#"+ activeTab).show();
-  }
 
-  kpipag2(activeTab){
-    var activatedhref = $(".submodule.active").map(function() {
-      return this.id;
-    }).get();
-    activatedhref.forEach(element => {
-      if(element != activeTab){
-        $("#"+ element).removeClass('active');
-        $("#" + element.split('_')[0]).hide();
-      }
-    });
-    this.activeTab = activeTab;
-    var KPIView = {
-      Year : this.selectedYear,
-      Month : this.selectedMonth,
-      Line : [1,2,3,4]
-    }
-    this.calculateSecondPageKPIs(KPIView);
-    $("#kpipage2").show();
-  }
+  // kpipag1(activeTab){
+  //   this.activeTab = activeTab;
+  //   var activatedhref = $(".submodule.active").map(function() {
+  //     return this.id;
+  //   }).get();
+  //   activatedhref.forEach(element => {
+  //     if(element != activeTab){
+  //       $("#"+ element).removeClass('active');
+  //       $("#" + element.split('_')[0]).hide();
+  //     }
+  //   });
+  //   var KPIView = {
+  //     Year : this.selectedYear,
+  //     Month : this.selectedMonth,
+  //     Line : [1,2,3,4]
+  //   }
+  //   this.calculateFirstPageKPIs(KPIView);
+  //   $("#"+ activeTab).show();
+  // }
+
+  // kpipag2(activeTab){
+  //   var activatedhref = $(".submodule.active").map(function() {
+  //     return this.id;
+  //   }).get();
+  //   activatedhref.forEach(element => {
+  //     if(element != activeTab){
+  //       $("#"+ element).removeClass('active');
+  //       $("#" + element.split('_')[0]).hide();
+  //     }
+  //   });
+  //   this.activeTab = activeTab;
+  //   var KPIView = {
+  //     Year : this.selectedYear,
+  //     Month : this.selectedMonth,
+  //     Line : [1,2,3,4]
+  //   }
+  //   this.calculateSecondPageKPIs(KPIView);
+  //   $("#kpipage2").show();
+  // }
 
   navigateEfficiency(){
     this._router.navigate(['efficiency-overview']);
   }
+
   dashboardNavigation(){
     this._router.navigate(['module-performance']);
+  }
+
+  getMasterData(){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
+    this.http.get<any>(masterDataUrl).subscribe(responsedata =>{
+        if(responsedata["statusCode"] == 200){
+            _this.locationOptions = responsedata["locationMasterData"];
+            _this.unitOptions = responsedata["unitMasterData"];
+            _this.lineOptions = responsedata["lineMasterData"];
+        }
+    })
+  }
+
+  getSewingKPIAnalysis(){
+    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+      var locationId = parseFloat(this.value);
+      return locationId;
+    }).get();
+    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+      var unitId = parseFloat(this.value);
+      return unitId;
+    }).get();
+    var checkedLines = $('.option.justone.line:checkbox:checked').map(function() {
+      var lineId = parseFloat(this.value);
+      return lineId;
+    }).get();
+    console.log("-----------Checked Locations---------",checkedLocations);
+    console.log("-----------Checked unit---------",checkedUnits);
+    console.log("-----------Checked lines---------",checkedLines);
+    var StartDate = new Date().toDateString();
+    var EndDate = new Date().toDateString();
+    console.log("--------Start Date-------",StartDate);
+    var KPIView = {
+      Line : checkedLines,
+      Location : checkedLocations,
+      Unit : checkedUnits,
+      StartDate : "2021-01-31 00:00:00.000",
+      EndDate : "2021-01-31 00:00:00.000"
+    }
+    this.calculateFirstPageKPIs(KPIView);
   }
 }

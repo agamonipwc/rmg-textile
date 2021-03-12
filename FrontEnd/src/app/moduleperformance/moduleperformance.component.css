@@ -211,7 +211,7 @@ ul.tree > li:first-child:before {
 
 }
 
-
+/* Custom filter */
 
 .dropdown-button{
   width: 150px;
@@ -231,6 +231,7 @@ ul.tree > li:first-child:before {
 .custom-li{
   height: 21px !important;
   padding-top: 3px;
+  text-align: initial;
 }
 
 .dropdownmenu{

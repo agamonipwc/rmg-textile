@@ -10,8 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModuleperformanceComponent } from './moduleperformance/moduleperformance.component';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { OrgChartModule } from 'ng2-org-chart';
-// import more from 'highcharts/highcharts-more.src';
 import solidGauge from 'highcharts/modules/solid-gauge.src';
 import { SewingmoduleComponent } from './sewingmodule/sewingmodule.component';
 import{NgDatepickerModule} from 'ng2-datepicker';
@@ -36,7 +34,6 @@ export function highchartsModules() {
     HighchartsChartModule,
     ChartModule,
     NgDatepickerModule,
-    OrgChartModule
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } // add as factory to your providers

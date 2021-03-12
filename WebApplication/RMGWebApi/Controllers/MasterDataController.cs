@@ -23,10 +23,12 @@ namespace RMGWebApi.Controllers
         {
             var locationMasterData = _rmgDbContext.Location.ToList();
             var unitMasterData = _rmgDbContext.Unit.ToList();
+            var lineMasterData = _rmgDbContext.Line.ToList();
             return Json(new
             {
                 locationMasterData = locationMasterData,
                 unitMasterData = unitMasterData,
+                lineMasterData = lineMasterData,
                 statusCode = 200
             });
         }

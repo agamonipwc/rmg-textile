@@ -89,11 +89,13 @@ export class EfficiencyComponent implements OnInit {
   operatorLine2 : Chart;
   dhuLine : Chart;
   productionUnit : Chart;
+  
   efficiencyHistoryLocationWise : Chart;
   efficiencyHistoryLineWise : Chart;
   efficiencyHistoryUnitWise : Chart;
   dhuUnit : Chart;
   
+  operatorScatter: Chart;
 
   constructor(private http: HttpClient,private _router: Router) {
    }
@@ -103,12 +105,30 @@ export class EfficiencyComponent implements OnInit {
     $("#footer").css("margin-left", "15%");
     this.selectAllOptions();
     this.getFilterData();
-    this.getEfficiencyCharts();
-    this.getEfficiencyHistoryCharts();
+    // this.getEfficiencyCharts();
+    // this.getEfficiencyHistoryCharts();
     $("#footer").hide();
     $(".footer").hide();
-    this.dataTable = $(this.table.nativeElement);
-    this.dataTable.DataTable();
+    // this.dataTable = $(this.table.nativeElement);
+    // this.dataTable.DataTable();
+    $(function() {
+      // Hide all lists except the outermost.
+      $('ul.tree ul').hide();
+    
+      $('.tree li > ul').each(function(i) {
+        var $subUl = $(this);
+        var $parentLi = $subUl.parent('li');
+        var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+    
+        $parentLi.addClass('has-children');
+        
+        $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+          $(this).text( $(this).text() == '+' ? '-' : '+' );
+          $subUl.slideToggle('fast');
+        });
+      });
+    });
+    this.calculateOperatorEfficiency();
     // $(document).ready(function() {
     //   $('#recommendationTable').DataTable();
     // });
@@ -994,5 +1014,302 @@ export class EfficiencyComponent implements OnInit {
       console.log(responsedata);
       _this.recommendationData = responsedata;
     })
+  }
+
+  calculateOperatorEfficiency(){
+    this.operatorScatter = new Chart ({
+      chart: {
+          type: 'scatter',
+          zoomType: 'xy'
+      },
+      exporting: {
+        enabled: false
+      },
+      credits: {enabled: false},
+      title: {
+          text: 'Operator Efficiency',
+          style: {'font-family': 'Arial, Helvetica', 'font-size': '13px','display': 'none'},
+      },
+     
+      xAxis: {
+          title: {
+              enabled: false,
+              text: 'Operator ID',
+          },
+          labels: {
+            enabled: false,
+          },
+          startOnTick: true,
+          endOnTick: true,
+          showLastLabel: true,
+      },
+      yAxis: {
+          title: {
+              enabled: true,
+              text: 'Efficiency (%)',
+              max: 100,
+              min: 0
+          },
+          plotLines: [
+            {
+            color: '#003dab',
+            width: 2,
+            value: 75,
+            dashStyle: 'shortdot'
+          },
+          {
+            color: '#933401',
+            width: 2,
+            value: 51,
+            dashStyle: 'shortdot'
+          }
+        ]
+      },
+      plotOptions: {
+          scatter: {
+              marker: {
+                  radius: 7,
+                  symbol: 'circle',
+                  states: {
+                      hover: {
+                          enabled: true,
+                          lineColor: 'rgb(100,100,100)'
+                      }
+                  }
+              },
+              states: {
+                  hover: {
+                      marker: {
+                          enabled: false
+                      }
+                  }
+              },
+              tooltip: {
+                  headerFormat: '<b>{series.name}</b><br>',
+                  pointFormat: 'Op{point.x} has efficiency: {point.y} %'
+              }
+          }
+      },
+      series: [{
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[1, 51.6]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[2, 65.6]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[4, 35]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[5, 76]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[6, 51.6]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[7, 49]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[8, 28]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[9, 75]]
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[10, 79]]
+      },{
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[11, 51.6]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[12, 65.6]]
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[13,40]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[14, 30]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[15, 80]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[16, 49.5]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[17, 37]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[18, 18]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[19, 81]]
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[20, 82]]
+      },{
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[21, 51.6]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[22, 65.6]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[24, 35]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[25, 76]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[26, 51.6]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[27, 49]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[28, 28]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[29, 75]]
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[30, 79]]
+      },{
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[31, 60.6]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[32, 50]]
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#ffb600',
+          data: [[33,56]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[34, 10]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[35, 91]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[36, 41.5]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[37, 39]]
+      },
+      {
+          name: 'Op',
+          showInLegend: false,
+          color: '#e0301e',
+          data: [[38, 10]]
+  
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[39, 90]]
+      }, {
+          name: 'Op',
+          showInLegend: false,
+          color: '#175d2d',
+          data: [[40, 77]]
+      }
+      ]
+    });
   }
 }

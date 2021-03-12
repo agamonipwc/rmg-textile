@@ -12,6 +12,8 @@ let noData = require('highcharts/modules/no-data-to-display');
 let more = require("highcharts/highcharts-more");
 let Exporting = require('highcharts/modules/exporting');
 let Sunburst = require('highcharts/modules/sunburst');
+import Drilldown from 'highcharts/modules/drilldown';
+Drilldown(Highcharts);
 Boost(Highcharts);
 noData(Highcharts);
 more(Highcharts);
@@ -48,6 +50,7 @@ export class ModuleperformanceComponent implements OnInit {
   }
   locationOptions :any = [];
   unitOptions : any = [];
+  lineOptions : any = []
 
   constructor(private _router: Router, private http: HttpClient) { }
 
@@ -75,19 +78,18 @@ export class ModuleperformanceComponent implements OnInit {
         });
     });
 
-    this.to_left();
-    this.to_right();
+    // this.to_left();
+    // this.to_right();
     this.getMasterData();
-    this.createOperationOverView();
-    this.createSocialSustainablityOverview();
-    this.createEnvironmentalSustainablityOverview();
-    this.createFabricStoreOverview();
-    this.createTrimStoreOverview();
-    this.createSpreadingCuttingOverview();
-    this.createSewingOverview();
-    this.createFinishingPackingOverview();
-    this.createOperationoduleChart();
-    this.createProcessOverview();
+    // this.createSocialSustainablityOverview();
+    // this.createEnvironmentalSustainablityOverview();
+    // this.createFabricStoreOverview();
+    // this.createTrimStoreOverview();
+    // this.createSpreadingCuttingOverview();
+    // this.createSewingOverview();
+    // this.createFinishingPackingOverview();
+    // this.createOperationoduleChart();
+    // this.createProcessOverview();
   }
 
   tabNavigation(event){
@@ -129,89 +131,6 @@ export class ModuleperformanceComponent implements OnInit {
           $("#"+element).hide();
         }
       });
-  }
-
-  createOperationOverView(){
-    //create gauge chart format
-    this.operationGaugeFormat = new Chart({
-        chart: {
-            type: 'solidgauge',
-            height: '100%',
-            width:300
-        },
-    
-        title: {
-            text: 'Operation',
-            style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
-        },
-    
-        pane: {
-            center: ['50%', '85%'],
-            startAngle: -90,
-            endAngle: 90,
-            background: {
-                backgroundColor: '#EEE',
-                innerRadius: '60%',
-                outerRadius: '100%',
-                shape: 'arc'
-            }
-        },
-    
-        exporting: {
-            enabled: false
-        },
-    
-        tooltip: {
-            enabled: false
-        },
-        yAxis: {
-            min: 0,
-            max: 100,
-            stops: [
-                [0.1, '#e0301e'], // green
-                [0.5, '#ffb600'], // yellow
-                [0.9, '#175d2d'] // red
-            ],
-            lineWidth: 0,
-            tickWidth: 0,
-            minorTickInterval: null,
-            tickAmount: 2,
-            title: {
-                y: -70
-            },
-            labels: {
-                y: 16
-            }
-        },
-    
-        credits: {
-            enabled: false
-        },
-    
-        series: [{
-            name: 'Environmental Sustainability',
-            data: [60],
-            dataLabels: {
-                format:
-                    '<div style="text-align:center">' +
-                    '<span style="font-size:25px">{y}%</span><br/>' +
-                    '<span style="font-size:12px;opacity:0.4"></span>' +
-                    '</div>'
-            },
-            tooltip: {
-                valueSuffix: '%'
-            }
-        }],
-        plotOptions: {
-            solidgauge: {
-                dataLabels: {
-                    y: 5,
-                    borderWidth: 0,
-                    useHTML: true
-                }
-            }
-        }
-    });
   }
 
   createSocialSustainablityOverview(){
@@ -1153,8 +1072,13 @@ export class ModuleperformanceComponent implements OnInit {
 
   getMasterData(){
     var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
     this.http.get<any>(masterDataUrl).subscribe(responsedata =>{
-        console.log("---------data---------",responsedata);
+        if(responsedata["statusCode"] == 200){
+            _this.locationOptions = responsedata["locationMasterData"];
+            _this.unitOptions = responsedata["unitMasterData"];
+            _this.lineOptions = responsedata["lineMasterData"];
+        }
     })
   }
 
