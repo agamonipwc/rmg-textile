@@ -14,6 +14,7 @@ import { Chart } from 'angular-highcharts';
 Drilldown(Highcharts);
 import Exporting from 'highcharts/modules/exporting';
 Exporting(Highcharts);
+declare var anime: any;
 
 @Component({
   selector: 'app-sewingmodule',
@@ -78,6 +79,57 @@ export class SewingmoduleComponent implements OnInit {
     this.getMasterData();
     $("#footer").hide();
     $(".footer").hide();
+
+    // add animation js
+    // const textWrapper = document.querySelector('.an-1');
+    // textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    // anime.timeline({loop: true})
+    // .add({
+    //   targets: '.an-1 .letter',
+    //   scale: [4,1],
+    //   opacity: [0,1],
+    //   translateZ: 0,
+    //   easing: "easeOutExpo",
+    //   duration: 950,
+    //   delay: (el, i) => 70*i
+    // })
+    // .add({
+    //   targets: '.an-1',
+    //   opacity: 0,
+    //   duration: 1000,
+    //   easing: "easeOutExpo",
+    //   delay: 1000
+    // });
+
+  var textWrapper = document.querySelector('.ml1 .letters');
+  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+  anime.timeline({loop: true})
+  .add({
+      targets: '.ml1 .letter',
+      scale: [0.3,1],
+      opacity: [0,1],
+      translateZ: 0,
+      easing: "easeOutExpo",
+      duration: 600,
+      delay: (el, i) => 70 * (i+1)
+  }).add({
+      targets: '.ml1 .line',
+      scaleX: [0,1],
+      opacity: [0.5,1],
+      easing: "easeOutExpo",
+      duration: 700,
+      offset: '-=875',
+      delay: (el, i, l) => 80 * (l - i)
+  }).add({
+      targets: '.ml1',
+      opacity: 0,
+      duration: 1000,
+      easing: "easeOutExpo",
+      delay: 1000
+  });
+
 
     // setInterval(function(){
     //   $("#dhuCard").addClass("reveal-text");
@@ -269,7 +321,7 @@ export class SewingmoduleComponent implements OnInit {
 
         Highcharts.chart(this.wipContainer.nativeElement, {
           colors: [
-            responsedata["MMRWIPInline"]["Value"]["wipColorCode"]
+            responsedata["InlineWIPLevel"]["Value"]["wipColorCode"]
           ],
           exporting: {
             enabled: false
@@ -317,7 +369,7 @@ export class SewingmoduleComponent implements OnInit {
           series: [{
               name: 'Inline WIP',
               data: [
-                responsedata["MMRWIPInline"]["Value"]["inlineWIPResponse"]
+                responsedata["InlineWIPLevel"]["Value"]["inlineWIPResponse"]
               ],
               dataLabels: {
                   enabled: true,
@@ -336,7 +388,7 @@ export class SewingmoduleComponent implements OnInit {
 
         Highcharts.chart(this.mmrContainer.nativeElement, {
           colors: [
-            responsedata["MMRWIPInline"]["Value"]["mmrColorCode"]
+            responsedata["ManMachineRatio"]["Value"]["mmrColorCode"]
           ],
           exporting: {
             enabled: false
@@ -384,7 +436,7 @@ export class SewingmoduleComponent implements OnInit {
           series: [{
               name: 'MMR',
               data: [
-                responsedata["MMRWIPInline"]["Value"]["mmrResponse"]
+                responsedata["ManMachineRatio"]["Value"]["mmrResponse"]
               ],
               dataLabels: {
                   enabled: true,
@@ -403,7 +455,7 @@ export class SewingmoduleComponent implements OnInit {
         
         Highcharts.chart(this.machineDowntimeContainer.nativeElement, {
           colors: [
-            responsedata["MMRWIPInline"]["Value"]["machineDowntimeColorCode"]
+            responsedata["MachineDownTime"]["Value"]["machineDowntimeColorCode"]
           ],
           exporting: {
             enabled: false
@@ -451,7 +503,7 @@ export class SewingmoduleComponent implements OnInit {
           series: [{
               name: 'Machine Downtime',
               data: [
-                responsedata["MMRWIPInline"]["Value"]["machineDowntimeRespponse"]
+                responsedata["MachineDownTime"]["Value"]["machineDowntimeRespponse"]
               ],
               dataLabels: {
                   enabled: true,

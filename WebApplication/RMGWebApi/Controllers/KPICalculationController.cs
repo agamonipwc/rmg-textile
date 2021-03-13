@@ -17,7 +17,7 @@ namespace RMGWebApi.Controllers
         CustomResponse customResponse = new CustomResponse();
         List<string> lineChartColors = new List<string>() { "#eb8c00", "#d04a02", "#6e2a35", "#003dab", "#db536a" };
         List<string> columnChartColor = new List<string>() { "#0089eb", "#175c2c", "#a43e50", "#deb8ff", "#eb8c00" };
-        DateTime? date = Convert.ToDateTime("2021-01-31 00:00:00.000");
+        //DateTime? date = Convert.ToDateTime("2021-01-31 00:00:00.000");
         public KPICalculationController(RepositoryContext rmgDbContext)
         {
             _rmgDbContext = rmgDbContext;
@@ -53,9 +53,11 @@ namespace RMGWebApi.Controllers
         {
             
             var kpiResults = new {
-                //CapaCityCalculation = CapacityCalculation(kpiViewModel),
+                CapaCityCalculation = CapacityCalculation(kpiViewModel),
                 Efficiency = CalculateEfficiency(kpiViewModel),
-                //MMRWIPInline = CalculateMMRInlineWIP(kpiViewModel),
+                InlineWIPLevel = CalculateInlineWIP(kpiViewModel),
+                MachineDownTime = CalculateMachineDowntime(kpiViewModel),
+                ManMachineRatio = CalculateMMR(kpiViewModel),
                 StatusCode = 200
             };
             return Json(kpiResults);
@@ -63,10 +65,50 @@ namespace RMGWebApi.Controllers
 
         private JsonResult CapacityCalculation(KPIViewModel kpiViewModel)
         {
-            //double sumofProductionDataLineWise = 0;
-            //double sumofStyleDataLineWise = 0;
-            var styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
-            var productionData = _rmgDbContext.Production.Where(x => x.Date == date).Average(x => x.Data);
+            double styleData = 0;
+            double productionData = 0;
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            
+            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
+            {
+                styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
+                productionData = _rmgDbContext.Production.Where(x => x.Date == startDate).Average(x => x.Data);
+
+            }
+            else
+            {
+                if (kpiViewModel.Location.Count > 0)
+                {
+                    var linesBasedOnLocations = _rmgDbContext.Line.Where(x => kpiViewModel.Location.Contains(x.LocationId)).Select(x => x.Id).ToList();
+
+                    var selectedLinesList = linesBasedOnLocations.ConvertAll<double>(delegate (int i) { return i; });
+
+                    styleData = _rmgDbContext.StyleData.Where(x =>
+                            selectedLinesList.Contains(x.Line)).Average(x => x.SewingSAM);
+                    productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+
+                }
+                else
+                {
+                    if (kpiViewModel.Unit.Count > 0)
+                    {
+                        var linesBasedOnUnits = _rmgDbContext.Line.Where(x => kpiViewModel.Unit.Contains(x.UnitId)).Select(x => x.Id).ToList();
+                        var selectedLinesList = linesBasedOnUnits.ConvertAll<double>(delegate (int i) { return i; });
+
+                        styleData = _rmgDbContext.StyleData.Where(x =>
+                            selectedLinesList.Contains(x.Line)).Average(x => x.SewingSAM);
+                       
+                        productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+
+                    }
+                    else
+                    {
+                        styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
+                        productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+
+                    }
+                }
+            }
             //var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
             //    kpiViewModel.Year.Contains(x.Date.Year) &&
             //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line, x.Date.Month, x.Date.Year })
@@ -175,7 +217,7 @@ namespace RMGWebApi.Controllers
             #endregion
 
             object[] objectArray = new object[2];
-            objectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
+            objectArray[0] = startDate.Value.Date.ToString("dd/MM/yyyy");
             objectArray[1] = capacityUtilized;
             return Json(new
             {
@@ -381,7 +423,7 @@ namespace RMGWebApi.Controllers
             }
             #endregion
             object[] objectArray = new object[2];
-            objectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
+            objectArray[0] = startDate.Value.Date.ToString("dd/MM/yyyy");
             objectArray[1] = efficiency;
             return Json(new
             {
@@ -392,79 +434,53 @@ namespace RMGWebApi.Controllers
 
         }
 
-        private JsonResult CalculateMMRInlineWIP(KPIViewModel kpiViewModel)
+        private JsonResult CalculateMMR(KPIViewModel kpiViewModel)
         {
-            var operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == date).Average(x => x.Data);
-            var workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == date).Average(x => x.Data);
-            var checkersData = _rmgDbContext.Checkers.Where(x => x.Date == date).Average(x => x.Data);
-            var helpersData = _rmgDbContext.Helpers.Where(x => x.Date == date).Average(x => x.Data);
-            var machineryData = _rmgDbContext.Machinery.Where(x => x.Date == date).Average(x => x.Data);
-            var productionData = _rmgDbContext.Production.Where(x => x.Date == date).Average(x => x.Data);
-            var wipData = _rmgDbContext.WIP.Where(x => x.Date == date).Average(x => x.Data);
-            var miscData = _rmgDbContext.Misc.Select(x => x.Data).FirstOrDefault();
-            var unplnnedDowntimeData = _rmgDbContext.UnplannedDowntime.Where(x => x.Date == date).Average(x => x.Data);
-            #region Inline WIP
-            var inlineWIPLevel = Math.Round((wipData / productionData),2);
-            int scoreCardWIP = 0;
-            #region Calculate weightage
-            //double weightage = 0;
-            //if(inlineWIPLevel >= 0.8 && inlineWIPLevel <= 1)
-            //{
-            //    weightage = 0.10 * 3;
-            //    scoreCardWIP = 3;
-            //}
-            //if (inlineWIPLevel > 1 && inlineWIPLevel <= 1.5)
-            //{
-            //    weightage = 0.10 * 2;
-            //    scoreCardWIP = 2;
-            //}
-            //if (inlineWIPLevel >= 1.6 && inlineWIPLevel <= 2)
-            //{
-            //    weightage = 0.10 * 1;
-            //    scoreCardWIP = 2;
-            //}
-            #endregion
-            #region Calculate color code
-            string wipColorCode = "";
-            if (wipData > 2 || wipData < 0.8)
+            double operatorNosData = 0;
+            double helpersData = 0;
+            double checkersData = 0;
+            double machineryData = 0;
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
             {
-                wipColorCode = "#e0301e";
+                operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == startDate).Average(x => x.Data);
+                helpersData = _rmgDbContext.Helpers.Where(x => x.Date == startDate).Average(x => x.Data);
+                checkersData = _rmgDbContext.Checkers.Where(x => x.Date == startDate).Average(x => x.Data);
+                machineryData = _rmgDbContext.Machinery.Where(x => x.Date == startDate).Average(x => x.Data);
             }
-            else if (wipData >= 1.2 && wipData <= 2)
+            else
             {
-                wipColorCode = "#ffb600";
-            }
-            else if(wipData >= 0.8 && wipData <= 1.2)
-            {
-                wipColorCode = "#175d2d";
-            }
-            #endregion
-            object[] wipObjectArray = new object[2];
-            wipObjectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
-            wipObjectArray[1] = inlineWIPLevel;
-            #endregion
+                if (kpiViewModel.Location.Count > 0)
+                {
+                    checkersData = _rmgDbContext.Checkers.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                    operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                    helpersData = _rmgDbContext.Helpers.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                    machineryData = _rmgDbContext.Machinery.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                
+                }
+                else
+                {
+                    if (kpiViewModel.Unit.Count > 0)
+                    {
+                        checkersData = _rmgDbContext.Checkers.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                        operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                        helpersData = _rmgDbContext.Helpers.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                        machineryData = _rmgDbContext.Machinery.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
 
-            #region MMR
-            var mmrLevel = Math.Round(((operatorNosData + helpersData + checkersData)/machineryData), 2);
-            #region Calculate weightage
-            //double mmrweightage = 0;
-            //int scoreCardMMR = 3;
-            //if (mmrLevel == 1)
-            //{
-            //    mmrweightage = 0.15 * 3;
-            //    scoreCardMMR = 3;
-            //}
-            //if (mmrLevel > 1 && mmrLevel <= 1.5)
-            //{
-            //    mmrweightage = 0.15 * 2;
-            //    scoreCardMMR = 2;
-            //}
-            //if (mmrLevel >= 1.6)
-            //{
-            //    mmrweightage = 0.15 * 1;
-            //    scoreCardMMR = 1;
-            //}
-            #endregion
+                    }
+                    else
+                    {
+                        checkersData = _rmgDbContext.Checkers.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                        operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                        helpersData = _rmgDbContext.Helpers.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                        machineryData = _rmgDbContext.Machinery.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+
+                    }
+                }
+            }
+            
+            var mmrLevel = Math.Round(((operatorNosData + helpersData + checkersData) / machineryData), 2);
+            
             #region Calculate color code
             string mmrColorCode = "";
             if (mmrLevel >= 1.6)
@@ -481,31 +497,54 @@ namespace RMGWebApi.Controllers
             }
             #endregion
             object[] mmrObjectArray = new object[2];
-            mmrObjectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
+            mmrObjectArray[0] = startDate.Value.Date.ToString("dd/MM/yyyy");
             mmrObjectArray[1] = mmrLevel;
-            #endregion
+            return Json(new
+            {
+                mmrResponse = mmrObjectArray,
+                mmrColorCode = mmrColorCode,
+            });
+        }
 
-            #region Machine Downtime
-            var machineDowntime = Math.Round((((miscData + unplnnedDowntimeData) / workingHoursData)*100));
-            #region weightage calculation
-            //double machineDowntimeWeitage = 0;
-            //int machineDowntimeScoreCard = 0;
-            //if(machineDowntime>= 0 && machineDowntime <= 5)
-            //{
-            //    machineDowntimeWeitage = 0.10 * 3;
-            //    machineDowntimeScoreCard = 3;
-            //}
-            //else if (machineDowntime >= 6 && machineDowntime <= 10)
-            //{
-            //    machineDowntimeWeitage = 0.10 * 2;
-            //    machineDowntimeScoreCard = 2;
-            //}
-            //else
-            //{
-            //    machineDowntimeWeitage = 0.10 * 1;
-            //    machineDowntimeScoreCard = 2;
-            //}
-            #endregion
+        private JsonResult CalculateMachineDowntime(KPIViewModel kpiViewModel)
+        {
+            double workingHoursData = 0;
+            double miscData = 0;
+            double unplnnedDowntimeData = 0;
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+
+            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
+            {
+                workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == startDate).Average(x => x.Data);
+                miscData = _rmgDbContext.Misc.Select(x => x.Data).FirstOrDefault();
+                unplnnedDowntimeData = _rmgDbContext.UnplannedDowntime.Where(x => x.Date == startDate).Average(x => x.Data);
+            }
+            else
+            {
+                if (kpiViewModel.Location.Count > 0)
+                {
+                    workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                    miscData = _rmgDbContext.Misc.Select(x => x.Data).FirstOrDefault();
+                    unplnnedDowntimeData = _rmgDbContext.UnplannedDowntime.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                }
+                else
+                {
+                    if (kpiViewModel.Unit.Count > 0)
+                    {
+                        workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                        miscData = _rmgDbContext.Misc.Select(x => x.Data).FirstOrDefault();
+                        unplnnedDowntimeData = _rmgDbContext.UnplannedDowntime.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                    }
+                    else
+                    {
+                        workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                        miscData = _rmgDbContext.Misc.Select(x => x.Data).FirstOrDefault();
+                        unplnnedDowntimeData = _rmgDbContext.UnplannedDowntime.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                    }
+                }
+            }
+
+            var machineDowntime = Math.Round((((miscData + unplnnedDowntimeData) / workingHoursData) * 100));
             #region colorcode calculation
             string machineDowntimeColorCode = "";
             if (machineDowntime >= 0 && machineDowntime <= 5)
@@ -521,184 +560,388 @@ namespace RMGWebApi.Controllers
                 machineDowntimeColorCode = "#175d2d";
             }
             object[] machineDowntimeObject = new object[2];
-            machineDowntimeObject[0] = date.Value.Date.ToString("dd/MM/yyyy");
+            machineDowntimeObject[0] = startDate.Value.Date.ToString("dd/MM/yyyy");
             machineDowntimeObject[1] = machineDowntime;
-            #endregion
             #endregion
             return Json(new
             {
-                inlineWIPResponse = wipObjectArray,
-                wipColorCode = wipColorCode,
-                mmrResponse = mmrObjectArray,
-                mmrColorCode = mmrColorCode,
                 machineDowntimeRespponse = machineDowntimeObject,
                 machineDowntimeColorCode = machineDowntimeColorCode
             });
-            //var operatorNosByLineWise = _rmgDbContext.OperatorNos.Where(x =>
-            //    kpiViewModel.Year.Contains(x.Date.Year) &&
-            //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-            //    .Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+        }
 
-            //var helpersByLineWise = _rmgDbContext.Helpers.Where(x =>
-            //    kpiViewModel.Year.Contains(x.Date.Year) &&
-            //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-            //    .Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+        //private JsonResult CalculateMMRInlineWIP(KPIViewModel kpiViewModel)
+        //{
+        //    var operatorNosData = _rmgDbContext.OperatorNos.Where(x => x.Date == date).Average(x => x.Data);
+        //    var workingHoursData = _rmgDbContext.WorkingHrs.Where(x => x.Date == date).Average(x => x.Data);
+        //    var checkersData = _rmgDbContext.Checkers.Where(x => x.Date == date).Average(x => x.Data);
+        //    var helpersData = _rmgDbContext.Helpers.Where(x => x.Date == date).Average(x => x.Data);
+        //    var machineryData = _rmgDbContext.Machinery.Where(x => x.Date == date).Average(x => x.Data);
+        //    var productionData = _rmgDbContext.Production.Where(x => x.Date == date).Average(x => x.Data);
+        //    var wipData = _rmgDbContext.WIP.Where(x => x.Date == date).Average(x => x.Data);
+        //    var miscData = _rmgDbContext.Misc.Select(x => x.Data).FirstOrDefault();
+        //    var unplnnedDowntimeData = _rmgDbContext.UnplannedDowntime.Where(x => x.Date == date).Average(x => x.Data);
+        //    #region Inline WIP
+        //    var inlineWIPLevel = Math.Round((wipData / productionData),2);
+        //    #region Calculate weightage
+        //    //double weightage = 0;
+        //    //if(inlineWIPLevel >= 0.8 && inlineWIPLevel <= 1)
+        //    //{
+        //    //    weightage = 0.10 * 3;
+        //    //    scoreCardWIP = 3;
+        //    //}
+        //    //if (inlineWIPLevel > 1 && inlineWIPLevel <= 1.5)
+        //    //{
+        //    //    weightage = 0.10 * 2;
+        //    //    scoreCardWIP = 2;
+        //    //}
+        //    //if (inlineWIPLevel >= 1.6 && inlineWIPLevel <= 2)
+        //    //{
+        //    //    weightage = 0.10 * 1;
+        //    //    scoreCardWIP = 2;
+        //    //}
+        //    #endregion
+        //    #region Calculate color code
+        //    string wipColorCode = "";
+        //    if (wipData > 2 || wipData < 0.8)
+        //    {
+        //        wipColorCode = "#e0301e";
+        //    }
+        //    else if (wipData >= 1.2 && wipData <= 2)
+        //    {
+        //        wipColorCode = "#ffb600";
+        //    }
+        //    else if(wipData >= 0.8 && wipData <= 1.2)
+        //    {
+        //        wipColorCode = "#175d2d";
+        //    }
+        //    #endregion
+        //    object[] wipObjectArray = new object[2];
+        //    wipObjectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
+        //    wipObjectArray[1] = inlineWIPLevel;
+        //    #endregion
 
-            //var checkersByLineWise = _rmgDbContext.Helpers.Where(x =>
-            //   kpiViewModel.Year.Contains(x.Date.Year) &&
-            //   kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-            //   .Select(grp => new CheckersViewModel { CheckersData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+        //    #region MMR
+        //    var mmrLevel = Math.Round(((operatorNosData + helpersData + checkersData)/machineryData), 2);
+        //    #region Calculate weightage
+        //    //double mmrweightage = 0;
+        //    //int scoreCardMMR = 3;
+        //    //if (mmrLevel == 1)
+        //    //{
+        //    //    mmrweightage = 0.15 * 3;
+        //    //    scoreCardMMR = 3;
+        //    //}
+        //    //if (mmrLevel > 1 && mmrLevel <= 1.5)
+        //    //{
+        //    //    mmrweightage = 0.15 * 2;
+        //    //    scoreCardMMR = 2;
+        //    //}
+        //    //if (mmrLevel >= 1.6)
+        //    //{
+        //    //    mmrweightage = 0.15 * 1;
+        //    //    scoreCardMMR = 1;
+        //    //}
+        //    #endregion
+        //    #region Calculate color code
+        //    string mmrColorCode = "";
+        //    if (mmrLevel >= 1.6)
+        //    {
+        //        mmrColorCode = "#e0301e";
+        //    }
+        //    else if (mmrLevel > 1 && mmrLevel <= 1.5)
+        //    {
+        //        mmrColorCode = "#ffb600";
+        //    }
+        //    else if (mmrLevel <= 1)
+        //    {
+        //        mmrColorCode = "#175d2d";
+        //    }
+        //    #endregion
+        //    object[] mmrObjectArray = new object[2];
+        //    mmrObjectArray[0] = date.Value.Date.ToString("dd/MM/yyyy");
+        //    mmrObjectArray[1] = mmrLevel;
+        //    #endregion
 
-            //var machineryByLineWise = _rmgDbContext.Helpers.Where(x =>
-            //   kpiViewModel.Year.Contains(x.Date.Year) &&
-            //   kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-            //   .Select(grp => new MachineryViewModel { MechineryData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+        //    #region Machine Downtime
+        //    var machineDowntime = Math.Round((((miscData + unplnnedDowntimeData) / workingHoursData)*100));
+        //    #region weightage calculation
+        //    //double machineDowntimeWeitage = 0;
+        //    //int machineDowntimeScoreCard = 0;
+        //    //if(machineDowntime>= 0 && machineDowntime <= 5)
+        //    //{
+        //    //    machineDowntimeWeitage = 0.10 * 3;
+        //    //    machineDowntimeScoreCard = 3;
+        //    //}
+        //    //else if (machineDowntime >= 6 && machineDowntime <= 10)
+        //    //{
+        //    //    machineDowntimeWeitage = 0.10 * 2;
+        //    //    machineDowntimeScoreCard = 2;
+        //    //}
+        //    //else
+        //    //{
+        //    //    machineDowntimeWeitage = 0.10 * 1;
+        //    //    machineDowntimeScoreCard = 2;
+        //    //}
+        //    #endregion
+        //    #region colorcode calculation
+        //    string machineDowntimeColorCode = "";
+        //    if (machineDowntime >= 0 && machineDowntime <= 5)
+        //    {
+        //        machineDowntimeColorCode = "#e0301e";
+        //    }
+        //    else if (machineDowntime >= 6 && machineDowntime <= 10)
+        //    {
+        //        machineDowntimeColorCode = "#ffb600";
+        //    }
+        //    else
+        //    {
+        //        machineDowntimeColorCode = "#175d2d";
+        //    }
+        //    object[] machineDowntimeObject = new object[2];
+        //    machineDowntimeObject[0] = date.Value.Date.ToString("dd/MM/yyyy");
+        //    machineDowntimeObject[1] = machineDowntime;
+        //    #endregion
+        //    #endregion
+        //    return Json(new
+        //    {
+        //        inlineWIPResponse = wipObjectArray,
+        //        wipColorCode = wipColorCode,
+        //        mmrResponse = mmrObjectArray,
+        //        mmrColorCode = mmrColorCode,
+        //        machineDowntimeRespponse = machineDowntimeObject,
+        //        machineDowntimeColorCode = machineDowntimeColorCode
+        //    });
+        //    //var operatorNosByLineWise = _rmgDbContext.OperatorNos.Where(x =>
+        //    //    kpiViewModel.Year.Contains(x.Date.Year) &&
+        //    //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+        //    //    .Select(grp => new OperatorViewModel { OperatorData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
-            //var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
-            //    kpiViewModel.Year.Contains(x.Date.Year) &&
-            //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-            //    .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+        //    //var helpersByLineWise = _rmgDbContext.Helpers.Where(x =>
+        //    //    kpiViewModel.Year.Contains(x.Date.Year) &&
+        //    //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+        //    //    .Select(grp => new HelpersViewModel { HelperData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
-            //var wipDataByYearGroup = _rmgDbContext.Production.Where(x =>
-            //    kpiViewModel.Year.Contains(x.Date.Year) &&
-            //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
-            //    .Select(grp => new WIPViewModel { WIPData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
+        //    //var checkersByLineWise = _rmgDbContext.Helpers.Where(x =>
+        //    //   kpiViewModel.Year.Contains(x.Date.Year) &&
+        //    //   kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+        //    //   .Select(grp => new CheckersViewModel { CheckersData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
-            //List<string> monthCategory = new List<string>();
-            //foreach (var element in kpiViewModel.Line)
-            //{
-            //    switch (element)
-            //    {
-            //        case 1:
-            //            monthCategory.Add("Line1");
-            //            break;
-            //        case 2:
-            //            monthCategory.Add("Line2");
-            //            break;
-            //        case 3:
-            //            monthCategory.Add("Line3");
-            //            break;
-            //        case 4:
-            //            monthCategory.Add("Line4");
-            //            break;
-            //        case 5:
-            //            monthCategory.Add("Line5");
-            //            break;
-            //        //case 6:
-            //        //    monthCategory.Add("Jun");
-            //        //    break;
-            //        //case 7:
-            //        //    monthCategory.Add("July");
-            //        //    break;
-            //        //case 8:
-            //        //    monthCategory.Add("Aug");
-            //        //    break;
-            //        //case 9:
-            //        //    monthCategory.Add("Sep");
-            //        //    break;
-            //        //case 10:
-            //        //    monthCategory.Add("Oct");
-            //        //    break;
-            //        //case 11:
-            //        //    monthCategory.Add("Nov");
-            //        //    break;
-            //        //case 12:
-            //        //    monthCategory.Add("Dec");
-            //        //    break;
-            //    }
-            //}
-            //List<MMRInlineMonthlyViewModel> mmRMonthlyViewModels = new List<MMRInlineMonthlyViewModel>();
-            //List<double> wipYearWiseWeitageValues = new List<double>();
+        //    //var machineryByLineWise = _rmgDbContext.Helpers.Where(x =>
+        //    //   kpiViewModel.Year.Contains(x.Date.Year) &&
+        //    //   kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+        //    //   .Select(grp => new MachineryViewModel { MechineryData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
-            //for (int index = 0; index < kpiViewModel.Year.Count; index++)
-            //{
-            //    List<double> mmrYearWiseWeightageValues = new List<double>();
-            //    List<double> wipYearWiseWeitageValues = new List<double>();
+        //    //var productionDataByYearGroup = _rmgDbContext.Production.Where(x =>
+        //    //    kpiViewModel.Year.Contains(x.Date.Year) &&
+        //    //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+        //    //    .Select(grp => new ProductionViewModel { ProdData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
-            //}
-            //var query = (from op in operatorNosByLineWise
-            //             join he in helpersByLineWise on new { op.Line } equals new { he.Line }
-            //             join ch in checkersByLineWise on new { op.Line } equals new { ch.Line }
-            //             join prod in productionDataByYearGroup on new { op.Line } equals new { prod.Line }
-            //             join m in machineryByLineWise on new { op.Line } equals new { m.Line }
-            //             join wp in wipDataByYearGroup on new { op.Line } equals new { wp.Line }
-            //             select new MMRInlineWIPParameter
-            //             {
-            //                 //mmrValue = ((op.OperatorData + he.HelperData + ch.CheckerData) / prod.ProdData),
-            //                 Month = op.Line.ToString(),
-            //                 //Year = op.Year.ToString(),
-            //                 wipValue = Math.Round((wp.WIPData / prod.ProdData),2)
-            //             }).ToList();
+        //    //var wipDataByYearGroup = _rmgDbContext.Production.Where(x =>
+        //    //    kpiViewModel.Year.Contains(x.Date.Year) &&
+        //    //    kpiViewModel.Line.Contains(x.Line) && kpiViewModel.Month.Contains(x.Date.Month)).GroupBy(x => new { x.Line })
+        //    //    .Select(grp => new WIPViewModel { WIPData = grp.Average(c => c.Data), Line = grp.Key.Line }).ToList();
 
-            //foreach (var queryElement in query)
-            //{
-            //    //double mmrweightage = 0;
-            //    //double wipweightage = 0;
-            //    //if(queryElement.mmrValue > 0)
-            //    //{
-            //    //    if ((queryElement.mmrValue >= 0.8 && queryElement.mmrValue <= 1))
-            //    //    {
-            //    //        mmrweightage = 0.15 * 3;
-            //    //    }
-            //    //    else if (queryElement.mmrValue >= 1.1 && queryElement.mmrValue <= 1.5)
-            //    //    {
-            //    //        mmrweightage = 0.15 * 2;
-            //    //    }
-            //    //    else
-            //    //    {
-            //    //        mmrweightage = 0.15 * 1;
-            //    //    }
-            //    //}
-            //    //if (queryElement.wipValue > 0)
-            //    //{
-            //    //    if ((queryElement.wipValue >= 0.8 && queryElement.wipValue <= 1))
-            //    //    {
-            //    //        wipweightage = 0.15 * 3;
-            //    //    }
-            //    //    else if (queryElement.wipValue >= 1.1 && queryElement.wipValue <= 1.5)
-            //    //    {
-            //    //        wipweightage = 0.15 * 2;
-            //    //    }
-            //    //    else
-            //    //    {
-            //    //        wipweightage = 0.15 * 1;
-            //    //    }
-            //    //}
+        //    //List<string> monthCategory = new List<string>();
+        //    //foreach (var element in kpiViewModel.Line)
+        //    //{
+        //    //    switch (element)
+        //    //    {
+        //    //        case 1:
+        //    //            monthCategory.Add("Line1");
+        //    //            break;
+        //    //        case 2:
+        //    //            monthCategory.Add("Line2");
+        //    //            break;
+        //    //        case 3:
+        //    //            monthCategory.Add("Line3");
+        //    //            break;
+        //    //        case 4:
+        //    //            monthCategory.Add("Line4");
+        //    //            break;
+        //    //        case 5:
+        //    //            monthCategory.Add("Line5");
+        //    //            break;
+        //    //        //case 6:
+        //    //        //    monthCategory.Add("Jun");
+        //    //        //    break;
+        //    //        //case 7:
+        //    //        //    monthCategory.Add("July");
+        //    //        //    break;
+        //    //        //case 8:
+        //    //        //    monthCategory.Add("Aug");
+        //    //        //    break;
+        //    //        //case 9:
+        //    //        //    monthCategory.Add("Sep");
+        //    //        //    break;
+        //    //        //case 10:
+        //    //        //    monthCategory.Add("Oct");
+        //    //        //    break;
+        //    //        //case 11:
+        //    //        //    monthCategory.Add("Nov");
+        //    //        //    break;
+        //    //        //case 12:
+        //    //        //    monthCategory.Add("Dec");
+        //    //        //    break;
+        //    //    }
+        //    //}
+        //    //List<MMRInlineMonthlyViewModel> mmRMonthlyViewModels = new List<MMRInlineMonthlyViewModel>();
+        //    //List<double> wipYearWiseWeitageValues = new List<double>();
 
-            //    wipYearWiseWeitageValues.Add(queryElement.wipValue);
-            //}
-            //List<MMRWIPChartData> chartDatas = new List<MMRWIPChartData>();
-            //if (mmRMonthlyViewModels.Count > 0)
-            //{
-            //    var groupByMonthMMRInline = mmRMonthlyViewModels.GroupBy(x => x.month).Select(grp => new MMRInlineMonthlyViewModel
-            //    {
-            //        mmrdata = grp.Average(c => c.mmrdata),
-            //        wipdata = grp.Average(c => c.wipdata),
-            //        month = grp.Key
-            //    }).ToList();
-            //    List<double> mmrStackData = new List<double>();
-            //    List<double> wipStackData = new List<double>();
-            //    foreach (var element in groupByMonthMMRInline)
-            //    {
-            //        mmrStackData.Add(Math.Round(element.mmrdata, 3));
-            //        wipStackData.Add(Math.Round(element.wipdata, 3));
-            //    }
-            //    chartDatas.Add(new MMRWIPChartData
-            //    {
-            //        name = "MMR",
-            //        data = mmrStackData
-            //    });
-            //    chartDatas.Add(new MMRWIPChartData
-            //    {
-            //        name = "WIP",
-            //        data = wipStackData
-            //    });
-            //}
-            //return Json(new {
-            //    chartDatas = wipYearWiseWeitageValues,
-            //    monthCategory = monthCategory,
-            //    name = "Inline WIP"
-            //});
+        //    //for (int index = 0; index < kpiViewModel.Year.Count; index++)
+        //    //{
+        //    //    List<double> mmrYearWiseWeightageValues = new List<double>();
+        //    //    List<double> wipYearWiseWeitageValues = new List<double>();
+
+        //    //}
+        //    //var query = (from op in operatorNosByLineWise
+        //    //             join he in helpersByLineWise on new { op.Line } equals new { he.Line }
+        //    //             join ch in checkersByLineWise on new { op.Line } equals new { ch.Line }
+        //    //             join prod in productionDataByYearGroup on new { op.Line } equals new { prod.Line }
+        //    //             join m in machineryByLineWise on new { op.Line } equals new { m.Line }
+        //    //             join wp in wipDataByYearGroup on new { op.Line } equals new { wp.Line }
+        //    //             select new MMRInlineWIPParameter
+        //    //             {
+        //    //                 //mmrValue = ((op.OperatorData + he.HelperData + ch.CheckerData) / prod.ProdData),
+        //    //                 Month = op.Line.ToString(),
+        //    //                 //Year = op.Year.ToString(),
+        //    //                 wipValue = Math.Round((wp.WIPData / prod.ProdData),2)
+        //    //             }).ToList();
+
+        //    //foreach (var queryElement in query)
+        //    //{
+        //    //    //double mmrweightage = 0;
+        //    //    //double wipweightage = 0;
+        //    //    //if(queryElement.mmrValue > 0)
+        //    //    //{
+        //    //    //    if ((queryElement.mmrValue >= 0.8 && queryElement.mmrValue <= 1))
+        //    //    //    {
+        //    //    //        mmrweightage = 0.15 * 3;
+        //    //    //    }
+        //    //    //    else if (queryElement.mmrValue >= 1.1 && queryElement.mmrValue <= 1.5)
+        //    //    //    {
+        //    //    //        mmrweightage = 0.15 * 2;
+        //    //    //    }
+        //    //    //    else
+        //    //    //    {
+        //    //    //        mmrweightage = 0.15 * 1;
+        //    //    //    }
+        //    //    //}
+        //    //    //if (queryElement.wipValue > 0)
+        //    //    //{
+        //    //    //    if ((queryElement.wipValue >= 0.8 && queryElement.wipValue <= 1))
+        //    //    //    {
+        //    //    //        wipweightage = 0.15 * 3;
+        //    //    //    }
+        //    //    //    else if (queryElement.wipValue >= 1.1 && queryElement.wipValue <= 1.5)
+        //    //    //    {
+        //    //    //        wipweightage = 0.15 * 2;
+        //    //    //    }
+        //    //    //    else
+        //    //    //    {
+        //    //    //        wipweightage = 0.15 * 1;
+        //    //    //    }
+        //    //    //}
+
+        //    //    wipYearWiseWeitageValues.Add(queryElement.wipValue);
+        //    //}
+        //    //List<MMRWIPChartData> chartDatas = new List<MMRWIPChartData>();
+        //    //if (mmRMonthlyViewModels.Count > 0)
+        //    //{
+        //    //    var groupByMonthMMRInline = mmRMonthlyViewModels.GroupBy(x => x.month).Select(grp => new MMRInlineMonthlyViewModel
+        //    //    {
+        //    //        mmrdata = grp.Average(c => c.mmrdata),
+        //    //        wipdata = grp.Average(c => c.wipdata),
+        //    //        month = grp.Key
+        //    //    }).ToList();
+        //    //    List<double> mmrStackData = new List<double>();
+        //    //    List<double> wipStackData = new List<double>();
+        //    //    foreach (var element in groupByMonthMMRInline)
+        //    //    {
+        //    //        mmrStackData.Add(Math.Round(element.mmrdata, 3));
+        //    //        wipStackData.Add(Math.Round(element.wipdata, 3));
+        //    //    }
+        //    //    chartDatas.Add(new MMRWIPChartData
+        //    //    {
+        //    //        name = "MMR",
+        //    //        data = mmrStackData
+        //    //    });
+        //    //    chartDatas.Add(new MMRWIPChartData
+        //    //    {
+        //    //        name = "WIP",
+        //    //        data = wipStackData
+        //    //    });
+        //    //}
+        //    //return Json(new {
+        //    //    chartDatas = wipYearWiseWeitageValues,
+        //    //    monthCategory = monthCategory,
+        //    //    name = "Inline WIP"
+        //    //});
+        //}
+
+        private JsonResult CalculateInlineWIP(KPIViewModel kpiViewModel)
+        {
+            double productionData = 0;
+            double wipData = 0;
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+
+            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
+            {
+                wipData = _rmgDbContext.WIP.Where(x => x.Date == startDate).Average(x => x.Data);
+                productionData = _rmgDbContext.Production.Where(x => x.Date == startDate).Average(x => x.Data);
+            }
+            else
+            {
+                if (kpiViewModel.Location.Count > 0)
+                {
+                    var linesBasedOnLocations = _rmgDbContext.Line.Where(x => kpiViewModel.Location.Contains(x.LocationId)).Select(x => x.Id).ToList();
+
+                    wipData = _rmgDbContext.WIP.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                    productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Average(x => x.Data);
+                }
+                else
+                {
+                    if (kpiViewModel.Unit.Count > 0)
+                    {
+                        var linesBasedOnUnits = _rmgDbContext.Line.Where(x => kpiViewModel.Unit.Contains(x.UnitId)).Select(x => x.Id).ToList();
+                       
+                        wipData = _rmgDbContext.WIP.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+                        productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Unit)).Average(x => x.Data);
+
+                    }
+                    else
+                    {
+                        wipData = _rmgDbContext.WIP.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+                        productionData = _rmgDbContext.Production.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Line)).Average(x => x.Data);
+
+                    }
+                }
+            }
+
+           
+            var inlineWIPLevel = Math.Round((wipData / productionData), 2);
+            #region Calculate color code
+            string wipColorCode = "";
+            if (wipData > 2 || wipData < 0.8)
+            {
+                wipColorCode = "#e0301e";
+            }
+            else if (wipData >= 1.2 && wipData <= 2)
+            {
+                wipColorCode = "#ffb600";
+            }
+            else if (wipData >= 0.8 && wipData <= 1.2)
+            {
+                wipColorCode = "#175d2d";
+            }
+            #endregion
+            object[] wipObjectArray = new object[2];
+            wipObjectArray[0] = startDate.Value.Date.ToString("dd/MM/yyyy");
+            wipObjectArray[1] = inlineWIPLevel;
+            return Json(new
+            {
+                inlineWIPResponse = wipObjectArray,
+                wipColorCode = wipColorCode
+            });
         }
 
     }

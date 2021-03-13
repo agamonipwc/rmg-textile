@@ -1066,7 +1066,7 @@ body,html {*/
 /*Customize radion button*/
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
-	position: absolute;
+	/* position: relative; */
 	left: -9999px;
 }
 

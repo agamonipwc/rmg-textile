@@ -54,8 +54,16 @@
 </nav>
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <h5 style="text-align: center; font-weight: bold;">Sewing Department KPI Analysis on 31.01.2021</h5>
-    <div class="row">
+    <h4 style="text-align: center; font-weight: bold;">Sewing Department KPI Analysis on 31.01.2021</h4>
+    <!-- <h6 class="an-1">Please click each button below to view details analysis.</h6> -->
+    <h6 class="ml1">
+      <span class="text-wrapper">
+        <span class="line line1"></span>
+        <span class="letters" style="font-style: italic;">Please click each button below to view details analysis.</span>
+        <span class="line line2"></span>
+      </span>
+    </h6>
+    <div class="row mt-2">
       <div class="col-9">
         <div class="row align-items-center mt-3">
           <div class="col-3" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
@@ -183,8 +191,8 @@
                   <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Line</span>
                   <span class="caret"></span></button>
                   <ul class="dropdownmenu"> 
-                    <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li>
-                    <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
+                    <!-- <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li> -->
+                    <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="radio" class="option justone line" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
                   </ul>
                 </div>
               </li>
