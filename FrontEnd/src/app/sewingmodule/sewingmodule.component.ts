@@ -79,7 +79,9 @@ export class SewingmoduleComponent implements OnInit {
     this.getMasterData();
     $("#footer").hide();
     $(".footer").hide();
-
+    // $(document).ready(function(){
+    //   $('[data-toggle="tooltip"]').tooltip();   
+    // });
     // add animation js
     // const textWrapper = document.querySelector('.an-1');
     // textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -631,7 +633,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max : 15,
+              max : 100,
               title: {
                   text: 'Value',
                   enabled : false
@@ -698,7 +700,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max:50,
+              max:100,
               title: {
                   text: 'Value',
                   enabled : false
@@ -739,7 +741,7 @@ export class SewingmoduleComponent implements OnInit {
 
         Highcharts.chart(this.absentismContainer.nativeElement, {
           colors: [
-            responsedata["AbsentismMultiskill"]["Value"]["absentismColor"]
+            responsedata["Absentism"]["Value"]["absentismColor"]
           ],
           exporting: {
             enabled: false
@@ -787,7 +789,7 @@ export class SewingmoduleComponent implements OnInit {
           series: [{
               name: 'Absentism',
               data: [
-                responsedata["AbsentismMultiskill"]["Value"]["absentismData"]
+                responsedata["Absentism"]["Value"]["absentismData"]
               ],
               dataLabels: {
                   enabled: true,
@@ -806,7 +808,7 @@ export class SewingmoduleComponent implements OnInit {
 
         Highcharts.chart(this.multiskillContainer.nativeElement, {
           colors: [
-            responsedata["AbsentismMultiskill"]["Value"]["multiskillColor"]
+            responsedata["Multiskill"]["Value"]["multiskillColor"]
           ],
           exporting: {
             enabled: false
@@ -854,7 +856,7 @@ export class SewingmoduleComponent implements OnInit {
           series: [{
               name: 'Multi Skill',
               data: [
-                responsedata["AbsentismMultiskill"]["Value"]["multiskillData"]
+                responsedata["Multiskill"]["Value"]["multiskillData"]
               ],
               dataLabels: {
                   enabled: true,
@@ -981,45 +983,6 @@ export class SewingmoduleComponent implements OnInit {
     // this.getSewingKPIAnalysis();
   }
 
-  // kpipag1(activeTab){
-  //   this.activeTab = activeTab;
-  //   var activatedhref = $(".submodule.active").map(function() {
-  //     return this.id;
-  //   }).get();
-  //   activatedhref.forEach(element => {
-  //     if(element != activeTab){
-  //       $("#"+ element).removeClass('active');
-  //       $("#" + element.split('_')[0]).hide();
-  //     }
-  //   });
-  //   var KPIView = {
-  //     Year : this.selectedYear,
-  //     Month : this.selectedMonth,
-  //     Line : [1,2,3,4]
-  //   }
-  //   this.calculateFirstPageKPIs(KPIView);
-  //   $("#"+ activeTab).show();
-  // }
-
-  // kpipag2(activeTab){
-  //   var activatedhref = $(".submodule.active").map(function() {
-  //     return this.id;
-  //   }).get();
-  //   activatedhref.forEach(element => {
-  //     if(element != activeTab){
-  //       $("#"+ element).removeClass('active');
-  //       $("#" + element.split('_')[0]).hide();
-  //     }
-  //   });
-  //   this.activeTab = activeTab;
-  //   var KPIView = {
-  //     Year : this.selectedYear,
-  //     Month : this.selectedMonth,
-  //     Line : [1,2,3,4]
-  //   }
-  //   this.calculateSecondPageKPIs(KPIView);
-  //   $("#kpipage2").show();
-  // }
 
   navigateEfficiency(){
     this._router.navigate(['efficiency-overview']);
@@ -1054,12 +1017,8 @@ export class SewingmoduleComponent implements OnInit {
       var lineId = parseFloat(this.value);
       return lineId;
     }).get();
-    console.log("-----------Checked Locations---------",checkedLocations);
-    console.log("-----------Checked unit---------",checkedUnits);
-    console.log("-----------Checked lines---------",checkedLines);
     var StartDate = new Date().toDateString();
     var EndDate = new Date().toDateString();
-    console.log("--------Start Date-------",StartDate);
     var KPIView = {
       Line : checkedLines,
       Location : checkedLocations,
@@ -1068,5 +1027,34 @@ export class SewingmoduleComponent implements OnInit {
       EndDate : "2021-01-31 00:00:00.000"
     }
     this.calculateFirstPageKPIs(KPIView);
+    this.calculateSecondPageKPIs(KPIView);
+  }
+
+  onLocationChange(event){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
+    console.log(event.target.value);
+    var locations = [];
+    if (event.target.checked){
+      locations.push(parseInt(event.target.value))
+      var dataViewModel = {
+        locations : locations,
+        units : []
+      }
+      this.http.post<any>(masterDataUrl,dataViewModel).subscribe(responsedata =>{
+        if(responsedata["statusCode"] == 200){
+          console.log(responsedata);
+          responsedata["data"].forEach(element => {
+            $("#unit_" + element.UnitId).prop('checked', true);
+            $("#line_" + element.Id).prop('checked', true);
+          });
+        }
+      })
+    }
+    else{
+      $('.option.justone.location:checkbox').prop('checked', false);
+      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.line:radio').prop('checked', false);
+    }
   }
 }

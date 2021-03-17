@@ -34,5 +34,8 @@ namespace Entities
         public DbSet<KPI> KPI { get; set; }
         public DbSet<Department> Department { get; set; }
         public DbSet<Recommendation> Recommendation { get; set; }
+        public DbSet<EfficiencyWorker> EfficiencyWorker { get; set; }
+        public DbSet<TimeStudy> TimeStudy { get; set; }
+        public DbSet<OperatorMaster> OperatorMaster { get; set; }
     }
 }

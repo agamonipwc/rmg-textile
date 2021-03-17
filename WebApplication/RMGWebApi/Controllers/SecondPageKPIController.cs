@@ -15,7 +15,7 @@ namespace RMGWebApi.Controllers
     {
         private readonly RepositoryContext _rmgDbContext;
         CustomResponse customResponse = new CustomResponse();
-        DateTime? date = Convert.ToDateTime("2021-01-31 00:00:00.000");
+        //DateTime? date = Convert.ToDateTime("2021-01-31 00:00:00.000");
         public SecondPageKPIController(RepositoryContext rmgDbContext)
         {
             _rmgDbContext = rmgDbContext;
@@ -27,7 +27,8 @@ namespace RMGWebApi.Controllers
             var kpiResults = new
             {
                 DefectRejectDHUPercentage = CalculateDHUDefectRejection(kpiViewModel),
-                AbsentismMultiskill = CalculateAbsentismMultiskill(kpiViewModel),
+                Multiskill = CalculateMultiskill(kpiViewModel),
+                Absentism = CalculateAbsentism(kpiViewModel),
                 StatusCode = 200
             };
             return Json(kpiResults);
@@ -35,6 +36,7 @@ namespace RMGWebApi.Controllers
         private JsonResult CalculateDHUDefectRejection(KPIViewModel kpiViewModel)
         {
             //double avgProductionDataByYearGroup = 0;
+            DateTime? date = Convert.ToDateTime(kpiViewModel.StartDate);
             var productionData = _rmgDbContext.Production.Where(x => x.Date == date).Average(x => x.Data);
             var rejectionData = _rmgDbContext.Rejection.Where(x => x.Date == date).Average(x => x.Data);
             var alterationData = _rmgDbContext.Rejection.Where(x => x.Date == date).Average(x => x.Data);
@@ -125,7 +127,7 @@ namespace RMGWebApi.Controllers
                 dhuColor = "#175d2d";
             }
             #region Color code calculation of defect
-            if (percentageDefection >= 20 && percentageDefection <= 50)
+            if (percentageDefection >= 20)
             {
                 defectColor = "#175d2d";
                 //defectTextColor = "#ffffff";
@@ -143,7 +145,7 @@ namespace RMGWebApi.Controllers
             #endregion
 
             #region Color code calculation of reject
-            if (percentageRejection >= 5 && percentageRejection <= 15)
+            if (percentageRejection >= 5)
             {
                 rejectColor = "#175d2d";
                 //rejectTextColor = "#ffffff";
@@ -173,48 +175,42 @@ namespace RMGWebApi.Controllers
             #endregion
         }
 
-        private JsonResult CalculateAbsentismMultiskill(KPIViewModel kPIViewModel)
+
+
+        private JsonResult CalculateMultiskill(KPIViewModel kpiViewModel)
         {
-            var sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == date).Sum(x => x.Attendance);
-            var countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == date).Count();
-            var absentismData = Math.Round(((sumWorkerAttendance / countWorkerAttendance)*100));
-            var countMultiSkillYes = Convert.ToDouble(_rmgDbContext.OperatorSkill.Where(x => x.MultiskilledOperator == "Yes").Count());
-            var countTotalOperators = _rmgDbContext.OperatorSkill.Count();
+            double countMultiSkillYes = 0;
+            int countTotalOperators = 0;
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
+            {
+                countMultiSkillYes = Convert.ToDouble(_rmgDbContext.OperatorSkill.Where(x => x.MultiskilledOperator == "Yes").Count());
+                countTotalOperators = _rmgDbContext.OperatorSkill.Count();
+
+            }
+            else
+            {
+                if (kpiViewModel.Location.Count > 0)
+                {
+                    countMultiSkillYes = Convert.ToDouble(_rmgDbContext.OperatorSkill.Where(x => x.MultiskilledOperator == "Yes").Count());
+                    countTotalOperators = _rmgDbContext.OperatorSkill.Count();
+                }
+                else
+                {
+                    if (kpiViewModel.Unit.Count > 0)
+                    {
+                        countMultiSkillYes = Convert.ToDouble(_rmgDbContext.OperatorSkill.Where(x => x.MultiskilledOperator == "Yes").Count());
+                        countTotalOperators = _rmgDbContext.OperatorSkill.Count();
+                    }
+                    else
+                    {
+                        countMultiSkillYes = Convert.ToDouble(_rmgDbContext.OperatorSkill.Where(x => x.MultiskilledOperator == "Yes" && kpiViewModel.Line.Contains(x.Line)).Count());
+                        countTotalOperators = _rmgDbContext.OperatorSkill.Count();
+                    }
+                }
+            }
+            
             double multiskillData = Math.Round(((countMultiSkillYes / countTotalOperators)*100), 2);
-            //double absetismWeitage = 0;
-            string absentismColor = "";
-            #region weightage of absentism
-            //int scoreCardAbsentism = 0;
-            //if(absentismData >=0 && absentismData <= 5)
-            //{
-            //    absetismWeitage = 0.07 * 3;
-            //}
-            //else if (absentismData >= 6 && absentismData <= 10)
-            //{
-            //    absetismWeitage = 0.07 * 2;
-                
-            //}
-            //else if (absentismData >= 11)
-            //{
-            //    absetismWeitage = 0.07 * 1;
-                
-            //}
-            if(absentismData <= 0 && absentismData >= 5)
-            {
-                absentismColor = "#e0301e";
-                //scoreCardAbsentism = 1;
-            }
-            else if (absentismData >= 6 && absentismData <= 10)
-            {
-                absentismColor = "#ffb600";
-                //scoreCardAbsentism = 2;
-            }
-            else if (absentismData >= 11)
-            {
-                absentismColor = "#175d2d";
-                //scoreCardAbsentism = 3;
-            }
-            #endregion
             //double multiskillWeitage = 0;
             string multiskillColor = "";
             #region multiskill calculation
@@ -249,8 +245,68 @@ namespace RMGWebApi.Controllers
             #endregion
             return Json(new {
                 multiskillColor = multiskillColor,
-                multiskillData = new object[2] { date.Value.ToString("dd/MM/yyyy"), multiskillData },
-                absentismData = new object[2] { date.Value.ToString("dd/MM/yyyy"), absentismData },
+                multiskillData = new object[2] { startDate.Value.ToString("dd/MM/yyyy"), multiskillData },
+            });
+        }
+
+        private JsonResult CalculateAbsentism(KPIViewModel kpiViewModel)
+        {
+            double sumWorkerAttendance = 0;
+            int countWorkerAttendance = 0;
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
+            {
+                sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate).Sum(x => x.Attendance);
+                countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate).Count();
+
+            }
+            else
+            {
+                if (kpiViewModel.Location.Count > 0)
+                {
+                    sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Sum(x => x.Attendance);
+                    countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Count();
+                
+                }
+                else
+                {
+                    if (kpiViewModel.Unit.Count > 0)
+                    {
+                        sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Location)).Sum(x => x.Attendance);
+                        countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Location)).Count();
+
+                    }
+                    else
+                    {
+                        sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Location)).Sum(x => x.Attendance);
+                        countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Location)).Count();
+
+                    }
+                }
+            }
+
+            var absentismData = Math.Round(((sumWorkerAttendance / countWorkerAttendance) * 100));
+            string absentismColor = "";
+            #region weightage of absentism
+            if (absentismData <= 0 && absentismData >= 5)
+            {
+                absentismColor = "#e0301e";
+                //scoreCardAbsentism = 1;
+            }
+            else if (absentismData >= 6 && absentismData <= 10)
+            {
+                absentismColor = "#ffb600";
+                //scoreCardAbsentism = 2;
+            }
+            else if (absentismData >= 11)
+            {
+                absentismColor = "#175d2d";
+                //scoreCardAbsentism = 3;
+            }
+            #endregion
+            return Json(new
+            {
+                absentismData = new object[2] { startDate.Value.ToString("dd/MM/yyyy"), absentismData },
                 absentismColor = absentismColor
             });
         }

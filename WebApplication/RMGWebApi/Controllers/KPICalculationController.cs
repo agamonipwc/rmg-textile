@@ -11,7 +11,7 @@ namespace RMGWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class KPICalculationController : Controller
+    public class KPICalculationController  : Controller
     {
         private readonly  RepositoryContext _rmgDbContext;
         CustomResponse customResponse = new CustomResponse();

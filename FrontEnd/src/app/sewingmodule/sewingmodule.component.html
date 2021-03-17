@@ -68,26 +68,26 @@
         <div class="row align-items-center mt-3">
           <div class="col-3" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" (click)="navigateEfficiency()" style="cursor: pointer;">% Efficiency</button></div>
+              <div class="pb-2"><button class="custom-button" (click)="navigateEfficiency()" style="cursor: pointer;">Efficiency %</button></div>
               <div #efficiencyContainer style="height: 200px;"></div>
             </div>
           </div>
           <div class="col-3" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">% Capacity</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Capacity Utilisation(Actual Vs Planned Prodctn.)">Capacity %</button></div>
               <div #capacityUtilizationContainer style="height: 200px;"></div>
             </div>
           </div>
           <div class="col-3" id="wipVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">WIP</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Inline WIP Level</button></div>
               <div #wipContainer style="height: 200px;"></div>
             </div>
           </div>
   
           <div class="col-3" id="mmrVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">MMR</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Man Machine Ration">MMR</button></div>
               <div #mmrContainer style="height: 200px;"></div>
             </div>
           </div>
@@ -101,7 +101,7 @@
           </div>
           <div class="col-3" id="dhuVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">DHU</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Defects Per Hundred Units">DHU</button></div>
               <div #dhuContainer style="height: 200px;"></div>
             </div>
           </div>
@@ -122,7 +122,7 @@
         <div class="row align-items-center mt-3">
           <div class="col-3" id="absentismVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Absentism</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Absentism %</button></div>
               <div #absentismContainer style="height: 200px;"></div>
             </div>
           </div>
@@ -172,7 +172,7 @@
                   <span class="caret"></span></button>
                   <ul class="dropdownmenu">
                     <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="locationSelectAll" /><span class="select-text" id="locationSelectText"> Select</span> All</label></a></li>
-                    <li class="custom-li" *ngFor="let option of locationOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' type="checkbox" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}</label></a></li>
+                    <li class="custom-li" *ngFor="let option of locationOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' (change)="onLocationChange($event)" type="checkbox" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}</label></a></li>
                   </ul>
                 </div>
               </li>
@@ -192,7 +192,7 @@
                   <span class="caret"></span></button>
                   <ul class="dropdownmenu"> 
                     <!-- <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li> -->
-                    <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="radio" class="option justone line" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
+                    <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="radio" class="option justone line" [value]="option.Id" [id]="'line_' + option.Id"/> {{option.Name}}</label></a></li>
                   </ul>
                 </div>
               </li>
