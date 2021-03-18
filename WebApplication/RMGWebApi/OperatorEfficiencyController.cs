@@ -22,19 +22,80 @@ namespace RMGWebApi
         public JsonResult Post(KPIViewModel kpiViewModel)
         {
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
-            List<OperatorEfficiencyViewModel> operatorViewModels = new List<OperatorEfficiencyViewModel>();
-            if(kpiViewModel.Location.Count > 0)
+            DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
+            List<OperatorEfficiency> operatorViewModels = new List<OperatorEfficiency>();
+            if(kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
             {
-                operatorViewModels = _rmgDbContext.EfficiencyWorker.Where(efficiencyworker => kpiViewModel.Location.Contains(efficiencyworker.Location) && efficiencyworker.Date == startDate).Select(ope=> new OperatorEfficiencyViewModel
-                { 
-                    OperatorName = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Name).Select(x => x.Name).FirstOrDefault(),
-                    OperatorIndex = _rmgDbContext.OperatorMaster.Where(x=> x.Name == ope.Name).Select(x=> x.Id).FirstOrDefault(),
-                    Efficiency = Convert.ToInt32(ope.Production* (_rmgDbContext.TimeStudy.Where(x=> x.SlNo == ope.OperationIndex).Select(x=> x.SAM).FirstOrDefault())/ope.WorkingMins*1)
+                operatorViewModels = _rmgDbContext.EfficiencyWorker.Where(efficiencyworker => efficiencyworker.Date >= startDate && efficiencyworker.Date <= endDate).GroupBy(grp=> new { grp.Name, grp.OperationIndex }).Select(ope => new OperatorEfficiency
+                {
+                    OperatorName = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Key.Name).Select(x => x.Name).FirstOrDefault(),
+                    OperatorIndex = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Key.Name).Select(x => x.Id).FirstOrDefault(),
+                    Efficiency = Math.Round((ope.Average(c=> c.Production) * (_rmgDbContext.TimeStudy.Where(x => x.SlNo == ope.Key.OperationIndex).Select(x => x.SAM).FirstOrDefault()) / ope.Average(c=> c.WorkingMins * 1) * 100))
                 }).ToList();
+            }
+            else
+            {
+                if(kpiViewModel.Location.Count > 0)
+                {
+                    operatorViewModels = _rmgDbContext.EfficiencyWorker.Where(efficiencyworker => kpiViewModel.Location.Contains(efficiencyworker.Location)).Where(efficiencyworker => efficiencyworker.Date >= startDate && efficiencyworker.Date <= endDate).GroupBy(grp => new { grp.Name, grp.OperationIndex }).Select(ope => new OperatorEfficiency
+                    {
+                        OperatorName = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Key.Name).Select(x => x.Name).FirstOrDefault(),
+                        OperatorIndex = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Key.Name).Select(x => x.Id).FirstOrDefault(),
+                        Efficiency = Math.Round((ope.Average(c => c.Production) * (_rmgDbContext.TimeStudy.Where(x => x.SlNo == ope.Key.OperationIndex).Select(x => x.SAM).FirstOrDefault()) / ope.Average(c => c.WorkingMins * 1) * 100))
+                    }).ToList();
+                }
+                else
+                {
+                    if(kpiViewModel.Unit.Count > 0)
+                    {
+                        operatorViewModels = _rmgDbContext.EfficiencyWorker.Where(efficiencyworker => kpiViewModel.Unit.Contains(efficiencyworker.Unit) && efficiencyworker.Date >= startDate && efficiencyworker.Date <= endDate).GroupBy(grp => new { grp.Name, grp.OperationIndex }).Select(ope => new OperatorEfficiency
+                        {
+                            OperatorName = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Key.Name).Select(x => x.Name).FirstOrDefault(),
+                            OperatorIndex = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Key.Name).Select(x => x.Id).FirstOrDefault(),
+                            Efficiency = Math.Round((ope.Average(c => c.Production) * (_rmgDbContext.TimeStudy.Where(x => x.SlNo == ope.Key.OperationIndex).Select(x => x.SAM).FirstOrDefault()) / ope.Average(c => c.WorkingMins * 1) * 100))
+                        }).ToList();
+                    }
+                    else
+                    {
+                        operatorViewModels = _rmgDbContext.EfficiencyWorker.Where(efficiencyworker => kpiViewModel.Line.Contains(efficiencyworker.Line) && efficiencyworker.Date >= startDate && efficiencyworker.Date <= endDate).GroupBy(grp => new { grp.Name, grp.OperationIndex }).Select(ope => new OperatorEfficiency
+                        {
+                            OperatorName = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Key.Name).Select(x => x.Name).FirstOrDefault(),
+                            OperatorIndex = _rmgDbContext.OperatorMaster.Where(x => x.Name == ope.Key.Name).Select(x => x.Id).FirstOrDefault(),
+                            Efficiency = Math.Round((ope.Average(c => c.Production) * (_rmgDbContext.TimeStudy.Where(x => x.SlNo == ope.Key.OperationIndex).Select(x => x.SAM).FirstOrDefault()) / ope.Average(c => c.WorkingMins * 1) * 100))
+                        }).ToList();
+                    }
+                }
+            }
+            List<EfficiencyViewModel> seriesData = new List<EfficiencyViewModel>();
+            foreach(var element in operatorViewModels)
+            {
+                object[] objectArray = new object[2];
+                string color = "";
+                if(element.Efficiency>=0 && element.Efficiency <= 50)
+                {
+                    color = "#e0301e";
+                }
+                else if(element.Efficiency>=51 && element.Efficiency <= 75)
+                {
+                    color = "#ffb600";
+                }
+                else
+                {
+                    color = "#175d2d";
+                }
+                objectArray[0] = element.OperatorIndex;
+                objectArray[1] = element.Efficiency;
+                seriesData.Add(new EfficiencyViewModel
+                {
+                    name = "Op",
+                    showInLegend = false,
+                    color = color,
+                    data = new List<object[]> {objectArray }
+                });
             }
             return Json(new
             {
-                data = operatorViewModels,
+                data = seriesData,
                 statusCode = 200
             });
         }

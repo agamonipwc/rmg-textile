@@ -72,14 +72,14 @@ export class EfficiencyComponent implements OnInit {
     {id: 11, name: 'November'},
     {id: 12, name: 'December'},
   ]
-  line : any = []
-  unit : any = [];
-  location : any = [];
-  selectedYear = [];
-  selectedMonth = [];
-  selectedLine = [];
-  selectedUnit = [];
-  selectedLocation = [];
+  lineOptions : any = []
+  unitOptions : any = [];
+  locationOptions : any = [];
+  // selectedYear = [];
+  // selectedMonth = [];
+  // selectedLine = [];
+  // selectedUnit = [];
+  // selectedLocation = [];
   capacityCalculationHeadingColor = "";
 
 
@@ -103,6 +103,7 @@ export class EfficiencyComponent implements OnInit {
   ngOnInit() {
     $("#topnavbar").hide();
     $("#footer").css("margin-left", "15%");
+    this.getMasterData();
     this.selectAllOptions();
     this.getFilterData();
     // this.getEfficiencyCharts();
@@ -128,69 +129,23 @@ export class EfficiencyComponent implements OnInit {
         });
       });
     });
-    this.calculateOperatorEfficiency();
+    // this.calculateOperatorEfficiency();
     // $(document).ready(function() {
     //   $('#recommendationTable').DataTable();
     // });
     
   }
   getFilterData(){
-    var _this = this;
-    this.http.get<any>(this.userBackendUrl).subscribe(data=>{
-      if(data.statusCode == 200){
-        data.responseData.lineMasterData.forEach(element => {
-          _this.line.push({id:element.Id, name: element.Name});
-        });
-        data.responseData.unitMasterData.forEach(element => {
-          _this.unit.push({id:element.Id, name: element.Name});
-        });
-        data.responseData.locationMasterData.forEach(element => {
-          _this.location.push({id:element.Id, name: element.Name})
-        });
-        var year= this.startDate.getFullYear();
-        var month = this.startDate.getMonth();
-        $("#year_"+year).prop('checked', true);
-        $("#month_"+month).prop('checked', true);
-        $("#line_"+_this.line[0].id).prop('checked', true);
-        _this.selectedYear.push(parseInt($("#year_"+year).val()));
-        _this.selectedMonth.push(parseInt($("#month_"+month).val()));
-        _this.selectedLine.push(1);
-        var KPIView = {
-          Year : _this.selectedYear,
-          Month : _this.selectedMonth,
-          Line : _this.selectedLine
-        }
-        _this.callCapacityUtilizationApi(KPIView);
-      }
-    });
+    var KPIView = {
+      Line : [],
+      Location : [],
+      Unit : [],
+      StartDate : "2021-01-27 00:00:00.000",
+      EndDate : "2021-01-31 00:00:00.000",
+    }
+    this.calculateOperatorEfficiency(KPIView);
   }
   
-  getSewingKPIAnalysis(){
-    var _this = this;
-    var lineSelected = [];
-    var monthSelected = [];
-    var  yearSelected = [];
-    $('input[name="options[line]"]:checked').each(function(i){
-      lineSelected.push(parseInt($(this).val()));
-    });
-    $('input[name="options[month]"]:checked').each(function(i){
-      monthSelected.push(parseInt($(this).val()));
-    });
-    $('input[name="options[year]"]:checked').each(function(i){
-      yearSelected.push(parseInt($(this).val()));
-    });
-    this.selectedYear = yearSelected;
-    this.selectedLine = lineSelected;
-    this.selectedMonth = monthSelected;
-    var KPIView = {
-      Year : this.selectedYear,
-      Month : this.selectedMonth,
-      Line : [1,2]
-    }
-    this.callCapacityUtilizationApi(KPIView);
-    // this.callEfficiencyCalculationApi(KPIView);
-  }
-
   getEfficiencyCharts(){
 
     this.productionLine1 = new Chart({
@@ -1016,300 +971,150 @@ export class EfficiencyComponent implements OnInit {
     })
   }
 
-  calculateOperatorEfficiency(){
-    this.operatorScatter = new Chart ({
-      chart: {
-          type: 'scatter',
-          zoomType: 'xy'
-      },
-      exporting: {
-        enabled: false
-      },
-      credits: {enabled: false},
-      title: {
-          text: 'Operator Efficiency',
-          style: {'font-family': 'Arial, Helvetica', 'font-size': '13px','display': 'none'},
-      },
-     
-      xAxis: {
-          title: {
+  calculateOperatorEfficiency(KPIView){
+    var _this = this;
+    var url = environment.backendUrl + "OperatorEfficiency";
+    this.http.post<any>(url, KPIView).subscribe(responsedata => {
+      _this.operatorScatter = new Chart ({
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy',
+        },
+        exporting: {
+          enabled: false
+        },
+        credits: {enabled: false},
+        title: {
+            text: 'Operator Efficiency',
+            style: {'font-family': 'Arial, Helvetica', 'font-size': '13px','display': 'none'},
+        },
+       
+        xAxis: {
+            title: {
+                enabled: false,
+                text: 'Operator ID',
+            },
+            labels: {
               enabled: false,
-              text: 'Operator ID',
-          },
-          labels: {
-            enabled: false,
-          },
-          startOnTick: true,
-          endOnTick: true,
-          showLastLabel: true,
-      },
-      yAxis: {
-          title: {
-              enabled: true,
-              text: 'Efficiency (%)',
-              max: 100,
-              min: 0
-          },
-          plotLines: [
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true,
+        },
+        yAxis: {
+          max: 100,
+          min: 0,
+            title: {
+                enabled: true,
+                text: 'Efficiency (%)',
+            },
+            plotLines: [
+              {
+              color: '#003dab',
+              width: 2,
+              value: 75,
+              dashStyle: 'shortdot'
+            },
             {
-            color: '#003dab',
-            width: 2,
-            value: 75,
-            dashStyle: 'shortdot'
-          },
-          {
-            color: '#933401',
-            width: 2,
-            value: 51,
-            dashStyle: 'shortdot'
-          }
-        ]
-      },
-      plotOptions: {
-          scatter: {
-              marker: {
-                  radius: 7,
-                  symbol: 'circle',
-                  states: {
-                      hover: {
-                          enabled: true,
-                          lineColor: 'rgb(100,100,100)'
-                      }
-                  }
-              },
-              states: {
-                  hover: {
-                      marker: {
-                          enabled: false
-                      }
-                  }
-              },
-              tooltip: {
-                  headerFormat: '<b>{series.name}</b><br>',
-                  pointFormat: 'Op{point.x} has efficiency: {point.y} %'
-              }
-          }
-      },
-      series: [{
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[1, 51.6]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[2, 65.6]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[4, 35]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[5, 76]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[6, 51.6]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[7, 49]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[8, 28]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[9, 75]]
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[10, 79]]
-      },{
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[11, 51.6]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[12, 65.6]]
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[13,40]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[14, 30]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[15, 80]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[16, 49.5]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[17, 37]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[18, 18]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[19, 81]]
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[20, 82]]
-      },{
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[21, 51.6]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[22, 65.6]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[24, 35]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[25, 76]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[26, 51.6]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[27, 49]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[28, 28]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[29, 75]]
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[30, 79]]
-      },{
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[31, 60.6]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[32, 50]]
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#ffb600',
-          data: [[33,56]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[34, 10]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[35, 91]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[36, 41.5]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[37, 39]]
-      },
-      {
-          name: 'Op',
-          showInLegend: false,
-          color: '#e0301e',
-          data: [[38, 10]]
-  
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[39, 90]]
-      }, {
-          name: 'Op',
-          showInLegend: false,
-          color: '#175d2d',
-          data: [[40, 77]]
+              color: '#933401',
+              width: 2,
+              value: 51,
+              dashStyle: 'shortdot'
+            }
+          ]
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 7,
+                    symbol: 'circle',
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: 'Op{point.x} has efficiency: {point.y} %'
+                }
+            }
+        },
+        series: responsedata["data"]
+      });
+    })
+    
+  }
+
+  getSewingKPIAnalysis(){
+    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+      var locationId = parseFloat(this.value);
+      return locationId;
+    }).get();
+    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+      var unitId = parseFloat(this.value);
+      return unitId;
+    }).get();
+    var checkedLines = $('.option.justone.line:checkbox:checked').map(function() {
+      var lineId = parseFloat(this.value);
+      return lineId;
+    }).get();
+    var StartDate = new Date().toDateString();
+    var EndDate = new Date().toDateString();
+    var KPIView = {
+      Line : checkedLines,
+      Location : checkedLocations,
+      Unit : checkedUnits,
+      StartDate : "2021-01-27 00:00:00.000",
+      EndDate : "2021-01-31 00:00:00.000"
+    }
+    this.calculateOperatorEfficiency(KPIView);
+  }
+
+  onLocationChange(event){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
+    console.log(event.target.value);
+    var locations = [];
+    if (event.target.checked){
+      locations.push(parseInt(event.target.value))
+      var dataViewModel = {
+        locations : locations,
+        units : []
       }
-      ]
-    });
+      this.http.post<any>(masterDataUrl,dataViewModel).subscribe(responsedata =>{
+        if(responsedata["statusCode"] == 200){
+          console.log(responsedata);
+          responsedata["data"].forEach(element => {
+            $("#unit_" + element.UnitId).prop('checked', true);
+            $("#line_" + element.Id).prop('checked', true);
+          });
+        }
+      })
+    }
+    else{
+      $('.option.justone.location:checkbox').prop('checked', false);
+      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.line:radio').prop('checked', false);
+    }
+  }
+  getMasterData(){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
+    this.http.get<any>(masterDataUrl).subscribe(responsedata =>{
+        if(responsedata["statusCode"] == 200){
+            _this.locationOptions = responsedata["locationMasterData"];
+            _this.unitOptions = responsedata["unitMasterData"];
+            _this.lineOptions = responsedata["lineMasterData"];
+        }
+    })
   }
 }

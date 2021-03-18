@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace RMGWebApi.ViewModel
 {
-    public class OperatorEfficiencyViewModel
+    public class OperatorEfficiency
     {
         public int OperatorIndex { get; set; }
-        public int Efficiency { get; set; }
+        public double Efficiency { get; set; }
         public string OperatorName { get; set; }
     }
 }
