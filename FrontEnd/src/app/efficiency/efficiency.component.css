@@ -1,3 +1,6 @@
+path{
+  opacity: 1 !important;
+}
 .sidebar {
     position: fixed;
     top: 0px;
@@ -193,11 +196,11 @@ text-align: initial;
 }
 
 .dropdownmenu{
-height: 110px;
-overflow-y: scroll;
-width: 152px;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-background-color: #ffffff;
+  height: 110px;
+  /* overflow-y: scroll; */
+  width: 152px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* background-color: #ffffff; */
 }
 .btn.focus, .btn:focus{
 box-shadow: none !important;
@@ -225,3 +228,12 @@ list-style: none;
 .form-control:focus{
 box-shadow: none !important;
 }  
+.modal-body {
+  overflow-y: scroll;
+}
+
+.operator-btn{
+  border: #d04a02;
+  background-color: #d04a02;
+  color: #ffffff;
+}

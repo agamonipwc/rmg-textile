@@ -62,6 +62,10 @@ C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\
 C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.dll
 C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.pdb
 C:\Users\agamonig192\Documents\RMG Textile\Source Code\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.genruntimeconfig.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.AssemblyInfoInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.AssemblyInfo.cs
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.csproj.CoreCompileInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\bin\Debug\netcoreapp3.1\RMGWebApi.exe
@@ -117,10 +121,6 @@ C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplica
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\bin\Debug\netcoreapp3.1\Entities.pdb
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\bin\Debug\netcoreapp3.1\Repository.pdb
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.csprojAssemblyReference.cache
-C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.AssemblyInfoInputs.cache
-C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.AssemblyInfo.cs
-C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.csproj.CoreCompileInputs.cache
-C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.RazorTargetAssemblyInfo.cache
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.csproj.CopyComplete
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Debug\netcoreapp3.1\RMGWebApi.dll

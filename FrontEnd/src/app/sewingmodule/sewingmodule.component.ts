@@ -225,6 +225,7 @@ export class SewingmoduleComponent implements OnInit {
                     fontSize: '10px',
                     'font-family': 'Arial, Helvetica'
                 },
+                enabled : false
             }
           },
           legend: {
@@ -241,8 +242,8 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
+                  
+                  color: '#000000',
                   align: 'right',
                   format: '{point.y:.1f}', // one decimal
                   y: 10, // 10 pixels down from the top
@@ -292,6 +293,7 @@ export class SewingmoduleComponent implements OnInit {
                     fontSize: '10px',
                     'font-family': 'Arial, Helvetica'
                 },
+                enabled : false
             }
           },
           legend: {
@@ -308,8 +310,7 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
+                  color: '#000000',
                   align: 'right',
                   format: '{point.y:.1f}', // one decimal
                   y: 10, // 10 pixels down from the top
@@ -358,7 +359,8 @@ export class SewingmoduleComponent implements OnInit {
                 style: {
                     fontSize: '10px',
                     'font-family': 'Arial, Helvetica'
-                }
+                },
+                enabled : false
             }
           },
           legend: {
@@ -375,8 +377,7 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
+                  color: '#000000',
                   align: 'right',
                   format: '{point.y:.1f}', // one decimal
                   y: 10, // 10 pixels down from the top
@@ -388,72 +389,72 @@ export class SewingmoduleComponent implements OnInit {
           }]
         });
 
-        Highcharts.chart(this.mmrContainer.nativeElement, {
-          colors: [
-            responsedata["ManMachineRatio"]["Value"]["mmrColorCode"]
-          ],
-          exporting: {
-            enabled: false
-          },
-          credits: {enabled: false},
-          chart: {
-            type: 'column'
-          },
-          title: {
-              text: 'Man Machine Ratio',
-              style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
-          },
-          xAxis: {
-              type: 'category',
-              labels: {
-                  rotation: -45,
-                  style: {
-                      fontSize: '10px',
-                      'font-family': 'Arial, Helvetica'
-                  },
-                  enabled : false
-              }
-          },
-          yAxis: {
-              min: 0,
-              max : 2,
-              title: {
-                  text: 'Value',
-                  enabled : false
-              },
-              labels: {
-                style: {
-                    fontSize: '10px',
-                    'font-family': 'Arial, Helvetica'
-                }
-            }
-          },
-          legend: {
-              enabled: false
-          },
-          tooltip: {
-              pointFormat: 'MMR: <b>{point.y:.1f}</b>',
-              enabled: false,
-          },
-          series: [{
-              name: 'MMR',
-              data: [
-                responsedata["ManMachineRatio"]["Value"]["mmrResponse"]
-              ],
-              dataLabels: {
-                  enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
-                  align: 'right',
-                  format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
-                  style: {
-                      fontSize: '10px',
-                      fontFamily: 'Verdana, sans-serif'
-                  }
-              }
-          }]
-        });
+        // Highcharts.chart(this.mmrContainer.nativeElement, {
+        //   colors: [
+        //     responsedata["ManMachineRatio"]["Value"]["mmrColorCode"]
+        //   ],
+        //   exporting: {
+        //     enabled: false
+        //   },
+        //   credits: {enabled: false},
+        //   chart: {
+        //     type: 'column'
+        //   },
+        //   title: {
+        //       text: 'Man Machine Ratio',
+        //       style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
+        //   },
+        //   xAxis: {
+        //       type: 'category',
+        //       labels: {
+        //           rotation: -45,
+        //           style: {
+        //               fontSize: '10px',
+        //               'font-family': 'Arial, Helvetica'
+        //           },
+        //           enabled : false
+        //       }
+        //   },
+        //   yAxis: {
+        //       min: 0,
+        //       max : 2,
+        //       title: {
+        //           text: 'Value',
+        //           enabled : false
+        //       },
+        //       labels: {
+        //         style: {
+        //             fontSize: '10px',
+        //             'font-family': 'Arial, Helvetica'
+        //         }
+        //     }
+        //   },
+        //   legend: {
+        //       enabled: false
+        //   },
+        //   tooltip: {
+        //       pointFormat: 'MMR: <b>{point.y:.1f}</b>',
+        //       enabled: false,
+        //   },
+        //   series: [{
+        //       name: 'MMR',
+        //       data: [
+        //         responsedata["ManMachineRatio"]["Value"]["mmrResponse"]
+        //       ],
+        //       dataLabels: {
+        //           enabled: true,
+        //           
+        //           color: '#000000',
+        //           align: 'right',
+        //           format: '{point.y:.1f}', // one decimal
+        //           y: 10, // 10 pixels down from the top
+        //           style: {
+        //               fontSize: '10px',
+        //               fontFamily: 'Verdana, sans-serif'
+        //           }
+        //       }
+        //   }]
+        // });
         
         Highcharts.chart(this.machineDowntimeContainer.nativeElement, {
           colors: [
@@ -492,7 +493,8 @@ export class SewingmoduleComponent implements OnInit {
                 style: {
                     fontSize: '10px',
                     'font-family': 'Arial, Helvetica'
-                }
+                },
+                enabled : false
             }
           },
           legend: {
@@ -509,8 +511,8 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
+                  
+                  color: '#000000',
                   align: 'right',
                   format: '{point.y:.1f}', // one decimal
                   y: 10, // 10 pixels down from the top
@@ -575,7 +577,8 @@ export class SewingmoduleComponent implements OnInit {
                 style: {
                     fontSize: '10px',
                     'font-family': 'Arial, Helvetica'
-                }
+                },
+                enabled : false
             }
           },
           legend: {
@@ -592,8 +595,8 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
+                  
+                  color: '#000000',
                   align: 'right',
                   format: '{point.y:.1f}', // one decimal
                   y: 10, // 10 pixels down from the top
@@ -633,7 +636,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max : 100,
+              max : 15,
               title: {
                   text: 'Value',
                   enabled : false
@@ -642,7 +645,8 @@ export class SewingmoduleComponent implements OnInit {
                 style: {
                     fontSize: '10px',
                     'font-family': 'Arial, Helvetica'
-                }
+                },
+                enabled : false
             }
           },
           legend: {
@@ -659,8 +663,8 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
+                  
+                  color: '#000000',
                   align: 'right',
                   format: '{point.y:.1f}', // one decimal
                   y: 10, // 10 pixels down from the top
@@ -700,7 +704,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           yAxis: {
               min: 0,
-              max:100,
+              max:50,
               title: {
                   text: 'Value',
                   enabled : false
@@ -709,7 +713,8 @@ export class SewingmoduleComponent implements OnInit {
                 style: {
                     fontSize: '10px',
                     'font-family': 'Arial, Helvetica'
-                }
+                },
+                enabled : false
             }
           },
           legend: {
@@ -726,8 +731,8 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
+                  
+                  color: '#000000',
                   align: 'right',
                   format: '{point.y:.1f}', // one decimal
                   y: 10, // 10 pixels down from the top
@@ -776,7 +781,8 @@ export class SewingmoduleComponent implements OnInit {
                 style: {
                     fontSize: '10px',
                     'font-family': 'Arial, Helvetica'
-                }
+                },
+                enabled : false
             }
           },
           legend: {
@@ -793,8 +799,8 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
+                  
+                  color: '#000000',
                   align: 'right',
                   format: '{point.y:.1f}', // one decimal
                   y: 10, // 10 pixels down from the top
@@ -806,72 +812,72 @@ export class SewingmoduleComponent implements OnInit {
           }]
         });
 
-        Highcharts.chart(this.multiskillContainer.nativeElement, {
-          colors: [
-            responsedata["Multiskill"]["Value"]["multiskillColor"]
-          ],
-          exporting: {
-            enabled: false
-          },
-          credits: {enabled: false},
-          chart: {
-            type: 'column'
-          },
-          title: {
-              text: '% Multi Skill',
-              style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display':'none'}
-          },
-          xAxis: {
-              type: 'category',
-              labels: {
-                  rotation: -45,
-                  style: {
-                      fontSize: '10px',
-                      'font-family': 'Arial, Helvetica'
-                  },
-                  enabled : false
-              }
-          },
-          yAxis: {
-            min: 0,
-            max : 100,
-              title: {
-                  text: 'Value',
-                  enabled : false
-              },
-              labels: {
-                style: {
-                    fontSize: '10px',
-                    'font-family': 'Arial, Helvetica'
-                }
-            }
-          },
-          legend: {
-              enabled: false
-          },
-          tooltip: {
-              pointFormat: 'Multi Skill: <b>{point.y:.1f}</b>',
-              enabled: false,
-          },
-          series: [{
-              name: 'Multi Skill',
-              data: [
-                responsedata["Multiskill"]["Value"]["multiskillData"]
-              ],
-              dataLabels: {
-                  enabled: true,
-                  rotation: -90,
-                  color: '#FFFFFF',
-                  align: 'right',
-                  format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
-                  style: {
-                      fontSize: '10px',
-                      fontFamily: 'Verdana, sans-serif'
-                  }
-              }
-          }]
-        });
+        // Highcharts.chart(this.multiskillContainer.nativeElement, {
+        //   colors: [
+        //     responsedata["Multiskill"]["Value"]["multiskillColor"]
+        //   ],
+        //   exporting: {
+        //     enabled: false
+        //   },
+        //   credits: {enabled: false},
+        //   chart: {
+        //     type: 'column'
+        //   },
+        //   title: {
+        //       text: '% Multi Skill',
+        //       style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display':'none'}
+        //   },
+        //   xAxis: {
+        //       type: 'category',
+        //       labels: {
+        //           rotation: -45,
+        //           style: {
+        //               fontSize: '10px',
+        //               'font-family': 'Arial, Helvetica'
+        //           },
+        //           enabled : false
+        //       }
+        //   },
+        //   yAxis: {
+        //     min: 0,
+        //     max : 100,
+        //       title: {
+        //           text: 'Value',
+        //           enabled : false
+        //       },
+        //       labels: {
+        //         style: {
+        //             fontSize: '10px',
+        //             'font-family': 'Arial, Helvetica'
+        //         }
+        //     }
+        //   },
+        //   legend: {
+        //       enabled: false
+        //   },
+        //   tooltip: {
+        //       pointFormat: 'Multi Skill: <b>{point.y:.1f}</b>',
+        //       enabled: false,
+        //   },
+        //   series: [{
+        //       name: 'Multi Skill',
+        //       data: [
+        //         responsedata["Multiskill"]["Value"]["multiskillData"]
+        //       ],
+        //       dataLabels: {
+        //           enabled: true,
+        //           
+        //           color: '#000000',
+        //           align: 'right',
+        //           format: '{point.y:.1f}', // one decimal
+        //           y: 10, // 10 pixels down from the top
+        //           style: {
+        //               fontSize: '10px',
+        //               fontFamily: 'Verdana, sans-serif'
+        //           }
+        //       }
+        //   }]
+        // });
       }
       else{
         return;
@@ -1033,7 +1039,6 @@ export class SewingmoduleComponent implements OnInit {
   onLocationChange(event){
     var masterDataUrl = environment.backendUrl + "MasterData";
     var _this = this;
-    console.log(event.target.value);
     var locations = [];
     if (event.target.checked){
       locations.push(parseInt(event.target.value))
@@ -1043,10 +1048,9 @@ export class SewingmoduleComponent implements OnInit {
       }
       this.http.post<any>(masterDataUrl,dataViewModel).subscribe(responsedata =>{
         if(responsedata["statusCode"] == 200){
-          console.log(responsedata);
           responsedata["data"].forEach(element => {
-            $("#unit_" + element.UnitId).prop('checked', true);
-            $("#line_" + element.Id).prop('checked', true);
+            $("#unit_label_" + element.UnitId).show();
+            $("#line_label_" + element.Id).show();
           });
         }
       })
@@ -1054,7 +1058,11 @@ export class SewingmoduleComponent implements OnInit {
     else{
       $('.option.justone.location:checkbox').prop('checked', false);
       $('.option.justone.unit:checkbox').prop('checked', false);
+      $(".unit_label").hide();
+      $(".line_label").hide();
       $('.option.justone.line:radio').prop('checked', false);
     }
   }
+  
+  
 }

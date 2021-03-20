@@ -25,7 +25,7 @@ namespace Entities.DataModels
         public string PUnit { get; set; }
         public double Alterations { get; set; }
         public string AlUnit { get; set; }
-        public double AlterationReason1 { get; set; }
+        public string AlterationReason1 { get; set; }
         public double PcsFound1 { get; set; }
         public string AlterationReason2 { get; set; }
         public double PcsFound2 { get; set; }
@@ -41,5 +41,6 @@ namespace Entities.DataModels
         public string FDUnit { get; set; }
         public double MachineDowntime { get; set; }
         public string MDUnit { get; set; }
+        public double Efficiency { get; set; }
     }
 }

@@ -14,7 +14,9 @@ import solidGauge from 'highcharts/modules/solid-gauge.src';
 import { SewingmoduleComponent } from './sewingmodule/sewingmodule.component';
 import{NgDatepickerModule} from 'ng2-datepicker';
 import { EfficiencyComponent } from './efficiency/efficiency.component';
-
+import { OperatorRecommendationComponent } from './operator-recommendation/operator-recommendation.component';
+import { DataTableModule } from "ng2-data-table";
+import { ModuleperformancehistComponent } from './moduleperformancehist/moduleperformancehist.component';
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [solidGauge];
@@ -27,10 +29,13 @@ export function highchartsModules() {
     RegisterComponent,
     ModuleperformanceComponent,
     SewingmoduleComponent,
-    EfficiencyComponent
+    EfficiencyComponent,
+    OperatorRecommendationComponent,
+    ModuleperformancehistComponent
   ],
   imports: [
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 
+    DataTableModule,
     HighchartsChartModule,
     ChartModule,
     NgDatepickerModule,

@@ -7,6 +7,8 @@ import {RegisterModule} from './register/register.module'
 import { ModuleperformanceComponent } from './moduleperformance/moduleperformance.component';
 import {SewingmoduleComponent} from './sewingmodule/sewingmodule.component';
 import { EfficiencyComponent } from './efficiency/efficiency.component';
+import {ModuleperformancehistComponent} from './moduleperformancehist/moduleperformancehist.component';
+import{OperatorRecommendationComponent} from './operator-recommendation/operator-recommendation.component';
 
 const routes: Routes = [ 
     {path:"login", component:LoginComponent}, 
@@ -14,7 +16,9 @@ const routes: Routes = [
     {path: '',   redirectTo: '/login', pathMatch: 'full' },
     {path:'module-performance', component:ModuleperformanceComponent},
     {path:'sewing-module', component:SewingmoduleComponent},
-    {path:'efficiency-overview', component: EfficiencyComponent}
+    {path:'efficiency-overview', component: EfficiencyComponent},
+    {path:'operator-recommendation', component: OperatorRecommendationComponent},
+    {path:'module-historical', component: ModuleperformancehistComponent}
  ];
 @NgModule({ 
    imports: [
@@ -23,4 +27,11 @@ const routes: Routes = [
    exports: [RouterModule] 
 }) 
 export class AppRoutingModule { } export const
-RoutingComponent = [LoginModule, RegisterModule, ModuleperformanceComponent, SewingmoduleComponent];
+RoutingComponent = [
+   LoginModule, 
+   RegisterModule, 
+   ModuleperformanceComponent, 
+   SewingmoduleComponent, 
+   OperatorRecommendationComponent, 
+   ModuleperformancehistComponent
+];

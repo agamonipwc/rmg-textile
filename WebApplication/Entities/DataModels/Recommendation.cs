@@ -11,7 +11,7 @@ namespace Entities.DataModels
     {
         [Key]
         public int Id { get; set; }
-        public int KPIId { get; set; }
+        public double KPI { get; set; }
         public string Reasons { get; set; }
         public string SubReasons { get; set; }
         public string Recommendations { get; set; }

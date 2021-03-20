@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.DataModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RMGWebApi.ViewModel;
@@ -21,10 +22,31 @@ namespace RMGWebApi.Controllers
         [HttpPost]
         public JsonResult Post(RecommendationViewModel recommendationView)
         {
-            var listOfAllRecommendations = _rmgDbContext.Recommendation.Where(x => x.KPIId == recommendationView.KPIId).ToList();
+            List<Recommendation> listOfAllRecommendations = new List<Recommendation>();
+            if (recommendationView.KPIId != 0 && recommendationView.RecommendationId != 0)
+            {
+                listOfAllRecommendations = _rmgDbContext.Recommendation.Where(x => x.KPI == recommendationView.KPIId && x.Id == recommendationView.RecommendationId).ToList();
+            }
+            else
+            {
+                listOfAllRecommendations = _rmgDbContext.Recommendation.Where(x => x.KPI == recommendationView.KPIId).ToList();
+            }
+            //List<string> operatorsName = new List<string>();
+            //if(recommendationView.RecommendationId == 6)
+            //{
+            //    operatorsName = _rmgDbContext.EfficiencyWorker.Where(x => x.Efficiency<=0.50).Select(x => x.Name).Distinct().ToList();
+            //}
+            //else
+            //{
+            //    operatorsName = _rmgDbContext.EfficiencyWorker.Where(x => x.Efficiency >= 0.51 && x.Efficiency<= 0.75).Select(x => x.Name).Distinct().ToList();
+            //}
             return Json(new {
-                allRecommendations = listOfAllRecommendations
+                allRecommendations = listOfAllRecommendations,
+                //operatorsName = operatorsName,
+                statusCode = 200
             });
         }
+
+        
     }
 }

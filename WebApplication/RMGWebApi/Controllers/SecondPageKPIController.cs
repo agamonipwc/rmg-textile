@@ -130,35 +130,29 @@ namespace RMGWebApi.Controllers
             if (percentageDefection >= 20)
             {
                 defectColor = "#175d2d";
-                //defectTextColor = "#ffffff";
             }
             else if (percentageDefection >= 10 && percentageDefection <= 20)
             {
                 defectColor = "#ffb600";
-                //defectTextColor = "#ffffff";
             }
             else
             {
                 defectColor = "#e0301e";
-                //defectTextColor = "#000000";
             }
             #endregion
 
             #region Color code calculation of reject
             if (percentageRejection >= 5)
             {
-                rejectColor = "#175d2d";
-                //rejectTextColor = "#ffffff";
+                rejectColor = "#e0301e";
             }
             else if (percentageRejection >= 2 && percentageRejection <= 5)
             {
                 rejectColor = "#ffb600";
-                //rejectTextColor = "#ffffff";
             }
             else
             {
-                rejectColor = "#e0301e";
-                //rejectTextColor = "#000000";
+                rejectColor = "#175d2d";
             }
             #endregion
 

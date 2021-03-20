@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="font-family: 'Arial, Helvetica';">
+  <a class="navbar-brand" href="#"><img style="height: 34px;" src="../../assets/img/PwC_Outline_Logo_White.png" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
+  <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
+  <ul class="tree cutom-treestructure mt-3">
+    <li (click)="dashboardNavigation()" id="dashbaord_href" style="cursor: pointer;">
+      <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
+    </li>
+  
+    <li>
+      <a id="moduleperformance_href" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
+      <ul class="cutom-treestructure">
+        <li>
+          Inward
+        </li>
+  
+        <li>
+          Processes
+          <ul class="ml-4">
+            <li>
+              Fabric & Trims Store 
+            </li>
+  
+            <li>
+              Spreading & Cutting
+            </li>
+            <li (click)="sewingNavigation()" style="cursor: pointer;">
+              Sewing 
+            </li>
+            <li>
+              Finishing & Packaging
+            </li>
+          </ul>
+        </li>
+  
+        <li>
+          Outward
+        </li>
+      </ul>
+    </li>
+  
+    <li>
+      Social Sustainability
+    </li>
+
+    <li>
+      Environmental Sustainability
+    </li>
+  </ul>
+</nav>
+<main role="main" class="col-9 ml-auto col-md-9 pt-3">
+  <section class="text-center placeholders" id="recommendationsection">
+    <h5 style="text-align: center; font-weight: bold;">Operators Efficiency Recommendations</h5>
+    <div class="row mt-2">
+      <div class="col-12">
+        <!-- <table class="table table-striped" style="background-color: #ffffff;" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
+          <thead class="thead-dark">
+              <tr>
+                  <th>
+                      <mfRowSelectorHead></mfRowSelectorHead>
+                  </th>
+                  <th style="width: 20%">
+                      <mfDefaultSorter by="name" [mfShowSortableArrows]="true">Name</mfDefaultSorter>
+                  </th>
+                  <th style="width: 50%">
+                      <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of mf.data; let ndx = index">
+                  <td><mfRowSelector [entity]="item" [checkboxId]="ndx"></mfRowSelector></td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.email}}</td>
+              </tr>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="4">
+                      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                  </td>
+              </tr>
+          </tfoot>
+      </table> -->
+      </div>
+    </div>
+  </section>
+</main>
