@@ -1,0 +1,791 @@
+import { Component, VERSION, OnInit } from "@angular/core";
+import * as Highcharts from "highcharts";
+
+declare var require: any;
+const More = require("highcharts/highcharts-more");
+More(Highcharts);
+
+const Exporting = require("highcharts/modules/exporting");
+Exporting(Highcharts);
+
+const ExportData = require("highcharts/modules/export-data");
+ExportData(Highcharts);
+
+const Accessibility = require("highcharts/modules/accessibility");
+Accessibility(Highcharts);
+
+@Component({
+    selector: 'app-sewingmodule',
+    templateUrl: './efficiency.component.html',
+    styleUrls: ['./efficiency.component.css']
+})
+export class EfficiencyComponent implements OnInit {
+    public options: any = {
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        accessibility: {
+            description: '',
+        },
+        title: {
+            text: 'Height Versus Weight'
+        },
+        subtitle: {
+            text: ''
+        },
+       xAxis: {
+            title: {
+                enabled: true,
+                text: 'Height (cm)'
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'Weight (kg)'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 100,
+            y: 70,
+            floating: true,
+            backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+            borderWidth: 1
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x} cm, {point.y} kg'
+                }
+            }
+        },
+        series: [
+            {
+                "name": "Low",
+                "showInLegend": false,
+                "color": "#e0301e",
+                "data": [
+                    [
+                        51,
+                        31
+                    ],
+                    [
+                        108,
+                        44
+                    ],
+                    [
+                        87,
+                        31
+                    ],
+                    [
+                        107,
+                        33
+                    ],
+                    [
+                        94,
+                        39
+                    ],
+                    [
+                        109,
+                        46
+                    ],
+                    [
+                        161,
+                        41
+                    ],
+                    [
+                        218,
+                        40
+                    ],
+                    [
+                        197,
+                        27
+                    ],
+                    [
+                        217,
+                        40
+                    ],
+                    [
+                        204,
+                        38
+                    ],
+                    [
+                        219,
+                        40
+                    ],
+                    [
+                        210,
+                        39
+                    ],
+                    [
+                        138,
+                        47
+                    ],
+                    [
+                        135,
+                        33
+                    ],
+                    [
+                        155,
+                        39
+                    ],
+                    [
+                        134,
+                        0
+                    ],
+                    [
+                        149,
+                        37
+                    ],
+                    [
+                        136,
+                        45
+                    ],
+                    [
+                        166,
+                        50
+                    ],
+                    [
+                        190,
+                        37
+                    ],
+                    [
+                        194,
+                        48
+                    ],
+                    [
+                        121,
+                        43
+                    ],
+                    [
+                        172,
+                        36
+                    ],
+                    [
+                        162,
+                        36
+                    ],
+                    [
+                        154,
+                        47
+                    ],
+                    [
+                        201,
+                        39
+                    ],
+                    [
+                        176,
+                        38
+                    ],
+                    [
+                        220,
+                        45
+                    ],
+                    [
+                        189,
+                        0
+                    ],
+                    [
+                        164,
+                        43
+                    ],
+                    [
+                        165,
+                        41
+                    ],
+                    [
+                        146,
+                        39
+                    ],
+                    [
+                        205,
+                        38
+                    ],
+                    [
+                        191,
+                        42
+                    ],
+                    [
+                        209,
+                        42
+                    ],
+                    [
+                        212,
+                        46
+                    ],
+                    [
+                        216,
+                        35
+                    ],
+                    [
+                        117,
+                        44
+                    ],
+                    [
+                        163,
+                        44
+                    ],
+                    [
+                        150,
+                        48
+                    ],
+                    [
+                        193,
+                        47
+                    ],
+                    [
+                        207,
+                        40
+                    ],
+                    [
+                        142,
+                        34
+                    ],
+                    [
+                        152,
+                        36
+                    ],
+                    [
+                        100,
+                        42
+                    ],
+                    [
+                        28,
+                        42
+                    ],
+                    [
+                        1,
+                        48
+                    ],
+                    [
+                        25,
+                        31
+                    ],
+                    [
+                        45,
+                        34
+                    ],
+                    [
+                        24,
+                        0
+                    ],
+                    [
+                        39,
+                        31
+                    ],
+                    [
+                        26,
+                        44
+                    ],
+                    [
+                        56,
+                        43
+                    ],
+                    [
+                        80,
+                        38
+                    ],
+                    [
+                        11,
+                        41
+                    ],
+                    [
+                        62,
+                        40
+                    ],
+                    [
+                        52,
+                        32
+                    ],
+                    [
+                        44,
+                        40
+                    ],
+                    [
+                        91,
+                        45
+                    ],
+                    [
+                        66,
+                        44
+                    ],
+                    [
+                        63,
+                        50
+                    ],
+                    [
+                        110,
+                        40
+                    ],
+                    [
+                        79,
+                        0
+                    ],
+                    [
+                        54,
+                        43
+                    ],
+                    [
+                        55,
+                        44
+                    ],
+                    [
+                        8,
+                        45
+                    ],
+                    [
+                        36,
+                        42
+                    ],
+                    [
+                        90,
+                        48
+                    ],
+                    [
+                        95,
+                        41
+                    ],
+                    [
+                        27,
+                        44
+                    ],
+                    [
+                        81,
+                        39
+                    ],
+                    [
+                        88,
+                        49
+                    ],
+                    [
+                        99,
+                        49
+                    ],
+                    [
+                        47,
+                        44
+                    ],
+                    [
+                        106,
+                        35
+                    ],
+                    [
+                        7,
+                        35
+                    ],
+                    [
+                        53,
+                        43
+                    ],
+                    [
+                        40,
+                        35
+                    ],
+                    [
+                        50,
+                        49
+                    ],
+                    [
+                        33,
+                        42
+                    ],
+                    [
+                        97,
+                        35
+                    ],
+                    [
+                        32,
+                        24
+                    ],
+                    [
+                        35,
+                        44
+                    ],
+                    [
+                        42,
+                        34
+                    ]
+                ]
+            },
+            {
+                "name": "Moderate",
+                "showInLegend": false,
+                "color": "#ffb600",
+                "data": [
+                    [
+                        4,
+                        60
+                    ],
+                    [
+                        105,
+                        57
+                    ],
+                    [
+                        46,
+                        58
+                    ],
+                    [
+                        49,
+                        61
+                    ],
+                    [
+                        29,
+                        52
+                    ],
+                    [
+                        215,
+                        60
+                    ],
+                    [
+                        156,
+                        67
+                    ],
+                    [
+                        159,
+                        70
+                    ],
+                    [
+                        139,
+                        58
+                    ],
+                    [
+                        111,
+                        53
+                    ],
+                    [
+                        119,
+                        74
+                    ],
+                    [
+                        202,
+                        69
+                    ],
+                    [
+                        211,
+                        70
+                    ],
+                    [
+                        113,
+                        67
+                    ],
+                    [
+                        192,
+                        60
+                    ],
+                    [
+                        169,
+                        68
+                    ],
+                    [
+                        175,
+                        60
+                    ],
+                    [
+                        187,
+                        75
+                    ],
+                    [
+                        173,
+                        51
+                    ],
+                    [
+                        214,
+                        73
+                    ],
+                    [
+                        151,
+                        63
+                    ],
+                    [
+                        118,
+                        53
+                    ],
+                    [
+                        200,
+                        52
+                    ],
+                    [
+                        137,
+                        52
+                    ],
+                    [
+                        198,
+                        60
+                    ],
+                    [
+                        168,
+                        54
+                    ],
+                    [
+                        157,
+                        51
+                    ],
+                    [
+                        203,
+                        71
+                    ],
+                    [
+                        147,
+                        66
+                    ],
+                    [
+                        123,
+                        73
+                    ],
+                    [
+                        160,
+                        70
+                    ],
+                    [
+                        143,
+                        51
+                    ],
+                    [
+                        206,
+                        69
+                    ],
+                    [
+                        120,
+                        56
+                    ],
+                    [
+                        145,
+                        53
+                    ],
+                    [
+                        9,
+                        69
+                    ],
+                    [
+                        38,
+                        74
+                    ],
+                    [
+                        84,
+                        62
+                    ],
+                    [
+                        92,
+                        64
+                    ],
+                    [
+                        101,
+                        66
+                    ],
+                    [
+                        3,
+                        56
+                    ],
+                    [
+                        82,
+                        57
+                    ],
+                    [
+                        59,
+                        73
+                    ],
+                    [
+                        65,
+                        62
+                    ],
+                    [
+                        68,
+                        65
+                    ],
+                    [
+                        104,
+                        72
+                    ],
+                    [
+                        41,
+                        63
+                    ],
+                    [
+                        22,
+                        64
+                    ],
+                    [
+                        58,
+                        61
+                    ],
+                    [
+                        102,
+                        58
+                    ],
+                    [
+                        37,
+                        62
+                    ],
+                    [
+                        13,
+                        64
+                    ],
+                    [
+                        83,
+                        52
+                    ],
+                    [
+                        96,
+                        61
+                    ],
+                    [
+                        10,
+                        52
+                    ]
+                ]
+            },
+            {
+                "name": "High",
+                "showInLegend": false,
+                "color": "#175d2d",
+                "data": [
+                    [
+                        78,
+                        92
+                    ],
+                    [
+                        114,
+                        81
+                    ],
+                    [
+                        188,
+                        93
+                    ],
+                    [
+                        186,
+                        91
+                    ],
+                    [
+                        148,
+                        81
+                    ],
+                    [
+                        180,
+                        85
+                    ],
+                    [
+                        130,
+                        96
+                    ],
+                    [
+                        125,
+                        93
+                    ],
+                    [
+                        133,
+                        86
+                    ],
+                    [
+                        178,
+                        86
+                    ],
+                    [
+                        131,
+                        82
+                    ],
+                    [
+                        132,
+                        90
+                    ],
+                    [
+                        174,
+                        92
+                    ],
+                    [
+                        144,
+                        90
+                    ],
+                    [
+                        76,
+                        98
+                    ],
+                    [
+                        70,
+                        95
+                    ],
+                    [
+                        69,
+                        100
+                    ],
+                    [
+                        89,
+                        86
+                    ],
+                    [
+                        20,
+                        94
+                    ],
+                    [
+                        15,
+                        77
+                    ],
+                    [
+                        30,
+                        96
+                    ],
+                    [
+                        77,
+                        94
+                    ],
+                    [
+                        23,
+                        78
+                    ],
+                    [
+                        14,
+                        87
+                    ],
+                    [
+                        21,
+                        78
+                    ],
+                    [
+                        64,
+                        84
+                    ],
+                    [
+                        93,
+                        77
+                    ],
+                    [
+                        34,
+                        76
+                    ],
+                    [
+                        16,
+                        93
+                    ]
+                ]
+            }
+        ]
+      }
+
+  constructor() {}
+
+  ngOnInit() {
+    Highcharts.chart("operatorScatter", this.options);
+  }
+}

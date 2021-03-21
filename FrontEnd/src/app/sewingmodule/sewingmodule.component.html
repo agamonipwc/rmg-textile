@@ -1,0 +1,247 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="font-family: 'Arial, Helvetica';">
+  <a class="navbar-brand" href="#"><img style="height: 34px;" src="../../assets/img/PwC_Outline_Logo_White.png" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
+  <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
+  <ul class="tree cutom-treestructure mt-3">
+    <li (click)="dashboardNavigation()" id="dashbaord_href" style="cursor: pointer;">
+      <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
+    </li>
+  
+    <li>
+      <a id="moduleperformance_href" (click)="tabNavigation($event)"><span id="moduleperformance_span" class="d-none d-md-inline">Operations</span></a>
+      <ul class="cutom-treestructure">
+        <li>
+          Inward
+        </li>
+  
+        <li>
+          Processes
+          <ul class="ml-4">
+            <li>
+              Fabric & Trims Store 
+            </li>
+  
+            <li>
+              Spreading & Cutting
+            </li>
+            <li (click)="sewingNavigation()" style="cursor: pointer;">
+              Sewing 
+            </li>
+            <li>
+              Finishing & Packaging
+            </li>
+          </ul>
+        </li>
+  
+        <li>
+          Outward
+        </li>
+      </ul>
+    </li>
+  
+    <li>
+      Social Sustainability
+    </li>
+
+    <li>
+      Environmental Sustainability
+    </li>
+  </ul>
+</nav>
+<main role="main" class="col-9 ml-auto col-md-9 pt-3">
+  <section class="text-center placeholders" id="dashboardsection">
+    <h4 style="text-align: center; font-weight: bold;">Sewing Department KPI Analysis on 31.01.2021</h4>
+    <h6 class="ml1">
+      <span class="text-wrapper">
+        <span class="line line1"></span>
+        <span class="letters" style="font-style: italic;">Please click each button below to view detailed analysis</span>
+        <span class="line line2"></span>
+      </span>
+    </h6>
+    <div class="col-4 mt-1">
+      <a style="font-weight: bold;" href="/sewing-historical">Show Historical Data</a>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <div class="row align-items-center mt-1">
+          <div class="col-3" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" (click)="navigateEfficiency()" style="cursor: pointer;">Efficiency %</button></div>
+              <div #efficiencyContainer style="height: 190px;"></div>
+            </div>
+          </div>
+          <div class="col-3" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Capacity Utilisation(Actual Vs Planned Prodctn.)">Capacity %</button></div>
+              <div #capacityUtilizationContainer style="height: 190px;"></div>
+            </div>
+          </div>
+          <div class="col-3" id="wipVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Inline WIP Level</button></div>
+              <div #wipContainer style="height: 190px;"></div>
+            </div>
+          </div>
+          <div class="col-3" id="machineDowntimeVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Machine Downtime</button></div>
+              <div #machineDowntimeContainer style="height: 190px;"></div>
+            </div>
+          </div>
+          <!-- <div class="col-3" id="mmrVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Man Machine Ration">MMR</button></div>
+              <div #mmrContainer style="height: 190px;"></div>
+            </div>
+          </div> -->
+        </div>
+        <div class="row align-items-center mt-2">
+          <div class="col-3" id="dhuVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Defects Per Hundred Units">DHU</button></div>
+              <div #dhuContainer style="height: 190px;"></div>
+            </div>
+          </div>
+          <div class="col-3" id="defectVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Defect%</button></div>
+              <div #defectContainer style="height: 190px;"></div>
+            </div>
+          </div>
+          <div class="col-3" id="rejectionVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Rejection%</button></div>
+              <div #rejectionContainer style="height: 190px;"></div>
+            </div>
+          </div>
+          <div class="col-3" id="absentismVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Absentism %</button></div>
+              <div #absentismContainer style="height: 190px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row align-items-center mt-3">
+          
+          <div class="col-3" id="multiskillVisual" style="display: none; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Multiskill %</button></div>
+              <div #multiskillContainer style="height: 190px;"></div>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="tab-pane active" id="sewing" role="tabpanel" aria-labelledby="ModulePerformance-tab">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link submodule" id="kpipage1_href" style="font-size: large;" href="#kpipage1" [ngClass]="{ 'active':activeTab==='kpipage1'}" data-toggle="pill"
+              (click)="kpipag1('kpipage1')">Page 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link submodule" id="kpipage2_href" style="font-size: large;" href="#kpipage2" [ngClass]="{ 'active':activeTab==='kpipage2'}" data-toggle="pill"
+              (click)="kpipag2('kpipag2')">Page 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link submodule">
+                <p class="mt-1" style="font-style: italic; color: #933401; text-align: left; font-size: small;">Note: Please click on each button below to see KPI overview.</p>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane" id="kpipage1" [ngClass]="{ 'active':activeTab==='kpipage1'}">
+              <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker>
+              
+            </div>
+            <div class="tab-pane" id="kpipage2" [ngClass]="{ 'active':activeTab==='kpipage2'}">
+              <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker>
+              
+            </div>
+          </div>
+          
+        </div> -->
+      </div>
+      <div class="col-3 mt-3">
+        <div class="d-flex flex-column mb-3">
+          <nav class="col-sm-3 col-md-2 d-none d-sm-block">
+            <ul class="nav nav-pills flex-column">
+              <li class="nav-item">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu">
+                          <li class="custom-li" *ngFor="let option of locationOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' (change)="onLocationChange($event)" type="checkbox" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}</label></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of unitOptions"><a href="#" class="dropdown-label"><label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;"><input name='options[unit]' type="checkbox" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2 line_label" [id]="'line_label_' + option.Id" style="display: none;"><input name='options[line]' type="radio" class="option justone line" [value]="option.Id" [id]="'line_' + option.Id"/> {{option.Name}}</label></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">Start Date</span>
+                    <input type="date" placeholder="Start Date" id="startDate">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">End Date</span>
+                    <input type="date" placeholder="End Date" id="endDate">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

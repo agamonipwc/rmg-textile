@@ -1,0 +1,441 @@
+this.http.post<any>(this.userBackendUrl, KPIView).subscribe(responsedata => {
+      if(responsedata.StatusCode == 200){
+        $("#capacityVisual").show();
+        $("#efficiencyVisual").show();
+        $("#dhuRejectDefectVisual").show();
+        $("#mmrWIPVisual").show();
+        $("#dhuCard").show();
+        $("#defectCard").show();
+        $("#rejectCard").show();
+        _this.dhuStyle = {
+          backgroundColor : responsedata["DefectRejectDHUPercentage"]["Value"][0]["colorCode"],
+          // width : responsedata["DefectRejectDHUPercentage"]["Value"][0]["PercentageValue"],
+        }
+
+        _this.defectStyle = {
+          backgroundColor : responsedata["DefectRejectDHUPercentage"]["Value"][1]["colorCode"],
+          color : responsedata["DefectRejectDHUPercentage"]["Value"][1]["textColor"]
+          // width : responsedata["DefectRejectDHUPercentage"]["Value"][1]["PercentageValue"],
+        }
+
+        _this.rejectStyle = {
+          backgroundColor : responsedata["DefectRejectDHUPercentage"]["Value"][2]["colorCode"],
+          color : responsedata["DefectRejectDHUPercentage"]["Value"][2]["textColor"]
+          // width : responsedata["DefectRejectDHUPercentage"]["Value"][2]["PercentageValue"],
+        }
+
+        $("#dhuCard").html("% D.H.U is: " + responsedata["DefectRejectDHUPercentage"]["Value"][0]["y"]);
+        $("#defectCard").html("% Defect is: " + responsedata["DefectRejectDHUPercentage"]["Value"][1]["y"]);
+        $("#rejectCard").html("% Reject is: " + responsedata["DefectRejectDHUPercentage"]["Value"][2]["y"]);
+
+        _this.capacityCalculationHeadingColor = responsedata["CapaCityCalculation"]["Value"]["colorCode"];
+        var pieColors = (function () {
+          var colors = [],
+              base = "#eb8c00",
+              i;
+          for (i = 0; i < 10; i += 1) {
+              colors.push(Highcharts.color(base).brighten((i - 3) / 7).get());
+          }
+          return colors;
+        }());
+        Highcharts.chart(this.container.nativeElement,{
+          chart: {
+            type: 'pie',
+            width: 360,
+            },
+            colors: [
+              '#ffb600',
+              '#db536a',
+              '#e0301e',
+              '#eb8c00', 
+              '#db536a', 
+              '#d93954', 
+              '#e0301e', 
+              '#d04a02', 
+              '#92A8CD'
+              
+            ],
+            title: {
+              text: 'Monthly Capacity on 2021',
+              style: {'font-family': 'Arial, Helvetica', 'font-size': '16px'}
+            },
+            credits: {enabled: false},
+            exporting: {
+              enabled: false
+            },
+            // subtitle: {
+            //     text: 'Click the slices to view versions. Source: netmarketshare.com.'
+            // },
+            xAxis: {
+              categories: ['Line1','Line2', 'Line3', 'Line4']
+                // showEmpty: false
+            },
+            yAxis: {
+                showEmpty: false
+            },
+            plotOptions: {
+                // series: {
+                //     dataLabels: {
+                //         enabled: true,
+                //         format: '{point.name}: {point.y:.1f}%'
+                //     }
+                // }
+                pie:{
+                  size: 125,
+                  dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                  },
+                  // colors: pieColors,
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b><br/>'
+            },
+
+            series: [responsedata["CapaCityCalculation"]["Value"]["capacityUtilizationSeries"]],
+            drilldown: {
+              series: [
+                {
+                  "type": "column",
+                    name: 'Capacity in line',
+                  "id": "utilized",
+                  "data": responsedata["CapaCityCalculation"]["Value"]["capacityUtilizationNested"]["nestedData"]
+                }
+               ]
+            }
+        })
+        Highcharts.chart(this.efficiencyContainer.nativeElement, {
+          chart: {
+              zoomType: 'xy',
+              width : 360,
+              marginleft: 10,
+              type: 'column',
+          },
+          colors: [
+            '#ffb600',
+            '#db536a',
+            '#e0301e',
+            '#eb8c00', 
+            '#db536a', 
+            '#d93954', 
+            '#e0301e', 
+            '#d04a02', 
+            '#92A8CD'
+            
+          ],
+          exporting: {
+            enabled: false
+          },
+          title: {
+              text: 'Monthly %Efficiency on 2021',
+              style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
+          },
+          xAxis: [{
+              categories: responsedata["Efficiency"]["Value"]["monthCategory"],
+              crosshair: false
+          }],
+          credits: {enabled: false},
+          yAxis: [{ 
+              labels: {
+                  format: '{value}',
+                  style: {
+                      // color: "#eb8c00",
+                      style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                  }
+              },
+              title: {
+                  text: '% Efficiency',
+                  style: {
+                      // color: "#d04a02",
+                      style: {'font-family': 'Arial, Helvetica', 'font-size': '8px'}
+                  }
+                }
+              }
+            ],
+          tooltip: {
+              shared: true
+          },
+          legend: {
+              layout: 'vertical',
+              align: 'left',
+              x: 120,
+              verticalAlign: 'bottom',
+              y: 100,
+              floating: true,
+              backgroundColor:
+                  Highcharts.defaultOptions.legend.backgroundColor || // theme
+                  'rgba(255,255,255,0.25)'
+          },
+          series: responsedata["Efficiency"]["Value"]["efficiencyWeitageResponse"]
+          
+        });
+        var stackedChartcolors = ["#eb8c00","#ffb600", "#d04a02"],dark = -0.5;
+        stackedChartcolors[1] = Highcharts.Color(stackedChartcolors[0]).brighten(dark).get();
+        stackedChartcolors[2] = Highcharts.Color(stackedChartcolors[2]).brighten(dark).get();
+        Highcharts.chart(this.mmrWIPContainer.nativeElement, {
+          chart: {
+            type: 'column',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            width: 350,
+          },
+          colors: [
+            '#ffb600',
+            '#db536a',
+            '#e0301e',
+            '#eb8c00', 
+            '#db536a', 
+            '#d93954', 
+            '#e0301e', 
+            '#d04a02', 
+            '#92A8CD'
+          ],
+          title: {
+            text: 'Monthly Inline WIP on 2021',
+            style: {'font-family': 'Arial, Helvetica', 'font-size': '17px'}
+          },
+          xAxis: {
+              categories: responsedata["MMRWIPInline"]["Value"]["monthCategory"]
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                  text: 'Total consumption'
+              },
+              stackLabels: {
+                  enabled: true,
+                  style: {
+                      // fontWeight: 'bold',
+                      color: ( 
+                          Highcharts.defaultOptions.title.style &&
+                          Highcharts.defaultOptions.title.style.color
+                      ) || 'gray'
+                  }
+              }
+          },
+          exporting: {
+            enabled: false
+          },
+          credits: {enabled: false},
+          legend: {
+              align: 'right',
+              x: -30,
+              verticalAlign: 'top',
+              y: 25,
+              floating: true,
+              backgroundColor:
+                  Highcharts.defaultOptions.legend.backgroundColor || 'white',
+              borderColor: '#CCC',
+              borderWidth: 1,
+              shadow: false
+          },
+          tooltip: {
+              headerFormat: '<b>{point.x}</b><br/>',
+              pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+          },
+          plotOptions: {
+              column: {
+                  // stacking: 'normal',
+                  pointPadding: 0.2,
+                  borderWidth: 0,
+                  // dataLabels: {
+                  //     enabled: true
+                  // },
+                  size: 200
+              }
+          },
+          series: [{
+            name : responsedata["MMRWIPInline"]["Value"]["name"],
+            data: responsedata["MMRWIPInline"]["Value"]["chartDatas"]
+          }]
+        });
+      
+      }
+      else{
+        return;
+      }
+    })
+
+
+<div class="tab-pane fade show active hide-show" id="overallperformance" role="tabpanel" aria-labelledby="OverallPerformance-tab">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" style="font-size: large;" href="#kpi" [ngClass]="{ 'active':activeTab==='search'}" (click)="kpi('kpi')"
+             data-toggle="pill">KPI</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="font-size: large;" href="#workEfficiency" [ngClass]="{ 'active':activeTab==='workEfficiency'}" data-toggle="pill"
+             (click)="workEfficiency('workEfficiency')">Am I Productive</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="font-size: large;" href="#resourceStrength" [ngClass]="{ 'active':activeTab==='resourceStrength'}" data-toggle="pill"
+             (click)="productivity('resourceStrength')">Resource Strength</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="font-size: large;" href="#productivity" [ngClass]="{ 'active':activeTab==='productivity'}" data-toggle="pill"
+             (click)="productivity('productivity')">Working Efficiently</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane" id="kpi" [ngClass]="{ 'active':activeTab==='kpi'}"> 
+        </div>
+        <div class="tab-pane" id="workEfficiency" [ngClass]="{ 'active':activeTab==='workEfficiency'}">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" style="font-size: large;" href="#workEfficiencyLine" data-toggle="pill" (click)="getEfficiencyLineWiseCharts()">Line Competency</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="font-size: large;" href="#workEfficiencyUnit" data-toggle="pill" (click)="getEfficiencyUnitWiseCharts()">Unit Competency</a>
+            </li>
+          </ul>
+          <div class="tab-pane fade show active" id="workEfficiencyLine">
+            <div class="row align-items-center h-100 mt-5">
+              <div [chart]="WIPLine" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="alterationLine" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="workingLine" class="col-4" style="width: 350px; height: 350px;"></div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="workEfficiencyUnit">
+            <div class="row align-items-center h-100 mt-5">
+              <div [chart]="WIPUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="alterationUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="workingUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="productivity" [ngClass]="{ 'active':activeTab==='productivity'}">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" style="font-size: large;" href="#productivityLine" data-toggle="pill" (click)="getProductivityLineWiseCharts()">Line Competency</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="font-size: large;" href="#productivityUnit" data-toggle="pill" (click)="getProductivityUnitWiseCharts()">Unit Competency</a>
+            </li>
+          </ul>
+          <div class="tab-pane fade show active" id="productivityLine">
+            <div class="row align-items-center h-100 mt-5">
+              <div [chart]="productionLine" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="rejectionLine" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="dhuLine" class="col-4" style="width: 350px; height: 350px;"></div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="productivityUnit">
+            <div class="row align-items-center h-100 mt-5">
+              <div [chart]="productionUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="rejectionUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="dhuUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="resourceStrength" [ngClass]="{ 'active':activeTab==='resourceStrength'}">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" style="font-size: large;" href="#resourceStrengthLine" data-toggle="pill" (click)="getResourceStrengthLineWiseCharts()">Line Competency</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="font-size: large;" href="#resourceStrengthUnit" data-toggle="pill" (click)="getResourceStrengthUnitWiseCharts()">Unit Competency</a>
+            </li>
+          </ul>
+          <div class="tab-pane fade show active" id="resourceStrengthLine">
+            <div class="row align-items-center h-100 mt-5">
+              <div [chart]="operatorLine" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="helperLine" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="checkerLine" class="col-4" style="width: 350px; height: 350px;"></div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="resourceStrengthUnit">
+            <div class="row align-items-center h-100 mt-5">
+              <div [chart]="operatorUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="helperUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+              <div [chart]="checkerUnit" class="col-4 " style="width: 350px; height: 350px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <h3 class="text-center">Sewing KPI(s) </h3> -->
+      <!-- <hr class="footer" /> -->
+      <!-- <div class="row align-items-center h-100">
+        <div class="col-1" style="font-size: 12px;">Start Date</div>
+        <div class="col-2" style="margin-left: -25px;">
+          <ng-datepicker [(ngModel)]="startDate" [options]="options"></ng-datepicker>
+        </div>
+        <div class="col-1 ml-4" style="font-size: 12px;">End Date</div>
+        <div class="col-2" style="margin-left: -25px;">
+          <ng-datepicker [(ngModel)]="endDate" [options]="options"></ng-datepicker>
+        </div>
+        <div class="col-4">
+          <button class="custom-button" (click)="getSewingKPIAnalysis()">Show Analysis</button>
+        </div>
+      </div> -->
+      <!-- <div class="row align-items-center h-100 mt-1">
+        <div class="col-4 mt-3 ml-2 " id="mmrWIPVisual" style="display: none; height: auto; min-height: max-content;">
+          <div #mmrWIPContainer style="width: 350px;height: 270px;"></div>
+        </div>
+      </div> -->
+      
+    </div>
+
+
+
+    <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar mt-5">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <div class="ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Year</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu">
+          <!-- <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="yearSelectAll" /><span class="select-text" id="yearSelectText"> Select</span> All</label></a></li> -->
+          <li class="custom-li" *ngFor="let option of year"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[year]' type="checkbox" class="option justone year" [value]="option.id" [id]="'year_' + option.id"/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item mt-3">
+      <div class="ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Month</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu"> 
+          <!-- <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="monthSelectAll"/><span id="monthSelectText" class="select-text"> Select</span> All</label></a></li> -->
+          <li class="custom-li" *ngFor="let option of month"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[month]' type="checkbox" class="option justone month" [value]="option.id" [id]="'month_' + option.id"/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item mt-3">
+      <div class="dropdown ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Line</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu">
+          <!-- <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li> -->
+          <li class="custom-li" *ngFor="let option of line"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.id" [id]="'line_' + option.id" checked/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
+    </li>
+    <!-- <li class="nav-item mt-3">
+      <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
+    </li> -->
+    <!-- <li class="nav-item mt-3">
+      <div class="dropdown ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Unit</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu">
+          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="unitSelectAll"/><span id="unitSelectText" class="select-text"> Select</span> All</label></a></li>
+          <li class="custom-li" *ngFor="let option of unit"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[]' type="checkbox" class="option justone unit" [value]="option.id"/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item mt-3">
+      <div class="dropdown ml-2">
+        <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Location</span>
+        <span class="caret"></span></button>
+        <ul class="dropdownmenu">
+          <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="locationSelectAll"/><span id="locationSelectText" class="select-text"> Select</span> All</label></a></li>
+          <li class="custom-li" *ngFor="let option of location"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[]' type="checkbox" class="option justone location" [value]="option.id"/> {{option.name}}</label></a></li>
+        </ul>
+      </div>
+    </li> -->
+  </ul>
+</nav>
