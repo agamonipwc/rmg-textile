@@ -18,6 +18,9 @@ import { OperatorRecommendationComponent } from './operator-recommendation/opera
 import { DataTableModule } from "ng2-data-table";
 import { ModuleperformancehistComponent } from './moduleperformancehist/moduleperformancehist.component';
 import { SewingmodulehistComponent } from './sewingmodulehist/sewingmodulehist.component';
+import { AbsentismComponent } from './absentism/absentism.component';
+import { DefectComponent } from './defect/defect.component';
+import { CapacityutilizationComponent } from './capacityutilization/capacityutilization.component';
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [solidGauge];
@@ -33,7 +36,10 @@ export function highchartsModules() {
     EfficiencyComponent,
     OperatorRecommendationComponent,
     ModuleperformancehistComponent,
-    SewingmodulehistComponent
+    SewingmodulehistComponent,
+    AbsentismComponent,
+    DefectComponent,
+    CapacityutilizationComponent
   ],
   imports: [
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 

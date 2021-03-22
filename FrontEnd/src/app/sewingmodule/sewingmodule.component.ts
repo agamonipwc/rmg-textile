@@ -994,6 +994,19 @@ export class SewingmoduleComponent implements OnInit {
     this._router.navigate(['efficiency-overview']);
   }
 
+  navigateDefects(){
+    this._router.navigate(['defect-overview']);
+  }
+
+  navigateCapacityUtilization(){
+    this._router.navigate(['capacityutilization-overview']);
+  }
+
+  navigateAbsentism(){
+    this._router.navigate(['absentism-overview']);
+  }
+
+
   dashboardNavigation(){
     this._router.navigate(['module-performance']);
   }
