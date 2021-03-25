@@ -240,7 +240,6 @@ export class EfficiencyComponent implements OnInit {
       StartDate : startDateTime,
       EndDate : endDateTime
     }
-    console.log(KPIView);
     this.calculateOperatorEfficiency(KPIView);
   }
 
@@ -302,7 +301,6 @@ export class EfficiencyComponent implements OnInit {
         Recommendations : responsedata["allRecommendations"][0]["Recommendations"],
         SubReasons : responsedata["allRecommendations"][0]["SubReasons"],
       });
-      console.log(_this.data);
       // _this.recommendationData = responsedata;
     })
   }

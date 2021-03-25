@@ -219,7 +219,7 @@ ngOnInit() {
       StartDate : startDateTime,
       EndDate : endDateTime
     }
-    console.log(KPIView);
+    
     this.calculateOperatorsAbsentism(KPIView);
   }
 
@@ -253,5 +253,46 @@ ngOnInit() {
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
   }
-
+  getRecommendation(recommendationId){
+    this.data = [];
+    var recommendationView ={
+      KPIId : 3,
+      recommendationId : recommendationId
+    };
+    var url = environment.backendUrl + "Recommendation";
+    var _this = this;
+    this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
+      if(recommendationId == 6){
+        _this.recommendationModalTitle = "Recommemdations for Low Operators"
+      }
+      else{
+        _this.recommendationModalTitle = "Recommemdations for Moderate Operators"
+      }
+      _this.data.push({
+        Reasons : responsedata["allRecommendations"][0]["Reasons"],
+        Recommendations : responsedata["allRecommendations"][0]["Recommendations"],
+        SubReasons : responsedata["allRecommendations"][0]["SubReasons"],
+      });
+      // _this.recommendationData = responsedata;
+    })
+  }
+  getOperatorsName(efficiencyLevel){
+    this.operatorsDetailsList = [];
+    var operatorsDetailsView ={
+      efficiencyLevel : efficiencyLevel
+    };
+    var url = environment.backendUrl + "OperatorsName";
+    var _this = this;
+    this.http.post<any>(url, operatorsDetailsView).subscribe(responsedata =>{
+      responsedata["operatorsDetails"].forEach(element => {
+        _this.operatorsDetailsList.push({
+          Name : element["Name"],
+          Machine : element["Machine"],
+          Unit : element["Unit"],
+          Location : element["Location"],
+          Line : element["Line"]
+        });
+      });
+    })
+  }
 }
