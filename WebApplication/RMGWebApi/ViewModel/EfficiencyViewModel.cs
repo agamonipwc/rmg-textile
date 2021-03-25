@@ -12,4 +12,10 @@ namespace RMGWebApi.ViewModel
         public string color { get; set; }
         public List<object[]> data { get; set; }
     }
+
+    public class HistoricalDataViewModel {
+        public double y { get; set; }
+        public string color { get; set; }
+    }
+
 }

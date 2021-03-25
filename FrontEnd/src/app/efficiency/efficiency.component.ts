@@ -235,10 +235,10 @@ export class EfficiencyComponent implements OnInit {
       Line : checkedLines,
       Location : checkedLocations,
       Unit : checkedUnits,
-      StartDate : "2021-01-31 00:00:00.000",
-      EndDate : "2021-01-31 00:00:00.000",
-      // StartDate : startDateTime,
-      // EndDate : endDateTime
+      // StartDate : "2021-01-31 00:00:00.000",
+      // EndDate : "2021-01-31 00:00:00.000",
+      StartDate : startDateTime,
+      EndDate : endDateTime
     }
     console.log(KPIView);
     this.calculateOperatorEfficiency(KPIView);

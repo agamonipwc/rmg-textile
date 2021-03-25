@@ -37,5 +37,6 @@ namespace Entities
         public DbSet<EfficiencyWorker> EfficiencyWorker { get; set; }
         public DbSet<TimeStudy> TimeStudy { get; set; }
         public DbSet<OperatorMaster> OperatorMaster { get; set; }
+        public DbSet<Attendance> Attendance { get; set; }
     }
 }

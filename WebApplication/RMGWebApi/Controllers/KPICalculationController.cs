@@ -14,10 +14,6 @@ namespace RMGWebApi.Controllers
     public class KPICalculationController  : Controller
     {
         private readonly  RepositoryContext _rmgDbContext;
-        CustomResponse customResponse = new CustomResponse();
-        List<string> lineChartColors = new List<string>() { "#eb8c00", "#d04a02", "#6e2a35", "#003dab", "#db536a" };
-        List<string> columnChartColor = new List<string>() { "#0089eb", "#175c2c", "#a43e50", "#deb8ff", "#eb8c00" };
-        //DateTime? date = Convert.ToDateTime("2021-01-31 00:00:00.000");
         public KPICalculationController(RepositoryContext rmgDbContext)
         {
             _rmgDbContext = rmgDbContext;

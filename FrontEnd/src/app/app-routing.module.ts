@@ -9,6 +9,10 @@ import {SewingmoduleComponent} from './sewingmodule/sewingmodule.component';
 import { EfficiencyComponent } from './efficiency/efficiency.component';
 import {ModuleperformancehistComponent} from './moduleperformancehist/moduleperformancehist.component';
 import{OperatorRecommendationComponent} from './operator-recommendation/operator-recommendation.component';
+import{SewingmodulehistComponent} from './sewingmodulehist/sewingmodulehist.component';
+import {DefectComponent} from './defect/defect.component';
+import {CapacityutilizationComponent} from './capacityutilization/capacityutilization.component';
+import {AbsentismComponent} from './absentism/absentism.component';
 
 const routes: Routes = [ 
     {path:"login", component:LoginComponent}, 
@@ -18,7 +22,11 @@ const routes: Routes = [
     {path:'sewing-module', component:SewingmoduleComponent},
     {path:'efficiency-overview', component: EfficiencyComponent},
     {path:'operator-recommendation', component: OperatorRecommendationComponent},
-    {path:'module-historical', component: ModuleperformancehistComponent}
+    {path:'module-historical', component: ModuleperformancehistComponent},
+    {path:'sewing-historical', component: SewingmodulehistComponent},
+    {path:'defect-overview', component: DefectComponent},
+    {path:'capacity-utilization-overview', component: CapacityutilizationComponent},
+    {path:'absentism-overview', component: AbsentismComponent},
  ];
 @NgModule({ 
    imports: [

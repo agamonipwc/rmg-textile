@@ -10,7 +10,6 @@ import * as  Highcharts from 'highcharts';
 import  More from 'highcharts/highcharts-more';
 More(Highcharts);
 import Drilldown from 'highcharts/modules/drilldown';
-import { Chart } from 'angular-highcharts';
 Drilldown(Highcharts);
 import Exporting from 'highcharts/modules/exporting';
 Exporting(Highcharts);
@@ -79,31 +78,6 @@ export class SewingmoduleComponent implements OnInit {
     this.getMasterData();
     $("#footer").hide();
     $(".footer").hide();
-    // $(document).ready(function(){
-    //   $('[data-toggle="tooltip"]').tooltip();   
-    // });
-    // add animation js
-    // const textWrapper = document.querySelector('.an-1');
-    // textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-    // anime.timeline({loop: true})
-    // .add({
-    //   targets: '.an-1 .letter',
-    //   scale: [4,1],
-    //   opacity: [0,1],
-    //   translateZ: 0,
-    //   easing: "easeOutExpo",
-    //   duration: 950,
-    //   delay: (el, i) => 70*i
-    // })
-    // .add({
-    //   targets: '.an-1',
-    //   opacity: 0,
-    //   duration: 1000,
-    //   easing: "easeOutExpo",
-    //   delay: 1000
-    // });
-
   var textWrapper = document.querySelector('.ml1 .letters');
   textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
@@ -131,22 +105,6 @@ export class SewingmoduleComponent implements OnInit {
       easing: "easeOutExpo",
       delay: 1000
   });
-
-
-    // setInterval(function(){
-    //   $("#dhuCard").addClass("reveal-text");
-    //   $("#defectCard").addClass("reveal-text");
-    //   $("#rejectCard").addClass("reveal-text");
-    //   setTimeout(function(){
-    //     $("#dhuCard").removeClass("reveal-text");
-    //     $("#defectCard").removeClass("reveal-text");
-    //     $("#rejectCard").removeClass("reveal-text");
-    //   }, 1500);
-    // }, 3000);
-    // this.kpipag1("kpipag1");
-    // this.kpi("kpi");
-    // this.getSewingKPIAnalysis();
-
     $(function() {
       // Hide all lists except the outermost.
       $('ul.tree ul').hide();
@@ -179,7 +137,6 @@ export class SewingmoduleComponent implements OnInit {
   }
 
   calculateFirstPageKPIs(KPIView){
-    var _this = this;
     this.http.post<any>(this.userBackendUrl, KPIView).subscribe(responsedata => {
       if(responsedata.StatusCode == 200){
         $("#efficiencyVisual").show();
@@ -989,9 +946,20 @@ export class SewingmoduleComponent implements OnInit {
     // this.getSewingKPIAnalysis();
   }
 
+  sewingNavigation(){
+    this._router.navigate(['sewing-module']);
+  } 
 
   navigateEfficiency(){
     this._router.navigate(['efficiency-overview']);
+  }
+
+  navigateCapacityUtilization(){
+    this._router.navigate(['capacity-utilization-overview']);
+  }
+
+  navigateAbsentismUtilization(){
+    this._router.navigate(['absentism-overview']);
   }
 
   dashboardNavigation(){
@@ -1063,6 +1031,9 @@ export class SewingmoduleComponent implements OnInit {
       $('.option.justone.line:radio').prop('checked', false);
     }
   }
-  
+
+  navigateDefectPercentage(){
+    this._router.navigate(['defect-overview']); 
+  }
   
 }

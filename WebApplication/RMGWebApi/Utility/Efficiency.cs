@@ -12,20 +12,20 @@ namespace RMGWebApi.Utility
         public string Month { get; set; }
         public string Dailydate { get; set; }
     }
-    public class EfficiencyViewModel
-    {
-        public string name { get; set; }
-        public List<double> data { get; set; }
-        public string type { get; set; }
-        public dynamic tooltip { get; set; }
-    }
-    public class EfficiencyWeitageViewModel
-    {
-        public string name { get; set; }
-        public List<double> data { get; set; }
-        public string type { get; set; }
-        public int yAxis { get; set; }
-        public dynamic tooltip { get; set; }
-        public string color { get; set; }
-    }
+    //public class EfficiencyViewModel
+    //{
+    //    public string name { get; set; }
+    //    public List<double> data { get; set; }
+    //    public string type { get; set; }
+    //    public dynamic tooltip { get; set; }
+    //}
+    //public class EfficiencyWeitageViewModel
+    //{
+    //    public string name { get; set; }
+    //    public List<double> data { get; set; }
+    //    public string type { get; set; }
+    //    public int yAxis { get; set; }
+    //    public dynamic tooltip { get; set; }
+    //    public string color { get; set; }
+    //}
 }
