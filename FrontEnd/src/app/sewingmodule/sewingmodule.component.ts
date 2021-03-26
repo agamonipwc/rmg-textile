@@ -1035,5 +1035,7 @@ export class SewingmoduleComponent implements OnInit {
   navigateDefectPercentage(){
     this._router.navigate(['defect-overview']); 
   }
-  
+  processNavigation(){
+    this._router.navigate(['process-overview']);
+  }
 }

@@ -21,6 +21,7 @@ import {SewingmodulehistComponent} from './sewingmodulehist/sewingmodulehist.com
 import {DefectComponent} from './defect/defect.component';
 import {CapacityutilizationComponent} from './capacityutilization/capacityutilization.component';
 import {AbsentismComponent} from './absentism/absentism.component';
+import { ProcessOverviewComponent } from './process-overview/process-overview.component';
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [solidGauge];
@@ -39,7 +40,8 @@ export function highchartsModules() {
     SewingmodulehistComponent,
     DefectComponent,
     CapacityutilizationComponent,
-    AbsentismComponent
+    AbsentismComponent,
+    ProcessOverviewComponent
   ],
   imports: [
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 

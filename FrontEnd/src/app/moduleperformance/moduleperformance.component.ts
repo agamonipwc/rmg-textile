@@ -1069,7 +1069,9 @@ export class ModuleperformanceComponent implements OnInit {
   sewingNavigation(){
       this._router.navigate(['sewing-module']);
   }
-
+  processNavigation(){
+    this._router.navigate(['process-overview']);
+  }
   getMasterData(){
     var masterDataUrl = environment.backendUrl + "MasterData";
     var _this = this;

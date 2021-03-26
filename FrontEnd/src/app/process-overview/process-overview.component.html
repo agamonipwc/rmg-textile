@@ -3,103 +3,18 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <!-- <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/module-performance">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/sewing-module">Sewing<span class="sr-only"></span></a>
+      </li>
+    </ul> -->
+    <!-- <h4 class="text-sm-center mt-2 ml-5" style="color: #ffffff;">Digital Diagnostic Tool</h4> -->
+  </div>
 </nav>
-<div class="modal fade" id="recommendationModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="recommendationModalTitle">{{recommendationModalTitle}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="height: 400px;">
-        <table class="table table-striped" style="background-color: #ffffff;">
-          <thead class="thead-dark">
-              <tr>
-                  <th style="width: 50%">
-                      Reasons
-                  </th>
-                  <th style="width: 50%">
-                    Recommendations
-                </th>
-                <th style="width: 50%">
-                  SubReasons
-              </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of data; let ndx = index">
-                  <!-- <td>{{item.Name}}</td> -->
-                  <td>{{item.Reasons}}</td>
-                  <td>{{item.Recommendations}}</td>
-                  <td>{{item.SubReasons}}</td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="operatorsDetailsModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="operatorsDetailsModalTitle">Operators Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="height: 500px;">
-        <table class="table table-striped" style="background-color: #ffffff;" [mfData]="operatorsDetailsList" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
-          <thead class="thead-dark">
-              <tr>
-                  <th style="width: auto">
-                      <mfDefaultSorter [mfShowSortableArrows]="true" by="Name">Name</mfDefaultSorter>
-                  </th>
-                  <th style="width: auto">
-                    <mfDefaultSorter by="Machine">Working Machine</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Unit">Unit</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Location">Location</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Line">Line</mfDefaultSorter>
-                </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of mf.data; let ndx = index1">
-                  <td>{{item.Name}}</td>
-                  <td>{{item.Machine}}</td>
-                  <td>{{item.Unit}}</td>
-                  <td>{{item.Location}}</td>
-                  <td>{{item.Line}}</td>
-              </tr>
-          </tbody>
-          <tfoot>
-              <tr>
-                  <td colspan="4">
-                      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                  </td>
-              </tr>
-          </tfoot>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
   <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
   <ul class="tree cutom-treestructure mt-3">
@@ -146,40 +61,73 @@
     <li>
       Environmental Sustainability
     </li>
+  
   </ul>
 </nav>
-<main role="main" class="col-9 ml-auto col-md-9 pt-3">
+
+<div role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <h5 style="text-align: center; font-weight: bold;">Operators Defects % Overview of last 5 days</h5>
-    <div class="row mt-2">
-      <div class="col-9">
-        <div class="row align-items-center mt-3">
-          <div class="col-2">
-            <div class="d-flex flex-column">
-              <div class="p-2" style="margin-bottom: 25%;">
-                <div class="d-flex flex-row" style="margin-left: -98%;">
-                  <button class="operator-btn p-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(105)">Recommendation</button>
-                  <button class="ml-2 operator-btn" data-toggle="modal" data-target="#operatorsDetailsModal" (click)="getOperatorsName('Low')">Print</button>
-                
-                </div>
-              </div>
-              <div class="p-2" style="margin-bottom: 25%;">
-                <div class="d-flex flex-row" style="margin-left: -98%;">
-                  <button class="operator-btn p-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(105)">Recommendation</button>
-                  <button class="ml-2 operator-btn" data-toggle="modal" data-target="#operatorsDetailsModal" (click)="getOperatorsName('Moderate')">Print</button>
-                </div>
-              </div>
-              <div class="p-2" style="margin-bottom: 25%;">
-                <div class="d-flex flex-row" style="margin-left: -98%;">
-                  <button class="operator-btn p-2">Recommendation</button>
-                  <button class="ml-2 operator-btn" data-toggle="modal" data-target="#operatorsDetailsModal" (click)="getOperatorsName('High')">Print</button>
-                
-                </div>
+    <div class="row">
+      <div class="col-8">
+        <h5 style="text-align: center; font-weight: bold;">Overall Process Module Score on 31.01.2021</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9" style="background-color: #ffffff;">
+        <div class="row mt-2">
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseProcessesDiv" aria-expanded="false" aria-controls="collapseProcessesDiv">Processes <i class="fas fa-caret-down"></i></button>
+          <div class="col-9">
+            <div class="progress" style="height:30px">
+              <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
+            </div>
+          </div>
+        </div>
+        <div class="collapse ml-5" id="collapseProcessesDiv">
+          <div class="row mt-3" >
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Fabric & Trims Store</button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">50</div>
               </div>
             </div>
           </div>
-          <div class="col-10">
-            <div [chart] = "defectsScatter" style="width: auto; height: 490px;"></div>  
+          <div class="row mt-3">
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Spreading & Cutting</button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:70%;height:30px; background-color: #175d2d;">70</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Sewing </button>
+            <div class="col-9" style="cursor: pointer;" (click)="sewingNavigation()">
+              <div class="progress" style="height:30px; cursor: pointer;" (click)="sewingNavigation()">
+                <div (click)="sewingNavigation()" class="progress-bar" style="width:30%;height:30px; background-color: #e0301e; cursor: pointer;">30</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Finishing & Packaging</button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:65%;height:30px; background-color: #ffb600;">65</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-3" id="mmrVisual" style="display: block; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Man Machine Ration">MMR</button></div>
+              <div #mmrContainer style="height: 190px;"></div>
+            </div>
+          </div>
+          <div class="col-3" id="defectVisual" style="display: block; height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div class="pb-2"><button class="custom-button" (click)="navigateDefectPercentage()" style="cursor: pointer;">Defect%</button></div>
+              <div #defectContainer style="height: 190px;"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -262,5 +210,6 @@
         </div>
       </div>
     </div>
+    
   </section>
-</main>
+</div>

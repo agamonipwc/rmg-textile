@@ -586,5 +586,7 @@ export class SewingmodulehistComponent implements OnInit {
       $('.option.justone.line:radio').prop('checked', false);
     }
   }
-
+  processNavigation(){
+    this._router.navigate(['process-overview']);
+  }
 }

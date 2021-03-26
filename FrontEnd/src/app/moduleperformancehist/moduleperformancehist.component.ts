@@ -43,7 +43,7 @@ export class ModuleperformancehistComponent implements OnInit {
   SewingHistoric : Chart;
   FinishingPackagingHistoric : Chart;
 
-  constructor() { }
+  constructor(private http: HttpClient,private _router: Router) { }
 
   ngOnInit() {
 
@@ -156,7 +156,9 @@ export class ModuleperformancehistComponent implements OnInit {
         }]
     });
   }
-
+  dashboardNavigation(){
+    this._router.navigate(['module-performance']);
+  }
   createProcessHistoric(){
 
     this.processHistoric = new Chart({

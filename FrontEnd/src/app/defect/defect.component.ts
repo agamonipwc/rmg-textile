@@ -125,6 +125,9 @@ export class DefectComponent implements OnInit {
     }
     this.calculateOperatorDefects(KPIView);
   }
+  dashboardNavigation(){
+    this._router.navigate(['module-performance']);
+  }
 
   calculateOperatorDefects(KPIView){
     console.log(KPIView);

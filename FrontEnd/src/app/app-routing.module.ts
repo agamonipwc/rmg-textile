@@ -13,6 +13,7 @@ import{SewingmodulehistComponent} from './sewingmodulehist/sewingmodulehist.comp
 import {DefectComponent} from './defect/defect.component';
 import {CapacityutilizationComponent} from './capacityutilization/capacityutilization.component';
 import {AbsentismComponent} from './absentism/absentism.component';
+import { ProcessOverviewComponent } from './process-overview/process-overview.component';
 
 const routes: Routes = [ 
     {path:"login", component:LoginComponent}, 
@@ -27,6 +28,7 @@ const routes: Routes = [
     {path:'defect-overview', component: DefectComponent},
     {path:'capacity-utilization-overview', component: CapacityutilizationComponent},
     {path:'absentism-overview', component: AbsentismComponent},
+    {path:'process-overview', component: ProcessOverviewComponent},
  ];
 @NgModule({ 
    imports: [
