@@ -21,6 +21,7 @@ import { SewingmodulehistComponent } from './sewingmodulehist/sewingmodulehist.c
 import { AbsentismComponent } from './absentism/absentism.component';
 import { DefectComponent } from './defect/defect.component';
 import { CapacityutilizationComponent } from './capacityutilization/capacityutilization.component';
+import { MultiskillComponent } from './multiskill/multiskill.component';
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [solidGauge];
@@ -39,7 +40,8 @@ export function highchartsModules() {
     SewingmodulehistComponent,
     AbsentismComponent,
     DefectComponent,
-    CapacityutilizationComponent
+    CapacityutilizationComponent,
+    MultiskillComponent
   ],
   imports: [
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 

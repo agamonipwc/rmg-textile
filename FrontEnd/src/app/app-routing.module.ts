@@ -13,6 +13,7 @@ import {SewingmodulehistComponent} from './sewingmodulehist/sewingmodulehist.com
 import {DefectComponent} from './defect/defect.component';
 import {CapacityutilizationComponent} from './capacityutilization/capacityutilization.component';
 import {AbsentismComponent} from './absentism/absentism.component';
+import {MultiskillComponent} from './multiskill/multiskill.component';
 
 
 const routes: Routes = [ 
@@ -27,7 +28,8 @@ const routes: Routes = [
     {path:'sewing-historical', component: SewingmodulehistComponent},
     {path:'defect-overview',component:DefectComponent},
     {path:'capacityutilization-overview', component:CapacityutilizationComponent},
-    {path:'absentism-overview', component: AbsentismComponent}
+    {path:'absentism-overview', component: AbsentismComponent},
+    {path:'mutiskill-overview', component: MultiskillComponent}
 
  ];
 @NgModule({ 
