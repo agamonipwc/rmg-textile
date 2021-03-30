@@ -14,6 +14,7 @@ import {DefectComponent} from './defect/defect.component';
 import {CapacityutilizationComponent} from './capacityutilization/capacityutilization.component';
 import {AbsentismComponent} from './absentism/absentism.component';
 import {MultiskillComponent} from './multiskill/multiskill.component';
+import {RejectionComponent} from './rejection/rejection.component';
 
 
 const routes: Routes = [ 
@@ -29,7 +30,8 @@ const routes: Routes = [
     {path:'defect-overview',component:DefectComponent},
     {path:'capacityutilization-overview', component:CapacityutilizationComponent},
     {path:'absentism-overview', component: AbsentismComponent},
-    {path:'mutiskill-overview', component: MultiskillComponent}
+    {path:'mutiskill-overview', component: MultiskillComponent},
+    {path:'rejection-overview', component: RejectionComponent}
 
  ];
 @NgModule({ 
