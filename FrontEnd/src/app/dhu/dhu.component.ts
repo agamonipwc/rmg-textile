@@ -24,13 +24,12 @@ Accessibility(Highcharts);
 
 
 @Component({
-  selector: 'app-rejection',
-  templateUrl: './rejection.component.html',
-  styleUrls: ['./rejection.component.css']
+  selector: 'app-dhu',
+  templateUrl: './dhu.component.html',
+  styleUrls: ['./dhu.component.css']
 })
-export class RejectionComponent implements OnInit {
+export class DhuComponent implements OnInit {
 
- 
   userBackendUrl : any = environment.backendUrl + 'kpicalculation';
   @ViewChild("container", { read: ElementRef }) container: ElementRef;
   @ViewChild("efficiencyContainer", { read: ElementRef }) efficiencyContainer: ElementRef;
@@ -86,8 +85,7 @@ export class RejectionComponent implements OnInit {
   data : any = [];
   operatorsDetailsList = [];
   
-  rejectionLine: Chart;
-  styleRejectionBar: Chart;
+  dhuBar: Chart;
 
 constructor(private http: HttpClient,private _router: Router) { }
 
@@ -96,8 +94,7 @@ ngOnInit() {
   $("#footer").css("margin-left", "15%");
   $("#footer").hide();
   $(".footer").hide();
-  this.calculateRejection('KPIView');
-  this.calculateRejectionByStyle('KPIView');
+  this.calculateDHU('KPIView');
   $(function() {
     // Hide all lists except the outermost.
     $('ul.tree ul').hide();
@@ -125,105 +122,60 @@ getFilterData(){
     StartDate : "2021-01-01 00:00:00.000",
     EndDate : "2021-01-31 00:00:00.000",
   }
-  this.calculateRejection(KPIView);
-  this.calculateRejectionByStyle(KPIView);
+  this.calculateDHU(KPIView);
 }
-calculateRejection(KPIView){
+calculateDHU(KPIView){
    var _this = this;
   // var url = environment.backendUrl + "OperatorEfficiency";
   // this.http.post<any>(url, KPIView).subscribe(responsedata => {
-    this.rejectionLine = new Chart({
+  _this.dhuBar = new Chart( 
+    {
       chart: {
-          type: 'spline'
+          type: 'bar'
       },
       title: {
           text: ''
       },
-      labels: {
-        enabled: false,
-      },
       xAxis: {
-          categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-  '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-  '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
-         
+          categories: ['Overall DHU', 
+          'Defect 1', 
+          'Defect 2', 
+          'Defect 3',
+          'Defect 4'
+          ]
       },
       yAxis: {
+          min: 0,
+          max: 100,
           title: {
-              text: 'Rejection %'
-          },
-          max:100,
-          min:0
+              text: 'DHU %'
+          }
       },
-      tooltip: {
-          crosshairs: true,
-          shared: true
+      legend: {
+          reversed: true
       },
       plotOptions: {
-          spline: {
-              marker: {
-                  radius: 2,
-                  lineColor: '#666666',
-                  lineWidth: 1
-              }
+          series: {
+              stacking: 'normal'
           }
       },
       series: [{
-          name: 'Rejection %',
-          showInLegend: false,
-          data: [36, 71, 78,87,35,86,89,76,78,73,72,79,69,65,60],
-          color: '#175d2d'
-  
+              name:'',
+              showInLegend: false,
+              data: [
+              {y:20,color:'yellow'}, 
+              {y:7, color:'green'}, 
+              {y:35,color:'red'}, 
+              {y:9, color:'green'},
+              {y:24,color:'yellow'}],
+              dataLabels: {
+                align: 'left',
+                enabled: true
+            }
       }]
   });
   }
 
-  calculateRejectionByStyle(KPIView){
-    var _this = this;
-   // var url = environment.backendUrl + "OperatorEfficiency";
-   // this.http.post<any>(url, KPIView).subscribe(responsedata => {
-     this.styleRejectionBar = new Chart(
-      {
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: ''
-        },
-        xAxis: {
-            categories: ['Style 1', 'Style 2', 'Style 3', 'Style 4']
-        },
-        yAxis: {
-            min: 0,
-            max: 100,
-            title: {
-                text: 'Rejection %'
-            }
-        },
-        legend: {
-            reversed: true
-        },
-        plotOptions: {
-            series: {
-                stacking: 'normal'
-            }
-        },
-        series: [{
-                name:'',
-                showInLegend: false,
-                data: [
-                {y:3.5, color:'green'}, 
-                {y:7, color:'green'}, 
-                {y:12, color:'red'}, 
-                {y:9, color:'yellow'}],
-                dataLabels: {
-                  align: 'left',
-                  enabled: true
-              }
-        }]
-    }
-      );
-   }
 
 
 }

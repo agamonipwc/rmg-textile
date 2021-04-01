@@ -23,6 +23,8 @@ import { DefectComponent } from './defect/defect.component';
 import { CapacityutilizationComponent } from './capacityutilization/capacityutilization.component';
 import { MultiskillComponent } from './multiskill/multiskill.component';
 import { RejectionComponent } from './rejection/rejection.component';
+import { DhuComponent } from './dhu/dhu.component';
+import { DhuhistComponent } from './dhuhist/dhuhist.component';
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [solidGauge];
@@ -43,7 +45,9 @@ export function highchartsModules() {
     DefectComponent,
     CapacityutilizationComponent,
     MultiskillComponent,
-    RejectionComponent
+    RejectionComponent,
+    DhuComponent,
+    DhuhistComponent
   ],
   imports: [
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 

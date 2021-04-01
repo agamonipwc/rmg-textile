@@ -998,6 +998,10 @@ export class SewingmoduleComponent implements OnInit {
     this._router.navigate(['defect-overview']);
   }
 
+  navigateDHU(){
+    this._router.navigate(['dhu-overview']);
+  }
+
   navigateCapacityUtilization(){
     this._router.navigate(['capacityutilization-overview']);
   }

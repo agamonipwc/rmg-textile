@@ -15,6 +15,7 @@ import {CapacityutilizationComponent} from './capacityutilization/capacityutiliz
 import {AbsentismComponent} from './absentism/absentism.component';
 import {MultiskillComponent} from './multiskill/multiskill.component';
 import {RejectionComponent} from './rejection/rejection.component';
+import {DhuComponent} from './dhu/dhu.component';
 
 
 const routes: Routes = [ 
@@ -31,7 +32,9 @@ const routes: Routes = [
     {path:'capacityutilization-overview', component:CapacityutilizationComponent},
     {path:'absentism-overview', component: AbsentismComponent},
     {path:'mutiskill-overview', component: MultiskillComponent},
-    {path:'rejection-overview', component: RejectionComponent}
+    {path:'rejection-overview', component: RejectionComponent},
+    {path:'dhu-overview', component:DhuComponent},
+    {path:'dhu-historic', component:DhuComponent}
 
  ];
 @NgModule({ 
