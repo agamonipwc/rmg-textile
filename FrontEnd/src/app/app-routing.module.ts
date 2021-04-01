@@ -16,6 +16,7 @@ import {AbsentismComponent} from './absentism/absentism.component';
 import {MultiskillComponent} from './multiskill/multiskill.component';
 import {RejectionComponent} from './rejection/rejection.component';
 import {DhuComponent} from './dhu/dhu.component';
+import {DhuhistComponent} from './dhuhist/dhuhist.component';
 
 
 const routes: Routes = [ 
@@ -34,7 +35,7 @@ const routes: Routes = [
     {path:'mutiskill-overview', component: MultiskillComponent},
     {path:'rejection-overview', component: RejectionComponent},
     {path:'dhu-overview', component:DhuComponent},
-    {path:'dhu-historic', component:DhuComponent}
+    {path:'dhu-historic', component:DhuhistComponent}
 
  ];
 @NgModule({ 
