@@ -3,103 +3,9 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+  </div>
 </nav>
-<div class="modal fade" id="recommendationModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="recommendationModalTitle">{{recommendationModalTitle}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="height: 400px;">
-        <table class="table table-striped" style="background-color: #ffffff;">
-          <thead class="thead-dark">
-              <tr>
-                  <th style="width: 50%">
-                      Reasons
-                  </th>
-                  <th style="width: 50%">
-                    Recommendations
-                </th>
-                <th style="width: 50%">
-                  SubReasons
-              </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of data; let ndx = index">
-                  <!-- <td>{{item.Name}}</td> -->
-                  <td>{{item.Reasons}}</td>
-                  <td>{{item.Recommendations}}</td>
-                  <td>{{item.SubReasons}}</td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="operatorsDetailsModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="operatorsDetailsModalTitle">Operators Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="height: 500px;">
-        <table class="table table-striped" style="background-color: #ffffff;" [mfData]="operatorsDetailsList" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
-          <thead class="thead-dark">
-              <tr>
-                  <th style="width: auto">
-                      <mfDefaultSorter [mfShowSortableArrows]="true" by="Name">Name</mfDefaultSorter>
-                  </th>
-                  <th style="width: auto">
-                    <mfDefaultSorter by="Machine">Working Machine</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Unit">Unit</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Location">Location</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Line">Line</mfDefaultSorter>
-                </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of mf.data; let ndx = index1">
-                  <td>{{item.Name}}</td>
-                  <td>{{item.Machine}}</td>
-                  <td>{{item.Unit}}</td>
-                  <td>{{item.Location}}</td>
-                  <td>{{item.Line}}</td>
-              </tr>
-          </tbody>
-          <tfoot>
-              <tr>
-                  <td colspan="4">
-                      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                  </td>
-              </tr>
-          </tfoot>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
   <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
   <ul class="tree cutom-treestructure mt-3">
@@ -146,19 +52,109 @@
     <li>
       Environmental Sustainability
     </li>
+  
   </ul>
 </nav>
-<main role="main" class="col-9 ml-auto col-md-9 pt-3">
+<div class="modal fade" id="historicMCDowntimeModal" tabindex="-1" role="dialog" aria-labelledby="historicMCDowntimeModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Historic Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div  [chart]="machineDowntimeLine" class="modal-body" style="height: 300px; width: 500px;">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <h5 style="text-align: left; margin-left: 31%; font-weight: bold;">DHU Overview</h5>
-    <div class="row mt-2">
-      <div class="col-9">
-        <div class="row align-items-center mt-3">
-          <div class="col-12">
-            <div [chart] = "dhuBar" style="width: auto"></div>  
+    <div class="row">
+      <div class="col-8">
+        <h5 style="text-align: center; font-weight: bold;">Machine Downtime Overview</h5>
+        
+      </div>
+      <!-- <div class="col-4 mt-1">
+        <a style="font-weight: bold;" href="/module-historical">Show Historical Data</a>
+      </div> -->
+    </div>
+    <div class="row mt-3">
+      <div class="col-9" style="background-color: #ffffff;">
+        <div class="row mt-3">
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" >Total Downtime</button>
+          <div class="col-9">
+            <div class="progress" style="height:30px">
+              <div class="progress-bar" style="width:65%;height:30px; background-color: #175d2d;">65</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mt-3">
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Machine Downtime  <i class="fas fa-caret-down"></i></button>
+          <div class="col-9">
+            <div class="progress" style="height:30px">
+              <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">50</div>
+            </div>
+          </div>
+        </div>
+        <div class="collapse ml-5" id="collapseOperationDiv">
+          <div class="row mt-3" >
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="modal" data-target="#historicMCDowntimeModal">Machine 1  <i class="fas fa-bar-chart"></i></button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">50</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="modal" data-target="#historicMCDowntimeModal">Machine 2  <i class="fas fa-bar-chart"></i></button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="modal" data-target="#historicMCDowntimeModal">Machine 3  <i class="fas fa-bar-chart"></i></button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">80</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="modal" data-target="#historicMCDowntimeModal">Machine 4  <i class="fas fa-bar-chart"></i></button>
+            <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">80</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <button style="float: right;" type="button" class="btn col-3" style="text-align: right; font-size: 12px" (click)="navigateDowntime()">View Curve Fit  <i class="fas fa-bar-chart"></i></button>
+            <!-- <div class="col-9">
+              <div class="progress" style="height:30px">
+                <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">80</div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="row mt-3">
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Feeding Downtime</button>
+          <div class="col-9">
+            <div class="progress" style="height:30px">
+              <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-3 mt-3">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
@@ -239,5 +235,5 @@
       </div>
     </div>
   </section>
-</main>
+</div>
 

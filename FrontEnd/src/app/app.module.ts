@@ -25,6 +25,9 @@ import { MultiskillComponent } from './multiskill/multiskill.component';
 import { RejectionComponent } from './rejection/rejection.component';
 import { DhuComponent } from './dhu/dhu.component';
 import { DhuhistComponent } from './dhuhist/dhuhist.component';
+import { MachinedowntimeComponent } from './machinedowntime/machinedowntime.component';
+import { MachinedowntimecurvefitComponent } from './machinedowntimecurvefit/machinedowntimecurvefit.component';
+import { MachinedowntimehistComponent } from './machinedowntimehist/machinedowntimehist.component';
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [solidGauge];
@@ -47,7 +50,10 @@ export function highchartsModules() {
     MultiskillComponent,
     RejectionComponent,
     DhuComponent,
-    DhuhistComponent
+    DhuhistComponent,
+    MachinedowntimeComponent,
+    MachinedowntimecurvefitComponent,
+    MachinedowntimehistComponent
   ],
   imports: [
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 
