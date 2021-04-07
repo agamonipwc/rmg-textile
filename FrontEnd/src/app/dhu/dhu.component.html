@@ -13,30 +13,49 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="height: 400px;">
-        <table class="table table-striped" style="background-color: #ffffff;">
-          <thead class="thead-dark">
-              <tr>
-                  <th style="width: 50%">
-                      Reasons
-                  </th>
-                  <th style="width: 50%">
-                    Recommendations
-                </th>
-                <th style="width: 50%">
-                  SubReasons
-              </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of data; let ndx = index">
-                  <!-- <td>{{item.Name}}</td> -->
-                  <td>{{item.Reasons}}</td>
-                  <td>{{item.Recommendations}}</td>
-                  <td>{{item.SubReasons}}</td>
-              </tr>
-          </tbody>
-        </table>
+      <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+        <div role="tabpanel">
+          <!-- Nav tabs -->
+          <ul class="nav nav-pills nav-fill" role="tablist">
+              <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation();">Overall Recommendation</a></li>
+          </ul>
+          <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
+                <div #TABLE #table class="mt-2">
+                  <button (click)="ExportToExcelDHU()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                                Reasons
+                            </th>
+                            <th style="width: auto">
+                              SubReasons
+                            </th>
+                            <th style="width: auto">
+                              Recommendations
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let ndx = index">
+                            <td>
+                              <div innerHTML="{{item.Reasons}}"></div>
+                            </td>
+                            <td>
+                              <div innerHTML="{{item.SubReasons}}"></div>
+                            </td>
+                            <td>
+                              <div innerHTML="{{item.Recommendations}}"></div>
+                            </td>
+                           
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -100,10 +119,10 @@
         <h4 style="text-align: left; margin-left: 31%; font-weight: bold;">Top 5 Defects Overview</h4>
       </div>
       <div class="col-3 mt-2">
-        <a style="font-weight: bold;" href="/dhu-historic">Show DHU Historical</a>
+        <a style="font-weight: bold; cursor: pointer;" href="/dhu-historic">Show DHU Historical</a>
       </div>
       <div class="col-3 mt-2">
-        <a style="font-weight: bold;" href="#">Show Recommendations</a>
+        <a style="font-weight: bold; cursor: pointer;" href="#" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation()">Show Recommendations</a>
       </div>
     </div>
     <div class="row mt-2">
@@ -119,7 +138,7 @@
         <div class="ml-5" id="collapseOperationDiv">
           <div class="row align-items-center mt-3">
             <div class="col-12">
-              <div [chart] = "dhuBar" style="width: auto; height: 430px;"></div>  
+              <div [chart] = "dhuBar" style="width: auto; height: 420px;"></div>  
             </div>
           </div>
         </div>

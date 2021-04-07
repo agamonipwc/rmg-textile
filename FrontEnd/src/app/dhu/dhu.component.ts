@@ -4,11 +4,10 @@ import * as $ from '../../assets/lib/jquery/dist/jquery.js';
 // declare var $: any;
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { DatepickerOptions } from 'ng2-datepicker';
-import * as enLocale from 'date-fns/locale/en';
 import * as  Highcharts from 'highcharts';
 import { Router } from '@angular/router';
 import { Chart } from 'angular-highcharts';
+import * as XLSX from 'xlsx';  
 declare var require: any;
 const More = require('highcharts/highcharts-more');
 More(Highcharts);
@@ -31,6 +30,7 @@ Accessibility(Highcharts);
 export class DhuComponent implements OnInit {
 
   userBackendUrl : any = environment.backendUrl + 'kpicalculation';
+  @ViewChild('TABLE') TABLE: ElementRef;  
   @ViewChild("container", { read: ElementRef }) container: ElementRef;
   @ViewChild("efficiencyContainer", { read: ElementRef }) efficiencyContainer: ElementRef;
   @ViewChild("dhuRejectDefectContainer", { read: ElementRef }) dhuRejectDefectContainer: ElementRef;
@@ -214,5 +214,32 @@ ngOnInit() {
         }
     })
   }
+
+  getRecommendation(){
+    this.data = [];
+    var recommendationView ={
+      KPIId : 4,
+      recommendationId : ""
+    };
+    var url = environment.backendUrl + "Recommendation";
+    var _this = this;
+    this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
+      _this.recommendationModalTitle = "Recommemdations for Defects Per Hundred Units (D.H.U.)/ Defect %"
+      responsedata["allRecommendations"].forEach(element => {
+        _this.data.push({
+          Reasons : element["Reasons"],
+          Recommendations : element["Recommendations"],
+          SubReasons : element["SubReasons"],
+        });
+      });
+    })
+  }
+
+  ExportToExcelDHU() {  
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.TABLE.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'DHU_Recommendations.xlsx');  
+  } 
 
 }

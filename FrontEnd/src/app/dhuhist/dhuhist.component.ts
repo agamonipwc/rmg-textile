@@ -261,7 +261,7 @@ ngOnInit() {
     var endyear = EndDate.getFullYear();
     var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
     var KPIView = {
-      Line : checkedLines,
+      Line : [1,2],
       Location : checkedLocations,
       Unit : checkedUnits,
       // StartDate : "2021-01-31 00:00:00.000",
