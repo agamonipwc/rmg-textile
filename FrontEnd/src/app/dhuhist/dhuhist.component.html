@@ -150,28 +150,42 @@
 </nav>
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <h5 style="text-align: left; margin-left: 22%; font-weight: bold;">DHU Overview of last 5 days</h5>
+    <div class="row">
+      <div class="col-8">
+        <h4 style="text-align: left; margin-left: 22%; font-weight: bold;">Historical Overview of D.H.U.</h4>
+      </div>
+      <div class="col-4 mt-2">
+        <a style="font-weight: bold;" href="/dhu-overview">Show DHU Overview</a>
+      </div>
+    </div>
+    
     <div class="row mt-2">
-      <div class="col-9" style="background-color: #ffffff; overflow-y: scroll; height: 490px;">
-        <div class="row mt-3">
+      <div class="col-9" style="background-color: #ffffff; overflow-y: scroll; height: 500px;">
+        <!-- <div class="row mt-3">
           <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseDhuDiv" aria-expanded="false" aria-controls="collapseDhuDiv">Overall DHU <i class="fas fa-caret-down"></i></button>
           <div class="col-10">
             <div [chart]= "dhuLine" style="height: 200px; width: auto;"></div>
           </div>
+        </div> -->
+        <div class="row mt-3" >
+          <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseDefectsDiv" aria-expanded="false" aria-controls="collapseDefectsDiv">Top 5 Defects <i class="fas fa-caret-down"></i></button>
+          <div class="col-10">
+            <div [chart]="defectDHULine" style="height: 270px; width: 500px;"></div>
+          </div>
         </div>
-        <div class="collapse ml-5" id="collapseDhuDiv">
+        <!-- <div class="collapse ml-5" id="collapseDhuDiv">
           <div class="row mt-3" >
             <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseDefectsDiv" aria-expanded="false" aria-controls="collapseDefectsDiv">Top 5 Defects <i class="fas fa-caret-down"></i></button>
             <div class="col-10">
               <div [chart]="defectDHULine" style="height: 230px; width: 500px;"></div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="collapse ml-5" id="collapseDefectsDiv">
           <div class="row mt-3" >
             <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px">Ave. DHU of Top Defects</button>
             <div class="col-10">
-              <div [chart]="avgDefectsBar" style="height: 200px; width: 500px;"></div>
+              <div [chart]="avgDefectsBar" style="height: 190px; width: 500px;"></div>
             </div>
           </div>
         </div>

@@ -317,7 +317,7 @@ export class SewingmodulehistComponent implements OnInit {
             title: {
                 text: 'DHU'
             },
-            max:100,
+            max:13,
             min:0
         },
         tooltip: {
@@ -583,5 +583,9 @@ export class SewingmodulehistComponent implements OnInit {
   }
   processNavigation(){
     this._router.navigate(['process-overview']);
+  }
+
+  dhuHistoricalNavigation(){
+    this._router.navigate(['dhu-historic']);
   }
 }

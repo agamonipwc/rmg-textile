@@ -51,9 +51,9 @@ ngOnInit() {
   $("#footer").hide();
   $(".footer").hide();
   // this.calculateDHU('KPIView');
-  this.calculateDHUByDefect('KPIView');
-  this.calculateAvgDefectsDHU('KPIView');
+  // this.calculateDHUByDefect('KPIView');
   this.getFilterData();
+  this.getMasterData();
   $(function() {
     // Hide all lists except the outermost.
     $('ul.tree ul').hide();
@@ -73,19 +73,19 @@ ngOnInit() {
   });
 }
 
-getFilterData(){
-  var KPIView = {
-    Line : [1,2],
-    Location : [1,2],
-    Unit : [1,2],
-    StartDate : "2021-01-27 00:00:00.000",
-    EndDate : "2021-01-31 00:00:00.000",
+  getFilterData(){
+    var KPIView = {
+      Line : [1,2],
+      Location : [1,2],
+      Unit : [1,2],
+      StartDate : "2021-01-01 00:00:00.000",
+      EndDate : "2021-01-31 00:00:00.000",
+    }
+    // this.calculateDHU(KPIView);
+    this.calculateDHUByDefect(KPIView);
+    // this.calculateAvgDefectsDHU(KPIView);
   }
-  this.calculateDHU(KPIView);
-  // this.calculateDHUByDefect(KPIView);
-  // this.calculateAvgDefectsDHU(KPIView);
-}
-calculateDHU(KPIView){
+  calculateDHU(KPIView){
    var _this = this;
     var url = environment.backendUrl + "SewingHistorical";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
@@ -138,122 +138,182 @@ calculateDHU(KPIView){
     })
   }
 
-calculateDHUByDefect(KPIView){
+  calculateDHUByDefect(KPIView){
     var _this = this;
-   // var url = environment.backendUrl + "OperatorEfficiency";
-   // this.http.post<any>(url, KPIView).subscribe(responsedata => {
-     this.defectDHULine = new Chart(
-      {
-        chart: {
-          type: 'spline'
-      },
-      title: {
-          text: ''
-      },
-      labels: {
-        enabled: false,
-      },
-      xAxis: {
-          categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-  '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-  '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
-         
-      },
-      yAxis: {
-          title: {
-              text: 'DHU %'
-          },
-          max:100,
-          min:0
-      },
-      tooltip: {
-          crosshairs: true,
-          shared: true
-      },
-      plotOptions: {
-          spline: {
-              marker: {
-                  radius: 4,
-                  lineColor: '#666666',
-                  lineWidth: 1
-              }
-          }
-      },
-      series: [{
-          name: 'Defect 1',
-          /* showInLegend: false, */
-          data: [36, 71, 78,87,35,86,89,76,78,73,72,79,69,65,60],
-          color: 'yellow'
-  
-      },
-      {
-          name: 'Defect 2',
-          /* showInLegend: false, */
-          data: [12, 29, 34,38,42,20,25,63,12,3,10,25,87,79,60],
-          color: 'red'
-  
-      },
-      {
-          name: 'Defect 3',
-          /* showInLegend: false, */
-          data: [73, 69, 55,48,35,74,25,35,36,33,42,79,69,65,60],
-          color: 'red'
-  
-      },
-      {
-          name: 'Defect 4',
-          /* showInLegend: false, */
-          data: [9, 13, 8,5,8,4,4,4,10,11,13,10,10,5,5],
-          color: 'green'
-  
-      }]
-    });
-  }
-
-calculateAvgDefectsDHU(KPIView){
-    var _this = this;
-   // var url = environment.backendUrl + "OperatorEfficiency";
-   // this.http.post<any>(url, KPIView).subscribe(responsedata => {
-     this.avgDefectsBar = new Chart(
-      {
-        chart: {
-            type: 'bar'
+    var url = environment.backendUrl + "SewingHistorical";
+    this.http.post<any>(url, KPIView).subscribe(responsedata => {
+      _this.defectDHULine = new Chart(
+        {
+          chart: {
+            type: 'spline'
         },
         title: {
             text: ''
         },
+        labels: {
+          enabled: false,
+        },
+        exporting: {
+          enabled: false
+        },
+        credits: {enabled: false},
         xAxis: {
-            categories: ['Defect 1', 'Defect 2', 'Defect 3', 'Defect 4']
+          categories: responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["categories"]
+          
         },
         yAxis: {
-            min: 0,
-            max: 100,
             title: {
-                text: 'DHU %'
-            }
+                text: 'Defects Per Hundred Units (D.H.U.)'
+            },
+            max:13,
+            min:0
         },
-        legend: {
-            reversed: true
+        tooltip: {
+            crosshairs: true,
+            shared: true
         },
         plotOptions: {
+            spline: {
+                marker: {
+                    radius: 4,
+                    lineColor: '#666666',
+                    lineWidth: 1
+                }
+            },
             series: {
-                stacking: 'normal'
+              // general options for all series
+              connectNulls: true
             }
         },
-        series: [{
-                name:'',
-                showInLegend: false,
-                data: [
-                {y:3.5, color:'green'}, 
-                {y:7, color:'green'}, 
-                {y:12, color:'red'}, 
-                {y:9, color:'yellow'}],
-                dataLabels: {
-                  align: 'left',
-                  enabled: true
+        series: responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"]
+      });
+      _this.calculateAvgDefectsDHU(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["avgDefectCategories"], responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["avgDefects"])
+    })
+  }
+
+  calculateAvgDefectsDHU(categories, data){
+    this.avgDefectsBar = new Chart(
+    {
+      chart: {
+          type: 'bar'
+      },
+      exporting: {
+        enabled: false
+      },
+      credits: {enabled: false},
+      title: {
+          text: ''
+      },
+      xAxis: {
+          categories: categories
+      },
+      yAxis: {
+          min: 0,
+          max: 13,
+          title: {
+              text: 'Defects Per Hundred Units (D.H.U.)'
+          }
+      },
+      legend: {
+          reversed: true
+      },
+      plotOptions: {
+          series: {
+              stacking: 'normal',
+              dataLabels: {
+                enabled: true,
+                color: '#000000'
               }
-        }]
+          }
+      },
+      series: [{
+              name:'Avg. DHU',
+              showInLegend: false,
+              data: data,
+              dataLabels: {
+                align: 'left',
+                enabled: true
+            }
+      }]
+    });
+  }
+  getSewingKPIAnalysis(){
+    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+      var locationId = parseFloat(this.value);
+      return locationId;
+    }).get();
+    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+      var unitId = parseFloat(this.value);
+      return unitId;
+    }).get();
+    var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+      var lineId = parseFloat(this.value);
+      return lineId;
+    }).get();
+    var StartDate = new Date($('#startDate').val());
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+    var EndDate = new Date($('#endDate').val());
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+    var KPIView = {
+      Line : checkedLines,
+      Location : checkedLocations,
+      Unit : checkedUnits,
+      // StartDate : "2021-01-31 00:00:00.000",
+      // EndDate : "2021-01-31 00:00:00.000",
+      StartDate : startDateTime,
+      EndDate : endDateTime
     }
-      );
-   }
+    this.calculateDHUByDefect(KPIView);
+  }
+
+  onLocationChange(event){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
+    var locations = [];
+    if (event.target.checked){
+      locations.push(parseInt(event.target.value))
+      var dataViewModel = {
+        locations : locations,
+        units : []
+      }
+      this.http.post<any>(masterDataUrl,dataViewModel).subscribe(responsedata =>{
+        if(responsedata["statusCode"] == 200){
+          responsedata["data"].forEach(element => {
+            $("#unit_label_" + element.UnitId).show();
+            $("#line_label_" + element.Id).show();
+          });
+        }
+      })
+    }
+    else{
+      $('.option.justone.location:checkbox').prop('checked', false);
+      $('.option.justone.unit:checkbox').prop('checked', false);
+      $(".unit_label").hide();
+      $(".line_label").hide();
+      $('.option.justone.line:radio').prop('checked', false);
+    }
+  }
+  getMasterData(){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
+    this.http.get<any>(masterDataUrl).subscribe(responsedata =>{
+        if(responsedata["statusCode"] == 200){
+            _this.locationOptions = responsedata["locationMasterData"];
+            _this.unitOptions = responsedata["unitMasterData"];
+            _this.lineOptions = responsedata["lineMasterData"];
+        }
+    })
+  }
+  sewingNavigation(){
+    this._router.navigate(['sewing-module']);
+  }
+  dashboardNavigation(){
+    this._router.navigate(['module-performance']);
+  }
 }

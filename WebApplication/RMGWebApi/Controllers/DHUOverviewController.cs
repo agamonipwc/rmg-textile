@@ -153,8 +153,6 @@ namespace RMGWebApi.Controllers
             {
                 overAllDHUColor = "#e0301e";
             }
-
-            List<RejectionStyleDataModel> rejectionStyleDataModel = new List<RejectionStyleDataModel>();
             return Json(new{
                 data = dhuViewModel,
                 overallDHU = overDHUValue,

@@ -120,6 +120,7 @@ namespace RMGWebApi
         public string DefectName { get; set; }
         public double ProductionData { get; set; }
         public double DHU { get; set; }
+        public DateTime DailyDate { get; set; }
     }
 
     public class RejectionViewModel
@@ -145,5 +146,12 @@ namespace RMGWebApi
         public DateTime Date { get; set; }
         public double Line { get; set; }
         public double Unit { get; set; }
+    }
+
+    public class DHUTopFiveDefects
+    {
+        public string name { get; set; }
+        public List<int> data { get; set; }
+        public string color { get; set; }
     }
 }
