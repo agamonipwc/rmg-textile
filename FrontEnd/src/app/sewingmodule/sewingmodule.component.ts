@@ -1038,4 +1038,7 @@ export class SewingmoduleComponent implements OnInit {
   processNavigation(){
     this._router.navigate(['process-overview']);
   }
+  navigateRejection(){
+    this._router.navigate(['rejection-overview']);
+  }
 }

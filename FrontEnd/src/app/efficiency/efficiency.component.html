@@ -13,40 +13,190 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="height: 400px;">
-        <table class="table table-striped" style="background-color: #ffffff;">
-          <thead class="thead-dark">
-              <tr>
-                  <!-- <th style="width: 20%">
-                      <mfDefaultSorter by="name" [mfShowSortableArrows]="true">Name</mfDefaultSorter>
-                  </th> -->
-                  <th style="width: 50%">
-                      Reasons
-                  </th>
-                  <th style="width: 50%">
-                    Recommendations
-                </th>
-                <th style="width: 50%">
-                  SubReasons
-              </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of data; let ndx = index">
-                  <!-- <td>{{item.Name}}</td> -->
-                  <td>{{item.Reasons}}</td>
-                  <td>{{item.Recommendations}}</td>
-                  <td>{{item.SubReasons}}</td>
-              </tr>
-          </tbody>
-          <!-- <tfoot>
-              <tr>
-                  <td colspan="4">
-                      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                  </td>
-              </tr>
-          </tfoot> -->
-        </table>
+      <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+        <div role="tabpanel">
+          <!-- Nav tabs -->
+          <ul class="nav nav-pills nav-fill" role="tablist">
+              <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation(6);">Low Efficiency</a>
+              </li>
+              <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#mediumEfficiency" aria-controls="mediumEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation(7);">Medium Efficiency</a>
+              </li>
+              <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#highEfficiency" aria-controls="highEfficiency" role="tab" data-toggle="tab" (click)="getOperatorsName('High');">High Efficiency</a>
+              </li>
+          </ul>
+          <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
+                <div #TABLE #table class="mt-2">
+                  <button (click)="ExportToExcelLowEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                                Reasons
+                            </th>
+                            <th style="width: auto">
+                              SubReasons
+                            </th>
+                            <th style="width: auto">
+                              Recommendations
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let ndx = index">
+                            <td>
+                              <div innerHTML="{{item.Reasons}}"></div>
+                            </td>
+                            <td>
+                              <div innerHTML="{{item.SubReasons}}"></div>
+                            </td>
+                            <td>
+                              <div innerHTML="{{item.Recommendations}}"></div>
+                            </td>
+                           
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div #LowEfficiencyOperatorsTable #table class="mt-2">
+                  <button (click)="ExportToExcelLowOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                              Name
+                            </th>
+                            <th style="width: auto">
+                              Working Machine
+                          </th>
+                          <th style="width: auto">
+                            Unit
+                          </th>
+                          <th style="width: auto">
+                            Location
+                          </th>
+                          <th style="width: auto">
+                            Line
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Machine}}</td>
+                            <td>{{item.Unit}}</td>
+                            <td>{{item.Location}}</td>
+                            <td>{{item.Line}}</td>
+                        </tr>
+                    </tbody>
+                    <!-- <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot> -->
+                  </table>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="mediumEfficiency" >
+                <div #ModerateEfficiencyTable #table class="mt-2">
+                  <button (click)="ExportToExcelModerateEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                                Reasons
+                            </th>
+                            <th style="width: auto">
+                              SubReasons
+                            </th>
+                            <th style="width: auto">
+                              Recommendations
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let ndx = index">
+                            <td innerHTML="{{item.Reasons}}"></td>
+                            <td innerHTML="{{item.SubReasons}}"></td>
+                            <td innerHTML="{{item.Recommendations}}"></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div #ModerateEfficiencyOperatorsTable #table class="mt-2">
+                  <button (click)="ExportToExcelModerateOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                              Name
+                            </th>
+                            <th style="width: auto">
+                              Working Machine
+                          </th>
+                          <th style="width: auto">
+                            Unit
+                          </th>
+                          <th style="width: auto">
+                            Location
+                          </th>
+                          <th style="width: auto">
+                            Line
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Machine}}</td>
+                            <td>{{item.Unit}}</td>
+                            <td>{{item.Location}}</td>
+                            <td>{{item.Line}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="highEfficiency">
+                <div #HighEfficiencyOperatorsTable #table class="mt-2">
+                  <button (click)="ExportToExcelHighOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                              Name
+                            </th>
+                            <th style="width: auto">
+                              Working Machine
+                          </th>
+                          <th style="width: auto">
+                            Unit
+                          </th>
+                          <th style="width: auto">
+                            Location
+                          </th>
+                          <th style="width: auto">
+                            Line
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Machine}}</td>
+                            <td>{{item.Unit}}</td>
+                            <td>{{item.Location}}</td>
+                            <td>{{item.Line}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -160,11 +310,19 @@
 </nav>
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <h5 style="text-align: center; font-weight: bold;">Operators Efficiency Overview</h5>
+    <div class="row">
+      <div class="col-8">
+        <h5 style="text-align: center; font-weight: bold;">Operators Efficiency Overview</h5>
+      </div>
+      <div class="col-4">
+        <a style="font-weight: bold; cursor: pointer;" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(6)">Show Recommendations</a>
+      </div>
+    </div>
+    
     <div class="row mt-2">
       <div class="col-9">
         <div class="row align-items-center mt-3">
-          <div class="col-2">
+          <!-- <div class="col-2">
             <div class="d-flex flex-column">
               <div class="p-2" style="margin-bottom: 25%;">
                 <div class="d-flex flex-row" style="margin-left: -98%;">
@@ -185,9 +343,9 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-10">
-            <div id="operatorScatter" style="width: auto"></div>  
+          </div> -->
+          <div class="col-12">
+            <div id="operatorScatter" style="width: auto; height: 480px;"></div>  
           </div>
         </div>
       </div>

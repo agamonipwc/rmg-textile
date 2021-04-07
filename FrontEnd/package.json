@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "angular-6-datatable": "^0.8.0",
     "angular-google-charts": "^2.0.1",
     "angular-highcharts": "^7.0.1",
     "core-js": "^2.5.4",
@@ -35,6 +36,7 @@
     "ng2-org-chart": "^1.1.2",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "xlsx": "^0.16.9",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

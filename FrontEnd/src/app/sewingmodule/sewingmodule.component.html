@@ -67,6 +67,7 @@
       </div>
       <div class="col-4 mt-2">
         <a style="font-weight: bold;" href="/sewing-historical">Show Historical Data</a>
+        <!-- <a style="font-weight: bold;" href="/sewing-historical">Show Recommendations</a> -->
       </div>
     </div>
     
@@ -125,7 +126,7 @@
           </div>
           <div class="col-3" id="rejectionVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Rejection%</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" (click)="navigateRejection()">Rejection%</button></div>
               <div #rejectionContainer style="height: 190px;"></div>
             </div>
           </div>

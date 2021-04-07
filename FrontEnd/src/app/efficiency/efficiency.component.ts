@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef, } from '@angular/core';
 import * as $ from '../../assets/lib/jquery/dist/jquery.js';
-// import * as $ from 'jquery';
-// declare var $: any;
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { DatepickerOptions } from 'ng2-datepicker';
 import * as enLocale from 'date-fns/locale/en';
 import * as  Highcharts from 'highcharts';
 import { Router } from '@angular/router';
+import * as XLSX from 'xlsx';  
+
 declare var require: any;
 const More = require('highcharts/highcharts-more');
 More(Highcharts);
@@ -27,6 +27,12 @@ Accessibility(Highcharts);
   styleUrls: ['./efficiency.component.css']
 })
 export class EfficiencyComponent implements OnInit {
+  @ViewChild('TABLE') TABLE: ElementRef;  
+  @ViewChild('LowEfficiencyOperatorsTable') LowEfficiencyOperatorsTable: ElementRef;  
+  @ViewChild('ModerateEfficiencyTable') ModerateEfficiencyTable: ElementRef;  
+  @ViewChild('ModerateEfficiencyOperatorsTable') ModerateEfficiencyOperatorsTable: ElementRef; 
+  @ViewChild('HighEfficiencyOperatorsTable') HighEfficiencyOperatorsTable: ElementRef;   
+  title = 'Excel';  
   userBackendUrl : any = environment.backendUrl + 'kpicalculation';
   @ViewChild("container", { read: ElementRef }) container: ElementRef;
   @ViewChild("efficiencyContainer", { read: ElementRef }) efficiencyContainer: ElementRef;
@@ -156,10 +162,10 @@ export class EfficiencyComponent implements OnInit {
         yAxis: {
           max: 110,
           min: 0,
-            title: {
-                enabled: true,
-                text: 'Efficiency (%)',
-            },
+          title: {
+              enabled: true,
+              text: 'Efficiency (%)',
+          },
             plotLines: [
               {
               color: '#003dab',
@@ -285,23 +291,24 @@ export class EfficiencyComponent implements OnInit {
     this.data = [];
     var recommendationView ={
       KPIId : 1,
-      recommendationId : recommendationId
+      recommendationId : recommendationId.toString()
     };
     var url = environment.backendUrl + "Recommendation";
     var _this = this;
     this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
       if(recommendationId == 6){
         _this.recommendationModalTitle = "Recommemdations for Low Operators"
+        _this.getOperatorsName('Low');
       }
       else{
         _this.recommendationModalTitle = "Recommemdations for Moderate Operators"
+        _this.getOperatorsName('Moderate');
       }
       _this.data.push({
         Reasons : responsedata["allRecommendations"][0]["Reasons"],
         Recommendations : responsedata["allRecommendations"][0]["Recommendations"],
         SubReasons : responsedata["allRecommendations"][0]["SubReasons"],
       });
-      // _this.recommendationData = responsedata;
     })
   }
   getOperatorsName(efficiencyLevel){
@@ -328,5 +335,36 @@ export class EfficiencyComponent implements OnInit {
   }
   dashboardNavigation(){
     this._router.navigate(['module-performance']);
+  }
+
+  ExportToExcelLowEfficiency() {  
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.TABLE.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Low_Efficiency.xlsx');  
+  }  
+  ExportToExcelLowOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.LowEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Low_Efficiency_Operators.xlsx');  
+  }
+  ExportToExcelModerateEfficiency(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Efficiency.xlsx');  
+  }
+  ExportToExcelModerateOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Efficiency_Operators.xlsx');  
+  }
+  ExportToExcelHighOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Efficiency_Operators.xlsx');  
   }
 }

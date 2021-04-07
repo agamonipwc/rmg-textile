@@ -59,10 +59,7 @@ export class SewingmodulehistComponent implements OnInit {
         EndDate : "2021-01-31 00:00:00.000",
     }
     this.getFilterData(KPIView)
-    // this.createMachineDowntimeHistoric();
-    this.createDHUHistoric();
-    this.createRejectionHistoric();
-    // this.createAbsentismHistoric();
+    // this.createRejectionHistoric();
     $(function() {
         // Hide all lists except the outermost.
         $('ul.tree ul').hide();
@@ -93,6 +90,8 @@ export class SewingmodulehistComponent implements OnInit {
             _this.createMachineDowntimeHistoric(responsedata["MachineDownTimeHistoricalCalculation"]["Value"]["categories"], responsedata["MachineDownTimeHistoricalCalculation"]["Value"]["data"]);
             _this.createDefectsHistoric(responsedata["DefectPecentageHistoricalCalculation"]["Value"]["categories"], responsedata["DefectPecentageHistoricalCalculation"]["Value"]["data"]);
             _this.createAbsentismHistoric(responsedata["AbsentismHistoricalCalculation"]["Value"]["categories"], responsedata["AbsentismHistoricalCalculation"]["Value"]["data"]);
+            _this.createRejectionHistoric(responsedata["RejectionHistoricalCalculation"]["Value"]["categories"], responsedata["RejectionHistoricalCalculation"]["Value"]["data"]);
+            _this.createDHUHistoric(responsedata["DHUHistoricalCalculation"]["Value"]["categories"], responsedata["DHUHistoricalCalculation"]["Value"]["data"])
         }
     })
     
@@ -293,7 +292,7 @@ export class SewingmodulehistComponent implements OnInit {
     });
   }
 
-  createDHUHistoric(){
+  createDHUHistoric(categories, data){
 
     this.dhuHistoric = new Chart({
         chart: {
@@ -304,21 +303,19 @@ export class SewingmodulehistComponent implements OnInit {
           },
           credits: {enabled: false},
         title: {
-            text: 'Inline WIP Level',
+            text: 'Defects Per Hundred Units (D.H.U.)',
             style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
         },
         labels: {
           enabled: false,
         },
         xAxis: {
-            categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+            categories: categories
            
         },
         yAxis: {
             title: {
-                text: 'DHU %'
+                text: 'DHU'
             },
             max:100,
             min:0
@@ -338,7 +335,7 @@ export class SewingmodulehistComponent implements OnInit {
         },
         series: [{
             name: 'DHU',
-            data: [36, 71, 78,87,35,86,89,76,78,73,72,79,69,65,60],
+            data: data,
             color: '#175d2d'
     
         }]
@@ -394,7 +391,7 @@ export class SewingmodulehistComponent implements OnInit {
     });
   }
 
-  createRejectionHistoric(){
+  createRejectionHistoric(categories, data){
 
     this.rejectionHistoric = new Chart({
         chart: {
@@ -411,16 +408,14 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
-            categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+            categories: categories
            
         },
         yAxis: {
             title: {
                 text: 'Rejection %'
             },
-            max:100,
+            max:15,
             min:0
         },
         tooltip: {
@@ -438,7 +433,7 @@ export class SewingmodulehistComponent implements OnInit {
         },
         series: [{
             name: 'Rejection',
-            data: [36, 71, 78,87,35,86,89,76,78,73,72,79,69,65,60],
+            data: data,
             color: '#175d2d'
     
         }]

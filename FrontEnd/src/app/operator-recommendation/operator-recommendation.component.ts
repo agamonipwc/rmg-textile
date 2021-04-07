@@ -10,7 +10,7 @@ import { data } from 'jquery';
   styleUrls: ['./operator-recommendation.component.css']
 })
 export class OperatorRecommendationComponent implements OnInit {
-  data : any = [];
+  public data : any = [];
   constructor(private http: HttpClient,private _router: Router) { }
 
   ngOnInit() {
@@ -18,6 +18,7 @@ export class OperatorRecommendationComponent implements OnInit {
     $("#footer").css("margin-left", "15%");
     $("#footer").hide();
     $(".footer").hide();
+    this.getRecommendation();
     $(function() {
       // Hide all lists except the outermost.
       $('ul.tree ul').hide();
@@ -38,15 +39,7 @@ export class OperatorRecommendationComponent implements OnInit {
   }
 
   getRecommendation(){
-    var recommendationView ={
-      KPIId : 1
-    };
-    var url = environment.backendUrl + "Recommendation";
-    var _this = this;
-    this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
-      console.log(responsedata);
-      // _this.recommendationData = responsedata;
-    })
+   
   }
 
 }

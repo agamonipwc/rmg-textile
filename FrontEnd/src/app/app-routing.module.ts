@@ -14,6 +14,9 @@ import {DefectComponent} from './defect/defect.component';
 import {CapacityutilizationComponent} from './capacityutilization/capacityutilization.component';
 import {AbsentismComponent} from './absentism/absentism.component';
 import { ProcessOverviewComponent } from './process-overview/process-overview.component';
+import {RejectionComponent} from './rejection/rejection.component';
+import {DhuComponent} from './dhu/dhu.component';
+import {DhuhistComponent} from './dhuhist/dhuhist.component';
 
 const routes: Routes = [ 
     {path:"login", component:LoginComponent}, 
@@ -29,6 +32,9 @@ const routes: Routes = [
     {path:'capacity-utilization-overview', component: CapacityutilizationComponent},
     {path:'absentism-overview', component: AbsentismComponent},
     {path:'process-overview', component: ProcessOverviewComponent},
+    {path:'rejection-overview', component: RejectionComponent},
+    {path:'dhu-overview', component:DhuComponent},
+    {path:'dhu-historic', component:DhuhistComponent}
  ];
 @NgModule({ 
    imports: [

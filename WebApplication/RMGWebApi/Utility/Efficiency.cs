@@ -11,6 +11,13 @@ namespace RMGWebApi.Utility
         public string Year { get; set; }
         public string Month { get; set; }
         public string Dailydate { get; set; }
+        public string StyleName { get; set; }
+    }
+
+    public class RejectionStyleDataModel
+    {
+        public double y { get; set; }
+        public string color { get; set; }
     }
     //public class EfficiencyViewModel
     //{

@@ -54,38 +54,97 @@
 </nav>
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="recommendationsection">
-    <h5 style="text-align: center; font-weight: bold;">Operators Efficiency Recommendations</h5>
-    <div class="row mt-2">
-      <div class="col-12">
-        <!-- <table class="table table-striped" style="background-color: #ffffff;" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
-          <thead class="thead-dark">
-              <tr>
-                  <th>
-                      <mfRowSelectorHead></mfRowSelectorHead>
+    <h5 style="text-align: center; font-weight: bold;">Operators Recommendations</h5>
+    <ul class="nav nav-pills nav-fill" id="ex1" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">Low Efficiency</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#menu1">Medium Efficiency</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#menu2">High Efficiency</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="home" class="tab-pane active" style="text-align: left;">
+        <div class="row mt-2">
+          <div class="col-12" >
+            <table class="table table-striped" style="background-color: #ffffff;">
+              <thead class="thead-dark">
+                  <tr>
+                      <!-- <th style="width: 20%">
+                          <mfDefaultSorter by="name" [mfShowSortableArrows]="true">Name</mfDefaultSorter>
+                      </th> -->
+                      <th style="width: 50%">
+                          Reasons
+                      </th>
+                      <th style="width: 50%">
+                        SubReasons
+                      </th>
+                      <th style="width: 50%">
+                        Recommendations
+                    </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of data; let ndx = index">
+                      <!-- <td>{{item.Name}}</td> -->
+                      <td>{{item.Reasons}}</td>
+                      <td>{{item.SubReasons}}</td>
+                      <td>{{item.Recommendations}}</td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <table class="table table-striped" style="background-color: #ffffff;" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="width: auto">
+                        <mfDefaultSorter [mfShowSortableArrows]="true" by="Name">Name</mfDefaultSorter>
+                    </th>
+                    <th style="width: auto">
+                      <mfDefaultSorter by="Machine">Working Machine</mfDefaultSorter>
                   </th>
-                  <th style="width: 20%">
-                      <mfDefaultSorter by="name" [mfShowSortableArrows]="true">Name</mfDefaultSorter>
+                  <th style="width: auto">
+                    <mfDefaultSorter by="Unit">Unit</mfDefaultSorter>
                   </th>
-                  <th style="width: 50%">
-                      <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                  <th style="width: auto">
+                    <mfDefaultSorter by="Location">Location</mfDefaultSorter>
                   </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of mf.data; let ndx = index">
-                  <td><mfRowSelector [entity]="item" [checkboxId]="ndx"></mfRowSelector></td>
-                  <td>{{item.name}}</td>
-                  <td>{{item.email}}</td>
-              </tr>
-          </tbody>
-          <tfoot>
-              <tr>
-                  <td colspan="4">
-                      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                  </td>
-              </tr>
-          </tfoot>
-      </table> -->
+                  <th style="width: auto">
+                    <mfDefaultSorter by="Line">Line</mfDefaultSorter>
+                  </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of mf.data; let ndx = index1">
+                    <td>{{item.Name}}</td>
+                    <td>{{item.Machine}}</td>
+                    <td>{{item.Unit}}</td>
+                    <td>{{item.Location}}</td>
+                    <td>{{item.Line}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <div id="menu1" class="tab-pane fade"><br>
+        <h3>Menu 1</h3>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div id="menu2" class="tab-pane fade"><br>
+        <h3>Menu 2</h3>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
       </div>
     </div>
   </section>

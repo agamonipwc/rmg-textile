@@ -225,3 +225,8 @@ list-style: none;
 .form-control:focus{
 box-shadow: none !important;
 }  
+
+/* .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #ffffff !important;
+  background-color: #933401 !important;;
+} */

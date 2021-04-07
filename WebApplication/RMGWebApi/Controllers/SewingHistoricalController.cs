@@ -32,6 +32,8 @@ namespace RMGWebApi.Controllers
                 MachineDownTimeHistoricalCalculation = MachineDowntimeHistoricalCalculation(kpiViewModel),
                 DefectPecentageHistoricalCalculation = DefectPecentageHistoricalCalculation(kpiViewModel),
                 AbsentismHistoricalCalculation = AbsentismHistoricalCalculation(kpiViewModel),
+                RejectionHistoricalCalculation = RejectionHistoricalCalculation(kpiViewModel),
+                DHUHistoricalCalculation = DHUHistoricalCalculation(kpiViewModel),
                 //ManMachineRatio = CalculateMMR(kpiViewModel),
                 StatusCode = 200
             };
@@ -116,17 +118,11 @@ namespace RMGWebApi.Controllers
 
         private JsonResult EfficiencyHistoricalCalculation(KPIViewModel kpiViewModel)
         {
-            //double styleData = 0;
             List<ProductionViewModel> productionsDataList = new List<ProductionViewModel>();
-            //List<WorkingHoursViewModel> workingHoursDataList = new List<WorkingHoursViewModel>();
-            //List<OperatorViewModel> operatorNosDataList = new List<OperatorViewModel>();
-            //List<HelpersViewModel> helpersDataList = new List<HelpersViewModel>();
-
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
             DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
             if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
             {
-                //styleData = _rmgDbContext.StyleData.Average(x => x.SewingSAM);
                 productionsDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date, x.Line, x.Location, x.Unit}).Select(grp => new ProductionViewModel
                 {
                     Date = grp.Key.Date,
@@ -138,106 +134,7 @@ namespace RMGWebApi.Controllers
                     Date = grp.Key.Date,
                     ProdData = grp.Average(x => x.ProdData)
                 }).ToList();
-                //workingHoursDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate).GroupBy(x => new { x.Date }).Select(grp => new WorkingHoursViewModel
-                //{
-                //    Date = grp.Key.Date,
-                //    WorkingHrsData = grp.Average(c => c.Data)
-                //}).ToList();
-                //operatorNosDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate).GroupBy(x => new { x.Date }).Select(grp => new OperatorViewModel
-                //{
-                //    Date = grp.Key.Date,
-                //    OperatorData = grp.Average(c => c.Data)
-                //}).ToList();
-                //helpersDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate).GroupBy(x => new { x.Date }).Select(grp => new HelpersViewModel
-                //{
-                //    Date = grp.Key.Date,
-                //    HelperData = grp.Average(c => c.Data)
-                //}).ToList();
-
             }
-            //else
-            //{
-            //    if (kpiViewModel.Location.Count > 0)
-            //    {
-            //        var linesBasedOnLocations = _rmgDbContext.Line.Where(x => kpiViewModel.Location.Contains(x.LocationId)).Select(x => x.Id).ToList();
-            //        var selectedLinesList = linesBasedOnLocations.ConvertAll<double>(delegate (int i) { return i; });
-            //        styleData = _rmgDbContext.StyleData.Where(x => selectedLinesList.Contains(x.Line)).Average(x => x.SewingSAM);
-            //        productionsDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
-            //        {
-            //            Date = grp.Key.Date,
-            //            ProdData = grp.Average(c => c.Data)
-            //        }).ToList();
-            //        workingHoursDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location)).GroupBy(x => new { x.Date }).Select(grp => new WorkingHoursViewModel
-            //        {
-            //            Date = grp.Key.Date,
-            //            WorkingHrsData = grp.Average(c => c.Data)
-            //        }).ToList();
-            //        operatorNosDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location)).GroupBy(x => new { x.Date }).Select(grp => new OperatorViewModel
-            //        {
-            //            Date = grp.Key.Date,
-            //            OperatorData = grp.Average(c => c.Data)
-            //        }).ToList();
-            //        helpersDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location)).GroupBy(x => new { x.Date }).Select(grp => new HelpersViewModel
-            //        {
-            //            Date = grp.Key.Date,
-            //            HelperData = grp.Average(c => c.Data)
-            //        }).ToList();
-            //    }
-            //    else
-            //    {
-            //        if (kpiViewModel.Unit.Count > 0)
-            //        {
-            //            var linesBasedOnLocations = _rmgDbContext.Line.Where(x => kpiViewModel.Unit.Contains(x.UnitId)).Select(x => x.Id).ToList();
-            //            var selectedLinesList = linesBasedOnLocations.ConvertAll<double>(delegate (int i) { return i; });
-            //            styleData = _rmgDbContext.StyleData.Where(x => selectedLinesList.Contains(x.Line)).Average(x => x.SewingSAM);
-            //            productionsDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Unit.Contains(x.Unit)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
-            //            {
-            //                Date = grp.Key.Date,
-            //                ProdData = grp.Average(c => c.Data)
-            //            }).ToList();
-            //            workingHoursDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Unit.Contains(x.Unit)).GroupBy(x => new { x.Date }).Select(grp => new WorkingHoursViewModel
-            //            {
-            //                Date = grp.Key.Date,
-            //                WorkingHrsData = grp.Average(c => c.Data)
-            //            }).ToList();
-            //            operatorNosDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Unit.Contains(x.Unit)).GroupBy(x => new { x.Date }).Select(grp => new OperatorViewModel
-            //            {
-            //                Date = grp.Key.Date,
-            //                OperatorData = grp.Average(c => c.Data)
-            //            }).ToList();
-            //            helpersDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Unit.Contains(x.Unit)).GroupBy(x => new { x.Date }).Select(grp => new HelpersViewModel
-            //            {
-            //                Date = grp.Key.Date,
-            //                HelperData = grp.Average(c => c.Data)
-            //            }).ToList();
-            //        }
-            //        else
-            //        {
-            //            styleData = _rmgDbContext.StyleData.Where(x => kpiViewModel.Line.Contains(x.Line)).Average(x => x.SewingSAM);
-            //            productionsDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
-            //            {
-            //                Date = grp.Key.Date,
-            //                ProdData = grp.Average(c => c.Data)
-            //            }).ToList();
-            //            workingHoursDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new WorkingHoursViewModel
-            //            {
-            //                Date = grp.Key.Date,
-            //                WorkingHrsData = grp.Average(c => c.Data)
-            //            }).ToList();
-            //            operatorNosDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new OperatorViewModel
-            //            {
-            //                Date = grp.Key.Date,
-            //                OperatorData = grp.Average(c => c.Data)
-            //            }).ToList();
-            //            helpersDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new HelpersViewModel
-            //            {
-            //                Date = grp.Key.Date,
-            //                HelperData = grp.Average(c => c.Data)
-            //            }).ToList();
-            //        }
-            //    }
-            //}
-            
             List<double> efficiencyDataList = new List<double>();
             int countOperations = _rmgDbContext.TimeStudy.Count();
             List<string> dates = new List<string>();
@@ -492,15 +389,11 @@ namespace RMGWebApi.Controllers
                     Unit = grp.Key.Unit,
                     TotalOperatorsCount = grp.Where(x=> x.Name != "").Count(),
                     PresentOperatorsCount = grp.Where(x => x.Attendence != "Yes").Count(),
-                    //ProdData = grp.Sum(x => x.Production),
-                    //AlterationData = grp.Sum(x => x.Alterations)
                 }).GroupBy(grp => new { grp.Date}).Select(grp => new ProductionViewModel
                 {
                     Date = grp.Key.Date,
                     TotalOperatorsCount = grp.Sum(x=> x.TotalOperatorsCount),
                     PresentOperatorsCount = grp.Sum(x=> x.PresentOperatorsCount)
-                    //ProdData = grp.Average(x => x.ProdData),
-                    //AlterationData = grp.Average(x => x.AlterationData)
                 }).ToList();
             }
             List<double> efficiencyDataList = new List<double>();
@@ -524,5 +417,89 @@ namespace RMGWebApi.Controllers
             });
         }
 
+        private JsonResult RejectionHistoricalCalculation(KPIViewModel kpiViewModel)
+        {
+            List<ProductionViewModel> rejectionsDataList = new List<ProductionViewModel>();
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
+            if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
+            {
+                rejectionsDataList = _rmgDbContext.RejectionStyle.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date, x.Line, x.Location, x.Unit }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    Line = grp.Key.Line,
+                    Location = grp.Key.Location,
+                    Unit = grp.Key.Unit,
+                    SumProduction = grp.Sum(x=> x.Production),
+                    SumRejection = grp.Sum(x=> x.Rejection)
+                }).GroupBy(grp => new { grp.Date }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    SumProduction = grp.Average(x => x.SumProduction),
+                    SumRejection = grp.Average(x => x.SumRejection)
+                }).ToList();
+            }
+            List<double> efficiencyDataList = new List<double>();
+            int countOperations = _rmgDbContext.TimeStudy.Count();
+            List<string> dates = new List<string>();
+            var query = (from x in rejectionsDataList
+                         select new EfficiencyParameters
+                         {
+                             efficiency = Math.Round(((x.SumRejection / x.SumProduction) * 100)),
+                             Dailydate = x.Date.ToString("dd-MMM-yyyy")
+                         }).ToList();
+            foreach (var element in query)
+            {
+                dates.Add(element.Dailydate);
+                efficiencyDataList.Add(element.efficiency);
+            }
+            return Json(new
+            {
+                data = efficiencyDataList,
+                categories = dates
+            });
+        }
+
+        private JsonResult DHUHistoricalCalculation(KPIViewModel kpiViewModel)
+        {
+            List<ProductionViewModel> dhuDataList = new List<ProductionViewModel>();
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
+            if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
+            {
+                dhuDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date, x.Line, x.Location, x.Unit }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    Line = grp.Key.Line,
+                    Location = grp.Key.Location,
+                    Unit = grp.Key.Unit,
+                    SumDefectCount = grp.Sum(x => x.DefectCount),
+                    SumProduction = grp.Sum(x=> x.Production)
+                }).GroupBy(grp => new { grp.Date }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    SumDefectCount = grp.Average(x => x.SumDefectCount),
+                    SumProduction = grp.Average(x=> x.SumProduction)
+                }).ToList();
+            }
+            List<double> efficiencyDataList = new List<double>();
+            List<string> dates = new List<string>();
+            var query = (from x in dhuDataList
+                         select new EfficiencyParameters
+                         {
+                             efficiency = Math.Round((x.SumDefectCount / x.SumProduction) *100),
+                             Dailydate = x.Date.ToString("dd-MMM-yyyy")
+                         }).ToList();
+            foreach (var element in query)
+            {
+                dates.Add(element.Dailydate);
+                efficiencyDataList.Add(element.efficiency);
+            }
+            return Json(new
+            {
+                data = efficiencyDataList,
+                categories = dates
+            });
+        }
     }
 }

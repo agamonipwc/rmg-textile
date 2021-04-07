@@ -23,9 +23,17 @@ namespace RMGWebApi.Controllers
         public JsonResult Post(RecommendationViewModel recommendationView)
         {
             List<Recommendation> listOfAllRecommendations = new List<Recommendation>();
-            if (recommendationView.KPIId != 0 && recommendationView.RecommendationId != 0)
+            List<string> recommendationIdList = new List<string>();
+            recommendationIdList = recommendationView.RecommendationId.Split(',').ToList();
+            if (recommendationView.KPIId != 0 && recommendationIdList.Count > 0)
             {
-                listOfAllRecommendations = _rmgDbContext.Recommendation.Where(x => x.KPI == recommendationView.KPIId && x.Id == recommendationView.RecommendationId).ToList();
+                foreach(var element in recommendationIdList)
+                {
+                    int recommendationId = Convert.ToInt32(element);
+                    var selectedRecommendation = _rmgDbContext.Recommendation.Where(x => x.KPI == recommendationView.KPIId && x.Id == recommendationId).FirstOrDefault();
+                    listOfAllRecommendations.Add(selectedRecommendation);
+                }
+                //listOfAllRecommendations = _rmgDbContext.Recommendation.Where(x => x.KPI == recommendationView.KPIId && x.Id == recommendationView.RecommendationId).ToList();
             }
             else
             {
@@ -42,7 +50,6 @@ namespace RMGWebApi.Controllers
             //}
             return Json(new {
                 allRecommendations = listOfAllRecommendations,
-                //operatorsName = operatorsName,
                 statusCode = 200
             });
         }

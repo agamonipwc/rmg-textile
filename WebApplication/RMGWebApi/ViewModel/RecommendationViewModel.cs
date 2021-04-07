@@ -8,7 +8,7 @@ namespace RMGWebApi.ViewModel
     public class RecommendationViewModel
     {
         public int KPIId { get; set; }
-        public int RecommendationId { get; set; }
+        public string RecommendationId { get; set; }
     }
 
     public class OperatorsNameEfficiencyViewModel

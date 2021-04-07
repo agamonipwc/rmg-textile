@@ -22,6 +22,9 @@ import {DefectComponent} from './defect/defect.component';
 import {CapacityutilizationComponent} from './capacityutilization/capacityutilization.component';
 import {AbsentismComponent} from './absentism/absentism.component';
 import { ProcessOverviewComponent } from './process-overview/process-overview.component';
+import {RejectionComponent} from './rejection/rejection.component';
+import { DhuComponent } from './dhu/dhu.component';
+import { DhuhistComponent } from './dhuhist/dhuhist.component';
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [solidGauge];
@@ -41,7 +44,10 @@ export function highchartsModules() {
     DefectComponent,
     CapacityutilizationComponent,
     AbsentismComponent,
-    ProcessOverviewComponent
+    ProcessOverviewComponent, 
+    RejectionComponent,
+    DhuComponent,
+    DhuhistComponent
   ],
   imports: [
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 

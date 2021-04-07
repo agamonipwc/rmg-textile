@@ -42,5 +42,13 @@ namespace Entities.DataModels
         public double MachineDowntime { get; set; }
         public string MDUnit { get; set; }
         public double Efficiency { get; set; }
+        public double DefectCount { get; set; }
+        public double DHU { get; set; }
+        public int DefectCount1 { get; set; }
+        public int DefectCount2 { get; set; }
+        public int DefectCount3 { get; set; }
+        public int DefectCount4 { get; set; }
+        public int DefectCount5 { get; set; }
+        public double CapacityUtilization { get; set; }
     }
 }

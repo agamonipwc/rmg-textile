@@ -92,11 +92,34 @@ namespace RMGWebApi
         public double Line { get; set; }
         public double Unit { get; set; }
         public double Location { get; set; }
+        public string Style { get; set; }
         public DateTime Date { get; set; }
         public double AlterationData { get; set; }
         public string OperationDescription { get; set; }
         public double TotalOperatorsCount { get; set; }
         public double PresentOperatorsCount { get; set; }
+        public double SumProduction { get; set; }
+        public double SumRejection { get; set; }
+        public string OperatorName { get; set; }
+        public double SumDefectCount { get; set; }
+        public double DefectCount1Data { get; set; }
+        public string DefectReason1 { get; set; }
+        public double DefectCount2Data { get; set; }
+        public string DefectReason2 { get; set; }
+        public double DefectCount3Data { get; set; }
+        public string DefectReason3 { get; set; }
+        public double DefectCount4Data { get; set; }
+        public string DefectReason4 { get; set; }
+        public double DefectCount5Data { get; set; }
+        public string DefectReason5 { get; set; }
+    }
+
+    public class DefectViewModel
+    {
+        public double DefectCount { get; set; }
+        public string DefectName { get; set; }
+        public double ProductionData { get; set; }
+        public double DHU { get; set; }
     }
 
     public class RejectionViewModel

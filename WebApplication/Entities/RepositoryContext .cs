@@ -38,5 +38,6 @@ namespace Entities
         public DbSet<TimeStudy> TimeStudy { get; set; }
         public DbSet<OperatorMaster> OperatorMaster { get; set; }
         public DbSet<Attendance> Attendance { get; set; }
+        public DbSet<RejectionStyle> RejectionStyle { get; set; }
     }
 }
