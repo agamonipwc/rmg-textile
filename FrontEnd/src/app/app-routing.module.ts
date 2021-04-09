@@ -20,7 +20,9 @@ import {DhuhistComponent} from './dhuhist/dhuhist.component';
 import {MachinedowntimeComponent} from './machinedowntime/machinedowntime.component';
 import {MachinedowntimehistComponent} from './machinedowntimehist/machinedowntimehist.component';
 import {MachinedowntimecurvefitComponent} from './machinedowntimecurvefit/machinedowntimecurvefit.component';
-
+import {InlinewipComponent} from './inlinewip/inlinewip.component';
+import {InlinewipsummaryComponent} from './inlinewipsummary/inlinewipsummary.component';
+import {InlinewipoperatorComponent} from './inlinewipoperator/inlinewipoperator.component';
 
 const routes: Routes = [ 
     {path:"login", component:LoginComponent}, 
@@ -41,7 +43,10 @@ const routes: Routes = [
     {path:'dhu-historic', component: DhuhistComponent},
     {path:'downtime-overview', component: MachinedowntimeComponent},
     {path:'downtime-historic', component: MachinedowntimehistComponent},
-    {path:'downtime-curvefit', component: MachinedowntimecurvefitComponent}
+    {path:'downtime-curvefit', component: MachinedowntimecurvefitComponent},
+    {path:'wip-overview', component: InlinewipComponent},
+    {path:'wip-summary', component: InlinewipsummaryComponent},
+    {path:'wip-operator', component: InlinewipoperatorComponent},
 
  ];
 @NgModule({ 
