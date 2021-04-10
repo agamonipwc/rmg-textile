@@ -4,58 +4,95 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 </nav>
+
 <div class="modal fade" id="recommendationModal">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-lg">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="recommendationModalTitle">{{recommendationModalTitle}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="height: 400px; overflow-y: scroll;">
-        <div role="tabpanel">
-          <!-- Nav tabs -->
-          <ul class="nav nav-pills nav-fill" role="tablist">
-              <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation();">Overall Recommendation</a></li>
-          </ul>
-          <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
-                <div #TABLE #table class="mt-2">
-                  <button (click)="ExportToExcelDHU()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th style="width: auto">
-                                Reasons
-                            </th>
-                            <th style="width: auto">
-                              SubReasons
-                            </th>
-                            <th style="width: auto">
-                              Recommendations
-                          </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of data; let ndx = index">
-                            <td>
-                              <div innerHTML="{{item.Reasons}}"></div>
-                            </td>
-                            <td>
-                              <div innerHTML="{{item.SubReasons}}"></div>
-                            </td>
-                            <td>
-                              <div innerHTML="{{item.Recommendations}}"></div>
-                            </td>
-                           
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-          </div>
-        </div>
+      <div class="modal-body" style="height: 400px;">
+        <table class="table table-striped" style="background-color: #ffffff;">
+          <thead class="thead-dark">
+              <tr>
+                  <th style="width: 50%">
+                      Reasons
+                  </th>
+                  <th style="width: 50%">
+                    Recommendations
+                </th>
+                <th style="width: 50%">
+                  SubReasons
+              </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of data; let ndx = index">
+                  <!-- <td>{{item.Name}}</td> -->
+                  <td>{{item.Reasons}}</td>
+                  <td>{{item.Recommendations}}</td>
+                  <td>{{item.SubReasons}}</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="operatorsDetailsModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="operatorsDetailsModalTitle">Operators Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="height: 500px;">
+        <table class="table table-striped" style="background-color: #ffffff;" [mfData]="operatorsDetailsList" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
+          <thead class="thead-dark">
+              <tr>
+                  <th style="width: auto">
+                      <mfDefaultSorter [mfShowSortableArrows]="true" by="Name">Name</mfDefaultSorter>
+                  </th>
+                  <th style="width: auto">
+                    <mfDefaultSorter by="Machine">Working Machine</mfDefaultSorter>
+                </th>
+                <th style="width: auto">
+                  <mfDefaultSorter by="Unit">Unit</mfDefaultSorter>
+                </th>
+                <th style="width: auto">
+                  <mfDefaultSorter by="Location">Location</mfDefaultSorter>
+                </th>
+                <th style="width: auto">
+                  <mfDefaultSorter by="Line">Line</mfDefaultSorter>
+                </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of mf.data; let ndx = index1">
+                  <td>{{item.Name}}</td>
+                  <td>{{item.Machine}}</td>
+                  <td>{{item.Unit}}</td>
+                  <td>{{item.Location}}</td>
+                  <td>{{item.Line}}</td>
+              </tr>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="4">
+                      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                  </td>
+              </tr>
+          </tfoot>
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -114,34 +151,18 @@
 </nav>
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <div class="row">
-      <div class="col-6">
-        <h4 style="text-align: left; margin-left: 31%; font-weight: bold;">Top 5 Defects Overview</h4>
-      </div>
-      <div class="col-3 mt-2">
-        <a style="font-weight: bold; cursor: pointer;" href="/dhu-historic">Show DHU Historical</a>
-      </div>
-      <div class="col-3 mt-2">
-        <a style="font-weight: bold; cursor: pointer;" href="#" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation()">Show Recommendations</a>
-      </div>
-    </div>
+    <h5 style="text-align: center; font-weight: bold;">Historical Downtime Overview</h5>
     <div class="row mt-2">
-      <div class="col-9">
+      <div class="col-9" style="background-color: #ffffff; height: 480px;">
         <div class="row mt-3">
-          <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 11.5px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Overall DHU </button>
-          <div class="col-10">
-            <div class="progress" style="height:30px">
-              <div class="progress-bar" [ngStyle]=overAllDHUStyle>{{overDHUValue}}</div>
-            </div>
+          <!-- <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Rejection % <i class="fas fa-caret-down"></i></button> -->
+          <div class="col-12">
+            <div [chart]= "downtimeLine" style="height: auto;width: auto;"></div>
           </div>
-        </div>
-        <div class="ml-5" id="collapseOperationDiv">
-          <div class="row align-items-center mt-3">
-            <div class="col-12">
-              <div [chart] = "dhuBar" style="width: auto; height: 420px;"></div>  
-            </div>
-          </div>
-        </div>
+        </div>   
+        <div class="row mt-3">
+          <div class="pb-2 col-4"><button class="btn custom-button" (click)="navigateDowntime()" style="cursor: pointer; font-size: 12px;">Machine Downtime</button></div>
+        </div>  
         
       </div>
       <div class="col-3 mt-3">
@@ -225,4 +246,3 @@
     </div>
   </section>
 </main>
-

@@ -7,13 +7,12 @@ namespace RMGWebApi
 {
     public class KPIViewModel
     {
-        //public List<int> Year { get; set; }
-        //public List<int> Month { get; set; }
         public List<double> Line { get; set; }
         public List<double> Unit{ get; set; }
         public List<double> Location { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
+        public string MachineName { get; set; }
     }
 
     public class DateRangeViewModel
@@ -86,6 +85,19 @@ namespace RMGWebApi
         public double Line { get; set; }
         public double Unit { get; set; }
     }
+
+    public class MachineDowntimeViewModel
+    {
+        public double Line { get; set; }
+        public double Unit { get; set; }
+        public double Location { get; set; }
+        public DateTime Date { get; set; }
+        public double MachineDownTime { get; set; }
+        public double FeedingDownTime { get; set; }
+        public string MachineName { get; set; }
+        public string ColorCode { get; set; }
+        public double WorkingMins { get; set; }
+    }
     public class ProductionViewModel
     {
         public double ProdData { get; set; }
@@ -151,7 +163,13 @@ namespace RMGWebApi
     public class DHUTopFiveDefects
     {
         public string name { get; set; }
-        public List<int> data { get; set; }
+        public List<double> data { get; set; }
         public string color { get; set; }
+    }
+
+    public class CurveFitAnalysis
+    {
+        public DateTime DailyDate { get; set; }
+        public int MachineDowntimeValue { get; set; }
     }
 }

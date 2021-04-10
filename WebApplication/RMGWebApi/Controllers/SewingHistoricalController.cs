@@ -56,13 +56,11 @@ namespace RMGWebApi.Controllers
                     Unit = grp.Key.Unit,
                     ProdData = grp.Sum(x => x.Production),
                     OperationDescription = grp.Key.Operation
-                    //AlterationData = grp.Sum(x => x.Alterations)
                 }).GroupBy(grp => new { grp.Date, grp.OperationDescription }).Select(grp => new ProductionViewModel
                 {
                     Date = grp.Key.Date,
                     ProdData = grp.Average(x => x.ProdData),
                     OperationDescription = grp.Key.OperationDescription
-                    //AlterationData = grp.Average(x => x.AlterationData)
                 }).ToList();
             }
             var timeStudyData = _rmgDbContext.TimeStudy.Where(x => x.OperationDescription == "Checking").Select(x => new TimeStudyData
@@ -83,30 +81,6 @@ namespace RMGWebApi.Controllers
                          }).ToList();
             foreach (var element in query)
             {
-                //if (element.efficiency >= 75)
-                //{
-                //    efficiencyDataList.Add(new HistoricalDataViewModel
-                //    {
-                //        y = element.efficiency,
-                //        color = "#e0301e"
-                //    });
-                //}
-                //else if (element.efficiency >= 51 && element.efficiency <= 74)
-                //{
-                //    efficiencyDataList.Add(new HistoricalDataViewModel
-                //    {
-                //        y = element.efficiency,
-                //        color = "#ffb600"
-                //    });
-                //}
-                //else
-                //{
-                //    efficiencyDataList.Add(new HistoricalDataViewModel
-                //    {
-                //        y = element.efficiency,
-                //        color = "#175d2d"
-                //    });
-                //}
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
@@ -610,7 +584,7 @@ namespace RMGWebApi.Controllers
                 {
                     color = "#ae6800";
                 }
-                List<int> calculatedDHUList = new List<int>();
+                List<double> calculatedDHUList = new List<double>();
                 string defectName = orderedDefectViewModel[index].DefectName;
                 
                 foreach (var date in dailyDates)

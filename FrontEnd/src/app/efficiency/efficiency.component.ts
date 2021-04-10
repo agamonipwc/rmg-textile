@@ -126,7 +126,7 @@ export class EfficiencyComponent implements OnInit {
               enabled: true,
               text: 'Efficiency (%)',
           },
-            plotLines: [
+          plotLines: [
               {
               color: '#003dab',
               width: 2,

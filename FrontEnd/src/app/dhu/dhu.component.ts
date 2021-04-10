@@ -87,6 +87,7 @@ ngOnInit() {
     }
     this.calculateDHU(KPIView);
   }
+  
   calculateDHU(KPIView){
     var _this = this;
     var url = environment.backendUrl + "DHUOverview";
@@ -203,6 +204,7 @@ ngOnInit() {
       $('.option.justone.line:radio').prop('checked', false);
     }
   }
+
   getMasterData(){
     var masterDataUrl = environment.backendUrl + "MasterData";
     var _this = this;

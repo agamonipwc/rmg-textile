@@ -17,6 +17,9 @@ import { ProcessOverviewComponent } from './process-overview/process-overview.co
 import {RejectionComponent} from './rejection/rejection.component';
 import {DhuComponent} from './dhu/dhu.component';
 import {DhuhistComponent} from './dhuhist/dhuhist.component';
+import {MachinedowntimeComponent} from './machinedowntime/machinedowntime.component';
+import {MachinedowntimehistComponent} from './machinedowntimehist/machinedowntimehist.component';
+import {MachinedowntimecurvefitComponent} from './machinedowntimecurvefit/machinedowntimecurvefit.component';
 
 const routes: Routes = [ 
     {path:"login", component:LoginComponent}, 
@@ -34,7 +37,10 @@ const routes: Routes = [
     {path:'process-overview', component: ProcessOverviewComponent},
     {path:'rejection-overview', component: RejectionComponent},
     {path:'dhu-overview', component:DhuComponent},
-    {path:'dhu-historic', component:DhuhistComponent}
+    {path:'dhu-historic', component:DhuhistComponent},
+    {path:'downtime-overview', component: MachinedowntimeComponent},
+    {path:'downtime-historic', component: MachinedowntimehistComponent},
+    {path:'downtime-curvefit', component: MachinedowntimecurvefitComponent}
  ];
 @NgModule({ 
    imports: [
