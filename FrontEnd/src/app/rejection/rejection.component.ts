@@ -362,4 +362,7 @@ constructor(private http: HttpClient,private _router: Router) { }
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
     XLSX.writeFile(wb, 'High_Rejection.xlsx');  
   }
+  processNavigation(){
+    this._router.navigate(['process-overview']);
+  }
 }

@@ -51,6 +51,14 @@ namespace RMGWebApi.Controllers
             });
         }
 
-        
+        [HttpGet]
+        public JsonResult Get()
+        {
+            var kpiMasterList = _rmgDbContext.KPI.ToList();
+            return Json(new {
+                data = kpiMasterList,
+                statusCode = 200
+            });
+        }
     }
 }

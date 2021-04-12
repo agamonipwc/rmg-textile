@@ -15,4 +15,14 @@ namespace Entities.DataModels
         public int LocationId { get; set; }
         public double UnitId { get; set; }
     }
+
+    [Table("StyleMaster")]
+    public class StyleMaster
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int LineId { get; set; }
+        public int UnitId { get; set; }
+    }
 }

@@ -22,6 +22,7 @@ const ExportData = require('highcharts/modules/export-data');
 ExportData(Highcharts);
 const Accessibility = require('highcharts/modules/accessibility');
 Accessibility(Highcharts);
+import * as XLSX from 'xlsx';  
 
 @Component({
   selector: 'app-machinedowntime',
@@ -29,7 +30,11 @@ Accessibility(Highcharts);
   styleUrls: ['./machinedowntime.component.css']
 })
 export class MachinedowntimeComponent implements OnInit {
-
+  @ViewChild('TABLE') TABLE: ElementRef;  
+  @ViewChild('LowEfficiencyOperatorsTable') LowEfficiencyOperatorsTable: ElementRef;  
+  @ViewChild('ModerateEfficiencyTable') ModerateEfficiencyTable: ElementRef;  
+  @ViewChild('ModerateEfficiencyOperatorsTable') ModerateEfficiencyOperatorsTable: ElementRef; 
+  @ViewChild('HighEfficiencyOperatorsTable') HighEfficiencyOperatorsTable: ElementRef;   
   machineDowntimeLine: Chart;
   curveFitMachineDowntime : Chart;
   totalDownTime : any = 0;
@@ -45,6 +50,10 @@ export class MachinedowntimeComponent implements OnInit {
   selectedMachineName : any = "";
   KPIView : any = {};
   tableData : any = [];
+  recommendationData : any = [];
+  recommendationModalTitle : any = "";
+  data : any = [];
+  operatorsDetailsList = [];
 
   constructor(private http: HttpClient,private _router: Router) { }
   ngOnInit() {
@@ -79,7 +88,7 @@ export class MachinedowntimeComponent implements OnInit {
       Line : [1,2],
       Location : [1,2],
       Unit : [1,2],
-      StartDate : "2021-01-01 00:00:00.000",
+      StartDate : "2021-01-31 00:00:00.000",
       EndDate : "2021-01-31 00:00:00.000",
     }
     this.calculateMachineDowntimeOverview(this.KPIView);
@@ -129,6 +138,7 @@ export class MachinedowntimeComponent implements OnInit {
     var _this = this;
     var url = environment.backendUrl + "MachineDailyDowntime";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
+      console.log("--------Response Data-------",responsedata);
       _this.machineDowntimeLine = new Chart({
         chart: {
             type: 'scatter'
@@ -151,7 +161,7 @@ export class MachinedowntimeComponent implements OnInit {
               text: 'Machine Downtime'
           },
           max:20,
-          min:5,
+          min:0,
           plotLines: [
             {
             color: '#003dab',
@@ -189,11 +199,24 @@ export class MachinedowntimeComponent implements OnInit {
         },
         series: responsedata["data"]
       });
-      _this.calculateCurveFitChart(responsedata["categories"],responsedata["curveFitMachineDowntimeData"]);
+      _this.calculateCurveFitChart(responsedata["categories"],responsedata["curveFitMachineDowntimeData"], responsedata["totalCountDays"]);
     })
    }
 
-   calculateCurveFitChart(categories, data){
+   calculateCurveFitChart(categories, data, totalCountDays){
+     console.log("---------Total Days Count----------",totalCountDays);
+    //  data.forEach(element => {
+    //    var dataValues = [];
+    //   element["data"].forEach(innerElement => {
+    //      if(innerElement == 0){
+    //       dataValues.push(null);
+    //      }
+    //      else{
+    //       dataValues.push(innerElement);
+    //      }
+    //    });
+    //    data["data"] = dataValues;
+    //  });
     this.tableData = [];
     this.curveFitMachineDowntime = new Chart({
       chart: {
@@ -217,7 +240,7 @@ export class MachinedowntimeComponent implements OnInit {
             text: 'Machine Downtime'
         },
         max:20,
-        min:5,
+        min:0,
         plotLines: [
           {
             color: '#003dab',
@@ -270,7 +293,7 @@ export class MachinedowntimeComponent implements OnInit {
           countDowntimeMoreThanFive ++;
         }
       });
-      var frequency = Math.round(countDowntimeMoreThanFive * 100 / categories.length);
+      var frequency = Math.round(countDowntimeMoreThanFive * 100 / totalCountDays);
       if(frequency >= 20){
         var machineName = element["name"].split('_')[0];
         var location = element["name"].split('_')[1];
@@ -381,7 +404,87 @@ export class MachinedowntimeComponent implements OnInit {
   }
 
    navigateDowntime(){
-    this._router.navigate(['downtime-curvefit']);
+    this._router.navigate(['downtime-historic']);
+  }
+  sewingNavigation(){
+    this._router.navigate(['sewing-module']);
+  } 
+  dashboardNavigation(){
+    this._router.navigate(['module-performance']);
+  }
+  processNavigation(){
+    this._router.navigate(['process-overview']);
+  }
+
+  ExportToExcelLowEfficiency() {  
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.TABLE.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Overall_Recommendations.xlsx');  
+  }  
+  ExportToExcelLowOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.LowEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Low_Efficiency_Operators.xlsx');  
+  }
+  ExportToExcelModerateEfficiency(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Efficiency.xlsx');  
+  }
+  ExportToExcelModerateOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Efficiency_Operators.xlsx');  
+  }
+  ExportToExcelHighOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Efficiency_Operators.xlsx');  
+  }
+
+  getRecommendation(recommendationId){
+    this.data = [];
+    var recommendationView ={
+      KPIId : 9,
+      recommendationId : recommendationId.toString()
+    };
+    var url = environment.backendUrl + "Recommendation";
+    var _this = this;
+    this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
+        _this.recommendationModalTitle = "Recommemdations for Machine Downtime"
+        _this.getOperatorsName('Moderate');
+        responsedata["allRecommendations"].forEach(element => {
+            _this.data.push({
+              Reasons : element["Reasons"],
+              Recommendations : element["Recommendations"],
+              SubReasons : element["SubReasons"],
+            });
+        });
+    })
+  }
+  getOperatorsName(efficiencyLevel){
+    this.operatorsDetailsList = [];
+    var operatorsDetailsView ={
+      efficiencyLevel : efficiencyLevel
+    };
+    var url = environment.backendUrl + "OperatorsName";
+    var _this = this;
+    this.http.post<any>(url, operatorsDetailsView).subscribe(responsedata =>{
+      responsedata["operatorsDetails"].forEach(element => {
+        _this.operatorsDetailsList.push({
+          Name : element["Name"],
+          Machine : element["Machine"],
+          Unit : element["Unit"],
+          Location : element["Location"],
+          Line : element["Line"]
+        });
+      });
+    })
   }
 
 }

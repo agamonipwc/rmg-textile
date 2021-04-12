@@ -292,9 +292,12 @@ export class EfficiencyComponent implements OnInit {
   }
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
-  }
+  } 
   dashboardNavigation(){
     this._router.navigate(['module-performance']);
+  }
+  processNavigation(){
+    this._router.navigate(['process-overview']);
   }
 
   ExportToExcelLowEfficiency() {  

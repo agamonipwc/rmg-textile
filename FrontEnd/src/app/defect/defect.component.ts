@@ -272,26 +272,27 @@ export class DefectComponent implements OnInit {
   }
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
+  } 
+  processNavigation(){
+    this._router.navigate(['process-overview']);
   }
   getRecommendation(recommendationId){
+    console.log(recommendationId);
     this.data = [];
     var recommendationView ={
       KPIId : 4,
-      recommendationId : recommendationId
+      recommendationId : recommendationId.toString()
     };
     var url = environment.backendUrl + "Recommendation";
     var _this = this;
     this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
-      if(recommendationId == 6){
-        _this.recommendationModalTitle = "Recommemdations for Low Operators"
-      }
-      else{
-        _this.recommendationModalTitle = "Recommemdations for Moderate Operators"
-      }
-      _this.data.push({
-        Reasons : responsedata["allRecommendations"][0]["Reasons"],
-        Recommendations : responsedata["allRecommendations"][0]["Recommendations"],
-        SubReasons : responsedata["allRecommendations"][0]["SubReasons"],
+      _this.recommendationModalTitle = "Recommemdations for Defect%"
+      responsedata["allRecommendations"].forEach(element => {
+        _this.data.push({
+          Reasons : element["Reasons"],
+          Recommendations : element["Recommendations"],
+          SubReasons : element["SubReasons"],
+        });
       });
       // _this.recommendationData = responsedata;
     })

@@ -24,6 +24,10 @@ namespace RMGWebApi.Controllers
         {
             List<MachineDowntimeViewModel> machineDowntimeDataLists = new List<MachineDowntimeViewModel>();
             List<MachineDowntimeViewModel> feedingDowntimeDataLists = new List<MachineDowntimeViewModel>();
+
+            List<MachineDowntimeViewModel> lineUnitWiseDowntimeDataLists = new List<MachineDowntimeViewModel>();
+            List<MachineDowntimeViewModel> lineUnitWiseFeedingDowntimeDataLists = new List<MachineDowntimeViewModel>();
+
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
             DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
             if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
@@ -31,12 +35,29 @@ namespace RMGWebApi.Controllers
                 machineDowntimeDataLists = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Machine}).Select(grp => new MachineDowntimeViewModel 
                 { 
                     MachineDownTime = Math.Round((grp.Sum(x=>x.MachineDowntime) * 100)/(480*grp.Count()),2),
-                    MachineName = grp.Key.Machine
+                    MachineName = grp.Key.Machine,
                 }).ToList();
-                feedingDowntimeDataLists = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Machine }).Select(grp => new MachineDowntimeViewModel
+
+                feedingDowntimeDataLists = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Machine}).Select(grp => new MachineDowntimeViewModel
                 {
                     FeedingDownTime = Math.Round((grp.Sum(x => x.FeedingDowntime) * 100) / (480 *grp.Count()),2),
-                    MachineName = grp.Key.Machine
+                    MachineName = grp.Key.Machine,
+                }).ToList();
+
+                lineUnitWiseDowntimeDataLists = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line, x.Unit }).Select(grp => new MachineDowntimeViewModel
+                {
+                    MachineDownTime = grp.Where(x => x.Machine != "Checking Table" && x.Machine != "TABLE").Sum(x=> x.MachineDowntime),
+                    Line = grp.Key.Line,
+                    Unit = grp.Key.Unit,
+                    TotalMachineCount = grp.Where(x=> x.Machine != "Checking Table" && x.Machine != "TABLE").Count()
+                }).ToList();
+
+                lineUnitWiseFeedingDowntimeDataLists = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line, x.Unit }).Select(grp => new MachineDowntimeViewModel
+                {
+                    FeedingDownTime = grp.Where(x => x.Machine != "Checking Table" && x.Machine != "TABLE").Sum(x => x.FeedingDowntime),
+                    Line = grp.Key.Line,
+                    Unit = grp.Key.Unit,
+                    TotalMachineCount = grp.Where(x => x.Machine != "Checking Table" && x.Machine != "TABLE").Count()
                 }).ToList();
             }
             List<MachineDowntimeViewModel> filteredMachinesViewModel = new List<MachineDowntimeViewModel>();
@@ -54,9 +75,23 @@ namespace RMGWebApi.Controllers
             var topFiveMachineDowntimeList = filteredMachinesViewModel.OrderByDescending(x => x.MachineDownTime).Take(5).ToList();
             double totalMachineDownTime = 0;
             double totalFeedingDownTime = 0;
-            totalMachineDownTime = Math.Round(filteredMachinesViewModel.Average(x => x.MachineDownTime),2);
-            totalFeedingDownTime = Math.Round(feedingDowntimeDataLists.Average(x => x.FeedingDownTime),2);
-            double totalDownTime = Math.Round((totalFeedingDownTime + totalFeedingDownTime) / 2);
+            double totalMachineDowntimeWorkingHours = 0;
+            double totalFeedingDowntimeWorkingHours = 0 ;
+            //totalMachineDownTime = Math.Round(filteredMachinesViewModel.Average(x => x.MachineDownTime),2);
+            //totalFeedingDownTime = Math.Round(feedingDowntimeDataLists.Average(x => x.FeedingDownTime),2);
+            foreach (var element in lineUnitWiseDowntimeDataLists)
+            {
+                totalMachineDownTime += element.MachineDownTime;
+                totalMachineDowntimeWorkingHours += element.TotalMachineCount;
+            }
+            foreach (var element in lineUnitWiseFeedingDowntimeDataLists)
+            {
+                totalFeedingDownTime += element.FeedingDownTime;
+                totalFeedingDowntimeWorkingHours += element.TotalMachineCount;
+            }
+            totalMachineDownTime = Math.Round(totalMachineDownTime*100 / (totalMachineDowntimeWorkingHours*480),2);
+            totalFeedingDownTime = Math.Round(totalFeedingDownTime * 100 / (totalFeedingDowntimeWorkingHours * 480), 2);
+            double totalDownTime = totalMachineDownTime + totalFeedingDownTime;
             string feedingDowntimeColorCode = GetDowntimeColorCode(totalFeedingDownTime);
             string machineDowntimeColorCode = GetDowntimeColorCode(totalMachineDownTime);
             string totalDowntimeColorCode = GetDowntimeColorCode(totalDownTime);

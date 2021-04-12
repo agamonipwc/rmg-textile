@@ -252,12 +252,18 @@ ngOnInit() {
   }
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
+  } 
+  dashboardNavigation(){
+    this._router.navigate(['module-performance']);
+  }
+  processNavigation(){
+    this._router.navigate(['process-overview']);
   }
   getRecommendation(recommendationId){
     this.data = [];
     var recommendationView ={
       KPIId : 3,
-      recommendationId : recommendationId
+      recommendationId : recommendationId.toString()
     };
     var url = environment.backendUrl + "Recommendation";
     var _this = this;
@@ -268,11 +274,13 @@ ngOnInit() {
       else{
         _this.recommendationModalTitle = "Recommemdations for Moderate Operators"
       }
-      _this.data.push({
-        Reasons : responsedata["allRecommendations"][0]["Reasons"],
-        Recommendations : responsedata["allRecommendations"][0]["Recommendations"],
-        SubReasons : responsedata["allRecommendations"][0]["SubReasons"],
-      });
+      responsedata["allRecommendations"].forEach(element => {
+        _this.data.push({
+          Reasons : element["Reasons"],
+          Recommendations : element["Recommendations"],
+          SubReasons : element["SubReasons"],
+        });
+    });
       // _this.recommendationData = responsedata;
     })
   }

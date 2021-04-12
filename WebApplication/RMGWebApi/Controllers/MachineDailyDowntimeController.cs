@@ -36,17 +36,18 @@ namespace RMGWebApi.Controllers
                     Location = grp.Key.Location,
                     MachineName = string.Join('_',grp.Key.Machine, grp.Key.Location, grp.Key.Unit, grp.Key.Line),
                     MachineDownTime = grp.Sum(x => x.MachineDowntime),
-                    WorkingMins = grp.Average(x=> x.WorkingMins)
+                    WorkingMins = grp.Average(x=> x.WorkingMins),
+                    TotalMachineCount = grp.Count()
                 }).ToList();
             }
             var groupedMachineDowntimeLists = machineDowntimeDataLists.GroupBy(u => u.MachineName).Select(grp => grp.ToList()).ToList();
             List<DateTime> dailyDates = new List<DateTime>();
-            for (DateTime date = startDate.Value; date <= endDate.Value; date = date.AddDays(1))
-            {
-                dailyDates.Add(date);
-                var dateString = date.ToString("dd-MMM-yyyy");
-                dates.Add(dateString);
-            }
+            //for (DateTime date = startDate.Value; date <= endDate.Value; date = date.AddDays(1))
+            //{
+            //    dailyDates.Add(date);
+            //    var dateString = date.ToString("dd-MMM-yyyy");
+            //    dates.Add(dateString);
+            //}
             List<DHUTopFiveDefects> groupedMachineDowntimeViewModels = new List<DHUTopFiveDefects>();
             List<DHUTopFiveDefects> curveFitMachineDowntimeViewModels = new List<DHUTopFiveDefects>();
             for (int index = 0; index < groupedMachineDowntimeLists.Count; index++)
@@ -61,18 +62,16 @@ namespace RMGWebApi.Controllers
                     {
                         machineName = groupedMachineDowntimeLists[index][0].MachineName;
                     }
-                    double machineDownTimeValue = Math.Round((groupedMachineDowntimeLists[index][innerIndex].MachineDownTime * 100) / ( 480 * 1));
+                    double machineDownTimeValue = Math.Round((groupedMachineDowntimeLists[index][innerIndex].MachineDownTime * 100) / ( 480 * groupedMachineDowntimeLists[index][innerIndex].TotalMachineCount));
                     calculatedMachineDowntimeList.Add(machineDownTimeValue);
-                    if(machineDownTimeValue >= 5)
+                    if(machineDownTimeValue >= 5 && machineDownTimeValue <= 20)
                     {
+                        var dateString = "";
+                        dateString = groupedMachineDowntimeLists[index][innerIndex].Date.ToString("dd-MMM-yyyy");
+                        dates.Add(dateString);
                         curveFitMachineName = groupedMachineDowntimeLists[index][innerIndex].MachineName;
                         curveFitMachineDowntimeList.Add(machineDownTimeValue);
                     }
-                    else
-                    {
-                        curveFitMachineDowntimeList.Add(0);
-                    }
-                    
                 }
                 groupedMachineDowntimeViewModels.Add(new DHUTopFiveDefects
                 {
@@ -81,7 +80,7 @@ namespace RMGWebApi.Controllers
                     color = colorCodes[index]
                 });
                 int zeroValueCount = curveFitMachineDowntimeList.Where(x => x == 0).Count();
-                if (dates.Count != zeroValueCount)
+                if (dates.Count != zeroValueCount && curveFitMachineName!="")
                 {
                     curveFitMachineDowntimeViewModels.Add(new DHUTopFiveDefects
                     {
@@ -95,7 +94,8 @@ namespace RMGWebApi.Controllers
             return Json(new {
                 data = groupedMachineDowntimeViewModels,
                 curveFitMachineDowntimeData = curveFitMachineDowntimeViewModels,
-                categories = dates
+                categories = dates.Distinct().ToList(),
+                totalCountDays = (endDate-startDate).Value.TotalDays + 1
             });
         }
     }

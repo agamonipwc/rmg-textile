@@ -13,6 +13,7 @@ namespace RMGWebApi
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string MachineName { get; set; }
+        public string OperatorType { get; set; }
     }
 
     public class DateRangeViewModel
@@ -97,10 +98,14 @@ namespace RMGWebApi
         public string MachineName { get; set; }
         public string ColorCode { get; set; }
         public double WorkingMins { get; set; }
+        public int TotalMachineCount { get; set; }
     }
     public class ProductionViewModel
     {
+        public int OperatorIndex { get; set; }
         public double ProdData { get; set; }
+        public double WIPData { get; set; }
+        public double StyleWiseWIPData { get; set; }
         public double Line { get; set; }
         public double Unit { get; set; }
         public double Location { get; set; }
@@ -144,10 +149,17 @@ namespace RMGWebApi
         public double Unit { get; set; }
     }
 
-    public class StyleDataViewModel
+    public class InlineWIPViewModel
     {
-        public double StyleData { get; set; }
-        public double Line { get; set; }
+        public string StyleName { get; set; }
+        public List<LinewiseWIPViewModel> StyleWIPViewModel { get; set; }
+    }
+
+    public class LinewiseWIPViewModel
+    {
+        public double LineWIPPercentage { get; set; }
+        public string LineName { get; set; }
+        public string Unit { get; set; }
     }
 
     public class DHUViewModel
@@ -171,5 +183,19 @@ namespace RMGWebApi
     {
         public DateTime DailyDate { get; set; }
         public int MachineDowntimeValue { get; set; }
+    }
+    
+    public class DHUEfficiencyChartViewModel
+    {
+        public string name { get; set; }
+        public bool showInLegend { get; set; }
+        public string color { get; set; }
+        public List<object[]> data { get; set; }
+        public DHUMarkerViewModel marker { get; set; }
+    }
+    public class DHUMarkerViewModel
+    {
+        public string symbol { get; set; }
+        public int radius { get; set; }
     }
 }

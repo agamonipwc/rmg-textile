@@ -267,7 +267,7 @@ export class SewingmodulehistComponent implements OnInit {
             title: {
                 text: 'Downtime %'
             },
-            max: 120,
+            max: 20,
             min:0
         },
         tooltip: {
@@ -464,7 +464,7 @@ export class SewingmodulehistComponent implements OnInit {
             title: {
                 text: 'Absentism %'
             },
-            max:100,
+            max:20,
             min:0
         },
         tooltip: {

@@ -64,6 +64,9 @@ export class SewingmoduleComponent implements OnInit {
   dhuStyle : any = {};
   defectStyle : any= {};
   rejectStyle : any = {};
+  
+  kpiMasterData : any = [];
+  selectedKPI: any = "Choose your option";
 
   constructor(private http: HttpClient,private _router: Router) {
     this.startDate = new Date();
@@ -76,35 +79,36 @@ export class SewingmoduleComponent implements OnInit {
     this.selectAllOptions();
     this.getFilterData();
     this.getMasterData();
+    this.getMasterKPIData();
     $("#footer").hide();
     $(".footer").hide();
   var textWrapper = document.querySelector('.ml1 .letters');
   textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-  anime.timeline({loop: true})
-  .add({
-      targets: '.ml1 .letter',
-      scale: [0.3,1],
-      opacity: [0,1],
-      translateZ: 0,
-      easing: "easeOutExpo",
-      duration: 600,
-      delay: (el, i) => 70 * (i+1)
-  }).add({
-      targets: '.ml1 .line',
-      scaleX: [0,1],
-      opacity: [0.5,1],
-      easing: "easeOutExpo",
-      duration: 700,
-      offset: '-=875',
-      delay: (el, i, l) => 80 * (l - i)
-  }).add({
-      targets: '.ml1',
-      opacity: 0,
-      duration: 1000,
-      easing: "easeOutExpo",
-      delay: 1000
-  });
+    anime.timeline({loop: true})
+    .add({
+        targets: '.ml1 .letter',
+        scale: [0.3,1],
+        opacity: [0,1],
+        translateZ: 0,
+        easing: "easeOutExpo",
+        duration: 600,
+        delay: (el, i) => 70 * (i+1)
+    }).add({
+        targets: '.ml1 .line',
+        scaleX: [0,1],
+        opacity: [0.5,1],
+        easing: "easeOutExpo",
+        duration: 700,
+        offset: '-=875',
+        delay: (el, i, l) => 80 * (l - i)
+    }).add({
+        targets: '.ml1',
+        opacity: 0,
+        duration: 1000,
+        easing: "easeOutExpo",
+        delay: 1000
+    });
     $(function() {
       // Hide all lists except the outermost.
       $('ul.tree ul').hide();
@@ -122,7 +126,6 @@ export class SewingmoduleComponent implements OnInit {
         });
       });
     });
-    
   }
   getFilterData(){
     var KPIView = {
@@ -768,73 +771,6 @@ export class SewingmoduleComponent implements OnInit {
               }
           }]
         });
-
-        // Highcharts.chart(this.multiskillContainer.nativeElement, {
-        //   colors: [
-        //     responsedata["Multiskill"]["Value"]["multiskillColor"]
-        //   ],
-        //   exporting: {
-        //     enabled: false
-        //   },
-        //   credits: {enabled: false},
-        //   chart: {
-        //     type: 'column'
-        //   },
-        //   title: {
-        //       text: '% Multi Skill',
-        //       style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display':'none'}
-        //   },
-        //   xAxis: {
-        //       type: 'category',
-        //       labels: {
-        //           rotation: -45,
-        //           style: {
-        //               fontSize: '10px',
-        //               'font-family': 'Arial, Helvetica'
-        //           },
-        //           enabled : false
-        //       }
-        //   },
-        //   yAxis: {
-        //     min: 0,
-        //     max : 100,
-        //       title: {
-        //           text: 'Value',
-        //           enabled : false
-        //       },
-        //       labels: {
-        //         style: {
-        //             fontSize: '10px',
-        //             'font-family': 'Arial, Helvetica'
-        //         }
-        //     }
-        //   },
-        //   legend: {
-        //       enabled: false
-        //   },
-        //   tooltip: {
-        //       pointFormat: 'Multi Skill: <b>{point.y:.1f}</b>',
-        //       enabled: false,
-        //   },
-        //   series: [{
-        //       name: 'Multi Skill',
-        //       data: [
-        //         responsedata["Multiskill"]["Value"]["multiskillData"]
-        //       ],
-        //       dataLabels: {
-        //           enabled: true,
-        //           
-        //           color: '#000000',
-        //           align: 'right',
-        //           format: '{point.y:.1f}', // one decimal
-        //           y: 10, // 10 pixels down from the top
-        //           style: {
-        //               fontSize: '10px',
-        //               fontFamily: 'Verdana, sans-serif'
-        //           }
-        //       }
-        //   }]
-        // });
       }
       else{
         return;
@@ -949,6 +885,12 @@ export class SewingmoduleComponent implements OnInit {
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
   } 
+  dashboardNavigation(){
+    this._router.navigate(['module-performance']);
+  }
+  processNavigation(){
+    this._router.navigate(['process-overview']);
+  }
 
   navigateEfficiency(){
     this._router.navigate(['efficiency-overview']);
@@ -961,11 +903,6 @@ export class SewingmoduleComponent implements OnInit {
   navigateAbsentismUtilization(){
     this._router.navigate(['absentism-overview']);
   }
-
-  dashboardNavigation(){
-    this._router.navigate(['module-performance']);
-  }
-
   getMasterData(){
     var masterDataUrl = environment.backendUrl + "MasterData";
     var _this = this;
@@ -1035,10 +972,52 @@ export class SewingmoduleComponent implements OnInit {
   navigateDefectPercentage(){
     this._router.navigate(['defect-overview']); 
   }
-  processNavigation(){
-    this._router.navigate(['process-overview']);
-  }
+
   navigateRejection(){
     this._router.navigate(['rejection-overview']);
+  }
+  navigateDHU(){
+    this._router.navigate(['dhu-overview']);
+  }
+  navigateInlineWIP(){
+    this._router.navigate(['wip-overview']);
+  }
+  navigateMachineDowntime(){
+    this._router.navigate(['downtime-overview']);
+  }
+  getMasterKPIData(){
+    var url = environment.backendUrl + "Recommendation";
+    var _this = this;
+    this.http.get<any>(url).subscribe(responsedata =>{
+      if(responsedata["statusCode"] == 200){
+        _this.kpiMasterData = responsedata["data"];
+        console.log(_this.kpiMasterData);
+      }
+    })
+  }
+  changeKPIValue(e) {
+    console.log(this.selectedKPI);
+  }
+  data : any = [];
+  recommendationModalTitle : any = "";
+  
+  getAllRecommendations(){
+    this.data = [];
+    var _this = this;
+    var recommendationView ={
+      KPIId : parseInt(this.kpiMasterData),
+      recommendationId : ""
+    };
+    var url = environment.backendUrl + "Recommendation";
+    this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
+      _this.recommendationModalTitle = "Recommemdations for KPI"
+      responsedata["allRecommendations"].forEach(element => {
+          _this.data.push({
+            Reasons : element["Reasons"],
+            Recommendations : element["Recommendations"],
+            SubReasons : element["SubReasons"],
+          });
+      });
+  })
   }
 }

@@ -225,4 +225,13 @@ export class MachinedowntimehistComponent implements OnInit {
   navigateDowntime(){
     this._router.navigate(['downtime-overview']);
   }
+  sewingNavigation(){
+    this._router.navigate(['sewing-module']);
+  } 
+  dashboardNavigation(){
+    this._router.navigate(['module-performance']);
+  }
+  processNavigation(){
+    this._router.navigate(['process-overview']);
+  }
 }

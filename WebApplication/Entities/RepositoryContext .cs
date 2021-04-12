@@ -39,5 +39,6 @@ namespace Entities
         public DbSet<OperatorMaster> OperatorMaster { get; set; }
         public DbSet<Attendance> Attendance { get; set; }
         public DbSet<RejectionStyle> RejectionStyle { get; set; }
+        public DbSet<StyleMaster> StyleMaster { get; set; }
     }
 }

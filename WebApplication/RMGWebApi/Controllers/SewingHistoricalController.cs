@@ -134,174 +134,84 @@ namespace RMGWebApi.Controllers
         private JsonResult InlineWIPHistoricalCalculation(KPIViewModel kpiViewModel)
         {
             List<ProductionViewModel> productionsDataList = new List<ProductionViewModel>();
-            List<WIPViewModel> wipDataList = new List<WIPViewModel>();
-
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
             DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
-            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Unit.Count == 0 && kpiViewModel.Line.Count == 0)
+            if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
             {
-                productionsDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
+                productionsDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date, x.Line, x.Location, x.Unit }).Select(grp => new ProductionViewModel
                 {
                     Date = grp.Key.Date,
-                    ProdData = grp.Average(c => c.Data)
-                }).ToList();
-                wipDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate).GroupBy(x => new { x.Date }).Select(grp => new WIPViewModel
+                    Line = grp.Key.Line,
+                    Location = grp.Key.Location,
+                    Unit = grp.Key.Unit,
+                    ProdData = grp.Where(x=> x.Operation == "Checking").Sum(x => x.Production),
+                    WIPData = grp.Sum(x=> x.WIP)
+                }).GroupBy(grp => new { grp.Date }).Select(grp => new ProductionViewModel
                 {
                     Date = grp.Key.Date,
-                    WIPData = grp.Average(c => c.Data)
+                    ProdData = grp.Average(x => x.ProdData),
+                    WIPData = grp.Average(x=> x.WIPData)
                 }).ToList();
             }
-            else
-            {
-                if (kpiViewModel.Location.Count > 0)
-                {
-                    productionsDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
-                    {
-                        Date = grp.Key.Date,
-                        ProdData = grp.Average(c => c.Data)
-                    }).ToList();
-                    wipDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location)).GroupBy(x => new { x.Date }).Select(grp => new WIPViewModel
-                    {
-                        Date = grp.Key.Date,
-                        WIPData = grp.Average(c => c.Data)
-                    }).ToList();
-                }
-                else
-                {
-                    if (kpiViewModel.Unit.Count > 0)
-                    {
-                        productionsDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Unit.Contains(x.Unit)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
-                        {
-                            Date = grp.Key.Date,
-                            ProdData = grp.Average(c => c.Data)
-                        }).ToList();
-                        wipDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Unit.Contains(x.Unit)).GroupBy(x => new { x.Date }).Select(grp => new WIPViewModel
-                        {
-                            Date = grp.Key.Date,
-                            WIPData = grp.Average(c => c.Data)
-                        }).ToList();
-                    }
-                    else
-                    {
-                        productionsDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
-                        {
-                            Date = grp.Key.Date,
-                            ProdData = grp.Average(c => c.Data)
-                        }).ToList();
-                        wipDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new WIPViewModel
-                        {
-                            Date = grp.Key.Date,
-                            WIPData = grp.Average(c => c.Data)
-                        }).ToList();
-                    }
-                }
-            }
-
-            List<double> inlineWIPDataList = new List<double>();
+            List<double> efficiencyDataList = new List<double>();
+            int countOperations = _rmgDbContext.TimeStudy.Count();
             List<string> dates = new List<string>();
-            var query = (from s in wipDataList
-                         join x in productionsDataList on new { s.Date } equals new { x.Date }
+            var query = (from x in productionsDataList
                          select new EfficiencyParameters
                          {
-                             efficiency = Math.Round((s.WIPData / x.ProdData), 2),
-                             Dailydate = s.Date.ToString("dd-MMM-yyyy")
+                             efficiency = Math.Round((x.WIPData)/x.ProdData, 2),
+                             Dailydate = x.Date.ToString("dd-MMM-yyyy")
                          }).ToList();
             foreach (var element in query)
             {
                 dates.Add(element.Dailydate);
-                inlineWIPDataList.Add(element.efficiency);
+                efficiencyDataList.Add(element.efficiency);
             }
             return Json(new
             {
-                data = inlineWIPDataList,
+                data = efficiencyDataList,
                 categories = dates
             });
         }
 
         private JsonResult MachineDowntimeHistoricalCalculation(KPIViewModel kpiViewModel)
         {
-            List<WorkingHoursViewModel> workingHoursDataList = new List<WorkingHoursViewModel>();
-            List<UnplannedDowntime> unplnnedDowntimeDataList = new List<UnplannedDowntime>();
+            List<MachineDowntimeViewModel> machineDowntimeHistoricalDataLists = new List<MachineDowntimeViewModel>();
+            List<DHUTopFiveDefects> groupedMachineDowntimeViewModels = new List<DHUTopFiveDefects>();
+            List<string> categories = new List<string>();
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
             DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
-            var miscData = _rmgDbContext.Misc.Select(x => x.Data).FirstOrDefault();
-
-            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Unit.Count == 0 && kpiViewModel.Line.Count == 0)
+            if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
             {
-                workingHoursDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate).GroupBy(x => new { x.Date }).Select(grp => new WorkingHoursViewModel
+                machineDowntimeHistoricalDataLists = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date, x.Line, x.Location, x.Unit }).Select(grp => new MachineDowntimeViewModel
                 {
                     Date = grp.Key.Date,
-                    WorkingHrsData = grp.Average(c => c.Data)
-                }).ToList();
-                unplnnedDowntimeDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate).GroupBy(x => new { x.Date }).Select(grp => new UnplannedDowntime
+                    Line = grp.Key.Line,
+                    Location = grp.Key.Location,
+                    Unit = grp.Key.Unit,
+                    MachineDownTime = Math.Round((grp.Sum(x => x.MachineDowntime) * 100) / (480 * grp.Count()), 2),
+                }).GroupBy(grp => new { grp.Date }).Select(grp => new MachineDowntimeViewModel
                 {
                     Date = grp.Key.Date,
-                    Data = grp.Average(c => c.Data)
+                    MachineDownTime = grp.Average(x=> x.MachineDownTime)
                 }).ToList();
             }
-            else
-            {
-                if (kpiViewModel.Location.Count > 0)
-                {
-                    workingHoursDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location)).GroupBy(x => new { x.Date }).Select(grp => new WorkingHoursViewModel
-                    {
-                        Date = grp.Key.Date,
-                        WorkingHrsData = grp.Average(c => c.Data)
-                    }).ToList();
-                    unplnnedDowntimeDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location)).GroupBy(x => new { x.Date }).Select(grp => new UnplannedDowntime
-                    {
-                        Date = grp.Key.Date,
-                        Data = grp.Average(c => c.Data)
-                    }).ToList();
-                }
-                else
-                {
-                    if (kpiViewModel.Unit.Count > 0)
-                    {
-                        workingHoursDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Unit.Contains(x.Unit)).GroupBy(x => new { x.Date }).Select(grp => new WorkingHoursViewModel
-                        {
-                            Date = grp.Key.Date,
-                            WorkingHrsData = grp.Average(c => c.Data)
-                        }).ToList();
-                        unplnnedDowntimeDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Unit.Contains(x.Unit)).GroupBy(x => new { x.Date }).Select(grp => new UnplannedDowntime
-                        {
-                            Date = grp.Key.Date,
-                            Data = grp.Average(c => c.Data)
-                        }).ToList();
-                    }
-                    else
-                    {
-                        workingHoursDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new WorkingHoursViewModel
-                        {
-                            Date = grp.Key.Date,
-                            WorkingHrsData = grp.Average(c => c.Data)
-                        }).ToList();
-                        unplnnedDowntimeDataList = _rmgDbContext.Production.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new UnplannedDowntime
-                        {
-                            Date = grp.Key.Date,
-                            Data = grp.Average(c => c.Data)
-                        }).ToList();
-                    }
-                }
-            }
-
-            List<double> machineDowntimeDataList = new List<double>();
+            List<double> efficiencyDataList = new List<double>();
             List<string> dates = new List<string>();
-            var query = (from s in workingHoursDataList
-                         join x in unplnnedDowntimeDataList on new { s.Date } equals new { x.Date }
+            var query = (from x in machineDowntimeHistoricalDataLists
                          select new EfficiencyParameters
                          {
-                             efficiency = Math.Round((((miscData + x.Data) / s.WorkingHrsData) * 100)),
-                            Dailydate = s.Date.ToString("dd-MMM-yyyy")
+                             efficiency = Math.Round(x.MachineDownTime,2),
+                             Dailydate = x.Date.ToString("dd-MMM-yyyy")
                          }).ToList();
             foreach (var element in query)
             {
                 dates.Add(element.Dailydate);
-                machineDowntimeDataList.Add(element.efficiency);
+                efficiencyDataList.Add(element.efficiency);
             }
             return Json(new
             {
-                data = machineDowntimeDataList,
+                data = efficiencyDataList,
                 categories = dates
             });
         }

@@ -176,6 +176,15 @@ ngOnInit() {
     }
     this.calculateDHU(KPIView);
   }
+  sewingNavigation(){
+    this._router.navigate(['sewing-module']);
+  } 
+  dashboardNavigation(){
+    this._router.navigate(['module-performance']);
+  }
+  processNavigation(){
+    this._router.navigate(['process-overview']);
+  }
 
   onLocationChange(event){
     var masterDataUrl = environment.backendUrl + "MasterData";

@@ -28,6 +28,10 @@ import { DhuhistComponent } from './dhuhist/dhuhist.component';
 import { MachinedowntimeComponent } from './machinedowntime/machinedowntime.component';
 import { MachinedowntimecurvefitComponent } from './machinedowntimecurvefit/machinedowntimecurvefit.component';
 import { MachinedowntimehistComponent } from './machinedowntimehist/machinedowntimehist.component';
+import { InlinewipComponent } from './inlinewip/inlinewip.component';
+import { InlinewipsummaryComponent } from './inlinewipsummary/inlinewipsummary.component';
+import { InlinewipoperatorComponent } from './inlinewipoperator/inlinewipoperator.component';
+import { OperatordefecteffComponent } from './operatordefecteff/operatordefecteff.component';
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [solidGauge];
@@ -53,7 +57,11 @@ export function highchartsModules() {
     DhuhistComponent,
     MachinedowntimeComponent,
     MachinedowntimecurvefitComponent,
-    MachinedowntimehistComponent
+    MachinedowntimehistComponent,
+    InlinewipComponent,
+    InlinewipsummaryComponent,
+    InlinewipoperatorComponent,
+    OperatordefecteffComponent
   ],
   imports: [
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 

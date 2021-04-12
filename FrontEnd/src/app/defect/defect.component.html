@@ -17,23 +17,22 @@
         <table class="table table-striped" style="background-color: #ffffff;">
           <thead class="thead-dark">
               <tr>
-                  <th style="width: 50%">
+                  <th >
                       Reasons
                   </th>
-                  <th style="width: 50%">
+                  <th >
+                    SubReasons
+                  </th>
+                  <th >
                     Recommendations
                 </th>
-                <th style="width: 50%">
-                  SubReasons
-              </th>
               </tr>
           </thead>
           <tbody>
               <tr *ngFor="let item of data; let ndx = index">
-                  <!-- <td>{{item.Name}}</td> -->
-                  <td>{{item.Reasons}}</td>
-                  <td>{{item.Recommendations}}</td>
-                  <td>{{item.SubReasons}}</td>
+                  <td innerHTML="{{item.Reasons}}"></td>
+                  <td innerHTML="{{item.SubReasons}}"></td>
+                  <td innerHTML="{{item.Recommendations}}"></td>
               </tr>
           </tbody>
         </table>
@@ -158,14 +157,14 @@
             <div class="d-flex flex-column">
               <div class="p-2" style="margin-bottom: 25%;">
                 <div class="d-flex flex-row" style="margin-left: -98%;">
-                  <button class="operator-btn p-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(105)">Recommendation</button>
+                  <button class="operator-btn p-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('163,165,166,167')">Recommendation</button>
                   <button class="ml-2 operator-btn" data-toggle="modal" data-target="#operatorsDetailsModal" (click)="getOperatorsName('Low')">Print</button>
                 
                 </div>
               </div>
               <div class="p-2" style="margin-bottom: 25%;">
                 <div class="d-flex flex-row" style="margin-left: -98%;">
-                  <button class="operator-btn p-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(105)">Recommendation</button>
+                  <button class="operator-btn p-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('168,169,170,171')">Recommendation</button>
                   <button class="ml-2 operator-btn" data-toggle="modal" data-target="#operatorsDetailsModal" (click)="getOperatorsName('Moderate')">Print</button>
                 </div>
               </div>
