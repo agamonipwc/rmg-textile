@@ -337,7 +337,7 @@
             <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="modal" (click)="calculateMachineDowntime(machineItems.machineName)" data-target="#historicMCDowntimeModal">{{machineItems.machineName}} <i class="fas fa-bar-chart"></i></button>
             <div class="col-9">
               <div class="progress" style="height:30px">
-                <div class="progress-bar" [ngStyle]=machineItems.machineStyle>{{machineItems.machineDownTime}}</div>
+                <div class="progress-bar" [ngStyle]=machineItems.machineStyle>{{machineItems.machineDownTime}}%</div>
               </div>
             </div>
           </div>

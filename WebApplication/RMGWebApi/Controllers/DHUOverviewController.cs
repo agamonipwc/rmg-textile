@@ -99,7 +99,7 @@ namespace RMGWebApi.Controllers
 
             filteredDefectViewModels.Sort((x, y) => x.DefectCount.CompareTo(y.DefectCount));
 
-            var orderedDefectViewModel = filteredDefectViewModels.OrderByDescending(x => x.DefectCount).Take(5).ToList();
+            var orderedDefectViewModel = filteredDefectViewModels.OrderByDescending(x => x.DefectCount).Take(5).OrderByDescending(x=> x.DefectCount).ToList();
 
             List<RejectionStyleDataModel> dhuViewModel = new List<RejectionStyleDataModel>();
             List<string> categories = new List<string>();
@@ -153,6 +153,7 @@ namespace RMGWebApi.Controllers
             {
                 overAllDHUColor = "#e0301e";
             }
+            dhuViewModel = dhuViewModel.OrderByDescending(x => x.y).ToList();
             return Json(new{
                 data = dhuViewModel,
                 overallDHU = overDHUValue,

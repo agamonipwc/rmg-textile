@@ -99,9 +99,9 @@ export class MachinedowntimeComponent implements OnInit {
     var _this = this;
     var url = environment.backendUrl + "MachineDowntimeOverview";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
-      _this.totalDownTime = responsedata["totalDownTime"];
-      _this.totalFeedingDownTime = responsedata["totalFeedingDownTime"];
-      _this.totalMachineDownTime = responsedata["totalMachineDownTime"];
+      _this.totalDownTime = responsedata["totalDownTime"] + "%";
+      _this.totalFeedingDownTime = responsedata["totalFeedingDownTime"] + "%";
+      _this.totalMachineDownTime = responsedata["totalMachineDownTime"] + "%";
       _this.totalDownTimeStyle = {
         'background-color' : responsedata["totalDowntimeColorCode"],
         'height' : '30px',
@@ -138,7 +138,6 @@ export class MachinedowntimeComponent implements OnInit {
     var _this = this;
     var url = environment.backendUrl + "MachineDailyDowntime";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
-      console.log("--------Response Data-------",responsedata);
       _this.machineDowntimeLine = new Chart({
         chart: {
             type: 'scatter'
@@ -204,7 +203,6 @@ export class MachinedowntimeComponent implements OnInit {
    }
 
    calculateCurveFitChart(categories, data, totalCountDays){
-     console.log("---------Total Days Count----------",totalCountDays);
     //  data.forEach(element => {
     //    var dataValues = [];
     //   element["data"].forEach(innerElement => {

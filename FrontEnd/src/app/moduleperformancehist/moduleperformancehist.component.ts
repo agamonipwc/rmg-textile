@@ -42,6 +42,9 @@ export class ModuleperformancehistComponent implements OnInit {
   SpreadingCuttingHistoric : Chart;
   SewingHistoric : Chart;
   FinishingPackagingHistoric : Chart;
+  lineOptions : any = []
+  unitOptions : any = [];
+  locationOptions : any = [];
 
   constructor(private http: HttpClient,private _router: Router) { }
 
@@ -60,6 +63,30 @@ export class ModuleperformancehistComponent implements OnInit {
     this.createSpreadingCuttingHistoric();
     this.createSewingHistoric();
     this.createFinishingPackagingHistoric();
+    this.getMasterData();
+    $(function() {
+        // Hide all lists except the outermost.
+        $('ul.tree ul').hide();
+    
+        $('.tree li > ul').each(function(i) {
+        var $subUl = $(this);
+        var $parentLi = $subUl.parent('li');
+        var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+    
+        $parentLi.addClass('has-children');
+        
+        $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+            $(this).text( $(this).text() == '+' ? '-' : '+' );
+            $subUl.slideToggle('fast');
+        });
+        });
+    });
+  }
+  sewingNavigation(){
+    this._router.navigate(['sewing-module']);
+  }
+  processNavigation(){
+    this._router.navigate(['process-overview']);
   }
 
   createOperationHistoric(){
@@ -108,6 +135,17 @@ export class ModuleperformancehistComponent implements OnInit {
     
         }]
     });
+  }
+  getMasterData(){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
+    this.http.get<any>(masterDataUrl).subscribe(responsedata =>{
+        if(responsedata["statusCode"] == 200){
+            _this.locationOptions = responsedata["locationMasterData"];
+            _this.unitOptions = responsedata["unitMasterData"];
+            _this.lineOptions = responsedata["lineMasterData"];
+        }
+    })
   }
 
   createInwardHistoric(){

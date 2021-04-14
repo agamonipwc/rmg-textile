@@ -1,0 +1,14 @@
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\bin\Release\netcoreapp3.1\Repository.deps.json
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\bin\Release\netcoreapp3.1\Repository.dll
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\bin\Release\netcoreapp3.1\Repository.pdb
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\bin\Release\netcoreapp3.1\Contracts.dll
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\bin\Release\netcoreapp3.1\Entities.dll
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\bin\Release\netcoreapp3.1\Contracts.pdb
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\bin\Release\netcoreapp3.1\Entities.pdb
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\obj\Release\netcoreapp3.1\Repository.csprojAssemblyReference.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\obj\Release\netcoreapp3.1\Repository.AssemblyInfoInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\obj\Release\netcoreapp3.1\Repository.AssemblyInfo.cs
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\obj\Release\netcoreapp3.1\Repository.csproj.CoreCompileInputs.cache
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\obj\Release\netcoreapp3.1\Repository.csproj.CopyComplete
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\obj\Release\netcoreapp3.1\Repository.dll
+C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\Repository\obj\Release\netcoreapp3.1\Repository.pdb

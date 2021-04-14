@@ -13,6 +13,7 @@ import Drilldown from 'highcharts/modules/drilldown';
 Drilldown(Highcharts);
 import Exporting from 'highcharts/modules/exporting';
 Exporting(Highcharts);
+import * as XLSX from 'xlsx';  
 declare var anime: any;
 
 @Component({
@@ -996,7 +997,7 @@ export class SewingmoduleComponent implements OnInit {
     })
   }
   changeKPIValue(e) {
-    console.log(this.selectedKPI);
+    // console.log(this.selectedKPI);
   }
   data : any = [];
   recommendationModalTitle : any = "";
@@ -1005,12 +1006,18 @@ export class SewingmoduleComponent implements OnInit {
     this.data = [];
     var _this = this;
     var recommendationView ={
-      KPIId : parseInt(this.kpiMasterData),
+      KPIId : parseInt(this.selectedKPI),
       recommendationId : ""
     };
+    var recommendationName = this.getRecommendationName();
+    this.kpiMasterData.forEach(element => {
+      if(element.Id == this.selectedKPI){
+        recommendationName = element.Name;
+      }
+    });
     var url = environment.backendUrl + "Recommendation";
     this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
-      _this.recommendationModalTitle = "Recommemdations for KPI"
+      _this.recommendationModalTitle = "Recommemdations of " + recommendationName
       responsedata["allRecommendations"].forEach(element => {
           _this.data.push({
             Reasons : element["Reasons"],
@@ -1018,6 +1025,24 @@ export class SewingmoduleComponent implements OnInit {
             SubReasons : element["SubReasons"],
           });
       });
-  })
+    })
   }
+  getRecommendationName(){
+    var recommendationName = "";
+    this.kpiMasterData.forEach(element => {
+      if(element.Id == this.selectedKPI){
+        recommendationName = element.Name;
+      }
+    });
+    return recommendationName;
+  }
+  @ViewChild('TABLE') TABLE: ElementRef;  
+  ExportToExcelLowEfficiency() {  
+    var recommendationName = this.getRecommendationName();
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.TABLE.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    var sheetName = "Recommendation_" + recommendationName + ".xlsx";
+    XLSX.writeFile(wb, sheetName);  
+  } 
 }

@@ -171,4 +171,11 @@ export class OperatordefecteffComponent implements OnInit {
   processNavigation(){
     this._router.navigate(['process-overview']);
   }
+  navigateWIPOperator(){
+    this._router.navigate(['wip-overview']);
+  }
+
+  navigateWIPSummary(){
+    this._router.navigate(['wip-summary']);
+  }
 }

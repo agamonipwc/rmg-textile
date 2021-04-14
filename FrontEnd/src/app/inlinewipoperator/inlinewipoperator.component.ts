@@ -93,16 +93,22 @@ calculateOperatorWIP(KPIView){
             text: ''
         },
         xAxis: {
-            title: {
-                    enabled: false,
-                    text: 'Operator ID',
-                },
-                labels: {
-                  enabled: false,
-                },
-            startOnTick: true,
-            endOnTick: true,
-            showLastLabel: true
+          title: {
+                  enabled: true,
+                  text: '%Defect',
+          },
+          labels: {
+            enabled: true,
+          },
+          startOnTick: true,
+          endOnTick: true,
+          showLastLabel: true
+        },
+        tooltip: {
+          formatter: function () {
+              return this.series.name + '<br>' + ' Efficiency: <b>' + this.y + '%' +
+                  '</b><br> Defect: <b>' + this.x + '</b>' + '%';
+          }
         },
         exporting: {
             enabled: false
@@ -153,6 +159,12 @@ calculateAvgOperatorWIP(KPIView){
         type: 'scatter',
         zoomType: 'xy'
       },
+      tooltip: {
+        formatter: function () {
+            return this.series.name + '<br>' + ' Efficiency: <b>' + this.y + '%' +
+                '</b><br> Defect: <b>' + this.x + '</b>' + '%';
+        }
+      },
       title: {
           text: ''
       },
@@ -161,16 +173,16 @@ calculateAvgOperatorWIP(KPIView){
       },
       credits: {enabled: false},
       xAxis: {
-          title: {
-                  enabled: false,
-                  text: 'Operator ID',
-              },
-              labels: {
-                enabled: false,
-              },
-          startOnTick: true,
-          endOnTick: true,
-          showLastLabel: true
+        title: {
+          enabled: true,
+          text: '%Defect',
+        },
+        labels: {
+          enabled: true,
+        },
+        startOnTick: true,
+        endOnTick: true,
+        showLastLabel: true
       },
       yAxis: {
           max: 100,
@@ -361,6 +373,9 @@ highOperator(activeTab){
   }
   processNavigation(){
     this._router.navigate(['process-overview']);
+  }
+  navigateWIPEffDefectOverview(){
+    this._router.navigate(['operator-eff-defect']);
   }
 
 }

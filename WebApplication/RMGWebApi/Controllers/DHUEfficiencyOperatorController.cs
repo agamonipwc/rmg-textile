@@ -30,8 +30,8 @@ namespace RMGWebApi.Controllers
                 {
                     inlineWIPOperatorSummaryDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line) &&(x.Efficiency >= 0.0 && x.Efficiency< 0.50)).GroupBy(x => new { x.Location, x.Line, x.Unit, x.Name }).Select(grp => new ProductionViewModel
                     {
-                        WIPData = grp.Average(x => x.DHU),
-                        ProdData = Math.Round(grp.Average(x => x.Efficiency) * 100),
+                        WIPData = Math.Round(grp.Average(x => x.Alterations * 100)/ grp.Average(x=> x.Production),2),
+                        ProdData = Math.Round(grp.Average(x => x.Efficiency) * 100,2),
                         OperatorIndex = _rmgDbContext.OperatorMaster.Where(x => x.Name == grp.Key.Name).Select(x => x.Id).FirstOrDefault(),
                         
                     }).ToList();
@@ -40,8 +40,8 @@ namespace RMGWebApi.Controllers
                 {
                     inlineWIPOperatorSummaryDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line) && (x.Efficiency >= 0.50 && x.Efficiency < 0.75)).GroupBy(x => new { x.Location, x.Line, x.Unit, x.Name }).Select(grp => new ProductionViewModel
                     {
-                        WIPData = grp.Average(x => x.DHU),
-                        ProdData = Math.Round(grp.Average(x => x.Efficiency) * 100),
+                        WIPData = Math.Round(grp.Average(x => x.Alterations * 100) / grp.Average(x => x.Production),2),
+                        ProdData = Math.Round(grp.Average(x => x.Efficiency) * 100,2),
                         OperatorIndex = _rmgDbContext.OperatorMaster.Where(x => x.Name == grp.Key.Name).Select(x => x.Id).FirstOrDefault(),
                         
                     }).ToList();
@@ -50,8 +50,8 @@ namespace RMGWebApi.Controllers
                 {
                     inlineWIPOperatorSummaryDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line) && (x.Efficiency >= 0.75)).GroupBy(x => new { x.Location, x.Line, x.Unit, x.Name }).Select(grp => new ProductionViewModel
                     {
-                        WIPData = grp.Average(x => x.DHU),
-                        ProdData = Math.Round(grp.Average(x => x.Efficiency) * 100),
+                        WIPData = Math.Round(grp.Average(x => x.Alterations * 100) / grp.Average(x => x.Production),2),
+                        ProdData = Math.Round(grp.Average(x => x.Efficiency) * 100,2),
                         OperatorIndex = _rmgDbContext.OperatorMaster.Where(x => x.Name == grp.Key.Name).Select(x => x.Id).FirstOrDefault(),
                         
                     }).ToList();
@@ -63,7 +63,8 @@ namespace RMGWebApi.Controllers
                 {
                     DHUEfficiencyChartViewModel viewModel = new DHUEfficiencyChartViewModel();
                     DHUMarkerViewModel dHUMarkerViewModel = new DHUMarkerViewModel();
-                    dHUMarkerViewModel.radius = Convert.ToInt32(element.WIPData);
+                    dHUMarkerViewModel.radius = 8;
+                    //dHUMarkerViewModel.radius = Convert.ToInt32(element.WIPData);
                     dHUMarkerViewModel.symbol = "circle";
                     viewModel.marker = dHUMarkerViewModel;
                     viewModel.name = string.Join("","Op",element.OperatorIndex);
@@ -74,7 +75,7 @@ namespace RMGWebApi.Controllers
                     {
                         if (element.ProdData >= 0 && element.ProdData < 50)
                         {
-                            arrayObject[0] = element.OperatorIndex;
+                            arrayObject[0] = element.WIPData;
                             arrayObject[1] = element.ProdData;
                             color = "#e0301e";
                         }
@@ -83,7 +84,7 @@ namespace RMGWebApi.Controllers
                     {
                         if (element.ProdData >= 50 && element.ProdData < 75)
                         {
-                            arrayObject[0] = element.OperatorIndex;
+                            arrayObject[0] = element.WIPData;
                             arrayObject[1] = element.ProdData;
                             color = "#ffb600";
                         }
@@ -92,7 +93,7 @@ namespace RMGWebApi.Controllers
                     {
                         if (element.ProdData >= 75 && element.ProdData <= 100)
                         {
-                            arrayObject[0] = element.OperatorIndex;
+                            arrayObject[0] = element.WIPData;
                             arrayObject[1] = element.ProdData;
                             color = "#175d2d";
                         }

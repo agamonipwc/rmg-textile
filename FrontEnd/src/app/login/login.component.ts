@@ -83,6 +83,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.input = $('.validate-input .input100');
     this.validateEachInput();
+    $(".footer").hide();
+    $("#footer").hide();
   }
 
 }

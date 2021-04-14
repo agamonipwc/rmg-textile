@@ -4,15 +4,6 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <!-- <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/module-performance">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/sewing-module">Sewing<span class="sr-only"></span></a>
-      </li>
-    </ul> -->
-    <!-- <h4 class="text-sm-center mt-2 ml-5" style="color: #ffffff;">Digital Diagnostic Tool</h4> -->
   </div>
 </nav>
 <nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
@@ -73,13 +64,13 @@
         
       </div>
       <div class="col-4 mt-1">
-        <a style="font-weight: bold;" href="/module-historical">Show Historical Data</a>
+        <a style="font-weight: bold;" href="/module-historical">Show Last 30 Days Data</a>
       </div>
     </div>
     <div class="row">
       <div class="col-9" style="background-color: #ffffff;">
         <div class="row mt-3">
-          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Operations <i class="fas fa-caret-down"></i></button>
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Operations <i class="fas fa-caret-down" style="color: blue;"></i></button>
           <div class="col-9">
             <div class="progress" style="height:30px">
               <div class="progress-bar" style="width:65%;height:30px; background-color: #175d2d;">65</div>
@@ -88,7 +79,7 @@
         </div>
         <div class="collapse ml-5" id="collapseOperationDiv">
           <div class="row mt-3" >
-            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Inward</button>
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Inward <i class="fas fa-caret-down" style="color: brown;"></i></button>
             <div class="col-9">
               <div class="progress" style="height:30px">
                 <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">50</div>
@@ -96,7 +87,7 @@
             </div>
           </div>
           <div class="row mt-3">
-            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px" data-toggle="collapse" data-target="#collapseProcessesDiv" aria-expanded="false" aria-controls="collapseProcessesDiv">Processes <i class="fas fa-caret-down"></i></button>
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px" data-toggle="collapse" data-target="#collapseProcessesDiv" aria-expanded="false" aria-controls="collapseProcessesDiv">Processes <i class="fas fa-caret-down" style="color: blue;"></i></button>
             <div class="col-9">
               <div class="progress" style="height:30px">
                 <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
@@ -105,7 +96,7 @@
           </div>
           <div class="collapse ml-5" id="collapseProcessesDiv">
             <div class="row mt-3" >
-              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Fabric & Trims Store</button>
+              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Fabric & Trims Store <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
                 <div class="progress" style="height:30px">
                   <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">50</div>
@@ -113,7 +104,7 @@
               </div>
             </div>
             <div class="row mt-3">
-              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Spreading & Cutting</button>
+              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Spreading & Cutting <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
                 <div class="progress" style="height:30px">
                   <div class="progress-bar" style="width:70%;height:30px; background-color: #175d2d;">70</div>
@@ -121,7 +112,7 @@
               </div>
             </div>
             <div class="row mt-3">
-              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Sewing </button>
+              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px" (click)="sewingNavigation()">Sewing <i class="fas fa-caret-down" style="color: blue;"></i></button>
               <div class="col-9" style="cursor: pointer;" (click)="sewingNavigation()">
                 <div class="progress" style="height:30px; cursor: pointer;" (click)="sewingNavigation()">
                   <div (click)="sewingNavigation()" class="progress-bar" style="width:30%;height:30px; background-color: #e0301e; cursor: pointer;">30</div>
@@ -129,7 +120,7 @@
               </div>
             </div>
             <div class="row mt-3">
-              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Finishing & Packaging</button>
+              <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Finishing & Packaging <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
                 <div class="progress" style="height:30px">
                   <div class="progress-bar" style="width:65%;height:30px; background-color: #ffb600;">65</div>
@@ -138,7 +129,7 @@
             </div>
           </div>
           <div class="row mt-3">
-            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Outward</button>
+            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Outward <i class="fas fa-caret-down" style="color: brown;"></i></button>
             <div class="col-9">
               <div class="progress" style="height:30px">
                 <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">80</div>
@@ -147,7 +138,7 @@
           </div>
         </div>
         <div class="row mt-3">
-          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Social Sustainablity <i class="fas fa-caret-down"></i></button>
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Social Sustainablity <i class="fas fa-caret-down" style="color: brown;"></i></button>
           <div class="col-9">
             <div class="progress" style="height:30px">
               <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">50</div>
@@ -155,7 +146,7 @@
           </div>
         </div>
         <div class="row mt-3">
-          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Environmental Sustainability<i class="fas fa-caret-down"></i></button>
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px">Environmental Sustainability<i class="fas fa-caret-down" style="color: brown;"></i></button>
           <div class="col-9">
             <div class="progress" style="height:30px">
               <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
@@ -415,37 +406,3 @@
 
   </section>
 </div>
-
-<!-- <li class="nav-item">
-  <div class="ml-2">
-    <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select location</span>
-    <span class="caret"></span></button>
-    <ul class="dropdownmenu">
-      <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="locationSelectAll" /><span class="select-text" id="locationSelectText"> Select</span> All</label></a></li>
-      <li class="custom-li" *ngFor="let option of location"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' type="checkbox" class="option justone location" [value]="option.id" [id]="'location_' + option.id"/> {{option.name}}</label></a></li>
-    </ul>
-  </div>
-</li>
-<li class="nav-item mt-3">
-  <div class="ml-2">
-    <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select unit</span>
-    <span class="caret"></span></button>
-    <ul class="dropdownmenu"> 
-      <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="unitSelectAll"/><span id="unitSelectText" class="select-text"> Select</span> All</label></a></li>
-      <li class="custom-li" *ngFor="let option of unit"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[unit]' type="checkbox" class="option justone unit" [value]="option.id" [id]="'unit_' + option.id"/> {{option.name}}</label></a></li>
-    </ul>
-  </div>
-</li>
-<li class="nav-item mt-3">
-  <div class="dropdown ml-2">
-    <button class="btn btn-default dropdown-toggle dropdown-button" type="button" data-toggle="dropdown"><span class="dropdown-text"> Select Line</span>
-    <span class="caret"></span></button>
-    <ul class="dropdownmenu">
-      <li class="custom-li"><a href="#" class="dropdown-label"><label class="ml-2"><input type="checkbox" class="lineSelectAll"/><span id="lineSelectText" class="select-text"> Select</span> All</label></a></li>
-      <li class="custom-li" *ngFor="let option of line"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[line]' type="checkbox" class="option justone line" [value]="option.id" [id]="'line_' + option.id"/> {{option.name}}</label></a></li>
-    </ul>
-  </div>
-</li>
-<li class="nav-item mt-3">
-  <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
-</li> -->
