@@ -1,7 +1,6 @@
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Release\netcoreapp3.1\PubTmp\Out\RMGWebApi.exe
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.Development.json
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.json
-C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Release\netcoreapp3.1\PubTmp\Out\aws-beanstalk-tools-defaults.json
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Release\netcoreapp3.1\PubTmp\Out\RMGWebApi.dll
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Release\netcoreapp3.1\PubTmp\Out\RMGWebApi.runtimeconfig.json
 C:\Users\agamonig192\Documents\RMG Textile\Branch Agamoni\rmg-textile\WebApplication\RMGWebApi\obj\Release\netcoreapp3.1\PubTmp\Out\RMGWebApi.pdb

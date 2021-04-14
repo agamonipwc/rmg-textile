@@ -319,4 +319,7 @@ ngOnInit() {
   processNavigation(){
     this._router.navigate(['process-overview']);
   }
+  navigateToDHUOverview(){
+    this._router.navigate(['dhu-overview']);
+  }
 }

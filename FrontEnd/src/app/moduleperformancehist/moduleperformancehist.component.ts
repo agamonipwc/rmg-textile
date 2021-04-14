@@ -82,6 +82,33 @@ export class ModuleperformancehistComponent implements OnInit {
         });
     });
   }
+  onLocationChange(event){
+    var masterDataUrl = environment.backendUrl + "MasterData";
+    var _this = this;
+    var locations = [];
+    if (event.target.checked){
+      locations.push(parseInt(event.target.value))
+      var dataViewModel = {
+        locations : locations,
+        units : []
+      }
+      this.http.post<any>(masterDataUrl,dataViewModel).subscribe(responsedata =>{
+        if(responsedata["statusCode"] == 200){
+          responsedata["data"].forEach(element => {
+            $("#unit_label_" + element.UnitId).show();
+            $("#line_label_" + element.Id).show();
+          });
+        }
+      })
+    }
+    else{
+      $('.option.justone.location:checkbox').prop('checked', false);
+      $('.option.justone.unit:checkbox').prop('checked', false);
+      $(".unit_label").hide();
+      $(".line_label").hide();
+      $('.option.justone.line:radio').prop('checked', false);
+    }
+  }
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
   }
@@ -146,6 +173,9 @@ export class ModuleperformancehistComponent implements OnInit {
             _this.lineOptions = responsedata["lineMasterData"];
         }
     })
+  }
+  navigateToModulePerformane(){
+    this._router.navigate(['module-performance']);
   }
 
   createInwardHistoric(){

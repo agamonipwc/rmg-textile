@@ -12,7 +12,6 @@ import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
 import solidGauge from 'highcharts/modules/solid-gauge.src';
 import { SewingmoduleComponent } from './sewingmodule/sewingmodule.component';
-import {NgDatepickerModule} from 'ng2-datepicker';
 import { EfficiencyComponent } from './efficiency/efficiency.component';
 import { OperatorRecommendationComponent } from './operator-recommendation/operator-recommendation.component';
 import { DataTableModule } from "ng2-data-table";
@@ -67,8 +66,7 @@ export function highchartsModules() {
     BrowserModule, SharedModule, AppRoutingModule, FormsModule, HttpClientModule, 
     DataTableModule,
     HighchartsChartModule,
-    ChartModule,
-    NgDatepickerModule,
+    ChartModule
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } // add as factory to your providers

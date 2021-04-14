@@ -214,6 +214,10 @@ ngOnInit() {
     }
   }
 
+  navigateToDHUHistorical(){
+    this._router.navigate(['dhu-historic']);
+  }
+
   getMasterData(){
     var masterDataUrl = environment.backendUrl + "MasterData";
     var _this = this;

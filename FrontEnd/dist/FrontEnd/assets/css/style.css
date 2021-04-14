@@ -787,7 +787,7 @@ img, object, embed, video {
 	margin-right:10px;
 }
 .redtextsp{
-	color:#d04a02;
+	color:#aa2417;
 }
 .inputdeco a{
 	color:#717073;
@@ -811,7 +811,7 @@ img, object, embed, video {
 	padding:5px 10px;
 }
 .merunbutton{
-		 background: #d04a02;
+		 background: #aa2417;
 	border:none;
 	outline:none;
     color: #fff;
@@ -980,24 +980,24 @@ img, object, embed, video {
 
 .page-item.active .page-link {
 	color: #fff;
-	/*background-color: #d04a02 !important;
-	border-color: #d04a02 !important;*/
-	background-color: #d04a02 !important;
-	border-color: #d04a02 !important;
+	/*background-color: #aa2417 !important;
+	border-color: #aa2417 !important;*/
+	background-color: #aa2417 !important;
+	border-color: #aa2417 !important;
 }
 .table .thead-dark th{
 	color: #fff;
-	background-color: #d04a02 !important;
-	border-color: #d04a02 !important;
+	background-color: #aa2417 !important;
+	border-color: #aa2417 !important;
 }
 .fontawesom {
 	font-size: 1.1rem !important;
-	color: #d04a02 !important;
-	border-color: #d04a02 !important
+	color: #aa2417 !important;
+	border-color: #aa2417 !important
 }
 .table td, .table th {
-	border-top: 0px solid #d04a02 !important;
-	border-bottom: 0px solid #d04a02 !important;
+	border-top: 0px solid #aa2417 !important;
+	border-bottom: 0px solid #aa2417 !important;
 }
 .table td, .table th{
 	/*padding : 0rem !important;*/
@@ -1066,7 +1066,7 @@ body,html {*/
 /*Customize radion button*/
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
-	position: absolute;
+	/* position: relative; */
 	left: -9999px;
 }
 
@@ -1098,7 +1098,7 @@ body,html {*/
 			content: '';
 			width: 12px !important;
 			height: 12px !important;
-			background: #d04a02 !important;
+			background: #aa2417 !important;
 			position: absolute !important;
 			top: 4px !important;
 			left: 4px !important;
@@ -1124,11 +1124,11 @@ body,html {*/
 }
 .custom-button {
 	color: #ffffff;
-	background-color: #d04a02 !important;
-	border-color: #d04a02 !important;
+	background-color: #aa2417 !important;
+	border-color: #aa2417 !important;
 	border-radius: 0px !important;
-	border: #d04a02 !important;
-	outline-color: #d04a02 !important;
+	border: #aa2417 !important;
+	outline-color: #aa2417 !important;
 	height: 30px;
 	width: 150px;
 }
@@ -1157,7 +1157,7 @@ body,html {*/
 .sticky-note-ul .sticky-note-li .sticky-note-a {
 	text-decoration: none;
 	color: #ffffff;
-	background: #d04a02;
+	background: #aa2417;
 	display: block;
 	height: 20em;
 	width: 28em;
@@ -1201,7 +1201,7 @@ body,html {*/
 .dropp-header {
 	background: #ffffff;
 	color: #000;
-	border-bottom: 2px solid #d04a02;
+	border-bottom: 2px solid #aa2417;
 	-webkit-box-align: stretch;
 	-moz-box-align: stretch;
 	box-align: stretch;
@@ -1288,7 +1288,7 @@ body,html {*/
 	left: 25%;
 	width: 50%;
 	height: 15%;
-	background: #d04a02;
+	background: #aa2417;
 	-webkit-transform: rotate(-45deg);
 	-moz-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
@@ -1306,7 +1306,7 @@ body,html {*/
 }
 
 .dropp-header__btn.js-open {
-	background: #d04a02;
+	background: #aa2417;
 }
 
 .dropp-header__btn.js-open .icon {
@@ -1358,7 +1358,7 @@ body,html {*/
 
 .dropp-body label:hover,
 .dropp-body label.js-open {
-	background: #d04a02;
+	background: #aa2417;
 }
 
 .dropp-body label > input {
@@ -1378,21 +1378,21 @@ body,html {*/
 
 .confirm {
 	color: #ffffff !important;
-	background-color: #d04a02 !important;
-	border-color: #d04a02 !important;
+	background-color: #aa2417 !important;
+	border-color: #aa2417 !important;
 	border-radius: 0px !important;
-	border: #d04a02 !important;
-	outline-color: #d04a02 !important;
+	border: #aa2417 !important;
+	outline-color: #aa2417 !important;
 	height: 39px !important;
 	width: 130px !important;
 }
 .cancel {
 	color: #ffffff !important;
-	background-color: #d04a02 !important;
-	border-color: #d04a02 !important;
+	background-color: #aa2417 !important;
+	border-color: #aa2417 !important;
 	border-radius: 0px !important;
-	border: #d04a02 !important;
-	outline-color: #d04a02 !important;
+	border: #aa2417 !important;
+	outline-color: #aa2417 !important;
 	height: 39px !important;
 	width: 130px !important;
 }
@@ -1430,6 +1430,6 @@ select {
 }
 .dataTables_scrollHeadInner>table>thead {
 	color: #fff;
-	background-color: #d04a02 !important;
-	border-color: #d04a02 !important;
+	background-color: #aa2417 !important;
+	border-color: #aa2417 !important;
 }

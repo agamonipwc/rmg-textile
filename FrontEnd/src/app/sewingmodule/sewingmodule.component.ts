@@ -1036,6 +1036,9 @@ export class SewingmoduleComponent implements OnInit {
     });
     return recommendationName;
   }
+  navigateToSewingHistorical(){
+    this._router.navigate(['sewing-historical']);
+  }
   @ViewChild('TABLE') TABLE: ElementRef;  
   ExportToExcelLowEfficiency() {  
     var recommendationName = this.getRecommendationName();
