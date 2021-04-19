@@ -115,6 +115,7 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
+            visible : false,
             categories: categories
            
         },
@@ -141,7 +142,7 @@ export class SewingmodulehistComponent implements OnInit {
         series: [{
             name: 'Efficiency',
             data: data,
-            color: '#175d2d'
+            color: '#0060d7'
     
         }]
     });
@@ -163,6 +164,7 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
+            visible : false,
             categories: categories
         },
         yAxis: {
@@ -188,7 +190,7 @@ export class SewingmodulehistComponent implements OnInit {
         series: [{
             name: 'Capacity Utilization',
             data: data,
-            color: '#175d2d'
+            color: '#a43e50'
     
         }]
     });
@@ -211,6 +213,7 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
+            visible : false,
             categories: categories
            
         },
@@ -237,7 +240,7 @@ export class SewingmodulehistComponent implements OnInit {
         series: [{
             name: 'Inline WIP Level',
             data: data,
-            color: '#175d2d'
+            color: '#0060d7'
     
         }]
     });
@@ -260,6 +263,7 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
+            visible : false,
             categories: categories
            
         },
@@ -286,7 +290,7 @@ export class SewingmodulehistComponent implements OnInit {
         series: [{
             name: 'Machine Downtime',
             data: data,
-            color: '#175d2d'
+            color: '#a43e50'
     
         }]
     });
@@ -310,6 +314,7 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
+            visible : false,
             categories: categories
            
         },
@@ -336,7 +341,7 @@ export class SewingmodulehistComponent implements OnInit {
         series: [{
             name: 'DHU',
             data: data,
-            color: '#175d2d'
+            color: '#0060d7'
     
         }]
     });
@@ -359,6 +364,7 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
+            visible : false,
             categories: categories
            
         },
@@ -385,7 +391,7 @@ export class SewingmodulehistComponent implements OnInit {
         series: [{
             name: 'Defects %',
             data: data,
-            color: '#175d2d'
+            color: '#a43e50'
     
         }]
     });
@@ -408,6 +414,7 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
+            visible : false,
             categories: categories
            
         },
@@ -434,7 +441,7 @@ export class SewingmodulehistComponent implements OnInit {
         series: [{
             name: 'Rejection',
             data: data,
-            color: '#175d2d'
+            color: '#0060d7'
     
         }]
     });
@@ -457,6 +464,7 @@ export class SewingmodulehistComponent implements OnInit {
           enabled: false,
         },
         xAxis: {
+            visible : false,
             categories: categories
            
         },
@@ -483,7 +491,7 @@ export class SewingmodulehistComponent implements OnInit {
         series: [{
             name: 'Absentism',
             data: data,
-            color: '#175d2d'
+            color: '#a43e50'
     
         }]
     });

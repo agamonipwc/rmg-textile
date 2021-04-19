@@ -65,58 +65,52 @@
     <div class="row">
       <div class="col-9" style="height: 500px; overflow-y: scroll; overflow-x: hidden; background-color:#ffffff;">
         <div class="row align-items-center mt-1">
-          <div class="col-6" id="efficiencyVisual" style="height: auto; min-height: max-content;">
+          <div class="col-12" id="efficiencyVisual" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <!-- <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Efficiency %</button></div> -->
-              <!-- <div #efficiencyContainer style="height: 190px;"></div> -->
               <div [chart] = "efficiencyHistoric" style="height: 230px; width:auto"></div>
             </div>
           </div>
-          <div class="col-6" id="defectVisual" style=" height: auto; min-height: max-content;">
+          <div class="col-12" id="defectVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <!-- <div class="pb-2"><button class="custom-button" style="cursor: pointer;">Defect%</button></div> -->
-              <!-- <div #defectContainer style="height: 190px;"></div> -->
               <div [chart]="defectsHistoric" style="height: 230px; width:auto"></div>
             </div>
           </div>
         </div>
         <div class="row align-items-center mt-2">
-          <div class="col-6" id="capacityVisual" style="height: auto; min-height: max-content;">
+          <div class="col-12" id="rejectionVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <!-- <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Capacity Utilisation(Actual Vs Planned Prodctn.)">Capacity %</button></div> -->
-              <!-- <div #capacityUtilizationContainer style="height: 190px;"></div> -->
+              <div [chart]="rejectionHistoric" style="height: 230px; width:auto"></div>
+            </div>
+          </div>
+
+          <div class="col-12" id="capacityVisual" style="height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
               <div [chart] = "capacityHistoric" style="height: 230px; width:auto"></div>
             </div>
           </div>
-          <div class="col-6" id="absentismVisual" style=" height: auto; min-height: max-content;">
+          
+        </div>
+        <div class="row align-items-center mt-2">
+          <div class="col-12" id="dhuVisual" style=" height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div [chart]="dhuHistoric" style="height: 230px; width:auto"(click)="dhuHistoricalNavigation()"></div>
+            </div>
+          </div>
+          <div class="col-12" id="absentismVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart]="absentismHistoric" style="height: 230px; width:auto"></div>
             </div>
           </div>
         </div>
         <div class="row align-items-center mt-2">
-          <div class="col-6" id="rejectionVisual" style=" height: auto; min-height: max-content;">
-            <div class="d-flex flex-column">
-              <div [chart]="rejectionHistoric" style="height: 230px; width:auto"></div>
-            </div>
-          </div>
-          <div class="col-6" id="dhuVisual" style=" height: auto; min-height: max-content;">
-            <div class="d-flex flex-column">
-              <!-- <div class="pb-2"><button class="custom-button" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Defects Per Hundred Units">DHU</button></div> -->
-              <!-- <div #dhuContainer style="height: 190px;"></div> -->
-              <div [chart]="dhuHistoric" style="height: 230px; width:auto"(click)="dhuHistoricalNavigation()"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row align-items-center mt-2">
-          <div class="col-6" id="machineDowntimeVisual" style=" height: auto; min-height: max-content;">
-            <div class="d-flex flex-column">
-              <div [chart]="machineDowntimeHistoric" style="height: 230px; width:auto"></div>
-            </div>
-          </div>
-          <div class="col-6" id="wipVisual" style="height: auto; min-height: max-content;">
+          <div class="col-12" id="wipVisual" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart] = "wipHistoric" style="height: 230px; width:auto"></div>
+            </div>
+          </div>
+          <div class="col-12" id="machineDowntimeVisual" style=" height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div [chart]="machineDowntimeHistoric" style="height: 230px; width:auto"></div>
             </div>
           </div>
         </div>

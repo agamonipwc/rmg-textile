@@ -13,6 +13,7 @@ namespace RMGWebApi
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string MachineName { get; set; }
+        public string StyleName { get; set; }
         public string OperatorType { get; set; }
     }
 
@@ -131,6 +132,13 @@ namespace RMGWebApi
         public string DefectReason5 { get; set; }
     }
 
+    public class InlineWIPStyleViewModel
+    {
+        public double Line { get; set; }
+        public double Unit { get; set; }
+        public string Style { get; set; }
+        public double WIPData { get; set; }
+    }
     public class DefectViewModel
     {
         public double DefectCount { get; set; }
@@ -160,6 +168,16 @@ namespace RMGWebApi
         public double LineWIPPercentage { get; set; }
         public string LineName { get; set; }
         public string Unit { get; set; }
+        public double LineWIPActualValue { get; set; }
+    }
+
+    public class OperatorsLinewiseWIPViewModel
+    {
+        public string OperatorName { get; set; }
+        public string LineUnitName { get; set; }
+        public string Unit { get; set; }
+        public double LineWIPActualValue { get; set; }
+        public string StyleName { get; set; }
     }
 
     public class DHUViewModel

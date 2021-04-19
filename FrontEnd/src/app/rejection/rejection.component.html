@@ -184,14 +184,14 @@
       <div class="col-9">
         <div class="row mt-3">
           <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv" (click)="showStyleData()">Rejection % <i class="fas fa-caret-down"></i></button>
-          <div class="col-9">
-            <div id="rejectionLineDiv" [chart]= "rejectionLine" style="height: 280px; width: 550px"></div>
+          <div class="col-10">
+            <div id="rejectionLineDiv" [chart]= "rejectionLine" style="height: 280px; width: auto"></div>
           </div>
         </div>
         <div class="collapse ml-3" id="collapseOperationDiv">
           <div class="row mt-2" >
-            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Styles with Rejection</button>
-            <div class="col-9">
+            <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px">Styles with Rejection</button>
+            <div class="col-10">
               <div [chart]="styleRejectionBar" style="height: 200px; width: auto;"></div>
             </div>
           </div>

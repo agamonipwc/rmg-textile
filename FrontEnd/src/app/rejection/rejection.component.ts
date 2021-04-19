@@ -41,25 +41,6 @@ export class RejectionComponent implements OnInit {
   @ViewChild('dataTable') table;
   dataTable: any;
   recommendationData : any = [];
-  startDate : Date = new Date("01/25/2021");
-  endDate : Date = new Date("01/31/2021");
-  options: DatepickerOptions = {
-    locale: enLocale,
-    minYear: 1970,
-    maxYear: 2030,
-    displayFormat: 'MMM D[,] YYYY',
-    barTitleFormat: 'MMMM YYYY',
-    dayNamesFormat: 'dd',
-    firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-    minDate: this.startDate, // Minimal selectable date
-    // maxDate: new Date(Date.now()),  // Maximal selectable date
-    barTitleIfEmpty: 'Click to select a date',
-    placeholder: 'Click to select a date', // HTML input placeholder attribute (default: '')
-    addClass: 'form-control', // Optional, value to pass on to [ngClass] on the input field
-    addStyle: {}, // Optional, value to pass to [ngStyle] on the input field
-    fieldId: 'my-date-picker', // ID to assign to the input field. Defaults to datepicker-<counter>
-    useEmptyBarTitle: false, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown 
-};
 
   recommendationModalTitle : any = "";
   lineOptions : any = []
@@ -101,10 +82,10 @@ constructor(private http: HttpClient,private _router: Router) { }
 
   getFilterData(){
     var KPIView = {
-      Line : [1,2,3,4],
+      Line : [1,2],
       Location : [1,2],
       Unit : [1,2],
-      StartDate : "2021-01-27 00:00:00.000",
+      StartDate : "2021-01-01 00:00:00.000",
       EndDate : "2021-01-31 00:00:00.000",
     }
     this.calculateRejection(KPIView);
@@ -126,8 +107,13 @@ constructor(private http: HttpClient,private _router: Router) { }
           enabled: false,
         },
         xAxis: {
-            categories: responsedata["RejectionHistoricalCalculation"]["Value"]["categories"]
-          
+            categories: responsedata["RejectionHistoricalCalculation"]["Value"]["categories"],
+            labels: {
+              enabled: false
+            },
+            title: {
+              text: 'Daily Date'
+            },
         },
         yAxis: {
             title: {
@@ -306,9 +292,7 @@ constructor(private http: HttpClient,private _router: Router) { }
     var KPIView = {
       Line : checkedLines,
       Location : checkedLocations,
-      Unit : checkedUnits,
-      // StartDate : "2021-01-31 00:00:00.000",
-      // EndDate : "2021-01-31 00:00:00.000",
+      Unit : [1,2],
       StartDate : startDateTime,
       EndDate : endDateTime
     }

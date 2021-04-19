@@ -4,15 +4,15 @@
 
 
 //locally running
-// export const environment = {
-//   production: false,
-//   backendUrl : "http://localhost:53327/api/"
-// };
-
 export const environment = {
-  production: true,
-  backendUrl : "https://rmg-web-api.azurewebsites.net/api/"
+  production: false,
+  backendUrl : "http://localhost:53327/api/"
 };
+
+// export const environment = {
+//   production: true,
+//   backendUrl : "https://rmg-web-api.azurewebsites.net/api/"
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file

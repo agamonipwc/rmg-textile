@@ -165,6 +165,7 @@ export class SewingmoduleComponent implements OnInit {
           },
           xAxis: {
               type: 'category',
+              visible : false,
               labels: {
                   rotation: -45,
                   style: {
@@ -175,6 +176,7 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
+              visible : false,
               min: 0,
               max: 100,
               title: {
@@ -232,6 +234,7 @@ export class SewingmoduleComponent implements OnInit {
               style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display':'none'}
           },
           xAxis: {
+              visible : false,
               type: 'category',
               labels: {
                   rotation: -45,
@@ -243,6 +246,7 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
+              visible : false,
               min: 0,
               max: 100,
               title: {
@@ -299,6 +303,7 @@ export class SewingmoduleComponent implements OnInit {
               style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
           },
           xAxis: {
+              visible : false,
               type: 'category',
               labels: {
                   rotation: -45,
@@ -310,6 +315,7 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
+              visible : false,
               min: 0,
               max: 5,
               title: {
@@ -350,73 +356,6 @@ export class SewingmoduleComponent implements OnInit {
           }]
         });
 
-        // Highcharts.chart(this.mmrContainer.nativeElement, {
-        //   colors: [
-        //     responsedata["ManMachineRatio"]["Value"]["mmrColorCode"]
-        //   ],
-        //   exporting: {
-        //     enabled: false
-        //   },
-        //   credits: {enabled: false},
-        //   chart: {
-        //     type: 'column'
-        //   },
-        //   title: {
-        //       text: 'Man Machine Ratio',
-        //       style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
-        //   },
-        //   xAxis: {
-        //       type: 'category',
-        //       labels: {
-        //           rotation: -45,
-        //           style: {
-        //               fontSize: '10px',
-        //               'font-family': 'Arial, Helvetica'
-        //           },
-        //           enabled : false
-        //       }
-        //   },
-        //   yAxis: {
-        //       min: 0,
-        //       max : 2,
-        //       title: {
-        //           text: 'Value',
-        //           enabled : false
-        //       },
-        //       labels: {
-        //         style: {
-        //             fontSize: '10px',
-        //             'font-family': 'Arial, Helvetica'
-        //         }
-        //     }
-        //   },
-        //   legend: {
-        //       enabled: false
-        //   },
-        //   tooltip: {
-        //       pointFormat: 'MMR: <b>{point.y:.1f}</b>',
-        //       enabled: false,
-        //   },
-        //   series: [{
-        //       name: 'MMR',
-        //       data: [
-        //         responsedata["ManMachineRatio"]["Value"]["mmrResponse"]
-        //       ],
-        //       dataLabels: {
-        //           enabled: true,
-        //           
-        //           color: '#000000',
-        //           align: 'right',
-        //           format: '{point.y:.1f}', // one decimal
-        //           y: 10, // 10 pixels down from the top
-        //           style: {
-        //               fontSize: '10px',
-        //               fontFamily: 'Verdana, sans-serif'
-        //           }
-        //       }
-        //   }]
-        // });
-        
         Highcharts.chart(this.machineDowntimeContainer.nativeElement, {
           colors: [
             responsedata["MachineDownTime"]["Value"]["machineDowntimeColorCode"]
@@ -433,6 +372,7 @@ export class SewingmoduleComponent implements OnInit {
               style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
           },
           xAxis: {
+              visible : false,
               type: 'category',
               labels: {
                   rotation: -45,
@@ -444,6 +384,7 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
+              visible : false,
               min: 0,
               max: 20,
               title: {
@@ -517,6 +458,7 @@ export class SewingmoduleComponent implements OnInit {
               style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
           },
           xAxis: {
+              visible : false,
               type: 'category',
               labels: {
                   rotation: -45,
@@ -528,6 +470,7 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
+              visible : false,
               min: 0,
               max: 13,
               title: {
@@ -585,6 +528,7 @@ export class SewingmoduleComponent implements OnInit {
               style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
           },
           xAxis: {
+              visible : false,
               type: 'category',
               labels: {
                   rotation: -45,
@@ -596,6 +540,7 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
+              visible : false,
               min: 0,
               max : 15,
               title: {
@@ -653,6 +598,7 @@ export class SewingmoduleComponent implements OnInit {
               style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display':'none'}
           },
           xAxis: {
+              visible : false,
               type: 'category',
               labels: {
                   rotation: -45,
@@ -664,6 +610,7 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
+              visible : false,
               min: 0,
               max:50,
               title: {
@@ -721,6 +668,7 @@ export class SewingmoduleComponent implements OnInit {
               style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display':'none'}
           },
           xAxis: {
+              visible : false,
               type: 'category',
               labels: {
                   rotation: -45,
@@ -732,6 +680,7 @@ export class SewingmoduleComponent implements OnInit {
               }
           },
           yAxis: {
+              visible : false,
               min: 0,
               max : 100,
               title: {

@@ -16,6 +16,7 @@ namespace Entities.DataModels
         public double Location { get; set; }
         public double Unit { get; set; }
         public double Line { get; set; }
+        public string Style { get; set; }
         public double WorkingMins { get; set; }
         public string Operation { get; set; }
         public string Category { get; set; }

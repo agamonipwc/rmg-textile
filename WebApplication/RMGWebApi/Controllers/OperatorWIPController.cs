@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RMGWebApi.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,31 +23,48 @@ namespace RMGWebApi.Controllers
         {
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
             DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
-            List<ProductionViewModel> inlineWIPLineWiseDataList = new List<ProductionViewModel>();
+            List<OperatorsLinewiseWIPViewModel> inlineWIPLineWiseDataList = new List<OperatorsLinewiseWIPViewModel>();
             if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
             {
-                inlineWIPLineWiseDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line, x.Unit, x.Name }).Select(grp => new ProductionViewModel
+                inlineWIPLineWiseDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line) && x.Style == kpiViewModel.StyleName).GroupBy(x => new { x.Style, x.Line, x.Unit, x.Name }).Select(grp => new OperatorsLinewiseWIPViewModel
                 {
-                    WIPData = grp.Average(x => x.WIP),
+                    LineWIPActualValue = grp.Average(x => x.WIP),
                     OperatorName = grp.Key.Name,
-                    Line = grp.Key.Line,
-                    Unit = grp.Key.Unit
+                    LineUnitName = string.Join("","Line",grp.Key.Line,"Unit",grp.Key.Unit),
+                    StyleName = grp.Key.Style,
+                    
                 }).ToList();
             }
-            var groupedInlineWIPList = inlineWIPLineWiseDataList.GroupBy(u => new { u.Line, u.Unit }).Select(grp => grp.OrderByDescending(x=> x.WIPData).Take(3).ToList()).ToList();
-            List<string> categories = new List<string>();
-            foreach(var element in groupedInlineWIPList)
+            List<string> lineUnitNames = new List<string>();
+            lineUnitNames = inlineWIPLineWiseDataList.Select(x => x.LineUnitName).Distinct().ToList();
+            var groupedInlineWIPList = inlineWIPLineWiseDataList.OrderByDescending(x => x.LineWIPActualValue).Take(3).ToList();
+            List<DHUTopFiveDefects> inlineWIPOperatorsDataList = new List<DHUTopFiveDefects>();
+            
+            for(int outerIndex = 0; outerIndex < groupedInlineWIPList.Count; outerIndex++)
             {
-                //string lineName = "Line_" + element.Select(x => x.Line).FirstOrDefault() + "_Unit_" + element.Select(x => x.Unit).FirstOrDefault();
-                //categories.Add(lineName);
-                foreach (var innerElement in element)
+                List<double> data = new List<double>();
+                for (int innerIndex = 0; innerIndex < lineUnitNames.Count; innerIndex++)
                 {
-
+                    if(groupedInlineWIPList[outerIndex].LineUnitName == lineUnitNames[innerIndex])
+                    {
+                        data.Add(Math.Round(groupedInlineWIPList[outerIndex].LineWIPActualValue));
+                    }
+                    else
+                    {
+                        data.Add(0);
+                    }
                 }
+                inlineWIPOperatorsDataList.Add(new DHUTopFiveDefects
+                {
+                    name = groupedInlineWIPList[outerIndex].OperatorName,
+                    data = data,
+                    color = CustomizeColorCode.GetRandomColors()
+                });
             }
             return Json(new
             {
-                
+                inlineWIPOperatorsDataList = inlineWIPOperatorsDataList,
+                categories = lineUnitNames
             }); ;
         }
     }
