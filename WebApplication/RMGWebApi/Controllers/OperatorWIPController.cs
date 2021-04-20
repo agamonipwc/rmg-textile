@@ -26,18 +26,18 @@ namespace RMGWebApi.Controllers
             List<OperatorsLinewiseWIPViewModel> inlineWIPLineWiseDataList = new List<OperatorsLinewiseWIPViewModel>();
             if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
             {
-                inlineWIPLineWiseDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line) && x.Style == kpiViewModel.StyleName).GroupBy(x => new { x.Style, x.Line, x.Unit, x.Name }).Select(grp => new OperatorsLinewiseWIPViewModel
+                inlineWIPLineWiseDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line) && x.Style == kpiViewModel.StyleName).GroupBy(x => new { x.Line, x.Unit, x.Name }).Select(grp => new OperatorsLinewiseWIPViewModel
                 {
-                    LineWIPActualValue = grp.Average(x => x.WIP),
+                    LineWIPLevelValue = Math.Round((grp.Average(x => x.WIP) / (grp.Average(x => x.Production) / 8)), 2),
+                    LineWIPActualValue = Math.Round(grp.Average(x => x.WIP),2),
                     OperatorName = grp.Key.Name,
                     LineUnitName = string.Join("","Line",grp.Key.Line,"Unit",grp.Key.Unit),
-                    StyleName = grp.Key.Style,
-                    
+                    StyleName = kpiViewModel.StyleName,
                 }).ToList();
-            }
+            }   
             List<string> lineUnitNames = new List<string>();
             lineUnitNames = inlineWIPLineWiseDataList.Select(x => x.LineUnitName).Distinct().ToList();
-            var groupedInlineWIPList = inlineWIPLineWiseDataList.OrderByDescending(x => x.LineWIPActualValue).Take(3).ToList();
+            var groupedInlineWIPList = inlineWIPLineWiseDataList.Where(x=> x.LineWIPLevelValue >= 1).OrderByDescending(x => x.LineWIPLevelValue).ToList();
             List<DHUTopFiveDefects> inlineWIPOperatorsDataList = new List<DHUTopFiveDefects>();
             
             for(int outerIndex = 0; outerIndex < groupedInlineWIPList.Count; outerIndex++)
@@ -47,7 +47,7 @@ namespace RMGWebApi.Controllers
                 {
                     if(groupedInlineWIPList[outerIndex].LineUnitName == lineUnitNames[innerIndex])
                     {
-                        data.Add(Math.Round(groupedInlineWIPList[outerIndex].LineWIPActualValue));
+                        data.Add(Math.Round(groupedInlineWIPList[outerIndex].LineWIPLevelValue));
                     }
                     else
                     {

@@ -177,7 +177,9 @@ namespace RMGWebApi
         public string LineUnitName { get; set; }
         public string Unit { get; set; }
         public double LineWIPActualValue { get; set; }
+        public double LineWIPLevelValue { get; set; }
         public string StyleName { get; set; }
+        //public int GroupCount { get; set; }
     }
 
     public class DHUViewModel

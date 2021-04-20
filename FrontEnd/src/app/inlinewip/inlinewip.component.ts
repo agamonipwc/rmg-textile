@@ -185,7 +185,7 @@ export class InlinewipComponent implements OnInit {
                     text: 'Operator Inline WIP'
                 },
                 stackLabels: {
-                    enabled: true,
+                    enabled: false,
                     style: {
                         fontWeight: 'bold',
                         color: ( // theme
@@ -236,7 +236,7 @@ export class InlinewipComponent implements OnInit {
                     text: 'Operator Inline WIP'
                 },
                 stackLabels: {
-                    enabled: true,
+                    enabled: false,
                     style: {
                         fontWeight: 'bold',
                         color: ( // theme
@@ -288,7 +288,7 @@ export class InlinewipComponent implements OnInit {
                     text: 'Operator Inline WIP'
                 },
                 stackLabels: {
-                    enabled: true,
+                    enabled: false,
                     style: {
                         fontWeight: 'bold',
                         color: ( // theme
@@ -340,7 +340,7 @@ export class InlinewipComponent implements OnInit {
                     text: 'Operator Inline WIP'
                 },
                 stackLabels: {
-                    enabled: true,
+                    enabled: false,
                     style: {
                         fontWeight: 'bold',
                         color: ( // theme
