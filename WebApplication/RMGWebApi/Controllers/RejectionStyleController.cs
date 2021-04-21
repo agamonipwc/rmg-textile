@@ -46,7 +46,16 @@ namespace RMGWebApi.Controllers
             foreach(var element in query)
             {
                 categories.Add(element.StyleName);
-                if (element.efficiency >= 3 && element.efficiency <= 5)
+
+                if (element.efficiency < 2)
+                {
+                    rejectionStyleDataModel.Add(new RejectionStyleDataModel
+                    {
+                        y = element.efficiency,
+                        color = "#175d2d"
+                    });
+                }
+                if (element.efficiency >= 2 && element.efficiency <= 5)
                 {
                     rejectionStyleDataModel.Add(new RejectionStyleDataModel
                     {
@@ -54,22 +63,6 @@ namespace RMGWebApi.Controllers
                         color = "#ffb600"
                     });
                 }
-                //if(element.efficiency < 2)
-                //{
-                //    rejectionStyleDataModel.Add(new RejectionStyleDataModel
-                //    {
-                //        y = element.efficiency,
-                //        color = "#175d2d"
-                //    });
-                //}
-                //if (element.efficiency >= 2 && element.efficiency <= 5)
-                //{
-                //    rejectionStyleDataModel.Add(new RejectionStyleDataModel
-                //    {
-                //        y = element.efficiency,
-                //        color = "#ffb600"
-                //    });
-                //}
                 if (element.efficiency > 5 && element.efficiency <= 15)
                 {
                     rejectionStyleDataModel.Add(new RejectionStyleDataModel

@@ -91,12 +91,25 @@ export class InlinewipComponent implements OnInit {
     this.calculateWIPStyleWise(this.KPIView);
   }
 
-  getRandomColor() {
+  getRandomColor(lineUnitName) {
     var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+    var color = "";
+    var colorArray = ["#933401","#c28a00", "#a43e50", "#aa2417", "#ae6800", "#deb8ff", "#2c8646", "#0060d7"];
+    if(lineUnitName == "Line1 Unit1"){
+        color = colorArray[6];
     }
+    else if(lineUnitName == "Line1 Unit2"){
+        color = colorArray[1];
+    }
+    else if(lineUnitName == "Line2 Unit2"){
+        color = colorArray[2];
+    }
+    else if(lineUnitName == "Line2 Unit1"){
+        color = colorArray[7];
+    }
+    // for (var i = 0; i < 6; i++) {
+    //   color += letters[Math.floor(Math.random() * 16)];
+    // }
     return color;
   }
   
@@ -114,50 +127,50 @@ export class InlinewipComponent implements OnInit {
         _this.StyleA3Name = responsedata["data"][2]["StyleName"];
         _this.StyleA4Name = responsedata["data"][3]["StyleName"];
         responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+            var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
             _this.StyleA1.push({
                 lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
                 styleDate :{
                     'width' : element.LineWIPPercentage.toString() + "%",
-                    'background-color' : _this.getRandomColor()
+                    'background-color' : _this.getRandomColor(lineUnitName)
                 },
                 actualWIPValue : element.LineWIPActualValue.toString()
             })
         });
         responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+            var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
             _this.StyleA2.push({
                 lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
                 styleDate :{
                     'width' : element.LineWIPPercentage.toString() + "%",
-                    'background-color' : _this.getRandomColor()
+                    'background-color' : _this.getRandomColor(lineUnitName)
                 },
                 actualWIPValue : element.LineWIPActualValue.toString()
             })
         });
         responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+            var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
             _this.StyleA3.push({
                 lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
                 styleDate :{
                     'width' : element.LineWIPPercentage.toString() + "%",
-                    'background-color' : _this.getRandomColor()
+                    'background-color' : _this.getRandomColor(lineUnitName)
                 },
                 actualWIPValue : element.LineWIPActualValue.toString()
             })
         });
         responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+            var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
             _this.StyleA4.push({
                 lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
                 styleDate :{
                     'width' : element.LineWIPPercentage.toString() + "%",
-                    'background-color' : _this.getRandomColor()
+                    'background-color' : _this.getRandomColor(lineUnitName)
                 },
                 actualWIPValue : element.LineWIPActualValue.toString()
             })
         });
     })
-    // this.calculateOperatorWIPStyleA(KPIView);
-    // this.calculateOperatorWIPStyleB(KPIView);
-    // this.calculateOperatorWIPStyleC(KPIView);
-    // this.calculateOperatorWIPStyleD(KPIView);
   }
 
   calculateOperatorWIPStyleA(styleName){
@@ -165,6 +178,13 @@ export class InlinewipComponent implements OnInit {
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
     this.http.post<any>(url, this.KPIView).subscribe(responsedata => {
+        responsedata["inlineWIPOperatorsDataList"].forEach(outerElement => {
+            for(var index = 0; index < outerElement["data"].length; index++){
+                if(outerElement["data"][index] == 0){
+                    outerElement["data"][index] = null;
+                }
+            }
+        });
         _this.OpWIPStyleA = new Chart({
             chart: {
                 type: 'column'
@@ -184,6 +204,7 @@ export class InlinewipComponent implements OnInit {
                 title: {
                     text: 'Operator Inline WIP'
                 },
+                // visible : false,
                 stackLabels: {
                     enabled: false,
                     style: {
@@ -197,13 +218,16 @@ export class InlinewipComponent implements OnInit {
             },
             tooltip: {
                 headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total WIP: {point.stackTotal}'
+                pointFormat: '<b>{series.name}</b> has WIP Level : {point.y}<br/>'
             },
+            legend: {
+                enabled: false
+             },
             plotOptions: {
                 column: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: true
+                        enabled: false
                     }
                 }
             },
@@ -216,6 +240,13 @@ export class InlinewipComponent implements OnInit {
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
     this.http.post<any>(url, this.KPIView).subscribe(responsedata => {
+        responsedata["inlineWIPOperatorsDataList"].forEach(outerElement => {
+            for(var index = 0; index < outerElement["data"].length; index++){
+                if(outerElement["data"][index] == 0){
+                    outerElement["data"][index] = null;
+                }
+            }
+        });
         _this.OpWIPStyleB = new Chart({
             chart: {
                 type: 'column'
@@ -232,6 +263,7 @@ export class InlinewipComponent implements OnInit {
             credits: {enabled: false},
             yAxis: {
                 min: 0,
+                // visible : false,
                 title: {
                     text: 'Operator Inline WIP'
                 },
@@ -248,13 +280,16 @@ export class InlinewipComponent implements OnInit {
             },
             tooltip: {
                 headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total WIP: {point.stackTotal}'
+                pointFormat: '{series.name} has WIP Level : {point.y}<br/>'
             },
+            legend: {
+                enabled: false
+             },
             plotOptions: {
                 column: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: true
+                        enabled: false
                     }
                 }
             },
@@ -268,6 +303,13 @@ export class InlinewipComponent implements OnInit {
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
     this.http.post<any>(url, this.KPIView).subscribe(responsedata => {
+        responsedata["inlineWIPOperatorsDataList"].forEach(outerElement => {
+            for(var index = 0; index < outerElement["data"].length; index++){
+                if(outerElement["data"][index] == 0){
+                    outerElement["data"][index] = null;
+                }
+            }
+        });
         _this.OpWIPStyleC = new Chart({
             chart: {
                 type: 'column'
@@ -287,6 +329,7 @@ export class InlinewipComponent implements OnInit {
                 title: {
                     text: 'Operator Inline WIP'
                 },
+                // visible : false,
                 stackLabels: {
                     enabled: false,
                     style: {
@@ -300,13 +343,16 @@ export class InlinewipComponent implements OnInit {
             },
             tooltip: {
                 headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total WIP: {point.stackTotal}'
+                pointFormat: '{series.name} has WIP Level : {point.y}<br/>'
+            },
+            legend: {
+                enabled: false
             },
             plotOptions: {
                 column: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: true
+                        enabled: false
                     }
                 }
             },
@@ -320,6 +366,13 @@ export class InlinewipComponent implements OnInit {
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
     this.http.post<any>(url, this.KPIView).subscribe(responsedata => {
+        responsedata["inlineWIPOperatorsDataList"].forEach(outerElement => {
+            for(var index = 0; index < outerElement["data"].length; index++){
+                if(outerElement["data"][index] == 0){
+                    outerElement["data"][index] = null;
+                }
+            }
+        });
         _this.OpWIPStyleD = new Chart({
             chart: {
                 type: 'column'
@@ -339,6 +392,7 @@ export class InlinewipComponent implements OnInit {
                 title: {
                     text: 'Operator Inline WIP'
                 },
+                // visible : false,
                 stackLabels: {
                     enabled: false,
                     style: {
@@ -352,13 +406,16 @@ export class InlinewipComponent implements OnInit {
             },
             tooltip: {
                 headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total WIP: {point.stackTotal}'
+                pointFormat: '{series.name} has WIP Level : {point.y}<br/>'
+            },
+            legend: {
+                enabled: false
             },
             plotOptions: {
                 column: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: true
+                        enabled: false
                     }
                 }
             },

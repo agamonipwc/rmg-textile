@@ -97,8 +97,8 @@ export class MachinedowntimehistComponent implements OnInit {
         },
         credits: {enabled: false},
         xAxis: {
-            categories: responsedata["categories"]
-          
+            categories: responsedata["categories"],
+            visible : false
         },
         yAxis: {
             title: {

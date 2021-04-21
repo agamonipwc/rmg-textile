@@ -47,7 +47,7 @@ namespace RMGWebApi.Controllers
                 {
                     if(groupedInlineWIPList[outerIndex].LineUnitName == lineUnitNames[innerIndex])
                     {
-                        data.Add(Math.Round(groupedInlineWIPList[outerIndex].LineWIPLevelValue));
+                        data.Add(Math.Round(groupedInlineWIPList[outerIndex].LineWIPLevelValue, 2));
                     }
                     else
                     {

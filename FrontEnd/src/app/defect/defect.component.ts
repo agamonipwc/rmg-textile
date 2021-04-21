@@ -9,6 +9,7 @@ import * as enLocale from 'date-fns/locale/en';
 import * as  Highcharts from 'highcharts';
 import { Router } from '@angular/router';
 import { Chart } from 'angular-highcharts';
+import * as XLSX from 'xlsx';  
 declare var require: any;
 const More = require('highcharts/highcharts-more');
 More(Highcharts);
@@ -35,48 +36,14 @@ export class DefectComponent implements OnInit {
     @ViewChild("efficiencyContainer", { read: ElementRef }) efficiencyContainer: ElementRef;
     @ViewChild("dhuRejectDefectContainer", { read: ElementRef }) dhuRejectDefectContainer: ElementRef;
     @ViewChild('dataTable') table;
+    @ViewChild('TABLE') TABLE: ElementRef;  
+    @ViewChild('LowEfficiencyOperatorsTable') LowEfficiencyOperatorsTable: ElementRef;  
+    @ViewChild('ModerateEfficiencyTable') ModerateEfficiencyTable: ElementRef;  
+    @ViewChild('ModerateEfficiencyOperatorsTable') ModerateEfficiencyOperatorsTable: ElementRef; 
+    @ViewChild('HighEfficiencyOperatorsTable') HighEfficiencyOperatorsTable: ElementRef; 
     dataTable: any;
     recommendationData : any = [];
-    year :any = [
-      {id: 2019, name: '2019'},
-      {id: 2021, name: '2021'},
-      {id: 2022, name: '2022'}
-    ]
-    startDate : Date = new Date("01/25/2021");
-    endDate : Date = new Date("01/31/2021");
-    options: DatepickerOptions = {
-      locale: enLocale,
-      minYear: 1970,
-      maxYear: 2030,
-      displayFormat: 'MMM D[,] YYYY',
-      barTitleFormat: 'MMMM YYYY',
-      dayNamesFormat: 'dd',
-      firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-      minDate: this.startDate, // Minimal selectable date
-      // maxDate: new Date(Date.now()),  // Maximal selectable date
-      barTitleIfEmpty: 'Click to select a date',
-      placeholder: 'Click to select a date', // HTML input placeholder attribute (default: '')
-      addClass: 'form-control', // Optional, value to pass on to [ngClass] on the input field
-      addStyle: {}, // Optional, value to pass to [ngStyle] on the input field
-      fieldId: 'my-date-picker', // ID to assign to the input field. Defaults to datepicker-<counter>
-      useEmptyBarTitle: false, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown 
-  };
-
     recommendationModalTitle : any = "";
-    month : any = [
-      {id: 1, name: 'January'},
-      {id: 2, name: 'February'},
-      {id: 3, name: 'March'},
-      {id: 4, name: 'April'},
-      {id: 5, name: 'May'},
-      {id: 6, name: 'June'},
-      {id: 7, name: 'July'},
-      {id: 8, name: 'August'},
-      {id: 9, name: 'September'},
-      {id: 10, name: 'October'},
-      {id: 11, name: 'November'},
-      {id: 12, name: 'December'},
-    ]
     lineOptions : any = []
     unitOptions : any = [];
     locationOptions : any = [];
@@ -294,6 +261,9 @@ export class DefectComponent implements OnInit {
           SubReasons : element["SubReasons"],
         });
       });
+      _this.getOperatorsName('Low');
+      _this.getOperatorsName('Moderate');
+      _this.getOperatorsName('High');
       // _this.recommendationData = responsedata;
     })
   }
@@ -315,5 +285,35 @@ export class DefectComponent implements OnInit {
         });
       });
     })
+  }
+  ExportToExcelLowEfficiency() {  
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.TABLE.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Low_Absentism.xlsx');  
+  }  
+  ExportToExcelLowOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.LowEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Low_Absentism_Operators.xlsx');  
+  }
+  ExportToExcelModerateEfficiency(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Absentism.xlsx');  
+  }
+  ExportToExcelModerateOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Absentism_Operators.xlsx');  
+  }
+  ExportToExcelHighOperators(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Moderate_Absentism_Operators.xlsx');  
   }
 }

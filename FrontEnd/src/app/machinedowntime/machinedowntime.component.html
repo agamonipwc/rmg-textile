@@ -313,7 +313,12 @@
         <a style="font-weight: bold; cursor: pointer;" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('206,207,208,209')">Show Recommendations</a>
       </div>
     </div>
-    <div class="row mt-3">
+    <div class="row" style="text-align: center;">
+      <div class="col-8">
+        <h6 style="font-size: 12px; font-style: italic; color: blue;">Note: Please click on blue icon to drill down further</h6>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-9" style="background-color: #ffffff; height: 480px;">
         <div class="row mt-3">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" >Total Downtime</button>
@@ -325,7 +330,7 @@
         </div>
         
         <div class="row mt-3">
-          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Machine Downtime  <i class="fas fa-caret-down"></i></button>
+          <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Machine Downtime  <i class="fas fa-caret-down" style="color: blue;"></i></button>
           <div class="col-9">
             <div class="progress" style="height:30px">
               <div class="progress-bar" [ngStyle]=totalMachineDownTimeStyle>{{totalMachineDownTime}}</div>
@@ -341,30 +346,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="row mt-3">
-            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="modal" data-target="#historicMCDowntimeModal">Machine 2  <i class="fas fa-bar-chart"></i></button>
-            <div class="col-9">
-              <div class="progress" style="height:30px">
-                <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="modal" data-target="#historicMCDowntimeModal">Machine 3  <i class="fas fa-bar-chart"></i></button>
-            <div class="col-9">
-              <div class="progress" style="height:30px">
-                <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">80</div>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="modal" data-target="#historicMCDowntimeModal">Machine 4  <i class="fas fa-bar-chart"></i></button>
-            <div class="col-9">
-              <div class="progress" style="height:30px">
-                <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">80</div>
-              </div>
-            </div>
-          </div> -->
         </div>
         <div class="row mt-3">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Feeding Downtime</button>

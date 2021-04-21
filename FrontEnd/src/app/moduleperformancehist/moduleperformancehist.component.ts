@@ -131,10 +131,14 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
-           
+            '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
+            '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+            visible : false
         },
+        exporting: {
+            enabled: false
+          },
+          credits: {enabled: false},
         yAxis: {
             title: {
                 text: 'Efficiency'
@@ -191,10 +195,15 @@ export class ModuleperformancehistComponent implements OnInit {
         labels: {
           enabled: false,
         },
+        exporting: {
+            enabled: false
+          },
+        credits: {enabled: false},
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
     '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+    '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+            visible : false
         },
         yAxis: {
             title: {
@@ -240,10 +249,15 @@ export class ModuleperformancehistComponent implements OnInit {
         labels: {
           enabled: false,
         },
+        exporting: {
+            enabled: false
+          },
+        credits: {enabled: false},
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+            '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
+            '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+            visible : false
         },
         yAxis: {
             title: {
@@ -283,13 +297,18 @@ export class ModuleperformancehistComponent implements OnInit {
             text: 'Fabric & Trim Store Performance',
             style: {'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none'}
         },
+        exporting: {
+            enabled: false
+          },
+        credits: {enabled: false},
         labels: {
           enabled: false,
         },
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+            '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
+            '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+            visible : false
         },
         yAxis: {
             title: {
@@ -332,10 +351,15 @@ export class ModuleperformancehistComponent implements OnInit {
         labels: {
           enabled: false,
         },
+        exporting: {
+            enabled: false
+          },
+        credits: {enabled: false},
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+            '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
+            '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+            visible : false
         },
         yAxis: {
             title: {
@@ -378,10 +402,15 @@ export class ModuleperformancehistComponent implements OnInit {
         labels: {
           enabled: false,
         },
+        exporting: {
+            enabled: false
+          },
+        credits: {enabled: false},
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+            '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
+            '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+            visible : false
         },
         yAxis: {
             title: {
@@ -424,10 +453,15 @@ export class ModuleperformancehistComponent implements OnInit {
         labels: {
           enabled: false,
         },
+        exporting: {
+            enabled: false
+          },
+        credits: {enabled: false},
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
     '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+    '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+    visible : false
         },
         yAxis: {
             title: {
@@ -473,9 +507,14 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+            '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
+            '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+            visible : false
         },
+        exporting: {
+            enabled: false
+          },
+        credits: {enabled: false},
         yAxis: {
             title: {
                 text: 'Efficiency'
@@ -520,9 +559,14 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+            '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
+            '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+            visible : false
         },
+        exporting: {
+            enabled: false
+          },
+          credits: {enabled: false},
         yAxis: {
             title: {
                 text: 'Efficiency'
@@ -567,9 +611,14 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         xAxis: {
             categories: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021','07/01/2021', 
-    '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
-    '12/01/2021','13/01/2021','14/01/2021','15/01/2021']
+        '08/01/2021', '09/01/2021', '10/01/2021', '11/01/2021', 
+        '12/01/2021','13/01/2021','14/01/2021','15/01/2021'],
+        visible : false
         },
+        exporting: {
+            enabled: false
+          },
+        credits: {enabled: false},
         yAxis: {
             title: {
                 text: 'Efficiency'

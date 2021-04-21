@@ -158,8 +158,8 @@ ngOnInit() {
         },
         credits: {enabled: false},
         xAxis: {
-          categories: responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["categories"]
-          
+          categories: responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["categories"],
+          visible : false
         },
         yAxis: {
             title: {

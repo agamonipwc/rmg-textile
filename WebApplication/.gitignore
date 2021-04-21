@@ -1,1 +1,4 @@
 \.vs
+\RMGWebApi\appsettings.json
+\RMGWebApi\appsettings.Development.json
+\RMGWebApi\.vs
