@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import * as $ from '../../assets/lib/jquery/dist/jquery.js';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { DatepickerOptions } from 'ng2-datepicker';
-import * as enLocale from 'date-fns/locale/en';
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+// import 'sweetalert2/src/sweetalert2.scss'
 import * as  Highcharts from 'highcharts';
 import  More from 'highcharts/highcharts-more';
 More(Highcharts);
@@ -36,23 +36,6 @@ export class SewingmoduleComponent implements OnInit {
  
   startDate : Date;
   endDate : Date;
-  options: DatepickerOptions = {
-    locale: enLocale,
-    minYear: 1970,
-    maxYear: 2030,
-    displayFormat: 'MMM D[,] YYYY',
-    barTitleFormat: 'MMMM YYYY',
-    dayNamesFormat: 'dd',
-    firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-    minDate: new Date(Date.now()), // Minimal selectable date
-    // maxDate: new Date(Date.now()),  // Maximal selectable date
-    barTitleIfEmpty: 'Click to select a date',
-    placeholder: 'Click to select a date', // HTML input placeholder attribute (default: '')
-    addClass: 'form-control', // Optional, value to pass on to [ngClass] on the input field
-    addStyle: {}, // Optional, value to pass to [ngStyle] on the input field
-    fieldId: 'my-date-picker', // ID to assign to the input field. Defaults to datepicker-<counter>
-    useEmptyBarTitle: false, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown 
-  };
 
   lineOptions : any = []
   unitOptions : any = [];
@@ -75,6 +58,7 @@ export class SewingmoduleComponent implements OnInit {
    }
 
   ngOnInit() {
+    // Swal.fire('Hello Angular');  
     $("#topnavbar").hide();
     $("#footer").css("margin-left", "15%");
     this.selectAllOptions();
@@ -83,56 +67,56 @@ export class SewingmoduleComponent implements OnInit {
     this.getMasterKPIData();
     $("#footer").hide();
     $(".footer").hide();
-  var textWrapper = document.querySelector('.ml1 .letters');
-  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    // var textWrapper = document.querySelector('.ml1 .letters');
+    // textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-    anime.timeline({loop: true})
-    .add({
-        targets: '.ml1 .letter',
-        scale: [0.3,1],
-        opacity: [0,1],
-        translateZ: 0,
-        easing: "easeOutExpo",
-        duration: 600,
-        delay: (el, i) => 70 * (i+1)
-    }).add({
-        targets: '.ml1 .line',
-        scaleX: [0,1],
-        opacity: [0.5,1],
-        easing: "easeOutExpo",
-        duration: 700,
-        offset: '-=875',
-        delay: (el, i, l) => 80 * (l - i)
-    }).add({
-        targets: '.ml1',
-        opacity: 0,
-        duration: 1000,
-        easing: "easeOutExpo",
-        delay: 1000
-    });
-    $(function() {
-      // Hide all lists except the outermost.
-      $('ul.tree ul').hide();
+    // anime.timeline({loop: true})
+    // .add({
+    //     targets: '.ml1 .letter',
+    //     scale: [0.3,1],
+    //     opacity: [0,1],
+    //     translateZ: 0,
+    //     easing: "easeOutExpo",
+    //     duration: 600,
+    //     delay: (el, i) => 70 * (i+1)
+    // }).add({
+    //     targets: '.ml1 .line',
+    //     scaleX: [0,1],
+    //     opacity: [0.5,1],
+    //     easing: "easeOutExpo",
+    //     duration: 700,
+    //     offset: '-=875',
+    //     delay: (el, i, l) => 80 * (l - i)
+    // }).add({
+    //     targets: '.ml1',
+    //     opacity: 0,
+    //     duration: 1000,
+    //     easing: "easeOutExpo",
+    //     delay: 1000
+    // });
+    // $(function() {
+    //   // Hide all lists except the outermost.
+    //   $('ul.tree ul').hide();
     
-      $('.tree li > ul').each(function(i) {
-        var $subUl = $(this);
-        var $parentLi = $subUl.parent('li');
-        var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+    //   $('.tree li > ul').each(function(i) {
+    //     var $subUl = $(this);
+    //     var $parentLi = $subUl.parent('li');
+    //     var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
     
-        $parentLi.addClass('has-children');
+    //     $parentLi.addClass('has-children');
         
-        $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-          $(this).text( $(this).text() == '+' ? '-' : '+' );
-          $subUl.slideToggle('fast');
-        });
-      });
-    });
+    //     $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+    //       $(this).text( $(this).text() == '+' ? '-' : '+' );
+    //       $subUl.slideToggle('fast');
+    //     });
+    //   });
+    // });
   }
   getFilterData(){
     var KPIView = {
-      Line : [],
-      Location : [],
-      Unit : [],
+      Line : [1,2],
+      Location : [1,2],
+      Unit : [1,2],
       StartDate : "2021-01-31 00:00:00.000",
       EndDate : "2021-01-31 00:00:00.000",
     }
@@ -514,7 +498,7 @@ export class SewingmoduleComponent implements OnInit {
 
         Highcharts.chart(this.rejectionContainer.nativeElement, {
           colors: [
-            responsedata["DefectRejectDHUPercentage"]["Value"]["rejectColor"]
+            responsedata["Rejection"]["Value"]["rejectionColor"]
           ],
           exporting: {
             enabled: false
@@ -565,7 +549,7 @@ export class SewingmoduleComponent implements OnInit {
           series: [{
               name: 'Rejection',
               data: [
-                responsedata["DefectRejectDHUPercentage"]["Value"]["percentageRejection"]
+                responsedata["Rejection"]["Value"]["rejectionData"]
               ],
               dataLabels: {
                   enabled: true,
@@ -866,29 +850,48 @@ export class SewingmoduleComponent implements OnInit {
   }
 
   getSewingKPIAnalysis(){
-    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
       var locationId = parseFloat(this.value);
       return locationId;
     }).get();
-    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
       var unitId = parseFloat(this.value);
       return unitId;
     }).get();
-    var checkedLines = $('.option.justone.line:checkbox:checked').map(function() {
+    var checkedLines = $('.option.justone.line:radio:checked').map(function() {
       var lineId = parseFloat(this.value);
       return lineId;
     }).get();
-    var StartDate = new Date().toDateString();
-    var EndDate = new Date().toDateString();
-    var KPIView = {
-      Line : checkedLines,
-      Location : checkedLocations,
-      Unit : checkedUnits,
-      StartDate : "2021-01-31 00:00:00.000",
-      EndDate : "2021-01-31 00:00:00.000"
+    var StartDate = new Date($('#startDate').val());
+    var EndDate = new Date($('#endDate').val());
+
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+      var startDay = StartDate.getDate();
+      var startmonth = StartDate.getMonth() + 1;
+      var startyear = StartDate.getFullYear();
+      var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+      var endDay = EndDate.getDate();
+      var endmonth = EndDate.getMonth() + 1;
+      var endyear = EndDate.getFullYear();
+      var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+      var KPIView = {
+        Line : checkedLines,
+        Location : checkedLocations,
+        Unit : checkedUnits,
+        StartDate : startDateTime,
+        EndDate : endDateTime
+      }
+      this.calculateFirstPageKPIs(KPIView);
+      this.calculateSecondPageKPIs(KPIView);
     }
-    this.calculateFirstPageKPIs(KPIView);
-    this.calculateSecondPageKPIs(KPIView);
+    else{
+      Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'Please select location, unit ,line, start date and end date to view historical data',  
+        showConfirmButton: true
+      })  
+    }
   }
 
   onLocationChange(event){
@@ -896,6 +899,11 @@ export class SewingmoduleComponent implements OnInit {
     var _this = this;
     var locations = [];
     if (event.target.checked){
+      this.locationOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLocationMenuButton").html(element.Name);
+        }
+      });
       locations.push(parseInt(event.target.value))
       var dataViewModel = {
         locations : locations,
@@ -905,18 +913,44 @@ export class SewingmoduleComponent implements OnInit {
         if(responsedata["statusCode"] == 200){
           responsedata["data"].forEach(element => {
             $("#unit_label_" + element.UnitId).show();
-            $("#line_label_" + element.Id).show();
+            $("#line_label_1").show();
+            $("#line_label_2").show();
+            // $("#line_label_" + element.Id).show();
           });
         }
       })
     }
     else{
-      $('.option.justone.location:checkbox').prop('checked', false);
-      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.location:radio').prop('checked', false);
+      $('.option.justone.unit:radio').prop('checked', false);
       $(".unit_label").hide();
       $(".line_label").hide();
       $('.option.justone.line:radio').prop('checked', false);
     }
+  }
+
+  onUnitChange(event){
+    if (event.target.checked){
+      this.unitOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownUnitMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onLineChange(event){
+    if (event.target.checked){
+      this.lineOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLineMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  backToPrevious(){
+    window.history.back();
   }
 
   navigateDefectPercentage(){

@@ -142,6 +142,14 @@ ngOnInit() {
     var _this = this;
     var url = environment.backendUrl + "SewingHistorical";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
+      // console.log(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"]);
+      // responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"].forEach(element => {
+      //   for(var index = 0; index < element["data"].length; index++){
+      //     if(element["data"][index] == 0){
+      //       element["data"][index] = null;
+      //     }
+      //   }
+      // });
       _this.defectDHULine = new Chart(
         {
           chart: {
@@ -166,7 +174,7 @@ ngOnInit() {
                 text: 'Defects Per Hundred Units (D.H.U.)'
             },
             max:13,
-            min:0
+            min:3
         },
         tooltip: {
             crosshairs: true,

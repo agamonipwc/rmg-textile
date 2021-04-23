@@ -499,10 +499,10 @@ namespace RMGWebApi.Controllers
                 
                 foreach (var date in dailyDates)
                 {
-                    int dhuValue = 0;
+                    double dhuValue = 0;
                     if(orderedDefectViewModel[index].DailyDate == date)
                     {
-                        dhuValue = Convert.ToInt32(Math.Round((orderedDefectViewModel[index].DefectCount / orderedDefectViewModel[index].ProductionData) * 100));
+                        dhuValue = Math.Round((orderedDefectViewModel[index].DefectCount / orderedDefectViewModel[index].ProductionData) * 100, 2);
                     }
                     calculatedDHUList.Add(dhuValue);
                 }

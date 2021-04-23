@@ -114,18 +114,21 @@
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
     <div class="row">
-      <div class="col-8">
-        <h4 style="text-align: center; font-weight: bold;">Sewing Department KPI Analysis on 31.01.2021</h4>
+      <div class="col-2 mt-2">
+        <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+      </div>
+      <div class="col-7">
+        <h5 style="text-align: center; font-weight: bold;">Sewing Department KPI Analysis on 31.01.2021</h5>
         <h6 class="ml1">
           <span class="text-wrapper">
             <span class="line line1"></span>
-            <span class="letters" style="font-style: italic;">Please click each button below to view detailed analysis</span>
+            <span class="letters" style="font-style: italic; color: #d04a02;">Please click each button below to view detailed analysis</span>
             <span class="line line2"></span>
           </span>
         </h6>
       </div>
-      <div class="col-4 mt-2">
-        <a style="font-weight: bold;" (click)="navigateToSewingHistorical()">Show Last 30 days Data</a>
+      <div class="col-3 mt-2" style="text-align: start;">
+        <button class="custom-button ml-4" style="font-weight: bold;" (click)="navigateToSewingHistorical()">Last 30 days Data</button>
       </div>
     </div>
     
@@ -140,13 +143,13 @@
           </div>
           <div class="col-3" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;"  (click)="navigateCapacityUtilization()"data-toggle="tooltip" data-placement="top" title="Capacity Utilisation(Actual Vs Planned Prodctn.)">Capacity %</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer; font-size: 13px;"  (click)="navigateCapacityUtilization()"data-toggle="tooltip" data-placement="top" title="Capacity Utilisation(Actual Vs Planned Prodctn.)">Capacity Utilization%</button></div>
               <div class="ml-2" #capacityUtilizationContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
           <div class="col-3" id="absentismVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" (click)="navigateAbsentismUtilization()">Absenteism %</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" (click)="navigateAbsentismUtilization()">Absenteeism %</button></div>
               <div class="ml-2" #absentismContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
@@ -172,7 +175,7 @@
           </div>
           <div class="col-3" id="machineDowntimeVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" (click)="navigateMachineDowntime()" style="cursor: pointer;">Machine Downtime</button></div>
+              <div class="pb-2"><button class="custom-button" (click)="navigateMachineDowntime()" style="cursor: pointer;">Downtime%</button></div>
               <div class="ml-2" #machineDowntimeContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
@@ -194,12 +197,18 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLocationMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu">
-                          <li class="custom-li" *ngFor="let option of locationOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' (change)="onLocationChange($event)" type="checkbox" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li" *ngFor="let option of locationOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2">
+                                <input name='options[location]' (change)="onLocationChange($event)" type="radio" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -211,12 +220,18 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownUnitMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of unitOptions"><a href="#" class="dropdown-label"><label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;"><input name='options[unit]' type="checkbox" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li" *ngFor="let option of unitOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;">
+                                <input name='options[unit]' (change)="onUnitChange($event)" type="radio" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -228,12 +243,32 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLineMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2 line_label" [id]="'line_label_' + option.Id" style="display: none;"><input name='options[line]' type="radio" class="option justone line" [value]="option.Id" [id]="'line_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_1">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="1" id="line_1"> Line1 
+                              </label>
+                            </a>
+                          </li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_2">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="2" id="line_2"> Line2 
+                              </label>
+                            </a>
+                          </li>
+                          <!-- <li class="custom-li" *ngFor="let option of lineOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 line_label" [id]="'line_label_' + option.Id" style="display: none;">
+                                <input name='options[line]' type="radio" class="option justone line" [value]="option.Id" [id]="'line_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li> -->
                         </ul>
                       </div>
                     </div>
@@ -244,7 +279,7 @@
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
-                    <input type="date" placeholder="Start Date" id="startDate">
+                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-31" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>
@@ -252,7 +287,7 @@
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
-                    <input type="date" placeholder="End Date" id="endDate">
+                    <input type="date" placeholder="End Date" id="endDate" value="2021-01-31" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>

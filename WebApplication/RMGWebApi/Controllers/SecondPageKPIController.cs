@@ -29,91 +29,51 @@ namespace RMGWebApi.Controllers
                 DefectRejectDHUPercentage = CalculateDHUDefectRejection(kpiViewModel),
                 Multiskill = CalculateMultiskill(kpiViewModel),
                 Absentism = CalculateAbsentism(kpiViewModel),
+                Rejection = CalculateRejection(kpiViewModel),
                 StatusCode = 200
             };
             return Json(kpiResults);
         }
         private JsonResult CalculateDHUDefectRejection(KPIViewModel kpiViewModel)
         {
-            //double avgProductionDataByYearGroup = 0;
-            DateTime? date = Convert.ToDateTime(kpiViewModel.StartDate);
-            var productionData = _rmgDbContext.Production.Where(x => x.Date == date).Average(x => x.Data);
-            var rejectionData = _rmgDbContext.Rejection.Where(x => x.Date == date).Average(x => x.Data);
-            var alterationData = _rmgDbContext.Rejection.Where(x => x.Date == date).Average(x => x.Data);
-            var percentageDefection = Math.Round((((rejectionData + alterationData) / productionData)*100), 2);
-            var percentageRejection = Math.Round(((rejectionData / productionData)*100), 2);
-            //int scoreCardDHU = 0;
-            //int scoreCardReject = 0;
-            //int scoreCardDefect = 0;
-            //double defectionWeightage = 0;
-            //if (percentageDefection >= 0 && percentageDefection <= 5)
-            //{
-            //    defectionWeightage = 0.1 * 3;
-            //    scoreCardDefect = 3;
-            //}
-            //else if (percentageDefection >= 6 && percentageDefection <= 20)
-            //{
-            //    defectionWeightage = 0.1 * 2;
-            //    scoreCardDefect = 2;
-            //}
-            //else
-            //{
-            //    defectionWeightage = 0.1 * 1;
-            //    scoreCardDefect = 1;
-            //}
-            //double rejectionWeitage = 0;
-            //if (rejectionWeitage >= 0 && rejectionWeitage <= 1)
-            //{
-            //    defectionWeightage = 0.1 * 3;
-            //    scoreCardReject = 3;
-            //}
-            //else if (rejectionWeitage >= 2 && rejectionWeitage <= 5)
-            //{
-            //    rejectionWeitage = 0.1 * 2;
-            //    scoreCardReject = 2;
-            //}
-            //else
-            //{
-            //    rejectionWeitage = 0.1 * 1;
-            //    scoreCardReject = 1;
-            //}
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
+            double productionData = 0;
+            double alterationData = 0;
+            double defectCountData = 0;
+            if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
+            {
+                productionData = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    ProdData = grp.Sum(x => x.Production),
+                    AlterationData = grp.Sum(x => x.Alterations)
+                }).Select(x => x.ProdData).Average();
+
+                alterationData = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    ProdData = grp.Sum(x => x.Production),
+                    AlterationData = grp.Sum(x => x.Alterations)
+                }).Select(x => x.AlterationData).Average();
+
+                defectCountData = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    ProdData = grp.Sum(x => x.Production),
+                    SumDefectCount = grp.Sum(x => x.DefectCount)
+                }).Select(x => x.SumDefectCount).Average();
+            }
+
+
+            //var productionData = _rmgDbContext.Production.Where(x => x.Date == startDate).Average(x => x.Data);
+            //var rejectionData = _rmgDbContext.Rejection.Where(x => x.Date == startDate).Average(x => x.Data);
+            //var alterationData = _rmgDbContext.Rejection.Where(x => x.Date == startDate).Average(x => x.Data);
+            var percentageDefection = Math.Round(((alterationData / productionData)*100), 2);
             string dhuColor = "";
             string defectColor = "";
-            string rejectColor = "";
             
-            var percentageDHU = (Math.Round(_rmgDbContext.DHU.Where(x => x.Date == date).Average(x => x.Data)))-1;
-            //double weightagetage = 0;
-            //if (percentageDHU > 11)
-            //{
-            //    weightagetage = (0 * 0.05);
-            //    scoreCardDHU = 0;
-            //}
-            //else if (percentageDHU <= 11 && percentageDHU > 10)
-            //{
-            //    weightagetage = 1 * 0.05;
-            //    scoreCardDHU = 1;
-            //}
-            //else if (percentageDHU <= 10 && percentageDHU > 9)
-            //{
-            //    weightagetage = 2 * 0.05;
-            //    scoreCardDHU = 2;
-            //}
-            //else if (percentageDHU <= 9 && percentageDHU > 8)
-            //{
-            //    weightagetage = 3 * 0.05;
-            //    scoreCardDHU = 3;
-            //}
-            //else if (percentageDHU <= 8 && percentageDHU > 6)
-            //{
-            //    weightagetage = 4 * 0.05;
-            //    scoreCardDHU = 4;
-            //}
-            //else
-            //{
-            //    weightagetage = 5 * 0.05;
-            //    scoreCardDHU = 5;
-            //}
-
+            var percentageDHU = Math.Round(((defectCountData / productionData) * 100), 2);
             if (percentageDHU >= 9 && percentageDHU <= 13)
             {
                 dhuColor = "#e0301e";
@@ -141,35 +101,18 @@ namespace RMGWebApi.Controllers
             }
             #endregion
 
-            #region Color code calculation of reject
-            if (percentageRejection >= 5)
-            {
-                rejectColor = "#e0301e";
-            }
-            else if (percentageRejection >= 2 && percentageRejection <= 5)
-            {
-                rejectColor = "#ffb600";
-            }
-            else
-            {
-                rejectColor = "#175d2d";
-            }
-            #endregion
-
             #region Adding calculated data into json response
             return Json(new
             {
-                percentageDHU = new object[2] {date.Value.ToString("dd/MM/yyyy"), percentageDHU },
+                percentageDHU = new object[2] {startDate.Value.ToString("dd/MM/yyyy"), percentageDHU },
                 dhuColor = dhuColor,
-                percentageDefection = new object[2] { date.Value.ToString("dd/MM/yyyy"), percentageDefection },
+                percentageDefection = new object[2] { startDate.Value.ToString("dd/MM/yyyy"), percentageDefection },
                 defectColor = defectColor,
-                percentageRejection = new object[2] { date.Value.ToString("dd/MM/yyyy"), percentageRejection },
-                rejectColor = rejectColor
+                //percentageRejection = new object[2] { date.Value.ToString("dd/MM/yyyy"), percentageRejection },
+                //rejectColor = rejectColor
             });
             #endregion
         }
-
-
 
         private JsonResult CalculateMultiskill(KPIViewModel kpiViewModel)
         {
@@ -246,37 +189,24 @@ namespace RMGWebApi.Controllers
         private JsonResult CalculateAbsentism(KPIViewModel kpiViewModel)
         {
             double sumWorkerAttendance = 0;
-            int countWorkerAttendance = 0;
+            double countWorkerAttendance = 0;
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
-            if (kpiViewModel.Location.Count == 0 && kpiViewModel.Line.Count == 0 && kpiViewModel.Unit.Count == 0)
+            DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
+            if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
             {
-                sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate).Sum(x => x.Attendance);
-                countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate).Count();
-
-            }
-            else
-            {
-                if (kpiViewModel.Location.Count > 0)
+                sumWorkerAttendance = _rmgDbContext.Attendance.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
                 {
-                    sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Sum(x => x.Attendance);
-                    countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Location.Contains(x.Location)).Count();
-                
-                }
-                else
+                    Date = grp.Key.Date,
+                    TotalOperatorsCount = grp.Where(x => x.Name != "").Count(),
+                    PresentOperatorsCount = grp.Where(x => x.Attendence != "Yes").Count(),
+                }).Select(x => x.PresentOperatorsCount).Sum();
+
+                countWorkerAttendance = _rmgDbContext.Attendance.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
                 {
-                    if (kpiViewModel.Unit.Count > 0)
-                    {
-                        sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Location)).Sum(x => x.Attendance);
-                        countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Unit.Contains(x.Location)).Count();
-
-                    }
-                    else
-                    {
-                        sumWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Location)).Sum(x => x.Attendance);
-                        countWorkerAttendance = _rmgDbContext.WorkerAttendance.Where(x => x.Date == startDate && kpiViewModel.Line.Contains(x.Location)).Count();
-
-                    }
-                }
+                    Date = grp.Key.Date,
+                    TotalOperatorsCount = grp.Where(x => x.Name != "").Count(),
+                    PresentOperatorsCount = grp.Where(x => x.Attendence != "Yes").Count(),
+                }).Select(x => x.TotalOperatorsCount).Sum();
             }
 
             var absentismData = Math.Round(((sumWorkerAttendance / countWorkerAttendance) * 100));
@@ -284,24 +214,67 @@ namespace RMGWebApi.Controllers
             #region weightage of absentism
             if (absentismData <= 0 && absentismData >= 5)
             {
-                absentismColor = "#e0301e";
-                //scoreCardAbsentism = 1;
+                absentismColor = "#175d2d";
             }
             else if (absentismData >= 6 && absentismData <= 10)
             {
                 absentismColor = "#ffb600";
-                //scoreCardAbsentism = 2;
             }
             else if (absentismData >= 11)
             {
-                absentismColor = "#175d2d";
-                //scoreCardAbsentism = 3;
+                absentismColor = "#e0301e";
             }
             #endregion
             return Json(new
             {
                 absentismData = new object[2] { startDate.Value.ToString("dd/MM/yyyy"), absentismData },
                 absentismColor = absentismColor
+            });
+        }
+
+        private JsonResult CalculateRejection(KPIViewModel kpiViewModel)
+        {
+            double productionData = 0;
+            double rejectionData = 0;
+            List<ProductionViewModel> rejectionsDataList = new List<ProductionViewModel>();
+            DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
+            DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
+            if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
+            {
+                productionData = _rmgDbContext.RejectionStyle.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    SumProduction = grp.Sum(x => x.Production),
+                    SumRejection = grp.Sum(x => x.Rejection)
+                }).Select(x => x.SumProduction).Average();
+
+                rejectionData = _rmgDbContext.RejectionStyle.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
+                {
+                    Date = grp.Key.Date,
+                    SumProduction = grp.Sum(x => x.Production),
+                    SumRejection = grp.Sum(x => x.Rejection)
+                }).Select(x => x.SumRejection).Average();
+            }
+            var rejectionPercentage = Math.Round((rejectionData * 100) / productionData);
+            string rejectionColor = "";
+            #region weightage of absentism
+            if (rejectionData <=2)
+            {
+                rejectionColor = "#175d2d";
+            }
+            else if (rejectionData > 2 && rejectionData <= 5)
+            {
+                rejectionColor = "#ffb600";
+            }
+            else if (rejectionData >5)
+            {
+                rejectionColor = "#e0301e";
+            }
+            #endregion
+            return Json(new
+            {
+                rejectionData = new object[2] { startDate.Value.ToString("dd/MM/yyyy"), rejectionPercentage },
+                rejectionColor = rejectionColor
             });
         }
     }
