@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import * as  Highcharts from 'highcharts';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';  
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 declare var require: any;
 const More = require('highcharts/highcharts-more');
@@ -47,7 +48,8 @@ export class EfficiencyComponent implements OnInit {
   data : any = [];
   operatorsDetailsList = [];
   
-  operatorScatterOptions: any
+  operatorScatterOptions: any;
+  headerTextValue : string = "";
 
   constructor(private http: HttpClient,private _router: Router) {
    }
@@ -88,7 +90,28 @@ export class EfficiencyComponent implements OnInit {
       EndDate : "2021-01-31 00:00:00.000",
     }
     this.calculateOperatorEfficiency(KPIView);
+    var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+    if($('#startDate').val() == $('#endDate').val()){
+      this.headerTextValue = environment.efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+    }
+    else{
+      this.headerTextValue = environment.efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+    }
   }
+  formatUserInputDate(startDate, endDate){
+    var StartDate = new Date(startDate);
+    var EndDate = new Date(endDate);
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startDay + "." + startmonth + '.' + startyear;
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endDay + "." + endmonth + '.' + endyear;
+    return {startDateTime : startDateTime, endDateTime : endDateTime}
+  }
+
   calculateOperatorEfficiency(KPIView){
     var _this = this;
     var url = environment.backendUrl + "OperatorEfficiency";
@@ -112,6 +135,7 @@ export class EfficiencyComponent implements OnInit {
                 enabled: false,
                 text: 'Operator ID',
             },
+            visible : false,
             labels: {
               enabled: false,
             },
@@ -163,7 +187,7 @@ export class EfficiencyComponent implements OnInit {
                 },
                 tooltip: {
                     headerFormat: '<b>{series.name}</b><br>',
-                    pointFormat: 'Op{point.x} has efficiency: {point.y} %'
+                    pointFormat: '{point.name} : {point.y} %'
                 }
             }
         },
@@ -174,12 +198,13 @@ export class EfficiencyComponent implements OnInit {
     })
   }
 
+  
   getSewingKPIAnalysis(){
-    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
       var locationId = parseFloat(this.value);
       return locationId;
     }).get();
-    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
       var unitId = parseFloat(this.value);
       return unitId;
     }).get();
@@ -188,25 +213,42 @@ export class EfficiencyComponent implements OnInit {
       return lineId;
     }).get();
     var StartDate = new Date($('#startDate').val());
-    var startDay = StartDate.getDate();
-    var startmonth = StartDate.getMonth() + 1;
-    var startyear = StartDate.getFullYear();
-    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
     var EndDate = new Date($('#endDate').val());
-    var endDay = EndDate.getDate();
-    var endmonth = EndDate.getMonth() + 1;
-    var endyear = EndDate.getFullYear();
-    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-    var KPIView = {
-      Line : checkedLines,
-      Location : checkedLocations,
-      Unit : checkedUnits,
-      // StartDate : "2021-01-31 00:00:00.000",
-      // EndDate : "2021-01-31 00:00:00.000",
-      StartDate : startDateTime,
-      EndDate : endDateTime
+
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+      var startDay = StartDate.getDate();
+      var startmonth = StartDate.getMonth() + 1;
+      var startyear = StartDate.getFullYear();
+      var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+      var endDay = EndDate.getDate();
+      var endmonth = EndDate.getMonth() + 1;
+      var endyear = EndDate.getFullYear();
+      var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+      var KPIView = {
+        Line : checkedLines,
+        Location : checkedLocations,
+        Unit : checkedUnits,
+        StartDate : startDateTime,
+        EndDate : endDateTime
+      }
+      var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+      if($('#startDate').val() == $('#endDate').val()){
+        this.headerTextValue = environment.efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+      }
+      else{
+        this.headerTextValue = environment.efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+      }
+      this.calculateOperatorEfficiency(KPIView);
     }
-    this.calculateOperatorEfficiency(KPIView);
+    else{
+      Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'Please select location, unit ,line, start date and end date to view historical data',  
+        showConfirmButton: true
+      })  
+    }
+    
   }
 
   onLocationChange(event){
@@ -214,6 +256,11 @@ export class EfficiencyComponent implements OnInit {
     var _this = this;
     var locations = [];
     if (event.target.checked){
+      this.locationOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLocationMenuButton").html(element.Name);
+        }
+      });
       locations.push(parseInt(event.target.value))
       var dataViewModel = {
         locations : locations,
@@ -223,17 +270,39 @@ export class EfficiencyComponent implements OnInit {
         if(responsedata["statusCode"] == 200){
           responsedata["data"].forEach(element => {
             $("#unit_label_" + element.UnitId).show();
-            $("#line_label_" + element.Id).show();
+            $("#line_label_1").show();
+            $("#line_label_2").show();
+            // $("#line_label_" + element.Id).show();
           });
         }
       })
     }
     else{
-      $('.option.justone.location:checkbox').prop('checked', false);
-      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.location:radio').prop('checked', false);
+      $('.option.justone.unit:radio').prop('checked', false);
       $(".unit_label").hide();
       $(".line_label").hide();
       $('.option.justone.line:radio').prop('checked', false);
+    }
+  }
+
+  onUnitChange(event){
+    if (event.target.checked){
+      this.unitOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownUnitMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onLineChange(event){
+    if (event.target.checked){
+      this.lineOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLineMenuButton").html(element.Name);
+        }
+      });
     }
   }
   getMasterData(){
@@ -257,11 +326,11 @@ export class EfficiencyComponent implements OnInit {
     var _this = this;
     this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
       if(recommendationId == 6){
-        _this.recommendationModalTitle = "Recommemdations for Low Operators"
+        _this.recommendationModalTitle = "Recommemdations for Low Performance"
         _this.getOperatorsName('Low');
       }
       else{
-        _this.recommendationModalTitle = "Recommemdations for Moderate Operators"
+        _this.recommendationModalTitle = "Recommemdations for Moderate Performance"
         _this.getOperatorsName('Moderate');
       }
       _this.data.push({
@@ -282,6 +351,7 @@ export class EfficiencyComponent implements OnInit {
       responsedata["operatorsDetails"].forEach(element => {
         _this.operatorsDetailsList.push({
           Name : element["Name"],
+          Operation : element["OperationName"],
           Machine : element["Machine"],
           Unit : element["Unit"],
           Location : element["Location"],
@@ -329,5 +399,8 @@ export class EfficiencyComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();  
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
     XLSX.writeFile(wb, 'Moderate_Efficiency_Operators.xlsx');  
+  }
+  backToPrevious(){
+    window.history.back();
   }
 }

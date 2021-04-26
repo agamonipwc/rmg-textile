@@ -65,10 +65,10 @@ namespace RMGWebApi.Controllers
             }
             var timeStudyData = _rmgDbContext.TimeStudy.Where(x => x.OperationDescription == "Checking").Select(x => new TimeStudyData
             {
-                PlannedProduction = (x.PlannedProduction * 8),
+                PlannedProduction = x.PlannedProduction,
                 OperationDesc = x.OperationDescription
             });
-            var timeStudyCheckerData = timeStudyData.Select(x => x.PlannedProduction).Sum();
+            var timeStudyCheckerData = timeStudyData.Select(x => x.PlannedProduction).Sum()*8;
             //List<HistoricalDataViewModel> efficiencyDataList = new List<HistoricalDataViewModel>();
             List<double> efficiencyDataList = new List<double>();
             int countOperations = _rmgDbContext.TimeStudy.Count();
@@ -84,10 +84,12 @@ namespace RMGWebApi.Controllers
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
+            var averageDataValue = Math.Round(efficiencyDataList.Average(),2);
             return Json(new
             {
                 data = efficiencyDataList,
-                categories = dates
+                categories = dates,
+                averageDataValue = averageDataValue
             });
         }
 
@@ -124,10 +126,12 @@ namespace RMGWebApi.Controllers
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
+            var averageDataValue = Math.Round(efficiencyDataList.Average(), 2);
             return Json(new
             {
                 data = efficiencyDataList,
-                categories = dates
+                categories = dates,
+                averageDataValue = averageDataValue
             });
         }
 
@@ -167,10 +171,12 @@ namespace RMGWebApi.Controllers
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
+            var averageDataValue = Math.Round(efficiencyDataList.Average(), 2);
             return Json(new
             {
                 data = efficiencyDataList,
-                categories = dates
+                categories = dates,
+                averageDataValue = averageDataValue
             });
         }
 
@@ -209,10 +215,12 @@ namespace RMGWebApi.Controllers
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
+            var averageDataValue = Math.Round(efficiencyDataList.Average(), 2);
             return Json(new
             {
                 data = efficiencyDataList,
-                categories = dates
+                categories = dates,
+                averageDataValue = averageDataValue
             });
         }
 
@@ -252,10 +260,12 @@ namespace RMGWebApi.Controllers
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
+            var averageDataValue = Math.Round(efficiencyDataList.Average(), 2);
             return Json(new
             {
                 data = efficiencyDataList,
-                categories = dates
+                categories = dates,
+                averageDataValue = averageDataValue
             });
         }
 
@@ -295,10 +305,12 @@ namespace RMGWebApi.Controllers
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
+            var averageDataValue = Math.Round(efficiencyDataList.Average(), 2);
             return Json(new
             {
                 data = efficiencyDataList,
-                categories = dates
+                categories = dates,
+                averageDataValue = averageDataValue
             });
         }
 
@@ -338,10 +350,12 @@ namespace RMGWebApi.Controllers
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
+            var averageDataValue = Math.Round(efficiencyDataList.Average(), 2);
             return Json(new
             {
                 data = efficiencyDataList,
-                categories = dates
+                categories = dates,
+                averageDataValue = averageDataValue
             });
         }
 
@@ -380,10 +394,12 @@ namespace RMGWebApi.Controllers
                 dates.Add(element.Dailydate);
                 efficiencyDataList.Add(element.efficiency);
             }
+            var averageDataValue = Math.Round(efficiencyDataList.Average(), 2);
             return Json(new
             {
                 data = efficiencyDataList,
-                categories = dates
+                categories = dates,
+                averageDataValue = averageDataValue
             });
         }
 

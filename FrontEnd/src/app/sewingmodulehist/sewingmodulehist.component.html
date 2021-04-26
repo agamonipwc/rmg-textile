@@ -55,67 +55,100 @@
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
     <div class="row">
-      <div class="col-8">
-        <h4 style="text-align: left; margin-left: 15%; font-weight: bold;">Sewing Department Historic KPI Analysis</h4>
+      <div class="col-2 mt-2">
+        <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
       </div>
-      <div class="col-4 mt-2">
-        <a style="font-weight: bold;" (click)="sewingNavigation()">Back to KPI Data</a>
+      <div class="col-7">
+        <h6 style="text-align: center; font-weight: bold;">{{headerTextValue}}</h6>
+      </div>
+      <div class="col-3 mt-2" style="text-align: start;">
+        <button class="custom-button ml-3" style="font-weight: bold;" (click)="sewingNavigation()">Back to KPI Data</button>
       </div>
     </div>
     <div class="row">
       <div class="col-9" style="height: 500px; overflow-y: scroll; overflow-x: hidden; background-color:#ffffff;">
-        <div class="row align-items-center mt-1">
+        <div class="row align-items-center">
+          <!-- <div class="col-1">
+            <a (click)="showKPIAverageValues('Efficiency')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
+          </div> -->
           <div class="col-12" id="efficiencyVisual" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart] = "efficiencyHistoric" style="height: 230px; width:auto"></div>
+              <div [chart] = "efficiencyHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
+        </div>
+        <div class="row align-items-center">
+          <!-- <div class="col-1">
+            <a (click)="showKPIAverageValues('Defect')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
+          </div> -->
           <div class="col-12" id="defectVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="defectsHistoric" style="height: 230px; width:auto"></div>
+              <div [chart]="defectsHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
-        <div class="row align-items-center mt-2">
+        <div class="row align-items-center">
+          <!-- <div class="col-1">
+            <a (click)="showKPIAverageValues('Reject')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
+          </div> -->
           <div class="col-12" id="rejectionVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="rejectionHistoric" style="height: 230px; width:auto"></div>
+              <div [chart]="rejectionHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
-
+        </div>
+        <div class="row align-items-center">
+          <!-- <div class="col-1">
+            <a (click)="showKPIAverageValues('CapacityUtilization')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
+          </div> -->
           <div class="col-12" id="capacityVisual" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart] = "capacityHistoric" style="height: 230px; width:auto"></div>
+              <div [chart] = "capacityHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
-          
         </div>
-        <div class="row align-items-center mt-2">
-          <div class="col-12" id="dhuVisual" style=" height: auto; min-height: max-content;">
-            <div class="d-flex flex-column">
-              <div [chart]="dhuHistoric" style="height: 230px; width:auto"(click)="dhuHistoricalNavigation()"></div>
-            </div>
-          </div>
+        <div class="row align-items-center">
+          <!-- <div class="col-1">
+            <a (click)="showKPIAverageValues('Absenteeism')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
+          </div> -->
           <div class="col-12" id="absentismVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="absentismHistoric" style="height: 230px; width:auto"></div>
+              <div [chart]="absentismHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
-        <div class="row align-items-center mt-2">
-          <div class="col-12" id="wipVisual" style="height: auto; min-height: max-content;">
+        <div class="row align-items-center">
+          <!-- <div class="col-1">
+            <a (click)="showKPIAverageValues('DHU')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
+          </div> -->
+          <div class="col-12" id="dhuVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart] = "wipHistoric" style="height: 230px; width:auto"></div>
+              <div [chart]="dhuHistoric" style="height: 58px; width:auto"(click)="dhuHistoricalNavigation()"></div>
             </div>
           </div>
+        </div>
+        <div class="row align-items-center">
+          <!-- <div class="col-1">
+            <a (click)="showKPIAverageValues('InlineWIP')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
+          </div> -->
+          <div class="col-12" id="wipVisual" style="height: auto; min-height: max-content;">
+            <div class="d-flex flex-column">
+              <div [chart] = "wipHistoric" style="height: 58px; width:auto"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <!-- <div class="col-1">
+            <a (click)="showKPIAverageValues('Downtime')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
+          </div> -->
           <div class="col-12" id="machineDowntimeVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="machineDowntimeHistoric" style="height: 230px; width:auto"></div>
+              <div [chart]="machineDowntimeHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-3 mt-3">
+      <div class="col-3 mt-5">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
@@ -124,12 +157,18 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLocationMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu">
-                          <li class="custom-li" *ngFor="let option of locationOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' (change)="onLocationChange($event)" type="checkbox" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li" *ngFor="let option of locationOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2">
+                                <input name='options[location]' (change)="onLocationChange($event)" type="radio" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -141,12 +180,18 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownUnitMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of unitOptions"><a href="#" class="dropdown-label"><label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;"><input name='options[unit]' type="checkbox" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li" *ngFor="let option of unitOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;">
+                                <input name='options[unit]' (change)="onUnitChange($event)" type="radio" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -158,12 +203,25 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLineMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2 line_label" [id]="'line_label_' + option.Id" style="display: none;"><input name='options[line]' type="radio" class="option justone line" [value]="option.Id" [id]="'line_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_1">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="1" id="line_1"> Line1 
+                              </label>
+                            </a>
+                          </li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_2">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="2" id="line_2"> Line2 
+                              </label>
+                            </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -174,7 +232,7 @@
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
-                    <input type="date" placeholder="Start Date" id="startDate">
+                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-01" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>
@@ -182,7 +240,7 @@
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
-                    <input type="date" placeholder="End Date" id="endDate">
+                    <input type="date" placeholder="End Date" id="endDate" value="2021-01-31" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>

@@ -61,24 +61,23 @@ namespace RMGWebApi.Controllers
 
         private JsonResult CapacityCalculation(KPIViewModel kpiViewModel)
         {
-            double productionData = 0;
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
             DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
+            List<ProductionViewModel> productionsDataList = new List<ProductionViewModel>();
             if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
             {
-                productionData = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
+                productionsDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line, x.Unit, x.Location }).Select(grp => new ProductionViewModel
                 {
-                    Date = grp.Key.Date,
                     ProdData = grp.Sum(x => x.Production)
-                }).Average(x => x.ProdData);
+                }).ToList();
             }
             var timeStudyData = _rmgDbContext.TimeStudy.Where(x => x.OperationDescription == "Checking").Select(x => new TimeStudyData
             {
-                PlannedProduction = (x.PlannedProduction * 8),
+                PlannedProduction = x.PlannedProduction,
                 OperationDesc = x.OperationDescription
             });
-            var timeStudyCheckerData = timeStudyData.Select(x => x.PlannedProduction).Sum();
-            var capacityUtilized = Math.Round((productionData / timeStudyCheckerData));
+            var timeStudyCheckerData = timeStudyData.Select(x => x.PlannedProduction).Sum()*8;
+            var capacityUtilized = Math.Round((productionsDataList.Average(x=> x.ProdData) / timeStudyCheckerData));
             #region color code calculation
             string colorCode = "";
             if (capacityUtilized >= 0 && capacityUtilized <= 50)
@@ -108,13 +107,43 @@ namespace RMGWebApi.Controllers
         private JsonResult CalculateEfficiency(KPIViewModel kpiViewModel)
         {
             double efficiency = 0;
+            double workingMins = 0;
             DateTime? startDate = Convert.ToDateTime(kpiViewModel.StartDate);
             DateTime? endDate = Convert.ToDateTime(kpiViewModel.EndDate);
+            List<ProductionViewModel> productionsDataList = new List<ProductionViewModel>();
+            List<ProductionViewModel> totalOperatorsDataList = new List<ProductionViewModel>();
             int countOperations = _rmgDbContext.TimeStudy.Count();
             if (kpiViewModel.Location.Count > 0 && kpiViewModel.Unit.Count > 0 && kpiViewModel.Line.Count > 0)
             {
-                efficiency = Math.Round((_rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).Select(x => x.Production).Average() * 16.72 * 100) / (480 * countOperations),2);
+                productionsDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line, x.Location, x.Unit }).Select(grp => new ProductionViewModel
+                {
+                    ProdData = grp.Sum(x => x.Production)
+                }).ToList();
+
+                totalOperatorsDataList = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line, x.Location, x.Unit }).Select(grp => new ProductionViewModel
+                {
+                    TotalOperatorsCount = grp.Select(x => x.Name).Count()
+                }).ToList();
+
+                workingMins = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Line }).Select(grp => new ProductionViewModel
+                {
+                    Line = grp.Key.Line,
+                    WorkingMins = grp.Average(x => x.WorkingMins)
+                }).Average(x => x.WorkingMins);
+                
+                //productionValue = _rmgDbContext.EfficiencyWorker.Where(x => x.Date >= startDate && x.Date <= endDate && x.Operation == "Checking" && kpiViewModel.Location.Contains(x.Location) && kpiViewModel.Unit.Contains(x.Unit) && kpiViewModel.Line.Contains(x.Line)).GroupBy(x => new { x.Date }).Select(grp => new ProductionViewModel
+                //{
+                //    Date = grp.Key.Date,
+                //    ProdData = grp.Average(x => x.Production)
+                //}).Average(x => x.ProdData);
             }
+            List<double> efficiencyList = new List<double>();
+            for(int index = 0; index < productionsDataList.Count; index++)
+            {
+                var efficiencyLineWiseValue = (productionsDataList[index].ProdData * 16.72 * 100) / (workingMins * totalOperatorsDataList[index].TotalOperatorsCount);
+                efficiencyList.Add(efficiencyLineWiseValue);
+            }
+            efficiency = Math.Round(efficiencyList.Average());
             #region Calculate color code
             string colorCode = "";
             if(efficiency >= 0 && efficiency<=50)

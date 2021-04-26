@@ -130,6 +130,7 @@ namespace RMGWebApi
         public string DefectReason4 { get; set; }
         public double DefectCount5Data { get; set; }
         public string DefectReason5 { get; set; }
+        public double WorkingMins { get; set; }
     }
 
     public class InlineWIPStyleViewModel

@@ -6,7 +6,11 @@
 //locally running
 export const environment = {
   production: false,
-  backendUrl : "http://localhost:53327/api/"
+  backendUrl : "http://localhost:53327/api/",
+  sewingKPIHeaderText: "Sewing Department KPI Analysis",
+  sewingHistKPIHeaderText: "Historical KPI Analysis",
+  efficiencyHeaderText : "Average efficiency",
+  capacityUtilizationHeaderText : "Average utilisation"
 };
 
 // export const environment = {

@@ -18,6 +18,7 @@ namespace RMGWebApi.ViewModel
     public class OperatorsDetails
     {
         public string Name { get; set; }
+        public string OperationName { get; set; }
         public string Machine { get; set; }
         public string Unit { get; set; }
         public string Location { get; set; }

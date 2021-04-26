@@ -52,6 +52,8 @@ export class SewingmoduleComponent implements OnInit {
   kpiMasterData : any = [];
   selectedKPI: any = "Choose your option";
 
+  headerTextValue : string = "";
+
   constructor(private http: HttpClient,private _router: Router) {
     this.startDate = new Date();
     this.endDate = new Date();
@@ -120,6 +122,14 @@ export class SewingmoduleComponent implements OnInit {
       StartDate : "2021-01-31 00:00:00.000",
       EndDate : "2021-01-31 00:00:00.000",
     }
+    var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+    if($('#startDate').val() == $('#endDate').val()){
+      this.headerTextValue = environment.sewingKPIHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+    }
+    else{
+      this.headerTextValue = environment.sewingKPIHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+    }
+    
     this.calculateFirstPageKPIs(KPIView);
     this.calculateSecondPageKPIs(KPIView);
   }
@@ -188,16 +198,16 @@ export class SewingmoduleComponent implements OnInit {
                 responsedata["Efficiency"]["Value"]["efficiencyResponse"]
               ],
               dataLabels: {
-                  enabled: true,
-                  
-                  color: '#000000',
-                  align: 'right',
-                  format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
-                  style: {
-                      fontSize: '10px',
-                      fontFamily: 'Verdana, sans-serif'
-                  }
+                enabled: true,
+                color: '#000000',
+                align: 'center',
+                format: '{point.y:.1f}', // one decimal
+                y: 5, // 10 pixels down from the top
+                x: 3,
+                style: {
+                    fontSize: '10px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
               }
           }]
         });
@@ -260,9 +270,10 @@ export class SewingmoduleComponent implements OnInit {
               dataLabels: {
                   enabled: true,
                   color: '#000000',
-                  align: 'right',
+                  align: 'center',
                   format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
+                  y: 5, // 10 pixels down from the top
+                  x: 3,
                   style: {
                       fontSize: '10px',
                       fontFamily: 'Verdana, sans-serif'
@@ -329,9 +340,10 @@ export class SewingmoduleComponent implements OnInit {
               dataLabels: {
                   enabled: true,
                   color: '#000000',
-                  align: 'right',
+                  align: 'center',
                   format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
+                  y: 5, // 10 pixels down from the top
+                  x: 3,
                   style: {
                       fontSize: '10px',
                       fontFamily: 'Verdana, sans-serif'
@@ -397,11 +409,11 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  
                   color: '#000000',
-                  align: 'right',
+                  align: 'center',
                   format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
+                  y: 5, // 10 pixels down from the top
+                  x: 3,
                   style: {
                       fontSize: '10px',
                       fontFamily: 'Verdana, sans-serif'
@@ -483,11 +495,11 @@ export class SewingmoduleComponent implements OnInit {
               ],
               dataLabels: {
                   enabled: true,
-                  
                   color: '#000000',
-                  align: 'right',
+                  align: 'center',
                   format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
+                  y: 5, // 10 pixels down from the top
+                  x: 3,
                   style: {
                       fontSize: '10px',
                       fontFamily: 'Verdana, sans-serif'
@@ -552,16 +564,16 @@ export class SewingmoduleComponent implements OnInit {
                 responsedata["Rejection"]["Value"]["rejectionData"]
               ],
               dataLabels: {
-                  enabled: true,
-                  
-                  color: '#000000',
-                  align: 'right',
-                  format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
-                  style: {
-                      fontSize: '10px',
-                      fontFamily: 'Verdana, sans-serif'
-                  }
+                enabled: true,
+                color: '#000000',
+                align: 'center',
+                format: '{point.y:.1f}', // one decimal
+                y: 5, // 10 pixels down from the top
+                x: 3,
+                style: {
+                    fontSize: '10px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
               }
           }]
         });
@@ -622,16 +634,16 @@ export class SewingmoduleComponent implements OnInit {
                 responsedata["DefectRejectDHUPercentage"]["Value"]["percentageDefection"]
               ],
               dataLabels: {
-                  enabled: true,
-                  
-                  color: '#000000',
-                  align: 'right',
-                  format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
-                  style: {
-                      fontSize: '10px',
-                      fontFamily: 'Verdana, sans-serif'
-                  }
+                enabled: true,
+                color: '#000000',
+                align: 'center',
+                format: '{point.y:.1f}', // one decimal
+                y: 5, // 10 pixels down from the top
+                x: 3, // 10 pixels down from the top
+                style: {
+                    fontSize: '10px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
               }
           }]
         });
@@ -666,7 +678,7 @@ export class SewingmoduleComponent implements OnInit {
           yAxis: {
               visible : false,
               min: 0,
-              max : 100,
+              max : 20,
               title: {
                   text: 'Value',
                   enabled : false
@@ -692,16 +704,16 @@ export class SewingmoduleComponent implements OnInit {
                 responsedata["Absentism"]["Value"]["absentismData"]
               ],
               dataLabels: {
-                  enabled: true,
-                  
-                  color: '#000000',
-                  align: 'right',
-                  format: '{point.y:.1f}', // one decimal
-                  y: 10, // 10 pixels down from the top
-                  style: {
-                      fontSize: '10px',
-                      fontFamily: 'Verdana, sans-serif'
-                  }
+                enabled: true,
+                color: '#000000',
+                align: 'center',
+                format: '{point.y:.1f}', // one decimal
+                y: 5, // 10 pixels down from the top
+                x: 3,
+                style: {
+                    fontSize: '10px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
               }
           }]
         });
@@ -866,23 +878,40 @@ export class SewingmoduleComponent implements OnInit {
     var EndDate = new Date($('#endDate').val());
 
     if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
-      var startDay = StartDate.getDate();
-      var startmonth = StartDate.getMonth() + 1;
-      var startyear = StartDate.getFullYear();
-      var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
-      var endDay = EndDate.getDate();
-      var endmonth = EndDate.getMonth() + 1;
-      var endyear = EndDate.getFullYear();
-      var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-      var KPIView = {
-        Line : checkedLines,
-        Location : checkedLocations,
-        Unit : checkedUnits,
-        StartDate : startDateTime,
-        EndDate : endDateTime
+      if(StartDate > EndDate){
+        Swal.fire({    
+          icon: 'error',  
+          title: 'Sorry...',  
+          text: 'StartDate can not be greater than EndDate',  
+          showConfirmButton: true
+        })  
       }
-      this.calculateFirstPageKPIs(KPIView);
-      this.calculateSecondPageKPIs(KPIView);
+      else{
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+        var KPIView = {
+          Line : checkedLines,
+          Location : checkedLocations,
+          Unit : checkedUnits,
+          StartDate : startDateTime,
+          EndDate : endDateTime
+        }
+        var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+        if($('#startDate').val() == $('#endDate').val()){
+          this.headerTextValue = environment.sewingKPIHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else{
+          this.headerTextValue = environment.sewingKPIHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+        this.calculateFirstPageKPIs(KPIView);
+        this.calculateSecondPageKPIs(KPIView);
+      }
     }
     else{
       Swal.fire({    
@@ -892,6 +921,20 @@ export class SewingmoduleComponent implements OnInit {
         showConfirmButton: true
       })  
     }
+  }
+
+  formatUserInputDate(startDate, endDate){
+    var StartDate = new Date($('#startDate').val());
+    var EndDate = new Date($('#endDate').val());
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startDay + "." + startmonth + '.' + startyear;
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endDay + "." + endmonth + '.' + endyear;
+    return {startDateTime : startDateTime, endDateTime : endDateTime}
   }
 
   onLocationChange(event){

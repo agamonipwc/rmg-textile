@@ -212,7 +212,7 @@ namespace RMGWebApi.Controllers
             var absentismData = Math.Round(((sumWorkerAttendance / countWorkerAttendance) * 100));
             string absentismColor = "";
             #region weightage of absentism
-            if (absentismData <= 0 && absentismData >= 5)
+            if (absentismData >= 0 && absentismData <= 5)
             {
                 absentismColor = "#175d2d";
             }

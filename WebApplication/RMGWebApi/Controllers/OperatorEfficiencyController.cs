@@ -66,61 +66,111 @@ namespace RMGWebApi
                     }
                 }
             }
-            List<EfficiencyViewModel> seriesData = new List<EfficiencyViewModel>();
-            List<object[]> lowEfficiency = new List<object[]>();
-            List<object[]> moderateEfficiency = new List<object[]>();
-            List<object[]> highEfficiency = new List<object[]>();
+            //List<EfficiencyViewModel> seriesData = new List<EfficiencyViewModel>();
+            List<EfficiencyViewModel_New> seriesData = new List<EfficiencyViewModel_New>();
+            //List<object[]> lowEfficiency = new List<object[]>();
+            //List<object[]> moderateEfficiency = new List<object[]>();
+            //List<object[]> highEfficiency = new List<object[]>();
+
+            List<ModifiedDataSet> lowEfficiency = new List<ModifiedDataSet>();
+            List<ModifiedDataSet> moderateEfficiency = new List<ModifiedDataSet>();
+            List<ModifiedDataSet> highEfficiency = new List<ModifiedDataSet>();
+
             foreach (var element in operatorViewModels)
             {
                 if(element.Efficiency <= 100)
                 {
-                    object[] objectArray = new object[2];
-                    //string color = "";
+                    ModifiedDataSet dataSet = new ModifiedDataSet();
                     if (element.Efficiency >= 0 && element.Efficiency <= 50)
                     {
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.Efficiency;
-                        lowEfficiency.Add(objectArray);
-                        //color = "#e0301e";
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.Efficiency);
+                        dataSet.name = element.OperatorName;
+                        lowEfficiency.Add(dataSet);
                     }
                     else if (element.Efficiency >= 51 && element.Efficiency <= 75)
                     {
-                        //color = "#ffb600";
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.Efficiency;
-                        moderateEfficiency.Add(objectArray);
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.Efficiency);
+                        dataSet.name = element.OperatorName;
+                        moderateEfficiency.Add(dataSet);
                     }
                     else if (element.Efficiency >= 76 && element.Efficiency <= 100)
                     {
-                        //color = "#175d2d";
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.Efficiency;
-                        highEfficiency.Add(objectArray);
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.Efficiency);
+                        dataSet.name = element.OperatorName;
+                        highEfficiency.Add(dataSet);
                     }
+
+
+                    //object[] objectArray = new object[2];
+                    //if (element.Efficiency >= 0 && element.Efficiency <= 50)
+                    //{
+                    //    objectArray[0] = element.OperatorIndex;
+                    //    objectArray[1] = element.Efficiency;
+                    //    lowEfficiency.Add(objectArray);
+                    //}
+                    //else if (element.Efficiency >= 51 && element.Efficiency <= 75)
+                    //{
+                    //    objectArray[0] = element.OperatorIndex;
+                    //    objectArray[1] = element.Efficiency;
+                    //    moderateEfficiency.Add(objectArray);
+                    //}
+                    //else if (element.Efficiency >= 76 && element.Efficiency <= 100)
+                    //{
+                    //    objectArray[0] = element.OperatorIndex;
+                    //    objectArray[1] = element.Efficiency;
+                    //    highEfficiency.Add(objectArray);
+                    //}
                 }
-                
+
             }
-            seriesData.Add(new EfficiencyViewModel
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "Low",
+            //    showInLegend = false,
+            //    color = "#e0301e",
+            //    data = lowEfficiency
+            //});
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "Moderate",
+            //    showInLegend = false,
+            //    color = "#ffb600",
+            //    data = moderateEfficiency
+            //});
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "High",
+            //    showInLegend = false,
+            //    color = "#175d2d",
+            //    data = highEfficiency
+            //});
+
+            seriesData.Add(new EfficiencyViewModel_New
             {
                 name = "Low",
                 showInLegend = false,
                 color = "#e0301e",
                 data = lowEfficiency
             });
-            seriesData.Add(new EfficiencyViewModel
+            seriesData.Add(new EfficiencyViewModel_New
             {
                 name = "Moderate",
                 showInLegend = false,
                 color = "#ffb600",
                 data = moderateEfficiency
             });
-            seriesData.Add(new EfficiencyViewModel
+            seriesData.Add(new EfficiencyViewModel_New
             {
                 name = "High",
                 showInLegend = false,
                 color = "#175d2d",
                 data = highEfficiency
             });
+
+
             return Json(new
             {
                 data = seriesData,

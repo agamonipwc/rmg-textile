@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild, ElementRef, } from '@angular/core';
 import * as $ from '../../assets/lib/jquery/dist/jquery.js';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { DatepickerOptions } from 'ng2-datepicker';
-import * as enLocale from 'date-fns/locale/en';
 import * as  Highcharts from 'highcharts';
 import { Router } from '@angular/router';
 import { Chart } from 'angular-highcharts';
 import * as XLSX from 'xlsx';  
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+
 declare var require: any;
 const More = require('highcharts/highcharts-more');
 More(Highcharts);
@@ -36,10 +36,6 @@ export class CapacityutilizationComponent implements OnInit {
   @ViewChild('HighEfficiencyOperatorsTable') HighEfficiencyOperatorsTable: ElementRef;   
   title = 'Excel';  
   userBackendUrl : any = environment.backendUrl + 'kpicalculation';
-  // @ViewChild("container", { read: ElementRef }) container: ElementRef;
-  // @ViewChild("efficiencyContainer", { read: ElementRef }) efficiencyContainer: ElementRef;
-  // @ViewChild("dhuRejectDefectContainer", { read: ElementRef }) dhuRejectDefectContainer: ElementRef;
-  // @ViewChild('dataTable') table;
   dataTable: any;
   recommendationData : any = [];
   year :any = [
@@ -49,39 +45,8 @@ export class CapacityutilizationComponent implements OnInit {
   ]
   startDate : Date = new Date("01/25/2021");
   endDate : Date = new Date("01/31/2021");
-  options: DatepickerOptions = {
-    locale: enLocale,
-    minYear: 1970,
-    maxYear: 2030,
-    displayFormat: 'MMM D[,] YYYY',
-    barTitleFormat: 'MMMM YYYY',
-    dayNamesFormat: 'dd',
-    firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-    minDate: this.startDate, // Minimal selectable date
-    // maxDate: new Date(Date.now()),  // Maximal selectable date
-    barTitleIfEmpty: 'Click to select a date',
-    placeholder: 'Click to select a date', // HTML input placeholder attribute (default: '')
-    addClass: 'form-control', // Optional, value to pass on to [ngClass] on the input field
-    addStyle: {}, // Optional, value to pass to [ngStyle] on the input field
-    fieldId: 'my-date-picker', // ID to assign to the input field. Defaults to datepicker-<counter>
-    useEmptyBarTitle: false, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown 
-};
-
+  
   recommendationModalTitle : any = "";
-  // month : any = [
-  //   {id: 1, name: 'January'},
-  //   {id: 2, name: 'February'},
-  //   {id: 3, name: 'March'},
-  //   {id: 4, name: 'April'},
-  //   {id: 5, name: 'May'},
-  //   {id: 6, name: 'June'},
-  //   {id: 7, name: 'July'},
-  //   {id: 8, name: 'August'},
-  //   {id: 9, name: 'September'},
-  //   {id: 10, name: 'October'},
-  //   {id: 11, name: 'November'},
-  //   {id: 12, name: 'December'},
-  // ]
   lineOptions : any = []
   unitOptions : any = [];
   locationOptions : any = [];
@@ -120,16 +85,25 @@ export class CapacityutilizationComponent implements OnInit {
     this.getMasterData();
   }
 
+  headerTextValue : string;
   getFilterData(){
     var KPIView = {
-      Line : [],
-      Location : [],
-      Unit : [],
+      Line : [1,2],
+      Location : [1,2],
+      Unit : [1,2],
       StartDate : "2021-01-01 00:00:00.000",
       EndDate : "2021-01-31 00:00:00.000",
     }
+    var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+    if($('#startDate').val() == $('#endDate').val()){
+      this.headerTextValue = environment.capacityUtilizationHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+    }
+    else{
+      this.headerTextValue = environment.capacityUtilizationHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+    }
     this.calculateCapacityUtilization(KPIView);
   }
+  
   calculateCapacityUtilization(KPIView){
     var _this = this;
     var url = environment.backendUrl + "OperatorsCapacityUtilization";
@@ -159,11 +133,25 @@ export class CapacityutilizationComponent implements OnInit {
               showLastLabel: true
           },
           yAxis: {
-                max: 100,
-                min: 0,
+              max: 100,
+              min: 0,
               title: {
-                  text: 'Defect%'
-              }
+                text: 'Capacity Utiliztion %'
+              },
+              plotLines: [
+                {
+                  color: '#003dab',
+                  width: 2,
+                  value: 75,
+                  dashStyle: 'shortdot'
+                },
+                {
+                  color: '#933401',
+                  width: 2,
+                  value: 51,
+                  dashStyle: 'shortdot'
+                }
+              ] 
           },
           plotOptions: {
               scatter: {
@@ -186,13 +174,27 @@ export class CapacityutilizationComponent implements OnInit {
                   },
                   tooltip: {
                       headerFormat: '<b>{series.name}</b><br>',
-                      pointFormat: 'Op {point.x} produced {point.y} % defects'
+                      pointFormat: 'Op {point.x} produced {point.y} % capacity utilization'
                   }
               }
           },
           series: responsedata["data"]
       });
     })
+  }
+
+  formatUserInputDate(startDate, endDate){
+    var StartDate = new Date(startDate);
+    var EndDate = new Date(endDate);
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startDay + "." + startmonth + '.' + startyear;
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endDay + "." + endmonth + '.' + endyear;
+    return {startDateTime : startDateTime, endDateTime : endDateTime}
   }
 
   getMasterData(){
@@ -208,11 +210,11 @@ export class CapacityutilizationComponent implements OnInit {
   }
 
   getOperatorsDefectAnalysis(){
-    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
       var locationId = parseFloat(this.value);
       return locationId;
     }).get();
-    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
       var unitId = parseFloat(this.value);
       return unitId;
     }).get();
@@ -221,26 +223,73 @@ export class CapacityutilizationComponent implements OnInit {
       return lineId;
     }).get();
     var StartDate = new Date($('#startDate').val());
-    var startDay = StartDate.getDate();
-    var startmonth = StartDate.getMonth() + 1;
-    var startyear = StartDate.getFullYear();
-    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
     var EndDate = new Date($('#endDate').val());
-    var endDay = EndDate.getDate();
-    var endmonth = EndDate.getMonth() + 1;
-    var endyear = EndDate.getFullYear();
-    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-    var KPIView = {
-      Line : checkedLines,
-      Location : checkedLocations,
-      Unit : checkedUnits,
-      // StartDate : "2021-01-31 00:00:00.000",
-      // EndDate : "2021-01-31 00:00:00.000",
-      StartDate : startDateTime,
-      EndDate : endDateTime
+
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+      var startDay = StartDate.getDate();
+      var startmonth = StartDate.getMonth() + 1;
+      var startyear = StartDate.getFullYear();
+      var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+      var endDay = EndDate.getDate();
+      var endmonth = EndDate.getMonth() + 1;
+      var endyear = EndDate.getFullYear();
+      var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+      var KPIView = {
+        Line : checkedLines,
+        Location : checkedLocations,
+        Unit : checkedUnits,
+        StartDate : startDateTime,
+        EndDate : endDateTime
+      }
+      var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+      if($('#startDate').val() == $('#endDate').val()){
+        this.headerTextValue = environment.capacityUtilizationHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+      }
+      else{
+        this.headerTextValue = environment.capacityUtilizationHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+      }
+      this.calculateCapacityUtilization(KPIView);
     }
-    console.log(KPIView);
-    this.calculateCapacityUtilization(KPIView);
+    else{
+      Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'Please select location, unit ,line, start date and end date to view historical data',  
+        showConfirmButton: true
+      })  
+    }
+    // var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+    //   var locationId = parseFloat(this.value);
+    //   return locationId;
+    // }).get();
+    // var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+    //   var unitId = parseFloat(this.value);
+    //   return unitId;
+    // }).get();
+    // var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+    //   var lineId = parseFloat(this.value);
+    //   return lineId;
+    // }).get();
+    // var StartDate = new Date($('#startDate').val());
+    // var startDay = StartDate.getDate();
+    // var startmonth = StartDate.getMonth() + 1;
+    // var startyear = StartDate.getFullYear();
+    // var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+    // var EndDate = new Date($('#endDate').val());
+    // var endDay = EndDate.getDate();
+    // var endmonth = EndDate.getMonth() + 1;
+    // var endyear = EndDate.getFullYear();
+    // var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+    // var KPIView = {
+    //   Line : checkedLines,
+    //   Location : checkedLocations,
+    //   Unit : checkedUnits,
+    //   // StartDate : "2021-01-31 00:00:00.000",
+    //   // EndDate : "2021-01-31 00:00:00.000",
+    //   StartDate : startDateTime,
+    //   EndDate : endDateTime
+    // }
+    // this.calculateCapacityUtilization(KPIView);
   }
 
   onLocationChange(event){
@@ -248,6 +297,11 @@ export class CapacityutilizationComponent implements OnInit {
     var _this = this;
     var locations = [];
     if (event.target.checked){
+      this.locationOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLocationMenuButton").html(element.Name);
+        }
+      });
       locations.push(parseInt(event.target.value))
       var dataViewModel = {
         locations : locations,
@@ -257,19 +311,42 @@ export class CapacityutilizationComponent implements OnInit {
         if(responsedata["statusCode"] == 200){
           responsedata["data"].forEach(element => {
             $("#unit_label_" + element.UnitId).show();
-            $("#line_label_" + element.Id).show();
+            $("#line_label_1").show();
+            $("#line_label_2").show();
+            // $("#line_label_" + element.Id).show();
           });
         }
       })
     }
     else{
-      $('.option.justone.location:checkbox').prop('checked', false);
-      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.location:radio').prop('checked', false);
+      $('.option.justone.unit:radio').prop('checked', false);
       $(".unit_label").hide();
       $(".line_label").hide();
       $('.option.justone.line:radio').prop('checked', false);
     }
   }
+
+  onUnitChange(event){
+    if (event.target.checked){
+      this.unitOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownUnitMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onLineChange(event){
+    if (event.target.checked){
+      this.lineOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLineMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
   } 
@@ -348,5 +425,8 @@ export class CapacityutilizationComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();  
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
     XLSX.writeFile(wb, 'Moderate_Efficiency_Operators.xlsx');  
+  }
+  backToPrevious(){
+    window.history.back();
   }
 }
