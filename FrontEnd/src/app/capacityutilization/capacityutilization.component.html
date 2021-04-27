@@ -21,8 +21,8 @@
               </li>
               <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#mediumEfficiency" aria-controls="mediumEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation(153)">Medium Efficiency</a>
               </li>
-              <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#highEfficiency" aria-controls="highEfficiency" role="tab" data-toggle="tab" (click)="getOperatorsName('High');">High Efficiency</a>
-              </li>
+              <!-- <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#highEfficiency" aria-controls="highEfficiency" role="tab" data-toggle="tab" (click)="getOperatorsName('High');">High Efficiency</a>
+              </li> -->
           </ul>
           <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
@@ -66,6 +66,9 @@
                             <th style="width: auto">
                               Name
                             </th>
+                            <th style="width: auto;">
+                              Operation
+                            </th>
                             <th style="width: auto">
                               Working Machine
                           </th>
@@ -83,6 +86,7 @@
                     <tbody>
                         <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
                             <td>{{item.Name}}</td>
+                            <td>{{item.Operation}}</td>
                             <td>{{item.Machine}}</td>
                             <td>{{item.Unit}}</td>
                             <td>{{item.Location}}</td>
@@ -133,6 +137,9 @@
                             <th style="width: auto">
                               Name
                             </th>
+                            <th style="width: auto;">
+                              Operation
+                            </th>
                             <th style="width: auto">
                               Working Machine
                           </th>
@@ -150,6 +157,7 @@
                     <tbody>
                         <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
                             <td>{{item.Name}}</td>
+                            <td>{{item.Operation}}</td>
                             <td>{{item.Machine}}</td>
                             <td>{{item.Unit}}</td>
                             <td>{{item.Location}}</td>
@@ -332,7 +340,7 @@
       <div class="col-9">
         <div class="row align-items-center mt-3">
           <div class="col-12">
-            <div [chart] = "capacityUtilizationScatter" style="width: auto; height: 450px;"></div>  
+            <div [chart] = "capacityUtilizationScatter" style="width: auto; height: 470px;"></div>  
           </div>
         </div>
       </div>
@@ -497,8 +505,31 @@
               <li class="nav-item mt-3">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of periodOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
+                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
-                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-01" min="2021-01-01" max="2021-01-31">
+                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-27" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>

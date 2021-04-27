@@ -44,6 +44,20 @@ export class EfficiencyComponent implements OnInit {
   unitOptions : any = [];
   locationOptions : any = [];
   capacityCalculationHeadingColor = "";
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
 
   data : any = [];
   operatorsDetailsList = [];
@@ -65,7 +79,8 @@ export class EfficiencyComponent implements OnInit {
     $(function() {
       // Hide all lists except the outermost.
       $('ul.tree ul').hide();
-    
+      $("#period_5").prop("checked", true);
+      $("#dropdownLinePeriodButton").html("Last 5 days");
       $('.tree li > ul').each(function(i) {
         var $subUl = $(this);
         var $parentLi = $subUl.parent('li');
@@ -86,7 +101,7 @@ export class EfficiencyComponent implements OnInit {
       Line : [],
       Location : [],
       Unit : [],
-      StartDate : "2021-01-01 00:00:00.000",
+      StartDate : "2021-01-27 00:00:00.000",
       EndDate : "2021-01-31 00:00:00.000",
     }
     this.calculateOperatorEfficiency(KPIView);
@@ -197,7 +212,6 @@ export class EfficiencyComponent implements OnInit {
       Highcharts.chart('operatorScatter', _this.operatorScatterOptions);
     })
   }
-
   
   getSewingKPIAnalysis(){
     var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
@@ -216,29 +230,39 @@ export class EfficiencyComponent implements OnInit {
     var EndDate = new Date($('#endDate').val());
 
     if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
-      var startDay = StartDate.getDate();
-      var startmonth = StartDate.getMonth() + 1;
-      var startyear = StartDate.getFullYear();
-      var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
-      var endDay = EndDate.getDate();
-      var endmonth = EndDate.getMonth() + 1;
-      var endyear = EndDate.getFullYear();
-      var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-      var KPIView = {
-        Line : checkedLines,
-        Location : checkedLocations,
-        Unit : checkedUnits,
-        StartDate : startDateTime,
-        EndDate : endDateTime
-      }
-      var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
-      if($('#startDate').val() == $('#endDate').val()){
-        this.headerTextValue = environment.efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+      if(StartDate > EndDate){
+        Swal.fire({    
+          icon: 'error',  
+          title: 'Sorry...',  
+          text: 'StartDate can not be greater than EndDate',  
+          showConfirmButton: true
+        })  
       }
       else{
-        this.headerTextValue = environment.efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+        var KPIView = {
+          Line : checkedLines,
+          Location : checkedLocations,
+          Unit : checkedUnits,
+          StartDate : startDateTime,
+          EndDate : endDateTime
+        }
+        var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+        if($('#startDate').val() == $('#endDate').val()){
+          this.headerTextValue = environment.efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else{
+          this.headerTextValue = environment.efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+        this.calculateOperatorEfficiency(KPIView);
       }
-      this.calculateOperatorEfficiency(KPIView);
     }
     else{
       Swal.fire({    
@@ -326,11 +350,11 @@ export class EfficiencyComponent implements OnInit {
     var _this = this;
     this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
       if(recommendationId == 6){
-        _this.recommendationModalTitle = "Recommemdations for Low Performance"
+        _this.recommendationModalTitle = "Recommemdations of Efficiency"
         _this.getOperatorsName('Low');
       }
       else{
-        _this.recommendationModalTitle = "Recommemdations for Moderate Performance"
+        _this.recommendationModalTitle = "Recommemdations for Efficiency"
         _this.getOperatorsName('Moderate');
       }
       _this.data.push({
@@ -402,5 +426,35 @@ export class EfficiencyComponent implements OnInit {
   }
   backToPrevious(){
     window.history.back();
+  }
+  onPeriodChange(event){
+    if (event.target.checked){
+      this.periodOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLinePeriodButton").html(element.Name);
+          var checkedPeriod = $('.option.justone.period:radio:checked').map(function() {
+            var periodId = parseInt(this.value);
+            return periodId;
+          }).get();
+          if(checkedPeriod[0] != null){
+            var EndDate = new Date($('#endDate').val());
+            var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+            var day =last.getDate();
+            var month=last.getMonth()+1;
+            var year=last.getFullYear();
+            var monthString = month.toString();
+            var dayString = day.toString();
+            if(month < 10){
+              monthString = "0" + month;
+            }
+            if(day < 10){
+              dayString = "0" + day;
+            }
+            var StartDate = year + "-" + monthString + "-" + dayString;
+            $('#startDate').val(StartDate)
+          }
+        }
+      });
+    }
   }
 }

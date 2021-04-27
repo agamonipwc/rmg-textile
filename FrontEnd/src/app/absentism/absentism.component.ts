@@ -7,7 +7,8 @@ import * as enLocale from 'date-fns/locale/en';
 import * as  Highcharts from 'highcharts';
 import { Router } from '@angular/router';
 import { Chart } from 'angular-highcharts';
-import * as XLSX from 'xlsx';  
+import * as XLSX from 'xlsx'; 
+import Swal from 'sweetalert2/dist/sweetalert2.js';  
 declare var require: any;
 const More = require('highcharts/highcharts-more');
 More(Highcharts);
@@ -52,6 +53,7 @@ export class AbsentismComponent implements OnInit {
   operatorsDetailsList = [];
   
   absentismScatter: Chart;
+  headerTextValue : string;
 
 constructor(private http: HttpClient,private _router: Router) { }
 
@@ -90,6 +92,13 @@ ngOnInit() {
       EndDate : "2021-01-31 00:00:00.000",
     }
     this.calculateOperatorsAbsentism(KPIView);
+    var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+    if($('#startDate').val() == $('#endDate').val()){
+      this.headerTextValue = environment.absenteeismHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+    }
+    else{
+      this.headerTextValue = environment.absenteeismHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+    }
   }
   calculateOperatorsAbsentism(KPIView){
     var _this = this;
@@ -120,11 +129,25 @@ ngOnInit() {
           },
           credits: {enabled: false},
           yAxis: {
-                max: 20,
-                min: 0,
+              max: 20,
+              min: 0,
               title: {
-                  text: 'Defect%'
+                text: 'Absenteeism %'
+              },
+              plotLines: [
+                {
+                color: '#003dab',
+                width: 2,
+                value: 5,
+                dashStyle: 'shortdot'
+              },
+              {
+                color: '#933401',
+                width: 2,
+                value: 10,
+                dashStyle: 'shortdot'
               }
+            ]
           },
           plotOptions: {
               scatter: {
@@ -147,7 +170,7 @@ ngOnInit() {
                   },
                   tooltip: {
                       headerFormat: '<b>{series.name}</b><br>',
-                      pointFormat: 'Op{point.x} has absentism {point.y}%'
+                      pointFormat: '{point.name} : {point.y}'
                   }
               }
           },
@@ -167,12 +190,30 @@ ngOnInit() {
     })
   }
 
-  getOperatorsAbsentismAnalysis(){
-    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+  formatUserInputDate(startDate, endDate){
+    var StartDate = new Date(startDate);
+    var EndDate = new Date(endDate);
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startDay + "." + startmonth + '.' + startyear;
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endDay + "." + endmonth + '.' + endyear;
+    return {startDateTime : startDateTime, endDateTime : endDateTime}
+  }
+
+  backToPrevious(){
+    window.history.back();
+  }
+
+  getSewingKPIAnalysis(){
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
       var locationId = parseFloat(this.value);
       return locationId;
     }).get();
-    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
       var unitId = parseFloat(this.value);
       return unitId;
     }).get();
@@ -181,26 +222,52 @@ ngOnInit() {
       return lineId;
     }).get();
     var StartDate = new Date($('#startDate').val());
-    var startDay = StartDate.getDate();
-    var startmonth = StartDate.getMonth() + 1;
-    var startyear = StartDate.getFullYear();
-    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
     var EndDate = new Date($('#endDate').val());
-    var endDay = EndDate.getDate();
-    var endmonth = EndDate.getMonth() + 1;
-    var endyear = EndDate.getFullYear();
-    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-    var KPIView = {
-      Line : checkedLines,
-      Location : checkedLocations,
-      Unit : checkedUnits,
-      // StartDate : "2021-01-31 00:00:00.000",
-      // EndDate : "2021-01-31 00:00:00.000",
-      StartDate : startDateTime,
-      EndDate : endDateTime
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+      if(StartDate > EndDate){
+        Swal.fire({    
+          icon: 'error',  
+          title: 'Sorry...',  
+          text: 'StartDate can not be greater than EndDate',  
+          showConfirmButton: true
+        })  
+      }
+      else{
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+        var KPIView = {
+          Line : checkedLines,
+          Location : checkedLocations,
+          Unit : checkedUnits,
+          StartDate : startDateTime,
+          EndDate : endDateTime
+        }
+        var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+        if($('#startDate').val() == $('#endDate').val()){
+          this.headerTextValue = environment.absenteeismHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else{
+          this.headerTextValue = environment.absenteeismHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+        this.calculateOperatorsAbsentism(KPIView);
+      }
+    }
+    else{
+      Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'Please select location, unit ,line, start date and end date to view historical data',  
+        showConfirmButton: true
+      })  
     }
     
-    this.calculateOperatorsAbsentism(KPIView);
+    
   }
 
   onLocationChange(event){
@@ -208,6 +275,11 @@ ngOnInit() {
     var _this = this;
     var locations = [];
     if (event.target.checked){
+      this.locationOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLocationMenuButton").html(element.Name);
+        }
+      });
       locations.push(parseInt(event.target.value))
       var dataViewModel = {
         locations : locations,
@@ -217,17 +289,39 @@ ngOnInit() {
         if(responsedata["statusCode"] == 200){
           responsedata["data"].forEach(element => {
             $("#unit_label_" + element.UnitId).show();
-            $("#line_label_" + element.Id).show();
+            $("#line_label_1").show();
+            $("#line_label_2").show();
+            // $("#line_label_" + element.Id).show();
           });
         }
       })
     }
     else{
-      $('.option.justone.location:checkbox').prop('checked', false);
-      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.location:radio').prop('checked', false);
+      $('.option.justone.unit:radio').prop('checked', false);
       $(".unit_label").hide();
       $(".line_label").hide();
       $('.option.justone.line:radio').prop('checked', false);
+    }
+  }
+
+  onUnitChange(event){
+    if (event.target.checked){
+      this.unitOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownUnitMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onLineChange(event){
+    if (event.target.checked){
+      this.lineOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLineMenuButton").html(element.Name);
+        }
+      });
     }
   }
   sewingNavigation(){
@@ -240,7 +334,6 @@ ngOnInit() {
     this._router.navigate(['process-overview']);
   }
   getRecommendation(recommendationId){
-    console.log("------Recommendation Id--------",recommendationId);
     this.data = [];
     var recommendationView ={
       KPIId : 3,
@@ -250,11 +343,11 @@ ngOnInit() {
     var _this = this;
     this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
       if(recommendationId == 22){
-        _this.recommendationModalTitle = "Recommemdations for Low Operators"
+        _this.recommendationModalTitle = "Recommendations for operators with low absenteeism"
         _this.getOperatorsName('Low')
       }
       else if(recommendationId == 23){
-        _this.recommendationModalTitle = "Recommemdations for Moderate Operators"
+        _this.recommendationModalTitle = "Recommendations for operators with medium absenteeism"
         _this.getOperatorsName('Moderate');
       }
       else{
@@ -281,6 +374,7 @@ ngOnInit() {
       responsedata["operatorsDetails"].forEach(element => {
         _this.operatorsDetailsList.push({
           Name : element["Name"],
+          Operation : element["OperationName"],
           Machine : element["Machine"],
           Unit : element["Unit"],
           Location : element["Location"],

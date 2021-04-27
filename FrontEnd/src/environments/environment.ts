@@ -10,7 +10,10 @@ export const environment = {
   sewingKPIHeaderText: "Sewing Department KPI Analysis",
   sewingHistKPIHeaderText: "Historical KPI Analysis",
   efficiencyHeaderText : "Average efficiency",
-  capacityUtilizationHeaderText : "Average utilisation"
+  capacityUtilizationHeaderText : "Average utilisation",
+  absenteeismHeaderText : "Average absenteeism",
+  defectHeaderText : "Average defect%",
+  rejectionHeaderText : "Overview of Rejection"
 };
 
 // export const environment = {

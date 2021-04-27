@@ -56,6 +56,20 @@ export class CapacityutilizationComponent implements OnInit {
   operatorsDetailsList = [];
   
   capacityUtilizationScatter: Chart;
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
 
   constructor(private http: HttpClient,private _router: Router) { }
 
@@ -66,6 +80,8 @@ export class CapacityutilizationComponent implements OnInit {
     $(".footer").hide();
     this.getFilterData();
     $(function() {
+      $("#period_5").prop("checked", true);
+      $("#dropdownLinePeriodButton").html("Last 5 days");
       // Hide all lists except the outermost.
       $('ul.tree ul').hide();
     
@@ -91,7 +107,7 @@ export class CapacityutilizationComponent implements OnInit {
       Line : [1,2],
       Location : [1,2],
       Unit : [1,2],
-      StartDate : "2021-01-01 00:00:00.000",
+      StartDate : "2021-01-27 00:00:00.000",
       EndDate : "2021-01-31 00:00:00.000",
     }
     var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
@@ -174,7 +190,7 @@ export class CapacityutilizationComponent implements OnInit {
                   },
                   tooltip: {
                       headerFormat: '<b>{series.name}</b><br>',
-                      pointFormat: 'Op {point.x} produced {point.y} % capacity utilization'
+                      pointFormat: '{point.name} : {point.y}'
                   }
               }
           },
@@ -209,7 +225,7 @@ export class CapacityutilizationComponent implements OnInit {
     })
   }
 
-  getOperatorsDefectAnalysis(){
+  getSewingKPIAnalysis(){
     var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
       var locationId = parseFloat(this.value);
       return locationId;
@@ -346,6 +362,36 @@ export class CapacityutilizationComponent implements OnInit {
       });
     }
   }
+  onPeriodChange(event){
+    if (event.target.checked){
+      this.periodOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLinePeriodButton").html(element.Name);
+          var checkedPeriod = $('.option.justone.period:radio:checked').map(function() {
+            var periodId = parseInt(this.value);
+            return periodId;
+          }).get();
+          if(checkedPeriod[0] != null){
+            var EndDate = new Date($('#endDate').val());
+            var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+            var day =last.getDate();
+            var month=last.getMonth()+1;
+            var year=last.getFullYear();
+            var monthString = month.toString();
+            var dayString = day.toString();
+            if(month < 10){
+              monthString = "0" + month;
+            }
+            if(day < 10){
+              dayString = "0" + day;
+            }
+            var StartDate = year + "-" + monthString + "-" + dayString;
+            $('#startDate').val(StartDate)
+          }
+        }
+      });
+    }
+  }
 
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
@@ -387,6 +433,7 @@ export class CapacityutilizationComponent implements OnInit {
       responsedata["operatorsDetails"].forEach(element => {
         _this.operatorsDetailsList.push({
           Name : element["Name"],
+          Operation : element["OperationName"],
           Machine : element["Machine"],
           Unit : element["Unit"],
           Location : element["Location"],

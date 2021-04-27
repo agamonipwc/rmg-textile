@@ -8,6 +8,7 @@ import * as  Highcharts from 'highcharts';
 import { Router } from '@angular/router';
 import { Chart } from 'angular-highcharts';
 import * as XLSX from 'xlsx';  
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 declare var require: any;
 const More = require('highcharts/highcharts-more');
@@ -51,6 +52,21 @@ export class RejectionComponent implements OnInit {
   
   rejectionLine: Chart;
   styleRejectionBar: Chart;
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
+  headerTextValue : string = "";
 
 constructor(private http: HttpClient,private _router: Router) { }
 
@@ -62,6 +78,8 @@ constructor(private http: HttpClient,private _router: Router) { }
     this.getMasterData();
     this.getFilterData();
     $(function() {
+      $("#period_5").prop("checked", true);
+      $("#dropdownLinePeriodButton").html("Last 5 days");
       // Hide all lists except the outermost.
       $('ul.tree ul').hide();
     
@@ -86,10 +104,17 @@ constructor(private http: HttpClient,private _router: Router) { }
       Location : [1,2],
       Unit : [1,2],
       StartDate : "2021-01-01 00:00:00.000",
-      EndDate : "2021-01-31 00:00:00.000",
+      EndDate : "2021-01-27 00:00:00.000",
     }
     this.calculateRejection(KPIView);
     this.calculateRejectionByStyle(KPIView);
+    var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+    if($('#startDate').val() == $('#endDate').val()){
+      this.headerTextValue = environment.rejectionHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+    }
+    else{
+      this.headerTextValue = environment.rejectionHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+    }
   }
 
   calculateRejection(KPIView){
@@ -114,6 +139,7 @@ constructor(private http: HttpClient,private _router: Router) { }
             title: {
               text: 'Daily Date'
             },
+            visible : false
         },
         yAxis: {
             title: {
@@ -227,6 +253,11 @@ constructor(private http: HttpClient,private _router: Router) { }
     var _this = this;
     var locations = [];
     if (event.target.checked){
+      this.locationOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLocationMenuButton").html(element.Name);
+        }
+      });
       locations.push(parseInt(event.target.value))
       var dataViewModel = {
         locations : locations,
@@ -236,17 +267,39 @@ constructor(private http: HttpClient,private _router: Router) { }
         if(responsedata["statusCode"] == 200){
           responsedata["data"].forEach(element => {
             $("#unit_label_" + element.UnitId).show();
-            $("#line_label_" + element.Id).show();
+            $("#line_label_1").show();
+            $("#line_label_2").show();
+            // $("#line_label_" + element.Id).show();
           });
         }
       })
     }
     else{
-      $('.option.justone.location:checkbox').prop('checked', false);
-      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.location:radio').prop('checked', false);
+      $('.option.justone.unit:radio').prop('checked', false);
       $(".unit_label").hide();
       $(".line_label").hide();
       $('.option.justone.line:radio').prop('checked', false);
+    }
+  }
+
+  onUnitChange(event){
+    if (event.target.checked){
+      this.unitOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownUnitMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onLineChange(event){
+    if (event.target.checked){
+      this.lineOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLineMenuButton").html(element.Name);
+        }
+      });
     }
   }
   getMasterData(){
@@ -266,12 +319,58 @@ constructor(private http: HttpClient,private _router: Router) { }
   dashboardNavigation(){
     this._router.navigate(['module-performance']);
   }
+  // getSewingKPIAnalysis(){
+  //   var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+  //     var locationId = parseFloat(this.value);
+  //     return locationId;
+  //   }).get();
+  //   var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+  //     var unitId = parseFloat(this.value);
+  //     return unitId;
+  //   }).get();
+  //   var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+  //     var lineId = parseFloat(this.value);
+  //     return lineId;
+  //   }).get();
+  //   var StartDate = new Date($('#startDate').val());
+  //   var startDay = StartDate.getDate();
+  //   var startmonth = StartDate.getMonth() + 1;
+  //   var startyear = StartDate.getFullYear();
+  //   var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+  //   var EndDate = new Date($('#endDate').val());
+  //   var endDay = EndDate.getDate();
+  //   var endmonth = EndDate.getMonth() + 1;
+  //   var endyear = EndDate.getFullYear();
+  //   var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+  //   var KPIView = {
+  //     Line : checkedLines,
+  //     Location : checkedLocations,
+  //     Unit : [1,2],
+  //     StartDate : startDateTime,
+  //     EndDate : endDateTime
+  //   }
+  //   this.calculateRejection(KPIView);
+  //   this.calculateRejectionByStyle(KPIView);
+  // }
+  formatUserInputDate(startDate, endDate){
+    var StartDate = new Date(startDate);
+    var EndDate = new Date(endDate);
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startDay + "." + startmonth + '.' + startyear;
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endDay + "." + endmonth + '.' + endyear;
+    return {startDateTime : startDateTime, endDateTime : endDateTime}
+  }
   getSewingKPIAnalysis(){
-    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
       var locationId = parseFloat(this.value);
       return locationId;
     }).get();
-    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
       var unitId = parseFloat(this.value);
       return unitId;
     }).get();
@@ -280,24 +379,53 @@ constructor(private http: HttpClient,private _router: Router) { }
       return lineId;
     }).get();
     var StartDate = new Date($('#startDate').val());
-    var startDay = StartDate.getDate();
-    var startmonth = StartDate.getMonth() + 1;
-    var startyear = StartDate.getFullYear();
-    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
     var EndDate = new Date($('#endDate').val());
-    var endDay = EndDate.getDate();
-    var endmonth = EndDate.getMonth() + 1;
-    var endyear = EndDate.getFullYear();
-    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-    var KPIView = {
-      Line : checkedLines,
-      Location : checkedLocations,
-      Unit : [1,2],
-      StartDate : startDateTime,
-      EndDate : endDateTime
+
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+      if(StartDate > EndDate){
+        Swal.fire({    
+          icon: 'error',  
+          title: 'Sorry...',  
+          text: 'StartDate can not be greater than EndDate',  
+          showConfirmButton: true
+        })  
+      }
+      else{
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+        var KPIView = {
+          Line : checkedLines,
+          Location : checkedLocations,
+          Unit : checkedUnits,
+          StartDate : startDateTime,
+          EndDate : endDateTime
+        }
+        var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+        if($('#startDate').val() == $('#endDate').val()){
+          this.headerTextValue = environment.rejectionHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else{
+          this.headerTextValue = environment.rejectionHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+        this.calculateRejection(KPIView);
+        this.calculateRejectionByStyle(KPIView);
+      }
     }
-    this.calculateRejection(KPIView);
-    this.calculateRejectionByStyle(KPIView);
+    else{
+      Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'Please select location, unit ,line, start date and end date to view historical data',  
+        showConfirmButton: true
+      })  
+    }
+    
   }
   showStyleData(){
     $("#rejectionLineDiv").height(280);

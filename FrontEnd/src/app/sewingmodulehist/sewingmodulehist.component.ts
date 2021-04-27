@@ -43,11 +43,25 @@ export class SewingmodulehistComponent implements OnInit {
   locationOptions : any = [];
   unitOptions: any = [];
   lineOptions : any= [];
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
 
   headerTextValue : string = "";
 
   ngOnInit() {
-
+    
     $("#footer").hide();
     $(".footer").hide();
     $("#topnavbar").hide();   
@@ -56,28 +70,30 @@ export class SewingmodulehistComponent implements OnInit {
         Line : [1,2,3,4],
         Location : [1,2],
         Unit : [1,2],
-        StartDate : "2021-01-01 00:00:00.000",
+        StartDate : "2021-01-27 00:00:00.000",
         EndDate : "2021-01-31 00:00:00.000",
     }
     this.getFilterData(KPIView)
     // this.createRejectionHistoric();
     $(function() {
-        // Hide all lists except the outermost.
-        $('ul.tree ul').hide();
-      
-        $('.tree li > ul').each(function(i) {
-          var $subUl = $(this);
-          var $parentLi = $subUl.parent('li');
-          var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
-      
-          $parentLi.addClass('has-children');
-          
-          $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-            $(this).text( $(this).text() == '+' ? '-' : '+' );
-            $subUl.slideToggle('fast');
-          });
+      var _this = this;
+      // Hide all lists except the outermost.
+      $('ul.tree ul').hide();
+      $("#period_5").prop("checked", true);
+      $("#dropdownLinePeriodButton").html("Last 5 days");
+      $('.tree li > ul').each(function(i) {
+        var $subUl = $(this);
+        var $parentLi = $subUl.parent('li');
+        var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+    
+        $parentLi.addClass('has-children');
+        
+        $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+          $(this).text( $(this).text() == '+' ? '-' : '+' );
+          $subUl.slideToggle('fast');
         });
       });
+    });
   }
 
   averageKPIDataList = [];
@@ -233,7 +249,7 @@ export class SewingmodulehistComponent implements OnInit {
               events: {
                 afterAnimate: function() {
                   var chart = this.chart;
-                  label = chart.renderer.text('Average : ' + averageDataValue, 350, 15)
+                  label = chart.renderer.text('Average : ' + averageDataValue, 350, 10)
                     .css({
                       fontSize: '12px',
                       color: '#933401',
@@ -672,76 +688,6 @@ export class SewingmodulehistComponent implements OnInit {
     this._router.navigate(['sewing-module']);
   }
 
-//   getSewingKPIAnalysis(){
-//     var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
-//       var locationId = parseFloat(this.value);
-//       return locationId;
-//     }).get();
-//     var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
-//       var unitId = parseFloat(this.value);
-//       return unitId;
-//     }).get();
-//     var checkedLines = $('.option.justone.line:radio:checked').map(function() {
-//       var lineId = parseFloat(this.value);
-//       return lineId;
-//     }).get();
-//     var StartDate = new Date($('#startDate').val());
-//     var startDay = StartDate.getDate();
-//     var startmonth = StartDate.getMonth() + 1;
-//     var startMonthValue = startmonth.toString();
-//     if(startmonth > 10){
-//         startMonthValue = "0" + startmonth.toString();
-//     }
-//     var startyear = StartDate.getFullYear();
-//     var startDateTime = startyear + "-" + startMonthValue + '-' + startDay + " 00:00:00.000";
-//     var EndDate = new Date($('#endDate').val());
-//     var endDay = EndDate.getDate();
-//     var endmonth = EndDate.getMonth() + 1;
-//     var endMonthValue = startmonth.toString();
-//     if(endmonth > 10){
-//         endMonthValue = "0" + endmonth.toString();
-//     }
-//     var endyear = EndDate.getFullYear();
-//     var endDateTime = endyear + "-" + endMonthValue + '-' + endDay + " 00:00:00.000";
-//     var KPIView = {
-//       Line : [1,2],
-//       Location : checkedLocations,
-//       Unit : checkedUnits,
-//     //   StartDate : "2021-01-27 00:00:00.000",
-//     //   EndDate : "2021-01-31 00:00:00.000"
-//         StartDate : startDateTime,
-//       EndDate : endDateTime
-//     }
-//     this.getFilterData(KPIView)
-//   }
-
-//   onLocationChange(event){
-//     var masterDataUrl = environment.backendUrl + "MasterData";
-//     var _this = this;
-//     var locations = [];
-//     if (event.target.checked){
-//       locations.push(parseInt(event.target.value))
-//       var dataViewModel = {
-//         locations : locations,
-//         units : []
-//       }
-//       this.http.post<any>(masterDataUrl,dataViewModel).subscribe(responsedata =>{
-//         if(responsedata["statusCode"] == 200){
-//           responsedata["data"].forEach(element => {
-//             $("#unit_label_" + element.UnitId).show();
-//             $("#line_label_" + element.Id).show();
-//           });
-//         }
-//       })
-//     }
-//     else{
-//       $('.option.justone.location:checkbox').prop('checked', false);
-//       $('.option.justone.unit:checkbox').prop('checked', false);
-//       $(".unit_label").hide();
-//       $(".line_label").hide();
-//       $('.option.justone.line:radio').prop('checked', false);
-//     }
-//   }
   getSewingKPIAnalysis(){
     var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
       var locationId = parseFloat(this.value);
@@ -850,6 +796,37 @@ export class SewingmodulehistComponent implements OnInit {
       this.lineOptions.forEach(element => {
         if(element.Id == event.target.value){
           $("#dropdownLineMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onPeriodChange(event){
+    if (event.target.checked){
+      this.periodOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLinePeriodButton").html(element.Name);
+          var checkedPeriod = $('.option.justone.period:radio:checked').map(function() {
+            var periodId = parseInt(this.value);
+            return periodId;
+          }).get();
+          if(checkedPeriod[0] != null){
+            var EndDate = new Date($('#endDate').val());
+            var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+            var day =last.getDate();
+            var month=last.getMonth()+1;
+            var year=last.getFullYear();
+            var monthString = month.toString();
+            var dayString = day.toString();
+            if(month < 10){
+              monthString = "0" + month;
+            }
+            if(day < 10){
+              dayString = "0" + day;
+            }
+            var StartDate = year + "-" + monthString + "-" + dayString;
+            $('#startDate').val(StartDate)
+          }
         }
       });
     }

@@ -82,68 +82,118 @@ namespace RMGWebApi.Controllers
                          join cs in timeStudyData on s.OperationName equals cs.OperationDesc
                          select new OperatorCapacityUtilization
                          {
+                             OperatorName = s.OperatorName,
                              OperationName = s.OperationName,
                              OperatorIndex = s.OperatorIndex,
                              CapapcityUtilization = Math.Round((s.ProductionData / cs.PlannedProduction)  * 100)
                          }).ToList();
 
 
-
-            List<EfficiencyViewModel> seriesData = new List<EfficiencyViewModel>();
-            List<object[]> lowCapapcityUtilization = new List<object[]>();
-            List<object[]> moderateCapapcityUtilization = new List<object[]>();
-            List<object[]> highCapapcityUtilization = new List<object[]>();
+            List<EfficiencyViewModel_New> seriesData = new List<EfficiencyViewModel_New>();
+            List<ModifiedDataSet> lowEfficiency = new List<ModifiedDataSet>();
+            List<ModifiedDataSet> moderateEfficiency = new List<ModifiedDataSet>();
+            List<ModifiedDataSet> highEfficiency = new List<ModifiedDataSet>();
+            //List<EfficiencyViewModel> seriesData = new List<EfficiencyViewModel>();
+            //List<object[]> lowCapapcityUtilization = new List<object[]>();
+            //List<object[]> moderateCapapcityUtilization = new List<object[]>();
+            //List<object[]> highCapapcityUtilization = new List<object[]>();
             foreach (var element in resultDataSet)
             {
                 if (element.CapapcityUtilization <= 100)
                 {
-                    object[] objectArray = new object[2];
-                    //string color = "";
-                    if (element.CapapcityUtilization >= 75)
+                    ModifiedDataSet dataSet = new ModifiedDataSet();
+                    if (element.CapapcityUtilization >= 0 && element.CapapcityUtilization <= 50)
                     {
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.CapapcityUtilization;
-                        highCapapcityUtilization.Add(objectArray);
-                        //color = "#e0301e";
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.CapapcityUtilization);
+                        dataSet.name = element.OperatorName;
+                        lowEfficiency.Add(dataSet);
                     }
-                    else if (element.CapapcityUtilization >= 51 && element.CapapcityUtilization <= 74)
+                    else if (element.CapapcityUtilization >= 51 && element.CapapcityUtilization <= 75)
                     {
-                        //color = "#ffb600";
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.CapapcityUtilization;
-                        moderateCapapcityUtilization.Add(objectArray);
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.CapapcityUtilization);
+                        dataSet.name = element.OperatorName;
+                        moderateEfficiency.Add(dataSet);
                     }
-                    else if (element.CapapcityUtilization >= 0 && element.CapapcityUtilization <=50 )
+                    else if (element.CapapcityUtilization >= 76 && element.CapapcityUtilization <= 100)
                     {
-                        //color = "#175d2d";
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.CapapcityUtilization;
-                        lowCapapcityUtilization.Add(objectArray);
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.CapapcityUtilization);
+                        dataSet.name = element.OperatorName;
+                        highEfficiency.Add(dataSet);
                     }
+
+                    //object[] objectArray = new object[2];
+                    //if (element.CapapcityUtilization >= 75)
+                    //{
+                    //    objectArray[0] = element.OperatorIndex;
+                    //    objectArray[1] = element.CapapcityUtilization;
+                    //    highCapapcityUtilization.Add(objectArray);
+                    //    //color = "#e0301e";
+                    //}
+                    //else if (element.CapapcityUtilization >= 51 && element.CapapcityUtilization <= 74)
+                    //{
+                    //    //color = "#ffb600";
+                    //    objectArray[0] = element.OperatorIndex;
+                    //    objectArray[1] = element.CapapcityUtilization;
+                    //    moderateCapapcityUtilization.Add(objectArray);
+                    //}
+                    //else if (element.CapapcityUtilization >= 0 && element.CapapcityUtilization <=50 )
+                    //{
+                    //    //color = "#175d2d";
+                    //    objectArray[0] = element.OperatorIndex;
+                    //    objectArray[1] = element.CapapcityUtilization;
+                    //    lowCapapcityUtilization.Add(objectArray);
+                    //}
                 }
 
             }
-            seriesData.Add(new EfficiencyViewModel
+
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "Low",
+            //    showInLegend = false,
+            //    color = "#e0301e",
+            //    data = lowCapapcityUtilization
+            //});
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "Moderate",
+            //    showInLegend = false,
+            //    color = "#ffb600",
+            //    data = moderateCapapcityUtilization
+            //});
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "High",
+            //    showInLegend = false,
+            //    color = "#175d2d",
+            //    data = highCapapcityUtilization
+            //});
+
+            seriesData.Add(new EfficiencyViewModel_New
             {
                 name = "Low",
                 showInLegend = false,
                 color = "#e0301e",
-                data = lowCapapcityUtilization
+                data = lowEfficiency
             });
-            seriesData.Add(new EfficiencyViewModel
+            seriesData.Add(new EfficiencyViewModel_New
             {
                 name = "Moderate",
                 showInLegend = false,
                 color = "#ffb600",
-                data = moderateCapapcityUtilization
+                data = moderateEfficiency
             });
-            seriesData.Add(new EfficiencyViewModel
+            seriesData.Add(new EfficiencyViewModel_New
             {
                 name = "High",
                 showInLegend = false,
                 color = "#175d2d",
-                data = highCapapcityUtilization
+                data = highEfficiency
             });
+
             return Json(new
             {
                 data = seriesData,

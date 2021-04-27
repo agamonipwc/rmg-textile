@@ -82,6 +82,7 @@ namespace RMGWebApi.Controllers
                                  //join cs in timeStudyData on s.OperationName equals cs.OperationDesc
                                  select new OperatorCapacityUtilization
                                  {
+                                     OperatorName = s.OperatorName,
                                      OperationName = s.OperationName,
                                      OperatorIndex = s.OperatorIndex,
                                      CapapcityUtilization = Math.Round((s.AbsentOperators / s.TotalOperators) * 100)
@@ -89,61 +90,100 @@ namespace RMGWebApi.Controllers
 
 
 
-            List<EfficiencyViewModel> seriesData = new List<EfficiencyViewModel>();
-            List<object[]> lowAbsentism = new List<object[]>();
-            List<object[]> moderateAbsentism = new List<object[]>();
-            List<object[]> highAbsentism = new List<object[]>();
+            //List<EfficiencyViewModel> seriesData = new List<EfficiencyViewModel>();
+            //List<object[]> lowAbsentism = new List<object[]>();
+            //List<object[]> moderateAbsentism = new List<object[]>();
+            //List<object[]> highAbsentism = new List<object[]>();
+            List<EfficiencyViewModel_New> seriesData = new List<EfficiencyViewModel_New>();
+            List<ModifiedDataSet> lowEfficiency = new List<ModifiedDataSet>();
+            List<ModifiedDataSet> moderateEfficiency = new List<ModifiedDataSet>();
+            List<ModifiedDataSet> highEfficiency = new List<ModifiedDataSet>();
+
             foreach (var element in resultDataSet)
             {
                 if (element.CapapcityUtilization <= 100)
                 {
-                    object[] objectArray = new object[2];
-                    //string color = "";
+                    ModifiedDataSet dataSet = new ModifiedDataSet();
+                    //object[] objectArray = new object[2];
+                    ////string color = "";
                     if (element.CapapcityUtilization >= 11)
                     {
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.CapapcityUtilization;
-                        highAbsentism.Add(objectArray);
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.CapapcityUtilization);
+                        dataSet.name = element.OperatorName;
+                        highEfficiency.Add(dataSet);
+                        //objectArray[0] = element.OperatorIndex;
+                        //objectArray[1] = element.CapapcityUtilization;
+                        //highAbsentism.Add(objectArray);
                         //color = "#e0301e";
                     }
                     else if (element.CapapcityUtilization >= 6 && element.CapapcityUtilization <= 10)
                     {
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.CapapcityUtilization);
+                        dataSet.name = element.OperatorName;
+                        moderateEfficiency.Add(dataSet);
                         //color = "#ffb600";
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.CapapcityUtilization;
-                        moderateAbsentism.Add(objectArray);
+                        //objectArray[0] = element.OperatorIndex;
+                        //objectArray[1] = element.CapapcityUtilization;
+                        //moderateAbsentism.Add(objectArray);
                     }
                     else if (element.CapapcityUtilization >= 0 && element.CapapcityUtilization <= 5)
                     {
+                        dataSet.x = element.OperatorIndex;
+                        dataSet.y = Convert.ToInt32(element.CapapcityUtilization);
+                        dataSet.name = element.OperatorName;
+                        lowEfficiency.Add(dataSet);
                         //color = "#175d2d";
-                        objectArray[0] = element.OperatorIndex;
-                        objectArray[1] = element.CapapcityUtilization;
-                        lowAbsentism.Add(objectArray);
+                        //objectArray[0] = element.OperatorIndex;
+                        //objectArray[1] = element.CapapcityUtilization;
+                        //lowAbsentism.Add(objectArray);
                     }
                 }
 
             }
-            seriesData.Add(new EfficiencyViewModel
+            seriesData.Add(new EfficiencyViewModel_New
             {
-                name = "Low",
+                name = "High",
                 showInLegend = false,
                 color = "#e0301e",
-                data = lowAbsentism
+                data = highEfficiency
             });
-            seriesData.Add(new EfficiencyViewModel
+            seriesData.Add(new EfficiencyViewModel_New
             {
                 name = "Moderate",
                 showInLegend = false,
                 color = "#ffb600",
-                data = moderateAbsentism
+                data = moderateEfficiency
             });
-            seriesData.Add(new EfficiencyViewModel
+            seriesData.Add(new EfficiencyViewModel_New
             {
-                name = "High",
+                name = "Low",
                 showInLegend = false,
                 color = "#175d2d",
-                data = highAbsentism
+                data = lowEfficiency
             });
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "Low",
+            //    showInLegend = false,
+            //    color = "#e0301e",
+            //    data = lowAbsentism
+            //});
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "Moderate",
+            //    showInLegend = false,
+            //    color = "#ffb600",
+            //    data = moderateAbsentism
+            //});
+            //seriesData.Add(new EfficiencyViewModel
+            //{
+            //    name = "High",
+            //    showInLegend = false,
+            //    color = "#175d2d",
+            //    data = highAbsentism
+            //});
             return Json(new
             {
                 data = seriesData,
