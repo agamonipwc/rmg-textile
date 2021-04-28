@@ -202,7 +202,7 @@ export class SewingmoduleComponent implements OnInit {
                 color: '#000000',
                 align: 'center',
                 format: '{point.y:.1f}', // one decimal
-                y: 5, // 10 pixels down from the top
+                y: 5,
                 x: 3,
                 style: {
                     fontSize: '10px',

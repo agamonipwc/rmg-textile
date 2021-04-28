@@ -11,14 +11,23 @@ export const environment = {
   sewingHistKPIHeaderText: "Historical KPI Analysis",
   efficiencyHeaderText : "Average efficiency",
   capacityUtilizationHeaderText : "Average utilisation",
-  absenteeismHeaderText : "Average absenteeism",
+  absenteeismHeaderText : "Average bsenteeism",
   defectHeaderText : "Average defect%",
-  rejectionHeaderText : "Overview of Rejection"
+  rejectionHeaderText : "Overview of Rejection",
+  processOverviewHeaderText : "Overview of Process",
+  moduleOverviewHeaderText : "Overview of Factory",
 };
 
 // export const environment = {
 //   production: true,
-//   backendUrl : "https://rmg-web-api.azurewebsites.net/api/"
+//   backendUrl : "https://rmg-web-api.azurewebsites.net/api/",
+//   sewingKPIHeaderText: "Sewing Department KPI Analysis",
+//   sewingHistKPIHeaderText: "Historical KPI Analysis",
+//   efficiencyHeaderText : "Average efficiency",
+//   capacityUtilizationHeaderText : "Average utilisation",
+//   absenteeismHeaderText : "Average absenteeism",
+//   defectHeaderText : "Average defect%",
+//   rejectionHeaderText : "Overview of Rejection"
 // };
 
 /*

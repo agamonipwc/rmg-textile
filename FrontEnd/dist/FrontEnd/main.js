@@ -41,7 +41,7 @@ module.exports = "path{\r\n    opacity: 1 !important;\r\n  }\r\n  .sidebar {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('22')\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('23')\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Absentism % Overview of last 5 days</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('22')\">Show Recommendations</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"absentismScatter\" style=\"width: auto; height: 480px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsAbsentismAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('22')\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('23')\">Medium Efficiency</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                          <th style=\"width: auto\">\r\n                            Name\r\n                          </th>\r\n                          <th style=\"width: auto;\">\r\n                            Operation\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Absentism % Overview of last 5 days</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('22')\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"absentismScatter\" style=\"width: auto; height: 480px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsAbsentismAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-01\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('22')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n\r\n"
 
 /***/ }),
 
@@ -67,6 +67,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 
@@ -129,6 +132,13 @@ var AbsentismComponent = /** @class */ (function () {
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.calculateOperatorsAbsentism(KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].absenteeismHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].absenteeismHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
     };
     AbsentismComponent.prototype.calculateOperatorsAbsentism = function (KPIView) {
         var _this = this;
@@ -162,8 +172,22 @@ var AbsentismComponent = /** @class */ (function () {
                     max: 20,
                     min: 0,
                     title: {
-                        text: 'Defect%'
-                    }
+                        text: 'Absenteeism %'
+                    },
+                    plotLines: [
+                        {
+                            color: '#003dab',
+                            width: 2,
+                            value: 5,
+                            dashStyle: 'shortdot'
+                        },
+                        {
+                            color: '#933401',
+                            width: 2,
+                            value: 10,
+                            dashStyle: 'shortdot'
+                        }
+                    ]
                 },
                 plotOptions: {
                     scatter: {
@@ -186,7 +210,7 @@ var AbsentismComponent = /** @class */ (function () {
                         },
                         tooltip: {
                             headerFormat: '<b>{series.name}</b><br>',
-                            pointFormat: 'Op{point.x} has absentism {point.y}%'
+                            pointFormat: '{point.name} : {point.y}'
                         }
                     }
                 },
@@ -205,12 +229,28 @@ var AbsentismComponent = /** @class */ (function () {
             }
         });
     };
-    AbsentismComponent.prototype.getOperatorsAbsentismAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+    AbsentismComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
+    };
+    AbsentismComponent.prototype.backToPrevious = function () {
+        window.history.back();
+    };
+    AbsentismComponent.prototype.getSewingKPIAnalysis = function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -219,31 +259,61 @@ var AbsentismComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        var KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            // StartDate : "2021-01-31 00:00:00.000",
-            // EndDate : "2021-01-31 00:00:00.000",
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.calculateOperatorsAbsentism(KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].absenteeismHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].absenteeismHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateOperatorsAbsentism(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
     };
     AbsentismComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -253,17 +323,37 @@ var AbsentismComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    AbsentismComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    AbsentismComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
         }
     };
     AbsentismComponent.prototype.sewingNavigation = function () {
@@ -276,7 +366,6 @@ var AbsentismComponent = /** @class */ (function () {
         this._router.navigate(['process-overview']);
     };
     AbsentismComponent.prototype.getRecommendation = function (recommendationId) {
-        console.log("------Recommendation Id--------", recommendationId);
         this.data = [];
         var recommendationView = {
             KPIId: 3,
@@ -286,11 +375,11 @@ var AbsentismComponent = /** @class */ (function () {
         var _this = this;
         this.http.post(url, recommendationView).subscribe(function (responsedata) {
             if (recommendationId == 22) {
-                _this.recommendationModalTitle = "Recommemdations for Low Operators";
+                _this.recommendationModalTitle = "Recommendations for operators with low absenteeism";
                 _this.getOperatorsName('Low');
             }
             else if (recommendationId == 23) {
-                _this.recommendationModalTitle = "Recommemdations for Moderate Operators";
+                _this.recommendationModalTitle = "Recommendations for operators with medium absenteeism";
                 _this.getOperatorsName('Moderate');
             }
             else {
@@ -317,6 +406,7 @@ var AbsentismComponent = /** @class */ (function () {
             responsedata["operatorsDetails"].forEach(function (element) {
                 _this.operatorsDetailsList.push({
                     Name: element["Name"],
+                    Operation: element["OperationName"],
                     Machine: element["Machine"],
                     Unit: element["Unit"],
                     Location: element["Location"],
@@ -727,7 +817,7 @@ module.exports = "path{\r\n    opacity: 1 !important;\r\n  }\r\n  .sidebar {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">Recommendations of Capacity Utilization</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(152)\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(153)\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                    <!-- <tfoot>\r\n                        <tr>\r\n                            <td colspan=\"4\">\r\n                                <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                            </td>\r\n                        </tr>\r\n                    </tfoot> -->\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"operatorsDetailsModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"operatorsDetailsModalTitle\">Operators Details</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 500px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\" [mfData]=\"operatorsDetailsList\" #mf=\"mfDataTable\" [mfRowsOnPage]=\"5\" [mfSaveRowsOnPage]=\"true\" (mfSelectedEntities)=\"setSelectedEntities($event)\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: auto\">\r\n                      <mfDefaultSorter [mfShowSortableArrows]=\"true\" by=\"Name\">Name</mfDefaultSorter>\r\n                  </th>\r\n                  <th style=\"width: auto\">\r\n                    <mfDefaultSorter by=\"Machine\">Working Machine</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Unit\">Unit</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Location\">Location</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Line\">Line</mfDefaultSorter>\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of mf.data; let ndx = index1\">\r\n                  <td>{{item.Name}}</td>\r\n                  <td>{{item.Machine}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.Location}}</td>\r\n                  <td>{{item.Line}}</td>\r\n              </tr>\r\n          </tbody>\r\n          <tfoot>\r\n              <tr>\r\n                  <td colspan=\"4\">\r\n                      <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                  </td>\r\n              </tr>\r\n          </tfoot>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"col-8\">\r\n      <h5 style=\"text-align: center; font-weight: bold;\">Operators Capacity Utilization % Overview of last 5 days</h5>\r\n    </div>\r\n    <div class=\"col-4\">\r\n      <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(152)\">Show Recommendations</a>\r\n    </div>\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"capacityUtilizationScatter\" style=\"width: auto; height: 450px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsDefectAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">Recommendations of Capacity Utilization</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(152)\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(153)\">Medium Efficiency</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                    <!-- <tfoot>\r\n                        <tr>\r\n                            <td colspan=\"4\">\r\n                                <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                            </td>\r\n                        </tr>\r\n                    </tfoot> -->\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"operatorsDetailsModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"operatorsDetailsModalTitle\">Operators Details</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 500px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\" [mfData]=\"operatorsDetailsList\" #mf=\"mfDataTable\" [mfRowsOnPage]=\"5\" [mfSaveRowsOnPage]=\"true\" (mfSelectedEntities)=\"setSelectedEntities($event)\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: auto\">\r\n                      <mfDefaultSorter [mfShowSortableArrows]=\"true\" by=\"Name\">Name</mfDefaultSorter>\r\n                  </th>\r\n                  <th style=\"width: auto\">\r\n                    <mfDefaultSorter by=\"Machine\">Working Machine</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Unit\">Unit</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Location\">Location</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Line\">Line</mfDefaultSorter>\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of mf.data; let ndx = index1\">\r\n                  <td>{{item.Name}}</td>\r\n                  <td>{{item.Machine}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.Location}}</td>\r\n                  <td>{{item.Line}}</td>\r\n              </tr>\r\n          </tbody>\r\n          <tfoot>\r\n              <tr>\r\n                  <td colspan=\"4\">\r\n                      <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                  </td>\r\n              </tr>\r\n          </tfoot>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <!-- <div class=\"col-8\">\r\n      <h5 style=\"text-align: center; font-weight: bold;\">Operators Capacity Utilization % Overview of last 5 days</h5>\r\n    </div>\r\n    <div class=\"col-4\">\r\n      <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(152)\">Show Recommendations</a>\r\n    </div> -->\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"capacityUtilizationScatter\" style=\"width: auto; height: 470px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsDefectAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(152)\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -747,14 +837,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns/locale/en */ "./node_modules/date-fns/locale/en/index.js");
-/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
-/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
-/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
-/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
@@ -766,13 +856,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var More = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
-More(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+More(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 var Exporting = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
-Exporting(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+Exporting(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 var ExportData = __webpack_require__(/*! highcharts/modules/export-data */ "./node_modules/highcharts/modules/export-data.js");
-ExportData(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+ExportData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 var Accessibility = __webpack_require__(/*! highcharts/modules/accessibility */ "./node_modules/highcharts/modules/accessibility.js");
-Accessibility(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+Accessibility(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 var CapacityutilizationComponent = /** @class */ (function () {
     function CapacityutilizationComponent(http, _router) {
         this.http = http;
@@ -787,44 +877,27 @@ var CapacityutilizationComponent = /** @class */ (function () {
         ];
         this.startDate = new Date("01/25/2021");
         this.endDate = new Date("01/31/2021");
-        this.options = {
-            locale: date_fns_locale_en__WEBPACK_IMPORTED_MODULE_5__,
-            minYear: 1970,
-            maxYear: 2030,
-            displayFormat: 'MMM D[,] YYYY',
-            barTitleFormat: 'MMMM YYYY',
-            dayNamesFormat: 'dd',
-            firstCalendarDay: 0,
-            minDate: this.startDate,
-            // maxDate: new Date(Date.now()),  // Maximal selectable date
-            barTitleIfEmpty: 'Click to select a date',
-            placeholder: 'Click to select a date',
-            addClass: 'form-control',
-            addStyle: {},
-            fieldId: 'my-date-picker',
-            useEmptyBarTitle: false,
-        };
         this.recommendationModalTitle = "";
-        // month : any = [
-        //   {id: 1, name: 'January'},
-        //   {id: 2, name: 'February'},
-        //   {id: 3, name: 'March'},
-        //   {id: 4, name: 'April'},
-        //   {id: 5, name: 'May'},
-        //   {id: 6, name: 'June'},
-        //   {id: 7, name: 'July'},
-        //   {id: 8, name: 'August'},
-        //   {id: 9, name: 'September'},
-        //   {id: 10, name: 'October'},
-        //   {id: 11, name: 'November'},
-        //   {id: 12, name: 'December'},
-        // ]
         this.lineOptions = [];
         this.unitOptions = [];
         this.locationOptions = [];
         this.capacityCalculationHeadingColor = "";
         this.data = [];
         this.operatorsDetailsList = [];
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
     }
     CapacityutilizationComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -833,6 +906,8 @@ var CapacityutilizationComponent = /** @class */ (function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".footer").hide();
         this.getFilterData();
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(function () {
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#period_5").prop("checked", true);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html("Last 5 days");
             // Hide all lists except the outermost.
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('ul.tree ul').hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.tree li > ul').each(function (i) {
@@ -850,19 +925,26 @@ var CapacityutilizationComponent = /** @class */ (function () {
     };
     CapacityutilizationComponent.prototype.getFilterData = function () {
         var KPIView = {
-            Line: [],
-            Location: [],
-            Unit: [],
-            StartDate: "2021-01-01 00:00:00.000",
+            Line: [1, 2],
+            Location: [1, 2],
+            Unit: [1, 2],
+            StartDate: "2021-01-27 00:00:00.000",
             EndDate: "2021-01-31 00:00:00.000",
         };
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].capacityUtilizationHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].capacityUtilizationHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
         this.calculateCapacityUtilization(KPIView);
     };
     CapacityutilizationComponent.prototype.calculateCapacityUtilization = function (KPIView) {
         var _this = this;
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "OperatorsCapacityUtilization";
         this.http.post(url, KPIView).subscribe(function (responsedata) {
-            _this.capacityUtilizationScatter = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+            _this.capacityUtilizationScatter = new angular_highcharts__WEBPACK_IMPORTED_MODULE_7__["Chart"]({
                 chart: {
                     type: 'scatter',
                     zoomType: 'xy'
@@ -890,8 +972,22 @@ var CapacityutilizationComponent = /** @class */ (function () {
                     max: 100,
                     min: 0,
                     title: {
-                        text: 'Defect%'
-                    }
+                        text: 'Capacity Utiliztion %'
+                    },
+                    plotLines: [
+                        {
+                            color: '#003dab',
+                            width: 2,
+                            value: 75,
+                            dashStyle: 'shortdot'
+                        },
+                        {
+                            color: '#933401',
+                            width: 2,
+                            value: 51,
+                            dashStyle: 'shortdot'
+                        }
+                    ]
                 },
                 plotOptions: {
                     scatter: {
@@ -914,13 +1010,26 @@ var CapacityutilizationComponent = /** @class */ (function () {
                         },
                         tooltip: {
                             headerFormat: '<b>{series.name}</b><br>',
-                            pointFormat: 'Op {point.x} produced {point.y} % defects'
+                            pointFormat: '{point.name} : {point.y}'
                         }
                     }
                 },
                 series: responsedata["data"]
             });
         });
+    };
+    CapacityutilizationComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
     };
     CapacityutilizationComponent.prototype.getMasterData = function () {
         var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "MasterData";
@@ -933,12 +1042,12 @@ var CapacityutilizationComponent = /** @class */ (function () {
             }
         });
     };
-    CapacityutilizationComponent.prototype.getOperatorsDefectAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+    CapacityutilizationComponent.prototype.getSewingKPIAnalysis = function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -947,32 +1056,83 @@ var CapacityutilizationComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        var KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            // StartDate : "2021-01-31 00:00:00.000",
-            // EndDate : "2021-01-31 00:00:00.000",
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        console.log(KPIView);
-        this.calculateCapacityUtilization(KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            var startDay = StartDate.getDate();
+            var startmonth = StartDate.getMonth() + 1;
+            var startyear = StartDate.getFullYear();
+            var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+            var endDay = EndDate.getDate();
+            var endmonth = EndDate.getMonth() + 1;
+            var endyear = EndDate.getFullYear();
+            var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+            var KPIView = {
+                Line: checkedLines,
+                Location: checkedLocations,
+                Unit: checkedUnits,
+                StartDate: startDateTime,
+                EndDate: endDateTime
+            };
+            var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].capacityUtilizationHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+            }
+            else {
+                this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].capacityUtilizationHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+            }
+            this.calculateCapacityUtilization(KPIView);
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
+        // var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+        //   var locationId = parseFloat(this.value);
+        //   return locationId;
+        // }).get();
+        // var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+        //   var unitId = parseFloat(this.value);
+        //   return unitId;
+        // }).get();
+        // var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+        //   var lineId = parseFloat(this.value);
+        //   return lineId;
+        // }).get();
+        // var StartDate = new Date($('#startDate').val());
+        // var startDay = StartDate.getDate();
+        // var startmonth = StartDate.getMonth() + 1;
+        // var startyear = StartDate.getFullYear();
+        // var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+        // var EndDate = new Date($('#endDate').val());
+        // var endDay = EndDate.getDate();
+        // var endmonth = EndDate.getMonth() + 1;
+        // var endyear = EndDate.getFullYear();
+        // var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+        // var KPIView = {
+        //   Line : checkedLines,
+        //   Location : checkedLocations,
+        //   Unit : checkedUnits,
+        //   // StartDate : "2021-01-31 00:00:00.000",
+        //   // EndDate : "2021-01-31 00:00:00.000",
+        //   StartDate : startDateTime,
+        //   EndDate : endDateTime
+        // }
+        // this.calculateCapacityUtilization(KPIView);
     };
     CapacityutilizationComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -982,17 +1142,67 @@ var CapacityutilizationComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    CapacityutilizationComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    CapacityutilizationComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    CapacityutilizationComponent.prototype.onPeriodChange = function (event) {
+        if (event.target.checked) {
+            this.periodOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html(element.Name);
+                    var checkedPeriod = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.period:radio:checked').map(function () {
+                        var periodId = parseInt(this.value);
+                        return periodId;
+                    }).get();
+                    if (checkedPeriod[0] != null) {
+                        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                        var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+                        var day = last.getDate();
+                        var month = last.getMonth() + 1;
+                        var year = last.getFullYear();
+                        var monthString = month.toString();
+                        var dayString = day.toString();
+                        if (month < 10) {
+                            monthString = "0" + month;
+                        }
+                        if (day < 10) {
+                            dayString = "0" + day;
+                        }
+                        var StartDate = year + "-" + monthString + "-" + dayString;
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(StartDate);
+                    }
+                }
+            });
         }
     };
     CapacityutilizationComponent.prototype.sewingNavigation = function () {
@@ -1034,6 +1244,7 @@ var CapacityutilizationComponent = /** @class */ (function () {
             responsedata["operatorsDetails"].forEach(function (element) {
                 _this.operatorsDetailsList.push({
                     Name: element["Name"],
+                    Operation: element["OperationName"],
                     Machine: element["Machine"],
                     Unit: element["Unit"],
                     Location: element["Location"],
@@ -1043,34 +1254,37 @@ var CapacityutilizationComponent = /** @class */ (function () {
         });
     };
     CapacityutilizationComponent.prototype.ExportToExcelLowEfficiency = function () {
-        var ws = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].table_to_sheet(this.TABLE.nativeElement);
-        var wb = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_new();
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["writeFile"](wb, 'Low_Efficiency.xlsx');
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.TABLE.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Low_Efficiency.xlsx');
     };
     CapacityutilizationComponent.prototype.ExportToExcelLowOperators = function () {
-        var ws = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].table_to_sheet(this.LowEfficiencyOperatorsTable.nativeElement);
-        var wb = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_new();
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["writeFile"](wb, 'Low_Efficiency_Operators.xlsx');
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.LowEfficiencyOperatorsTable.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Low_Efficiency_Operators.xlsx');
     };
     CapacityutilizationComponent.prototype.ExportToExcelModerateEfficiency = function () {
-        var ws = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].table_to_sheet(this.ModerateEfficiencyTable.nativeElement);
-        var wb = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_new();
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["writeFile"](wb, 'Moderate_Efficiency.xlsx');
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.ModerateEfficiencyTable.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Efficiency.xlsx');
     };
     CapacityutilizationComponent.prototype.ExportToExcelModerateOperators = function () {
-        var ws = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);
-        var wb = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_new();
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["writeFile"](wb, 'Moderate_Efficiency_Operators.xlsx');
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Efficiency_Operators.xlsx');
     };
     CapacityutilizationComponent.prototype.ExportToExcelHighOperators = function () {
-        var ws = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);
-        var wb = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_new();
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["writeFile"](wb, 'Moderate_Efficiency_Operators.xlsx');
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Efficiency_Operators.xlsx');
+    };
+    CapacityutilizationComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('TABLE'),
@@ -1098,7 +1312,7 @@ var CapacityutilizationComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./capacityutilization.component.html */ "./src/app/capacityutilization/capacityutilization.component.html"),
             styles: [__webpack_require__(/*! ./capacityutilization.component.css */ "./src/app/capacityutilization/capacityutilization.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
     ], CapacityutilizationComponent);
     return CapacityutilizationComponent;
 }());
@@ -1125,7 +1339,7 @@ module.exports = "path{\r\n    opacity: 1 !important;\r\n  }\r\n  .sidebar {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('163,165,166,167')\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('168,169,170,171')\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Defect% Overview</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('163,165,166,167')\">Show Recommendations</a>\r\n      </div>\r\n    </div>\r\n    \r\n    <!-- <h5 style=\"text-align: center; font-weight: bold;\">Operators Defects % Overview of last 5 days</h5> -->\r\n    <div class=\"row\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"defectsScatter\" style=\"width: auto; height: 490px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsDefectAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('210')\">High Defect%</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('210')\">Low Defect%</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Defect% Overview</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('163,165,166,167')\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <!-- <h5 style=\"text-align: center; font-weight: bold;\">Operators Defects % Overview of last 5 days</h5> -->\r\n    <div class=\"row\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"defectsScatter\" style=\"width: auto; height: 490px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsDefectAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('210')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -1151,11 +1365,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
 // import * as $ from 'jquery';
 // declare var $: any;
+
 
 
 
@@ -1183,6 +1400,20 @@ var DefectComponent = /** @class */ (function () {
         this.capacityCalculationHeadingColor = "";
         this.data = [];
         this.operatorsDetailsList = [];
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
     }
     DefectComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -1192,6 +1423,8 @@ var DefectComponent = /** @class */ (function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(function () {
             // Hide all lists except the outermost.
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('ul.tree ul').hide();
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#period_5").prop("checked", true);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html("Last 5 days");
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.tree li > ul').each(function (i) {
                 var $subUl = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this);
                 var $parentLi = $subUl.parent('li');
@@ -1211,16 +1444,70 @@ var DefectComponent = /** @class */ (function () {
             Line: [],
             Location: [],
             Unit: [],
-            StartDate: "2021-01-01 00:00:00.000",
+            StartDate: "2021-01-27 00:00:00.000",
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.calculateOperatorDefects(KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].defectHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].defectHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+    };
+    DefectComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    DefectComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    DefectComponent.prototype.onPeriodChange = function (event) {
+        if (event.target.checked) {
+            this.periodOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html(element.Name);
+                    var checkedPeriod = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.period:radio:checked').map(function () {
+                        var periodId = parseInt(this.value);
+                        return periodId;
+                    }).get();
+                    if (checkedPeriod[0] != null) {
+                        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                        var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+                        var day = last.getDate();
+                        var month = last.getMonth() + 1;
+                        var year = last.getFullYear();
+                        var monthString = month.toString();
+                        var dayString = day.toString();
+                        if (month < 10) {
+                            monthString = "0" + month;
+                        }
+                        if (day < 10) {
+                            dayString = "0" + day;
+                        }
+                        var StartDate = year + "-" + monthString + "-" + dayString;
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(StartDate);
+                    }
+                }
+            });
+        }
     };
     DefectComponent.prototype.dashboardNavigation = function () {
         this._router.navigate(['module-performance']);
     };
     DefectComponent.prototype.calculateOperatorDefects = function (KPIView) {
-        console.log(KPIView);
         var _this = this;
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "OperatorsDefect";
         this.http.post(url, KPIView).subscribe(function (responsedata) {
@@ -1244,6 +1531,7 @@ var DefectComponent = /** @class */ (function () {
                     labels: {
                         enabled: false,
                     },
+                    visible: false,
                     startOnTick: true,
                     endOnTick: true,
                     showLastLabel: true
@@ -1253,7 +1541,21 @@ var DefectComponent = /** @class */ (function () {
                     min: 0,
                     title: {
                         text: 'Defect%'
-                    }
+                    },
+                    plotLines: [
+                        {
+                            color: '#003dab',
+                            width: 2,
+                            value: 10,
+                            dashStyle: 'shortdot'
+                        },
+                        {
+                            color: '#933401',
+                            width: 2,
+                            value: 20,
+                            dashStyle: 'shortdot'
+                        }
+                    ]
                 },
                 plotOptions: {
                     scatter: {
@@ -1276,7 +1578,7 @@ var DefectComponent = /** @class */ (function () {
                         },
                         tooltip: {
                             headerFormat: '<b>{series.name}</b><br>',
-                            pointFormat: 'Op {point.x} produced {point.y} % defects'
+                            pointFormat: '{point.name} : {point.y}'
                         }
                     }
                 },
@@ -1296,12 +1598,25 @@ var DefectComponent = /** @class */ (function () {
             }
         });
     };
-    DefectComponent.prototype.getOperatorsDefectAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+    DefectComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
+    };
+    DefectComponent.prototype.getSewingKPIAnalysis = function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -1310,31 +1625,61 @@ var DefectComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        var KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            // StartDate : "2021-01-31 00:00:00.000",
-            // EndDate : "2021-01-31 00:00:00.000",
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.calculateOperatorDefects(KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].defectHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].defectHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateOperatorDefects(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
     };
     DefectComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -1344,14 +1689,16 @@ var DefectComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
@@ -1373,7 +1720,7 @@ var DefectComponent = /** @class */ (function () {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "Recommendation";
         var _this = this;
         this.http.post(url, recommendationView).subscribe(function (responsedata) {
-            _this.recommendationModalTitle = "Recommemdations for Defect%";
+            _this.recommendationModalTitle = "Recommendations to improve defect%";
             responsedata["allRecommendations"].forEach(function (element) {
                 _this.data.push({
                     Reasons: element["Reasons"],
@@ -1398,6 +1745,7 @@ var DefectComponent = /** @class */ (function () {
             responsedata["operatorsDetails"].forEach(function (element) {
                 _this.operatorsDetailsList.push({
                     Name: element["Name"],
+                    Operation: element["OperationName"],
                     Machine: element["Machine"],
                     Unit: element["Unit"],
                     Location: element["Location"],
@@ -1410,31 +1758,34 @@ var DefectComponent = /** @class */ (function () {
         var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.TABLE.nativeElement);
         var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Low_Absentism.xlsx');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Low_Defect%.xlsx');
     };
     DefectComponent.prototype.ExportToExcelLowOperators = function () {
         var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.LowEfficiencyOperatorsTable.nativeElement);
         var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Low_Absentism_Operators.xlsx');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Low_Defect%_Operators.xlsx');
     };
     DefectComponent.prototype.ExportToExcelModerateEfficiency = function () {
         var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.ModerateEfficiencyTable.nativeElement);
         var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Absentism.xlsx');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Defect%.xlsx');
     };
     DefectComponent.prototype.ExportToExcelModerateOperators = function () {
         var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);
         var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Absentism_Operators.xlsx');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Defect%_Operators.xlsx');
     };
     DefectComponent.prototype.ExportToExcelHighOperators = function () {
         var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].table_to_sheet(this.ModerateEfficiencyOperatorsTable.nativeElement);
         var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Absentism_Operators.xlsx');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'Moderate_Defect%_Operators.xlsx');
+    };
+    DefectComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("container", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
@@ -1955,6 +2306,14 @@ var DhuhistComponent = /** @class */ (function () {
         var _this = this;
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "SewingHistorical";
         this.http.post(url, KPIView).subscribe(function (responsedata) {
+            // console.log(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"]);
+            // responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"].forEach(element => {
+            //   for(var index = 0; index < element["data"].length; index++){
+            //     if(element["data"][index] == 0){
+            //       element["data"][index] = null;
+            //     }
+            //   }
+            // });
             _this.defectDHULine = new angular_highcharts__WEBPACK_IMPORTED_MODULE_7__["Chart"]({
                 chart: {
                     type: 'spline'
@@ -1978,7 +2337,7 @@ var DhuhistComponent = /** @class */ (function () {
                         text: 'Defects Per Hundred Units (D.H.U.)'
                     },
                     max: 13,
-                    min: 0
+                    min: 3
                 },
                 tooltip: {
                     crosshairs: true,
@@ -2168,7 +2527,7 @@ module.exports = "path{\r\n  opacity: 1 !important;\r\n}\r\n.sidebar {\r\n    po
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(6);\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                    <!-- <tfoot>\r\n                        <tr>\r\n                            <td colspan=\"4\">\r\n                                <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                            </td>\r\n                        </tr>\r\n                    </tfoot> -->\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"operatorsDetailsModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"operatorsDetailsModalTitle\">Operators Details</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\" [mfData]=\"operatorsDetailsList\" #mf=\"mfDataTable\" [mfRowsOnPage]=\"5\" [mfSaveRowsOnPage]=\"true\" (mfSelectedEntities)=\"setSelectedEntities($event)\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: auto\">\r\n                      <mfDefaultSorter [mfShowSortableArrows]=\"true\" by=\"Name\">Name</mfDefaultSorter>\r\n                  </th>\r\n                  <th style=\"width: auto\">\r\n                    <mfDefaultSorter by=\"Machine\">Working Machine</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Unit\">Unit</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Location\">Location</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Line\">Line</mfDefaultSorter>\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of mf.data; let ndx = index1\">\r\n                  <td>{{item.Name}}</td>\r\n                  <td>{{item.Machine}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.Location}}</td>\r\n                  <td>{{item.Line}}</td>\r\n              </tr>\r\n          </tbody>\r\n          <tfoot>\r\n              <tr>\r\n                  <td colspan=\"4\">\r\n                      <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                  </td>\r\n              </tr>\r\n          </tfoot>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Efficiency Overview</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div id=\"operatorScatter\" style=\"width: auto; height: 480px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <!-- <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Unit</span>\r\n                  <span class=\"caret\"></span></button>\r\n                  <ul class=\"dropdownmenu\"> \r\n                    <li class=\"custom-li\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input type=\"checkbox\" class=\"unitSelectAll\"/><span id=\"unitSelectText\" class=\"select-text\"> Select</span> All</label></a></li>\r\n                    <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                  </ul>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <button class=\"btn btn-default dropdown-toggle dropdown-button\" type=\"button\" data-toggle=\"dropdown\"><span class=\"dropdown-text\"> Select Line</span>\r\n                  <span class=\"caret\"></span></button>\r\n                  <ul class=\"dropdownmenu\"> \r\n                    <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                  </ul>\r\n                </div>\r\n              </li> -->\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(6);\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <!-- <div class=\"col-3\">\r\n                  <button class=\"custom-button\" data-toggle=\"collapse\" data-target=\"#Recommendations\">Recommendations</button>\r\n                </div>\r\n                <div class=\"col-3 mt-3\">\r\n                  <button class=\"custom-button\" data-toggle=\"collapse\" data-target=\"#Operators\">Operators</button>\r\n                </div> -->\r\n                \r\n                <div id=\"Recommendations\" #TABLE #table class=\"mt-2\" >\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div id=\"Operators\" #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                    <!-- <tfoot>\r\n                        <tr>\r\n                            <td colspan=\"4\">\r\n                                <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                            </td>\r\n                        </tr>\r\n                    </tfoot> -->\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"operatorsDetailsModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"operatorsDetailsModalTitle\">Operators Details</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\" [mfData]=\"operatorsDetailsList\" #mf=\"mfDataTable\" [mfRowsOnPage]=\"5\" [mfSaveRowsOnPage]=\"true\" (mfSelectedEntities)=\"setSelectedEntities($event)\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: auto\">\r\n                      <mfDefaultSorter [mfShowSortableArrows]=\"true\" by=\"Name\">Name</mfDefaultSorter>\r\n                  </th>\r\n                  <th style=\"width: auto\">\r\n                    <mfDefaultSorter by=\"Machine\">Working Machine</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Unit\">Unit</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Location\">Location</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Line\">Line</mfDefaultSorter>\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of mf.data; let ndx = index1\">\r\n                  <td>{{item.Name}}</td>\r\n                  <td>{{item.Machine}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.Location}}</td>\r\n                  <td>{{item.Line}}</td>\r\n              </tr>\r\n          </tbody>\r\n          <tfoot>\r\n              <tr>\r\n                  <td colspan=\"4\">\r\n                      <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                  </td>\r\n              </tr>\r\n          </tfoot>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Efficiency Overview</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    \r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div id=\"operatorScatter\" style=\"width: auto; height: 480px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>"
 
 /***/ }),
 
@@ -2193,6 +2552,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__);
+
 
 
 
@@ -2221,8 +2583,23 @@ var EfficiencyComponent = /** @class */ (function () {
         this.unitOptions = [];
         this.locationOptions = [];
         this.capacityCalculationHeadingColor = "";
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
         this.data = [];
         this.operatorsDetailsList = [];
+        this.headerTextValue = "";
     }
     EfficiencyComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -2235,6 +2612,8 @@ var EfficiencyComponent = /** @class */ (function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(function () {
             // Hide all lists except the outermost.
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('ul.tree ul').hide();
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#period_5").prop("checked", true);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html("Last 5 days");
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.tree li > ul').each(function (i) {
                 var $subUl = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(this);
                 var $parentLi = $subUl.parent('li');
@@ -2252,10 +2631,30 @@ var EfficiencyComponent = /** @class */ (function () {
             Line: [],
             Location: [],
             Unit: [],
-            StartDate: "2021-01-01 00:00:00.000",
+            StartDate: "2021-01-27 00:00:00.000",
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.calculateOperatorEfficiency(KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+    };
+    EfficiencyComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
     };
     EfficiencyComponent.prototype.calculateOperatorEfficiency = function (KPIView) {
         var _this = this;
@@ -2279,6 +2678,7 @@ var EfficiencyComponent = /** @class */ (function () {
                         enabled: false,
                         text: 'Operator ID',
                     },
+                    visible: false,
                     labels: {
                         enabled: false,
                     },
@@ -2329,7 +2729,7 @@ var EfficiencyComponent = /** @class */ (function () {
                         },
                         tooltip: {
                             headerFormat: '<b>{series.name}</b><br>',
-                            pointFormat: 'Op{point.x} has efficiency: {point.y} %'
+                            pointFormat: '{point.name} : {point.y} %'
                         }
                     }
                 },
@@ -2340,11 +2740,11 @@ var EfficiencyComponent = /** @class */ (function () {
         });
     };
     EfficiencyComponent.prototype.getSewingKPIAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -2353,31 +2753,61 @@ var EfficiencyComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        var KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            // StartDate : "2021-01-31 00:00:00.000",
-            // EndDate : "2021-01-31 00:00:00.000",
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.calculateOperatorEfficiency(KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateOperatorEfficiency(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
     };
     EfficiencyComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -2387,17 +2817,37 @@ var EfficiencyComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    EfficiencyComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    EfficiencyComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
         }
     };
     EfficiencyComponent.prototype.getMasterData = function () {
@@ -2421,11 +2871,11 @@ var EfficiencyComponent = /** @class */ (function () {
         var _this = this;
         this.http.post(url, recommendationView).subscribe(function (responsedata) {
             if (recommendationId == 6) {
-                _this.recommendationModalTitle = "Recommemdations for Low Operators";
+                _this.recommendationModalTitle = "Recommemdations of Efficiency";
                 _this.getOperatorsName('Low');
             }
             else {
-                _this.recommendationModalTitle = "Recommemdations for Moderate Operators";
+                _this.recommendationModalTitle = "Recommemdations for Efficiency";
                 _this.getOperatorsName('Moderate');
             }
             _this.data.push({
@@ -2446,6 +2896,7 @@ var EfficiencyComponent = /** @class */ (function () {
             responsedata["operatorsDetails"].forEach(function (element) {
                 _this.operatorsDetailsList.push({
                     Name: element["Name"],
+                    Operation: element["OperationName"],
                     Machine: element["Machine"],
                     Unit: element["Unit"],
                     Location: element["Location"],
@@ -2492,6 +2943,39 @@ var EfficiencyComponent = /** @class */ (function () {
         var wb = xlsx__WEBPACK_IMPORTED_MODULE_7__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_7__["utils"].book_append_sheet(wb, ws, 'Sheet1');
         xlsx__WEBPACK_IMPORTED_MODULE_7__["writeFile"](wb, 'Moderate_Efficiency_Operators.xlsx');
+    };
+    EfficiencyComponent.prototype.backToPrevious = function () {
+        window.history.back();
+    };
+    EfficiencyComponent.prototype.onPeriodChange = function (event) {
+        if (event.target.checked) {
+            this.periodOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html(element.Name);
+                    var checkedPeriod = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.period:radio:checked').map(function () {
+                        var periodId = parseInt(this.value);
+                        return periodId;
+                    }).get();
+                    if (checkedPeriod[0] != null) {
+                        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                        var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+                        var day = last.getDate();
+                        var month = last.getMonth() + 1;
+                        var year = last.getFullYear();
+                        var monthString = month.toString();
+                        var dayString = day.toString();
+                        if (month < 10) {
+                            monthString = "0" + month;
+                        }
+                        if (day < 10) {
+                            dayString = "0" + day;
+                        }
+                        var StartDate = year + "-" + monthString + "-" + dayString;
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(StartDate);
+                    }
+                }
+            });
+        }
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('TABLE'),
@@ -7697,7 +8181,7 @@ module.exports = "path{\r\n    opacity: 1 !important;\r\n  }\r\n  .sidebar {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#highRejection\" aria-controls=\"highRejection\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(162);\">High Rejection</a></li> -->\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#mediumRejection\" aria-controls=\"mediumRejection\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(160,161);\">Medium Rejection</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#lowRejection\" aria-controls=\"lowRejection\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(155,156,157,158,159);\">Low Rejection</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane\" id=\"highRejection\">\r\n                <div #HighRejectionTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighRejection()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"mediumRejection\" >\r\n                <div #ModerateRejectionTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateRejection()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"lowRejection\" >\r\n                <div #LowRejectionTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowRejection()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Overview of Rejection Percentage</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(160,161)\">Show Recommendations</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-2\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\" (click)=\"showStyleData()\">Rejection % <i class=\"fas fa-caret-down\"></i></button>\r\n          <div class=\"col-10\">\r\n            <div id=\"rejectionLineDiv\" [chart]= \"rejectionLine\" style=\"height: 280px; width: auto\"></div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-3\" id=\"collapseOperationDiv\">\r\n          <div class=\"row mt-2\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-2\" style=\"text-align: left; font-size: 12px\">Styles with Rejection</button>\r\n            <div class=\"col-10\">\r\n              <div [chart]=\"styleRejectionBar\" style=\"height: 200px; width: auto;\"></div>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#highRejection\" aria-controls=\"highRejection\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(162);\">High Rejection</a></li> -->\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#mediumRejection\" aria-controls=\"mediumRejection\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(160,161);\">Medium Rejection</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#lowRejection\" aria-controls=\"lowRejection\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(155,156,157,158,159);\">Low Rejection</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane\" id=\"highRejection\">\r\n                <div #HighRejectionTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighRejection()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"mediumRejection\" >\r\n                <div #ModerateRejectionTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateRejection()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"lowRejection\" >\r\n                <div #LowRejectionTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowRejection()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Overview of Rejection Percentage</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(160,161)\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    \r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-2\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\" (click)=\"showStyleData()\">Rejection % <i class=\"fas fa-caret-down\"></i></button>\r\n          <div class=\"col-10\">\r\n            <div id=\"rejectionLineDiv\" [chart]= \"rejectionLine\" style=\"height: 280px; width: auto\"></div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-3\" id=\"collapseOperationDiv\">\r\n          <div class=\"row mt-2\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-2\" style=\"text-align: left; font-size: 12px\">Styles with Rejection</button>\r\n            <div class=\"col-10\">\r\n              <div [chart]=\"styleRejectionBar\" style=\"height: 200px; width: auto;\"></div>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(160,161)\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -7723,6 +8207,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 
@@ -7753,6 +8240,21 @@ var RejectionComponent = /** @class */ (function () {
         this.locationOptions = [];
         this.data = [];
         this.operatorsDetailsList = [];
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
+        this.headerTextValue = "";
     }
     RejectionComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -7762,6 +8264,8 @@ var RejectionComponent = /** @class */ (function () {
         this.getMasterData();
         this.getFilterData();
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(function () {
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#period_5").prop("checked", true);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html("Last 5 days");
             // Hide all lists except the outermost.
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('ul.tree ul').hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.tree li > ul').each(function (i) {
@@ -7782,10 +8286,17 @@ var RejectionComponent = /** @class */ (function () {
             Location: [1, 2],
             Unit: [1, 2],
             StartDate: "2021-01-01 00:00:00.000",
-            EndDate: "2021-01-31 00:00:00.000",
+            EndDate: "2021-01-27 00:00:00.000",
         };
         this.calculateRejection(KPIView);
         this.calculateRejectionByStyle(KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].rejectionHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].rejectionHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
     };
     RejectionComponent.prototype.calculateRejection = function (KPIView) {
         var _this = this;
@@ -7809,6 +8320,7 @@ var RejectionComponent = /** @class */ (function () {
                     title: {
                         text: 'Daily Date'
                     },
+                    visible: false
                 },
                 yAxis: {
                     title: {
@@ -7917,6 +8429,11 @@ var RejectionComponent = /** @class */ (function () {
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -7926,17 +8443,37 @@ var RejectionComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    RejectionComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    RejectionComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
         }
     };
     RejectionComponent.prototype.getMasterData = function () {
@@ -7956,12 +8493,58 @@ var RejectionComponent = /** @class */ (function () {
     RejectionComponent.prototype.dashboardNavigation = function () {
         this._router.navigate(['module-performance']);
     };
+    // getSewingKPIAnalysis(){
+    //   var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+    //     var locationId = parseFloat(this.value);
+    //     return locationId;
+    //   }).get();
+    //   var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+    //     var unitId = parseFloat(this.value);
+    //     return unitId;
+    //   }).get();
+    //   var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+    //     var lineId = parseFloat(this.value);
+    //     return lineId;
+    //   }).get();
+    //   var StartDate = new Date($('#startDate').val());
+    //   var startDay = StartDate.getDate();
+    //   var startmonth = StartDate.getMonth() + 1;
+    //   var startyear = StartDate.getFullYear();
+    //   var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+    //   var EndDate = new Date($('#endDate').val());
+    //   var endDay = EndDate.getDate();
+    //   var endmonth = EndDate.getMonth() + 1;
+    //   var endyear = EndDate.getFullYear();
+    //   var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+    //   var KPIView = {
+    //     Line : checkedLines,
+    //     Location : checkedLocations,
+    //     Unit : [1,2],
+    //     StartDate : startDateTime,
+    //     EndDate : endDateTime
+    //   }
+    //   this.calculateRejection(KPIView);
+    //   this.calculateRejectionByStyle(KPIView);
+    // }
+    RejectionComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
+    };
     RejectionComponent.prototype.getSewingKPIAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -7970,24 +8553,51 @@ var RejectionComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        var KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: [1, 2],
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.calculateRejection(KPIView);
-        this.calculateRejectionByStyle(KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].rejectionHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].rejectionHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateRejection(KPIView);
+                this.calculateRejectionByStyle(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
     };
     RejectionComponent.prototype.showStyleData = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#rejectionLineDiv").height(280);
@@ -8098,7 +8708,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Overall Recommendations</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h4 style=\"text-align: center; font-weight: bold;\">Sewing Department KPI Analysis on 31.01.2021</h4>\r\n        <h6 class=\"ml1\">\r\n          <span class=\"text-wrapper\">\r\n            <span class=\"line line1\"></span>\r\n            <span class=\"letters\" style=\"font-style: italic;\">Please click each button below to view detailed analysis</span>\r\n            <span class=\"line line2\"></span>\r\n          </span>\r\n        </h6>\r\n      </div>\r\n      <div class=\"col-4 mt-2\">\r\n        <a style=\"font-weight: bold;\" (click)=\"navigateToSewingHistorical()\">Show Last 30 days Data</a>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row mt-1\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-1\">\r\n          <div class=\"col-3\" id=\"efficiencyVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateEfficiency()\" style=\"cursor: pointer;\">Efficiency %</button></div>\r\n              <div class=\"ml-2\" #efficiencyContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"capacityVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\"  (click)=\"navigateCapacityUtilization()\"data-toggle=\"tooltip\" data-placement=\"top\" title=\"Capacity Utilisation(Actual Vs Planned Prodctn.)\">Capacity %</button></div>\r\n              <div class=\"ml-2\" #capacityUtilizationContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"absentismVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" (click)=\"navigateAbsentismUtilization()\">Absenteism %</button></div>\r\n              <div class=\"ml-2\" #absentismContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"defectVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDefectPercentage()\" style=\"cursor: pointer;\">Defect%</button></div>\r\n              <div class=\"ml-2\" #defectContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-3\" id=\"dhuVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDHU()\" style=\"cursor: pointer;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Defects Per Hundred Units\">DHU</button></div>\r\n              <div class=\"ml-2\" #dhuContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"wipVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateInlineWIP()\" style=\"cursor: pointer;\">Inline WIP Level</button></div>\r\n              <div class=\"ml-2\" #wipContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"machineDowntimeVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateMachineDowntime()\" style=\"cursor: pointer;\">Machine Downtime</button></div>\r\n              <div class=\"ml-2\" #machineDowntimeContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"rejectionVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" (click)=\"navigateRejection()\">Rejection%</button></div>\r\n              <div class=\"ml-2\" #rejectionContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-2\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select KPI</span>\r\n                    <select class=\"form-control\" id=\"kpiList\" [(ngModel)]=\"selectedKPI\" style=\"font-size: small;\" (change)=\"changeKPIValue($event)\">\r\n                      <option *ngFor=\"let element of kpiMasterData\" [value]=\"element.Id\" style=\"font-size: small;\">{{element.Name}}</option>\r\n                    </select>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getAllRecommendations()\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Overall Recommendations</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <h6 style=\"text-align: center; font-weight: bold;\">{{headerTextValue}}</h6>\r\n        <h6 class=\"ml1\">\r\n          <span class=\"text-wrapper\">\r\n            <span class=\"line line1\"></span>\r\n            <span class=\"letters\" style=\"font-style: italic; color: #d04a02;\">Please click each button below to view detailed analysis</span>\r\n            <span class=\"line line2\"></span>\r\n          </span>\r\n        </h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <button class=\"custom-button ml-4\" style=\"font-weight: bold;\" (click)=\"navigateToSewingHistorical()\">Last 30 days Data</button>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row mt-1\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-1\">\r\n          <div class=\"col-3\" id=\"efficiencyVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateEfficiency()\" style=\"cursor: pointer;\">Efficiency %</button></div>\r\n              <div class=\"ml-2\" #efficiencyContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"capacityVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer; font-size: 13px;\"  (click)=\"navigateCapacityUtilization()\"data-toggle=\"tooltip\" data-placement=\"top\" title=\"Capacity Utilisation(Actual Vs Planned Prodctn.)\">Capacity Utilization%</button></div>\r\n              <div class=\"ml-2\" #capacityUtilizationContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"absentismVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" (click)=\"navigateAbsentismUtilization()\">Absenteeism %</button></div>\r\n              <div class=\"ml-2\" #absentismContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"defectVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDefectPercentage()\" style=\"cursor: pointer;\">Defect%</button></div>\r\n              <div class=\"ml-2\" #defectContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-3\" id=\"dhuVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDHU()\" style=\"cursor: pointer;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Defects Per Hundred Units\">DHU</button></div>\r\n              <div class=\"ml-2\" #dhuContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"wipVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateInlineWIP()\" style=\"cursor: pointer;\">Inline WIP Level</button></div>\r\n              <div class=\"ml-2\" #wipContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"machineDowntimeVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateMachineDowntime()\" style=\"cursor: pointer;\">Downtime%</button></div>\r\n              <div class=\"ml-2\" #machineDowntimeContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"rejectionVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" (click)=\"navigateRejection()\">Rejection%</button></div>\r\n              <div class=\"ml-2\" #rejectionContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-2\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <!-- <li class=\"custom-li\" *ngFor=\"let option of lineOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li> -->\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select KPI</span>\r\n                    <select class=\"form-control\" id=\"kpiList\" [(ngModel)]=\"selectedKPI\" style=\"font-size: small;\" (change)=\"changeKPIValue($event)\">\r\n                      <option *ngFor=\"let element of kpiMasterData\" [value]=\"element.Id\" style=\"font-size: small;\">{{element.Name}}</option>\r\n                    </select>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getAllRecommendations()\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -8119,8 +8729,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! date-fns/locale/en */ "./node_modules/date-fns/locale/en/index.js");
-/* harmony import */ var date_fns_locale_en__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale_en__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
@@ -8138,6 +8748,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import 'sweetalert2/src/sweetalert2.scss'
 
 
 highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_7__);
@@ -8151,23 +8762,6 @@ var SewingmoduleComponent = /** @class */ (function () {
         this.http = http;
         this._router = _router;
         this.userBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + 'kpicalculation';
-        this.options = {
-            locale: date_fns_locale_en__WEBPACK_IMPORTED_MODULE_6__,
-            minYear: 1970,
-            maxYear: 2030,
-            displayFormat: 'MMM D[,] YYYY',
-            barTitleFormat: 'MMMM YYYY',
-            dayNamesFormat: 'dd',
-            firstCalendarDay: 0,
-            minDate: new Date(Date.now()),
-            // maxDate: new Date(Date.now()),  // Maximal selectable date
-            barTitleIfEmpty: 'Click to select a date',
-            placeholder: 'Click to select a date',
-            addClass: 'form-control',
-            addStyle: {},
-            fieldId: 'my-date-picker',
-            useEmptyBarTitle: false,
-        };
         this.lineOptions = [];
         this.unitOptions = [];
         this.locationOptions = [];
@@ -8179,6 +8773,7 @@ var SewingmoduleComponent = /** @class */ (function () {
         this.rejectStyle = {};
         this.kpiMasterData = [];
         this.selectedKPI = "Choose your option";
+        this.headerTextValue = "";
         //activate tabs of sewing module
         this.activeTab = 'kpi';
         this.data = [];
@@ -8187,6 +8782,7 @@ var SewingmoduleComponent = /** @class */ (function () {
         this.endDate = new Date();
     }
     SewingmoduleComponent.prototype.ngOnInit = function () {
+        // Swal.fire('Hello Angular');  
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#topnavbar").hide();
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#footer").css("margin-left", "15%");
         this.selectAllOptions();
@@ -8195,55 +8791,62 @@ var SewingmoduleComponent = /** @class */ (function () {
         this.getMasterKPIData();
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#footer").hide();
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".footer").hide();
-        var textWrapper = document.querySelector('.ml1 .letters');
-        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-        anime.timeline({ loop: true })
-            .add({
-            targets: '.ml1 .letter',
-            scale: [0.3, 1],
-            opacity: [0, 1],
-            translateZ: 0,
-            easing: "easeOutExpo",
-            duration: 600,
-            delay: function (el, i) { return 70 * (i + 1); }
-        }).add({
-            targets: '.ml1 .line',
-            scaleX: [0, 1],
-            opacity: [0.5, 1],
-            easing: "easeOutExpo",
-            duration: 700,
-            offset: '-=875',
-            delay: function (el, i, l) { return 80 * (l - i); }
-        }).add({
-            targets: '.ml1',
-            opacity: 0,
-            duration: 1000,
-            easing: "easeOutExpo",
-            delay: 1000
-        });
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(function () {
-            // Hide all lists except the outermost.
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('ul.tree ul').hide();
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.tree li > ul').each(function (i) {
-                var $subUl = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this);
-                var $parentLi = $subUl.parent('li');
-                var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
-                $parentLi.addClass('has-children');
-                $parentLi.prepend($toggleIcon).find('.js-toggle-icon').on('click', function () {
-                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).text(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this).text() == '+' ? '-' : '+');
-                    $subUl.slideToggle('fast');
-                });
-            });
-        });
+        // var textWrapper = document.querySelector('.ml1 .letters');
+        // textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        // anime.timeline({loop: true})
+        // .add({
+        //     targets: '.ml1 .letter',
+        //     scale: [0.3,1],
+        //     opacity: [0,1],
+        //     translateZ: 0,
+        //     easing: "easeOutExpo",
+        //     duration: 600,
+        //     delay: (el, i) => 70 * (i+1)
+        // }).add({
+        //     targets: '.ml1 .line',
+        //     scaleX: [0,1],
+        //     opacity: [0.5,1],
+        //     easing: "easeOutExpo",
+        //     duration: 700,
+        //     offset: '-=875',
+        //     delay: (el, i, l) => 80 * (l - i)
+        // }).add({
+        //     targets: '.ml1',
+        //     opacity: 0,
+        //     duration: 1000,
+        //     easing: "easeOutExpo",
+        //     delay: 1000
+        // });
+        // $(function() {
+        //   // Hide all lists except the outermost.
+        //   $('ul.tree ul').hide();
+        //   $('.tree li > ul').each(function(i) {
+        //     var $subUl = $(this);
+        //     var $parentLi = $subUl.parent('li');
+        //     var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+        //     $parentLi.addClass('has-children');
+        //     $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+        //       $(this).text( $(this).text() == '+' ? '-' : '+' );
+        //       $subUl.slideToggle('fast');
+        //     });
+        //   });
+        // });
     };
     SewingmoduleComponent.prototype.getFilterData = function () {
         var KPIView = {
-            Line: [],
-            Location: [],
-            Unit: [],
+            Line: [1, 2],
+            Location: [1, 2],
+            Unit: [1, 2],
             StartDate: "2021-01-31 00:00:00.000",
             EndDate: "2021-01-31 00:00:00.000",
         };
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].sewingKPIHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].sewingKPIHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
         this.calculateFirstPageKPIs(KPIView);
         this.calculateSecondPageKPIs(KPIView);
     };
@@ -8314,9 +8917,10 @@ var SewingmoduleComponent = /** @class */ (function () {
                             dataLabels: {
                                 enabled: true,
                                 color: '#000000',
-                                align: 'right',
+                                align: 'center',
                                 format: '{point.y:.1f}',
-                                y: 10,
+                                y: 5,
+                                x: 3,
                                 style: {
                                     fontSize: '10px',
                                     fontFamily: 'Verdana, sans-serif'
@@ -8382,9 +8986,10 @@ var SewingmoduleComponent = /** @class */ (function () {
                             dataLabels: {
                                 enabled: true,
                                 color: '#000000',
-                                align: 'right',
+                                align: 'center',
                                 format: '{point.y:.1f}',
-                                y: 10,
+                                y: 5,
+                                x: 3,
                                 style: {
                                     fontSize: '10px',
                                     fontFamily: 'Verdana, sans-serif'
@@ -8450,9 +9055,10 @@ var SewingmoduleComponent = /** @class */ (function () {
                             dataLabels: {
                                 enabled: true,
                                 color: '#000000',
-                                align: 'right',
+                                align: 'center',
                                 format: '{point.y:.1f}',
-                                y: 10,
+                                y: 5,
+                                x: 3,
                                 style: {
                                     fontSize: '10px',
                                     fontFamily: 'Verdana, sans-serif'
@@ -8518,9 +9124,10 @@ var SewingmoduleComponent = /** @class */ (function () {
                             dataLabels: {
                                 enabled: true,
                                 color: '#000000',
-                                align: 'right',
+                                align: 'center',
                                 format: '{point.y:.1f}',
-                                y: 10,
+                                y: 5,
+                                x: 3,
                                 style: {
                                     fontSize: '10px',
                                     fontFamily: 'Verdana, sans-serif'
@@ -8602,9 +9209,10 @@ var SewingmoduleComponent = /** @class */ (function () {
                             dataLabels: {
                                 enabled: true,
                                 color: '#000000',
-                                align: 'right',
+                                align: 'center',
                                 format: '{point.y:.1f}',
-                                y: 10,
+                                y: 5,
+                                x: 3,
                                 style: {
                                     fontSize: '10px',
                                     fontFamily: 'Verdana, sans-serif'
@@ -8614,7 +9222,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                 });
                 highcharts__WEBPACK_IMPORTED_MODULE_7__["chart"](_this_1.rejectionContainer.nativeElement, {
                     colors: [
-                        responsedata["DefectRejectDHUPercentage"]["Value"]["rejectColor"]
+                        responsedata["Rejection"]["Value"]["rejectionColor"]
                     ],
                     exporting: {
                         enabled: false
@@ -8665,14 +9273,15 @@ var SewingmoduleComponent = /** @class */ (function () {
                     series: [{
                             name: 'Rejection',
                             data: [
-                                responsedata["DefectRejectDHUPercentage"]["Value"]["percentageRejection"]
+                                responsedata["Rejection"]["Value"]["rejectionData"]
                             ],
                             dataLabels: {
                                 enabled: true,
                                 color: '#000000',
-                                align: 'right',
+                                align: 'center',
                                 format: '{point.y:.1f}',
-                                y: 10,
+                                y: 5,
+                                x: 3,
                                 style: {
                                     fontSize: '10px',
                                     fontFamily: 'Verdana, sans-serif'
@@ -8738,9 +9347,10 @@ var SewingmoduleComponent = /** @class */ (function () {
                             dataLabels: {
                                 enabled: true,
                                 color: '#000000',
-                                align: 'right',
+                                align: 'center',
                                 format: '{point.y:.1f}',
-                                y: 10,
+                                y: 5,
+                                x: 3,
                                 style: {
                                     fontSize: '10px',
                                     fontFamily: 'Verdana, sans-serif'
@@ -8778,7 +9388,7 @@ var SewingmoduleComponent = /** @class */ (function () {
                     yAxis: {
                         visible: false,
                         min: 0,
-                        max: 100,
+                        max: 20,
                         title: {
                             text: 'Value',
                             enabled: false
@@ -8806,9 +9416,10 @@ var SewingmoduleComponent = /** @class */ (function () {
                             dataLabels: {
                                 enabled: true,
                                 color: '#000000',
-                                align: 'right',
+                                align: 'center',
                                 format: '{point.y:.1f}',
-                                y: 10,
+                                y: 5,
+                                x: 3,
                                 style: {
                                     fontSize: '10px',
                                     fontFamily: 'Verdana, sans-serif'
@@ -8951,35 +9562,88 @@ var SewingmoduleComponent = /** @class */ (function () {
         });
     };
     SewingmoduleComponent.prototype.getSewingKPIAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
-        var checkedLines = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.line:checkbox:checked').map(function () {
+        var checkedLines = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.line:radio:checked').map(function () {
             var lineId = parseFloat(this.value);
             return lineId;
         }).get();
-        var StartDate = new Date().toDateString();
-        var EndDate = new Date().toDateString();
-        var KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            StartDate: "2021-01-31 00:00:00.000",
-            EndDate: "2021-01-31 00:00:00.000"
-        };
-        this.calculateFirstPageKPIs(KPIView);
-        this.calculateSecondPageKPIs(KPIView);
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val());
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val()) {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].sewingKPIHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].sewingKPIHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateFirstPageKPIs(KPIView);
+                this.calculateSecondPageKPIs(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
+    };
+    SewingmoduleComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val());
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
     };
     SewingmoduleComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -8989,18 +9653,41 @@ var SewingmoduleComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.line:radio').prop('checked', false);
         }
+    };
+    SewingmoduleComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    SewingmoduleComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    SewingmoduleComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     SewingmoduleComponent.prototype.navigateDefectPercentage = function () {
         this._router.navigate(['defect-overview']);
@@ -9154,7 +9841,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<nav class=\"col-6 col-6 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h4 style=\"text-align: left; margin-left: 15%; font-weight: bold;\">Sewing Department Historic KPI Analysis</h4>\r\n      </div>\r\n      <div class=\"col-4 mt-2\">\r\n        <a style=\"font-weight: bold;\" (click)=\"sewingNavigation()\">Back to KPI Data</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"height: 500px; overflow-y: scroll; overflow-x: hidden; background-color:#ffffff;\">\r\n        <div class=\"row align-items-center mt-1\">\r\n          <div class=\"col-12\" id=\"efficiencyVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"efficiencyHistoric\" style=\"height: 230px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-12\" id=\"defectVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"defectsHistoric\" style=\"height: 230px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-12\" id=\"rejectionVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"rejectionHistoric\" style=\"height: 230px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-12\" id=\"capacityVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"capacityHistoric\" style=\"height: 230px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-12\" id=\"dhuVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"dhuHistoric\" style=\"height: 230px; width:auto\"(click)=\"dhuHistoricalNavigation()\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-12\" id=\"absentismVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"absentismHistoric\" style=\"height: 230px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-12\" id=\"wipVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"wipHistoric\" style=\"height: 230px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-12\" id=\"machineDowntimeVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"machineDowntimeHistoric\" style=\"height: 230px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<nav class=\"col-6 col-6 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <h6 style=\"text-align: center; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <button class=\"custom-button ml-3\" style=\"font-weight: bold;\" (click)=\"sewingNavigation()\">Back to KPI Data</button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"height: 500px; overflow-y: scroll; overflow-x: hidden; background-color:#ffffff;\">\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Efficiency')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"efficiencyVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"efficiencyHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Defect')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"defectVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"defectsHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Reject')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"rejectionVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"rejectionHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('CapacityUtilization')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"capacityVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"capacityHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Absenteeism')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"absentismVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"absentismHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('DHU')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"dhuVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"dhuHistoric\" style=\"height: 58px; width:auto\"(click)=\"dhuHistoricalNavigation()\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('InlineWIP')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"wipVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"wipHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Downtime')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"machineDowntimeVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"machineDowntimeHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -9175,11 +9862,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
-/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
-/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
+/* harmony import */ var highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
 
 
 
@@ -9189,20 +9878,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_7___default()(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+
+highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 var Boost = __webpack_require__(/*! highcharts/modules/boost */ "./node_modules/highcharts/modules/boost.js");
 var noData = __webpack_require__(/*! highcharts/modules/no-data-to-display */ "./node_modules/highcharts/modules/no-data-to-display.js");
 var more = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
 var Exporting = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
-Boost(highcharts__WEBPACK_IMPORTED_MODULE_6__);
-noData(highcharts__WEBPACK_IMPORTED_MODULE_6__);
-more(highcharts__WEBPACK_IMPORTED_MODULE_6__);
-noData(highcharts__WEBPACK_IMPORTED_MODULE_6__);
-Exporting(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+Boost(highcharts__WEBPACK_IMPORTED_MODULE_7__);
+noData(highcharts__WEBPACK_IMPORTED_MODULE_7__);
+more(highcharts__WEBPACK_IMPORTED_MODULE_7__);
+noData(highcharts__WEBPACK_IMPORTED_MODULE_7__);
+Exporting(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 var ExportData = __webpack_require__(/*! highcharts/modules/export-data */ "./node_modules/highcharts/modules/export-data.js");
-ExportData(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+ExportData(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 var Accessibility = __webpack_require__(/*! highcharts/modules/accessibility */ "./node_modules/highcharts/modules/accessibility.js");
-Accessibility(highcharts__WEBPACK_IMPORTED_MODULE_6__);
+Accessibility(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 var SewingmodulehistComponent = /** @class */ (function () {
     function SewingmodulehistComponent(http, _router) {
         this.http = http;
@@ -9210,6 +9900,22 @@ var SewingmodulehistComponent = /** @class */ (function () {
         this.locationOptions = [];
         this.unitOptions = [];
         this.lineOptions = [];
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
+        this.headerTextValue = "";
+        this.averageKPIDataList = [];
     }
     SewingmodulehistComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#footer").hide();
@@ -9220,14 +9926,17 @@ var SewingmodulehistComponent = /** @class */ (function () {
             Line: [1, 2, 3, 4],
             Location: [1, 2],
             Unit: [1, 2],
-            StartDate: "2021-01-01 00:00:00.000",
+            StartDate: "2021-01-27 00:00:00.000",
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.getFilterData(KPIView);
         // this.createRejectionHistoric();
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(function () {
+            var _this = this;
             // Hide all lists except the outermost.
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('ul.tree ul').hide();
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#period_5").prop("checked", true);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dropdownLinePeriodButton").html("Last 5 days");
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.tree li > ul').each(function (i) {
                 var $subUl = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(this);
                 var $parentLi = $subUl.parent('li');
@@ -9245,19 +9954,40 @@ var SewingmodulehistComponent = /** @class */ (function () {
         var userBackendUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + "SewingHistorical";
         this.http.post(userBackendUrl, KPIView).subscribe(function (responsedata) {
             if (responsedata.StatusCode == 200) {
-                _this.createEfficiencyHistoric(responsedata["EfficiencyHistoricalCalculation"]["Value"]["categories"], responsedata["EfficiencyHistoricalCalculation"]["Value"]["data"]);
-                _this.createCapacityHistoric(responsedata["CapacityHistoricalCalculation"]["Value"]["categories"], responsedata["CapacityHistoricalCalculation"]["Value"]["data"]);
-                _this.createWIPHistoric(responsedata["InlineWIPHistoricalCalculation"]["Value"]["categories"], responsedata["InlineWIPHistoricalCalculation"]["Value"]["data"]);
-                _this.createMachineDowntimeHistoric(responsedata["MachineDownTimeHistoricalCalculation"]["Value"]["categories"], responsedata["MachineDownTimeHistoricalCalculation"]["Value"]["data"]);
-                _this.createDefectsHistoric(responsedata["DefectPecentageHistoricalCalculation"]["Value"]["categories"], responsedata["DefectPecentageHistoricalCalculation"]["Value"]["data"]);
-                _this.createAbsentismHistoric(responsedata["AbsentismHistoricalCalculation"]["Value"]["categories"], responsedata["AbsentismHistoricalCalculation"]["Value"]["data"]);
-                _this.createRejectionHistoric(responsedata["RejectionHistoricalCalculation"]["Value"]["categories"], responsedata["RejectionHistoricalCalculation"]["Value"]["data"]);
-                _this.createDHUHistoric(responsedata["DHUHistoricalCalculation"]["Value"]["categories"], responsedata["DHUHistoricalCalculation"]["Value"]["data"]);
+                _this.createEfficiencyHistoric(responsedata["EfficiencyHistoricalCalculation"]["Value"]["categories"], responsedata["EfficiencyHistoricalCalculation"]["Value"]["data"], responsedata["EfficiencyHistoricalCalculation"]["Value"]["averageDataValue"]);
+                _this.createCapacityHistoric(responsedata["CapacityHistoricalCalculation"]["Value"]["categories"], responsedata["CapacityHistoricalCalculation"]["Value"]["data"], responsedata["CapacityHistoricalCalculation"]["Value"]["averageDataValue"]);
+                _this.createWIPHistoric(responsedata["InlineWIPHistoricalCalculation"]["Value"]["categories"], responsedata["InlineWIPHistoricalCalculation"]["Value"]["data"], responsedata["InlineWIPHistoricalCalculation"]["Value"]["averageDataValue"]);
+                _this.createMachineDowntimeHistoric(responsedata["MachineDownTimeHistoricalCalculation"]["Value"]["categories"], responsedata["MachineDownTimeHistoricalCalculation"]["Value"]["data"], responsedata["MachineDownTimeHistoricalCalculation"]["Value"]["averageDataValue"]);
+                _this.createDefectsHistoric(responsedata["DefectPecentageHistoricalCalculation"]["Value"]["categories"], responsedata["DefectPecentageHistoricalCalculation"]["Value"]["data"], responsedata["DefectPecentageHistoricalCalculation"]["Value"]["averageDataValue"]);
+                _this.createAbsentismHistoric(responsedata["AbsentismHistoricalCalculation"]["Value"]["categories"], responsedata["AbsentismHistoricalCalculation"]["Value"]["data"], responsedata["AbsentismHistoricalCalculation"]["Value"]["averageDataValue"]);
+                _this.createRejectionHistoric(responsedata["RejectionHistoricalCalculation"]["Value"]["categories"], responsedata["RejectionHistoricalCalculation"]["Value"]["data"], responsedata["RejectionHistoricalCalculation"]["Value"]["averageDataValue"]);
+                _this.createDHUHistoric(responsedata["DHUHistoricalCalculation"]["Value"]["categories"], responsedata["DHUHistoricalCalculation"]["Value"]["data"], responsedata["DHUHistoricalCalculation"]["Value"]["averageDataValue"]);
             }
         });
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].sewingHistKPIHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].sewingHistKPIHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
     };
-    SewingmodulehistComponent.prototype.createEfficiencyHistoric = function (categories, data) {
-        this.efficiencyHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+    SewingmodulehistComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
+    };
+    SewingmodulehistComponent.prototype.createEfficiencyHistoric = function (categories, data, averageDataValue) {
+        var label;
+        this.efficiencyHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
             chart: {
                 type: 'spline',
             },
@@ -9277,9 +10007,12 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 categories: categories
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency %'
+                    text: 'Efficiency %',
+                    rotation: 0,
                 },
+                maxPadding: 0.2,
                 max: 100,
                 min: 0
             },
@@ -9293,18 +10026,34 @@ var SewingmodulehistComponent = /** @class */ (function () {
                         radius: 2,
                         lineColor: '#666666',
                         lineWidth: 1
+                    },
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            label = chart.renderer.text('Average : ' + averageDataValue, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
                     }
                 }
             },
             series: [{
                     name: 'Efficiency',
                     data: data,
-                    color: '#0060d7'
+                    color: '#0060d7',
+                    "showInLegend": false,
                 }]
         });
     };
-    SewingmodulehistComponent.prototype.createCapacityHistoric = function (categories, data) {
-        this.capacityHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+    SewingmodulehistComponent.prototype.createCapacityHistoric = function (categories, data, averageDataValue) {
+        var label;
+        this.capacityHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
             chart: {
                 type: 'spline'
             },
@@ -9323,10 +10072,12 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 categories: categories
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Capacity %'
+                    text: 'Capacity %',
+                    rotation: 0,
                 },
-                max: 100,
+                max: 120,
                 min: 0
             },
             tooltip: {
@@ -9340,17 +10091,33 @@ var SewingmodulehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            label = chart.renderer.text('Average : ' + averageDataValue, 350, 10)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Capacity Utilization',
                     data: data,
-                    color: '#a43e50'
+                    color: '#741910',
+                    "showInLegend": false,
                 }]
         });
     };
-    SewingmodulehistComponent.prototype.createWIPHistoric = function (categories, data) {
-        this.wipHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+    SewingmodulehistComponent.prototype.createWIPHistoric = function (categories, data, averageDataValue) {
+        var label;
+        this.wipHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
             chart: {
                 type: 'spline'
             },
@@ -9370,8 +10137,10 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 categories: categories
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'WIP %'
+                    text: 'WIP Level',
+                    rotation: 0,
                 },
                 max: 5.0,
                 min: 0.0
@@ -9387,17 +10156,33 @@ var SewingmodulehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            label = chart.renderer.text('Average : ' + averageDataValue, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Inline WIP Level',
                     data: data,
-                    color: '#0060d7'
+                    color: '#0060d7',
+                    "showInLegend": false,
                 }]
         });
     };
-    SewingmodulehistComponent.prototype.createMachineDowntimeHistoric = function (categories, data) {
-        this.machineDowntimeHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+    SewingmodulehistComponent.prototype.createMachineDowntimeHistoric = function (categories, data, averageDataValue) {
+        var label;
+        this.machineDowntimeHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
             chart: {
                 type: 'spline'
             },
@@ -9417,8 +10202,10 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 categories: categories
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Downtime %'
+                    text: 'Downtime %',
+                    rotation: 0,
                 },
                 max: 20,
                 min: 0
@@ -9434,17 +10221,33 @@ var SewingmodulehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            label = chart.renderer.text('Average : ' + averageDataValue, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
-                    name: 'Machine Downtime',
+                    name: 'Downtime',
                     data: data,
-                    color: '#a43e50'
+                    color: '#6a1ce2',
+                    "showInLegend": false,
                 }]
         });
     };
-    SewingmodulehistComponent.prototype.createDHUHistoric = function (categories, data) {
-        this.dhuHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+    SewingmodulehistComponent.prototype.createDHUHistoric = function (categories, data, averageDataValue) {
+        var label;
+        this.dhuHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
             chart: {
                 type: 'spline'
             },
@@ -9464,8 +10267,10 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 categories: categories
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'DHU'
+                    text: 'DHU',
+                    rotation: 0,
                 },
                 max: 13,
                 min: 0
@@ -9481,17 +10286,33 @@ var SewingmodulehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            label = chart.renderer.text('Average : ' + averageDataValue, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'DHU',
                     data: data,
-                    color: '#0060d7'
+                    color: '#175c2c',
+                    "showInLegend": false,
                 }]
         });
     };
-    SewingmodulehistComponent.prototype.createDefectsHistoric = function (categories, data) {
-        this.defectsHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+    SewingmodulehistComponent.prototype.createDefectsHistoric = function (categories, data, averageDataValue) {
+        var label;
+        this.defectsHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
             chart: {
                 type: 'spline'
             },
@@ -9510,8 +10331,10 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 categories: categories
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Defects %'
+                    text: 'Defects %',
+                    rotation: 0,
                 },
                 max: 50,
                 min: 0
@@ -9527,17 +10350,33 @@ var SewingmodulehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            label = chart.renderer.text('Average : ' + averageDataValue, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
-                    name: 'Defects %',
+                    name: 'Defects',
                     data: data,
-                    color: '#a43e50'
+                    color: '#a43e50',
+                    "showInLegend": false,
                 }]
         });
     };
-    SewingmodulehistComponent.prototype.createRejectionHistoric = function (categories, data) {
-        this.rejectionHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+    SewingmodulehistComponent.prototype.createRejectionHistoric = function (categories, data, averageDataValue) {
+        var label;
+        this.rejectionHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
             chart: {
                 type: 'spline'
             },
@@ -9556,8 +10395,10 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 categories: categories
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Rejection %'
+                    text: 'Rejection %',
+                    rotation: 0,
                 },
                 max: 15,
                 min: 0
@@ -9573,17 +10414,33 @@ var SewingmodulehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            label = chart.renderer.text('Average : ' + averageDataValue, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Rejection',
                     data: data,
-                    color: '#0060d7'
+                    color: '#c28a00',
+                    "showInLegend": false,
                 }]
         });
     };
-    SewingmodulehistComponent.prototype.createAbsentismHistoric = function (categories, data) {
-        this.absentismHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_8__["Chart"]({
+    SewingmodulehistComponent.prototype.createAbsentismHistoric = function (categories, data, averageDataValue) {
+        var label;
+        this.absentismHistoric = new angular_highcharts__WEBPACK_IMPORTED_MODULE_9__["Chart"]({
             chart: {
                 type: 'spline'
             },
@@ -9602,8 +10459,10 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 categories: categories
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Absentism %'
+                    text: 'Absenteeism %',
+                    rotation: 0,
                 },
                 max: 20,
                 min: 0
@@ -9619,12 +10478,27 @@ var SewingmodulehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            label = chart.renderer.text('Average : ' + averageDataValue, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
-                    name: 'Absentism',
+                    name: 'Absenteeism',
                     data: data,
-                    color: '#a43e50'
+                    color: '#a43e50',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -9649,11 +10523,11 @@ var SewingmodulehistComponent = /** @class */ (function () {
         this._router.navigate(['sewing-module']);
     };
     SewingmodulehistComponent.prototype.getSewingKPIAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -9662,39 +10536,57 @@ var SewingmodulehistComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startMonthValue = startmonth.toString();
-        if (startmonth > 10) {
-            startMonthValue = "0" + startmonth.toString();
-        }
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startMonthValue + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endMonthValue = startmonth.toString();
-        if (endmonth > 10) {
-            endMonthValue = "0" + endmonth.toString();
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val() != "") {
+            var startDay = StartDate.getDate();
+            var startmonth = StartDate.getMonth() + 1;
+            var startyear = StartDate.getFullYear();
+            var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+            var endDay = EndDate.getDate();
+            var endmonth = EndDate.getMonth() + 1;
+            var endyear = EndDate.getFullYear();
+            var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+            var KPIView = {
+                Line: checkedLines,
+                Location: checkedLocations,
+                Unit: checkedUnits,
+                StartDate: startDateTime,
+                EndDate: endDateTime
+            };
+            var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val());
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val()) {
+                this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].sewingHistKPIHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+            }
+            else {
+                this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].sewingHistKPIHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+            }
+            this.getFilterData(KPIView);
         }
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endMonthValue + '-' + endDay + " 00:00:00.000";
-        var KPIView = {
-            Line: [1, 2],
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            //   StartDate : "2021-01-27 00:00:00.000",
-            //   EndDate : "2021-01-31 00:00:00.000"
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.getFilterData(KPIView);
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
+    };
+    SewingmodulehistComponent.prototype.processNavigation = function () {
+        this._router.navigate(['process-overview']);
+    };
+    SewingmodulehistComponent.prototype.dhuHistoricalNavigation = function () {
+        this._router.navigate(['dhu-historic']);
     };
     SewingmodulehistComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -9704,24 +10596,83 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.line:radio').prop('checked', false);
         }
     };
-    SewingmodulehistComponent.prototype.processNavigation = function () {
-        this._router.navigate(['process-overview']);
+    SewingmodulehistComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
     };
-    SewingmodulehistComponent.prototype.dhuHistoricalNavigation = function () {
-        this._router.navigate(['dhu-historic']);
+    SewingmodulehistComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    SewingmodulehistComponent.prototype.onPeriodChange = function (event) {
+        if (event.target.checked) {
+            this.periodOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__("#dropdownLinePeriodButton").html(element.Name);
+                    var checkedPeriod = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('.option.justone.period:radio:checked').map(function () {
+                        var periodId = parseInt(this.value);
+                        return periodId;
+                    }).get();
+                    if (checkedPeriod[0] != null) {
+                        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#endDate').val());
+                        var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+                        var day = last.getDate();
+                        var month = last.getMonth() + 1;
+                        var year = last.getFullYear();
+                        var monthString = month.toString();
+                        var dayString = day.toString();
+                        if (month < 10) {
+                            monthString = "0" + month;
+                        }
+                        if (day < 10) {
+                            dayString = "0" + day;
+                        }
+                        var StartDate = year + "-" + monthString + "-" + dayString;
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_3__('#startDate').val(StartDate);
+                    }
+                }
+            });
+        }
+    };
+    SewingmodulehistComponent.prototype.showKPIAverageValues = function (kpiName) {
+        this.averageKPIDataList.forEach(function (element) {
+            if (element["key"] == kpiName) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
+                    icon: 'info',
+                    title: 'KPI Analysis',
+                    text: 'Average value of ' + kpiName + " : " + element["value"],
+                    showConfirmButton: false
+                });
+            }
+        });
+    };
+    SewingmodulehistComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     SewingmodulehistComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -20789,11 +21740,25 @@ __webpack_require__.r(__webpack_exports__);
 //locally running
 // export const environment = {
 //   production: false,
-//   backendUrl : "http://localhost:53327/api/"
+//   backendUrl : "http://localhost:53327/api/",
+//   sewingKPIHeaderText: "Sewing Department KPI Analysis",
+//   sewingHistKPIHeaderText: "Historical KPI Analysis",
+//   efficiencyHeaderText : "Average efficiency",
+//   capacityUtilizationHeaderText : "Average utilisation",
+//   absenteeismHeaderText : "Average absenteeism",
+//   defectHeaderText : "Average defect%",
+//   rejectionHeaderText : "Overview of Rejection"
 // };
 var environment = {
     production: true,
-    backendUrl: "https://rmg-web-api.azurewebsites.net/api/"
+    backendUrl: "https://rmg-web-api.azurewebsites.net/api/",
+    sewingKPIHeaderText: "Sewing Department KPI Analysis",
+    sewingHistKPIHeaderText: "Historical KPI Analysis",
+    efficiencyHeaderText: "Average efficiency",
+    capacityUtilizationHeaderText: "Average utilisation",
+    absenteeismHeaderText: "Average absenteeism",
+    defectHeaderText: "Average defect%",
+    rejectionHeaderText: "Overview of Rejection"
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -20823,11 +21788,25 @@ __webpack_require__.r(__webpack_exports__);
 //locally running
 // export const environment = {
 //   production: false,
-//   backendUrl : "http://localhost:53327/api/"
+//   backendUrl : "http://localhost:53327/api/",
+//   sewingKPIHeaderText: "Sewing Department KPI Analysis",
+//   sewingHistKPIHeaderText: "Historical KPI Analysis",
+//   efficiencyHeaderText : "Average efficiency",
+//   capacityUtilizationHeaderText : "Average utilisation",
+//   absenteeismHeaderText : "Average absenteeism",
+//   defectHeaderText : "Average defect%",
+//   rejectionHeaderText : "Overview of Rejection"
 // };
 var environment = {
     production: true,
-    backendUrl: "https://rmg-web-api.azurewebsites.net/api/"
+    backendUrl: "https://rmg-web-api.azurewebsites.net/api/",
+    sewingKPIHeaderText: "Sewing Department KPI Analysis",
+    sewingHistKPIHeaderText: "Historical KPI Analysis",
+    efficiencyHeaderText: "Average efficiency",
+    capacityUtilizationHeaderText: "Average utilisation",
+    absenteeismHeaderText: "Average absenteeism",
+    defectHeaderText: "Average defect%",
+    rejectionHeaderText: "Overview of Rejection"
 };
 /*
  * For easier debugging in development mode, you can import the following file

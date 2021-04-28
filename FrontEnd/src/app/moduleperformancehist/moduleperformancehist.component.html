@@ -74,52 +74,52 @@
         <div class="row mt-3">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Operations <i class="fas fa-caret-down" style="color: blue;"></i></button>
           <div class="col-9">
-            <div [chart]= "operationHistoric" style="height: 200px; "></div>
+            <div [chart]= "operationHistoric" style="height: 58px; width:auto"></div>
           </div>
         </div>
         <div class="collapse ml-5" id="collapseOperationDiv">
           <div class="row mt-3" >
             <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Inward <i class="fas fa-caret-down" style="color: brown;"></i></button>
             <div class="col-9">
-              <div [chart]="inwardHistoric" style="height: 200px; "></div>
+              <div [chart]="inwardHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
           <div class="row mt-3">
             <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseProcessesDiv" aria-expanded="false" aria-controls="collapseProcessesDiv">Processes <i class="fas fa-caret-down" style="color: blue;"></i></button>
             <div class="col-9">
-              <div [chart]="processHistoric" style="height: 200px; "></div>
+              <div [chart]="processHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
           <div class="collapse ml-5" id="collapseProcessesDiv">
             <div class="row mt-3" >
               <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Fabric & Trims Store <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
-                <div [chart] = "fabricTrimHistoric" style="height: 200px; "></div>
+                <div [chart] = "fabricTrimHistoric" style="height: 58px; width:auto"></div>
               </div>
             </div>
             <div class="row mt-3">
               <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Spreading & Cutting <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
-                <div [chart] = "SpreadingCuttingHistoric" style="height: 200px; "></div>
+                <div [chart] = "SpreadingCuttingHistoric" style="height: 58px; width:auto"></div>
               </div>
             </div>
             <div class="row mt-3">
               <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" (click)="sewingNavigation()">Sewing <i class="fas fa-caret-down" style="color: blue;"></i></button>
               <div class="col-9">
-                <div [chart] = "SewingHistoric" style="height: 200px; "></div>
+                <div [chart] = "SewingHistoric" style="height: 58px; width:auto"></div>
               </div>
             </div>
             <div class="row mt-3">
               <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Finishing & Packaging <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
-                <div [chart] = "FinishingPackagingHistoric" style="height: 200px; "></div>
+                <div [chart] = "FinishingPackagingHistoric" style="height: 58px; width:auto"></div>
               </div>
             </div>
           </div>
           <div class="row mt-3">
             <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Outward <i class="fas fa-caret-down" style="color: brown;"></i></button>
             <div class="col-9">
-              <div [chart]="outwardHistoric" style="height: 200px; "></div>
+              <div [chart]="outwardHistoric" style="height: 58px; width:auto"></div>
               <!-- <div class="progress" style="height:30px">
                 <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">80</div>
               </div> -->
@@ -129,7 +129,7 @@
         <div class="row mt-3">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Social Sustainablity <i class="fas fa-caret-down" style="color: brown;"></i></button>
           <div class="col-9">
-            <div [chart] = "socialHistoric" style="height: 200px; "></div>
+            <div [chart] = "socialHistoric" style="height: 58px; width:auto"></div>
             <!-- <div class="progress" style="height:30px">
               <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">50</div>
             </div> -->
@@ -139,7 +139,7 @@
         <div class="row mt-3">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Environmental Sustainability <i class="fas fa-caret-down" style="color: brown;"></i></button>
           <div class="col-9">
-            <div [chart] = "environmentalHistoric" style="height: 200px; "></div>
+            <div [chart] = "environmentalHistoric" style="height: 58px; width:auto"></div>
             <!-- <div class="progress" style="height:30px">
               <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
             </div> -->
