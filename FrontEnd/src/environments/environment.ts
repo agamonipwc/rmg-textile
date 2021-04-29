@@ -16,6 +16,8 @@ export const environment = {
   rejectionHeaderText : "Overview of Rejection",
   processOverviewHeaderText : "Overview of Process",
   moduleOverviewHeaderText : "Overview of Factory",
+  moduleHistOverviewHeaderText : "Historical Factory Analysis",
+  dhuOverviewHeaderText : "Top DHU Overview",
 };
 
 // export const environment = {

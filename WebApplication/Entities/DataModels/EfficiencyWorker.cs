@@ -51,5 +51,10 @@ namespace Entities.DataModels
         public int DefectCount4 { get; set; }
         public int DefectCount5 { get; set; }
         public double CapacityUtilization { get; set; }
+        public double DefectivePcs_1 { get; set; }
+        public double DefectivePcs_2 { get; set; }
+        public double DefectivePcs_3 { get; set; }
+        public double DefectivePcs_4 { get; set; }
+        public double DefectivePcs_5 { get; set; }
     }
 }

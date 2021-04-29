@@ -20,7 +20,7 @@ ExportData(Highcharts);
 
 const Accessibility = require('highcharts/modules/accessibility');
 Accessibility(Highcharts);
-
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 @Component({
   selector: 'app-dhu',
@@ -43,10 +43,23 @@ export class DhuComponent implements OnInit {
   locationOptions : any = [];
   overDHUValue : any = 0;
   overAllDHUStyle : any = {};
-
+  headerTextValue : string = "";
   data : any = [];
   operatorsDetailsList = [];
-  
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
   dhuBar: Chart;
 
 constructor(private http: HttpClient,private _router: Router) { }
@@ -86,6 +99,27 @@ ngOnInit() {
       EndDate : "2021-01-31 00:00:00.000",
     }
     this.calculateDHU(KPIView);
+    var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+    if($('#startDate').val() == $('#endDate').val()){
+      this.headerTextValue = environment.dhuOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+    }
+    else{
+      this.headerTextValue = environment.dhuOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+    }
+  }
+
+  formatUserInputDate(startDate, endDate){
+    var StartDate = new Date(startDate);
+    var EndDate = new Date(endDate);
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startDay + "." + startmonth + '.' + startyear;
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endDay + "." + endmonth + '.' + endyear;
+    return {startDateTime : startDateTime, endDateTime : endDateTime}
   }
   
   calculateDHU(KPIView){
@@ -99,55 +133,89 @@ ngOnInit() {
         'height' : '30px',
         'width' :  (Math.round((_this.overDHUValue/15)*100) + "%")
       }
-      _this.dhuBar = new Chart( 
-        {
-          chart: {
-              type: 'bar'
-          },
-          title: {
-              text: ''
-          },
-          exporting: {
-            enabled: false
-          },
-          credits: {enabled: false},
-          xAxis: {
-              categories: responsedata["categories"]
-          },
-          yAxis: {
-              min: 0,
-              max: 13,
-              title: {
-                  text: 'Defects Per Hundred Units (D.H.U.)'
-              }
-          },
-          legend: {
-              reversed: true
-          },
-          plotOptions: {
-              series: {
-                  stacking: 'normal'
-              }
-          },
-          series: [{
-                  name:'',
-                  showInLegend: false,
-                  data: responsedata["data"],
-                  dataLabels: {
-                    align: 'left',
-                    enabled: true
+      _this.dhuBar = new Chart({
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+        },
+        exporting: {
+          enabled: false
+        },
+        credits: {enabled: false},
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                 }
-          }]
-      });
+            }
+        },
+        series: [responsedata["data"]]
+        })
+      // _this.dhuBar = new Chart( 
+      //   {
+      //     chart: {
+      //         type: 'bar'
+      //     },
+      //     title: {
+      //         text: ''
+      //     },
+      //     exporting: {
+      //       enabled: false
+      //     },
+      //     credits: {enabled: false},
+      //     xAxis: {
+      //         categories: responsedata["categories"]
+      //     },
+      //     yAxis: {
+      //         min: 0,
+      //         max: 13,
+      //         title: {
+      //             text: 'Defects Per Hundred Units (D.H.U.)'
+      //         }
+      //     },
+      //     legend: {
+      //         reversed: true
+      //     },
+      //     plotOptions: {
+      //         series: {
+      //             stacking: 'normal'
+      //         }
+      //     },
+      //     series: [{
+      //             name:'',
+      //             showInLegend: false,
+      //             data: responsedata["data"],
+      //             dataLabels: {
+      //               align: 'left',
+      //               enabled: true
+      //           }
+      //     }]
+      // });
     })
   }
 
   getSewingKPIAnalysis(){
-    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
       var locationId = parseFloat(this.value);
       return locationId;
     }).get();
-    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
       var unitId = parseFloat(this.value);
       return unitId;
     }).get();
@@ -156,25 +224,52 @@ ngOnInit() {
       return lineId;
     }).get();
     var StartDate = new Date($('#startDate').val());
-    var startDay = StartDate.getDate();
-    var startmonth = StartDate.getMonth() + 1;
-    var startyear = StartDate.getFullYear();
-    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
     var EndDate = new Date($('#endDate').val());
-    var endDay = EndDate.getDate();
-    var endmonth = EndDate.getMonth() + 1;
-    var endyear = EndDate.getFullYear();
-    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-    var KPIView = {
-      Line : [1,2],
-      Location : checkedLocations,
-      Unit : checkedUnits,
-      // StartDate : "2021-01-31 00:00:00.000",
-      // EndDate : "2021-01-31 00:00:00.000",
-      StartDate : startDateTime,
-      EndDate : endDateTime
+
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+      if(StartDate > EndDate){
+        Swal.fire({    
+          icon: 'error',  
+          title: 'Sorry...',  
+          text: 'StartDate can not be greater than EndDate',  
+          showConfirmButton: true
+        })  
+      }
+      else{
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+        var KPIView = {
+          Line : checkedLines,
+          Location : checkedLocations,
+          Unit : checkedUnits,
+          StartDate : startDateTime,
+          EndDate : endDateTime
+        }
+        var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+        if($('#startDate').val() == $('#endDate').val()){
+          this.headerTextValue = environment.dhuOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else{
+          this.headerTextValue = environment.dhuOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+        this.calculateDHU(KPIView);
+      }
     }
-    this.calculateDHU(KPIView);
+    else{
+      Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'Please select location, unit ,line, start date and end date to view historical data',  
+        showConfirmButton: true
+      })  
+    }
+    
   }
   sewingNavigation(){
     this._router.navigate(['sewing-module']);
@@ -239,7 +334,7 @@ ngOnInit() {
     var url = environment.backendUrl + "Recommendation";
     var _this = this;
     this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
-      _this.recommendationModalTitle = "Recommemdations for Defects Per Hundred Units (D.H.U.)/ Defect %"
+      _this.recommendationModalTitle = "Recommendations for Defects Per Hundred Units (D.H.U.)"
       responsedata["allRecommendations"].forEach(element => {
         _this.data.push({
           Reasons : element["Reasons"],
@@ -256,5 +351,38 @@ ngOnInit() {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
     XLSX.writeFile(wb, 'DHU_Recommendations.xlsx');  
   } 
+  backToPrevious(){
+    window.history.back();
+  }
+  onPeriodChange(event){
+    if (event.target.checked){
+      this.periodOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLinePeriodButton").html(element.Name);
+          var checkedPeriod = $('.option.justone.period:radio:checked').map(function() {
+            var periodId = parseInt(this.value);
+            return periodId;
+          }).get();
+          if(checkedPeriod[0] != null){
+            var EndDate = new Date($('#endDate').val());
+            var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+            var day =last.getDate();
+            var month=last.getMonth()+1;
+            var year=last.getFullYear();
+            var monthString = month.toString();
+            var dayString = day.toString();
+            if(month < 10){
+              monthString = "0" + month;
+            }
+            if(day < 10){
+              dayString = "0" + day;
+            }
+            var StartDate = year + "-" + monthString + "-" + dayString;
+            $('#startDate').val(StartDate)
+          }
+        }
+      });
+    }
+  }
 
 }

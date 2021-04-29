@@ -121,14 +121,19 @@ namespace RMGWebApi
         public string OperatorName { get; set; }
         public double SumDefectCount { get; set; }
         public double DefectCount1Data { get; set; }
+        public double DefectivePcs1Data { get; set; }
         public string DefectReason1 { get; set; }
         public double DefectCount2Data { get; set; }
+        public double DefectivePcs2Data { get; set; }
         public string DefectReason2 { get; set; }
         public double DefectCount3Data { get; set; }
+        public double DefectivePcs3Data { get; set; }
         public string DefectReason3 { get; set; }
         public double DefectCount4Data { get; set; }
+        public double DefectivePcs4Data { get; set; }
         public string DefectReason4 { get; set; }
         public double DefectCount5Data { get; set; }
+        public double DefectivePcs5Data { get; set; }
         public string DefectReason5 { get; set; }
         public double WorkingMins { get; set; }
     }
@@ -147,6 +152,7 @@ namespace RMGWebApi
         public double ProductionData { get; set; }
         public double DHU { get; set; }
         public DateTime DailyDate { get; set; }
+        public double DefectPcsCount { get; set; }
     }
 
     public class RejectionViewModel
@@ -218,5 +224,17 @@ namespace RMGWebApi
     {
         public string symbol { get; set; }
         public int radius { get; set; }
+    }
+
+    public class DHUPieChartViewModel
+    {
+        public string name { get; set; }
+        public bool colorByPoint { get; set; }
+        public List<DHUPieChartDataPoint> data  { get; set; }
+    }
+    public class DHUPieChartDataPoint
+    {
+        public double y { get; set; }
+        public string name { get; set; }
     }
 }

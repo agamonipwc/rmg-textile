@@ -55,13 +55,24 @@
 
 <div role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-8">
         <h5 style="text-align: center; font-weight: bold;">Overall Factory Score of Last 30 days</h5>
         
       </div>
       <div class="col-4 mt-1">
-        <a style="font-weight: bold;" (click)="navigateToModulePerformane()">Back to Overview Data</a>
+        <button class="custom-button" style="font-weight: bold; margin-left: 18%;" (click)="navigateToModulePerformane()">Overview Data</button>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col-2 mt-2">
+        <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+      </div>
+      <div class="col-7">
+        <h6 style="text-align: center; font-weight: bold;">{{headerTextValue}}</h6>
+      </div>
+      <div class="col-3 mt-2" style="text-align: start;">
+        <button class="custom-button ml-3" style="font-weight: bold;" (click)="navigateToModulePerformane()">Overview Data</button>
       </div>
     </div>
     <div class="row" style="text-align: center;">
@@ -70,76 +81,76 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-9" style="background-color: #ffffff; height: 480px; overflow-y: scroll;">
-        <div class="row mt-3">
+      <div class="col-9" style="background-color: #ffffff; height: 478px; overflow-y: scroll;">
+        <div class="row">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv">Operations <i class="fas fa-caret-down" style="color: blue;"></i></button>
           <div class="col-9">
-            <div [chart]= "operationHistoric" style="height: 58px; width:auto"></div>
+            <div [chart]= "operationHistoric" style="height: 47px; width:auto"></div>
           </div>
         </div>
         <div class="collapse ml-5" id="collapseOperationDiv">
-          <div class="row mt-3" >
+          <div class="row" >
             <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Inward <i class="fas fa-caret-down" style="color: brown;"></i></button>
             <div class="col-9">
-              <div [chart]="inwardHistoric" style="height: 58px; width:auto"></div>
+              <div [chart]="inwardHistoric" style="height: 47px; width:auto"></div>
             </div>
           </div>
-          <div class="row mt-3">
+          <div class="row">
             <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseProcessesDiv" aria-expanded="false" aria-controls="collapseProcessesDiv">Processes <i class="fas fa-caret-down" style="color: blue;"></i></button>
             <div class="col-9">
-              <div [chart]="processHistoric" style="height: 58px; width:auto"></div>
+              <div [chart]="processHistoric" style="height: 47px; width:auto"></div>
             </div>
           </div>
           <div class="collapse ml-5" id="collapseProcessesDiv">
-            <div class="row mt-3" >
+            <div class="row" >
               <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Fabric & Trims Store <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
-                <div [chart] = "fabricTrimHistoric" style="height: 58px; width:auto"></div>
+                <div [chart] = "fabricTrimHistoric" style="height: 47px; width:auto"></div>
               </div>
             </div>
-            <div class="row mt-3">
+            <div class="row">
               <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Spreading & Cutting <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
-                <div [chart] = "SpreadingCuttingHistoric" style="height: 58px; width:auto"></div>
+                <div [chart] = "SpreadingCuttingHistoric" style="height: 47px; width:auto"></div>
               </div>
             </div>
-            <div class="row mt-3">
+            <div class="row">
               <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" (click)="sewingNavigation()">Sewing <i class="fas fa-caret-down" style="color: blue;"></i></button>
               <div class="col-9">
-                <div [chart] = "SewingHistoric" style="height: 58px; width:auto"></div>
+                <div [chart] = "SewingHistoric" style="height: 47px; width:auto"></div>
               </div>
             </div>
-            <div class="row mt-3">
+            <div class="row">
               <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Finishing & Packaging <i class="fas fa-caret-down" style="color: brown;"></i></button>
               <div class="col-9">
-                <div [chart] = "FinishingPackagingHistoric" style="height: 58px; width:auto"></div>
+                <div [chart] = "FinishingPackagingHistoric" style="height: 47px; width:auto"></div>
               </div>
             </div>
           </div>
-          <div class="row mt-3">
+          <div class="row">
             <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Outward <i class="fas fa-caret-down" style="color: brown;"></i></button>
             <div class="col-9">
-              <div [chart]="outwardHistoric" style="height: 58px; width:auto"></div>
+              <div [chart]="outwardHistoric" style="height: 47px; width:auto"></div>
               <!-- <div class="progress" style="height:30px">
                 <div class="progress-bar" style="width:80%;height:30px; background-color: #175d2d;">80</div>
               </div> -->
             </div>
           </div>
         </div>
-        <div class="row mt-3">
+        <div class="row">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Social Sustainablity <i class="fas fa-caret-down" style="color: brown;"></i></button>
           <div class="col-9">
-            <div [chart] = "socialHistoric" style="height: 58px; width:auto"></div>
+            <div [chart] = "socialHistoric" style="height: 47px; width:auto"></div>
             <!-- <div class="progress" style="height:30px">
               <div class="progress-bar" style="width:50%;height:30px; background-color: #ffb600;">50</div>
             </div> -->
             
           </div>
         </div>
-        <div class="row mt-3">
+        <div class="row">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px">Environmental Sustainability <i class="fas fa-caret-down" style="color: brown;"></i></button>
           <div class="col-9">
-            <div [chart] = "environmentalHistoric" style="height: 58px; width:auto"></div>
+            <div [chart] = "environmentalHistoric" style="height: 47px; width:auto"></div>
             <!-- <div class="progress" style="height:30px">
               <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
             </div> -->
@@ -147,7 +158,7 @@
         </div>
       </div>
 
-      <div class="col-3 mt-3">
+      <!-- <div class="col-3 mt-3">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
@@ -215,6 +226,132 @@
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
                     <input type="date" placeholder="End Date" id="endDate">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div> -->
+      <div class="col-3 mt-5">
+        <div class="d-flex flex-column mb-3">
+          <nav class="col-sm-3 col-md-2 d-none d-sm-block">
+            <ul class="nav nav-pills flex-column">
+              <li class="nav-item">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLocationMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu">
+                          <li class="custom-li" *ngFor="let option of locationOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2">
+                                <input name='options[location]' (change)="onLocationChange($event)" type="radio" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownUnitMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of unitOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;">
+                                <input name='options[unit]' (change)="onUnitChange($event)" type="radio" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLineMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_1">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="1" id="line_1"> Line1 
+                              </label>
+                            </a>
+                          </li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_2">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="2" id="line_2"> Line2 
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of periodOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
+                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">Start Date</span>
+                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-27" min="2021-01-01" max="2021-01-31">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">End Date</span>
+                    <input type="date" placeholder="End Date" id="endDate" value="2021-01-31" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>

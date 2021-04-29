@@ -67,10 +67,10 @@
       </div>
     </div> -->
     <div class="row">
-      <div class="col-2 mt-2">
+      <!-- <div class="col-2 mt-2">
         <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
-      </div>
-      <div class="col-7">
+      </div> -->
+      <div class="col-9">
         <h6 style="text-align: center; font-weight: bold;">{{headerTextValue}}</h6>
       </div>
       <div class="col-3 mt-2" style="text-align: start;">
@@ -103,9 +103,9 @@
           </div>
           <div class="row mt-3">
             <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 11.5px" data-toggle="collapse" data-target="#collapseProcessesDiv" aria-expanded="false" aria-controls="collapseProcessesDiv">Processes <i class="fas fa-caret-down" style="color: blue;"></i></button>
-            <div class="col-9">
+            <div class="col-9" (click)="processNavigation()">
               <div class="progress" style="height:30px">
-                <div class="progress-bar" style="width:30%;height:30px; background-color: #e0301e;">30</div>
+                <div class="progress-bar" (click)="processNavigation()" style="width:30%;height:30px; background-color: #e0301e;">30</div>
               </div>
             </div>
           </div>

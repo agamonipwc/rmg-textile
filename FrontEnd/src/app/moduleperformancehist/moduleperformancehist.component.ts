@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.js';
 import { data } from 'jquery';
 declare var require: any;
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
 let more = require("highcharts/highcharts-more");
@@ -45,9 +46,23 @@ export class ModuleperformancehistComponent implements OnInit {
   lineOptions : any = []
   unitOptions : any = [];
   locationOptions : any = [];
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
 
   constructor(private http: HttpClient,private _router: Router) { }
-
+  headerTextValue : string;
   ngOnInit() {
 
     $("#footer").hide();
@@ -69,24 +84,36 @@ export class ModuleperformancehistComponent implements OnInit {
         $('ul.tree ul').hide();
     
         $('.tree li > ul').each(function(i) {
-        var $subUl = $(this);
-        var $parentLi = $subUl.parent('li');
-        var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
-    
-        $parentLi.addClass('has-children');
+            var $subUl = $(this);
+            var $parentLi = $subUl.parent('li');
+            var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
         
-        $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-            $(this).text( $(this).text() == '+' ? '-' : '+' );
-            $subUl.slideToggle('fast');
-        });
+            $parentLi.addClass('has-children');
+            
+            $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+                $(this).text( $(this).text() == '+' ? '-' : '+' );
+                $subUl.slideToggle('fast');
+            });
         });
     });
+    var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+    if($('#startDate').val() == $('#endDate').val()){
+    this.headerTextValue = environment.moduleHistOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+    }
+    else{
+    this.headerTextValue = environment.moduleHistOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+    }
   }
   onLocationChange(event){
     var masterDataUrl = environment.backendUrl + "MasterData";
     var _this = this;
     var locations = [];
     if (event.target.checked){
+      this.locationOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLocationMenuButton").html(element.Name);
+        }
+      });
       locations.push(parseInt(event.target.value))
       var dataViewModel = {
         locations : locations,
@@ -96,17 +123,133 @@ export class ModuleperformancehistComponent implements OnInit {
         if(responsedata["statusCode"] == 200){
           responsedata["data"].forEach(element => {
             $("#unit_label_" + element.UnitId).show();
-            $("#line_label_" + element.Id).show();
+            $("#line_label_1").show();
+            $("#line_label_2").show();
+            // $("#line_label_" + element.Id).show();
           });
         }
       })
     }
     else{
-      $('.option.justone.location:checkbox').prop('checked', false);
-      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.location:radio').prop('checked', false);
+      $('.option.justone.unit:radio').prop('checked', false);
       $(".unit_label").hide();
       $(".line_label").hide();
       $('.option.justone.line:radio').prop('checked', false);
+    }
+  }
+
+  onUnitChange(event){
+    if (event.target.checked){
+      this.unitOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownUnitMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onLineChange(event){
+    if (event.target.checked){
+      this.lineOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLineMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onPeriodChange(event){
+    if (event.target.checked){
+      this.periodOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLinePeriodButton").html(element.Name);
+          var checkedPeriod = $('.option.justone.period:radio:checked').map(function() {
+            var periodId = parseInt(this.value);
+            return periodId;
+          }).get();
+          if(checkedPeriod[0] != null){
+            var EndDate = new Date($('#endDate').val());
+            var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+            var day =last.getDate();
+            var month=last.getMonth()+1;
+            var year=last.getFullYear();
+            var monthString = month.toString();
+            var dayString = day.toString();
+            if(month < 10){
+              monthString = "0" + month;
+            }
+            if(day < 10){
+              dayString = "0" + day;
+            }
+            var StartDate = year + "-" + monthString + "-" + dayString;
+            $('#startDate').val(StartDate)
+          }
+        }
+      });
+    }
+  }
+  formatUserInputDate(startDate, endDate){
+    var StartDate = new Date(startDate);
+    var EndDate = new Date(endDate);
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startDay + "." + startmonth + '.' + startyear;
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endDay + "." + endmonth + '.' + endyear;
+    return {startDateTime : startDateTime, endDateTime : endDateTime}
+  }
+  getSewingKPIAnalysis(){
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
+      var locationId = parseFloat(this.value);
+      return locationId;
+    }).get();
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
+      var unitId = parseFloat(this.value);
+      return unitId;
+    }).get();
+    var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+      var lineId = parseFloat(this.value);
+      return lineId;
+    }).get();
+    var StartDate = new Date($('#startDate').val());
+    var EndDate = new Date($('#endDate').val());
+
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+      var startDay = StartDate.getDate();
+      var startmonth = StartDate.getMonth() + 1;
+      var startyear = StartDate.getFullYear();
+      var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+      var endDay = EndDate.getDate();
+      var endmonth = EndDate.getMonth() + 1;
+      var endyear = EndDate.getFullYear();
+      var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+      var KPIView = {
+        Line : checkedLines,
+        Location : checkedLocations,
+        Unit : checkedUnits,
+        StartDate : startDateTime,
+        EndDate : endDateTime
+      }
+      var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+      if($('#startDate').val() == $('#endDate').val()){
+        this.headerTextValue = environment.moduleHistOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+      }
+      else{
+        this.headerTextValue = environment.moduleHistOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+      }
+    //   this.getFilterData(KPIView)
+    }
+    else{
+      Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'Please select location, unit ,line, start date and end date to view historical data',  
+        showConfirmButton: true
+      })  
     }
   }
   sewingNavigation(){
@@ -141,7 +284,7 @@ export class ModuleperformancehistComponent implements OnInit {
           credits: {enabled: false},
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -157,13 +300,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 70.26, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Operations',
             data: [36, 71, 78,87,35,86,89,76,78,73,72,79,69,65,60],
-            color: '#175d2d'
-    
+            color: '#175d2d',
+            "showInLegend": false,
         }]
     });
   }
@@ -207,7 +364,7 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -223,13 +380,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 65.6, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Inward',
             data: [56, 45, 67,89,44,56,60,71,78,73,72,79,69,65,60],
-            color: '#ffb600'
-    
+            color: '#ffb600',
+            "showInLegend": false,
         }]
     });
   }
@@ -261,7 +432,7 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -277,13 +448,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Process',
             data: [67, 45,45,55,69,68,55,64,59,78,68,79,69,65,76],
-            color:'#e0301e'
-    
+            color:'#e0301e',
+            "showInLegend": false,
         }]
     });
   }
@@ -312,7 +497,7 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -328,13 +513,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Fabric & Trim Store',
             data: [67, 45,45,55,69,68,55,64,59,78,68,79,69,65,76],
-            color:'#ffb600'
-    
+            color:'#ffb600',
+            "showInLegend": false,
         }]
     });
   }
@@ -363,7 +562,7 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -379,13 +578,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Spreading & Cutting',
             data: [67, 45,45,55,69,68,55,64,59,78,68,79,69,65,76],
-            color: '#175d2d'
-    
+            color: '#175d2d',
+            "showInLegend": false,
         }]
     });
   }
@@ -414,7 +627,7 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -430,13 +643,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 60, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Sewing',
             data: [50, 45,45,55,51,63,57,64,59,78,68,79,69,65,52],
-            color:'#e0301e'
-    
+            color:'#e0301e',
+            "showInLegend": false,
         }]
     });
   }
@@ -465,7 +692,7 @@ export class ModuleperformancehistComponent implements OnInit {
         },
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -481,13 +708,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Finishing & Packaging',
             data: [67, 45,45,55,69,68,55,64,59,78,68,79,69,65,76],
-            color:'#ffb600'
-    
+            color:'#ffb600',
+            "showInLegend": false,
         }]
     });
   }
@@ -517,7 +758,7 @@ export class ModuleperformancehistComponent implements OnInit {
         credits: {enabled: false},
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -533,13 +774,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Outward',
             data: [67, 45,71,60,69,68,55,73,89,90,88,79,69,65,76],
-            color:'#175d2d'
-    
+            color:'#175d2d',
+            "showInLegend": false,
         }]
     });
   }
@@ -569,7 +824,7 @@ export class ModuleperformancehistComponent implements OnInit {
           credits: {enabled: false},
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -585,13 +840,27 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 70.26, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Social Sustainability',
             data: [36, 71, 78,87,35,86,89,76,78,73,72,79,69,65,60],
-            colour:'#175d2d'
-    
+            colour:'#175d2d',
+            "showInLegend": false,
         }]
     });
   }
@@ -621,7 +890,7 @@ export class ModuleperformancehistComponent implements OnInit {
         credits: {enabled: false},
         yAxis: {
             title: {
-                text: 'Efficiency'
+                text: ''
             },
             max:100,
             min:0
@@ -637,15 +906,33 @@ export class ModuleperformancehistComponent implements OnInit {
                     lineColor: '#666666',
                     lineWidth: 1
                 }
+            },
+            series: {
+              events: {
+                afterAnimate: function() {
+                  var chart = this.chart;
+                  var label = chart.renderer.text('Average : ' + 70.26, 350, 15)
+                    .css({
+                      fontSize: '12px',
+                      color: '#933401',
+                      fontWeight: '900'
+                    })
+                    .add();
+                }
+              }
             }
         },
         series: [{
             name: 'Environmental Sustainability',
             data: [36, 71, 78,87,35,86,89,76,78,73,72,79,69,65,60],
-            color: '#e0301e'
-    
+            color: '#e0301e',   
+            "showInLegend": false,
         }]
     });
+  }
+
+  backToPrevious(){
+    window.history.back();
   }
 
 }
