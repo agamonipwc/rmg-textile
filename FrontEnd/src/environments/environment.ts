@@ -11,13 +11,18 @@ export const environment = {
   sewingHistKPIHeaderText: "Historical KPI Analysis",
   efficiencyHeaderText : "Average efficiency",
   capacityUtilizationHeaderText : "Average utilisation",
-  absenteeismHeaderText : "Average bsenteeism",
+  absenteeismHeaderText : "Average absenteeism",
   defectHeaderText : "Average defect%",
   rejectionHeaderText : "Overview of Rejection",
   processOverviewHeaderText : "Overview of Process",
   moduleOverviewHeaderText : "Overview of Factory",
   moduleHistOverviewHeaderText : "Historical Factory Analysis",
   dhuOverviewHeaderText : "Top DHU Overview",
+  inlineOverViewHeaderText: "Inline WIP Overview",
+  inlineWIPOperatorHeaderText: "Efficiency vs Quality Mapping",
+  operatorEfficiencyWIPHeaderText : "Efficiency and Defect Count of Operators",
+  downtimeHistoricalHeaderText: "Overview of Downtime",
+  downtimeOverviewHeaderText: "Machine Downtime",
 };
 
 // export const environment = {
@@ -29,7 +34,16 @@ export const environment = {
 //   capacityUtilizationHeaderText : "Average utilisation",
 //   absenteeismHeaderText : "Average absenteeism",
 //   defectHeaderText : "Average defect%",
-//   rejectionHeaderText : "Overview of Rejection"
+//   rejectionHeaderText : "Overview of Rejection",
+//   processOverviewHeaderText : "Overview of Process",
+//   moduleOverviewHeaderText : "Overview of Factory",
+//   moduleHistOverviewHeaderText : "Historical Factory Analysis",
+//   dhuOverviewHeaderText : "Top DHU Overview",
+//   inlineOverViewHeaderText: "Inline WIP Overview",
+//   inlineWIPOperatorHeaderText: "Efficiency vs Quality Mapping",
+//   operatorEfficiencyWIPHeaderText : "Efficiency and Defect Count of Operators",
+//   downtimeHistoricalHeaderText: "Overview of Downtime",
+//   downtimeOverviewHeaderText: "Machine Downtime",
 // };
 
 /*

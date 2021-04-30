@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import { Chart } from 'angular-highcharts';
 import { environment } from 'src/environments/environment.js';
 import * as  Highcharts from 'highcharts';
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 const More = require('highcharts/highcharts-more');
+import * as XLSX from 'xlsx';  
 More(Highcharts);
 
 const Exporting = require('highcharts/modules/exporting');
@@ -24,7 +26,7 @@ declare var require: any;
   styleUrls: ['./inlinewipoperator.component.css']
 })
 export class InlinewipoperatorComponent implements OnInit {
-
+  @ViewChild('TABLE') TABLE: ElementRef;  
   recommendationModalTitle : any = "";
   lineOptions : any = []
   unitOptions : any = [];
@@ -38,6 +40,7 @@ export class InlinewipoperatorComponent implements OnInit {
   operatorWIPAvg: Chart;
   operatorWIPHigh: Chart;
   KPIView : any = {};
+  headerTextValue : string ;
 
 constructor(private http: HttpClient,private _router: Router) { }
 
@@ -66,6 +69,19 @@ ngOnInit() {
     });
   });
 }
+formatUserInputDate(startDate, endDate){
+  var StartDate = new Date(startDate);
+  var EndDate = new Date(endDate);
+  var startDay = StartDate.getDate();
+  var startmonth = StartDate.getMonth() + 1;
+  var startyear = StartDate.getFullYear();
+  var startDateTime = startDay + "." + startmonth + '.' + startyear;
+  var endDay = EndDate.getDate();
+  var endmonth = EndDate.getMonth() + 1;
+  var endyear = EndDate.getFullYear();
+  var endDateTime = endDay + "." + endmonth + '.' + endyear;
+  return {startDateTime : startDateTime, endDateTime : endDateTime}
+}
 
 getFilterData(){
   this.KPIView = {
@@ -76,6 +92,13 @@ getFilterData(){
     EndDate : "2021-01-31 00:00:00.000",
   }
   this.calculateOperatorWIP(this.KPIView);
+  var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+  if($('#startDate').val() == $('#endDate').val()){
+    this.headerTextValue = environment.inlineWIPOperatorHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+  }
+  else{
+    this.headerTextValue = environment.inlineWIPOperatorHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+  }
 }
 
 calculateOperatorWIP(KPIView){
@@ -83,7 +106,6 @@ calculateOperatorWIP(KPIView){
   var _this = this;
   var url = environment.backendUrl + "DHUEfficiencyOperator";
   this.http.post<any>(url, KPIView).subscribe(responsedata => {
-    console.log(responsedata);
     _this.operatorWIP = new Chart( {
         chart: {
             type: 'scatter',
@@ -105,11 +127,15 @@ calculateOperatorWIP(KPIView){
           showLastLabel: true
         },
         tooltip: {
-          formatter: function () {
-              return this.series.name + '<br>' + ' Efficiency: <b>' + this.y + '%' +
-                  '</b><br> Defect: <b>' + this.x + '</b>' + '%';
-          }
+          headerFormat: '<b>{series.name}</b><br>',
+          pointFormat: '{point.name} <br> <b>Efficiency : {point.y} % </b> <br> <b> Defect: {point.x} % </b>'
         },
+        // tooltip: {
+        //   formatter: function () {
+        //       return this.name + '<br>' + ' Efficiency: <b>' + this.y + '%' +
+        //           '</b><br> Defect: <b>' + this.x + '</b>' + '%';
+        //   }
+        // },
         exporting: {
             enabled: false
           },
@@ -268,39 +294,73 @@ calculateHighOperatorWIP(KPIView){
 }
 
 getSewingKPIAnalysis(){
-    this.KPIView = {};
-    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
-        var locationId = parseFloat(this.value);
-        return locationId;
-    }).get();
-    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
-        var unitId = parseFloat(this.value);
-        return unitId;
-    }).get();
-    var checkedLines = $('.option.justone.line:radio:checked').map(function() {
-        var lineId = parseFloat(this.value);
-        return lineId;
-    }).get();
-    var StartDate = new Date($('#startDate').val());
-    var startDay = StartDate.getDate();
-    var startmonth = StartDate.getMonth() + 1;
-    var startyear = StartDate.getFullYear();
-    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
-    var EndDate = new Date($('#endDate').val());
-    var endDay = EndDate.getDate();
-    var endmonth = EndDate.getMonth() + 1;
-    var endyear = EndDate.getFullYear();
-    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-    this.KPIView = {
-        Line : checkedLines,
-        Location : checkedLocations,
-        Unit : checkedUnits,
-        StartDate : startDateTime,
-        EndDate : endDateTime
+  this.KPIView = {};
+  var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
+  var locationId = parseFloat(this.value);
+  return locationId;
+  }).get();
+  var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
+  var unitId = parseFloat(this.value);
+  return unitId;
+  }).get();
+  var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+  var lineId = parseFloat(this.value);
+  return lineId;
+  }).get();
+  var StartDate = new Date($('#startDate').val());
+  var EndDate = new Date($('#endDate').val());
+
+  if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+    if(StartDate > EndDate){
+        Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'StartDate can not be greater than EndDate',  
+        showConfirmButton: true
+        })  
     }
-    this.calculateOperatorWIP(this.KPIView);
-    this.calculateAvgOperatorWIP(this.KPIView);
-    this.calculateHighOperatorWIP(this.KPIView);
+    else{
+      var startDay = StartDate.getDate();
+      var startmonth = StartDate.getMonth() + 1;
+      var startyear = StartDate.getFullYear();
+      var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+      var endDay = EndDate.getDate();
+      var endmonth = EndDate.getMonth() + 1;
+      var endyear = EndDate.getFullYear();
+      var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+      var KPIView = {
+          Line : checkedLines,
+          Location : checkedLocations,
+          Unit : checkedUnits,
+          StartDate : startDateTime,
+          EndDate : endDateTime
+      }
+      this.KPIView = KPIView;
+      var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+      if($('#startDate').val() == $('#endDate').val()){
+      this.headerTextValue = environment.inlineWIPOperatorHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+      }
+      else{
+      this.headerTextValue = environment.inlineWIPOperatorHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+      }
+      this.calculateOperatorWIP(this.KPIView);
+      this.calculateAvgOperatorWIP(this.KPIView);
+      this.calculateHighOperatorWIP(this.KPIView);
+    }
+  }
+  else{
+    Swal.fire({    
+      icon: 'error',  
+      title: 'Sorry...',  
+      text: 'Please select location, unit ,line, start date and end date to view historical data',  
+      showConfirmButton: true
+    })  
+  }
+}
+
+backToPrevious(){
+  sessionStorage.removeItem("KPIView")
+  window.history.back();
 }
 
 onLocationChange(event){
@@ -308,6 +368,11 @@ onLocationChange(event){
   var _this = this;
   var locations = [];
   if (event.target.checked){
+    this.locationOptions.forEach(element => {
+      if(element.Id == event.target.value){
+        $("#dropdownLocationMenuButton").html(element.Name);
+      }
+    });
     locations.push(parseInt(event.target.value))
     var dataViewModel = {
       locations : locations,
@@ -317,19 +382,42 @@ onLocationChange(event){
       if(responsedata["statusCode"] == 200){
         responsedata["data"].forEach(element => {
           $("#unit_label_" + element.UnitId).show();
-          $("#line_label_" + element.Id).show();
+          $("#line_label_1").show();
+          $("#line_label_2").show();
+          // $("#line_label_" + element.Id).show();
         });
       }
     })
   }
   else{
-    $('.option.justone.location:checkbox').prop('checked', false);
-    $('.option.justone.unit:checkbox').prop('checked', false);
+    $('.option.justone.location:radio').prop('checked', false);
+    $('.option.justone.unit:radio').prop('checked', false);
     $(".unit_label").hide();
     $(".line_label").hide();
     $('.option.justone.line:radio').prop('checked', false);
   }
 }
+
+onUnitChange(event){
+  if (event.target.checked){
+    this.unitOptions.forEach(element => {
+      if(element.Id == event.target.value){
+        $("#dropdownUnitMenuButton").html(element.Name);
+      }
+    });
+  }
+}
+
+onLineChange(event){
+  if (event.target.checked){
+    this.lineOptions.forEach(element => {
+      if(element.Id == event.target.value){
+        $("#dropdownLineMenuButton").html(element.Name);
+      }
+    });
+  }
+}
+
 getMasterData(){
   var masterDataUrl = environment.backendUrl + "MasterData";
   var _this = this;
@@ -340,6 +428,13 @@ getMasterData(){
           _this.lineOptions = responsedata["lineMasterData"];
       }
   })
+}
+
+ExportToExcelLowEfficiency() {  
+  const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.TABLE.nativeElement);  
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+  XLSX.writeFile(wb, 'InLine_WIP_Recommendation.xlsx');  
 }
 
 activeTab = 'lowOperator';
@@ -359,6 +454,7 @@ highOperator(activeTab){
   } 
 
   navigateWIPOperator(){
+    sessionStorage.removeItem("KPIView")
     this._router.navigate(['wip-overview']);
   }
 
@@ -376,6 +472,47 @@ highOperator(activeTab){
   }
   navigateWIPEffDefectOverview(){
     this._router.navigate(['operator-eff-defect']);
+  }
+
+  getRecommendation(recommendationId){
+    this.data = [];
+    var recommendationView ={
+      KPIId : 8,
+      recommendationId : recommendationId.toString()
+    };
+    var url = environment.backendUrl + "Recommendation";
+    var _this = this;
+    this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
+        _this.recommendationModalTitle = "Recommemdations for Inline WIP"
+        _this.getOperatorsName('Moderate');
+        responsedata["allRecommendations"].forEach(element => {
+            _this.data.push({
+              Reasons : element["Reasons"],
+              Recommendations : element["Recommendations"],
+              SubReasons : element["SubReasons"],
+            });
+        });
+    })
+  }
+
+  getOperatorsName(efficiencyLevel){
+    this.operatorsDetailsList = [];
+    var operatorsDetailsView ={
+      efficiencyLevel : efficiencyLevel
+    };
+    var url = environment.backendUrl + "OperatorsName";
+    var _this = this;
+    this.http.post<any>(url, operatorsDetailsView).subscribe(responsedata =>{
+      responsedata["operatorsDetails"].forEach(element => {
+        _this.operatorsDetailsList.push({
+          Name : element["Name"],
+          Machine : element["Machine"],
+          Unit : element["Unit"],
+          Location : element["Location"],
+          Line : element["Line"]
+        });
+      });
+    })
   }
 
 }

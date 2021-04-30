@@ -41,7 +41,7 @@ module.exports = "path{\r\n    opacity: 1 !important;\r\n  }\r\n  .sidebar {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('22')\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('23')\">Medium Efficiency</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                          <th style=\"width: auto\">\r\n                            Name\r\n                          </th>\r\n                          <th style=\"width: auto;\">\r\n                            Operation\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Absentism % Overview of last 5 days</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('22')\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"absentismScatter\" style=\"width: auto; height: 480px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsAbsentismAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-01\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('22')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('22')\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('23')\">Medium Efficiency</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                          <th style=\"width: auto\">\r\n                            Name\r\n                          </th>\r\n                          <th style=\"width: auto;\">\r\n                            Operation\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Absentism % Overview of last 5 days</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('22')\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"absentismScatter\" style=\"width: auto; height: 480px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsAbsentismAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-01\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('22')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n\r\n"
 
 /***/ }),
 
@@ -1856,7 +1856,7 @@ module.exports = "path{\r\n    opacity: 1 !important;\r\n  }\r\n  .sidebar {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n    <div class=\"modal-content modal-lg\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation();\">Overall Recommendation</a></li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelDHU()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-6\">\r\n        <h4 style=\"text-align: left; margin-left: 31%; font-weight: bold;\">Top 5 Defects Overview</h4>\r\n      </div>\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" (click)=\"navigateToDHUHistorical()\">Show DHU Historical</a>\r\n      </div>\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" href=\"#\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation()\">Show Recommendations</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-2\" style=\"text-align: left; font-size: 11.5px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Overall DHU </button>\r\n          <div class=\"col-10\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" [ngStyle]=overAllDHUStyle>{{overDHUValue}}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"ml-5\" id=\"collapseOperationDiv\">\r\n          <div class=\"row align-items-center mt-3\">\r\n            <div class=\"col-12\">\r\n              <div [chart] = \"dhuBar\" style=\"width: auto; height: 420px;\"></div>  \r\n            </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n    <div class=\"modal-content modal-lg\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation();\"></a></li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelDHU()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-6\">\r\n        <h4 style=\"text-align: left; margin-left: 31%; font-weight: bold;\">Top 5 Defects Overview</h4>\r\n      </div>\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" (click)=\"navigateToDHUHistorical()\">Show DHU Historical</a>\r\n      </div>\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" href=\"#\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation()\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: left;\">\r\n        <button class=\"custom-button\" style=\"font-weight: bold; cursor: pointer; margin-left: 10%;\" (click)=\"navigateToDHUHistorical()\">Last 5 days Data</button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center\">\r\n          <div class=\"col-12\">\r\n            <div [chart] = \"dhuBar\" style=\"width: auto; height: 420px;\"></div>  \r\n          </div>\r\n        </div>\r\n        <!-- <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-2\" style=\"text-align: left; font-size: 11.5px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Overall DHU </button>\r\n          <div class=\"col-10\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" [ngStyle]=overAllDHUStyle>{{overDHUValue}}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"ml-5\" id=\"collapseOperationDiv\">\r\n          \r\n        </div> -->\r\n        \r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation()\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n\r\n"
 
 /***/ }),
 
@@ -1882,6 +1882,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
@@ -1901,6 +1903,7 @@ var ExportData = __webpack_require__(/*! highcharts/modules/export-data */ "./no
 ExportData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 var Accessibility = __webpack_require__(/*! highcharts/modules/accessibility */ "./node_modules/highcharts/modules/accessibility.js");
 Accessibility(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+
 var DhuComponent = /** @class */ (function () {
     function DhuComponent(http, _router) {
         this.http = http;
@@ -1913,8 +1916,23 @@ var DhuComponent = /** @class */ (function () {
         this.locationOptions = [];
         this.overDHUValue = 0;
         this.overAllDHUStyle = {};
+        this.headerTextValue = "";
         this.data = [];
         this.operatorsDetailsList = [];
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
     }
     DhuComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -1947,6 +1965,26 @@ var DhuComponent = /** @class */ (function () {
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.calculateDHU(KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].dhuOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].dhuOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+    };
+    DhuComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
     };
     DhuComponent.prototype.calculateDHU = function (KPIView) {
         var _this = this;
@@ -1961,51 +1999,86 @@ var DhuComponent = /** @class */ (function () {
             };
             _this.dhuBar = new angular_highcharts__WEBPACK_IMPORTED_MODULE_7__["Chart"]({
                 chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: ''
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
                 },
                 exporting: {
                     enabled: false
                 },
                 credits: { enabled: false },
-                xAxis: {
-                    categories: responsedata["categories"]
+                title: {
+                    text: ''
                 },
-                yAxis: {
-                    min: 0,
-                    max: 13,
-                    title: {
-                        text: 'Defects Per Hundred Units (D.H.U.)'
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: '%'
                     }
-                },
-                legend: {
-                    reversed: true
                 },
                 plotOptions: {
-                    series: {
-                        stacking: 'normal'
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
                     }
                 },
-                series: [{
-                        name: '',
-                        showInLegend: false,
-                        data: responsedata["data"],
-                        dataLabels: {
-                            align: 'left',
-                            enabled: true
-                        }
-                    }]
+                series: [responsedata["data"]]
             });
+            // _this.dhuBar = new Chart( 
+            //   {
+            //     chart: {
+            //         type: 'bar'
+            //     },
+            //     title: {
+            //         text: ''
+            //     },
+            //     exporting: {
+            //       enabled: false
+            //     },
+            //     credits: {enabled: false},
+            //     xAxis: {
+            //         categories: responsedata["categories"]
+            //     },
+            //     yAxis: {
+            //         min: 0,
+            //         max: 13,
+            //         title: {
+            //             text: 'Defects Per Hundred Units (D.H.U.)'
+            //         }
+            //     },
+            //     legend: {
+            //         reversed: true
+            //     },
+            //     plotOptions: {
+            //         series: {
+            //             stacking: 'normal'
+            //         }
+            //     },
+            //     series: [{
+            //             name:'',
+            //             showInLegend: false,
+            //             data: responsedata["data"],
+            //             dataLabels: {
+            //               align: 'left',
+            //               enabled: true
+            //           }
+            //     }]
+            // });
         });
     };
     DhuComponent.prototype.getSewingKPIAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -2014,25 +2087,50 @@ var DhuComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        var KPIView = {
-            Line: [1, 2],
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            // StartDate : "2021-01-31 00:00:00.000",
-            // EndDate : "2021-01-31 00:00:00.000",
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.calculateDHU(KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].dhuOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].dhuOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateDHU(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
     };
     DhuComponent.prototype.sewingNavigation = function () {
         this._router.navigate(['sewing-module']);
@@ -2093,7 +2191,7 @@ var DhuComponent = /** @class */ (function () {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "Recommendation";
         var _this = this;
         this.http.post(url, recommendationView).subscribe(function (responsedata) {
-            _this.recommendationModalTitle = "Recommemdations for Defects Per Hundred Units (D.H.U.)/ Defect %";
+            _this.recommendationModalTitle = "Recommendations for Defects Per Hundred Units (D.H.U.)";
             responsedata["allRecommendations"].forEach(function (element) {
                 _this.data.push({
                     Reasons: element["Reasons"],
@@ -2108,6 +2206,39 @@ var DhuComponent = /** @class */ (function () {
         var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
         xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'DHU_Recommendations.xlsx');
+    };
+    DhuComponent.prototype.backToPrevious = function () {
+        window.history.back();
+    };
+    DhuComponent.prototype.onPeriodChange = function (event) {
+        if (event.target.checked) {
+            this.periodOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html(element.Name);
+                    var checkedPeriod = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.period:radio:checked').map(function () {
+                        var periodId = parseInt(this.value);
+                        return periodId;
+                    }).get();
+                    if (checkedPeriod[0] != null) {
+                        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                        var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+                        var day = last.getDate();
+                        var month = last.getMonth() + 1;
+                        var year = last.getFullYear();
+                        var monthString = month.toString();
+                        var dayString = day.toString();
+                        if (month < 10) {
+                            monthString = "0" + month;
+                        }
+                        if (day < 10) {
+                            dayString = "0" + day;
+                        }
+                        var StartDate = year + "-" + monthString + "-" + dayString;
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(StartDate);
+                    }
+                }
+            });
+        }
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('TABLE'),
@@ -2527,7 +2658,7 @@ module.exports = "path{\r\n  opacity: 1 !important;\r\n}\r\n.sidebar {\r\n    po
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(6);\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <!-- <div class=\"col-3\">\r\n                  <button class=\"custom-button\" data-toggle=\"collapse\" data-target=\"#Recommendations\">Recommendations</button>\r\n                </div>\r\n                <div class=\"col-3 mt-3\">\r\n                  <button class=\"custom-button\" data-toggle=\"collapse\" data-target=\"#Operators\">Operators</button>\r\n                </div> -->\r\n                \r\n                <div id=\"Recommendations\" #TABLE #table class=\"mt-2\" >\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div id=\"Operators\" #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                    <!-- <tfoot>\r\n                        <tr>\r\n                            <td colspan=\"4\">\r\n                                <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                            </td>\r\n                        </tr>\r\n                    </tfoot> -->\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"operatorsDetailsModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"operatorsDetailsModalTitle\">Operators Details</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\" [mfData]=\"operatorsDetailsList\" #mf=\"mfDataTable\" [mfRowsOnPage]=\"5\" [mfSaveRowsOnPage]=\"true\" (mfSelectedEntities)=\"setSelectedEntities($event)\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: auto\">\r\n                      <mfDefaultSorter [mfShowSortableArrows]=\"true\" by=\"Name\">Name</mfDefaultSorter>\r\n                  </th>\r\n                  <th style=\"width: auto\">\r\n                    <mfDefaultSorter by=\"Machine\">Working Machine</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Unit\">Unit</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Location\">Location</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Line\">Line</mfDefaultSorter>\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of mf.data; let ndx = index1\">\r\n                  <td>{{item.Name}}</td>\r\n                  <td>{{item.Machine}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.Location}}</td>\r\n                  <td>{{item.Line}}</td>\r\n              </tr>\r\n          </tbody>\r\n          <tfoot>\r\n              <tr>\r\n                  <td colspan=\"4\">\r\n                      <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                  </td>\r\n              </tr>\r\n          </tfoot>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Efficiency Overview</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    \r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div id=\"operatorScatter\" style=\"width: auto; height: 480px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(6);\">Low Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <!-- <div class=\"col-3\">\r\n                  <button class=\"custom-button\" data-toggle=\"collapse\" data-target=\"#Recommendations\">Recommendations</button>\r\n                </div>\r\n                <div class=\"col-3 mt-3\">\r\n                  <button class=\"custom-button\" data-toggle=\"collapse\" data-target=\"#Operators\">Operators</button>\r\n                </div> -->\r\n                \r\n                <div id=\"Recommendations\" #TABLE #table class=\"mt-2\" >\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div id=\"Operators\" #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                    <!-- <tfoot>\r\n                        <tr>\r\n                            <td colspan=\"4\">\r\n                                <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                            </td>\r\n                        </tr>\r\n                    </tfoot> -->\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto;\">\r\n                              Operation\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Operation}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"operatorsDetailsModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"operatorsDetailsModalTitle\">Operators Details</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\" [mfData]=\"operatorsDetailsList\" #mf=\"mfDataTable\" [mfRowsOnPage]=\"5\" [mfSaveRowsOnPage]=\"true\" (mfSelectedEntities)=\"setSelectedEntities($event)\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: auto\">\r\n                      <mfDefaultSorter [mfShowSortableArrows]=\"true\" by=\"Name\">Name</mfDefaultSorter>\r\n                  </th>\r\n                  <th style=\"width: auto\">\r\n                    <mfDefaultSorter by=\"Machine\">Working Machine</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Unit\">Unit</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Location\">Location</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Line\">Line</mfDefaultSorter>\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of mf.data; let ndx = index1\">\r\n                  <td>{{item.Name}}</td>\r\n                  <td>{{item.Machine}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.Location}}</td>\r\n                  <td>{{item.Line}}</td>\r\n              </tr>\r\n          </tbody>\r\n          <tfoot>\r\n              <tr>\r\n                  <td colspan=\"4\">\r\n                      <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                  </td>\r\n              </tr>\r\n          </tfoot>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Operators Efficiency Overview</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    \r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-3\">\r\n          <div class=\"col-12\">\r\n            <div id=\"operatorScatter\" style=\"width: auto; height: 480px;\"></div>  \r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation(6)\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>"
 
 /***/ }),
 
@@ -3046,7 +3177,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n  </div>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Overall Recommendations</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <!-- <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div> -->\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  \r\n  </ul>\r\n</nav>\r\n<!-- <div class=\"modal fade\" id=\"historicMCDowntimeModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"historicMCDowntimeModalTitle\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Historic Data</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div  [chart]=\"machineDowntimeLine\" class=\"modal-body\" style=\"height: 300px; width: 500px;\">\r\n\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div> -->\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Inline WIP Overview of last 30 days</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Show Recommendations</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 445px; overflow-y: scroll;\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseStyleADiv\" aria-expanded=\"false\" aria-controls=\"collapseStyleADiv\" (click)=\"calculateOperatorWIPStyleA(StyleA1Name)\">{{StyleA1Name}} <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div *ngFor=\"let item of StyleA1; let i= index\" class=\"progress-bar\" role=\"progress-bar\" area-valuenow=\"50\" area-valuemin=\"0\" area-valuemax=\"100\" [(ngStyle)]=\"item.styleDate\" data-toggle=\"tooltip\" title=\"Actual WIP : {{item.actualWIPValue}}\">\r\n                  {{item.lineName}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseStyleADiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" >Operator Inline WIP </button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"OpWIPStyleA\" style=\"height: auto; width: 450px;\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        \r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseStyleBDiv\" aria-expanded=\"false\" aria-controls=\"collapseStyleBDiv\" (click)=\"calculateOperatorWIPStyleB(StyleA2Name)\">{{StyleA2Name}} <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div *ngFor=\"let item of StyleA2; let i= index\" class=\"progress-bar\" role=\"progress-bar\" area-valuenow=\"50\" area-valuemin=\"0\" area-valuemax=\"100\" [(ngStyle)]=\"item.styleDate\" data-toggle=\"tooltip\" title=\"Actual WIP : {{item.actualWIPValue}}\">\r\n                  {{item.lineName}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseStyleBDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" >Operator Inline WIP </button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"OpWIPStyleB\" style=\"height: auto; width: 450px;\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\"data-toggle=\"collapse\" data-target=\"#collapseStyleCDiv\" aria-expanded=\"false\" aria-controls=\"collapseStyleCDiv\" (click)=\"calculateOperatorWIPStyleC(StyleA3Name)\">{{StyleA3Name}} <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div *ngFor=\"let item of StyleA3; let i= index\" class=\"progress-bar\" role=\"progress-bar\" area-valuenow=\"50\" area-valuemin=\"0\" area-valuemax=\"100\" [(ngStyle)]=\"item.styleDate\" data-toggle=\"tooltip\" title=\"Actual WIP : {{item.actualWIPValue}}\">\r\n                  {{item.lineName}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseStyleCDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" >Operator Inline WIP </button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"OpWIPStyleC\" style=\"height: auto; width: 450px;\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\"data-toggle=\"collapse\" data-target=\"#collapseStyleDDiv\" aria-expanded=\"false\" aria-controls=\"collapseStyleDDiv\" (click)=\"calculateOperatorWIPStyleD(StyleA4Name)\">{{StyleA4Name}} <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div *ngFor=\"let item of StyleA4; let i= index\" class=\"progress-bar\" role=\"progress-bar\" area-valuenow=\"50\" area-valuemin=\"0\" area-valuemax=\"100\" [(ngStyle)]=\"item.styleDate\" data-toggle=\"tooltip\" title=\"Actual WIP : {{item.actualWIPValue}}\">\r\n                  {{item.lineName}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseStyleDDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" >Operator Inline WIP </button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"OpWIPStyleD\" style=\"height: auto; width: 450px;\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n      <div class=\"mt-2\">\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPSummary()\">Summary</button>\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPOperator()\">Operator</button>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n  </div>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\"></a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <!-- <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div> -->\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  \r\n  </ul>\r\n</nav>\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-2\" style=\"text-align: left;\">\r\n        <button class=\"custom-button\" style=\"font-weight: bold; cursor: pointer; margin-left: 10%;\" (click)=\"navigateToDHUHistorical()\">Last 5 days Data</button>\r\n      </div> -->\r\n    </div>\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Inline WIP Overview of last 30 days</h5>\r\n      </div>\r\n      <div class=\"col-4\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Show Recommendations</a>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 445px; overflow-y: scroll;\">\r\n        <div class=\"row mt-3\" *ngIf=\"isShownStyleA1\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseStyleADiv\" aria-expanded=\"false\" aria-controls=\"collapseStyleADiv\" (click)=\"calculateOperatorWIPStyleA(StyleA1Name)\">{{StyleA1Name}} <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div *ngFor=\"let item of StyleA1; let i= index\" class=\"progress-bar\" role=\"progress-bar\" area-valuenow=\"50\" area-valuemin=\"0\" area-valuemax=\"100\" [(ngStyle)]=\"item.styleDate\" data-toggle=\"tooltip\" title=\"Actual WIP : {{item.actualWIPValue}}\">\r\n                  {{item.lineName}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseStyleADiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" >Operator Inline WIP </button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"OpWIPStyleA\" style=\"height: auto; width: 450px;\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        \r\n        <div class=\"row mt-3\" *ngIf=\"isShownStyleA2\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseStyleBDiv\" aria-expanded=\"false\" aria-controls=\"collapseStyleBDiv\" (click)=\"calculateOperatorWIPStyleB(StyleA2Name)\">{{StyleA2Name}} <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div *ngFor=\"let item of StyleA2; let i= index\" class=\"progress-bar\" role=\"progress-bar\" area-valuenow=\"50\" area-valuemin=\"0\" area-valuemax=\"100\" [(ngStyle)]=\"item.styleDate\" data-toggle=\"tooltip\" title=\"Actual WIP : {{item.actualWIPValue}}\">\r\n                  {{item.lineName}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseStyleBDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" >Operator Inline WIP </button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"OpWIPStyleB\" style=\"height: auto; width: 450px;\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\" *ngIf=\"isShownStyleA3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\"data-toggle=\"collapse\" data-target=\"#collapseStyleCDiv\" aria-expanded=\"false\" aria-controls=\"collapseStyleCDiv\" (click)=\"calculateOperatorWIPStyleC(StyleA3Name)\">{{StyleA3Name}} <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div *ngFor=\"let item of StyleA3; let i= index\" class=\"progress-bar\" role=\"progress-bar\" area-valuenow=\"50\" area-valuemin=\"0\" area-valuemax=\"100\" [(ngStyle)]=\"item.styleDate\" data-toggle=\"tooltip\" title=\"Actual WIP : {{item.actualWIPValue}}\">\r\n                  {{item.lineName}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseStyleCDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" >Operator Inline WIP </button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"OpWIPStyleC\" style=\"height: auto; width: 450px;\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\" *ngIf=\"isShownStyleA4\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\"data-toggle=\"collapse\" data-target=\"#collapseStyleDDiv\" aria-expanded=\"false\" aria-controls=\"collapseStyleDDiv\" (click)=\"calculateOperatorWIPStyleD(StyleA4Name)\">{{StyleA4Name}} <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div *ngFor=\"let item of StyleA4; let i= index\" class=\"progress-bar\" role=\"progress-bar\" area-valuenow=\"50\" area-valuemin=\"0\" area-valuemax=\"100\" [(ngStyle)]=\"item.styleDate\" data-toggle=\"tooltip\" title=\"Actual WIP : {{item.actualWIPValue}}\">\r\n                  {{item.lineName}}\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseStyleDDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" >Operator Inline WIP </button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"OpWIPStyleD\" style=\"height: auto; width: 450px;\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <!-- <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li> -->\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-01\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n      <div class=\"mt-1\">\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPSummary()\">Summary</button>\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPOperator()\">Operator</button>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -3070,8 +3201,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment.js */ "./src/environments/environment.js");
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_10__);
+
 
 
 
@@ -3086,7 +3222,8 @@ var more = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules
 var Exporting = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
 var Sunburst = __webpack_require__(/*! highcharts/modules/sunburst */ "./node_modules/highcharts/modules/sunburst.js");
 
-highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+
+highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 Boost(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 noData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 more(highcharts__WEBPACK_IMPORTED_MODULE_5__);
@@ -3117,6 +3254,25 @@ var InlinewipComponent = /** @class */ (function () {
         this.locationOptions = [];
         this.unitOptions = [];
         this.lineOptions = [];
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
+        this.isShownStyleA1 = false;
+        this.isShownStyleA2 = false;
+        this.isShownStyleA3 = false;
+        this.isShownStyleA4 = false;
+        this.headerTextValue = "";
     }
     InlinewipComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -3149,6 +3305,26 @@ var InlinewipComponent = /** @class */ (function () {
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.calculateWIPStyleWise(this.KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].inlineOverViewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].inlineOverViewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+    };
+    InlinewipComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
     };
     InlinewipComponent.prototype.getRandomColor = function (lineUnitName) {
         var letters = '0123456789ABCDEF';
@@ -3172,6 +3348,10 @@ var InlinewipComponent = /** @class */ (function () {
         return color;
     };
     InlinewipComponent.prototype.calculateWIPStyleWise = function (KPIView) {
+        this.isShownStyleA1 = false;
+        this.isShownStyleA2 = false;
+        this.isShownStyleA3 = false;
+        this.isShownStyleA4 = false;
         var _this = this;
         this.StyleA1 = [];
         this.StyleA2 = [];
@@ -3179,58 +3359,683 @@ var InlinewipComponent = /** @class */ (function () {
         this.StyleA4 = [];
         var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "InlineWIPOverview";
         this.http.post(url, KPIView).subscribe(function (responsedata) {
-            _this.StyleA1Name = responsedata["data"][0]["StyleName"];
-            _this.StyleA2Name = responsedata["data"][1]["StyleName"];
-            _this.StyleA3Name = responsedata["data"][2]["StyleName"];
-            _this.StyleA4Name = responsedata["data"][3]["StyleName"];
-            responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
-                var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
-                _this.StyleA1.push({
-                    lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
-                    styleDate: {
-                        'width': element.LineWIPPercentage.toString() + "%",
-                        'background-color': _this.getRandomColor(lineUnitName)
-                    },
-                    actualWIPValue: element.LineWIPActualValue.toString()
-                });
-            });
-            responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
-                var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
-                _this.StyleA2.push({
-                    lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
-                    styleDate: {
-                        'width': element.LineWIPPercentage.toString() + "%",
-                        'background-color': _this.getRandomColor(lineUnitName)
-                    },
-                    actualWIPValue: element.LineWIPActualValue.toString()
-                });
-            });
-            responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
-                var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
-                _this.StyleA3.push({
-                    lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
-                    styleDate: {
-                        'width': element.LineWIPPercentage.toString() + "%",
-                        'background-color': _this.getRandomColor(lineUnitName)
-                    },
-                    actualWIPValue: element.LineWIPActualValue.toString()
-                });
-            });
-            responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
-                var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
-                _this.StyleA4.push({
-                    lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
-                    styleDate: {
-                        'width': element.LineWIPPercentage.toString() + "%",
-                        'background-color': _this.getRandomColor(lineUnitName)
-                    },
-                    actualWIPValue: element.LineWIPActualValue.toString()
-                });
-            });
+            console.log("-----------Response Data--------", responsedata);
+            if (responsedata["data"].length == 1) {
+                if (typeof (responsedata["data"][0] != -1)) {
+                    if (responsedata["data"][0]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+            }
+            if (responsedata["data"].length == 2) {
+                if (typeof (responsedata["data"][0] != -1)) {
+                    if (responsedata["data"][0]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+                if (typeof (responsedata["data"][1] != -1)) {
+                    if (responsedata["data"][1]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+            }
+            if (responsedata["data"].length == 3) {
+                if (typeof (responsedata["data"][0] != -1)) {
+                    if (responsedata["data"][0]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+                if (typeof (responsedata["data"][1] != -1)) {
+                    if (responsedata["data"][1]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+                if (typeof (responsedata["data"][2] != -1)) {
+                    console.log("--------Inside this-------");
+                    if (responsedata["data"][2]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][2]["StyleName"];
+                        responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][2]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][2]["StyleName"];
+                        responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][2]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][2]["StyleName"];
+                        responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][2]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][2]["StyleName"];
+                        responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+            }
+            if (responsedata["data"].length == 4) {
+                if (typeof (responsedata["data"][0] != -1)) {
+                    if (responsedata["data"][0]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][0]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][0]["StyleName"];
+                        responsedata["data"][0]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+                if (typeof (responsedata["data"][1] != -1)) {
+                    if (responsedata["data"][1]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][1]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][1]["StyleName"];
+                        responsedata["data"][1]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+                if (typeof (responsedata["data"][2] != -1)) {
+                    console.log("--------Inside this-------");
+                    if (responsedata["data"][2]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][2]["StyleName"];
+                        responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][2]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][2]["StyleName"];
+                        responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][2]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][2]["StyleName"];
+                        responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][2]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][2]["StyleName"];
+                        responsedata["data"][2]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+                if (typeof (responsedata["data"][3] != -1)) {
+                    console.log("--------Inside this-------");
+                    if (responsedata["data"][3]["StyleName"] == "Style A") {
+                        _this.isShownStyleA1 = true;
+                        _this.StyleA1Name = responsedata["data"][3]["StyleName"];
+                        responsedata["data"][3]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA1.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][3]["StyleName"] == "Style B") {
+                        _this.isShownStyleA2 = true;
+                        _this.StyleA2Name = responsedata["data"][3]["StyleName"];
+                        responsedata["data"][3]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA2.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][3]["StyleName"] == "Style C") {
+                        _this.isShownStyleA3 = true;
+                        _this.StyleA3Name = responsedata["data"][3]["StyleName"];
+                        responsedata["data"][3]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA3.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                    else if (responsedata["data"][3]["StyleName"] == "Style D") {
+                        _this.isShownStyleA4 = true;
+                        _this.StyleA4Name = responsedata["data"][3]["StyleName"];
+                        responsedata["data"][3]["StyleWIPViewModel"].forEach(function (element) {
+                            var lineUnitName = "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                            _this.StyleA4.push({
+                                lineName: "Line" + element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                                styleDate: {
+                                    'width': element.LineWIPPercentage.toString() + "%",
+                                    'background-color': _this.getRandomColor(lineUnitName)
+                                },
+                                actualWIPValue: element.LineWIPActualValue.toString()
+                            });
+                        });
+                    }
+                }
+            }
+            console.log(_this.isShownStyleA1, _this.isShownStyleA2, _this.isShownStyleA3, _this.isShownStyleA4);
+            // _this.StyleA2Name = responsedata["data"][1]["StyleName"];
+            // _this.StyleA3Name = responsedata["data"][2]["StyleName"];
+            // _this.StyleA4Name = responsedata["data"][3]["StyleName"];
+            // responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+            //     var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+            //     _this.StyleA2.push({
+            //         lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+            //         styleDate :{
+            //             'width' : element.LineWIPPercentage.toString() + "%",
+            //             'background-color' : _this.getRandomColor(lineUnitName)
+            //         },
+            //         actualWIPValue : element.LineWIPActualValue.toString()
+            //     })
+            // });
+            // responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+            //     var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+            //     _this.StyleA3.push({
+            //         lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+            //         styleDate :{
+            //             'width' : element.LineWIPPercentage.toString() + "%",
+            //             'background-color' : _this.getRandomColor(lineUnitName)
+            //         },
+            //         actualWIPValue : element.LineWIPActualValue.toString()
+            //     })
+            // });
+            // responsedata["data"][3]["StyleWIPViewModel"].forEach(element => {
+            //     var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+            //     _this.StyleA4.push({
+            //         lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+            //         styleDate :{
+            //             'width' : element.LineWIPPercentage.toString() + "%",
+            //             'background-color' : _this.getRandomColor(lineUnitName)
+            //         },
+            //         actualWIPValue : element.LineWIPActualValue.toString()
+            //     })
+            // });
         });
+    };
+    InlinewipComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     InlinewipComponent.prototype.calculateOperatorWIPStyleA = function (styleName) {
         var _this = this;
+        console.log("---------KPIView-----------", this.KPIView);
         this.KPIView["StyleName"] = styleName;
         var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "OperatorWIP";
         this.http.post(url, this.KPIView).subscribe(function (responsedata) {
@@ -3291,6 +4096,7 @@ var InlinewipComponent = /** @class */ (function () {
         });
     };
     InlinewipComponent.prototype.calculateOperatorWIPStyleB = function (styleName) {
+        console.log("---------KPIView-----------", this.KPIView);
         var _this = this;
         this.KPIView["StyleName"] = styleName;
         var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "OperatorWIP";
@@ -3352,6 +4158,7 @@ var InlinewipComponent = /** @class */ (function () {
         });
     };
     InlinewipComponent.prototype.calculateOperatorWIPStyleC = function (styleName) {
+        console.log("---------KPIView-----------", this.KPIView);
         var _this = this;
         this.KPIView["StyleName"] = styleName;
         var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "OperatorWIP";
@@ -3413,6 +4220,7 @@ var InlinewipComponent = /** @class */ (function () {
         });
     };
     InlinewipComponent.prototype.calculateOperatorWIPStyleD = function (styleName) {
+        console.log("---------KPIView-----------", this.KPIView);
         var _this = this;
         this.KPIView["StyleName"] = styleName;
         var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "OperatorWIP";
@@ -3483,7 +4291,58 @@ var InlinewipComponent = /** @class */ (function () {
         this._router.navigate(['process-overview']);
     };
     InlinewipComponent.prototype.navigateWIPOperator = function () {
-        this._router.navigate(['wip-operator']);
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
+            var locationId = parseFloat(this.value);
+            return locationId;
+        }).get();
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
+            var unitId = parseFloat(this.value);
+            return unitId;
+        }).get();
+        var checkedLines = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio:checked').map(function () {
+            var lineId = parseFloat(this.value);
+            return lineId;
+        }).get();
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                sessionStorage.setItem("KPIView", JSON.stringify(KPIView));
+                this._router.navigate(['wip-operator']);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
+        // this._router.navigate(['wip-operator']);
     };
     InlinewipComponent.prototype.getRecommendation = function (recommendationId) {
         this.data = [];
@@ -3524,15 +4383,18 @@ var InlinewipComponent = /** @class */ (function () {
             });
         });
     };
-    InlinewipComponent.prototype.navigateWIPSummary = function () {
-        this._router.navigate(['wip-summary']);
+    InlinewipComponent.prototype.ExportToExcelLowEfficiency = function () {
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_10__["utils"].table_to_sheet(this.TABLE.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_10__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_10__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_10__["writeFile"](wb, 'InLine_WIP_Recommendation.xlsx');
     };
-    InlinewipComponent.prototype.getSewingKPIAnalysis = function () {
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+    InlinewipComponent.prototype.navigateWIPSummary = function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -3541,31 +4403,115 @@ var InlinewipComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        this.KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            // StartDate : "2021-01-31 00:00:00.000",
-            // EndDate : "2021-01-31 00:00:00.000",
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.calculateOperatorWIPStyleA(this.KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                sessionStorage.setItem("KPIView", JSON.stringify(KPIView));
+                this._router.navigate(['wip-summary']);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
+    };
+    InlinewipComponent.prototype.getSewingKPIAnalysis = function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
+            var locationId = parseFloat(this.value);
+            return locationId;
+        }).get();
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
+            var unitId = parseFloat(this.value);
+            return unitId;
+        }).get();
+        var checkedLines = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio:checked').map(function () {
+            var lineId = parseFloat(this.value);
+            return lineId;
+        }).get();
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                this.KPIView = KPIView;
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].inlineOverViewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].inlineOverViewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateWIPStyleWise(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
     };
     InlinewipComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -3575,17 +4521,37 @@ var InlinewipComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    InlinewipComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    InlinewipComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
         }
     };
     InlinewipComponent.prototype.getMasterData = function () {
@@ -3599,6 +4565,10 @@ var InlinewipComponent = /** @class */ (function () {
             }
         });
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('TABLE'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], InlinewipComponent.prototype, "TABLE", void 0);
     InlinewipComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-inlinewip',
@@ -3632,7 +4602,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <h5 style=\"text-align: left; font-weight: bold; margin-left: 20%;\">Operators Inline WIP of last 5 days</h5>\r\n    <div class=\"row\">\r\n      <ul class=\"nav nav-pills\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link active\" href=\"#lowOperator\" [ngClass]=\"{ 'active':activeTab==='lowOperator'}\" (click)=\"lowOperator('lowOperator')\"\r\n             data-toggle=\"tab\">Low Performers</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#avgOperator\" [ngClass]=\"{ 'active':activeTab==='avgOperator'}\" data-toggle=\"tab\"\r\n             (click)=\"avgOperator('avgOperator')\">Average Performers</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#highOperator\" [ngClass]=\"{ 'active':activeTab==='highOperator'}\" data-toggle=\"tab\"\r\n             (click)=\"highOperator('highOperator')\">High Performers</a>\r\n        </li>\r\n      </ul>\r\n      <div class=\"col-9\">\r\n        <div class=\"tab-content\">\r\n          <div class=\"tab-pane active\" id=\"lowOperator\" [ngClass]=\"{ 'active':activeTab==='lowOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <div [chart]=\"operatorWIP\" style=\"width: auto; height: 415px;\"></div>  \r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"tab-pane\" id=\"avgOperator\" [ngClass]=\"{ 'active':activeTab==='avgOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <div [chart]=\"operatorWIPAvg\" style=\"width: auto; height: 415px;\"></div>\r\n              </div>\r\n            </div>  \r\n          </div>\r\n          <div class=\"tab-pane\" id=\"highOperator\" [ngClass]=\"{ 'active':activeTab==='highOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <div [chart]=\"operatorWIPHigh\" style=\"width: auto; height: 415px;\"></div>  \r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div>\r\n          <button class=\"custom-button ml-2\" (click)=\"navigateWIPOperator()\">Overview</button>\r\n          <button class=\"custom-button ml-2\" (click)=\"navigateWIPSummary()\">Operator</button>\r\n          <button class=\"custom-button ml-2\" (click)=\"navigateWIPEffDefectOverview()\">Operators List</button>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\"></a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n    </div>\r\n    <!-- <h5 style=\"text-align: left; font-weight: bold; margin-left: 20%;\">Operators Inline WIP of last 5 days</h5> -->\r\n    <div class=\"row\">\r\n      <!-- <ul class=\"nav nav-pills\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link active\" href=\"#lowOperator\" [ngClass]=\"{ 'active':activeTab==='lowOperator'}\" (click)=\"lowOperator('lowOperator')\"\r\n             data-toggle=\"tab\">Low Performers</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#avgOperator\" [ngClass]=\"{ 'active':activeTab==='avgOperator'}\" data-toggle=\"tab\"\r\n             (click)=\"avgOperator('avgOperator')\">Average Performers</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#highOperator\" [ngClass]=\"{ 'active':activeTab==='highOperator'}\" data-toggle=\"tab\"\r\n             (click)=\"highOperator('highOperator')\">High Performers</a>\r\n        </li>\r\n      </ul> -->\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-12\">\r\n            <div [chart]=\"operatorWIP\" style=\"width: auto; height: 475px;\"></div>  \r\n          </div>\r\n        </div>\r\n        <!-- <div class=\"tab-content\">\r\n          <div class=\"tab-pane active\" id=\"lowOperator\" [ngClass]=\"{ 'active':activeTab==='lowOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <div [chart]=\"operatorWIP\" style=\"width: auto; height: 415px;\"></div>  \r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"tab-pane\" id=\"avgOperator\" [ngClass]=\"{ 'active':activeTab==='avgOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <div [chart]=\"operatorWIPAvg\" style=\"width: auto; height: 415px;\"></div>\r\n              </div>\r\n            </div>  \r\n          </div>\r\n          <div class=\"tab-pane\" id=\"highOperator\" [ngClass]=\"{ 'active':activeTab==='highOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <div [chart]=\"operatorWIPHigh\" style=\"width: auto; height: 415px;\"></div>  \r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div> -->\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n    \r\n      <div class=\"col-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <!-- <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li> -->\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-01\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-12 mt-2\">\r\n        <button class=\"custom-button\" (click)=\"navigateWIPOperator()\">Back</button>\r\n        <!-- <button class=\"custom-button ml-2\" (click)=\"navigateWIPSummary()\">Operator</button> -->\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPEffDefectOverview()\">Operators List</button>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>"
 
 /***/ }),
 
@@ -3656,6 +4626,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment.js */ "./src/environments/environment.js");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 
@@ -3665,6 +4640,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var More = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules/highcharts/highcharts-more.js");
+
 More(highcharts__WEBPACK_IMPORTED_MODULE_7__);
 var Exporting = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
 Exporting(highcharts__WEBPACK_IMPORTED_MODULE_7__);
@@ -3708,6 +4684,19 @@ var InlinewipoperatorComponent = /** @class */ (function () {
             });
         });
     };
+    InlinewipoperatorComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
+    };
     InlinewipoperatorComponent.prototype.getFilterData = function () {
         this.KPIView = {
             Line: [1, 2],
@@ -3717,13 +4706,19 @@ var InlinewipoperatorComponent = /** @class */ (function () {
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.calculateOperatorWIP(this.KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__["environment"].inlineWIPOperatorHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__["environment"].inlineWIPOperatorHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
     };
     InlinewipoperatorComponent.prototype.calculateOperatorWIP = function (KPIView) {
         KPIView["OperatorType"] = "Low";
         var _this = this;
         var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__["environment"].backendUrl + "DHUEfficiencyOperator";
         this.http.post(url, KPIView).subscribe(function (responsedata) {
-            console.log(responsedata);
             _this.operatorWIP = new angular_highcharts__WEBPACK_IMPORTED_MODULE_5__["Chart"]({
                 chart: {
                     type: 'scatter',
@@ -3745,11 +4740,15 @@ var InlinewipoperatorComponent = /** @class */ (function () {
                     showLastLabel: true
                 },
                 tooltip: {
-                    formatter: function () {
-                        return this.series.name + '<br>' + ' Efficiency: <b>' + this.y + '%' +
-                            '</b><br> Defect: <b>' + this.x + '</b>' + '%';
-                    }
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.name} <br> <b>Efficiency : {point.y} % </b> <br> <b> Defect: {point.x} % </b>'
                 },
+                // tooltip: {
+                //   formatter: function () {
+                //       return this.name + '<br>' + ' Efficiency: <b>' + this.y + '%' +
+                //           '</b><br> Defect: <b>' + this.x + '</b>' + '%';
+                //   }
+                // },
                 exporting: {
                     enabled: false
                 },
@@ -3904,11 +4903,11 @@ var InlinewipoperatorComponent = /** @class */ (function () {
     };
     InlinewipoperatorComponent.prototype.getSewingKPIAnalysis = function () {
         this.KPIView = {};
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -3917,31 +4916,68 @@ var InlinewipoperatorComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        this.KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.calculateOperatorWIP(this.KPIView);
-        this.calculateAvgOperatorWIP(this.KPIView);
-        this.calculateHighOperatorWIP(this.KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                this.KPIView = KPIView;
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__["environment"].inlineWIPOperatorHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__["environment"].inlineWIPOperatorHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateOperatorWIP(this.KPIView);
+                this.calculateAvgOperatorWIP(this.KPIView);
+                this.calculateHighOperatorWIP(this.KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
+    };
+    InlinewipoperatorComponent.prototype.backToPrevious = function () {
+        sessionStorage.removeItem("KPIView");
+        window.history.back();
     };
     InlinewipoperatorComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -3951,17 +4987,37 @@ var InlinewipoperatorComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    InlinewipoperatorComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    InlinewipoperatorComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
         }
     };
     InlinewipoperatorComponent.prototype.getMasterData = function () {
@@ -3975,6 +5031,12 @@ var InlinewipoperatorComponent = /** @class */ (function () {
             }
         });
     };
+    InlinewipoperatorComponent.prototype.ExportToExcelLowEfficiency = function () {
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].table_to_sheet(this.TABLE.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_9__["writeFile"](wb, 'InLine_WIP_Recommendation.xlsx');
+    };
     InlinewipoperatorComponent.prototype.lowOperator = function (activeTab) {
         this.activeTab = activeTab;
     };
@@ -3987,6 +5049,7 @@ var InlinewipoperatorComponent = /** @class */ (function () {
         this.calculateHighOperatorWIP(this.KPIView);
     };
     InlinewipoperatorComponent.prototype.navigateWIPOperator = function () {
+        sessionStorage.removeItem("KPIView");
         this._router.navigate(['wip-overview']);
     };
     InlinewipoperatorComponent.prototype.navigateWIPSummary = function () {
@@ -4004,6 +5067,49 @@ var InlinewipoperatorComponent = /** @class */ (function () {
     InlinewipoperatorComponent.prototype.navigateWIPEffDefectOverview = function () {
         this._router.navigate(['operator-eff-defect']);
     };
+    InlinewipoperatorComponent.prototype.getRecommendation = function (recommendationId) {
+        this.data = [];
+        var recommendationView = {
+            KPIId: 8,
+            recommendationId: recommendationId.toString()
+        };
+        var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__["environment"].backendUrl + "Recommendation";
+        var _this = this;
+        this.http.post(url, recommendationView).subscribe(function (responsedata) {
+            _this.recommendationModalTitle = "Recommemdations for Inline WIP";
+            _this.getOperatorsName('Moderate');
+            responsedata["allRecommendations"].forEach(function (element) {
+                _this.data.push({
+                    Reasons: element["Reasons"],
+                    Recommendations: element["Recommendations"],
+                    SubReasons: element["SubReasons"],
+                });
+            });
+        });
+    };
+    InlinewipoperatorComponent.prototype.getOperatorsName = function (efficiencyLevel) {
+        this.operatorsDetailsList = [];
+        var operatorsDetailsView = {
+            efficiencyLevel: efficiencyLevel
+        };
+        var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_6__["environment"].backendUrl + "OperatorsName";
+        var _this = this;
+        this.http.post(url, operatorsDetailsView).subscribe(function (responsedata) {
+            responsedata["operatorsDetails"].forEach(function (element) {
+                _this.operatorsDetailsList.push({
+                    Name: element["Name"],
+                    Machine: element["Machine"],
+                    Unit: element["Unit"],
+                    Location: element["Location"],
+                    Line: element["Line"]
+                });
+            });
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('TABLE'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], InlinewipoperatorComponent.prototype, "TABLE", void 0);
     InlinewipoperatorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-inlinewipoperator',
@@ -4037,7 +5143,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: 50%\">\r\n                      Reasons\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Recommendations\r\n                </th>\r\n                <th style=\"width: 50%\">\r\n                  SubReasons\r\n              </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of data; let ndx = index\">\r\n                  <td>{{item.Reasons}}</td>\r\n                  <td>{{item.Recommendations}}</td>\r\n                  <td>{{item.SubReasons}}</td>\r\n              </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <h5 style=\"text-align: left; font-weight: bold; margin-left: 25%;\">Inline WIP Summary of Operators</h5>\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 470px; overflow-y: scroll;\">\r\n        <table class=\"table table-striped mt-2\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                <th>\r\n                  Operator Name\r\n                </th>\r\n                <th>\r\n                  Line\r\n                </th>\r\n                <th>\r\n                  Unit\r\n                </th>\r\n                <th>\r\n                  Inline WIP Level\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of operatorsSummaryData; let ndx = index\">\r\n                  <td>{{item.OperatorName}}</td>\r\n                  <td>{{item.Line}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.WIPData}}</td>\r\n              </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row mt-2\">\r\n      <button class=\"custom-button ml-2\" (click)=\"navigateWIPOperator()\">Operator Analysis</button>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\"></a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <!-- <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div> -->\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-5\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">Inline WIP Summary of Operators</h6>\r\n      </div>\r\n      <div class=\"col-4\" style=\"text-align: left;\">\r\n        <button class=\"custom-button\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Recommendations</button>\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPOperator()\">Operator Analysis</button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-12\" style=\"text-align: left;\">\r\n        <button (click)=\"ExportToExcelOperatorsDetails()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n      </div>\r\n    </div>\r\n    <!-- <h5 style=\"text-align: left; font-weight: bold; margin-left: 25%;\">Inline WIP Summary of Operators</h5> -->\r\n    <div class=\"row\">\r\n      <div class=\"col-12\" #OperatorsTable #table style=\"height: 470px; overflow-y: scroll;\">\r\n        <table class=\"table table-striped mt-2\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                <th>\r\n                  Operator Name\r\n                </th>\r\n                <th>\r\n                  Operation\r\n                </th>\r\n                <th>\r\n                  Working Machine\r\n                </th>\r\n                <th>\r\n                  Line\r\n                </th>\r\n                <th>\r\n                  Unit\r\n                </th>\r\n                <th>\r\n                  Inline WIP Level\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of operatorsSummaryData; let ndx = index\">\r\n                  <td>{{item.OperatorName}}</td>\r\n                  <td>{{item.OpearationName}}</td>\r\n                  <td>{{item.MachineName}}</td>\r\n                  <td>{{item.Line}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.WIPData}}</td>\r\n              </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n    </div>\r\n    <!-- <div class=\"row mt-2\">\r\n      <button class=\"custom-button ml-2\" (click)=\"navigateWIPOperator()\">Operator Analysis</button>\r\n    </div> -->\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -4058,6 +5164,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment.js */ "./src/environments/environment.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -4072,6 +5181,9 @@ var InlinewipsummaryComponent = /** @class */ (function () {
         this.unitOptions = [];
         this.locationOptions = [];
         this.operatorsSummaryData = [];
+        this.recommendationModalTitle = "";
+        this.data = [];
+        this.operatorsDetailsList = [];
     }
     InlinewipsummaryComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -4096,14 +5208,57 @@ var InlinewipsummaryComponent = /** @class */ (function () {
         });
     };
     InlinewipsummaryComponent.prototype.getFilterData = function () {
-        var KPIView = {
-            Line: [1, 2],
-            Location: [1, 2],
-            Unit: [1, 2],
-            StartDate: "2021-01-01 00:00:00.000",
-            EndDate: "2021-01-31 00:00:00.000",
-        };
+        var KPIView = JSON.parse(sessionStorage.getItem("KPIView"));
+        // var KPIView = {
+        //   Line : [1,2],
+        //   Location : [1,2],
+        //   Unit : [1,2],
+        //   StartDate : "2021-01-01 00:00:00.000",
+        //   EndDate : "2021-01-31 00:00:00.000",
+        // }
         this.calculateWIPOperatorSummary(KPIView);
+    };
+    InlinewipsummaryComponent.prototype.getRecommendation = function (recommendationId) {
+        this.data = [];
+        var recommendationView = {
+            KPIId: 8,
+            recommendationId: recommendationId.toString()
+        };
+        var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].backendUrl + "Recommendation";
+        var _this = this;
+        this.http.post(url, recommendationView).subscribe(function (responsedata) {
+            _this.recommendationModalTitle = "Recommemdations for Inline WIP";
+            _this.getOperatorsName('Moderate');
+            responsedata["allRecommendations"].forEach(function (element) {
+                _this.data.push({
+                    Reasons: element["Reasons"],
+                    Recommendations: element["Recommendations"],
+                    SubReasons: element["SubReasons"],
+                });
+            });
+        });
+    };
+    InlinewipsummaryComponent.prototype.backToPrevious = function () {
+        window.history.back();
+    };
+    InlinewipsummaryComponent.prototype.getOperatorsName = function (efficiencyLevel) {
+        this.operatorsDetailsList = [];
+        var operatorsDetailsView = {
+            efficiencyLevel: efficiencyLevel
+        };
+        var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].backendUrl + "OperatorsName";
+        var _this = this;
+        this.http.post(url, operatorsDetailsView).subscribe(function (responsedata) {
+            responsedata["operatorsDetails"].forEach(function (element) {
+                _this.operatorsDetailsList.push({
+                    Name: element["Name"],
+                    Machine: element["Machine"],
+                    Unit: element["Unit"],
+                    Location: element["Location"],
+                    Line: element["Line"]
+                });
+            });
+        });
     };
     InlinewipsummaryComponent.prototype.getSewingKPIAnalysis = function () {
         var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
@@ -4175,6 +5330,18 @@ var InlinewipsummaryComponent = /** @class */ (function () {
             }
         });
     };
+    InlinewipsummaryComponent.prototype.ExportToExcelOperatorsDetails = function () {
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].table_to_sheet(this.OperatorsTable.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_6__["writeFile"](wb, 'InLine_Operators_Details.xlsx');
+    };
+    InlinewipsummaryComponent.prototype.ExportToExcelLowEfficiency = function () {
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].table_to_sheet(this.TABLE.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_6__["writeFile"](wb, 'InLine_WIP_Recommendation.xlsx');
+    };
     InlinewipsummaryComponent.prototype.calculateWIPOperatorSummary = function (KPIView) {
         var _this = this;
         var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].backendUrl + "OperatorsWIPSummary";
@@ -4184,7 +5351,9 @@ var InlinewipsummaryComponent = /** @class */ (function () {
                     Unit: element.Unit,
                     Line: element.Line,
                     OperatorName: element.OperatorName,
-                    WIPData: element.WIPData
+                    WIPData: element.WIPData,
+                    OpearationName: element.OpearationName,
+                    MachineName: element.MachineName
                 });
             });
         });
@@ -4201,6 +5370,14 @@ var InlinewipsummaryComponent = /** @class */ (function () {
     InlinewipsummaryComponent.prototype.processNavigation = function () {
         this._router.navigate(['process-overview']);
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('OperatorsTable'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], InlinewipsummaryComponent.prototype, "OperatorsTable", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('TABLE'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], InlinewipsummaryComponent.prototype, "TABLE", void 0);
     InlinewipsummaryComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-inlinewipsummary',
@@ -4402,7 +5579,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n  </div>\r\n</nav>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  \r\n  </ul>\r\n</nav>\r\n<div class=\"modal fade\" id=\"historicMCDowntimeModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"historicMCDowntimeModalTitle\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n    <div class=\"modal-content modal-lg\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Historical Overview of {{selectedMachineName}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 480px; overflow-y: scroll;\">\r\n        <div id=\"machineDowntimeHistorical\" style=\"display: none;\">\r\n          <table class=\"table table-striped\" style=\"background-color: #ffffff;\">\r\n            <thead class=\"thead-dark\">\r\n                <tr>\r\n                  <th style=\"width: 50%\">\r\n                      Machine Name\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Location\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Unit\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Line\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Frequency %\r\n                  </th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let item of tableData; let ndx = index\">\r\n                    <td>{{item.machineName}}</td>\r\n                    <td>{{item.location}}</td>\r\n                    <td>{{item.unit}}</td>\r\n                    <td>{{item.line}}</td>\r\n                    <td>{{item.frequency}}</td>\r\n                </tr>\r\n            </tbody>\r\n          </table>\r\n        </div>\r\n        <!-- <div [chart]=\"machineDowntimeLine\" id=\"machineDowntimeHistorical\" style=\"display: none;\"></div> -->\r\n        <div [chart]=\"curveFitMachineDowntime\" id=\"curveFit\"></div>\r\n        <button class=\"custom-button btn\" style=\"font-size: small;\" id=\"frequencyBtn\" (click)=\"showCurveFit()\">Downtime Frequency</button>\r\n      </div>\r\n      \r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('206,207,208,209')\">Overall Recommendations</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <!-- <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div> -->\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Machine Downtime Overview on Last Day</h5>\r\n      </div>\r\n      <div class=\"col-4 mt-1\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('206,207,208,209')\">Show Recommendations</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 480px;\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" >Total Downtime</button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" [ngStyle]=totalDownTimeStyle>{{totalDownTime}}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        \r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Machine Downtime  <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" [ngStyle]=totalMachineDownTimeStyle>{{totalMachineDownTime}}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseOperationDiv\"> \r\n          <div class=\"row mt-2\" *ngFor=\"let machineItems of topFiveMachinesList\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-2\" style=\"text-align: left; font-size: 12px\" data-toggle=\"modal\" (click)=\"calculateMachineDowntime(machineItems.machineName)\" data-target=\"#historicMCDowntimeModal\">{{machineItems.machineName}} <i class=\"fas fa-bar-chart\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" [ngStyle]=machineItems.machineStyle>{{machineItems.machineDownTime}}%</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Feeding Downtime</button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" [ngStyle]=totalFeedingDownTimeStyle>{{totalFeedingDownTime}}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-2 ml-1\">\r\n          <button style=\"float: right;\" type=\"button\" class=\"btn custom-button col-offset-8 col-2\" style=\"text-align: right; font-size: 12px\" (click)=\"navigateDowntime()\">View Historical <i class=\"fas fa-bar-chart\"></i></button>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n  </div>\r\n</nav>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  \r\n  </ul>\r\n</nav>\r\n<div class=\"modal fade\" id=\"historicMCDowntimeModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"historicMCDowntimeModalTitle\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n    <div class=\"modal-content modal-lg\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Historical Overview of {{selectedMachineName}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 480px; overflow-y: scroll;\">\r\n        <div id=\"machineDowntimeHistorical\" style=\"display: none;\">\r\n          <table class=\"table table-striped\" style=\"background-color: #ffffff;\">\r\n            <thead class=\"thead-dark\">\r\n                <tr>\r\n                  <th style=\"width: 50%\">\r\n                      Machine Name\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Location\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Unit\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Line\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Frequency %\r\n                  </th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let item of tableData; let ndx = index\">\r\n                    <td>{{item.machineName}}</td>\r\n                    <td>{{item.location}}</td>\r\n                    <td>{{item.unit}}</td>\r\n                    <td>{{item.line}}</td>\r\n                    <td>{{item.frequency}}</td>\r\n                </tr>\r\n            </tbody>\r\n          </table>\r\n        </div>\r\n        <!-- <div [chart]=\"machineDowntimeLine\" id=\"machineDowntimeHistorical\" style=\"display: none;\"></div> -->\r\n        <div [chart]=\"curveFitMachineDowntime\" id=\"curveFit\"></div>\r\n        <button class=\"custom-button btn\" style=\"font-size: small;\" id=\"frequencyBtn\" (click)=\"showCurveFit()\">Downtime Frequency</button>\r\n      </div>\r\n      \r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('206,207,208,209')\">Overall Recommendations</a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <!-- <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div> -->\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <!-- <div class=\"col-4 mt-1\">\r\n        <a style=\"font-weight: bold; cursor: pointer;\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('206,207,208,209')\">Show Recommendations</a>\r\n      </div> -->\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 480px;\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" >Total Downtime</button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" [ngStyle]=totalDownTimeStyle>{{totalDownTime}}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        \r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Machine Downtime  <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" [ngStyle]=totalMachineDownTimeStyle>{{totalMachineDownTime}}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseOperationDiv\"> \r\n          <div class=\"row mt-2\" *ngFor=\"let machineItems of topFiveMachinesList\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-2\" style=\"text-align: left; font-size: 12px\" data-toggle=\"modal\" (click)=\"calculateMachineDowntime(machineItems.machineName)\" data-target=\"#historicMCDowntimeModal\">{{machineItems.machineName}} <i class=\"fas fa-bar-chart\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" [ngStyle]=machineItems.machineStyle>{{machineItems.machineDownTime}}%</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Feeding Downtime</button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" [ngStyle]=totalFeedingDownTimeStyle>{{totalFeedingDownTime}}</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-2 ml-1\">\r\n          <button style=\"float: right;\" type=\"button\" class=\"btn custom-button col-offset-8 col-2\" style=\"text-align: right; font-size: 12px\" (click)=\"navigateDowntime()\">View Historical <i class=\"fas fa-bar-chart\"></i></button>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('206,207,208,209')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -4430,6 +5607,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
 /* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -4453,6 +5632,7 @@ var ExportData = __webpack_require__(/*! highcharts/modules/export-data */ "./no
 ExportData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 var Accessibility = __webpack_require__(/*! highcharts/modules/accessibility */ "./node_modules/highcharts/modules/accessibility.js");
 Accessibility(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+
 
 var MachinedowntimeComponent = /** @class */ (function () {
     function MachinedowntimeComponent(http, _router) {
@@ -4498,6 +5678,9 @@ var MachinedowntimeComponent = /** @class */ (function () {
         this.getFilterData();
         this.getMasterData();
     };
+    MachinedowntimeComponent.prototype.backToPrevious = function () {
+        window.history.back();
+    };
     MachinedowntimeComponent.prototype.getFilterData = function () {
         this.KPIView = {
             Line: [1, 2],
@@ -4507,6 +5690,26 @@ var MachinedowntimeComponent = /** @class */ (function () {
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.calculateMachineDowntimeOverview(this.KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].downtimeOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].downtimeOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+    };
+    MachinedowntimeComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
     };
     MachinedowntimeComponent.prototype.calculateMachineDowntimeOverview = function (KPIView) {
         this.topFiveMachinesList = [];
@@ -4731,11 +5934,11 @@ var MachinedowntimeComponent = /** @class */ (function () {
     };
     MachinedowntimeComponent.prototype.getSelectedLocationLineUnit = function () {
         this.KPIView = {};
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -4744,33 +5947,72 @@ var MachinedowntimeComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        this.KPIView = {
-            Line: [1, 2],
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        return this.KPIView;
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+                return {};
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                this.KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].downtimeHistoricalHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].downtimeHistoricalHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                return this.KPIView;
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+            return {};
+        }
+    };
+    MachinedowntimeComponent.prototype.isEmpty = function (obj) {
+        return Object.keys(obj).length === 0;
     };
     MachinedowntimeComponent.prototype.getSewingKPIAnalysis = function () {
         var KPIView = this.getSelectedLocationLineUnit();
-        this.calculateMachineDowntimeOverview(KPIView);
+        if (this.isEmpty(KPIView) == false) {
+            this.calculateMachineDowntimeOverview(KPIView);
+        }
     };
     MachinedowntimeComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -4780,17 +6022,37 @@ var MachinedowntimeComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    MachinedowntimeComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    MachinedowntimeComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
         }
     };
     MachinedowntimeComponent.prototype.getMasterData = function () {
@@ -5174,7 +6436,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: 50%\">\r\n                      Reasons\r\n                  </th>\r\n                  <th style=\"width: 50%\">\r\n                    Recommendations\r\n                </th>\r\n                <th style=\"width: 50%\">\r\n                  SubReasons\r\n              </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of data; let ndx = index\">\r\n                  <!-- <td>{{item.Name}}</td> -->\r\n                  <td>{{item.Reasons}}</td>\r\n                  <td>{{item.Recommendations}}</td>\r\n                  <td>{{item.SubReasons}}</td>\r\n              </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"operatorsDetailsModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"operatorsDetailsModalTitle\">Operators Details</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 500px;\">\r\n        <table class=\"table table-striped\" style=\"background-color: #ffffff;\" [mfData]=\"operatorsDetailsList\" #mf=\"mfDataTable\" [mfRowsOnPage]=\"5\" [mfSaveRowsOnPage]=\"true\" (mfSelectedEntities)=\"setSelectedEntities($event)\">\r\n          <thead class=\"thead-dark\">\r\n              <tr>\r\n                  <th style=\"width: auto\">\r\n                      <mfDefaultSorter [mfShowSortableArrows]=\"true\" by=\"Name\">Name</mfDefaultSorter>\r\n                  </th>\r\n                  <th style=\"width: auto\">\r\n                    <mfDefaultSorter by=\"Machine\">Working Machine</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Unit\">Unit</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Location\">Location</mfDefaultSorter>\r\n                </th>\r\n                <th style=\"width: auto\">\r\n                  <mfDefaultSorter by=\"Line\">Line</mfDefaultSorter>\r\n                </th>\r\n              </tr>\r\n          </thead>\r\n          <tbody>\r\n              <tr *ngFor=\"let item of mf.data; let ndx = index1\">\r\n                  <td>{{item.Name}}</td>\r\n                  <td>{{item.Machine}}</td>\r\n                  <td>{{item.Unit}}</td>\r\n                  <td>{{item.Location}}</td>\r\n                  <td>{{item.Line}}</td>\r\n              </tr>\r\n          </tbody>\r\n          <tfoot>\r\n              <tr>\r\n                  <td colspan=\"4\">\r\n                      <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,25]\"></mfBootstrapPaginator>\r\n                  </td>\r\n              </tr>\r\n          </tfoot>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <h5 style=\"text-align: center; font-weight: bold;\">Historical Downtime Overview of last 30 days</h5>\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 480px;\">\r\n        <div class=\"row mt-3\">\r\n          <!-- <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Rejection % <i class=\"fas fa-caret-down\"></i></button> -->\r\n          <div class=\"col-12\">\r\n            <div [chart]= \"downtimeLine\" style=\"height: auto;width: auto;\"></div>\r\n          </div>\r\n        </div>   \r\n        <div class=\"row mt-3\">\r\n          <div class=\"pb-2 col-4\"><button class=\"btn custom-button\" (click)=\"navigateDowntime()\" style=\"cursor: pointer; font-size: 12px;\">Machine Downtime</button></div>\r\n        </div>  \r\n        \r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('206,207,208,209')\"></a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <!-- <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div> -->\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n    </div>\r\n    <!-- <h5 style=\"text-align: center; font-weight: bold;\">Historical Downtime Overview of last 30 days</h5> -->\r\n    <div class=\"row mt-2\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 480px;\">\r\n        <div class=\"row mt-3\">\r\n          <!-- <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Rejection % <i class=\"fas fa-caret-down\"></i></button> -->\r\n          <div class=\"col-12\">\r\n            <div [chart]= \"downtimeLine\" style=\"height: auto;width: auto;\"></div>\r\n          </div>\r\n        </div>   \r\n        <div class=\"row mt-3\">\r\n          <div class=\"pb-2 col-4\"><button class=\"btn custom-button\" (click)=\"navigateDowntime()\" style=\"cursor: pointer; font-size: 12px;\">Back</button></div>\r\n        </div>  \r\n        \r\n      </div>\r\n      <div class=\"col-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('206,207,208,209')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -5198,11 +6460,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var angular_highcharts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-highcharts */ "./node_modules/angular-highcharts/fesm5/angular-highcharts.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
 // import * as $ from 'jquery';
 // declare var $: any;
+
+
 
 
 
@@ -5230,6 +6498,20 @@ var MachinedowntimehistComponent = /** @class */ (function () {
         this.data = [];
         this.operatorsDetailsList = [];
         this.KPIView = {};
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
     }
     MachinedowntimehistComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -5262,6 +6544,59 @@ var MachinedowntimehistComponent = /** @class */ (function () {
             EndDate: "2021-01-31 00:00:00.000",
         };
         this.calculateDowntime(KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].downtimeHistoricalHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].downtimeHistoricalHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
+    };
+    MachinedowntimehistComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
+    };
+    MachinedowntimehistComponent.prototype.backToPrevious = function () {
+        window.history.back();
+    };
+    MachinedowntimehistComponent.prototype.onPeriodChange = function (event) {
+        if (event.target.checked) {
+            this.periodOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html(element.Name);
+                    var checkedPeriod = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.period:radio:checked').map(function () {
+                        var periodId = parseInt(this.value);
+                        return periodId;
+                    }).get();
+                    if (checkedPeriod[0] != null) {
+                        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                        var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+                        var day = last.getDate();
+                        var month = last.getMonth() + 1;
+                        var year = last.getFullYear();
+                        var monthString = month.toString();
+                        var dayString = day.toString();
+                        if (month < 10) {
+                            monthString = "0" + month;
+                        }
+                        if (day < 10) {
+                            dayString = "0" + day;
+                        }
+                        var StartDate = year + "-" + monthString + "-" + dayString;
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(StartDate);
+                    }
+                }
+            });
+        }
     };
     MachinedowntimehistComponent.prototype.calculateDowntime = function (KPIView) {
         var _this = this;
@@ -5289,7 +6624,7 @@ var MachinedowntimehistComponent = /** @class */ (function () {
                     title: {
                         text: 'Downtime'
                     },
-                    max: 20,
+                    max: 30,
                     min: 0,
                     plotLines: [
                         {
@@ -5327,13 +6662,39 @@ var MachinedowntimehistComponent = /** @class */ (function () {
             });
         });
     };
+    MachinedowntimehistComponent.prototype.getRecommendation = function (recommendationId) {
+        this.data = [];
+        var recommendationView = {
+            KPIId: 9,
+            recommendationId: recommendationId.toString()
+        };
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "Recommendation";
+        var _this = this;
+        this.http.post(url, recommendationView).subscribe(function (responsedata) {
+            _this.recommendationModalTitle = "Recommemdations for Machine Downtime";
+            // _this.getOperatorsName('Moderate');
+            responsedata["allRecommendations"].forEach(function (element) {
+                _this.data.push({
+                    Reasons: element["Reasons"],
+                    Recommendations: element["Recommendations"],
+                    SubReasons: element["SubReasons"],
+                });
+            });
+        });
+    };
+    MachinedowntimehistComponent.prototype.ExportToExcelLowEfficiency = function () {
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].table_to_sheet(this.TABLE.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_9__["writeFile"](wb, 'Overall_Recommendations.xlsx');
+    };
     MachinedowntimehistComponent.prototype.getSelectedLocationLineUnit = function () {
         this.KPIView = {};
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -5342,33 +6703,72 @@ var MachinedowntimehistComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        this.KPIView = {
-            Line: [1, 2],
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        return this.KPIView;
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+                return {};
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                this.KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].downtimeHistoricalHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].downtimeHistoricalHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                return this.KPIView;
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+            return {};
+        }
+    };
+    MachinedowntimehistComponent.prototype.isEmpty = function (obj) {
+        return Object.keys(obj).length === 0;
     };
     MachinedowntimehistComponent.prototype.getSewingKPIAnalysis = function () {
         var KPIView = this.getSelectedLocationLineUnit();
-        this.calculateDowntime(KPIView);
+        if (this.isEmpty(KPIView) == false) {
+            this.calculateDowntime(KPIView);
+        }
     };
     MachinedowntimehistComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -5378,17 +6778,37 @@ var MachinedowntimehistComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    MachinedowntimehistComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    MachinedowntimehistComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
         }
     };
     MachinedowntimehistComponent.prototype.getMasterData = function () {
@@ -5414,6 +6834,10 @@ var MachinedowntimehistComponent = /** @class */ (function () {
     MachinedowntimehistComponent.prototype.processNavigation = function () {
         this._router.navigate(['process-overview']);
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('TABLE'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], MachinedowntimehistComponent.prototype, "TABLE", void 0);
     MachinedowntimehistComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-machinedowntimehist',
@@ -5447,7 +6871,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n  </div>\r\n</nav>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  \r\n  </ul>\r\n</nav>\r\n\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Overall Factory Score on 31.01.2021</h5>\r\n        \r\n      </div>\r\n      <div class=\"col-4 mt-1\">\r\n        <a style=\"font-weight: bold;\" (click)=\"navigateToSewingHistorical()\">Show Last 30 Days Data</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 470px; overflow-y: scroll;\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Operations <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:65%;height:30px; background-color: #175d2d;\">65</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseOperationDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Inward <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\" data-toggle=\"collapse\" data-target=\"#collapseProcessesDiv\" aria-expanded=\"false\" aria-controls=\"collapseProcessesDiv\">Processes <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e;\">30</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"collapse ml-5\" id=\"collapseProcessesDiv\">\r\n            <div class=\"row mt-3\" >\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Fabric & Trims Store <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div class=\"progress\" style=\"height:30px\">\r\n                  <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Spreading & Cutting <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div class=\"progress\" style=\"height:30px\">\r\n                  <div class=\"progress-bar\" style=\"width:70%;height:30px; background-color: #175d2d;\">70</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\" (click)=\"sewingNavigation()\">Sewing <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n              <div class=\"col-9\" style=\"cursor: pointer;\" (click)=\"sewingNavigation()\">\r\n                <div class=\"progress\" style=\"height:30px; cursor: pointer;\" (click)=\"sewingNavigation()\">\r\n                  <div (click)=\"sewingNavigation()\" class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e; cursor: pointer;\">30</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Finishing & Packaging <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div class=\"progress\" style=\"height:30px\">\r\n                  <div class=\"progress-bar\" style=\"width:65%;height:30px; background-color: #ffb600;\">65</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Outward <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:80%;height:30px; background-color: #175d2d;\">80</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Social Sustainablity <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Environmental Sustainability<i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e;\">30</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n\r\n        <!-- <div class=\"d-flex flex-column mb-3\">\r\n          <div id=\"operationGaugeFormat\">\r\n            <div class=\"d-flex flex-row\">\r\n              <div class=\"p-2\">Flex item 1</div>\r\n              <div class=\"p-2\">\r\n                <div class=\"progress\" style=\"height:20px\">\r\n                  <div class=\"progress-bar\" style=\"width:50%;height:20px\"></div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            \r\n          </div>\r\n          <div [chart]=\"operationGaugeFormat\"></div>\r\n          <div> <button class=\"custom-button\">Drilldown Operations</button></div>\r\n        </div> -->\r\n      </div>\r\n\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsDefectAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <!-- <div class=\"tab-pane active\" id=\"dashbaord\" role=\"tabpanel\" aria-labelledby=\"ModulePerformance-tab\">\r\n        <div class=\"row\">\r\n          <div class=\"col-3\">\r\n            <p class=\"greenStatus\">Green Color : Good Performance</p>\r\n          </div>\r\n          <div class=\"col-3\">\r\n            <p class=\"yellowStatus\">Yellow Color : Moderate Performance</p>\r\n          </div>\r\n          <div class=\"col-3\">\r\n            <p class=\"redStatus\">Red Color : Poor Performance</p>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center h-100\">\r\n          <div class=\"col-4\">\r\n            <div class=\"card\" style=\"height: 480px;\">\r\n              <div class=\"card-body pt-3\">\r\n                <div class=\"slide-right\" id=\"animationTextDisplay\">\r\n                  <h5 style=\"font-size: 15px; font-weight: bold;\">Will the tool save resources for my sewing department ?</h5>\r\n                  \r\n                  <p class=\"mt-4\" style=\"font-size: 17px; text-align: left; font-size: 11.5px\">\r\n                    Your supervisor manages 3 lines, in one of which there is a style changeover is going on so he/she is engaged there. In the meantime due to some machine fault another line running Polo -Ts starts facing challenge in placket finish operation. The tool alerts the issue in realtime to him. He can then rectify the fault ASAP preventing more alterations.\r\n                  </p>\r\n                </div>\r\n                \r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-8\">\r\n            <div [chart]=\"processBubble\" style=\"height: 480px;\"></div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"row align-items-center h-100 mt-2\">\r\n          <div class=\"col-12\">\r\n            <div [chart]=\"scatterChart\" style=\"height: 480px;\"></div>\r\n          </div>\r\n        </div>\r\n        \r\n    </div> -->\r\n    <!-- <div class=\"tab-pane fade hide-show\" id=\"operationmodule\" role=\"tabpanel\" aria-labelledby=\"OperationModule-tab\">\r\n      <h3 class=\"text-center\">Operation wise performance  </h3>\r\n      <div class=\"row align-items-center h-100 mt-3\">\r\n        <div class=\"col-4\">\r\n          <div class=\"card card-style\">\r\n            <div class=\"card-body text-center\">\r\n              <div [chart] = \"gaugeInline\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <div class=\"card card-style\">\r\n            <div class=\"card-body text-center\">\r\n              <div [chart] = \"gaugeProcess\" style=\"cursor: pointer;\" (click)=\"navigateToOperation('process')\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-4\">\r\n          <div class=\"card card-style\">\r\n            <div class=\"card-body text-center\">\r\n              <div [chart] = \"gaugeOutward\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"tab-pane fade show hide-show\" id=\"process\" role=\"tabpanel\" aria-labelledby=\"OperationModule-tab\">\r\n      <h3 class=\"text-center\">How I am Performing</h3>\r\n      <div class=\"row\">\r\n        <div class=\"col-2\">\r\n          <div class=\"custom-card pl-1 pr-1 pt-2 pb-1\">\r\n            <h6 style=\"font-size: smaller;\">Fabric Store</h6>\r\n            <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">73<span class=\"text-c-green m-l-10\"></span></h6>\r\n            <div class=\"progress\"> \r\n                <div class=\"progress-bar progress-bar-striped card-status-green\" style=\"width: 73%\" aria-valuenow=\"73\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      <div class=\"col-2 ml-4\">\r\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\r\n          <h6 style=\"font-size: smaller;\">Spreading & Cutting</h6>\r\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">62<span class=\"text-c-green m-l-10\"></span></h6>\r\n          <div class=\"progress\"> \r\n              <div class=\"progress-bar progress-bar-striped card-status-yellow\" style=\"width: 62%\" aria-valuenow=\"62\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-2 ml-4\">\r\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\r\n          <h6 style=\"font-size: smaller;\">Trim Store</h6>\r\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">31<span class=\"text-c-green m-l-10\"></span></h6>\r\n          <div class=\"progress\"> \r\n              <div class=\"progress-bar progress-bar-striped card-status-red\" style=\"width: 31%\" aria-valuenow=\"31\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-2 ml-4\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">\r\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">\r\n          <h6 style=\"font-size: smaller;\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">Sewing</h6>\r\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\">30<span class=\"text-c-green m-l-10\"></span></h6>\r\n          <div class=\"progress\" (click)=\"sewingNavigation()\" [(ngStyle)]=\"onclickStyle\"> \r\n              <div class=\"progress-bar progress-bar-striped card-status-red\" style=\"width: 30%\" aria-valuenow=\"30\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-2 ml-4\">\r\n        <div class=\"custom-card pl-2 pr-2 pt-2 pb-1\">\r\n          <h6 style=\"font-size: smaller;\">Finishing & Packing</h6>\r\n          <h6 class=\"m-b-30 f-w-700\" style=\"font-size: smaller;\">70<span class=\"text-c-green m-l-10\"></span></h6>\r\n          <div class=\"progress\"> \r\n              <div class=\"progress-bar progress-bar-striped card-status-green\" style=\"width: 70%\" aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      </div>\r\n      <div class=\"row mt-3\">\r\n        <div class=\"col-6\">\r\n          <div class=\"card\">\r\n            <div class=\"card-body pt-3\">\r\n              <div class=\"slide-right\" id=\"animationTextDisplay\">\r\n                <h5 style=\"font-size: 15px; font-weight: bold;\">Will the tool save resources for my sewing department ?</h5>\r\n                <ul class=\"mt-4\">\r\n                  <li class=\"mt-2\">\r\n                    <div>\r\n                      <span style=\"font-weight: bold;\">Near Real time</span><span> tracking of Line efficiency and quality parameters</span>\r\n                    </div>\r\n                  </li>\r\n                  <li class=\"mt-2\">\r\n                    <div>\r\n                      <span style=\"font-weight: bold;\">Strength Value</span><span> determination for stitching various products line wise/section wise</span>\r\n                    </div>\r\n                  </li>\r\n                  <li class=\"mt-2\">\r\n                    <span style=\"font-weight: bold;\">Threshold alert</span><span> for bottlenecks, low quality or high downtime in sewing lines. The alert also shows the action to be taken and the responsible person.</span>\r\n                  </li>\r\n                </ul>\r\n                <p  style=\"font-size: 17px;\">\r\n                  Your supervisor manages 3 lines, in one of which there is a style changeover is going on so he/she is engaged there. In the meantime due to some machine fault another line running Polo -Ts starts facing challenge in placket finish operation. The tool alerts the issue in realtime to him. He can then rectify the fault ASAP preventing more alterations.\r\n                </p>\r\n              </div>\r\n              \r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-6\">\r\n          <div [chart]=\"processBubble\" style=\"height: 370px;\"></div>\r\n        </div>\r\n      </div>\r\n      \r\n    </div> -->\r\n\r\n  </section>\r\n</div>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n  </div>\r\n</nav>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  \r\n  </ul>\r\n</nav>\r\n\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Overall Factory Score on 31.01.2021</h5>\r\n      </div>\r\n      <div class=\"col-4 mt-1\">\r\n        <a style=\"font-weight: bold;\" (click)=\"navigateToSewingHistorical()\">Show Last 30 Days Data</a>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row\">\r\n      <!-- <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n      </div> -->\r\n      <div class=\"col-9\">\r\n        <h6 style=\"text-align: center; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <button class=\"custom-button ml-4\" style=\"font-weight: bold;\" (click)=\"navigateToSewingHistorical()\">Last 30 days Data</button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 470px; overflow-y: scroll;\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Operations <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:65%;height:30px; background-color: #175d2d;\">65</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseOperationDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Inward <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\" data-toggle=\"collapse\" data-target=\"#collapseProcessesDiv\" aria-expanded=\"false\" aria-controls=\"collapseProcessesDiv\">Processes <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n            <div class=\"col-9\" (click)=\"processNavigation()\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" (click)=\"processNavigation()\" style=\"width:30%;height:30px; background-color: #e0301e;\">30</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"collapse ml-5\" id=\"collapseProcessesDiv\">\r\n            <div class=\"row mt-3\" >\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Fabric & Trims Store <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div class=\"progress\" style=\"height:30px\">\r\n                  <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Spreading & Cutting <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div class=\"progress\" style=\"height:30px\">\r\n                  <div class=\"progress-bar\" style=\"width:70%;height:30px; background-color: #175d2d;\">70</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\" (click)=\"sewingNavigation()\">Sewing <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n              <div class=\"col-9\" style=\"cursor: pointer;\" (click)=\"sewingNavigation()\">\r\n                <div class=\"progress\" style=\"height:30px; cursor: pointer;\" (click)=\"sewingNavigation()\">\r\n                  <div (click)=\"sewingNavigation()\" class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e; cursor: pointer;\">30</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Finishing & Packaging <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div class=\"progress\" style=\"height:30px\">\r\n                  <div class=\"progress-bar\" style=\"width:65%;height:30px; background-color: #ffb600;\">65</div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Outward <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:80%;height:30px; background-color: #175d2d;\">80</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Social Sustainablity <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 11.5px\">Environmental Sustainability<i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e;\">30</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-3 mt-2\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>"
 
 /***/ }),
 
@@ -5471,8 +6895,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment.js */ "./src/environments/environment.js");
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 
@@ -5487,7 +6914,7 @@ var more = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules
 var Exporting = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
 var Sunburst = __webpack_require__(/*! highcharts/modules/sunburst */ "./node_modules/highcharts/modules/sunburst.js");
 
-highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 Boost(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 noData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 more(highcharts__WEBPACK_IMPORTED_MODULE_5__);
@@ -5509,6 +6936,7 @@ var ModuleperformanceComponent = /** @class */ (function () {
         this.locationOptions = [];
         this.unitOptions = [];
         this.lineOptions = [];
+        this.headerTextValue = "";
     }
     ModuleperformanceComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -5529,18 +6957,14 @@ var ModuleperformanceComponent = /** @class */ (function () {
                 });
             });
         });
-        // this.to_left();
-        // this.to_right();
         this.getMasterData();
-        // this.createSocialSustainablityOverview();
-        // this.createEnvironmentalSustainablityOverview();
-        // this.createFabricStoreOverview();
-        // this.createTrimStoreOverview();
-        // this.createSpreadingCuttingOverview();
-        // this.createSewingOverview();
-        // this.createFinishingPackingOverview();
-        // this.createOperationoduleChart();
-        // this.createProcessOverview();
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].moduleOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].moduleOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
     };
     ModuleperformanceComponent.prototype.tabNavigation = function (event) {
         var target = event.target || event.srcElement || event.currentTarget;
@@ -5579,891 +7003,6 @@ var ModuleperformanceComponent = /** @class */ (function () {
             if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#" + element).hasClass('active') == false) {
                 _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#" + element).hide();
             }
-        });
-    };
-    ModuleperformanceComponent.prototype.createSocialSustainablityOverview = function () {
-        this.socialSustainabilityGaugeFormat = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-                type: 'solidgauge',
-                height: '100%',
-                width: 300
-            },
-            title: {
-                text: 'Social Sustainability',
-                style: { 'font-family': 'Arial, Helvetica', 'font-size': '17px' }
-            },
-            pane: {
-                center: ['50%', '85%'],
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-            exporting: {
-                enabled: false
-            },
-            tooltip: {
-                enabled: false
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                stops: [
-                    [0.1, '#e0301e'],
-                    [0.5, '#ffb600'],
-                    [0.9, '#175d2d'] // red
-                ],
-                lineWidth: 0,
-                tickWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 2,
-                title: {
-                    y: -70
-                },
-                labels: {
-                    y: 16
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                    name: 'Environmental Sustainability',
-                    data: [30],
-                    dataLabels: {
-                        format: '<div style="text-align:center">' +
-                            '<span style="font-size:25px">{y}%</span><br/>' +
-                            '<span style="font-size:12px;opacity:0.4"></span>' +
-                            '</div>'
-                    },
-                    tooltip: {
-                        valueSuffix: '%'
-                    }
-                }],
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        y: 5,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        });
-    };
-    ModuleperformanceComponent.prototype.createEnvironmentalSustainablityOverview = function () {
-        this.environmentalSustainabilityGaugeChart = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-                type: 'solidgauge',
-                height: '100%',
-                width: 300
-            },
-            title: {
-                text: 'Environmental Sustainability',
-                style: { 'font-family': 'Arial, Helvetica', 'font-size': '17px' }
-            },
-            pane: {
-                center: ['50%', '85%'],
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-            exporting: {
-                enabled: false
-            },
-            tooltip: {
-                enabled: false
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                stops: [
-                    [0.1, '#e0301e'],
-                    [0.5, '#ffb600'],
-                    [0.9, '#175d2d'] // red
-                ],
-                lineWidth: 0,
-                tickWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 2,
-                title: {
-                    y: -70
-                },
-                labels: {
-                    y: 16
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                    name: 'Environmental Sustainability',
-                    data: [80],
-                    dataLabels: {
-                        format: '<div style="text-align:center">' +
-                            '<span style="font-size:25px">{y}%</span><br/>' +
-                            '<span style="font-size:12px;opacity:0.4"></span>' +
-                            '</div>'
-                    },
-                    tooltip: {
-                        valueSuffix: '%'
-                    }
-                }],
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        y: 5,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        });
-    };
-    ModuleperformanceComponent.prototype.createFabricStoreOverview = function () {
-        this.fabricStoreGaugeFormat = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-                type: 'gauge',
-                height: '100%',
-                width: 300,
-                plotBackgroundColor: null,
-                plotBackgroundImage: null,
-                plotBorderWidth: 0,
-                plotShadow: false
-            },
-            credits: { enabled: false },
-            title: {
-                text: 'Fabric Store Overview',
-                style: { 'font-family': 'Arial, Helvetica', },
-            },
-            pane: {
-                startAngle: -150,
-                endAngle: 150,
-                background: [{
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 0,
-                        outerRadius: '109%'
-                    }, {
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 1,
-                        outerRadius: '107%'
-                    }, {
-                    // default background
-                    }, {
-                        backgroundColor: '#DDD',
-                        borderWidth: 0,
-                        outerRadius: '105%',
-                        innerRadius: '103%'
-                    }]
-            },
-            // the value axis
-            yAxis: {
-                min: 0,
-                max: 100,
-                minorTickInterval: 'auto',
-                minorTickWidth: 1,
-                minorTickLength: 7,
-                minorTickPosition: 'inside',
-                minorTickColor: '#666',
-                tickPixelInterval: 30,
-                tickWidth: 2,
-                tickPosition: 'inside',
-                tickLength: 10,
-                tickColor: '#666',
-                labels: {
-                    step: 2,
-                    rotation: 'auto'
-                },
-                title: {
-                    text: 'percentage'
-                },
-                plotBands: [{
-                        from: 0,
-                        to: 35,
-                        color: '#e0301e'
-                    }, {
-                        from: 36,
-                        to: 69,
-                        color: '#ffb600' // yellow
-                    }, {
-                        from: 70,
-                        to: 100,
-                        color: '#175d2d' // red
-                    }]
-            },
-            series: [{
-                    name: 'Process Overview',
-                    data: [80],
-                    tooltip: {
-                        valueSuffix: ' percentage'
-                    }
-                }]
-        });
-    };
-    ModuleperformanceComponent.prototype.createTrimStoreOverview = function () {
-        this.trimStoreGaugeFormat = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-                type: 'gauge',
-                height: '100%',
-                width: 300,
-                plotBackgroundColor: null,
-                plotBackgroundImage: null,
-                plotBorderWidth: 0,
-                plotShadow: false
-            },
-            credits: { enabled: false },
-            title: {
-                text: 'Trim Store Overview',
-                style: { 'font-family': 'Arial, Helvetica', },
-            },
-            pane: {
-                startAngle: -150,
-                endAngle: 150,
-                background: [{
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 0,
-                        outerRadius: '109%'
-                    }, {
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 1,
-                        outerRadius: '107%'
-                    }, {
-                    // default background
-                    }, {
-                        backgroundColor: '#DDD',
-                        borderWidth: 0,
-                        outerRadius: '105%',
-                        innerRadius: '103%'
-                    }]
-            },
-            // the value axis
-            yAxis: {
-                min: 0,
-                max: 100,
-                minorTickInterval: 'auto',
-                minorTickWidth: 1,
-                minorTickLength: 7,
-                minorTickPosition: 'inside',
-                minorTickColor: '#666',
-                tickPixelInterval: 30,
-                tickWidth: 2,
-                tickPosition: 'inside',
-                tickLength: 10,
-                tickColor: '#666',
-                labels: {
-                    step: 2,
-                    rotation: 'auto'
-                },
-                title: {
-                    text: 'percentage'
-                },
-                plotBands: [{
-                        from: 0,
-                        to: 35,
-                        color: '#e0301e'
-                    }, {
-                        from: 36,
-                        to: 69,
-                        color: '#ffb600' // yellow
-                    }, {
-                        from: 70,
-                        to: 100,
-                        color: '#175d2d' // red
-                    }]
-            },
-            series: [{
-                    name: 'Process Overview',
-                    data: [30],
-                    tooltip: {
-                        valueSuffix: ' percentage'
-                    }
-                }]
-        });
-    };
-    ModuleperformanceComponent.prototype.createSpreadingCuttingOverview = function () {
-        this.spreadingCuttingGaugeFormat = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-                type: 'gauge',
-                height: '100%',
-                width: 300,
-                plotBackgroundColor: null,
-                plotBackgroundImage: null,
-                plotBorderWidth: 0,
-                plotShadow: false
-            },
-            credits: { enabled: false },
-            title: {
-                text: 'Spreading & Cutting Overview',
-                style: { 'font-family': 'Arial, Helvetica', },
-            },
-            pane: {
-                startAngle: -150,
-                endAngle: 150,
-                background: [{
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 0,
-                        outerRadius: '109%'
-                    }, {
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 1,
-                        outerRadius: '107%'
-                    }, {
-                    // default background
-                    }, {
-                        backgroundColor: '#DDD',
-                        borderWidth: 0,
-                        outerRadius: '105%',
-                        innerRadius: '103%'
-                    }]
-            },
-            // the value axis
-            yAxis: {
-                min: 0,
-                max: 100,
-                minorTickInterval: 'auto',
-                minorTickWidth: 1,
-                minorTickLength: 7,
-                minorTickPosition: 'inside',
-                minorTickColor: '#666',
-                tickPixelInterval: 30,
-                tickWidth: 2,
-                tickPosition: 'inside',
-                tickLength: 10,
-                tickColor: '#666',
-                labels: {
-                    step: 2,
-                    rotation: 'auto'
-                },
-                title: {
-                    text: 'percentage'
-                },
-                plotBands: [{
-                        from: 0,
-                        to: 35,
-                        color: '#e0301e'
-                    }, {
-                        from: 36,
-                        to: 69,
-                        color: '#ffb600' // yellow
-                    }, {
-                        from: 70,
-                        to: 100,
-                        color: '#175d2d' // red
-                    }]
-            },
-            series: [{
-                    name: 'Process Overview',
-                    data: [59],
-                    tooltip: {
-                        valueSuffix: ' percentage'
-                    }
-                }]
-        });
-    };
-    ModuleperformanceComponent.prototype.createSewingOverview = function () {
-        this.sewingGaugeFormat = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-                type: 'gauge',
-                height: '100%',
-                width: 300,
-                plotBackgroundColor: null,
-                plotBackgroundImage: null,
-                plotBorderWidth: 0,
-                plotShadow: false
-            },
-            credits: { enabled: false },
-            title: {
-                text: 'Sewing Overview',
-                style: { 'font-family': 'Arial, Helvetica', },
-            },
-            pane: {
-                startAngle: -150,
-                endAngle: 150,
-                background: [{
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 0,
-                        outerRadius: '109%'
-                    }, {
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 1,
-                        outerRadius: '107%'
-                    }, {
-                    // default background
-                    }, {
-                        backgroundColor: '#DDD',
-                        borderWidth: 0,
-                        outerRadius: '105%',
-                        innerRadius: '103%'
-                    }]
-            },
-            // the value axis
-            yAxis: {
-                min: 0,
-                max: 100,
-                minorTickInterval: 'auto',
-                minorTickWidth: 1,
-                minorTickLength: 7,
-                minorTickPosition: 'inside',
-                minorTickColor: '#666',
-                tickPixelInterval: 30,
-                tickWidth: 2,
-                tickPosition: 'inside',
-                tickLength: 10,
-                tickColor: '#666',
-                labels: {
-                    step: 2,
-                    rotation: 'auto'
-                },
-                title: {
-                    text: 'percentage'
-                },
-                plotBands: [{
-                        from: 0,
-                        to: 35,
-                        color: '#e0301e'
-                    }, {
-                        from: 36,
-                        to: 69,
-                        color: '#ffb600' // yellow
-                    }, {
-                        from: 70,
-                        to: 100,
-                        color: '#175d2d' // red
-                    }]
-            },
-            series: [{
-                    name: 'Process Overview',
-                    data: [25],
-                    tooltip: {
-                        valueSuffix: ' percentage'
-                    }
-                }]
-        });
-    };
-    ModuleperformanceComponent.prototype.createFinishingPackingOverview = function () {
-        this.finishingPackingGaugeFormat = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-                type: 'gauge',
-                height: '100%',
-                width: 300,
-                plotBackgroundColor: null,
-                plotBackgroundImage: null,
-                plotBorderWidth: 0,
-                plotShadow: false
-            },
-            credits: { enabled: false },
-            title: {
-                text: 'Finishing & Packing Overview',
-                style: { 'font-family': 'Arial, Helvetica', },
-            },
-            pane: {
-                startAngle: -150,
-                endAngle: 150,
-                background: [{
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 0,
-                        outerRadius: '109%'
-                    }, {
-                        backgroundColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                            stops: [
-                                [0.3, '#e0301e'],
-                                [0.6, '#ffb600'],
-                                [1, '#175d2d']
-                            ]
-                        },
-                        borderWidth: 1,
-                        outerRadius: '107%'
-                    }, {
-                    // default background
-                    }, {
-                        backgroundColor: '#DDD',
-                        borderWidth: 0,
-                        outerRadius: '105%',
-                        innerRadius: '103%'
-                    }]
-            },
-            // the value axis
-            yAxis: {
-                min: 0,
-                max: 100,
-                minorTickInterval: 'auto',
-                minorTickWidth: 1,
-                minorTickLength: 7,
-                minorTickPosition: 'inside',
-                minorTickColor: '#666',
-                tickPixelInterval: 30,
-                tickWidth: 2,
-                tickPosition: 'inside',
-                tickLength: 10,
-                tickColor: '#666',
-                labels: {
-                    step: 2,
-                    rotation: 'auto'
-                },
-                title: {
-                    text: 'percentage'
-                },
-                plotBands: [{
-                        from: 0,
-                        to: 35,
-                        color: '#e0301e'
-                    }, {
-                        from: 36,
-                        to: 69,
-                        color: '#ffb600' // yellow
-                    }, {
-                        from: 70,
-                        to: 100,
-                        color: '#175d2d' // red
-                    }]
-            },
-            series: [{
-                    name: 'Process Overview',
-                    data: [55],
-                    tooltip: {
-                        valueSuffix: ' percentage'
-                    }
-                }]
-        });
-    };
-    ModuleperformanceComponent.prototype.createProcessOverview = function () {
-        var data = [
-            {
-                id: '0.0',
-                parent: '',
-                name: 'Alpine Garments',
-                value: 50
-            },
-            {
-                id: '1.3',
-                parent: '0.0',
-                name: 'Operations',
-                value: 30
-            },
-            {
-                id: '1.1',
-                parent: '0.0',
-                name: 'Social Sustainability',
-                value: 70
-            },
-            {
-                id: '1.2',
-                parent: '0.0',
-                name: 'Environmental Sustainability',
-                value: 60
-            },
-            {
-                id: '2.1',
-                parent: '1.3',
-                name: 'Inward',
-                value: 30
-            },
-            {
-                id: '2.2',
-                parent: '1.3',
-                name: 'Processes',
-                value: 40
-            },
-            {
-                id: '2.3',
-                parent: '1.3',
-                name: 'Processes',
-                value: 60
-            },
-            //starting nested chart
-            {
-                id: '3.1',
-                parent: '2.3',
-                name: 'Fabric & Trims store ',
-                value: 30
-            },
-            {
-                id: '3.2',
-                parent: '2.3',
-                name: 'Spreading & Cutting',
-                value: 40
-            },
-            {
-                id: '3.3',
-                parent: '2.3',
-                name: 'Sewing',
-                value: 60
-            },
-            {
-                id: '3.4',
-                parent: '2.3',
-                name: 'Finishing & packaging',
-                value: 60
-            },
-            // starting sub modules of Social Sustain
-            {
-                id: '3.5',
-                parent: '1.1',
-                name: 'Worker health & safety',
-                value: 60
-            },
-            {
-                id: '3.6',
-                parent: '1.1',
-                name: 'Worker health & safety',
-                value: 30
-            },
-            {
-                id: '3.7',
-                parent: '1.1',
-                name: 'Working hrs',
-                value: 36
-            },
-            {
-                id: '3.8',
-                parent: '1.1',
-                name: 'Compensation & benefits',
-                value: 65
-            },
-            {
-                id: '3.9',
-                parent: '1.1',
-                name: 'Skill developement',
-                value: 45
-            },
-            {
-                id: '4.1',
-                parent: '1.1',
-                name: 'HR Practices',
-                value: 33
-            },
-            {
-                id: '4.2',
-                parent: '1.1',
-                name: 'Facilites',
-                value: 55
-            },
-            //starting submoudule of enviroment
-            {
-                id: '4.3',
-                parent: '1.2',
-                name: 'Resource Management',
-                value: 57
-            },
-            {
-                id: '4.4',
-                parent: '1.2',
-                name: 'Waste Management',
-                value: 23
-            },
-            {
-                id: '4.5',
-                parent: '1.2',
-                name: 'Environment Management Plan',
-                value: 78
-            }
-        ];
-        // Splice in transparent for the center circle
-        highcharts__WEBPACK_IMPORTED_MODULE_5__["getOptions"]().colors.splice(0, 0, 'transparent');
-        this.processBubble = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-            // height: '100%'
-            },
-            colors: ['#dedede', '#e0301e', '#ffb600', '#175d2d', '#e0301e', '#ffb600', '#175d2d', '#e0301e', '#ffb600'],
-            credits: { enabled: false },
-            exporting: {
-                enabled: false
-            },
-            title: {
-                text: 'Overall Performance of Factory'
-            },
-            // subtitle:{
-            //     text: '<li>Status Green : Good Performance</li><li>Status Yellow : Moderate Performance</li>'
-            // },
-            series: [{
-                    type: "sunburst",
-                    data: data,
-                    size: 500,
-                    allowDrillToNode: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        format: '{point.name}',
-                        filter: {
-                            property: 'innerArcLength',
-                            operator: '>',
-                            value: 16
-                        },
-                        rotationMode: 'circular'
-                    },
-                    levels: [{
-                            level: 1,
-                            levelIsConstant: false,
-                            dataLabels: {
-                                color: "#000000"
-                                // filter: {
-                                //     property: 'outerArcLength',
-                                //     operator: '>',
-                                //     value: 64
-                                // }
-                            }
-                        }, {
-                            level: 2,
-                            colorByPoint: true
-                        },
-                        {
-                            level: 3,
-                            colorVariation: {
-                                key: 'brightness',
-                                to: -0.3
-                            }
-                        }, {
-                            level: 4,
-                            colorVariation: {
-                                key: 'brightness',
-                                to: 0.3
-                            }
-                        }]
-                }],
-            tooltip: {
-                headerFormat: "",
-                pointFormat: 'Performance of <b>{point.name}</b> is <b>{point.value}%</b>'
-            }
-        });
-        this.scatterChart = new angular_highcharts__WEBPACK_IMPORTED_MODULE_3__["Chart"]({
-            chart: {
-                type: 'scatter',
-                zoomType: 'xy'
-            },
-            title: {
-                text: 'Efficency Versus Operators'
-            },
-            xAxis: {
-                title: {
-                    enabled: false,
-                    text: 'Efficiency (%)'
-                },
-                labels: {
-                    enabled: false
-                },
-                startOnTick: true,
-                endOnTick: true,
-                showLastLabel: true,
-            },
-            yAxis: {
-                title: {
-                    text: 'Efficiency (%)'
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                backgroundColor: highcharts__WEBPACK_IMPORTED_MODULE_5__["defaultOptions"].chart.backgroundColor,
-                borderWidth: 1
-            },
-            plotOptions: {
-                scatter: {
-                    marker: {
-                        radius: 5,
-                        states: {
-                            hover: {
-                                enabled: true,
-                                lineColor: 'rgb(100,100,100)'
-                            }
-                        }
-                    },
-                    states: {
-                        hover: {
-                            marker: {
-                                enabled: false
-                            }
-                        }
-                    },
-                    tooltip: {
-                        headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: 'OP{point.x} has efficiency of {point.y}%'
-                    }
-                }
-            },
-            series: [{
-                    name: 'Efficiency',
-                    color: 'rgba(223, 83, 83, .5)',
-                    data: [[1, 51.6], [2, 59.0], [3, 49.2], [4, 63.0], [5, 53.6],
-                        [6, 59.0], [7, 47.6], [8, 69.8], [9, 66.8], [10, 75.2],
-                        [11, 55.2], [12, 54.2], [13, 62.5], [14, 42.0], [15, 50.0],
-                        [16, 56.6], [17, 105.2], [18, 51.8], [19, 63.4], [20, 59.0]]
-                }]
         });
     };
     ModuleperformanceComponent.prototype.sewingNavigation = function () {
@@ -6703,25 +7242,29 @@ var ModuleperformanceComponent = /** @class */ (function () {
             }
         });
     };
-    ModuleperformanceComponent.prototype.shift_left = function () {
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#animationTextDisplay').removeClass('slide-right').addClass('slide-left');
+    ModuleperformanceComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
     };
-    ModuleperformanceComponent.prototype.shitft_right = function () {
-        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#animationTextDisplay').removeClass('slide-left').addClass('slide-right');
-    };
-    ModuleperformanceComponent.prototype.to_left = function () {
-        setInterval(this.shift_left, 10000);
-    };
-    ;
-    ModuleperformanceComponent.prototype.to_right = function () {
-        setInterval(this.shitft_right, 20000);
-    };
-    ;
     ModuleperformanceComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -6731,21 +7274,104 @@ var ModuleperformanceComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
         }
     };
+    ModuleperformanceComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    ModuleperformanceComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
     ModuleperformanceComponent.prototype.navigateToSewingHistorical = function () {
         this._router.navigate(['module-historical']);
+    };
+    ModuleperformanceComponent.prototype.getSewingKPIAnalysis = function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
+            var locationId = parseFloat(this.value);
+            return locationId;
+        }).get();
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
+            var unitId = parseFloat(this.value);
+            return unitId;
+        }).get();
+        var checkedLines = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio:checked').map(function () {
+            var lineId = parseFloat(this.value);
+            return lineId;
+        }).get();
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].moduleOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].moduleOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                // this.calculateFirstPageKPIs(KPIView);
+                // this.calculateSecondPageKPIs(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
+    };
+    ModuleperformanceComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     ModuleperformanceComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -6780,7 +7406,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Overall Factory Score of Last 30 days</h5>\r\n        \r\n      </div>\r\n      <div class=\"col-4 mt-1\">\r\n        <a style=\"font-weight: bold;\" (click)=\"navigateToModulePerformane()\">Back to Overview Data</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 480px; overflow-y: scroll;\">\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Operations <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div [chart]= \"operationHistoric\" style=\"height: 200px; \"></div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseOperationDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Inward <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"inwardHistoric\" style=\"height: 200px; \"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseProcessesDiv\" aria-expanded=\"false\" aria-controls=\"collapseProcessesDiv\">Processes <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"processHistoric\" style=\"height: 200px; \"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"collapse ml-5\" id=\"collapseProcessesDiv\">\r\n            <div class=\"row mt-3\" >\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Fabric & Trims Store <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div [chart] = \"fabricTrimHistoric\" style=\"height: 200px; \"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Spreading & Cutting <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div [chart] = \"SpreadingCuttingHistoric\" style=\"height: 200px; \"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" (click)=\"sewingNavigation()\">Sewing <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div [chart] = \"SewingHistoric\" style=\"height: 200px; \"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row mt-3\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Finishing & Packaging <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div [chart] = \"FinishingPackagingHistoric\" style=\"height: 200px; \"></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Outward <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"outwardHistoric\" style=\"height: 200px; \"></div>\r\n              <!-- <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:80%;height:30px; background-color: #175d2d;\">80</div>\r\n              </div> -->\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Social Sustainablity <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div [chart] = \"socialHistoric\" style=\"height: 200px; \"></div>\r\n            <!-- <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n            </div> -->\r\n            \r\n          </div>\r\n        </div>\r\n        <div class=\"row mt-3\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Environmental Sustainability <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div [chart] = \"environmentalHistoric\" style=\"height: 200px; \"></div>\r\n            <!-- <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e;\">30</div>\r\n            </div> -->\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Overall Factory Score of Last 30 days</h5>\r\n        \r\n      </div>\r\n      <div class=\"col-4 mt-1\">\r\n        <button class=\"custom-button\" style=\"font-weight: bold; margin-left: 18%;\" (click)=\"navigateToModulePerformane()\">Overview Data</button>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row\">\r\n      <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <h6 style=\"text-align: center; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <button class=\"custom-button ml-3\" style=\"font-weight: bold;\" (click)=\"navigateToModulePerformane()\">Overview Data</button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 478px; overflow-y: scroll;\">\r\n        <div class=\"row\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseOperationDiv\" aria-expanded=\"false\" aria-controls=\"collapseOperationDiv\">Operations <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div [chart]= \"operationHistoric\" style=\"height: 47px; width:auto\"></div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseOperationDiv\">\r\n          <div class=\"row\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Inward <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"inwardHistoric\" style=\"height: 47px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseProcessesDiv\" aria-expanded=\"false\" aria-controls=\"collapseProcessesDiv\">Processes <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"processHistoric\" style=\"height: 47px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"collapse ml-5\" id=\"collapseProcessesDiv\">\r\n            <div class=\"row\" >\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Fabric & Trims Store <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div [chart] = \"fabricTrimHistoric\" style=\"height: 47px; width:auto\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Spreading & Cutting <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div [chart] = \"SpreadingCuttingHistoric\" style=\"height: 47px; width:auto\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" (click)=\"sewingNavigation()\">Sewing <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div [chart] = \"SewingHistoric\" style=\"height: 47px; width:auto\"></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Finishing & Packaging <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n              <div class=\"col-9\">\r\n                <div [chart] = \"FinishingPackagingHistoric\" style=\"height: 47px; width:auto\"></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Outward <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div [chart]=\"outwardHistoric\" style=\"height: 47px; width:auto\"></div>\r\n              <!-- <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:80%;height:30px; background-color: #175d2d;\">80</div>\r\n              </div> -->\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Social Sustainablity <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div [chart] = \"socialHistoric\" style=\"height: 47px; width:auto\"></div>\r\n            <!-- <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n            </div> -->\r\n            \r\n          </div>\r\n        </div>\r\n        <div class=\"row\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Environmental Sustainability <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div [chart] = \"environmentalHistoric\" style=\"height: 47px; width:auto\"></div>\r\n            <!-- <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e;\">30</div>\r\n            </div> -->\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -6804,8 +7430,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment.js */ "./src/environments/environment.js");
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
-/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! highcharts/modules/drilldown */ "./node_modules/highcharts/modules/drilldown.js");
+/* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 
@@ -6820,7 +7449,7 @@ var more = __webpack_require__(/*! highcharts/highcharts-more */ "./node_modules
 var Exporting = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
 var Sunburst = __webpack_require__(/*! highcharts/modules/sunburst */ "./node_modules/highcharts/modules/sunburst.js");
 
-highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_9___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 Boost(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 noData(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 more(highcharts__WEBPACK_IMPORTED_MODULE_5__);
@@ -6838,6 +7467,20 @@ var ModuleperformancehistComponent = /** @class */ (function () {
         this.lineOptions = [];
         this.unitOptions = [];
         this.locationOptions = [];
+        this.periodOptions = [
+            {
+                Id: 5, Name: "Last 5 days"
+            },
+            {
+                Id: 10, Name: "Last 10 days"
+            },
+            {
+                Id: 15, Name: "Last 15 days"
+            },
+            {
+                Id: 20, Name: "Last 20 days"
+            }
+        ];
     }
     ModuleperformancehistComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#footer").hide();
@@ -6868,12 +7511,24 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                 });
             });
         });
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].moduleHistOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].moduleHistOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
     };
     ModuleperformancehistComponent.prototype.onLocationChange = function (event) {
         var masterDataUrl = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].backendUrl + "MasterData";
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -6883,17 +7538,129 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    ModuleperformancehistComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    ModuleperformancehistComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    ModuleperformancehistComponent.prototype.onPeriodChange = function (event) {
+        if (event.target.checked) {
+            this.periodOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLinePeriodButton").html(element.Name);
+                    var checkedPeriod = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.period:radio:checked').map(function () {
+                        var periodId = parseInt(this.value);
+                        return periodId;
+                    }).get();
+                    if (checkedPeriod[0] != null) {
+                        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                        var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+                        var day = last.getDate();
+                        var month = last.getMonth() + 1;
+                        var year = last.getFullYear();
+                        var monthString = month.toString();
+                        var dayString = day.toString();
+                        if (month < 10) {
+                            monthString = "0" + month;
+                        }
+                        if (day < 10) {
+                            dayString = "0" + day;
+                        }
+                        var StartDate = year + "-" + monthString + "-" + dayString;
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(StartDate);
+                    }
+                }
+            });
+        }
+    };
+    ModuleperformancehistComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
+    };
+    ModuleperformancehistComponent.prototype.getSewingKPIAnalysis = function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
+            var locationId = parseFloat(this.value);
+            return locationId;
+        }).get();
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
+            var unitId = parseFloat(this.value);
+            return unitId;
+        }).get();
+        var checkedLines = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio:checked').map(function () {
+            var lineId = parseFloat(this.value);
+            return lineId;
+        }).get();
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            var startDay = StartDate.getDate();
+            var startmonth = StartDate.getMonth() + 1;
+            var startyear = StartDate.getFullYear();
+            var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+            var endDay = EndDate.getDate();
+            var endmonth = EndDate.getMonth() + 1;
+            var endyear = EndDate.getFullYear();
+            var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+            var KPIView = {
+                Line: checkedLines,
+                Location: checkedLocations,
+                Unit: checkedUnits,
+                StartDate: startDateTime,
+                EndDate: endDateTime
+            };
+            var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+            if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].moduleHistOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+            }
+            else {
+                this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_7__["environment"].moduleHistOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+            }
+            //   this.getFilterData(KPIView)
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_8___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
         }
     };
     ModuleperformancehistComponent.prototype.sewingNavigation = function () {
@@ -6925,8 +7692,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
             },
             credits: { enabled: false },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -6942,12 +7710,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 70.26, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Operations',
                     data: [36, 71, 78, 87, 35, 86, 89, 76, 78, 73, 72, 79, 69, 65, 60],
-                    color: '#175d2d'
+                    color: '#175d2d',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -6988,8 +7771,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                 visible: false
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7005,12 +7789,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 65.6, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Inward',
                     data: [56, 45, 67, 89, 44, 56, 60, 71, 78, 73, 72, 79, 69, 65, 60],
-                    color: '#ffb600'
+                    color: '#ffb600',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -7040,8 +7839,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                 visible: false
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7057,12 +7857,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Process',
                     data: [67, 45, 45, 55, 69, 68, 55, 64, 59, 78, 68, 79, 69, 65, 76],
-                    color: '#e0301e'
+                    color: '#e0301e',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -7089,8 +7904,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                 visible: false
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7106,12 +7922,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Fabric & Trim Store',
                     data: [67, 45, 45, 55, 69, 68, 55, 64, 59, 78, 68, 79, 69, 65, 76],
-                    color: '#ffb600'
+                    color: '#ffb600',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -7138,8 +7969,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                 visible: false
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7155,12 +7987,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Spreading & Cutting',
                     data: [67, 45, 45, 55, 69, 68, 55, 64, 59, 78, 68, 79, 69, 65, 76],
-                    color: '#175d2d'
+                    color: '#175d2d',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -7187,8 +8034,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                 visible: false
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7204,12 +8052,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 60, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Sewing',
                     data: [50, 45, 45, 55, 51, 63, 57, 64, 59, 78, 68, 79, 69, 65, 52],
-                    color: '#e0301e'
+                    color: '#e0301e',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -7236,8 +8099,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                 visible: false
             },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7253,12 +8117,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Finishing & Packaging',
                     data: [67, 45, 45, 55, 69, 68, 55, 64, 59, 78, 68, 79, 69, 65, 76],
-                    color: '#ffb600'
+                    color: '#ffb600',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -7285,8 +8164,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
             },
             credits: { enabled: false },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7302,12 +8182,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 64.13, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Outward',
                     data: [67, 45, 71, 60, 69, 68, 55, 73, 89, 90, 88, 79, 69, 65, 76],
-                    color: '#175d2d'
+                    color: '#175d2d',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -7334,8 +8229,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
             },
             credits: { enabled: false },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7351,12 +8247,27 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 70.26, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Social Sustainability',
                     data: [36, 71, 78, 87, 35, 86, 89, 76, 78, 73, 72, 79, 69, 65, 60],
-                    colour: '#175d2d'
+                    colour: '#175d2d',
+                    "showInLegend": false,
                 }]
         });
     };
@@ -7383,8 +8294,9 @@ var ModuleperformancehistComponent = /** @class */ (function () {
             },
             credits: { enabled: false },
             yAxis: {
+                gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency'
+                    text: ''
                 },
                 max: 100,
                 min: 0
@@ -7400,14 +8312,32 @@ var ModuleperformancehistComponent = /** @class */ (function () {
                         lineColor: '#666666',
                         lineWidth: 1
                     }
+                },
+                series: {
+                    events: {
+                        afterAnimate: function () {
+                            var chart = this.chart;
+                            var label = chart.renderer.text('Average : ' + 70.26, 350, 15)
+                                .css({
+                                fontSize: '12px',
+                                color: '#933401',
+                                fontWeight: '900'
+                            })
+                                .add();
+                        }
+                    }
                 }
             },
             series: [{
                     name: 'Environmental Sustainability',
                     data: [36, 71, 78, 87, 35, 86, 89, 76, 78, 73, 72, 79, 69, 65, 60],
-                    color: '#e0301e'
+                    color: '#e0301e',
+                    "showInLegend": false,
                 }]
         });
+    };
+    ModuleperformancehistComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     ModuleperformancehistComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -7526,7 +8456,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <h5 style=\"text-align: left; font-weight: bold; margin-left: 20%;\">Efficiency and Defect Count of Operators</h5>\r\n    <div class=\"row\">\r\n      <ul class=\"nav nav-pills\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link active\" href=\"#lowOperator\" [ngClass]=\"{ 'active':activeTab==='lowOperator'}\" (click)=\"lowOperator('lowOperator')\"\r\n             data-toggle=\"tab\">Low Efficiency High Defect Performers</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#avgOperator\" [ngClass]=\"{ 'active':activeTab==='avgOperator'}\" data-toggle=\"tab\"\r\n             (click)=\"avgOperator('avgOperator')\">High Efficiency Low Defect Performers</a>\r\n        </li>\r\n        <!-- <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#highOperator\" [ngClass]=\"{ 'active':activeTab==='highOperator'}\" data-toggle=\"tab\"\r\n             (click)=\"highOperator('highOperator')\">High Performers</a>\r\n        </li> -->\r\n      </ul>\r\n      <div class=\"col-9 mt-3\" style=\"background-color: #ffffff; overflow-y: scroll; height: 420px;\">\r\n        <div class=\"tab-content\">\r\n          <div class=\"tab-pane active\" id=\"lowOperator\" [ngClass]=\"{ 'active':activeTab==='lowOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <table class=\"table table-striped mt-2\">\r\n                  <thead class=\"thead-dark\">\r\n                      <tr>\r\n                        <th>\r\n                          Operator Name\r\n                        </th>\r\n                        <th>\r\n                          Efficiency\r\n                        </th>\r\n                        <th>\r\n                          Defect Count\r\n                        </th>\r\n                      </tr>\r\n                  </thead>\r\n                  <tbody>\r\n                      <tr *ngFor=\"let item of lowEfficiencyHighDefectOperatorSummaryDataList; let ndx = index\">\r\n                          <td>{{item.OperatorName}}</td>\r\n                          <td>{{item.Efficiency}}</td>\r\n                          <td>{{item.DefectCount}}</td>\r\n                      </tr>\r\n                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"tab-pane\" id=\"avgOperator\" [ngClass]=\"{ 'active':activeTab==='avgOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <table class=\"table table-striped mt-2\">\r\n                  <thead class=\"thead-dark\">\r\n                    <tr>\r\n                      <th>\r\n                        Operator Name\r\n                      </th>\r\n                      <th>\r\n                        Efficiency\r\n                      </th>\r\n                      <th>\r\n                        Defect Count\r\n                      </th>\r\n                    </tr>\r\n                </thead>\r\n                  <tbody>\r\n                      <tr *ngFor=\"let item of highEfficiencyLowDefectOperatorSummaryDataList; let ndx = index\">\r\n                        <td>{{item.OperatorName}}</td>\r\n                        <td>{{item.Efficiency}}</td>\r\n                        <td>{{item.DefectCount}}</td>\r\n                      </tr>\r\n                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>  \r\n          </div>\r\n          <div class=\"tab-pane\" id=\"highOperator\" [ngClass]=\"{ 'active':activeTab==='highOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <p>This is third tab</p>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n      <div class=\"mt-2\">\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPOperator()\">Overview</button>\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPSummary()\">Operator</button>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <!-- Nav tabs -->\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\"></a>\r\n              </li>\r\n              <!-- <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#mediumEfficiency\" aria-controls=\"mediumEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation(7);\">Medium Efficiency</a>\r\n              </li>\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link\" data-toggle=\"tab\" href=\"#highEfficiency\" aria-controls=\"highEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getOperatorsName('High');\">High Efficiency</a>\r\n              </li> -->\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <!-- <div #LowEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div> -->\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"mediumEfficiency\" >\r\n                <div #ModerateEfficiencyTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td innerHTML=\"{{item.Reasons}}\"></td>\r\n                            <td innerHTML=\"{{item.SubReasons}}\"></td>\r\n                            <td innerHTML=\"{{item.Recommendations}}\"></td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n                <div #ModerateEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelModerateOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n              <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"highEfficiency\">\r\n                <div #HighEfficiencyOperatorsTable #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelHighOperators()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                              Name\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Working Machine\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Unit\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Location\r\n                          </th>\r\n                          <th style=\"width: auto\">\r\n                            Line\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of operatorsDetailsList; let ndx = index1\">\r\n                            <td>{{item.Name}}</td>\r\n                            <td>{{item.Machine}}</td>\r\n                            <td>{{item.Unit}}</td>\r\n                            <td>{{item.Location}}</td>\r\n                            <td>{{item.Line}}</td>\r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n        \r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-3 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"sewingNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-6\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <div class=\"col-3\">\r\n        <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Recommendations</button>\r\n      </div>\r\n    </div>\r\n    <!-- <h6 style=\"text-align: left; font-weight: bold; margin-left: 20%;\">Efficiency and Defect Count of Operators</h6> -->\r\n    <div class=\"row\">\r\n      <!-- <ul class=\"nav nav-pills\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link active\" href=\"#lowOperator\" [ngClass]=\"{ 'active':activeTab==='lowOperator'}\" (click)=\"lowOperator('lowOperator')\"\r\n             data-toggle=\"tab\">Low Efficiency High Defect Performers</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#avgOperator\" [ngClass]=\"{ 'active':activeTab==='avgOperator'}\" data-toggle=\"tab\"\r\n             (click)=\"avgOperator('avgOperator')\">High Efficiency Low Defect Performers</a>\r\n        </li>\r\n      </ul> -->\r\n      <div class=\"col-12 mt-3\" style=\"background-color: #ffffff; overflow-y: scroll; height: 455px;\">\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-4\"><h6>High Defect</h6></div>\r\n          <div class=\"col-4\"><h6>Low Efficiency</h6></div>\r\n          <div class=\"col-4\"><h6>High Defect Low Efficiency</h6></div>\r\n        </div>\r\n        <div class=\"row\">\r\n          <div class=\"col-4\">\r\n            <table class=\"table table-striped mt-2\">\r\n              <thead class=\"thead-dark\">\r\n                  <tr>\r\n                    <th>\r\n                      Operator Name\r\n                    </th>\r\n                    <th>\r\n                      Line\r\n                    </th>\r\n                    <!-- <th>\r\n                      Defect Count\r\n                    </th> -->\r\n                  </tr>\r\n              </thead>\r\n              <tbody>\r\n                  <tr *ngFor=\"let item of highDefect\">\r\n                      <td>{{item.OperatorName}}</td>\r\n                      <td>{{item.Line}}</td>\r\n                      <!-- <td>{{item.DefectCount}}</td> -->\r\n                  </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <div class=\"col-4\">\r\n            <table class=\"table table-striped mt-2\">\r\n              <thead class=\"thead-dark\">\r\n                  <tr>\r\n                    <th>\r\n                      Operator Name\r\n                    </th>\r\n                    <th>\r\n                      Line\r\n                    </th>\r\n                    <!-- <th>\r\n                      Efficiency\r\n                    </th>\r\n                    <th>\r\n                      Defect Count\r\n                    </th> -->\r\n                  </tr>\r\n              </thead>\r\n              <tbody>\r\n                  <tr *ngFor=\"let item of lowEfficiency;\">\r\n                      <td>{{item.OperatorName}}</td>\r\n                      <td>{{item.Line}}</td>\r\n                      <!-- <td>{{item.Efficiency}}</td>\r\n                      <td>{{item.DefectCount}}</td> -->\r\n                  </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <div class=\"col-4\">\r\n            <table class=\"table table-striped mt-2\">\r\n              <thead class=\"thead-dark\">\r\n                  <tr>\r\n                    <th>\r\n                      Operator Name\r\n                    </th>\r\n                    <th>\r\n                      Line\r\n                    </th>\r\n                    <!-- <th>\r\n                      Efficiency\r\n                    </th>\r\n                    <th>\r\n                      Defect Count\r\n                    </th> -->\r\n                  </tr>\r\n              </thead>\r\n              <tbody>\r\n                  <tr *ngFor=\"let item of lowEfficiencyHighDefectOperatorSummaryDataList;\">\r\n                      <td>{{item.OperatorName}}</td>\r\n                      <td>{{item.Line}}</td>\r\n                      <!-- <td>{{item.Efficiency}}</td>\r\n                      <td>{{item.DefectCount}}</td> -->\r\n                  </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </div>\r\n        <!-- <div class=\"tab-content\">\r\n          <div class=\"tab-pane active\" id=\"lowOperator\" [ngClass]=\"{ 'active':activeTab==='lowOperator'}\">\r\n            \r\n          </div>\r\n          <div class=\"tab-pane\" id=\"avgOperator\" [ngClass]=\"{ 'active':activeTab==='avgOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <table class=\"table table-striped mt-2\">\r\n                  <thead class=\"thead-dark\">\r\n                    <tr>\r\n                      <th>\r\n                        Operator Name\r\n                      </th>\r\n                      <th>\r\n                        Efficiency\r\n                      </th>\r\n                      <th>\r\n                        Defect Count\r\n                      </th>\r\n                    </tr>\r\n                </thead>\r\n                  <tbody>\r\n                      <tr *ngFor=\"let item of highEfficiencyLowDefectOperatorSummaryDataList; let ndx = index\">\r\n                        <td>{{item.OperatorName}}</td>\r\n                        <td>{{item.Efficiency}}</td>\r\n                        <td>{{item.DefectCount}}</td>\r\n                      </tr>\r\n                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>  \r\n          </div>\r\n          <div class=\"tab-pane\" id=\"highOperator\" [ngClass]=\"{ 'active':activeTab==='highOperator'}\">\r\n            <div class=\"row align-items-center\">\r\n              <div class=\"col-12\">\r\n                <p>This is third tab</p>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div> -->\r\n      </div>\r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <!-- <div class=\"col-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-01\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n      <div class=\"mt-2\">\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPOperator()\">Back</button>\r\n        <button class=\"custom-button ml-2\" (click)=\"navigateWIPSummary()\">Operator</button>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>"
 
 /***/ }),
 
@@ -7547,6 +8477,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment.js */ "./src/environments/environment.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_7__);
+
+
 
 
 
@@ -7561,9 +8497,11 @@ var OperatordefecteffComponent = /** @class */ (function () {
         this.lineOptions = [];
         this.unitOptions = [];
         this.locationOptions = [];
-        this.highEfficiencyLowDefectOperatorSummaryDataList = [];
+        this.lowEfficiency = [];
+        this.highDefect = [];
         this.lowEfficiencyHighDefectOperatorSummaryDataList = [];
         this.activeTab = 'lowOperator';
+        this.data = [];
     }
     OperatordefecteffComponent.prototype.ngOnInit = function () {
         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#topnavbar").hide();
@@ -7588,22 +8526,43 @@ var OperatordefecteffComponent = /** @class */ (function () {
         });
     };
     OperatordefecteffComponent.prototype.getFilterData = function () {
-        this.KPIView = {
-            Line: [1, 2],
-            Location: [1, 2],
-            Unit: [1, 2],
-            StartDate: "2021-01-01 00:00:00.000",
-            EndDate: "2021-01-31 00:00:00.000",
-        };
+        this.KPIView = JSON.parse(sessionStorage.getItem("KPIView"));
+        // this.KPIView = {
+        //   Line : [1,2],
+        //   Location : [1,2],
+        //   Unit : [1,2],
+        //   StartDate : "2021-01-01 00:00:00.000",
+        //   EndDate : "2021-01-31 00:00:00.000",
+        // }
         this.calculateEfficientDefectOperatorsList(this.KPIView);
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].operatorEfficiencyWIPHeaderText;
+        }
+        else {
+            this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].operatorEfficiencyWIPHeaderText;
+        }
+    };
+    OperatordefecteffComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(startDate);
+        var EndDate = new Date(endDate);
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
     };
     OperatordefecteffComponent.prototype.getSewingKPIAnalysis = function () {
         this.KPIView = {};
-        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox:checked').map(function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio:checked').map(function () {
             var locationId = parseFloat(this.value);
             return locationId;
         }).get();
-        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox:checked').map(function () {
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio:checked').map(function () {
             var unitId = parseFloat(this.value);
             return unitId;
         }).get();
@@ -7612,42 +8571,81 @@ var OperatordefecteffComponent = /** @class */ (function () {
             return lineId;
         }).get();
         var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val());
-        var startDay = StartDate.getDate();
-        var startmonth = StartDate.getMonth() + 1;
-        var startyear = StartDate.getFullYear();
-        var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
         var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
-        var endDay = EndDate.getDate();
-        var endmonth = EndDate.getMonth() + 1;
-        var endyear = EndDate.getFullYear();
-        var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-        this.KPIView = {
-            Line: checkedLines,
-            Location: checkedLocations,
-            Unit: checkedUnits,
-            StartDate: startDateTime,
-            EndDate: endDateTime
-        };
-        this.calculateEfficientDefectOperatorsList(this.KPIView);
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                this.KPIView = KPIView;
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('#endDate').val()) {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].operatorEfficiencyWIPHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].operatorEfficiencyWIPHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                this.calculateEfficientDefectOperatorsList(this.KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
     };
     OperatordefecteffComponent.prototype.calculateEfficientDefectOperatorsList = function (KPIView) {
         var _this = this;
-        this.highEfficiencyLowDefectOperatorSummaryDataList = [];
+        this.lowEfficiency = [];
+        this.highDefect = [];
         this.lowEfficiencyHighDefectOperatorSummaryDataList = [];
         var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].backendUrl + "OperatorDefectEfficiency";
         this.http.post(url, KPIView).subscribe(function (responsedata) {
-            responsedata["highEfficiencyLowDefectOperatorSummaryDataList"].forEach(function (element) {
-                _this.highEfficiencyLowDefectOperatorSummaryDataList.push({
-                    DefectCount: element["DefectCount1Data"],
-                    Efficiency: element["ProdData"],
-                    OperatorName: element["OperatorName"]
+            responsedata["lowEfficiency"].forEach(function (element) {
+                _this.lowEfficiency.push({
+                    // DefectCount : element["DefectCount1Data"],
+                    // Efficiency : element["ProdData"],
+                    OperatorName: element["OperatorName"],
+                    Line: element["OperationDescription"]
+                });
+            });
+            responsedata["highDefect"].forEach(function (element) {
+                _this.highDefect.push({
+                    // DefectCount : element["DefectCount1Data"],
+                    // Efficiency : element["ProdData"],
+                    OperatorName: element["OperatorName"],
+                    Line: element["OperationDescription"]
                 });
             });
             responsedata["lowEfficiencyHighDefectOperatorSummaryDataList"].forEach(function (element) {
                 _this.lowEfficiencyHighDefectOperatorSummaryDataList.push({
-                    DefectCount: element["DefectCount1Data"],
-                    Efficiency: element["ProdData"],
-                    OperatorName: element["OperatorName"]
+                    // DefectCount : element["DefectCount1Data"],
+                    // Efficiency : element["ProdData"],
+                    OperatorName: element["OperatorName"],
+                    Line: element["OperationDescription"]
                 });
             });
         });
@@ -7657,6 +8655,11 @@ var OperatordefecteffComponent = /** @class */ (function () {
         var _this = this;
         var locations = [];
         if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
             locations.push(parseInt(event.target.value));
             var dataViewModel = {
                 locations: locations,
@@ -7666,18 +8669,44 @@ var OperatordefecteffComponent = /** @class */ (function () {
                 if (responsedata["statusCode"] == 200) {
                     responsedata["data"].forEach(function (element) {
                         _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#unit_label_" + element.UnitId).show();
-                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_" + element.Id).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
                     });
                 }
             });
         }
         else {
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:checkbox').prop('checked', false);
-            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:checkbox').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.unit:radio').prop('checked', false);
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".unit_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__(".line_label").hide();
             _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__('.option.justone.line:radio').prop('checked', false);
         }
+    };
+    OperatordefecteffComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    OperatordefecteffComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_2__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    OperatordefecteffComponent.prototype.ExportToExcelLowEfficiency = function () {
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].table_to_sheet(this.TABLE.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_6__["writeFile"](wb, 'InLine_WIP_Recommendation.xlsx');
     };
     OperatordefecteffComponent.prototype.getMasterData = function () {
         var masterDataUrl = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].backendUrl + "MasterData";
@@ -7696,8 +8725,31 @@ var OperatordefecteffComponent = /** @class */ (function () {
     OperatordefecteffComponent.prototype.avgOperator = function (activeTab) {
         this.activeTab = activeTab;
     };
+    OperatordefecteffComponent.prototype.getRecommendation = function (recommendationId) {
+        this.data = [];
+        var recommendationView = {
+            KPIId: 8,
+            recommendationId: recommendationId.toString()
+        };
+        var url = src_environments_environment_js__WEBPACK_IMPORTED_MODULE_5__["environment"].backendUrl + "Recommendation";
+        var _this = this;
+        this.http.post(url, recommendationView).subscribe(function (responsedata) {
+            _this.recommendationModalTitle = "Recommemdations for Inline WIP";
+            // _this.getOperatorsName('Moderate');
+            responsedata["allRecommendations"].forEach(function (element) {
+                _this.data.push({
+                    Reasons: element["Reasons"],
+                    Recommendations: element["Recommendations"],
+                    SubReasons: element["SubReasons"],
+                });
+            });
+        });
+    };
     OperatordefecteffComponent.prototype.highOperator = function (activeTab) {
         this.activeTab = activeTab;
+    };
+    OperatordefecteffComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     OperatordefecteffComponent.prototype.sewingNavigation = function () {
         this._router.navigate(['sewing-module']);
@@ -7714,6 +8766,10 @@ var OperatordefecteffComponent = /** @class */ (function () {
     OperatordefecteffComponent.prototype.navigateWIPSummary = function () {
         this._router.navigate(['wip-summary']);
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('TABLE'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], OperatordefecteffComponent.prototype, "TABLE", void 0);
     OperatordefecteffComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-operatordefecteff',
@@ -7747,7 +8803,7 @@ module.exports = "path{\r\n    opacity: 1 !important;\r\n  }\r\n  .sidebar {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n    <!-- <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/module-performance\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/sewing-module\">Sewing<span class=\"sr-only\"></span></a>\r\n      </li>\r\n    </ul> -->\r\n    <!-- <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4> -->\r\n  </div>\r\n</nav>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  \r\n  </ul>\r\n</nav>\r\n\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Overall Process Module Score on 31.01.2021</h5>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 470px; overflow-y: scroll;\">\r\n        <div class=\"row mt-2\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseProcessesDiv\" aria-expanded=\"false\" aria-controls=\"collapseProcessesDiv\">Processes <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e;\">30</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseProcessesDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Fabric & Trims Store <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Spreading & Cutting <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:70%;height:30px; background-color: #175d2d;\">70</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" (click)=\"sewingNavigation()\">Sewing <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n            <div class=\"col-9\" style=\"cursor: pointer;\" (click)=\"sewingNavigation()\">\r\n              <div class=\"progress\" style=\"height:30px; cursor: pointer;\" (click)=\"sewingNavigation()\">\r\n                <div (click)=\"sewingNavigation()\" class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e; cursor: pointer;\">30</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Finishing & Packaging <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:65%;height:30px; background-color: #ffb600;\">65</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row \">\r\n          <div class=\"col-3\" id=\"mmrVisual\" style=\"display: block; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Man Machine Ration\">MMR</button></div>\r\n              <div #mmrContainer style=\"height: 190px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"defectVisual\" style=\"display: block; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDefectPercentage()\" style=\"cursor: pointer;\">Defect%</button></div>\r\n              <div #defectContainer style=\"height: 190px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsDefectAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    \r\n  </section>\r\n</div>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n    <!-- <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/module-performance\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/sewing-module\">Sewing<span class=\"sr-only\"></span></a>\r\n      </li>\r\n    </ul> -->\r\n    <!-- <h4 class=\"text-sm-center mt-2 ml-5\" style=\"color: #ffffff;\">Digital Diagnostic Tool</h4> -->\r\n  </div>\r\n</nav>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li>\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  \r\n  </ul>\r\n</nav>\r\n\r\n<div role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <h6 style=\"text-align: left; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n    </div>\r\n    <!-- <div class=\"row\">\r\n      <div class=\"col-8\">\r\n        <h5 style=\"text-align: center; font-weight: bold;\">Overall Process Module Score on 31.01.2021</h5>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row\" style=\"text-align: center;\">\r\n      <div class=\"col-8\">\r\n        <h6 style=\"font-size: 12px; font-style: italic; color: blue;\">Note: Please click on blue icon to drill down further</h6>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"background-color: #ffffff; height: 470px; overflow-y: scroll;\">\r\n        <div class=\"row mt-2\">\r\n          <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" data-toggle=\"collapse\" data-target=\"#collapseProcessesDiv\" aria-expanded=\"false\" aria-controls=\"collapseProcessesDiv\">Processes <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n          <div class=\"col-9\">\r\n            <div class=\"progress\" style=\"height:30px\">\r\n              <div class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e;\">30</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"collapse ml-5\" id=\"collapseProcessesDiv\">\r\n          <div class=\"row mt-3\" >\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Fabric & Trims Store <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:50%;height:30px; background-color: #ffb600;\">50</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Spreading & Cutting <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:70%;height:30px; background-color: #175d2d;\">70</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\" (click)=\"sewingNavigation()\">Sewing <i class=\"fas fa-caret-down\" style=\"color: blue;\"></i></button>\r\n            <div class=\"col-9\" style=\"cursor: pointer;\" (click)=\"sewingNavigation()\">\r\n              <div class=\"progress\" style=\"height:30px; cursor: pointer;\" (click)=\"sewingNavigation()\">\r\n                <div (click)=\"sewingNavigation()\" class=\"progress-bar\" style=\"width:30%;height:30px; background-color: #e0301e; cursor: pointer;\">30</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row mt-3\">\r\n            <button style=\"float:left;\" type=\"button\" class=\"btn col-3\" style=\"text-align: left; font-size: 12px\">Finishing & Packaging <i class=\"fas fa-caret-down\" style=\"color: brown;\"></i></button>\r\n            <div class=\"col-9\">\r\n              <div class=\"progress\" style=\"height:30px\">\r\n                <div class=\"progress-bar\" style=\"width:65%;height:30px; background-color: #ffb600;\">65</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row \">\r\n          <div class=\"col-3\" id=\"mmrVisual\" style=\"display: block; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Man Machine Ration\">MMR</button></div>\r\n              <div #mmrContainer style=\"height: 190px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"defectVisual\" style=\"display: block; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDefectPercentage()\" style=\"cursor: pointer;\">Defect%</button></div>\r\n              <div #defectContainer style=\"height: 190px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      \r\n      <!-- <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2\"><input name='options[location]' (change)=\"onLocationChange($event)\" type=\"checkbox\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\"><input name='options[unit]' type=\"checkbox\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of lineOptions\"><a href=\"#\" class=\"dropdown-label\"><label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\"><input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}</label></a></li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getOperatorsDefectAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div> -->\r\n\r\n      <div class=\"col-3 mt-3\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <!-- <li class=\"custom-li\" *ngFor=\"let option of lineOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li> -->\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -7774,6 +8830,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
 /* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../assets/lib/jquery/dist/jquery.js */ "./src/assets/lib/jquery/dist/jquery.js");
+/* harmony import */ var _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -7786,6 +8846,8 @@ highcharts_highcharts_more__WEBPACK_IMPORTED_MODULE_6___default()(highcharts__WE
 highcharts_modules_drilldown__WEBPACK_IMPORTED_MODULE_7___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
 
 highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_8___default()(highcharts__WEBPACK_IMPORTED_MODULE_5__);
+
+
 var ProcessOverviewComponent = /** @class */ (function () {
     function ProcessOverviewComponent(http, _router) {
         this.http = http;
@@ -7793,26 +8855,34 @@ var ProcessOverviewComponent = /** @class */ (function () {
         this.lineOptions = [];
         this.unitOptions = [];
         this.locationOptions = [];
+        this.headerTextValue = "";
     }
     ProcessOverviewComponent.prototype.ngOnInit = function () {
-        $("#topnavbar").hide();
-        $("#footer").css("margin-left", "15%");
-        $("#footer").hide();
-        $(".footer").hide();
-        $(function () {
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#topnavbar").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#footer").css("margin-left", "15%");
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#footer").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__(".footer").hide();
+        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__(function () {
             // Hide all lists except the outermost.
-            $('ul.tree ul').hide();
-            $('.tree li > ul').each(function (i) {
-                var $subUl = $(this);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('ul.tree ul').hide();
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('.tree li > ul').each(function (i) {
+                var $subUl = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__(this);
                 var $parentLi = $subUl.parent('li');
                 var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
                 $parentLi.addClass('has-children');
                 $parentLi.prepend($toggleIcon).find('.js-toggle-icon').on('click', function () {
-                    $(this).text($(this).text() == '+' ? '-' : '+');
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__(this).text(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__(this).text() == '+' ? '-' : '+');
                     $subUl.slideToggle('fast');
                 });
             });
         });
+        var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#endDate').val());
+        if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#endDate').val()) {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].processOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+        }
+        else {
+            this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].processOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+        }
         this.getMasterData();
         this.calculateProcessKPIs();
     };
@@ -7848,6 +8918,7 @@ var ProcessOverviewComponent = /** @class */ (function () {
             },
             xAxis: {
                 type: 'category',
+                visisble: false,
                 labels: {
                     rotation: -45,
                     style: {
@@ -7858,6 +8929,7 @@ var ProcessOverviewComponent = /** @class */ (function () {
                 }
             },
             yAxis: {
+                visible: false,
                 min: 0,
                 max: 2,
                 title: {
@@ -7868,7 +8940,8 @@ var ProcessOverviewComponent = /** @class */ (function () {
                     style: {
                         fontSize: '10px',
                         'font-family': 'Arial, Helvetica'
-                    }
+                    },
+                    enabled: false,
                 }
             },
             legend: {
@@ -7886,9 +8959,10 @@ var ProcessOverviewComponent = /** @class */ (function () {
                     dataLabels: {
                         enabled: true,
                         color: '#000000',
-                        align: 'right',
+                        align: 'center',
                         format: '{point.y:.1f}',
-                        y: 10,
+                        y: 5,
+                        x: 3,
                         style: {
                             fontSize: '10px',
                             fontFamily: 'Verdana, sans-serif'
@@ -7912,6 +8986,7 @@ var ProcessOverviewComponent = /** @class */ (function () {
                 style: { 'font-family': 'Arial, Helvetica', 'font-size': '13px', 'display': 'none' }
             },
             xAxis: {
+                visisble: false,
                 type: 'category',
                 labels: {
                     rotation: -45,
@@ -7923,6 +8998,7 @@ var ProcessOverviewComponent = /** @class */ (function () {
                 }
             },
             yAxis: {
+                visisble: false,
                 min: 0,
                 max: 50,
                 title: {
@@ -7952,9 +9028,10 @@ var ProcessOverviewComponent = /** @class */ (function () {
                     dataLabels: {
                         enabled: true,
                         color: '#000000',
-                        align: 'right',
+                        align: 'center',
                         format: '{point.y:.1f}',
-                        y: 10,
+                        y: 5,
+                        x: 3,
                         style: {
                             fontSize: '10px',
                             fontFamily: 'Verdana, sans-serif'
@@ -7971,6 +9048,134 @@ var ProcessOverviewComponent = /** @class */ (function () {
     };
     ProcessOverviewComponent.prototype.processNavigation = function () {
         this._router.navigate(['process-overview']);
+    };
+    ProcessOverviewComponent.prototype.onLocationChange = function (event) {
+        var masterDataUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].backendUrl + "MasterData";
+        var _this = this;
+        var locations = [];
+        if (event.target.checked) {
+            this.locationOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#dropdownLocationMenuButton").html(element.Name);
+                }
+            });
+            locations.push(parseInt(event.target.value));
+            var dataViewModel = {
+                locations: locations,
+                units: []
+            };
+            this.http.post(masterDataUrl, dataViewModel).subscribe(function (responsedata) {
+                if (responsedata["statusCode"] == 200) {
+                    responsedata["data"].forEach(function (element) {
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#unit_label_" + element.UnitId).show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#line_label_1").show();
+                        _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#line_label_2").show();
+                        // $("#line_label_" + element.Id).show();
+                    });
+                }
+            });
+        }
+        else {
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('.option.justone.location:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('.option.justone.unit:radio').prop('checked', false);
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__(".unit_label").hide();
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__(".line_label").hide();
+            _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('.option.justone.line:radio').prop('checked', false);
+        }
+    };
+    ProcessOverviewComponent.prototype.onUnitChange = function (event) {
+        if (event.target.checked) {
+            this.unitOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#dropdownUnitMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    ProcessOverviewComponent.prototype.onLineChange = function (event) {
+        if (event.target.checked) {
+            this.lineOptions.forEach(function (element) {
+                if (element.Id == event.target.value) {
+                    _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__("#dropdownLineMenuButton").html(element.Name);
+                }
+            });
+        }
+    };
+    ProcessOverviewComponent.prototype.getSewingKPIAnalysis = function () {
+        var checkedLocations = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('.option.justone.location:radio:checked').map(function () {
+            var locationId = parseFloat(this.value);
+            return locationId;
+        }).get();
+        var checkedUnits = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('.option.justone.unit:radio:checked').map(function () {
+            var unitId = parseFloat(this.value);
+            return unitId;
+        }).get();
+        var checkedLines = _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('.option.justone.line:radio:checked').map(function () {
+            var lineId = parseFloat(this.value);
+            return lineId;
+        }).get();
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#endDate').val());
+        if (checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#startDate').val() != "" && _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#endDate').val() != "") {
+            if (StartDate > EndDate) {
+                sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10___default.a.fire({
+                    icon: 'error',
+                    title: 'Sorry...',
+                    text: 'StartDate can not be greater than EndDate',
+                    showConfirmButton: true
+                });
+            }
+            else {
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line: checkedLines,
+                    Location: checkedLocations,
+                    Unit: checkedUnits,
+                    StartDate: startDateTime,
+                    EndDate: endDateTime
+                };
+                var userFormattedDateOutput = this.formatUserInputDate(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#startDate').val(), _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#endDate').val());
+                if (_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#startDate').val() == _assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#endDate').val()) {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].processOverviewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+                }
+                else {
+                    this.headerTextValue = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].processOverviewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+                }
+                // this.calculateFirstPageKPIs(KPIView);
+                // this.calculateSecondPageKPIs(KPIView);
+            }
+        }
+        else {
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_10___default.a.fire({
+                icon: 'error',
+                title: 'Sorry...',
+                text: 'Please select location, unit ,line, start date and end date to view historical data',
+                showConfirmButton: true
+            });
+        }
+    };
+    ProcessOverviewComponent.prototype.formatUserInputDate = function (startDate, endDate) {
+        var StartDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#startDate').val());
+        var EndDate = new Date(_assets_lib_jquery_dist_jquery_js__WEBPACK_IMPORTED_MODULE_9__('#endDate').val());
+        var startDay = StartDate.getDate();
+        var startmonth = StartDate.getMonth() + 1;
+        var startyear = StartDate.getFullYear();
+        var startDateTime = startDay + "." + startmonth + '.' + startyear;
+        var endDay = EndDate.getDate();
+        var endmonth = EndDate.getMonth() + 1;
+        var endyear = EndDate.getFullYear();
+        var endDateTime = endDay + "." + endmonth + '.' + endyear;
+        return { startDateTime: startDateTime, endDateTime: endDateTime };
+    };
+    ProcessOverviewComponent.prototype.backToPrevious = function () {
+        window.history.back();
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("mmrContainer", { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }),
@@ -8708,7 +9913,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Overall Recommendations</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <h6 style=\"text-align: center; font-weight: bold;\">{{headerTextValue}}</h6>\r\n        <h6 class=\"ml1\">\r\n          <span class=\"text-wrapper\">\r\n            <span class=\"line line1\"></span>\r\n            <span class=\"letters\" style=\"font-style: italic; color: #d04a02;\">Please click each button below to view detailed analysis</span>\r\n            <span class=\"line line2\"></span>\r\n          </span>\r\n        </h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <button class=\"custom-button ml-4\" style=\"font-weight: bold;\" (click)=\"navigateToSewingHistorical()\">Last 30 days Data</button>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row mt-1\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-1\">\r\n          <div class=\"col-3\" id=\"efficiencyVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateEfficiency()\" style=\"cursor: pointer;\">Efficiency %</button></div>\r\n              <div class=\"ml-2\" #efficiencyContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"capacityVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer; font-size: 13px;\"  (click)=\"navigateCapacityUtilization()\"data-toggle=\"tooltip\" data-placement=\"top\" title=\"Capacity Utilisation(Actual Vs Planned Prodctn.)\">Capacity Utilization%</button></div>\r\n              <div class=\"ml-2\" #capacityUtilizationContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"absentismVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" (click)=\"navigateAbsentismUtilization()\">Absenteeism %</button></div>\r\n              <div class=\"ml-2\" #absentismContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"defectVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDefectPercentage()\" style=\"cursor: pointer;\">Defect%</button></div>\r\n              <div class=\"ml-2\" #defectContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-3\" id=\"dhuVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDHU()\" style=\"cursor: pointer;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Defects Per Hundred Units\">DHU</button></div>\r\n              <div class=\"ml-2\" #dhuContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"wipVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateInlineWIP()\" style=\"cursor: pointer;\">Inline WIP Level</button></div>\r\n              <div class=\"ml-2\" #wipContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"machineDowntimeVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateMachineDowntime()\" style=\"cursor: pointer;\">Downtime%</button></div>\r\n              <div class=\"ml-2\" #machineDowntimeContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"rejectionVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" (click)=\"navigateRejection()\">Rejection%</button></div>\r\n              <div class=\"ml-2\" #rejectionContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-2\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <!-- <li class=\"custom-li\" *ngFor=\"let option of lineOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li> -->\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select KPI</span>\r\n                    <select class=\"form-control\" id=\"kpiList\" [(ngModel)]=\"selectedKPI\" style=\"font-size: small;\" (change)=\"changeKPIValue($event)\">\r\n                      <option *ngFor=\"let element of kpiMasterData\" [value]=\"element.Id\" style=\"font-size: small;\">{{element.Name}}</option>\r\n                    </select>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getAllRecommendations()\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<div class=\"modal fade\" id=\"recommendationModal\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"recommendationModalTitle\">{{recommendationModalTitle}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\" style=\"height: 400px; overflow-y: scroll;\">\r\n        <div role=\"tabpanel\">\r\n          <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\r\n              <li role=\"presentation\" class=\"nav-item\"><a class=\"nav-link active\" data-toggle=\"tab\" href=\"#lowEfficiency\" aria-controls=\"lowEfficiency\" role=\"tab\" data-toggle=\"tab\" (click)=\"getRecommendation('195,196,197,198,199,200,201,202,203,204,205')\">Overall Recommendations</a>\r\n              </li>\r\n          </ul>\r\n          <div class=\"tab-content\">\r\n              <div role=\"tabpanel\" class=\"tab-pane active\" id=\"lowEfficiency\">\r\n                <div #TABLE #table class=\"mt-2\">\r\n                  <button (click)=\"ExportToExcelLowEfficiency()\" style=\"font-size: small;\" class=\"btn custom-button\">Export To Excel</button>\r\n                  <table class=\"table table-striped mt-3\" style=\"background-color: #ffffff; height: 200px; overflow-y: scroll;\">\r\n                    <thead class=\"thead-dark\">\r\n                        <tr>\r\n                            <th style=\"width: auto\">\r\n                                Reasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              SubReasons\r\n                            </th>\r\n                            <th style=\"width: auto\">\r\n                              Recommendations\r\n                          </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of data; let ndx = index\">\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Reasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.SubReasons}}\"></div>\r\n                            </td>\r\n                            <td>\r\n                              <div innerHTML=\"{{item.Recommendations}}\"></div>\r\n                            </td>\r\n                           \r\n                        </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<nav class=\"col-3 col-3 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"dashboardNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <h6 style=\"text-align: center; font-weight: bold;\">{{headerTextValue}}</h6>\r\n        <h6 class=\"ml1\">\r\n          <span class=\"text-wrapper\">\r\n            <span class=\"line line1\"></span>\r\n            <span class=\"letters\" style=\"font-style: italic; color: #d04a02;\">Please click each button below to view detailed analysis</span>\r\n            <span class=\"line line2\"></span>\r\n          </span>\r\n        </h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <button class=\"custom-button ml-4\" style=\"font-weight: bold;\" (click)=\"navigateToSewingHistorical()\">Last 30 days Data</button>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"row mt-1\">\r\n      <div class=\"col-9\">\r\n        <div class=\"row align-items-center mt-1\">\r\n          <div class=\"col-3\" id=\"efficiencyVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateEfficiency()\" style=\"cursor: pointer;\">Efficiency %</button></div>\r\n              <div class=\"ml-2\" #efficiencyContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"capacityVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer; font-size: 13px;\"  (click)=\"navigateCapacityUtilization()\"data-toggle=\"tooltip\" data-placement=\"top\" title=\"Capacity Utilisation(Actual Vs Planned Prodctn.)\">Capacity Utilization%</button></div>\r\n              <div class=\"ml-2\" #capacityUtilizationContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"absentismVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" (click)=\"navigateAbsentismUtilization()\">Absenteeism %</button></div>\r\n              <div class=\"ml-2\" #absentismContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"defectVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDefectPercentage()\" style=\"cursor: pointer;\">Defect%</button></div>\r\n              <div class=\"ml-2\" #defectContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center mt-2\">\r\n          <div class=\"col-3\" id=\"dhuVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateDHU()\" style=\"cursor: pointer;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Defects Per Hundred Units\">DHU</button></div>\r\n              <div class=\"ml-2\" #dhuContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"wipVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateInlineWIP()\" style=\"cursor: pointer;\">Inline WIP Level</button></div>\r\n              <div class=\"ml-2\" #wipContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"machineDowntimeVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" (click)=\"navigateMachineDowntime()\" style=\"cursor: pointer;\">Downtime%</button></div>\r\n              <div class=\"ml-2\" #machineDowntimeContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-3\" id=\"rejectionVisual\" style=\"display: none; height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div class=\"pb-2\"><button class=\"custom-button\" style=\"cursor: pointer;\" (click)=\"navigateRejection()\">Rejection%</button></div>\r\n              <div class=\"ml-2\" #rejectionContainer style=\"height: 190px; width: 151px;\"></div>\r\n            </div>\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-2\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <!-- <li class=\"custom-li\" *ngFor=\"let option of lineOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 line_label\" [id]=\"'line_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[line]' type=\"radio\" class=\"option justone line\" [value]=\"option.Id\" [id]=\"'line_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li> -->\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select KPI</span>\r\n                    <select class=\"form-control\" id=\"kpiList\" [(ngModel)]=\"selectedKPI\" style=\"font-size: small;\" (change)=\"changeKPIValue($event)\">\r\n                      <option *ngFor=\"let element of kpiMasterData\" [value]=\"element.Id\" style=\"font-size: small;\">{{element.Name}}</option>\r\n                    </select>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item\">\r\n                <button class=\"custom-button ml-2\" data-toggle=\"modal\" data-target=\"#recommendationModal\" (click)=\"getAllRecommendations()\">Recommendations</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -9841,7 +11046,7 @@ module.exports = ".sidebar {\r\n    position: fixed;\r\n    top: 0px;\r\n    bot
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<nav class=\"col-6 col-6 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <h6 style=\"text-align: center; font-weight: bold;\">{{headerTextValue}}</h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <button class=\"custom-button ml-3\" style=\"font-weight: bold;\" (click)=\"sewingNavigation()\">Back to KPI Data</button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"height: 500px; overflow-y: scroll; overflow-x: hidden; background-color:#ffffff;\">\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Efficiency')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"efficiencyVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"efficiencyHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Defect')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"defectVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"defectsHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Reject')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"rejectionVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"rejectionHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('CapacityUtilization')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"capacityVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"capacityHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Absenteeism')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"absentismVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"absentismHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('DHU')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"dhuVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"dhuHistoric\" style=\"height: 58px; width:auto\"(click)=\"dhuHistoricalNavigation()\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('InlineWIP')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"wipVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"wipHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Downtime')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"machineDowntimeVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"machineDowntimeHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\" style=\"font-family: 'Arial, Helvetica';\">\r\n  <a class=\"navbar-brand\" href=\"#\"><img style=\"height: 34px;\" src=\"../../assets/img/PwC_Outline_Logo_White.png\" /></a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n</nav>\r\n<nav class=\"col-6 col-6 d-none d-sm-block bg-light sidebar mt-5\">\r\n  <span class=\"ml-4\" style=\"text-align: center; font-weight: bold; font-size: 17px;\">Quick Links</span>\r\n  <ul class=\"tree cutom-treestructure mt-3\">\r\n    <li (click)=\"dashboardNavigation()\" id=\"dashbaord_href\" style=\"cursor: pointer;\">\r\n      <span id=\"dashboard_span\" class=\"d-none d-md-inline\">Factory Overview</span>\r\n    </li>\r\n  \r\n    <li>\r\n      <a id=\"moduleperformance_href\" (click)=\"tabNavigation($event)\"><span id=\"moduleperformance_span\" class=\"d-none d-md-inline\">Operations</span></a>\r\n      <ul class=\"cutom-treestructure\">\r\n        <li>\r\n          Inward\r\n        </li>\r\n  \r\n        <li (click)=\"processNavigation()\" style=\"cursor: pointer;\">\r\n          Processes\r\n          <ul class=\"ml-4\">\r\n            <li>\r\n              Fabric & Trims Store \r\n            </li>\r\n  \r\n            <li>\r\n              Spreading & Cutting\r\n            </li>\r\n            <li (click)=\"sewingNavigation()\" style=\"cursor: pointer;\">\r\n              Sewing \r\n            </li>\r\n            <li>\r\n              Finishing & Packaging\r\n            </li>\r\n          </ul>\r\n        </li>\r\n  \r\n        <li>\r\n          Outward\r\n        </li>\r\n      </ul>\r\n    </li>\r\n  \r\n    <li>\r\n      Social Sustainability\r\n    </li>\r\n\r\n    <li>\r\n      Environmental Sustainability\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<main role=\"main\" class=\"col-9 ml-auto col-md-9 pt-3\">\r\n  <section class=\"text-center placeholders\" id=\"dashboardsection\">\r\n    <div class=\"row\">\r\n      <div class=\"col-2 mt-2\">\r\n        <a style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"backToPrevious()\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i> Back</a>\r\n        <a class=\"ml-2\" style=\"font-weight: bold; font-size: 15px; cursor: pointer;\" (click)=\"dashboardNavigation()\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a>\r\n      </div>\r\n      <div class=\"col-7\">\r\n        <h6 style=\"text-align: center; font-weight: bold;\">{{headerTextValue}}</h6>\r\n        <h6 class=\"ml1\">\r\n          <span class=\"text-wrapper\">\r\n            <span class=\"line line1\"></span>\r\n            <span class=\"letters\" style=\"font-style: italic; color: #d04a02;\">Please click each chart below to view detailed analysis</span>\r\n            <span class=\"line line2\"></span>\r\n          </span>\r\n        </h6>\r\n      </div>\r\n      <div class=\"col-3 mt-2\" style=\"text-align: start;\">\r\n        <button class=\"custom-button ml-3\" style=\"font-weight: bold;\" (click)=\"sewingNavigation()\">Back to KPI Data</button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-9\" style=\"height: 481px; overflow-y: scroll; overflow-x: hidden; background-color:#ffffff;\">\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Efficiency')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" (click)=\"navigateEfficiency()\" id=\"efficiencyVisual\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div (click)=\"navigateEfficiency()\" [chart] = \"efficiencyHistoric\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Defect')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" (click)=\"navigateDefectPercentage()\" id=\"defectVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"defectsHistoric\" (click)=\"navigateDefectPercentage()\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Reject')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" (click)=\"navigateRejection()\" id=\"rejectionVisual\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"rejectionHistoric\" (click)=\"navigateRejection()\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('CapacityUtilization')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"capacityVisual\" (click)=\"navigateCapacityUtilization()\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"capacityHistoric\" (click)=\"navigateCapacityUtilization()\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Absenteeism')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"absentismVisual\" (click)=\"navigateAbsentismUtilization()\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"absentismHistoric\" (click)=\"navigateAbsentismUtilization()\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('DHU')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"dhuVisual\" (click)=\"navigateDHU()\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"dhuHistoric\" style=\"height: 58px; width:auto\" (click)=\"navigateDHU()\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('InlineWIP')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"wipVisual\" (click)=\"navigateInlineWIP()\" style=\"height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart] = \"wipHistoric\" (click)=\"navigateInlineWIP()\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"row align-items-center\">\r\n          <!-- <div class=\"col-1\">\r\n            <a (click)=\"showKPIAverageValues('Downtime')\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\" style=\"color:#aa2417; font-size: 18px;\"></i></a>\r\n          </div> -->\r\n          <div class=\"col-12\" id=\"machineDowntimeVisual\" (click)=\"navigateMachineDowntime()\" style=\" height: auto; min-height: max-content;\">\r\n            <div class=\"d-flex flex-column\">\r\n              <div [chart]=\"machineDowntimeHistoric\" (click)=\"navigateMachineDowntime()\" style=\"height: 58px; width:auto\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-3 mt-5\">\r\n        <div class=\"d-flex flex-column mb-3\">\r\n          <nav class=\"col-sm-3 col-md-2 d-none d-sm-block\">\r\n            <ul class=\"nav nav-pills flex-column\">\r\n              <li class=\"nav-item\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -36%;\">Select Locations</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLocationMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\">\r\n                          <li class=\"custom-li\" *ngFor=\"let option of locationOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2\">\r\n                                <input name='options[location]' (change)=\"onLocationChange($event)\" type=\"radio\" class=\"option justone location\" [value]=\"option.Id\" [id]=\"'location_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -54%;\">Select Unit</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownUnitMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of unitOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 unit_label\" [id]=\"'unit_label_' + option.Id\" style=\"display: none;\">\r\n                                <input name='options[unit]' (change)=\"onUnitChange($event)\" type=\"radio\" class=\"option justone unit\" [value]=\"option.Id\" [id]=\"'unit_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Lines</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLineMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_1\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"1\" id=\"line_1\"> Line1 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                          <li class=\"custom-li\">\r\n                            <a class=\"dropdown-label\" href=\"#\">\r\n                              <label class=\"ml-2 line_label\" style=\"display: none;\" id=\"line_label_2\">\r\n                                <input class=\"option justone line\" (change)=\"onLineChange($event)\" name=\"options[line]\" type=\"radio\" value=\"2\" id=\"line_2\"> Line2 \r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span class=\"text-align: left;\" style=\"margin-left: -50%;\">Select Period</span>\r\n                    <div class=\"dropdown\">\r\n                      <button class=\"btn btn-secondary dropdown-toggle dropdown-button\" type=\"button\" id=\"dropdownLinePeriodButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Choose Options\r\n                      </button>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                        <ul class=\"dropdownmenu\"> \r\n                          <li class=\"custom-li\" *ngFor=\"let option of periodOptions\">\r\n                            <a href=\"#\" class=\"dropdown-label\">\r\n                              <label class=\"ml-2 period_label\" [id]=\"'period_label_' + option.Id\">\r\n                                <input name='options[period]' (change)=\"onPeriodChange($event)\" type=\"radio\" class=\"option justone period\" [value]=\"option.Id\" [id]=\"'period_' + option.Id\"/> {{option.Name}}\r\n                              </label>\r\n                            </a>\r\n                          </li>\r\n                        </ul>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">Start Date</span>\r\n                    <input type=\"date\" placeholder=\"Start Date\" id=\"startDate\" value=\"2021-01-27\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <div class=\"ml-2\">\r\n                  <div class=\"d-flex flex-column\">\r\n                    <span style=\"text-align: left;\">End Date</span>\r\n                    <input type=\"date\" placeholder=\"End Date\" id=\"endDate\" value=\"2021-01-31\" min=\"2021-01-01\" max=\"2021-01-31\">\r\n                  </div>\r\n                </div>\r\n              </li>\r\n              <li class=\"nav-item mt-3\">\r\n                <button class=\"custom-button ml-2\" (click)=\"getSewingKPIAnalysis()\">Show Analysis</button>\r\n              </li>\r\n            </ul>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</main>\r\n"
 
 /***/ }),
 
@@ -10009,8 +11214,9 @@ var SewingmodulehistComponent = /** @class */ (function () {
             yAxis: {
                 gridLineWidth: 0,
                 title: {
-                    text: 'Efficiency %',
+                    text: 'Efficiency%',
                     rotation: 0,
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '9px' }
                 },
                 maxPadding: 0.2,
                 max: 100,
@@ -10074,8 +11280,9 @@ var SewingmodulehistComponent = /** @class */ (function () {
             yAxis: {
                 gridLineWidth: 0,
                 title: {
-                    text: 'Capacity %',
+                    text: 'Capacity%',
                     rotation: 0,
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '9px' }
                 },
                 max: 120,
                 min: 0
@@ -10141,6 +11348,7 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 title: {
                     text: 'WIP Level',
                     rotation: 0,
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '9px' }
                 },
                 max: 5.0,
                 min: 0.0
@@ -10204,8 +11412,9 @@ var SewingmodulehistComponent = /** @class */ (function () {
             yAxis: {
                 gridLineWidth: 0,
                 title: {
-                    text: 'Downtime %',
+                    text: 'Downtime%',
                     rotation: 0,
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '9px' }
                 },
                 max: 20,
                 min: 0
@@ -10271,6 +11480,7 @@ var SewingmodulehistComponent = /** @class */ (function () {
                 title: {
                     text: 'DHU',
                     rotation: 0,
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '9px' }
                 },
                 max: 13,
                 min: 0
@@ -10333,8 +11543,9 @@ var SewingmodulehistComponent = /** @class */ (function () {
             yAxis: {
                 gridLineWidth: 0,
                 title: {
-                    text: 'Defects %',
+                    text: 'Defects%',
                     rotation: 0,
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '9px' }
                 },
                 max: 50,
                 min: 0
@@ -10397,8 +11608,9 @@ var SewingmodulehistComponent = /** @class */ (function () {
             yAxis: {
                 gridLineWidth: 0,
                 title: {
-                    text: 'Rejection %',
+                    text: 'Rejection%',
                     rotation: 0,
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '9px' }
                 },
                 max: 15,
                 min: 0
@@ -10461,8 +11673,9 @@ var SewingmodulehistComponent = /** @class */ (function () {
             yAxis: {
                 gridLineWidth: 0,
                 title: {
-                    text: 'Absenteeism %',
+                    text: 'Absenteeism%',
                     rotation: 0,
+                    style: { 'font-family': 'Arial, Helvetica', 'font-size': '9px' }
                 },
                 max: 20,
                 min: 0
@@ -10673,6 +11886,27 @@ var SewingmodulehistComponent = /** @class */ (function () {
     };
     SewingmodulehistComponent.prototype.backToPrevious = function () {
         window.history.back();
+    };
+    SewingmodulehistComponent.prototype.navigateCapacityUtilization = function () {
+        this._router.navigate(['capacity-utilization-overview']);
+    };
+    SewingmodulehistComponent.prototype.navigateAbsentismUtilization = function () {
+        this._router.navigate(['absentism-overview']);
+    };
+    SewingmodulehistComponent.prototype.navigateDefectPercentage = function () {
+        this._router.navigate(['defect-overview']);
+    };
+    SewingmodulehistComponent.prototype.navigateRejection = function () {
+        this._router.navigate(['rejection-overview']);
+    };
+    SewingmodulehistComponent.prototype.navigateDHU = function () {
+        this._router.navigate(['dhu-overview']);
+    };
+    SewingmodulehistComponent.prototype.navigateInlineWIP = function () {
+        this._router.navigate(['wip-overview']);
+    };
+    SewingmodulehistComponent.prototype.navigateMachineDowntime = function () {
+        this._router.navigate(['downtime-overview']);
     };
     SewingmodulehistComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -21747,7 +22981,16 @@ __webpack_require__.r(__webpack_exports__);
 //   capacityUtilizationHeaderText : "Average utilisation",
 //   absenteeismHeaderText : "Average absenteeism",
 //   defectHeaderText : "Average defect%",
-//   rejectionHeaderText : "Overview of Rejection"
+//   rejectionHeaderText : "Overview of Rejection",
+//   processOverviewHeaderText : "Overview of Process",
+//   moduleOverviewHeaderText : "Overview of Factory",
+//   moduleHistOverviewHeaderText : "Historical Factory Analysis",
+//   dhuOverviewHeaderText : "Top DHU Overview",
+//   inlineOverViewHeaderText: "Inline WIP Overview",
+//   inlineWIPOperatorHeaderText: "Efficiency vs Quality Mapping",
+//   operatorEfficiencyWIPHeaderText : "Efficiency and Defect Count of Operators",
+//   downtimeHistoricalHeaderText: "Overview of Downtime",
+//   downtimeOverviewHeaderText: "Machine Downtime",
 // };
 var environment = {
     production: true,
@@ -21758,7 +23001,16 @@ var environment = {
     capacityUtilizationHeaderText: "Average utilisation",
     absenteeismHeaderText: "Average absenteeism",
     defectHeaderText: "Average defect%",
-    rejectionHeaderText: "Overview of Rejection"
+    rejectionHeaderText: "Overview of Rejection",
+    processOverviewHeaderText: "Overview of Process",
+    moduleOverviewHeaderText: "Overview of Factory",
+    moduleHistOverviewHeaderText: "Historical Factory Analysis",
+    dhuOverviewHeaderText: "Top DHU Overview",
+    inlineOverViewHeaderText: "Inline WIP Overview",
+    inlineWIPOperatorHeaderText: "Efficiency vs Quality Mapping",
+    operatorEfficiencyWIPHeaderText: "Efficiency and Defect Count of Operators",
+    downtimeHistoricalHeaderText: "Overview of Downtime",
+    downtimeOverviewHeaderText: "Machine Downtime",
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -21795,7 +23047,16 @@ __webpack_require__.r(__webpack_exports__);
 //   capacityUtilizationHeaderText : "Average utilisation",
 //   absenteeismHeaderText : "Average absenteeism",
 //   defectHeaderText : "Average defect%",
-//   rejectionHeaderText : "Overview of Rejection"
+//   rejectionHeaderText : "Overview of Rejection",
+//   processOverviewHeaderText : "Overview of Process",
+//   moduleOverviewHeaderText : "Overview of Factory",
+//   moduleHistOverviewHeaderText : "Historical Factory Analysis",
+//   dhuOverviewHeaderText : "Top DHU Overview",
+//   inlineOverViewHeaderText: "Inline WIP Overview",
+//   inlineWIPOperatorHeaderText: "Efficiency vs Quality Mapping",
+//   operatorEfficiencyWIPHeaderText : "Efficiency and Defect Count of Operators",
+//   downtimeHistoricalHeaderText: "Overview of Downtime",
+//   downtimeOverviewHeaderText: "Machine Downtime",
 // };
 var environment = {
     production: true,
@@ -21806,7 +23067,16 @@ var environment = {
     capacityUtilizationHeaderText: "Average utilisation",
     absenteeismHeaderText: "Average absenteeism",
     defectHeaderText: "Average defect%",
-    rejectionHeaderText: "Overview of Rejection"
+    rejectionHeaderText: "Overview of Rejection",
+    processOverviewHeaderText: "Overview of Process",
+    moduleOverviewHeaderText: "Overview of Factory",
+    moduleHistOverviewHeaderText: "Historical Factory Analysis",
+    dhuOverviewHeaderText: "Top DHU Overview",
+    inlineOverViewHeaderText: "Inline WIP Overview",
+    inlineWIPOperatorHeaderText: "Efficiency vs Quality Mapping",
+    operatorEfficiencyWIPHeaderText: "Efficiency and Defect Count of Operators",
+    downtimeHistoricalHeaderText: "Overview of Downtime",
+    downtimeOverviewHeaderText: "Machine Downtime",
 };
 /*
  * For easier debugging in development mode, you can import the following file

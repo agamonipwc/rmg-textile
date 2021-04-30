@@ -272,7 +272,6 @@ export class EfficiencyComponent implements OnInit {
         showConfirmButton: true
       })  
     }
-    
   }
 
   onLocationChange(event){

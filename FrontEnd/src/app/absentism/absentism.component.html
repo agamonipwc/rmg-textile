@@ -65,6 +65,9 @@
                             <th style="width: auto">
                               Name
                             </th>
+                            <th style="width: auto;">
+                              Operation
+                            </th>
                             <th style="width: auto">
                               Working Machine
                           </th>
@@ -82,6 +85,7 @@
                     <tbody>
                         <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
                             <td>{{item.Name}}</td>
+                            <td>{{item.Operation}}</td>
                             <td>{{item.Machine}}</td>
                             <td>{{item.Unit}}</td>
                             <td>{{item.Location}}</td>
@@ -145,8 +149,8 @@
                     <tbody>
                         <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
                             <td>{{item.Name}}</td>
-                            <td>{{item.Machine}}</td>
                             <td>{{item.Operation}}</td>
+                            <td>{{item.Machine}}</td>
                             <td>{{item.Unit}}</td>
                             <td>{{item.Location}}</td>
                             <td>{{item.Line}}</td>
@@ -184,8 +188,8 @@
                     <tbody>
                         <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
                             <td>{{item.Name}}</td>
-                            <td>{{item.Machine}}</td>
                             <td>{{item.Operation}}</td>
+                            <td>{{item.Machine}}</td>
                             <td>{{item.Unit}}</td>
                             <td>{{item.Location}}</td>
                             <td>{{item.Line}}</td>

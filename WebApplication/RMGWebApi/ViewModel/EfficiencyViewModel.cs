@@ -30,6 +30,22 @@ namespace RMGWebApi.ViewModel
     }
 
 
+    public class EfficiencyDefectViewModel_New
+    {
+        public string name { get; set; }
+        public bool showInLegend { get; set; }
+        public string color { get; set; }
+        public List<EfficiencyDefectModifiedDataSet> data { get; set; }
+    }
+
+    public class EfficiencyDefectModifiedDataSet
+    {
+        public double x { get; set; }
+        public double y { get; set; }
+        public string name { get; set; }
+    }
+
+
     public class HistoricalDataViewModel {
         public double y { get; set; }
         public string color { get; set; }

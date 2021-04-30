@@ -53,11 +53,216 @@
     </li>
   </ul>
 </nav>
+<div class="modal fade" id="recommendationModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="recommendationModalTitle">{{recommendationModalTitle}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+        <div role="tabpanel">
+          <!-- Nav tabs -->
+          <ul class="nav nav-pills nav-fill" role="tablist">
+              <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')"></a>
+              </li>
+              <!-- <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#mediumEfficiency" aria-controls="mediumEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation(7);">Medium Efficiency</a>
+              </li>
+              <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#highEfficiency" aria-controls="highEfficiency" role="tab" data-toggle="tab" (click)="getOperatorsName('High');">High Efficiency</a>
+              </li> -->
+          </ul>
+          <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
+                <div #TABLE #table class="mt-2">
+                  <button (click)="ExportToExcelLowEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                                Reasons
+                            </th>
+                            <th style="width: auto">
+                              SubReasons
+                            </th>
+                            <th style="width: auto">
+                              Recommendations
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let ndx = index">
+                            <td>
+                              <div innerHTML="{{item.Reasons}}"></div>
+                            </td>
+                            <td>
+                              <div innerHTML="{{item.SubReasons}}"></div>
+                            </td>
+                            <td>
+                              <div innerHTML="{{item.Recommendations}}"></div>
+                            </td>
+                           
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- <div #LowEfficiencyOperatorsTable #table class="mt-2">
+                  <button (click)="ExportToExcelLowOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                              Name
+                            </th>
+                            <th style="width: auto">
+                              Working Machine
+                          </th>
+                          <th style="width: auto">
+                            Unit
+                          </th>
+                          <th style="width: auto">
+                            Location
+                          </th>
+                          <th style="width: auto">
+                            Line
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Machine}}</td>
+                            <td>{{item.Unit}}</td>
+                            <td>{{item.Location}}</td>
+                            <td>{{item.Line}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div> -->
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="mediumEfficiency" >
+                <div #ModerateEfficiencyTable #table class="mt-2">
+                  <button (click)="ExportToExcelModerateEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                                Reasons
+                            </th>
+                            <th style="width: auto">
+                              SubReasons
+                            </th>
+                            <th style="width: auto">
+                              Recommendations
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let ndx = index">
+                            <td innerHTML="{{item.Reasons}}"></td>
+                            <td innerHTML="{{item.SubReasons}}"></td>
+                            <td innerHTML="{{item.Recommendations}}"></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div #ModerateEfficiencyOperatorsTable #table class="mt-2">
+                  <button (click)="ExportToExcelModerateOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                              Name
+                            </th>
+                            <th style="width: auto">
+                              Working Machine
+                          </th>
+                          <th style="width: auto">
+                            Unit
+                          </th>
+                          <th style="width: auto">
+                            Location
+                          </th>
+                          <th style="width: auto">
+                            Line
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Machine}}</td>
+                            <td>{{item.Unit}}</td>
+                            <td>{{item.Location}}</td>
+                            <td>{{item.Line}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="highEfficiency">
+                <div #HighEfficiencyOperatorsTable #table class="mt-2">
+                  <button (click)="ExportToExcelHighOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                              Name
+                            </th>
+                            <th style="width: auto">
+                              Working Machine
+                          </th>
+                          <th style="width: auto">
+                            Unit
+                          </th>
+                          <th style="width: auto">
+                            Location
+                          </th>
+                          <th style="width: auto">
+                            Line
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of operatorsDetailsList; let ndx = index1">
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Machine}}</td>
+                            <td>{{item.Unit}}</td>
+                            <td>{{item.Location}}</td>
+                            <td>{{item.Line}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <h5 style="text-align: left; font-weight: bold; margin-left: 20%;">Efficiency and Defect Count of Operators</h5>
     <div class="row">
-      <ul class="nav nav-pills">
+      <div class="col-3 mt-2">
+        <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+        <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+      </div>
+      <div class="col-6">
+        <h6 style="text-align: left; font-weight: bold;">{{headerTextValue}}</h6>
+      </div>
+      <div class="col-3">
+        <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')">Recommendations</button>
+      </div>
+    </div>
+    <!-- <h6 style="text-align: left; font-weight: bold; margin-left: 20%;">Efficiency and Defect Count of Operators</h6> -->
+    <div class="row">
+      <!-- <ul class="nav nav-pills">
         <li class="nav-item">
           <a class="nav-link active" href="#lowOperator" [ngClass]="{ 'active':activeTab==='lowOperator'}" (click)="lowOperator('lowOperator')"
              data-toggle="tab">Low Efficiency High Defect Performers</a>
@@ -66,40 +271,98 @@
           <a class="nav-link" href="#avgOperator" [ngClass]="{ 'active':activeTab==='avgOperator'}" data-toggle="tab"
              (click)="avgOperator('avgOperator')">High Efficiency Low Defect Performers</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#highOperator" [ngClass]="{ 'active':activeTab==='highOperator'}" data-toggle="tab"
-             (click)="highOperator('highOperator')">High Performers</a>
-        </li> -->
-      </ul>
-      <div class="col-9 mt-3" style="background-color: #ffffff; overflow-y: scroll; height: 420px;">
-        <div class="tab-content">
+      </ul> -->
+      <div class="col-12 mt-3" style="background-color: #ffffff; overflow-y: scroll; height: 455px;">
+        <div class="row align-items-center mt-2">
+          <div class="col-4"><h6>High Defect</h6></div>
+          <div class="col-4"><h6>Low Efficiency</h6></div>
+          <div class="col-4"><h6>High Defect Low Efficiency</h6></div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <table class="table table-striped mt-2">
+              <thead class="thead-dark">
+                  <tr>
+                    <th>
+                      Operator Name
+                    </th>
+                    <th>
+                      Line
+                    </th>
+                    <!-- <th>
+                      Defect Count
+                    </th> -->
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of highDefect">
+                      <td>{{item.OperatorName}}</td>
+                      <td>{{item.Line}}</td>
+                      <!-- <td>{{item.DefectCount}}</td> -->
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-4">
+            <table class="table table-striped mt-2">
+              <thead class="thead-dark">
+                  <tr>
+                    <th>
+                      Operator Name
+                    </th>
+                    <th>
+                      Line
+                    </th>
+                    <!-- <th>
+                      Efficiency
+                    </th>
+                    <th>
+                      Defect Count
+                    </th> -->
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of lowEfficiency;">
+                      <td>{{item.OperatorName}}</td>
+                      <td>{{item.Line}}</td>
+                      <!-- <td>{{item.Efficiency}}</td>
+                      <td>{{item.DefectCount}}</td> -->
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-4">
+            <table class="table table-striped mt-2">
+              <thead class="thead-dark">
+                  <tr>
+                    <th>
+                      Operator Name
+                    </th>
+                    <th>
+                      Line
+                    </th>
+                    <!-- <th>
+                      Efficiency
+                    </th>
+                    <th>
+                      Defect Count
+                    </th> -->
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of lowEfficiencyHighDefectOperatorSummaryDataList;">
+                      <td>{{item.OperatorName}}</td>
+                      <td>{{item.Line}}</td>
+                      <!-- <td>{{item.Efficiency}}</td>
+                      <td>{{item.DefectCount}}</td> -->
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- <div class="tab-content">
           <div class="tab-pane active" id="lowOperator" [ngClass]="{ 'active':activeTab==='lowOperator'}">
-            <div class="row align-items-center">
-              <div class="col-12">
-                <table class="table table-striped mt-2">
-                  <thead class="thead-dark">
-                      <tr>
-                        <th>
-                          Operator Name
-                        </th>
-                        <th>
-                          Efficiency
-                        </th>
-                        <th>
-                          Defect Count
-                        </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let item of lowEfficiencyHighDefectOperatorSummaryDataList; let ndx = index">
-                          <td>{{item.OperatorName}}</td>
-                          <td>{{item.Efficiency}}</td>
-                          <td>{{item.DefectCount}}</td>
-                      </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            
           </div>
           <div class="tab-pane" id="avgOperator" [ngClass]="{ 'active':activeTab==='avgOperator'}">
             <div class="row align-items-center">
@@ -136,9 +399,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
-      <div class="col-3 mt-3">
+      <!-- <div class="col-3 mt-3">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
@@ -215,9 +478,115 @@
             </ul>
           </nav>
         </div>
-      </div>
+      </div> -->
+      <!-- <div class="col-3">
+        <div class="d-flex flex-column mb-3">
+          <nav class="col-sm-3 col-md-2 d-none d-sm-block">
+            <ul class="nav nav-pills flex-column">
+              <li class="nav-item">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLocationMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu">
+                          <li class="custom-li" *ngFor="let option of locationOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2">
+                                <input name='options[location]' (change)="onLocationChange($event)" type="radio" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownUnitMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of unitOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;">
+                                <input name='options[unit]' (change)="onUnitChange($event)" type="radio" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLineMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_1">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="1" id="line_1"> Line1 
+                              </label>
+                            </a>
+                          </li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_2">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="2" id="line_2"> Line2 
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">Start Date</span>
+                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-01" min="2021-01-01" max="2021-01-31">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">End Date</span>
+                    <input type="date" placeholder="End Date" id="endDate" value="2021-01-31" min="2021-01-01" max="2021-01-31">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
+              </li>
+              <li class="nav-item mt-3">
+                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')">Recommendations</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div> -->
       <div class="mt-2">
-        <button class="custom-button ml-2" (click)="navigateWIPOperator()">Overview</button>
+        <button class="custom-button ml-2" (click)="navigateWIPOperator()">Back</button>
         <button class="custom-button ml-2" (click)="navigateWIPSummary()">Operator</button>
       </div>
     </div>

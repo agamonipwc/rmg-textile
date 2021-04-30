@@ -61,20 +61,27 @@
       </div>
       <div class="col-7">
         <h6 style="text-align: center; font-weight: bold;">{{headerTextValue}}</h6>
+        <h6 class="ml1">
+          <span class="text-wrapper">
+            <span class="line line1"></span>
+            <span class="letters" style="font-style: italic; color: #d04a02;">Please click each chart below to view detailed analysis</span>
+            <span class="line line2"></span>
+          </span>
+        </h6>
       </div>
       <div class="col-3 mt-2" style="text-align: start;">
         <button class="custom-button ml-3" style="font-weight: bold;" (click)="sewingNavigation()">Back to KPI Data</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-9" style="height: 500px; overflow-y: scroll; overflow-x: hidden; background-color:#ffffff;">
+      <div class="col-9" style="height: 481px; overflow-y: scroll; overflow-x: hidden; background-color:#ffffff;">
         <div class="row align-items-center">
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Efficiency')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="efficiencyVisual" style="height: auto; min-height: max-content;">
+          <div class="col-12" (click)="navigateEfficiency()" id="efficiencyVisual" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart] = "efficiencyHistoric" style="height: 58px; width:auto"></div>
+              <div (click)="navigateEfficiency()" [chart] = "efficiencyHistoric" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
@@ -82,9 +89,9 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Defect')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="defectVisual" style=" height: auto; min-height: max-content;">
+          <div class="col-12" (click)="navigateDefectPercentage()" id="defectVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="defectsHistoric" style="height: 58px; width:auto"></div>
+              <div [chart]="defectsHistoric" (click)="navigateDefectPercentage()" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
@@ -92,9 +99,9 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Reject')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="rejectionVisual" style=" height: auto; min-height: max-content;">
+          <div class="col-12" (click)="navigateRejection()" id="rejectionVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="rejectionHistoric" style="height: 58px; width:auto"></div>
+              <div [chart]="rejectionHistoric" (click)="navigateRejection()" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
@@ -102,9 +109,9 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('CapacityUtilization')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="capacityVisual" style="height: auto; min-height: max-content;">
+          <div class="col-12" id="capacityVisual" (click)="navigateCapacityUtilization()" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart] = "capacityHistoric" style="height: 58px; width:auto"></div>
+              <div [chart] = "capacityHistoric" (click)="navigateCapacityUtilization()" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
@@ -112,9 +119,9 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Absenteeism')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="absentismVisual" style=" height: auto; min-height: max-content;">
+          <div class="col-12" id="absentismVisual" (click)="navigateAbsentismUtilization()" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="absentismHistoric" style="height: 58px; width:auto"></div>
+              <div [chart]="absentismHistoric" (click)="navigateAbsentismUtilization()" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
@@ -122,9 +129,9 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('DHU')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="dhuVisual" style=" height: auto; min-height: max-content;">
+          <div class="col-12" id="dhuVisual" (click)="navigateDHU()" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="dhuHistoric" style="height: 58px; width:auto"(click)="dhuHistoricalNavigation()"></div>
+              <div [chart]="dhuHistoric" style="height: 58px; width:auto" (click)="navigateDHU()"></div>
             </div>
           </div>
         </div>
@@ -132,9 +139,9 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('InlineWIP')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="wipVisual" style="height: auto; min-height: max-content;">
+          <div class="col-12" id="wipVisual" (click)="navigateInlineWIP()" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart] = "wipHistoric" style="height: 58px; width:auto"></div>
+              <div [chart] = "wipHistoric" (click)="navigateInlineWIP()" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
@@ -142,9 +149,9 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Downtime')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="machineDowntimeVisual" style=" height: auto; min-height: max-content;">
+          <div class="col-12" id="machineDowntimeVisual" (click)="navigateMachineDowntime()" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div [chart]="machineDowntimeHistoric" style="height: 58px; width:auto"></div>
+              <div [chart]="machineDowntimeHistoric" (click)="navigateMachineDowntime()" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>

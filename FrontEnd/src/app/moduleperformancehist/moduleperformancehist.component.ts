@@ -283,6 +283,7 @@ export class ModuleperformancehistComponent implements OnInit {
           },
           credits: {enabled: false},
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -363,6 +364,7 @@ export class ModuleperformancehistComponent implements OnInit {
             visible : false
         },
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -431,6 +433,7 @@ export class ModuleperformancehistComponent implements OnInit {
             visible : false
         },
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -496,6 +499,7 @@ export class ModuleperformancehistComponent implements OnInit {
             visible : false
         },
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -561,6 +565,7 @@ export class ModuleperformancehistComponent implements OnInit {
             visible : false
         },
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -626,6 +631,7 @@ export class ModuleperformancehistComponent implements OnInit {
             visible : false
         },
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -691,6 +697,7 @@ export class ModuleperformancehistComponent implements OnInit {
     visible : false
         },
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -757,6 +764,7 @@ export class ModuleperformancehistComponent implements OnInit {
           },
         credits: {enabled: false},
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -823,6 +831,7 @@ export class ModuleperformancehistComponent implements OnInit {
           },
           credits: {enabled: false},
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },
@@ -889,6 +898,7 @@ export class ModuleperformancehistComponent implements OnInit {
           },
         credits: {enabled: false},
         yAxis: {
+          gridLineWidth: 0,
             title: {
                 text: ''
             },

@@ -19,7 +19,7 @@
         <div role="tabpanel">
           <!-- Nav tabs -->
           <ul class="nav nav-pills nav-fill" role="tablist">
-              <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')">Overall Recommendations</a>
+              <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')"></a>
               </li>
               <!-- <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#mediumEfficiency" aria-controls="mediumEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation(7);">Medium Efficiency</a>
               </li>
@@ -248,34 +248,28 @@
   
   </ul>
 </nav>
-<!-- <div class="modal fade" id="historicMCDowntimeModal" tabindex="-1" role="dialog" aria-labelledby="historicMCDowntimeModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Historic Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div  [chart]="machineDowntimeLine" class="modal-body" style="height: 300px; width: 500px;">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 <div role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
     <div class="row">
+      <div class="col-3 mt-2">
+        <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+        <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+      </div>
+      <div class="col-6">
+        <h6 style="text-align: left; font-weight: bold;">{{headerTextValue}}</h6>
+      </div>
+      <!-- <div class="col-3 mt-2" style="text-align: left;">
+        <button class="custom-button" style="font-weight: bold; cursor: pointer; margin-left: 10%;" (click)="navigateToDHUHistorical()">Last 5 days Data</button>
+      </div> -->
+    </div>
+    <!-- <div class="row">
       <div class="col-8">
         <h5 style="text-align: center; font-weight: bold;">Inline WIP Overview of last 30 days</h5>
       </div>
       <div class="col-4">
         <a style="font-weight: bold; cursor: pointer;" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')">Show Recommendations</a>
       </div>
-    </div>
+    </div> -->
     <div class="row" style="text-align: center;">
       <div class="col-8">
         <h6 style="font-size: 12px; font-style: italic; color: blue;">Note: Please click on blue icon to drill down further</h6>
@@ -283,7 +277,7 @@
     </div>
     <div class="row">
       <div class="col-9" style="background-color: #ffffff; height: 445px; overflow-y: scroll;">
-        <div class="row mt-3">
+        <div class="row mt-3" *ngIf="isShownStyleA1">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseStyleADiv" aria-expanded="false" aria-controls="collapseStyleADiv" (click)="calculateOperatorWIPStyleA(StyleA1Name)">{{StyleA1Name}} <i class="fas fa-caret-down" style="color: blue;"></i></button>
           <div class="col-9">
             <div class="progress" style="height:30px">
@@ -303,7 +297,7 @@
           </div>
         </div>
         
-        <div class="row mt-3">
+        <div class="row mt-3" *ngIf="isShownStyleA2">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseStyleBDiv" aria-expanded="false" aria-controls="collapseStyleBDiv" (click)="calculateOperatorWIPStyleB(StyleA2Name)">{{StyleA2Name}} <i class="fas fa-caret-down" style="color: blue;"></i></button>
           <div class="col-9">
             <div class="progress" style="height:30px">
@@ -322,7 +316,7 @@
             </div>
           </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3" *ngIf="isShownStyleA3">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px"data-toggle="collapse" data-target="#collapseStyleCDiv" aria-expanded="false" aria-controls="collapseStyleCDiv" (click)="calculateOperatorWIPStyleC(StyleA3Name)">{{StyleA3Name}} <i class="fas fa-caret-down" style="color: blue;"></i></button>
           <div class="col-9">
             <div class="progress" style="height:30px">
@@ -341,7 +335,7 @@
             </div>
           </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3" *ngIf="isShownStyleA4">
           <button style="float:left;" type="button" class="btn col-3" style="text-align: left; font-size: 12px"data-toggle="collapse" data-target="#collapseStyleDDiv" aria-expanded="false" aria-controls="collapseStyleDDiv" (click)="calculateOperatorWIPStyleD(StyleA4Name)">{{StyleA4Name}} <i class="fas fa-caret-down" style="color: blue;"></i></button>
           <div class="col-9">
             <div class="progress" style="height:30px">
@@ -361,7 +355,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3 mt-3">
+      <!-- <div class="col-3 mt-3">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
@@ -438,8 +432,137 @@
             </ul>
           </nav>
         </div>
+      </div> -->
+      <div class="col-3">
+        <div class="d-flex flex-column mb-3">
+          <nav class="col-sm-3 col-md-2 d-none d-sm-block">
+            <ul class="nav nav-pills flex-column">
+              <li class="nav-item">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLocationMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu">
+                          <li class="custom-li" *ngFor="let option of locationOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2">
+                                <input name='options[location]' (change)="onLocationChange($event)" type="radio" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownUnitMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of unitOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;">
+                                <input name='options[unit]' (change)="onUnitChange($event)" type="radio" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLineMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_1">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="1" id="line_1"> Line1 
+                              </label>
+                            </a>
+                          </li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_2">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="2" id="line_2"> Line2 
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <!-- <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of periodOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
+                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li> -->
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">Start Date</span>
+                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-01" min="2021-01-01" max="2021-01-31">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span style="text-align: left;">End Date</span>
+                    <input type="date" placeholder="End Date" id="endDate" value="2021-01-31" min="2021-01-01" max="2021-01-31">
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-3">
+                <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
+              </li>
+              <li class="nav-item mt-3">
+                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')">Recommendations</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <div class="mt-2">
+      <div class="mt-1">
         <button class="custom-button ml-2" (click)="navigateWIPSummary()">Summary</button>
         <button class="custom-button ml-2" (click)="navigateWIPOperator()">Operator</button>
       </div>

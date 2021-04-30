@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.js';
-import { data } from 'jquery';
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -13,6 +13,7 @@ let more = require("highcharts/highcharts-more");
 let Exporting = require('highcharts/modules/exporting');
 let Sunburst = require('highcharts/modules/sunburst');
 import Drilldown from 'highcharts/modules/drilldown';
+import * as XLSX from 'xlsx';  
 Drilldown(Highcharts);
 Boost(Highcharts);
 noData(Highcharts);
@@ -31,7 +32,7 @@ Sunburst(Highcharts);
   styleUrls: ['./inlinewip.component.css']
 })
 export class InlinewipComponent implements OnInit {
-
+  @ViewChild('TABLE') TABLE: ElementRef;  
   StyleA1 : any = [];
   StyleA2 : any = [];
   StyleA3 : any = [];
@@ -52,6 +53,25 @@ export class InlinewipComponent implements OnInit {
   locationOptions = [];
   unitOptions = [];
   lineOptions = [];
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
+  isShownStyleA1 : boolean = false;
+  isShownStyleA2 : boolean = false;
+  isShownStyleA3 : boolean = false;
+  isShownStyleA4 : boolean = false;
+  headerTextValue : string = "";
   constructor(private http: HttpClient,private _router: Router) { }
 
   ngOnInit() {
@@ -89,6 +109,26 @@ export class InlinewipComponent implements OnInit {
       EndDate : "2021-01-31 00:00:00.000",
     }
     this.calculateWIPStyleWise(this.KPIView);
+    var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+    if($('#startDate').val() == $('#endDate').val()){
+      this.headerTextValue = environment.inlineOverViewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+    }
+    else{
+      this.headerTextValue = environment.inlineOverViewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+    }
+  }
+  formatUserInputDate(startDate, endDate){
+    var StartDate = new Date(startDate);
+    var EndDate = new Date(endDate);
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startDay + "." + startmonth + '.' + startyear;
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endDay + "." + endmonth + '.' + endyear;
+    return {startDateTime : startDateTime, endDateTime : endDateTime}
   }
 
   getRandomColor(lineUnitName) {
@@ -115,6 +155,10 @@ export class InlinewipComponent implements OnInit {
   
 
   calculateWIPStyleWise(KPIView){
+    this.isShownStyleA1 = false;
+    this.isShownStyleA2 = false;
+    this.isShownStyleA3 = false;
+    this.isShownStyleA4 = false;
     var _this = this;
     this.StyleA1 = [];
     this.StyleA2 = [];
@@ -122,59 +166,692 @@ export class InlinewipComponent implements OnInit {
     this.StyleA4 = [];
     var url = environment.backendUrl + "InlineWIPOverview";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
-        _this.StyleA1Name = responsedata["data"][0]["StyleName"];
-        _this.StyleA2Name = responsedata["data"][1]["StyleName"];
-        _this.StyleA3Name = responsedata["data"][2]["StyleName"];
-        _this.StyleA4Name = responsedata["data"][3]["StyleName"];
-        responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
-            var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
-            _this.StyleA1.push({
-                lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
-                styleDate :{
-                    'width' : element.LineWIPPercentage.toString() + "%",
-                    'background-color' : _this.getRandomColor(lineUnitName)
-                },
-                actualWIPValue : element.LineWIPActualValue.toString()
-            })
-        });
-        responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
-            var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
-            _this.StyleA2.push({
-                lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
-                styleDate :{
-                    'width' : element.LineWIPPercentage.toString() + "%",
-                    'background-color' : _this.getRandomColor(lineUnitName)
-                },
-                actualWIPValue : element.LineWIPActualValue.toString()
-            })
-        });
-        responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
-            var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
-            _this.StyleA3.push({
-                lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
-                styleDate :{
-                    'width' : element.LineWIPPercentage.toString() + "%",
-                    'background-color' : _this.getRandomColor(lineUnitName)
-                },
-                actualWIPValue : element.LineWIPActualValue.toString()
-            })
-        });
-        responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
-            var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
-            _this.StyleA4.push({
-                lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
-                styleDate :{
-                    'width' : element.LineWIPPercentage.toString() + "%",
-                    'background-color' : _this.getRandomColor(lineUnitName)
-                },
-                actualWIPValue : element.LineWIPActualValue.toString()
-            })
-        });
+        console.log("-----------Response Data--------",responsedata);
+        if(responsedata["data"].length == 1){
+            if(typeof(responsedata["data"][0] != -1)){
+                if(responsedata["data"][0]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+        }
+        
+
+        if(responsedata["data"].length == 2){
+            if(typeof(responsedata["data"][0] != -1)){
+                if(responsedata["data"][0]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+            if(typeof(responsedata["data"][1] != -1)){
+                if(responsedata["data"][1]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+        }
+        
+        if(responsedata["data"].length == 3){
+            if(typeof(responsedata["data"][0] != -1)){
+                if(responsedata["data"][0]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+            if(typeof(responsedata["data"][1] != -1)){
+                if(responsedata["data"][1]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+            if(typeof(responsedata["data"][2] != -1)){
+                console.log("--------Inside this-------");
+                if(responsedata["data"][2]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][2]["StyleName"];
+                    responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][2]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][2]["StyleName"];
+                    responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][2]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][2]["StyleName"];
+                    responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][2]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][2]["StyleName"];
+                    responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+        }
+        
+        if(responsedata["data"].length == 4){
+            if(typeof(responsedata["data"][0] != -1)){
+                if(responsedata["data"][0]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][0]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][0]["StyleName"];
+                    responsedata["data"][0]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+            if(typeof(responsedata["data"][1] != -1)){
+                if(responsedata["data"][1]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][1]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][1]["StyleName"];
+                    responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+            if(typeof(responsedata["data"][2] != -1)){
+                console.log("--------Inside this-------");
+                if(responsedata["data"][2]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][2]["StyleName"];
+                    responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][2]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][2]["StyleName"];
+                    responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][2]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][2]["StyleName"];
+                    responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][2]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][2]["StyleName"];
+                    responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+            if(typeof(responsedata["data"][3] != -1)){
+                console.log("--------Inside this-------");
+                if(responsedata["data"][3]["StyleName"] == "Style A"){
+                    _this.isShownStyleA1 = true;
+                    _this.StyleA1Name = responsedata["data"][3]["StyleName"];
+                    responsedata["data"][3]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA1.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][3]["StyleName"] == "Style B"){
+                    _this.isShownStyleA2 = true;
+                    _this.StyleA2Name = responsedata["data"][3]["StyleName"];
+                    responsedata["data"][3]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA2.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][3]["StyleName"] == "Style C"){
+                    _this.isShownStyleA3 = true;
+                    _this.StyleA3Name = responsedata["data"][3]["StyleName"];
+                    responsedata["data"][3]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA3.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+                else if(responsedata["data"][3]["StyleName"] == "Style D"){
+                    _this.isShownStyleA4 = true;
+                    _this.StyleA4Name = responsedata["data"][3]["StyleName"];
+                    responsedata["data"][3]["StyleWIPViewModel"].forEach(element => {
+                        var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+                        _this.StyleA4.push({
+                            lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+                            styleDate :{
+                                'width' : element.LineWIPPercentage.toString() + "%",
+                                'background-color' : _this.getRandomColor(lineUnitName)
+                            },
+                            actualWIPValue : element.LineWIPActualValue.toString()
+                        })
+                    });
+                }
+            }
+        }
+        
+        
+        console.log(_this.isShownStyleA1, _this.isShownStyleA2, _this.isShownStyleA3, _this.isShownStyleA4);
+        // _this.StyleA2Name = responsedata["data"][1]["StyleName"];
+        // _this.StyleA3Name = responsedata["data"][2]["StyleName"];
+        // _this.StyleA4Name = responsedata["data"][3]["StyleName"];
+        
+        // responsedata["data"][1]["StyleWIPViewModel"].forEach(element => {
+        //     var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+        //     _this.StyleA2.push({
+        //         lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+        //         styleDate :{
+        //             'width' : element.LineWIPPercentage.toString() + "%",
+        //             'background-color' : _this.getRandomColor(lineUnitName)
+        //         },
+        //         actualWIPValue : element.LineWIPActualValue.toString()
+        //     })
+        // });
+        // responsedata["data"][2]["StyleWIPViewModel"].forEach(element => {
+        //     var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+        //     _this.StyleA3.push({
+        //         lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+        //         styleDate :{
+        //             'width' : element.LineWIPPercentage.toString() + "%",
+        //             'background-color' : _this.getRandomColor(lineUnitName)
+        //         },
+        //         actualWIPValue : element.LineWIPActualValue.toString()
+        //     })
+        // });
+        // responsedata["data"][3]["StyleWIPViewModel"].forEach(element => {
+        //     var lineUnitName = "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString();
+        //     _this.StyleA4.push({
+        //         lineName : "Line"+element.LineName.toString() + " " + "Unit" + element.Unit.toString() + " (" + element.LineWIPPercentage + "%" + ")",
+        //         styleDate :{
+        //             'width' : element.LineWIPPercentage.toString() + "%",
+        //             'background-color' : _this.getRandomColor(lineUnitName)
+        //         },
+        //         actualWIPValue : element.LineWIPActualValue.toString()
+        //     })
+        // });
     })
+  }
+
+  backToPrevious(){
+    window.history.back();
   }
 
   calculateOperatorWIPStyleA(styleName){
     var _this = this;
+    console.log("---------KPIView-----------",this.KPIView);
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
     this.http.post<any>(url, this.KPIView).subscribe(responsedata => {
@@ -236,6 +913,7 @@ export class InlinewipComponent implements OnInit {
     })
    }
    calculateOperatorWIPStyleB(styleName){
+    console.log("---------KPIView-----------",this.KPIView);
     var _this = this;
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
@@ -299,6 +977,7 @@ export class InlinewipComponent implements OnInit {
    }
 
    calculateOperatorWIPStyleC(styleName){
+    console.log("---------KPIView-----------",this.KPIView);
     var _this = this;
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
@@ -362,6 +1041,7 @@ export class InlinewipComponent implements OnInit {
    }
 
    calculateOperatorWIPStyleD(styleName){
+    console.log("---------KPIView-----------",this.KPIView);
     var _this = this;
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
@@ -434,7 +1114,58 @@ export class InlinewipComponent implements OnInit {
     this._router.navigate(['process-overview']);
   }
   navigateWIPOperator(){
-    this._router.navigate(['wip-operator']);
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
+        var locationId = parseFloat(this.value);
+        return locationId;
+        }).get();
+        var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
+        var unitId = parseFloat(this.value);
+        return unitId;
+        }).get();
+        var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+        var lineId = parseFloat(this.value);
+        return lineId;
+        }).get();
+        var StartDate = new Date($('#startDate').val());
+        var EndDate = new Date($('#endDate').val());
+        if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+            if(StartDate > EndDate){
+                Swal.fire({    
+                icon: 'error',  
+                title: 'Sorry...',  
+                text: 'StartDate can not be greater than EndDate',  
+                showConfirmButton: true
+                })  
+            }
+            else{
+                var startDay = StartDate.getDate();
+                var startmonth = StartDate.getMonth() + 1;
+                var startyear = StartDate.getFullYear();
+                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+                var endDay = EndDate.getDate();
+                var endmonth = EndDate.getMonth() + 1;
+                var endyear = EndDate.getFullYear();
+                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+                var KPIView = {
+                    Line : checkedLines,
+                    Location : checkedLocations,
+                    Unit : checkedUnits,
+                    StartDate : startDateTime,
+                    EndDate : endDateTime
+                }
+                sessionStorage.setItem("KPIView",JSON.stringify(KPIView));
+                this._router.navigate(['wip-operator']);
+            }
+        }
+        else{
+            Swal.fire({    
+                icon: 'error',  
+                title: 'Sorry...',  
+                text: 'Please select location, unit ,line, start date and end date to view historical data',  
+                showConfirmButton: true
+            })  
+        }
+    // this._router.navigate(['wip-operator']);
   }
 
   getRecommendation(recommendationId){
@@ -476,43 +1207,126 @@ export class InlinewipComponent implements OnInit {
       });
     })
   }
+  ExportToExcelLowEfficiency() {  
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.TABLE.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'InLine_WIP_Recommendation.xlsx');  
+  }
 
   navigateWIPSummary(){
-    this._router.navigate(['wip-summary']);
-  }
-  getSewingKPIAnalysis(){
-    var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {
-      var locationId = parseFloat(this.value);
-      return locationId;
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
+    var locationId = parseFloat(this.value);
+    return locationId;
     }).get();
-    var checkedUnits = $('.option.justone.unit:checkbox:checked').map(function() {
-      var unitId = parseFloat(this.value);
-      return unitId;
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
+    var unitId = parseFloat(this.value);
+    return unitId;
     }).get();
     var checkedLines = $('.option.justone.line:radio:checked').map(function() {
-      var lineId = parseFloat(this.value);
-      return lineId;
+    var lineId = parseFloat(this.value);
+    return lineId;
     }).get();
     var StartDate = new Date($('#startDate').val());
-    var startDay = StartDate.getDate();
-    var startmonth = StartDate.getMonth() + 1;
-    var startyear = StartDate.getFullYear();
-    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
     var EndDate = new Date($('#endDate').val());
-    var endDay = EndDate.getDate();
-    var endmonth = EndDate.getMonth() + 1;
-    var endyear = EndDate.getFullYear();
-    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-    this.KPIView = {
-      Line : checkedLines,
-      Location : checkedLocations,
-      Unit : checkedUnits,
-      // StartDate : "2021-01-31 00:00:00.000",
-      // EndDate : "2021-01-31 00:00:00.000",
-      StartDate : startDateTime,
-      EndDate : endDateTime
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+        if(StartDate > EndDate){
+            Swal.fire({    
+            icon: 'error',  
+            title: 'Sorry...',  
+            text: 'StartDate can not be greater than EndDate',  
+            showConfirmButton: true
+            })  
+        }
+        else{
+            var startDay = StartDate.getDate();
+            var startmonth = StartDate.getMonth() + 1;
+            var startyear = StartDate.getFullYear();
+            var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+            var endDay = EndDate.getDate();
+            var endmonth = EndDate.getMonth() + 1;
+            var endyear = EndDate.getFullYear();
+            var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+            var KPIView = {
+                Line : checkedLines,
+                Location : checkedLocations,
+                Unit : checkedUnits,
+                StartDate : startDateTime,
+                EndDate : endDateTime
+            }
+            sessionStorage.setItem("KPIView",JSON.stringify(KPIView));
+            this._router.navigate(['wip-summary']);
+        }
     }
-    this.calculateOperatorWIPStyleA(this.KPIView);
+    else{
+        Swal.fire({    
+            icon: 'error',  
+            title: 'Sorry...',  
+            text: 'Please select location, unit ,line, start date and end date to view historical data',  
+            showConfirmButton: true
+        })  
+    }
+  }
+  getSewingKPIAnalysis(){
+    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
+    var locationId = parseFloat(this.value);
+    return locationId;
+    }).get();
+    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
+    var unitId = parseFloat(this.value);
+    return unitId;
+    }).get();
+    var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+    var lineId = parseFloat(this.value);
+    return lineId;
+    }).get();
+    var StartDate = new Date($('#startDate').val());
+    var EndDate = new Date($('#endDate').val());
+
+    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+        if(StartDate > EndDate){
+            Swal.fire({    
+            icon: 'error',  
+            title: 'Sorry...',  
+            text: 'StartDate can not be greater than EndDate',  
+            showConfirmButton: true
+            })  
+        }
+        else{
+            var startDay = StartDate.getDate();
+            var startmonth = StartDate.getMonth() + 1;
+            var startyear = StartDate.getFullYear();
+            var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+            var endDay = EndDate.getDate();
+            var endmonth = EndDate.getMonth() + 1;
+            var endyear = EndDate.getFullYear();
+            var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+            var KPIView = {
+                Line : checkedLines,
+                Location : checkedLocations,
+                Unit : checkedUnits,
+                StartDate : startDateTime,
+                EndDate : endDateTime
+            }
+            this.KPIView = KPIView;
+            var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+            if($('#startDate').val() == $('#endDate').val()){
+            this.headerTextValue = environment.inlineOverViewHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+            }
+            else{
+            this.headerTextValue = environment.inlineOverViewHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+            }
+            this.calculateWIPStyleWise(KPIView);
+        }
+    }
+    else{
+    Swal.fire({    
+        icon: 'error',  
+        title: 'Sorry...',  
+        text: 'Please select location, unit ,line, start date and end date to view historical data',  
+        showConfirmButton: true
+    })  
+    }
   }
 
   onLocationChange(event){
@@ -520,6 +1334,11 @@ export class InlinewipComponent implements OnInit {
     var _this = this;
     var locations = [];
     if (event.target.checked){
+      this.locationOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLocationMenuButton").html(element.Name);
+        }
+      });
       locations.push(parseInt(event.target.value))
       var dataViewModel = {
         locations : locations,
@@ -529,17 +1348,39 @@ export class InlinewipComponent implements OnInit {
         if(responsedata["statusCode"] == 200){
           responsedata["data"].forEach(element => {
             $("#unit_label_" + element.UnitId).show();
-            $("#line_label_" + element.Id).show();
+            $("#line_label_1").show();
+            $("#line_label_2").show();
+            // $("#line_label_" + element.Id).show();
           });
         }
       })
     }
     else{
-      $('.option.justone.location:checkbox').prop('checked', false);
-      $('.option.justone.unit:checkbox').prop('checked', false);
+      $('.option.justone.location:radio').prop('checked', false);
+      $('.option.justone.unit:radio').prop('checked', false);
       $(".unit_label").hide();
       $(".line_label").hide();
       $('.option.justone.line:radio').prop('checked', false);
+    }
+  }
+
+  onUnitChange(event){
+    if (event.target.checked){
+      this.unitOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownUnitMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onLineChange(event){
+    if (event.target.checked){
+      this.lineOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLineMenuButton").html(element.Name);
+        }
+      });
     }
   }
   getMasterData(){

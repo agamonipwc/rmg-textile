@@ -160,8 +160,9 @@ export class SewingmodulehistComponent implements OnInit {
         yAxis: {
             gridLineWidth: 0,
             title: {
-              text: 'Efficiency %',
+              text: 'Efficiency%',
               rotation: 0,
+              style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             maxPadding: 0.2,
             max:100,
@@ -227,8 +228,9 @@ export class SewingmodulehistComponent implements OnInit {
         yAxis: {
             gridLineWidth: 0,
             title: {
-              text: 'Capacity %',
+              text: 'Capacity%',
               rotation: 0,
+              style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:120,
             min:0
@@ -296,6 +298,7 @@ export class SewingmodulehistComponent implements OnInit {
             title: {
                 text: 'WIP Level',
                 rotation: 0,
+                style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:5.0,
             min:0.0
@@ -360,8 +363,9 @@ export class SewingmodulehistComponent implements OnInit {
         yAxis: {
             gridLineWidth: 0,
             title: {
-                text: 'Downtime %',
+                text: 'Downtime%',
                 rotation: 0,
+                style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max: 20,
             min:0
@@ -429,6 +433,7 @@ export class SewingmodulehistComponent implements OnInit {
             title: {
                 text: 'DHU',
                 rotation: 0,
+                style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:13,
             min:0
@@ -492,8 +497,9 @@ export class SewingmodulehistComponent implements OnInit {
         yAxis: {
             gridLineWidth: 0,
             title: {
-                text: 'Defects %',
+                text: 'Defects%',
                 rotation: 0,
+                style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:50,
             min:0
@@ -558,8 +564,9 @@ export class SewingmodulehistComponent implements OnInit {
         yAxis: {
             gridLineWidth: 0,
             title: {
-              text: 'Rejection %',
+              text: 'Rejection%',
               rotation: 0,
+              style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:15,
             min:0
@@ -624,8 +631,9 @@ export class SewingmodulehistComponent implements OnInit {
         yAxis: {
             gridLineWidth: 0,
             title: {
-                text: 'Absenteeism %',
+                text: 'Absenteeism%',
                 rotation: 0,
+                style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:20,
             min:0
@@ -847,5 +855,31 @@ export class SewingmodulehistComponent implements OnInit {
 
   backToPrevious(){
     window.history.back();
+  }
+
+  navigateCapacityUtilization(){
+    this._router.navigate(['capacity-utilization-overview']);
+  }
+
+  navigateAbsentismUtilization(){
+    this._router.navigate(['absentism-overview']);
+  }
+
+navigateDefectPercentage(){
+    this._router.navigate(['defect-overview']); 
+  }
+
+  navigateRejection(){
+    this._router.navigate(['rejection-overview']);
+  }
+
+  navigateDHU(){
+    this._router.navigate(['dhu-overview']);
+  }
+  navigateInlineWIP(){
+    this._router.navigate(['wip-overview']);
+  }
+  navigateMachineDowntime(){
+    this._router.navigate(['downtime-overview']);
   }
 }

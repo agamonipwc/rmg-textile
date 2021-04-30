@@ -50,10 +50,10 @@ namespace RMGWebApi.Controllers
             List<double> overallDowntimedata = new List<double>();
             for (int index = 0; index< machineDowntimeHistoricalDataLists.Count; index++)
             {
-                var overallDowntime = Math.Round((machineDowntimeHistoricalDataLists[index].MachineDownTime + feedingDowntimeHistoricalDataLists[index].FeedingDownTime) / 2, 2);
+                var overallDowntime = Math.Round((machineDowntimeHistoricalDataLists[index].MachineDownTime + feedingDowntimeHistoricalDataLists[index].FeedingDownTime) / 2);
                 overallDowntimedata.Add(overallDowntime);
-                machineDowntimedata.Add(Math.Round(machineDowntimeHistoricalDataLists[index].MachineDownTime,2));
-                feedingDowntimedata.Add(Math.Round(feedingDowntimeHistoricalDataLists[index].FeedingDownTime, 2));
+                machineDowntimedata.Add(Math.Round(machineDowntimeHistoricalDataLists[index].MachineDownTime));
+                feedingDowntimedata.Add(Math.Round(feedingDowntimeHistoricalDataLists[index].FeedingDownTime));
             }
             groupedMachineDowntimeViewModels.Add(new DHUTopFiveDefects
             {
