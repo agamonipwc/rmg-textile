@@ -42,6 +42,7 @@ export class DhuhistComponent implements OnInit {
   dhuLine: Chart;
   defectDHULine: Chart;
   avgDefectsBar: Chart;
+  defectLineWise : Chart;
 
 constructor(private http: HttpClient,private _router: Router) { }
 
@@ -142,6 +143,7 @@ ngOnInit() {
     var _this = this;
     var url = environment.backendUrl + "SewingHistorical";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
+      console.log(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["lineWiseDefectChartViewModel"])
       // console.log(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"]);
       // responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"].forEach(element => {
       //   for(var index = 0; index < element["data"].length; index++){
@@ -167,14 +169,17 @@ ngOnInit() {
         credits: {enabled: false},
         xAxis: {
           categories: responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["categories"],
-          visible : false
+          visible : true,
+          labels: {
+            rotation: -45
+          }
         },
         yAxis: {
             title: {
-                text: 'Defects Per Hundred Units (D.H.U.)'
+                text: 'Total WorkStation'
             },
-            max:13,
-            min:3
+            max:parseInt(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["maxOccurance"]),
+            min:0
         },
         tooltip: {
             crosshairs: true,
@@ -195,15 +200,57 @@ ngOnInit() {
         },
         series: responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"]
       });
-      _this.calculateAvgDefectsDHU(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["avgDefectCategories"], responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["avgDefects"])
+      _this.calculateAvgDefectsDHU(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["lineWiseDefectChartViewModel"]["Value"]["categories"], responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["pieChartViewModel"],responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["lineWiseDefectChartViewModel"]["Value"]["lineWiseDefectViews"], parseInt(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["maxOccurance"]))
     })
   }
 
-  calculateAvgDefectsDHU(categories, data){
-    this.avgDefectsBar = new Chart(
-    {
+  calculateAvgDefectsDHU(defectLineWiseCategories, data, defectLineWiseData, maxOccurance){
+    this.avgDefectsBar = new Chart({
       chart: {
-          type: 'bar'
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      exporting: {
+        enabled: false
+      },
+      credits: {enabled: false},
+      title: {
+          text: ''
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      accessibility: {
+          point: {
+              valueSuffix: '%'
+          }
+      },
+      plotOptions: {
+          pie: {
+            size: 100,
+            allowPointSelect: true,
+            cursor: 'pointer',
+            innerSize: '60%',
+            dataLabels: {
+              enabled: true,
+              // distance: -20,
+              connectorShape: 'crookedLine',
+              crookDistance: '10%',
+              alignTo: 'plotEdges',
+              format: '<b>{point.name}</b>: {point.percentage:.1f}%',
+              style: {
+                fontSize: '10' + 'px'
+              }
+            }
+          }
+      },
+      series: [data]
+    })
+    this.defectLineWise = new Chart({
+      chart: {
+        type: 'column'
       },
       exporting: {
         enabled: false
@@ -213,37 +260,96 @@ ngOnInit() {
           text: ''
       },
       xAxis: {
-          categories: categories
+          categories: defectLineWiseCategories
       },
       yAxis: {
           min: 0,
-          max: 13,
           title: {
-              text: 'Defects Per Hundred Units (D.H.U.)'
-          }
-      },
-      legend: {
-          reversed: true
-      },
-      plotOptions: {
-          series: {
-              stacking: 'normal',
-              dataLabels: {
-                enabled: true,
-                color: '#000000'
+              text: 'Total fruit consumption'
+          },
+          stackLabels: {
+              enabled: true,
+              style: {
+                  fontWeight: 'bold',
+                  color: ( // theme
+                      Highcharts.defaultOptions.title.style &&
+                      Highcharts.defaultOptions.title.style.color
+                  ) || 'gray'
               }
           }
       },
-      series: [{
-              name:'Avg. DHU',
-              showInLegend: false,
-              data: data,
+      legend: {
+        enabled: false,
+        align: 'right',
+        x: 10,
+        verticalAlign: 'top',
+        y: maxOccurance,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+      },
+      tooltip: {
+          headerFormat: '<b>{point.x}</b><br/>',
+          pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+      },
+      
+      plotOptions: {
+          column: {
+              stacking: 'normal',
               dataLabels: {
-                align: 'left',
-                enabled: true
-            }
-      }]
-    });
+                enabled: false
+              }
+          }
+      },
+      series: defectLineWiseData
+    })
+    // this.avgDefectsBar = new Chart(
+    // {
+    //   chart: {
+    //       type: 'bar'
+    //   },
+    //   exporting: {
+    //     enabled: false
+    //   },
+    //   credits: {enabled: false},
+    //   title: {
+    //       text: ''
+    //   },
+    //   xAxis: {
+    //       categories: categories
+    //   },
+    //   yAxis: {
+    //       min: 0,
+    //       max: 13,
+    //       title: {
+    //           text: 'Defects Per Hundred Units (D.H.U.)'
+    //       }
+    //   },
+    //   legend: {
+    //       reversed: true
+    //   },
+    //   plotOptions: {
+    //       series: {
+    //           stacking: 'normal',
+    //           dataLabels: {
+    //             enabled: true,
+    //             color: '#000000'
+    //           }
+    //       }
+    //   },
+    //   series: [{
+    //           name:'Avg. DHU',
+    //           showInLegend: false,
+    //           data: data,
+    //           dataLabels: {
+    //             align: 'left',
+    //             enabled: true
+    //         }
+    //   }]
+    // });
   }
   getSewingKPIAnalysis(){
     var checkedLocations = $('.option.justone.location:checkbox:checked').map(function() {

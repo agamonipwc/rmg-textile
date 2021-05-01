@@ -133,80 +133,80 @@ ngOnInit() {
         'height' : '30px',
         'width' :  (Math.round((_this.overDHUValue/15)*100) + "%")
       }
-      _this.dhuBar = new Chart({
-        chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: 'pie'
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        title: {
-            text: ''
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        accessibility: {
-            point: {
-                valueSuffix: '%'
-            }
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                }
-            }
-        },
-        series: [responsedata["data"]]
-        })
-      // _this.dhuBar = new Chart( 
-      //   {
-      //     chart: {
-      //         type: 'bar'
-      //     },
-      //     title: {
-      //         text: ''
-      //     },
-      //     exporting: {
-      //       enabled: false
-      //     },
-      //     credits: {enabled: false},
-      //     xAxis: {
-      //         categories: responsedata["categories"]
-      //     },
-      //     yAxis: {
-      //         min: 0,
-      //         max: 13,
-      //         title: {
-      //             text: 'Defects Per Hundred Units (D.H.U.)'
-      //         }
-      //     },
-      //     legend: {
-      //         reversed: true
-      //     },
-      //     plotOptions: {
-      //         series: {
-      //             stacking: 'normal'
-      //         }
-      //     },
-      //     series: [{
-      //             name:'',
-      //             showInLegend: false,
-      //             data: responsedata["data"],
-      //             dataLabels: {
-      //               align: 'left',
-      //               enabled: true
+      // _this.dhuBar = new Chart({
+      //   chart: {
+      //     plotBackgroundColor: null,
+      //     plotBorderWidth: null,
+      //     plotShadow: false,
+      //     type: 'pie'
+      //   },
+      //   exporting: {
+      //     enabled: false
+      //   },
+      //   credits: {enabled: false},
+      //   title: {
+      //       text: ''
+      //   },
+      //   tooltip: {
+      //       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      //   },
+      //   accessibility: {
+      //       point: {
+      //           valueSuffix: '%'
+      //       }
+      //   },
+      //   plotOptions: {
+      //       pie: {
+      //           allowPointSelect: true,
+      //           cursor: 'pointer',
+      //           dataLabels: {
+      //               enabled: true,
+      //               format: '<b>{point.name}</b>: {point.percentage:.1f} %'
       //           }
-      //     }]
-      // });
+      //       }
+      //   },
+      //   series: [responsedata["data"]]
+      //   })
+      _this.dhuBar = new Chart( 
+        {
+          chart: {
+              type: 'bar'
+          },
+          title: {
+              text: ''
+          },
+          exporting: {
+            enabled: false
+          },
+          credits: {enabled: false},
+          xAxis: {
+              categories: responsedata["categories"]
+          },
+          yAxis: {
+              min: 0,
+              max: 13,
+              title: {
+                  text: 'Defects Per Hundred Units (D.H.U.)'
+              }
+          },
+          legend: {
+              reversed: true
+          },
+          plotOptions: {
+              series: {
+                  stacking: 'normal'
+              }
+          },
+          series: [{
+                  name:'',
+                  showInLegend: false,
+                  data: responsedata["data"],
+                  dataLabels: {
+                    align: 'left',
+                    enabled: true
+                }
+          }]
+      });
     })
   }
 

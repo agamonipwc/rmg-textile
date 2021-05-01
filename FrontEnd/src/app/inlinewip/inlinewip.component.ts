@@ -881,7 +881,6 @@ export class InlinewipComponent implements OnInit {
                 title: {
                     text: 'Operator Inline WIP'
                 },
-                // visible : false,
                 stackLabels: {
                     enabled: false,
                     style: {

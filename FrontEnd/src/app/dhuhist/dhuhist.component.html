@@ -159,18 +159,18 @@
       </div>
     </div>
     
-    <div class="row mt-2">
-      <div class="col-9" style="background-color: #ffffff; overflow-y: scroll; height: 500px;">
+    <div class="row">
+      <div class="col-9" style="background-color: #ffffff; overflow-y: scroll; height: 505px;">
         <!-- <div class="row mt-3">
           <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseDhuDiv" aria-expanded="false" aria-controls="collapseDhuDiv">Overall DHU <i class="fas fa-caret-down"></i></button>
           <div class="col-10">
             <div [chart]= "dhuLine" style="height: 200px; width: auto;"></div>
           </div>
         </div> -->
-        <div class="row mt-3" >
+        <div class="row " >
           <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseDefectsDiv" aria-expanded="false" aria-controls="collapseDefectsDiv">Top 5 Defects <i class="fas fa-caret-down"></i></button>
           <div class="col-10">
-            <div [chart]="defectDHULine" style="height: 270px; width: 500px;"></div>
+            <div [chart]="defectDHULine" style="height: 250px; width: auto;"></div>
           </div>
         </div>
         <!-- <div class="collapse ml-5" id="collapseDhuDiv">
@@ -182,15 +182,21 @@
           </div>
         </div> -->
         <div class="collapse ml-5" id="collapseDefectsDiv">
-          <div class="row mt-3" >
-            <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px">Ave. DHU of Top Defects</button>
-            <div class="col-10">
-              <div [chart]="avgDefectsBar" style="height: 190px; width: 500px;"></div>
+          <div class="row">
+            <div class="12">
+              <h6 style="text-align: center;">Distribution of Top Defect</h6>
+            </div>
+          </div>
+          <div class="row">
+            <!-- <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px">Ave. DHU of Top Defects</button> -->
+            <div class="col-6" style="margin-left: -5%;">
+              <div [chart]="avgDefectsBar" style="height: 200px; width: auto"></div>
+            </div>
+            <div class="col-6" style="margin-top: -5%;">
+              <div [chart]="defectLineWise" style="height: 250px; width: auto"></div>
             </div>
           </div>
         </div>
-        
-        
       </div>
       <div class="col-3 mt-3">
         <div class="d-flex flex-column mb-3">

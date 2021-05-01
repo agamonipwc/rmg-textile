@@ -153,6 +153,7 @@ namespace RMGWebApi
         public double DHU { get; set; }
         public DateTime DailyDate { get; set; }
         public double DefectPcsCount { get; set; }
+        public string LineName { get; set; }
     }
 
     public class RejectionViewModel
