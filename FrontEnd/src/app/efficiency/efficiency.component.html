@@ -21,19 +21,14 @@
               </li>
               <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#mediumEfficiency" aria-controls="mediumEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation(7);">Medium Efficiency</a>
               </li>
-              <!-- <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#highEfficiency" aria-controls="highEfficiency" role="tab" data-toggle="tab" (click)="getOperatorsName('High');">High Efficiency</a>
-              </li> -->
           </ul>
           <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
-                <!-- <div class="col-3">
-                  <button class="custom-button" data-toggle="collapse" data-target="#Recommendations">Recommendations</button>
-                </div>
-                <div class="col-3 mt-3">
-                  <button class="custom-button" data-toggle="collapse" data-target="#Operators">Operators</button>
-                </div> -->
+                <div class="mb-3 mt-2" style="font-weight: bold; font-size: small;">Note: Click on each button below to see more details.</div>
+                <button class="custom-button" data-toggle="collapse" data-target="#Recommendations">Recommendations</button>
+                <button class="custom-button ml-3" data-toggle="collapse" data-target="#Operators">Operators</button>
                 
-                <div id="Recommendations" #TABLE #table class="mt-2" >
+                <div id="Recommendations" #TABLE #table class="collapse mt-2" >
                   <button (click)="ExportToExcelLowEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
                   <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
@@ -65,7 +60,7 @@
                     </tbody>
                   </table>
                 </div>
-                <div id="Operators" #LowEfficiencyOperatorsTable #table class="mt-2">
+                <div id="Operators" #LowEfficiencyOperatorsTable #table class="collapse mt-2">
                   <button (click)="ExportToExcelLowOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
                   <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
@@ -111,7 +106,11 @@
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="mediumEfficiency" >
-                <div #ModerateEfficiencyTable #table class="mt-2">
+                <div class="mb-3 mt-2" style="font-weight: bold; font-size: small;">Note: Click on each button below to see more details.</div>
+                <button class="custom-button" data-toggle="collapse" data-target="#ModerateRecommendations">Recommendations</button>
+                <button class="custom-button ml-3" data-toggle="collapse" data-target="#ModerateOperators">Operators</button>
+                
+                <div id="ModerateRecommendations" #ModerateEfficiencyTable #table class="collapse mt-2">
                   <button (click)="ExportToExcelModerateEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
                   <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
@@ -136,7 +135,7 @@
                     </tbody>
                   </table>
                 </div>
-                <div #ModerateEfficiencyOperatorsTable #table class="mt-2">
+                <div id="ModerateOperators" #ModerateEfficiencyOperatorsTable #table class="collapse mt-2">
                   <button (click)="ExportToExcelModerateOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
                   <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">

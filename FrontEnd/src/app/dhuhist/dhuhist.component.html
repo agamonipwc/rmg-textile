@@ -5,93 +5,57 @@
   </button>
 </nav>
 <div class="modal fade" id="recommendationModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-lg">
       <div class="modal-header">
         <h5 class="modal-title" id="recommendationModalTitle">{{recommendationModalTitle}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="height: 400px;">
-        <table class="table table-striped" style="background-color: #ffffff;">
-          <thead class="thead-dark">
-              <tr>
-                  <th style="width: 50%">
-                      Reasons
-                  </th>
-                  <th style="width: 50%">
-                    Recommendations
-                </th>
-                <th style="width: 50%">
-                  SubReasons
-              </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of data; let ndx = index">
-                  <!-- <td>{{item.Name}}</td> -->
-                  <td>{{item.Reasons}}</td>
-                  <td>{{item.Recommendations}}</td>
-                  <td>{{item.SubReasons}}</td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="operatorsDetailsModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="operatorsDetailsModalTitle">Operators Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="height: 500px;">
-        <table class="table table-striped" style="background-color: #ffffff;" [mfData]="operatorsDetailsList" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
-          <thead class="thead-dark">
-              <tr>
-                  <th style="width: auto">
-                      <mfDefaultSorter [mfShowSortableArrows]="true" by="Name">Name</mfDefaultSorter>
-                  </th>
-                  <th style="width: auto">
-                    <mfDefaultSorter by="Machine">Working Machine</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Unit">Unit</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Location">Location</mfDefaultSorter>
-                </th>
-                <th style="width: auto">
-                  <mfDefaultSorter by="Line">Line</mfDefaultSorter>
-                </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of mf.data; let ndx = index1">
-                  <td>{{item.Name}}</td>
-                  <td>{{item.Machine}}</td>
-                  <td>{{item.Unit}}</td>
-                  <td>{{item.Location}}</td>
-                  <td>{{item.Line}}</td>
-              </tr>
-          </tbody>
-          <tfoot>
-              <tr>
-                  <td colspan="4">
-                      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                  </td>
-              </tr>
-          </tfoot>
-        </table>
+      <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+        <div role="tabpanel">
+          <!-- Nav tabs -->
+          <ul class="nav nav-pills nav-fill" role="tablist">
+              <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation();"></a></li>
+          </ul>
+          <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
+                <div #TABLE #table class="mt-2">
+                  <button (click)="ExportToExcelDHU()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
+                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: auto">
+                                Reasons
+                            </th>
+                            <th style="width: auto">
+                              SubReasons
+                            </th>
+                            <th style="width: auto">
+                              Recommendations
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let ndx = index">
+                            <td>
+                              <div innerHTML="{{item.Reasons}}"></div>
+                            </td>
+                            <td>
+                              <div innerHTML="{{item.SubReasons}}"></div>
+                            </td>
+                            <td>
+                              <div innerHTML="{{item.Recommendations}}"></div>
+                            </td>
+                           
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -150,15 +114,26 @@
 </nav>
 <main role="main" class="col-9 ml-auto col-md-9 pt-3">
   <section class="text-center placeholders" id="dashboardsection">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-8">
         <h4 style="text-align: left; margin-left: 22%; font-weight: bold;">Historical Overview of D.H.U.</h4>
       </div>
       <div class="col-4 mt-2">
         <a style="font-weight: bold;" (click)="navigateToDHUOverview()">Show DHU Overview</a>
       </div>
+    </div> -->
+    <div class="row">
+      <div class="col-3">
+        <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+        <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+      </div>
+      <div class="col-9">
+        <h6 style="text-align: left; font-weight: bold;">{{headerTextValue}}</h6>
+      </div>
+      <!-- <div class="col-3 mt-2" style="text-align: left;">
+        <button class="custom-button" style="font-weight: bold; cursor: pointer; margin-left: 10%;" (click)="navigateToDHUHistorical()">Last 5 days Data</button>
+      </div> -->
     </div>
-    
     <div class="row">
       <div class="col-9" style="background-color: #ffffff; overflow-y: scroll; height: 505px;">
         <!-- <div class="row mt-3">
@@ -168,8 +143,8 @@
           </div>
         </div> -->
         <div class="row " >
-          <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseDefectsDiv" aria-expanded="false" aria-controls="collapseDefectsDiv">Top 5 Defects <i class="fas fa-caret-down"></i></button>
-          <div class="col-10">
+          <!-- <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseDefectsDiv" aria-expanded="false" aria-controls="collapseDefectsDiv">Top 5 Defects <i class="fas fa-caret-down"></i></button> -->
+          <div class="col-12">
             <div [chart]="defectDHULine" style="height: 250px; width: auto;"></div>
           </div>
         </div>
@@ -181,24 +156,22 @@
             </div>
           </div>
         </div> -->
-        <div class="collapse ml-5" id="collapseDefectsDiv">
-          <div class="row">
-            <div class="12">
-              <h6 style="text-align: center;">Distribution of Top Defect</h6>
-            </div>
+        <div class="row">
+          <div class="col-12" style="text-align: center;">
+            <h6 style="font-weight: bold; color: #741910;">Distribution of Top Defects</h6>
           </div>
-          <div class="row">
-            <!-- <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px">Ave. DHU of Top Defects</button> -->
-            <div class="col-6" style="margin-left: -5%;">
-              <div [chart]="avgDefectsBar" style="height: 200px; width: auto"></div>
-            </div>
-            <div class="col-6" style="margin-top: -5%;">
-              <div [chart]="defectLineWise" style="height: 250px; width: auto"></div>
-            </div>
+        </div>
+        <div class="row">
+          <!-- <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px">Ave. DHU of Top Defects</button> -->
+          <div class="col-6" style="margin-left: -5%;">
+            <div [chart]="avgDefectsBar" style="height: 200px; width: auto"></div>
+          </div>
+          <div class="col-6">
+            <div [chart]="defectLineWise" style="height: 224px; width: auto"></div>
           </div>
         </div>
       </div>
-      <div class="col-3 mt-3">
+      <div class="col-3">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
@@ -207,12 +180,18 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLocationMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu">
-                          <li class="custom-li" *ngFor="let option of locationOptions"><a href="#" class="dropdown-label"><label class="ml-2"><input name='options[location]' (change)="onLocationChange($event)" type="checkbox" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li" *ngFor="let option of locationOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2">
+                                <input name='options[location]' (change)="onLocationChange($event)" type="radio" class="option justone location" [value]="option.Id" [id]="'location_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -224,12 +203,18 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownUnitMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of unitOptions"><a href="#" class="dropdown-label"><label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;"><input name='options[unit]' type="checkbox" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li" *ngFor="let option of unitOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 unit_label" [id]="'unit_label_' + option.Id" style="display: none;">
+                                <input name='options[unit]' (change)="onUnitChange($event)" type="radio" class="option justone unit" [value]="option.Id" [id]="'unit_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -241,12 +226,25 @@
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLineMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Choose Options
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of lineOptions"><a href="#" class="dropdown-label"><label class="ml-2 line_label" [id]="'line_label_' + option.Id" style="display: none;"><input name='options[line]' type="radio" class="option justone line" [value]="option.Id" [id]="'line_' + option.Id"/> {{option.Name}}</label></a></li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_1">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="1" id="line_1"> Line1 
+                              </label>
+                            </a>
+                          </li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_label" style="display: none;" id="line_label_2">
+                                <input class="option justone line" (change)="onLineChange($event)" name="options[line]" type="radio" value="2" id="line_2"> Line2 
+                              </label>
+                            </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -256,8 +254,56 @@
               <li class="nav-item mt-3">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of periodOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
+                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Defects</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownDefectButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of defectOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 defect_label" [id]="'defect_label_' + option.Id">
+                                <input name='options[defect]' (change)="onDefectChange($event)" type="radio" class="option justone defect" [value]="option.Id" [id]="'defect_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item mt-3">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
-                    <input type="date" placeholder="Start Date" id="startDate">
+                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-27" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>
@@ -265,12 +311,15 @@
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
-                    <input type="date" placeholder="End Date" id="endDate">
+                    <input type="date" placeholder="End Date" id="endDate" value="2021-01-31" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-2">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
+              </li>
+              <li class="nav-item mt-2">
+                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation()">Recommendations</button>
               </li>
             </ul>
           </nav>

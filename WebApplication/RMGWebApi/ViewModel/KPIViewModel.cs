@@ -7,9 +7,17 @@ namespace RMGWebApi
 {
     public class KPIViewModel
     {
+        public KPIViewModel()
+        {
+            this.MachineCount = "5";
+        }
+
         public List<double> Line { get; set; }
         public List<double> Unit{ get; set; }
         public List<double> Location { get; set; }
+        public int DefectCount { get; set; }
+        public string MachineCount { get; set; }
+        public string MachineCategory { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string MachineName { get; set; }
@@ -91,7 +99,9 @@ namespace RMGWebApi
     public class MachineDowntimeViewModel
     {
         public double Line { get; set; }
+        public string LineName { get; set; }
         public double Unit { get; set; }
+        public string UnitName { get; set; }
         public double Location { get; set; }
         public DateTime Date { get; set; }
         public double MachineDownTime { get; set; }
@@ -100,6 +110,7 @@ namespace RMGWebApi
         public string ColorCode { get; set; }
         public double WorkingMins { get; set; }
         public int TotalMachineCount { get; set; }
+        public double OperationIndex { get; set; }
     }
     public class ProductionViewModel
     {
@@ -237,5 +248,6 @@ namespace RMGWebApi
     {
         public double y { get; set; }
         public string name { get; set; }
+        public string color { get; set; }
     }
 }

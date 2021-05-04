@@ -22,7 +22,8 @@ export const environment = {
   inlineWIPOperatorHeaderText: "Efficiency vs Quality Mapping",
   operatorEfficiencyWIPHeaderText : "Efficiency and Defect Count of Operators",
   downtimeHistoricalHeaderText: "Overview of Downtime",
-  downtimeOverviewHeaderText: "Machine Downtime",
+  downtimeOverviewHeaderText: "Overview of Machine Downtime",
+  defectHistoricalOverviewHeaderText : "Historical Overview of Top Defects"
 };
 
 // export const environment = {

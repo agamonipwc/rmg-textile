@@ -758,7 +758,7 @@ namespace RMGWebApi.Controllers
                 ProductionData = c.Average(x => x.ProductionData)
             }).ToList();
 
-            var orderedDefectViewModel = groupedDefectCountViewModel.OrderByDescending(x => x.DefectCount).Take(5).OrderByDescending(x => x.DefectCount).ToList();
+            var orderedDefectViewModel = groupedDefectCountViewModel.OrderByDescending(x => x.DefectCount).Take(kpiViewModel.DefectCount).OrderByDescending(x => x.DefectCount).ToList();
             
             return orderedDefectViewModel;
         }
@@ -769,12 +769,34 @@ namespace RMGWebApi.Controllers
             DHUPieChartViewModel dHUPieChartViewModel = new DHUPieChartViewModel();
             List<DHUPieChartDataPoint> dHUPieChartDataSet = new List<DHUPieChartDataPoint>();
             double topFiveDefectsCount = 0;
-            foreach (var element in orderedDefectViewModel)
+            for (int index= 0; index < orderedDefectViewModel.Count; index++)
             {
-                topFiveDefectsCount += element.DefectCount;
+                topFiveDefectsCount += orderedDefectViewModel[index].DefectCount;
                 DHUPieChartDataPoint chartDataPoint = new DHUPieChartDataPoint();
-                chartDataPoint.y = Math.Round((element.DefectCount * 100) / totalDefectCount, 2);
-                chartDataPoint.name = element.DefectName;
+                string color = "";
+                if (index == 0)
+                {
+                    color = "#175d2d";
+                }
+                if (index == 1)
+                {
+                    color = "#ffb600";
+                }
+                if (index == 2)
+                {
+                    color = "#e0301e";
+                }
+                if (index == 3)
+                {
+                    color = "#933401";
+                }
+                if (index == 4)
+                {
+                    color = "#ae6800";
+                }
+                chartDataPoint.y = Math.Round((orderedDefectViewModel[index].DefectCount * 100) / totalDefectCount, 2);
+                chartDataPoint.name = orderedDefectViewModel[index].DefectName;
+                chartDataPoint.color = color;
                 dHUPieChartDataSet.Add(chartDataPoint);
             }
 
@@ -870,30 +892,85 @@ namespace RMGWebApi.Controllers
 
             List<string> lineCategories = new List<string>();
             lineCategories = groupedDefectViewModels.Select(x => x.LineName).Distinct().ToList();
-            List<LineWiseDefectViewModel> lineWiseDefectViews = new List<LineWiseDefectViewModel>();
-            for(int outerIndex = 0; outerIndex< lineCategories.Count; outerIndex++)
+            List<double> defectCountsPerLine = new List<double>();
+
+            var groupedDefectCountsPerLine = newgroupedDefectViewModels.GroupBy(x => x.LineName).Select(grp => new
             {
-                List<double> dataset = new List<double>();
-                for(int innerIndex = 0; innerIndex< newgroupedDefectViewModels.Count; innerIndex++)
-                {
-                    //var defectName = orderedDefectViewModel.Where(x => x.DefectName == groupedDefectViewModels[innerIndex].DefectName).Select(x => x.DefectName).FirstOrDefault();
-                    double defectCount = 0;
-                    if (newgroupedDefectViewModels[innerIndex].LineName == lineCategories[outerIndex])
-                    {
-                        defectCount += groupedDefectViewModels[innerIndex].DefectCount;
-                        dataset.Add(defectCount);
-                    }
+                TotalDefectCount = grp.Sum(x => x.DefectCount)
+            }).ToList();
+
+            List<LineWiseDefectViewModel> lineWiseDefectViews = new List<LineWiseDefectViewModel>();
+            //for(int outerIndex = 0; outerIndex< lineCategories.Count; outerIndex++)
+            //{
+            //    List<double> dataset = new List<double>();
+            //    for(int innerIndex = 0; innerIndex< newgroupedDefectViewModels.Count; innerIndex++)
+            //    {
+            //        //var defectName = orderedDefectViewModel.Where(x => x.DefectName == groupedDefectViewModels[innerIndex].DefectName).Select(x => x.DefectName).FirstOrDefault();
+            //        double defectCount = 0;
+            //        if (newgroupedDefectViewModels[innerIndex].LineName == lineCategories[outerIndex])
+            //        {
+            //            defectCount += groupedDefectViewModels[innerIndex].DefectCount;
+            //            dataset.Add(defectCount);
+            //        }
                     
+            //    }
+            //    lineWiseDefectViews.Add(new LineWiseDefectViewModel
+            //    {
+            //        name = lineCategories[outerIndex],
+            //        data = dataset
+            //    });
+            //}
+            
+            for(int outIndex = 0; outIndex< orderedDefectViewModel.Count; outIndex++)
+            {
+                string color = "";
+                if (outIndex == 0)
+                {
+                    color = "#175d2d";
+                }
+                if (outIndex == 1)
+                {
+                    color = "#ffb600";
+                }
+                if (outIndex == 2)
+                {
+                    color = "#e0301e";
+                }
+                if (outIndex == 3)
+                {
+                    color = "#933401";
+                }
+                if (outIndex == 4)
+                {
+                    color = "#ae6800";
+                }
+                List<double> dataset = new List<double>();
+                for (int innerIndex =0; innerIndex<lineCategories.Count; innerIndex++)
+                {
+                    double defectCount = 0;
+                    var existingElements = newgroupedDefectViewModels.Where(x => x.LineName == lineCategories[innerIndex] && x.DefectName == orderedDefectViewModel[outIndex]).ToList();
+                    if(existingElements.Count > 0)
+                    {
+                        foreach(var element in existingElements)
+                        {
+                            defectCount += element.DefectCount;
+                        }
+                    }
+                    var defectPercentage = Math.Round((defectCount * 100 / groupedDefectCountsPerLine[innerIndex].TotalDefectCount));
+                    dataset.Add(defectPercentage);
                 }
                 lineWiseDefectViews.Add(new LineWiseDefectViewModel
                 {
-                    name = lineCategories[outerIndex],
-                    data = dataset
+                    name = orderedDefectViewModel[outIndex],
+                    data = dataset,
+                    color = color
                 });
             }
+
             return Json(new {
                 lineWiseDefectViews = lineWiseDefectViews,
-                categories = orderedDefectViewModel
+                categories = lineCategories
+                //categories = orderedDefectViewModel
             });
         }
 
@@ -901,6 +978,7 @@ namespace RMGWebApi.Controllers
         {
             public string name { get; set; }
             public List<double> data { get; set; }
+            public string color { get; set; }
         }
     }
 }

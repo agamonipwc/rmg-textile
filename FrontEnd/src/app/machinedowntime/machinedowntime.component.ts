@@ -32,6 +32,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class MachinedowntimeComponent implements OnInit {
   @ViewChild('TABLE') TABLE: ElementRef;  
+  @ViewChild('MachineDowntimeBreakage') MachineDowntimeBreakage: ElementRef;  
   @ViewChild('LowEfficiencyOperatorsTable') LowEfficiencyOperatorsTable: ElementRef;  
   @ViewChild('ModerateEfficiencyTable') ModerateEfficiencyTable: ElementRef;  
   @ViewChild('ModerateEfficiencyOperatorsTable') ModerateEfficiencyOperatorsTable: ElementRef; 
@@ -41,13 +42,18 @@ export class MachinedowntimeComponent implements OnInit {
   totalDownTime : any = 0;
   totalFeedingDownTime : any = 0;
   totalMachineDownTime : any = 0;
+  totalSpecialMachineDownTime : any = 0;
+  totalGeneralMachineDownTime : any = 0;
   topFiveMachinesList : any = [];
+  topFiveGeneralMachinesList : any = [];
   lineOptions : any = []
   unitOptions : any = [];
   locationOptions : any = [];
   totalDownTimeStyle : any = {};
   totalFeedingDownTimeStyle : any = {};
   totalMachineDownTimeStyle : any = {};
+  totalSpecialMachineDownTimeStyle : any = {};
+  totalGeneralMachineDownTimeStyle : any = {};
   selectedMachineName : any = "";
   KPIView : any = {};
   tableData : any = [];
@@ -55,6 +61,30 @@ export class MachinedowntimeComponent implements OnInit {
   recommendationModalTitle : any = "";
   data : any = [];
   operatorsDetailsList = [];
+  selectedMachineValue = 5;
+  selectedPeriodValue = 5;
+  machineCountList =[
+    {
+      id : 5, name : "Top 5"
+    },
+    {
+      id : 10, name : "Top 10"
+    }
+  ]
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
 
   constructor(private http: HttpClient,private _router: Router) { }
   ngOnInit() {
@@ -87,6 +117,7 @@ export class MachinedowntimeComponent implements OnInit {
     window.history.back();
   }
   headerTextValue : string;
+  
   getFilterData(){
     this.KPIView = {
       Line : [1,2],
@@ -127,6 +158,8 @@ export class MachinedowntimeComponent implements OnInit {
       _this.totalDownTime = responsedata["totalDownTime"] + "%";
       _this.totalFeedingDownTime = responsedata["totalFeedingDownTime"] + "%";
       _this.totalMachineDownTime = responsedata["totalMachineDownTime"] + "%";
+      _this.totalSpecialMachineDownTime = responsedata["totalSpecialMachineDownTime"] +"%";
+      _this.totalGeneralMachineDownTime = responsedata["totalGeneralMachineDownTime"] +"%";
       _this.totalDownTimeStyle = {
         'background-color' : responsedata["totalDowntimeColorCode"],
         'height' : '30px',
@@ -142,6 +175,16 @@ export class MachinedowntimeComponent implements OnInit {
         'height' : '30px',
         'width' :  _this.totalMachineDownTime
       }
+      _this.totalGeneralMachineDownTimeStyle = {
+        'background-color' : responsedata["totalGeneralMachineDowntimeColorCode"],
+        'height' : '30px',
+        'width' :  _this.totalMachineDownTime
+      }
+      _this.totalSpecialMachineDownTimeStyle = {
+        'background-color' : responsedata["totalSpecialMachineDowntimeColorCode"],
+        'height' : '30px',
+        'width' :  _this.totalMachineDownTime
+      }
       responsedata["topFiveMachineDowntimeList"].forEach(element => {
         _this.topFiveMachinesList.push({
           machineName : element["MachineName"],
@@ -149,7 +192,18 @@ export class MachinedowntimeComponent implements OnInit {
           machineStyle :{
             'background-color' : element["ColorCode"],
             'height' : '30px',
-            'width' :  element["MachineDownTime"]
+            'width' :  element["MachineDownTime"] + "%"
+          }
+        })
+      });
+      responsedata["topFiveGeneralMachineDowntimeList"].forEach(element => {
+        _this.topFiveGeneralMachinesList.push({
+          machineName : element["MachineName"],
+          machineDownTime : element["MachineDownTime"],
+          machineStyle :{
+            'background-color' : element["ColorCode"],
+            'height' : '30px',
+            'width' :  element["MachineDownTime"] + "%"
           }
         })
       });
@@ -223,49 +277,61 @@ export class MachinedowntimeComponent implements OnInit {
         },
         series: responsedata["data"]
       });
-      _this.calculateCurveFitChart(responsedata["categories"],responsedata["curveFitMachineDowntimeData"], responsedata["totalCountDays"]);
+      // _this.calculateCurveFitChart(responsedata["categories"],responsedata["curveFitMachineDowntimeData"], responsedata["totalCountDays"]);
     })
    }
 
-   calculateCurveFitChart(categories, data, totalCountDays){
-    //  data.forEach(element => {
-    //    var dataValues = [];
-    //   element["data"].forEach(innerElement => {
-    //      if(innerElement == 0){
-    //       dataValues.push(null);
-    //      }
-    //      else{
-    //       dataValues.push(innerElement);
-    //      }
-    //    });
-    //    data["data"] = dataValues;
-    //  });
-    this.tableData = [];
-    this.curveFitMachineDowntime = new Chart({
-      chart: {
-          type: 'scatter'
-      },
-      exporting: {
-        enabled: false
-      },
-      credits: {enabled: false},
-      title: {
-          text: ''
-      },
-      labels: {
-        enabled: false,
-      },
-      xAxis: {
-        categories: categories
-      },
-      yAxis: {
-        title: {
-            text: 'Machine Downtime'
+   machineCategory = "";
+   calculateTopSpecialMachineDowntime(){
+    this.KPIView["StartDate"] = "2021-01-27 00:00:00.000";
+    var KPIView = this.KPIView;
+    KPIView["MachineCategory"] = "Special";
+    //console.log("---------KPIView---------",KPIView);
+    this.calculateMachineDowntimeHistoricAnalysis(KPIView);
+   }
+
+   calculateTopGeneralMachineDowntime(){
+    this.KPIView["StartDate"] = "2021-01-27 00:00:00.000";
+    var KPIView = this.KPIView;
+    KPIView["MachineCategory"] = "General";
+    //console.log("---------KPIView---------",KPIView);
+    this.calculateMachineDowntimeHistoricAnalysis(KPIView);
+   }
+
+   calculateMachineDowntimeHistoricAnalysis(KPIView){
+    var _this = this;
+    var url = environment.backendUrl + "MachineDailyDowntime";
+    this.http.post<any>(url, KPIView).subscribe(responsedata => {
+      //console.log("---------Response Data---------",responsedata);
+      _this.machineDowntimeLine = new Chart({
+        chart: {
+          type: 'spline'
         },
-        max:20,
-        min:0,
-        plotLines: [
-          {
+        exporting: {
+          enabled: false
+        },
+        credits: {enabled: false},
+        title: {
+            text: ''
+        },
+        labels: {
+          enabled: false,
+        },
+        xAxis: {
+          categories: responsedata["categories"],
+          visible : true,
+          labels: {
+            rotation: -45
+          }
+        },
+        yAxis: {
+          title: {
+              text: 'Machine Downtime%'
+          },
+          max:responsedata["maxValue"],
+          min:0,
+          plotLines: [
+            {
             color: '#003dab',
             width: 2,
             value: 10,
@@ -277,71 +343,57 @@ export class MachinedowntimeComponent implements OnInit {
             value: 5,
             dashStyle: 'shortdot'
           }
-        ]
-      },
-      tooltip: {
-          crosshairs: true,
-          shared: true,
-          formatter: function() {
-            return  '</b> Machine has downtime of  <b>' + this.y + '%</b></br> on '+ this.x;
-        }
-      },
-      plotOptions: {
-        spline: {
-          marker: {
-              radius: 4,
-              // lineColor: '#666666',
-              lineWidth: 1
+          ]
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true,
+            formatter: function() {
+              return  '</b> Machine has downtime of  <b>' + this.y + '%</b></br> on '+ this.x;
           }
         },
-        series: {
-            connectNulls: false,
-            dataLabels: {
-              formatter: function() {
-                if (this.y > 0) {
-                  return this.y;
-                }
-              }
+        plotOptions: {
+          spline: {
+            marker: {
+                radius: 4,
+                lineWidth: 1
             }
-            // lineWidth: 1
-        }
-          
-      },
-      series: data
-    }); 
-    data.forEach(element => {
-      var countDowntimeMoreThanFive = 0;
-      element["data"].forEach(innerElement => {
-        if(innerElement >= 5){
-          countDowntimeMoreThanFive ++;
-        }
+          },
+          series: {
+              connectNulls: true,
+              // lineWidth: 1
+          }
+            
+        },
+        series: responsedata["data"]
       });
-      var frequency = Math.round(countDowntimeMoreThanFive * 100 / totalCountDays);
-      if(frequency >= 20){
-        var machineName = element["name"].split('_')[0];
-        var location = element["name"].split('_')[1];
-        var unit = element["name"].split('_')[2];
-        var line = element["name"].split('_')[3];
-        this.tableData.push({
-          machineName : machineName,
-          location : location,
-          unit : unit,
-          line : line,
-          frequency : frequency
-        });
-      }
+      _this.calculateCurveFitChart(responsedata["machineDowntimeTabularViewModels"]);
+    })
+   }
+
+   calculateCurveFitChart(machineDowntimeTabularViewModels){
+    this.tableData = [];
+    machineDowntimeTabularViewModels.forEach(element => {
+      this.tableData.push({
+        machineName : element["MachineName"],
+        unit : element["UnitName"],
+        line : element["LineName"],
+        avgMachineDowntime : element["MachineDownTime"],
+        frequency : element["WorkingMins"] + "|" + element["TotalMachineCount"]
+      });
     });
-    
    }
 
    showCurveFit(){
      if($("#curveFit").is(":hidden")){
-      $("#frequencyBtn").html("Downtime Frequency")
+      $("#historicalAnalysisParameters").hide();
+      $("#frequencyBtn").html("Show Chart");
       $("#curveFit").show();
       $("#machineDowntimeHistorical").hide();
      }
      else{
-      $("#frequencyBtn").html("Downtime Overview");
+      $("#historicalAnalysisParameters").show();
+      $("#frequencyBtn").html("Show List");
       $("#curveFit").hide();
       $("#machineDowntimeHistorical").show();
      }
@@ -412,6 +464,31 @@ export class MachinedowntimeComponent implements OnInit {
     
    }
 
+   showMachineAnalysis(){
+      var EndDate = new Date($('#endDate').val());
+      var last = new Date(EndDate.getTime() - (this.selectedPeriodValue * 24 * 60 * 60 * 1000));
+      var day =last.getDate();
+      var month=last.getMonth()+1;
+      var year=last.getFullYear();
+      var monthString = month.toString();
+      var dayString = day.toString();
+      if(month < 10){
+        monthString = "0" + month;
+      }
+      if(day < 10){
+        dayString = "0" + day;
+      }
+      // var StartDate = year + "-" + monthString + "-" + dayString;
+      var startDateTime = year + "-" + monthString + '-' + dayString + " 00:00:00.000";
+      this.KPIView["StartDate"] = startDateTime;
+      this.KPIView["MachineCount"] = this.selectedMachineValue;
+      if(this.machineCategory == "Special"){
+        this.calculateTopSpecialMachineDowntime();
+      }
+      else{
+        this.calculateTopGeneralMachineDowntime();
+      }
+   }
    isEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
@@ -468,6 +545,16 @@ export class MachinedowntimeComponent implements OnInit {
     }
   }
 
+  onPeriodChangeInMachineDowntime(newMachinePeriodValue){
+    //console.log("-------MachineDowntime--------",newMachinePeriodValue);
+    this.selectedPeriodValue = newMachinePeriodValue
+  }
+
+  onMachineCountChangeInMachineDowntime(newMachineCountValue){
+    //console.log("-------MachineDowntime--------",newMachineCountValue);
+    this.selectedMachineValue = newMachineCountValue
+  }
+
   onLineChange(event){
     if (event.target.checked){
       this.lineOptions.forEach(element => {
@@ -488,6 +575,37 @@ export class MachinedowntimeComponent implements OnInit {
             _this.lineOptions = responsedata["lineMasterData"];
         }
     })
+  }
+
+  onPeriodChange(event){
+    if (event.target.checked){
+      this.periodOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLinePeriodButton").html(element.Name);
+          var checkedPeriod = $('.option.justone.period:radio:checked').map(function() {
+            var periodId = parseInt(this.value);
+            return periodId;
+          }).get();
+          if(checkedPeriod[0] != null){
+            var EndDate = new Date($('#endDate').val());
+            var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+            var day =last.getDate();
+            var month=last.getMonth()+1;
+            var year=last.getFullYear();
+            var monthString = month.toString();
+            var dayString = day.toString();
+            if(month < 10){
+              monthString = "0" + month;
+            }
+            if(day < 10){
+              dayString = "0" + day;
+            }
+            var StartDate = year + "-" + monthString + "-" + dayString;
+            $('#startDate').val(StartDate)
+          }
+        }
+      });
+    }
   }
 
    navigateDowntime(){
@@ -532,6 +650,13 @@ export class MachinedowntimeComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();  
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
     XLSX.writeFile(wb, 'Moderate_Efficiency_Operators.xlsx');  
+  }
+
+  ExportToMachineDowntimeBreakage(){
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.MachineDowntimeBreakage.nativeElement);  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+    XLSX.writeFile(wb, 'Machine_Downtime_Breakage.xlsx');
   }
 
   getRecommendation(recommendationId){
