@@ -970,8 +970,8 @@ img, object, embed, video {
         }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-	color: #933401 !important;
-	background-color: transparent !important;
+	color: #fff !important;
+	background-color: #933401 !important;
 	/* font-weight: bold; */
 }
 .nav{

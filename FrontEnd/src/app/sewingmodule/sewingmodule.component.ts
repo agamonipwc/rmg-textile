@@ -50,7 +50,7 @@ export class SewingmoduleComponent implements OnInit {
   rejectStyle : any = {};
   
   kpiMasterData : any = [];
-  selectedKPI: any = "Choose your option";
+  selectedKPI: any = 1;
 
   headerTextValue : string = "";
 
@@ -69,52 +69,12 @@ export class SewingmoduleComponent implements OnInit {
     this.getMasterKPIData();
     $("#footer").hide();
     $(".footer").hide();
-    // var textWrapper = document.querySelector('.ml1 .letters');
-    // textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-    // anime.timeline({loop: true})
-    // .add({
-    //     targets: '.ml1 .letter',
-    //     scale: [0.3,1],
-    //     opacity: [0,1],
-    //     translateZ: 0,
-    //     easing: "easeOutExpo",
-    //     duration: 600,
-    //     delay: (el, i) => 70 * (i+1)
-    // }).add({
-    //     targets: '.ml1 .line',
-    //     scaleX: [0,1],
-    //     opacity: [0.5,1],
-    //     easing: "easeOutExpo",
-    //     duration: 700,
-    //     offset: '-=875',
-    //     delay: (el, i, l) => 80 * (l - i)
-    // }).add({
-    //     targets: '.ml1',
-    //     opacity: 0,
-    //     duration: 1000,
-    //     easing: "easeOutExpo",
-    //     delay: 1000
-    // });
-    // $(function() {
-    //   // Hide all lists except the outermost.
-    //   $('ul.tree ul').hide();
-    
-    //   $('.tree li > ul').each(function(i) {
-    //     var $subUl = $(this);
-    //     var $parentLi = $subUl.parent('li');
-    //     var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
-    
-    //     $parentLi.addClass('has-children');
-        
-    //     $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-    //       $(this).text( $(this).text() == '+' ? '-' : '+' );
-    //       $subUl.slideToggle('fast');
-    //     });
-    //   });
-    // });
   }
   getFilterData(){
+    $('input[type=radio]').prop('checked',false);
+    $("#dropdownLocationMenuButton").html("Choose Option");
+    $("#dropdownUnitMenuButton").html("Choose Option");
+    $("#dropdownLineMenuButton").html("Choose Option");
     var KPIView = {
       Line : [1,2],
       Location : [1,2],

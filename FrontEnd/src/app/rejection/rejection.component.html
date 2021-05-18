@@ -24,9 +24,9 @@
           </ul>
           <div class="tab-content">
               <div role="tabpanel" class="tab-pane" id="highRejection">
-                <div #HighRejectionTable #table class="mt-2">
+                <div #HighRejectionTable #table class="mt-1">
                   <button (click)="ExportToExcelHighRejection()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                  <table class="table table-striped mt-1" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
                         <tr>
                             <th style="width: auto">
@@ -58,9 +58,9 @@
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane active" id="mediumRejection" >
-                <div #ModerateRejectionTable #table class="mt-2">
+                <div #ModerateRejectionTable #table class="mt-1">
                   <button (click)="ExportToExcelModerateRejection()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                  <table class="table table-striped mt-1" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
                         <tr>
                             <th style="width: auto">
@@ -85,9 +85,9 @@
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="lowRejection" >
-                <div #LowRejectionTable #table class="mt-2">
+                <div #LowRejectionTable #table class="mt-1">
                   <button (click)="ExportToExcelLowRejection()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                  <table class="table table-striped mt-1" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
                         <tr>
                             <th style="width: auto">
@@ -124,7 +124,7 @@
 
 <nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
   <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
-  <ul class="tree cutom-treestructure mt-3">
+  <ul class="tree cutom-treestructure mt-1">
     <li (click)="dashboardNavigation()" id="dashbaord_href" style="cursor: pointer;">
       <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
     </li>
@@ -182,27 +182,24 @@
     </div> -->
     
     <div class="row">
-      <div class="col-3 mt-2">
+      <div class="col-3 mt-1">
         <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
         <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
       </div>
       <div class="col-9">
         <h6 style="text-align: left; font-weight: bold;">{{headerTextValue}}</h6>
       </div>
-      <!-- <div class="col-3 mt-2" style="text-align: start;">
-        <a style="font-weight: bold; cursor: pointer;" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(6)">Show Recommendations</a>
-      </div> -->
     </div>
     <div class="row">
       <div class="col-9">
-        <div class="row mt-3">
+        <div class="row mt-1">
           <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px" data-toggle="collapse" data-target="#collapseOperationDiv" aria-expanded="false" aria-controls="collapseOperationDiv" (click)="showStyleData()">Rejection % <i class="fas fa-caret-down"></i></button>
           <div class="col-10">
             <div id="rejectionLineDiv" [chart]= "rejectionLine" style="height: 280px; width: auto"></div>
           </div>
         </div>
         <div class="collapse ml-3" id="collapseOperationDiv">
-          <div class="row mt-2" >
+          <div class="row mt-1" >
             <button style="float:left;" type="button" class="btn col-2" style="text-align: left; font-size: 12px">Styles with Rejection</button>
             <div class="col-10">
               <div [chart]="styleRejectionBar" style="height: 200px; width: auto;"></div>
@@ -211,7 +208,7 @@
           
         </div>
       </div>
-      <!-- <div class="col-3 mt-3">
+      <!-- <div class="col-3 mt-1">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
@@ -232,7 +229,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
@@ -249,7 +246,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
@@ -266,7 +263,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
@@ -274,7 +271,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
@@ -282,18 +279,71 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
               </li>
             </ul>
           </nav>
         </div>
       </div> -->
-      <div class="col-3 mt-5">
+      <div class="col-3">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
-              <li class="nav-item">
+              <li class="nav-item mt-1">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Styles</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownStyleMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_style" style="display: block;" id="line_style_1">
+                                <input class="option justone style" (change)="onStyleChange($event)" name="options[style]" type="radio" value="5" id="style_5"> Top 5 
+                              </label>
+                            </a>
+                          </li>
+                          <li class="custom-li">
+                            <a class="dropdown-label" href="#">
+                              <label class="ml-2 line_style" style="display: block;" id="line_style_2">
+                                <input class="option justone style" (change)="onStyleChange($event)" name="options[style]" type="radio" value="10" id="style_10"> Top 10
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-1">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of periodOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
+                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-4">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
@@ -316,7 +366,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
@@ -339,7 +389,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
@@ -369,38 +419,15 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
-                <div class="ml-2">
-                  <div class="d-flex flex-column">
-                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose Options
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of periodOptions">
-                            <a href="#" class="dropdown-label">
-                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
-                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
-                              </label>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
-                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-27" min="2021-01-01" max="2021-01-31">
+                    <input type="date" placeholder="Start Date" id="startDate" value="2021-01-01" min="2021-01-01" max="2021-01-31">
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
@@ -408,11 +435,14 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
               </li>
-              <li class="nav-item mt-3">
-                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(160,161)">Recommendations</button>
+              <li class="nav-item mt-1">
+                <a type="button" (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</a>
+              </li>
+              <li class="nav-item mt-1">
+                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(160,161)"> More Analysis</button>
               </li>
             </ul>
           </nav>

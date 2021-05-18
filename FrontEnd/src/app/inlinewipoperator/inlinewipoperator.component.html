@@ -17,7 +17,7 @@
       <div class="modal-body" style="height: 400px; overflow-y: scroll;">
         <div role="tabpanel">
           <!-- Nav tabs -->
-          <ul class="nav nav-pills nav-fill" role="tablist">
+          <ul  role="tablist">
               <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')"></a>
               </li>
           </ul>
@@ -25,7 +25,7 @@
               <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
                 <div #TABLE #table class="mt-2">
                   <button (click)="ExportToExcelLowEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                  <table class="table table-striped mt-1" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
                         <tr>
                             <th style="width: auto">
@@ -59,7 +59,7 @@
               <div role="tabpanel" class="tab-pane fade" id="mediumEfficiency" >
                 <div #ModerateEfficiencyTable #table class="mt-2">
                   <button (click)="ExportToExcelModerateEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                  <table class="table table-striped mt-1" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
                         <tr>
                             <th style="width: auto">
@@ -84,7 +84,7 @@
                 </div>
                 <div #ModerateEfficiencyOperatorsTable #table class="mt-2">
                   <button (click)="ExportToExcelModerateOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                  <table class="table table-striped mt-1" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
                         <tr>
                             <th style="width: auto">
@@ -119,7 +119,7 @@
               <div role="tabpanel" class="tab-pane fade" id="highEfficiency">
                 <div #HighEfficiencyOperatorsTable #table class="mt-2">
                   <button (click)="ExportToExcelHighOperators()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                  <table class="table table-striped mt-1" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
                         <tr>
                             <th style="width: auto">
@@ -164,7 +164,7 @@
 
 <nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
   <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
-  <ul class="tree cutom-treestructure mt-3">
+  <ul class="tree cutom-treestructure mt-1">
     <li (click)="dashboardNavigation()" id="dashbaord_href" style="cursor: pointer;">
       <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
     </li>
@@ -214,12 +214,15 @@
   <section class="text-center placeholders" id="dashboardsection">
     <div class="row">
       <div class="col-3 mt-2">
-        <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+        <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
         <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
       </div>
-      <div class="col-6">
+      <div class="col-9">
         <h6 style="text-align: left; font-weight: bold;">{{headerTextValue}}</h6>
       </div>
+      <!-- <div class="col-2">
+        <button type="button" class="btn" (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</button>
+      </div> -->
     </div>
     <!-- <h5 style="text-align: left; font-weight: bold; margin-left: 20%;">Operators Inline WIP of last 5 days</h5> -->
     <div class="row">
@@ -267,7 +270,7 @@
           </div>
         </div> -->
       </div>
-      <!-- <div class="col-3 mt-3">
+      <!-- <div class="col-3 mt-1">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
@@ -288,7 +291,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
@@ -305,7 +308,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
@@ -322,7 +325,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
@@ -330,7 +333,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
@@ -338,7 +341,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
               </li>
             </ul>
@@ -351,6 +354,29 @@
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
               <li class="nav-item">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of periodOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
+                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
@@ -373,7 +399,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
@@ -396,7 +422,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
@@ -426,30 +452,7 @@
                   </div>
                 </div>
               </li>
-              <!-- <li class="nav-item mt-3">
-                <div class="ml-2">
-                  <div class="d-flex flex-column">
-                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose Options
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of periodOptions">
-                            <a href="#" class="dropdown-label">
-                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
-                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
-                              </label>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li> -->
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
@@ -457,7 +460,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
@@ -465,11 +468,14 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
               </li>
-              <li class="nav-item mt-3">
-                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')">Recommendations</button>
+              <li class="nav-item mt-1">
+                <button type="button" class="btn" (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</button>
+              </li>
+              <li class="nav-item">
+                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')"> More Analysis</button>
               </li>
             </ul>
           </nav>

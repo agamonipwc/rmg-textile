@@ -49,6 +49,10 @@ export class OperatordefecteffComponent implements OnInit {
   }
   headerTextValue : string;
   getFilterData(){
+    $('input[type=radio]').prop('checked',false);
+    $("#dropdownLocationMenuButton").html("Choose Option");
+    $("#dropdownUnitMenuButton").html("Choose Option");
+    $("#dropdownLineMenuButton").html("Choose Option");
     this.KPIView = JSON.parse(sessionStorage.getItem("KPIView"))
     // this.KPIView = {
     //   Line : [1,2],

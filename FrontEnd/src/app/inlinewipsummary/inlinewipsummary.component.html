@@ -16,7 +16,7 @@
       <div class="modal-body" style="height: 400px; overflow-y: scroll;">
         <div role="tabpanel">
           <!-- Nav tabs -->
-          <ul class="nav nav-pills nav-fill" role="tablist">
+          <ul  role="tablist">
               <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')"></a>
               </li>
               <!-- <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#mediumEfficiency" aria-controls="mediumEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation(7);">Medium Efficiency</a>
@@ -253,22 +253,25 @@
         <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
         <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
       </div>
-      <div class="col-5">
+      <div class="col-3">
         <h6 style="text-align: left; font-weight: bold;">Inline WIP Summary of Operators</h6>
       </div>
-      <div class="col-4" style="text-align: left;">
+      <div class="col-6" style="text-align: left;">
+        <!-- <div class="col-2"> -->
+        <!-- <button type="button" class="btn" (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</button> -->
+        <!-- </div> -->
         <button class="custom-button" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('195,196,197,198,199,200,201,202,203,204,205')">Recommendations</button>
         <button class="custom-button ml-2" (click)="navigateWIPOperator()">Operator Analysis</button>
       </div>
     </div>
-    <div class="row mt-2">
+    <div class="row">
       <div class="col-12" style="text-align: left;">
         <button (click)="ExportToExcelOperatorsDetails()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
       </div>
     </div>
     <!-- <h5 style="text-align: left; font-weight: bold; margin-left: 25%;">Inline WIP Summary of Operators</h5> -->
     <div class="row">
-      <div class="col-12" #OperatorsTable #table style="height: 470px; overflow-y: scroll;">
+      <div class="col-12" #OperatorsTable #table style="height: 450px; overflow-y: scroll;">
         <table class="table table-striped mt-2">
           <thead class="thead-dark">
               <tr>

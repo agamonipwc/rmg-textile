@@ -72,25 +72,31 @@ ngOnInit() {
   this.getFilterData();
   this.getMasterData();
   $(function() {
+    $("#period_5").prop("checked", true);
+    $("#dropdownLinePeriodButton").html("Last 5 days");
     // Hide all lists except the outermost.
-    $('ul.tree ul').hide();
+    // $('ul.tree ul').hide();
   
-    $('.tree li > ul').each(function(i) {
-      var $subUl = $(this);
-      var $parentLi = $subUl.parent('li');
-      var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+    // $('.tree li > ul').each(function(i) {
+    //   var $subUl = $(this);
+    //   var $parentLi = $subUl.parent('li');
+    //   var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
   
-      $parentLi.addClass('has-children');
+    //   $parentLi.addClass('has-children');
       
-      $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-        $(this).text( $(this).text() == '+' ? '-' : '+' );
-        $subUl.slideToggle('fast');
-      });
-    });
+    //   $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+    //     $(this).text( $(this).text() == '+' ? '-' : '+' );
+    //     $subUl.slideToggle('fast');
+    //   });
+    // });
   });
 }
 
   getFilterData(){
+    $('input[type=radio]').prop('checked',false);
+    $("#dropdownLocationMenuButton").html("Choose Option");
+    $("#dropdownUnitMenuButton").html("Choose Option");
+    $("#dropdownLineMenuButton").html("Choose Option");
     var KPIView = {
       Line : [1,2,3,4],
       Location : [1,2],
@@ -378,8 +384,43 @@ ngOnInit() {
               dayString = "0" + day;
             }
             var StartDate = year + "-" + monthString + "-" + dayString;
-            $('#startDate').val(StartDate)
+            $('#startDate').val(StartDate);
+            var KPIView = {
+              Line : [1,2,3,4],
+              Location : [1,2],
+              Unit : [1,2],
+              StartDate : (StartDate + " 00:00:00.000"),
+              EndDate : "2021-01-31 00:00:00.000",
+            }
+            this.calculateDHU(KPIView);
+            var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+            if($('#startDate').val() == $('#endDate').val()){
+              this.headerTextValue = environment.efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+            }
+            else{
+              this.headerTextValue = environment.efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+            }
           }
+        }
+      });
+    }
+  }
+
+  onUnitChange(event){
+    if (event.target.checked){
+      this.unitOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownUnitMenuButton").html(element.Name);
+        }
+      });
+    }
+  }
+
+  onLineChange(event){
+    if (event.target.checked){
+      this.lineOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLineMenuButton").html(element.Name);
         }
       });
     }

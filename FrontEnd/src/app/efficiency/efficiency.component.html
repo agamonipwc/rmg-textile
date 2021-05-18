@@ -25,8 +25,8 @@
           <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
                 <div class="mb-3 mt-2" style="font-weight: bold; font-size: small;">Note: Click on each button below to see more details.</div>
-                <button class="custom-button" data-toggle="collapse" data-target="#Recommendations">Recommendations</button>
-                <button class="custom-button ml-3" data-toggle="collapse" data-target="#Operators">Operators</button>
+                <button class="custom-button" data-toggle="collapse" data-target="#Recommendations"(click)="recommendationLowDivShow()">Recommendations</button>
+                <button class="custom-button ml-3" data-toggle="collapse" data-target="#Operators" (click)="operatorLowDivShow()">Operators</button>
                 
                 <div id="Recommendations" #TABLE #table class="collapse mt-2" >
                   <button (click)="ExportToExcelLowEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
@@ -107,8 +107,8 @@
               </div>
               <div role="tabpanel" class="tab-pane fade" id="mediumEfficiency" >
                 <div class="mb-3 mt-2" style="font-weight: bold; font-size: small;">Note: Click on each button below to see more details.</div>
-                <button class="custom-button" data-toggle="collapse" data-target="#ModerateRecommendations">Recommendations</button>
-                <button class="custom-button ml-3" data-toggle="collapse" data-target="#ModerateOperators">Operators</button>
+                <button class="custom-button" data-toggle="collapse" data-target="#ModerateRecommendations" (click)="recommendationMediumDivShow()">Recommendations</button>
+                <button class="custom-button ml-3" data-toggle="collapse" data-target="#ModerateOperators" (click)="recommendationMediumivShow()">Operators</button>
                 
                 <div id="ModerateRecommendations" #ModerateEfficiencyTable #table class="collapse mt-2">
                   <button (click)="ExportToExcelModerateEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
@@ -329,11 +329,11 @@
         <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
         <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
       </div>
-      <div class="col-9">
+      <div class="col-7">
         <h6 style="text-align: left; font-weight: bold;">{{headerTextValue}}</h6>
       </div>
-      <!-- <div class="col-3 mt-2" style="text-align: start;">
-        <a style="font-weight: bold; cursor: pointer;" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(6)">Show Recommendations</a>
+      <!-- <div class="col-2" style="text-align: start;">
+        <button type="button" class="btn" (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</button>
       </div> -->
     </div>
     <!-- <div class="row">
@@ -431,11 +431,35 @@
           </nav>
         </div>
       </div> -->
-      <div class="col-3 mt-5">
+      <div class="col-3 mt-1">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
-              <li class="nav-item">
+              <li class="nav-item mt-1">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of periodOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
+                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item mt-5">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
@@ -458,7 +482,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
@@ -481,7 +505,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
@@ -511,30 +535,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
-                <div class="ml-2">
-                  <div class="d-flex flex-column">
-                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose Options
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of periodOptions">
-                            <a href="#" class="dropdown-label">
-                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
-                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
-                              </label>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
@@ -542,7 +543,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
@@ -550,11 +551,14 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
               </li>
-              <li class="nav-item mt-3">
-                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(6)">Recommendations</button>
+              <li class="nav-item mt-1">
+                <a (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</a>
+              </li>
+              <li class="nav-item mt-1">
+                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation(6)"> More Analysis</button>
               </li>
             </ul>
           </nav>

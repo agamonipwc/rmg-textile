@@ -418,14 +418,19 @@ namespace RMGWebApi.Controllers
                     Date = grp.Key.Date,
                     ProdData = grp.Sum(x => x.Production),
                     DefectReason1 = grp.Key.AlterationReason1,
+                    DefectivePcs1Data = grp.Sum(x => Convert.ToDouble(x.DefectivePcs_1)),
                     DefectCount1Data = grp.Sum(x => Convert.ToDouble(x.DefectCount1)),
                     DefectReason2 = grp.Key.AlterationReason2,
+                    DefectivePcs2Data = grp.Sum(x => Convert.ToDouble(x.DefectivePcs_2)),
                     DefectCount2Data = grp.Sum(x => Convert.ToDouble(x.DefectCount2)),
                     DefectReason3 = grp.Key.AlterationReason3,
+                    DefectivePcs3Data = grp.Sum(x => Convert.ToDouble(x.DefectivePcs_3)),
                     DefectCount3Data = grp.Sum(x => Convert.ToDouble(x.DefectCount3)),
                     DefectReason4 = grp.Key.AlterationReason4,
+                    DefectivePcs4Data = grp.Sum(x => Convert.ToDouble(x.DefectivePcs_4)),
                     DefectCount4Data = grp.Sum(x => Convert.ToDouble(x.DefectCount4)),
                     DefectReason5 = grp.Key.AlterationReason5,
+                    DefectivePcs5Data = grp.Sum(x => Convert.ToDouble(x.DefectivePcs_5)),
                     DefectCount5Data = grp.Sum(x => Convert.ToDouble(x.DefectCount5)),
                 }).ToList();
             }
@@ -442,7 +447,8 @@ namespace RMGWebApi.Controllers
                             DefectName = innerElement.DefectReason1,
                             DefectCount = innerElement.DefectCount1Data,
                             ProductionData = innerElement.ProdData,
-                            DailyDate = innerElement.Date
+                            DailyDate = innerElement.Date,
+                            DefectPcsCount = innerElement.DefectivePcs1Data
                         });
                         allAlternativeReason.Add(innerElement.DefectReason1);
                         groupedDefectViewModels.Add(new DefectViewModel
@@ -450,7 +456,8 @@ namespace RMGWebApi.Controllers
                             DefectName = innerElement.DefectReason2,
                             DefectCount = innerElement.DefectCount2Data,
                             ProductionData = innerElement.ProdData,
-                            DailyDate = innerElement.Date
+                            DailyDate = innerElement.Date,
+                            DefectPcsCount = innerElement.DefectivePcs2Data
                         });
                         allAlternativeReason.Add(innerElement.DefectReason2);
                         groupedDefectViewModels.Add(new DefectViewModel
@@ -458,7 +465,8 @@ namespace RMGWebApi.Controllers
                             DefectName = innerElement.DefectReason3,
                             DefectCount = innerElement.DefectCount3Data,
                             ProductionData = innerElement.ProdData,
-                            DailyDate = innerElement.Date
+                            DailyDate = innerElement.Date,
+                            DefectPcsCount = innerElement.DefectivePcs3Data
                         });
                         allAlternativeReason.Add(innerElement.DefectReason3);
                         groupedDefectViewModels.Add(new DefectViewModel
@@ -466,7 +474,8 @@ namespace RMGWebApi.Controllers
                             DefectName = innerElement.DefectReason4,
                             DefectCount = innerElement.DefectCount4Data,
                             ProductionData = innerElement.ProdData,
-                            DailyDate = innerElement.Date
+                            DailyDate = innerElement.Date,
+                            DefectPcsCount = innerElement.DefectivePcs4Data
                         });
                         allAlternativeReason.Add(innerElement.DefectReason4);
                         groupedDefectViewModels.Add(new DefectViewModel
@@ -474,7 +483,8 @@ namespace RMGWebApi.Controllers
                             DefectName = innerElement.DefectReason5,
                             DefectCount = innerElement.DefectCount5Data,
                             ProductionData = innerElement.ProdData,
-                            DailyDate = innerElement.Date
+                            DailyDate = innerElement.Date,
+                            DefectPcsCount = innerElement.DefectivePcs5Data
                         });
                         allAlternativeReason.Add(innerElement.DefectReason5);
                     }
@@ -502,8 +512,8 @@ namespace RMGWebApi.Controllers
             List<string> categories = new List<string>();
             List<string> defectsName = new List<string>();
             List<RejectionStyleDataModel> dhuViewModel = new List<RejectionStyleDataModel>();
-            
-            
+
+            List<DHUTabularFormatViewModel> dHUTabularFormatViews = new List<DHUTabularFormatViewModel>();
             for (DateTime date = startDate.Value; date<= endDate.Value; date= date.AddDays(1))
             {
                 dailyDates.Add(date);
@@ -513,6 +523,7 @@ namespace RMGWebApi.Controllers
             List<double> allDefectOccuranceCounts = new List<double>();
             for (int outerIndex = 0; outerIndex< orderedDefectViewModel.Count; outerIndex++)
             {
+                
                 defectsName.Add(orderedDefectViewModel[outerIndex].DefectName);
                 string color = "";
                 if (outerIndex == 0)
@@ -535,14 +546,42 @@ namespace RMGWebApi.Controllers
                 {
                     color = "#ae6800";
                 }
+                if (outerIndex == 5)
+                {
+                    color = "#4eb523";
+                }
+                if (outerIndex == 6)
+                {
+                    color = "#0060d7";
+                }
+                if (outerIndex == 7)
+                {
+                    color = "#a43e50";
+                }
+                if (outerIndex == 8)
+                {
+                    color = "#855f00";
+                }
+                if (outerIndex == 9)
+                {
+                    color = "#571f01";
+                }
                 List<double> calculatedDHUList = new List<double>();
                 string defectName = orderedDefectViewModel[outerIndex].DefectName;
                 for (int innerIndex = 0; innerIndex<dailyDates.Count; innerIndex++)
                 {
+                    DHUTabularFormatViewModel viewModel = new DHUTabularFormatViewModel();
+                    double totalDefect = Math.Round(groupedDefectViewModels.Where(x => x.DefectName == defectName && x.DailyDate == dailyDates[innerIndex]).Select(x => x.DefectCount).Average(),2);
+                    double totalPcsCount = Math.Round(groupedDefectViewModels.Where(x => x.DefectName == defectName && x.DailyDate == dailyDates[innerIndex]).Select(x => x.DefectPcsCount).Average(),2);
                     double occurance = 0;
                     occurance = groupedDefectViewModels.Where(x => x.DefectName == defectName && x.DailyDate == dailyDates[innerIndex]).Count();
                     calculatedDHUList.Add(occurance);
                     allDefectOccuranceCounts.Add(occurance);
+                    viewModel.DefectName = orderedDefectViewModel[outerIndex].DefectName;
+                    viewModel.Date = dailyDates[innerIndex].ToString("MMM dd, yy");
+                    viewModel.TotalDefects = totalDefect;
+                    viewModel.TotalPcs = totalPcsCount;
+                    dHUTabularFormatViews.Add(viewModel);
                 }
                 var averageDHU = calculatedDHUList.Average();
                 string avgDHUColor = "";
@@ -570,71 +609,11 @@ namespace RMGWebApi.Controllers
                     name = defectName
                 });
             }
-
-            //for (int index =0; index < orderedDefectViewModel.Count; index++)
-            //{
-            //    defectsName.Add(orderedDefectViewModel[index].DefectName);
-            //    string color = "";
-            //    if (index == 0)
-            //    {
-            //        color = "#175d2d";
-            //    }
-            //    if(index == 1)
-            //    {
-            //        color = "#ffb600";
-            //    }
-            //    if (index == 2)
-            //    {
-            //        color = "#e0301e";
-            //    }
-            //    if (index == 3)
-            //    {
-            //        color = "#933401";
-            //    }
-            //    if (index == 4)
-            //    {
-            //        color = "#ae6800";
-            //    }
-            //    List<double> calculatedDHUList = new List<double>();
-            //    string defectName = orderedDefectViewModel[index].DefectName;
-
-            //    foreach (var date in dailyDates)
-            //    {
-            //        double dhuValue = 0;
-            //        if(orderedDefectViewModel[index].DailyDate == date)
-            //        {
-            //            dhuValue = groupedDefectViewModels.Where(x => x.DefectName == defectName && x.DailyDate == date).Count();
-            //            //dhuValue = Math.Round((orderedDefectViewModel[index].DefectCount / orderedDefectViewModel[index].ProductionData) * 100, 2);
-            //        }
-            //        calculatedDHUList.Add(dhuValue);
-            //    }
-            //    var averageDHU = calculatedDHUList.Average();
-            //    string avgDHUColor = "";
-            //    if (averageDHU < 6)
-            //    {
-            //        avgDHUColor = "#175d2d";
-            //    }
-            //    else if (averageDHU >= 6 && averageDHU <= 9)
-            //    {
-            //        avgDHUColor = "#ffb600";
-            //    }
-            //    else
-            //    {
-            //        avgDHUColor = "#e0301e";
-            //    }
-            //    dhuViewModel.Add(new RejectionStyleDataModel
-            //    {
-            //        color = avgDHUColor,
-            //        y = Math.Round(averageDHU,2)
-            //    });
-            //    dhuTopFiveDefects.Add(new DHUTopFiveDefects
-            //    {
-            //        data = calculatedDHUList,
-            //        color = color,
-            //        name = defectName
-            //    });
-            //}
-            var maxOccurance = allDefectOccuranceCounts.Max();
+            double maxOccurance = 0;
+            if (allDefectOccuranceCounts.Count > 0)
+            {
+                maxOccurance = allDefectOccuranceCounts.Max();
+            }
             return Json(new { 
                 data = dhuTopFiveDefects,
                 categories = categories,
@@ -642,7 +621,8 @@ namespace RMGWebApi.Controllers
                 avgDefects = dhuViewModel,
                 pieChartViewModel = dHUPieChartViewModel,
                 maxOccurance = maxOccurance,
-                lineWiseDefectChartViewModel = lineWiseDefectChartViewModel
+                lineWiseDefectChartViewModel = lineWiseDefectChartViewModel,
+                dHUTabularFormatViews = dHUTabularFormatViews
             });
         }
 
@@ -758,7 +738,7 @@ namespace RMGWebApi.Controllers
                 ProductionData = c.Average(x => x.ProductionData)
             }).ToList();
 
-            var orderedDefectViewModel = groupedDefectCountViewModel.OrderByDescending(x => x.DefectCount).Take(kpiViewModel.DefectCount).OrderByDescending(x => x.DefectCount).ToList();
+            var orderedDefectViewModel = groupedDefectCountViewModel.Where(x=> x.DefectName != null).OrderByDescending(x => x.DefectCount).Take(kpiViewModel.DefectCount).OrderByDescending(x => x.DefectCount).ToList();
             
             return orderedDefectViewModel;
         }
@@ -793,6 +773,26 @@ namespace RMGWebApi.Controllers
                 if (index == 4)
                 {
                     color = "#ae6800";
+                }
+                if (index == 5)
+                {
+                    color = "#4eb523";
+                }
+                if (index == 6)
+                {
+                    color = "#0060d7";
+                }
+                if (index == 7)
+                {
+                    color = "#a43e50";
+                }
+                if (index == 8)
+                {
+                    color = "#855f00";
+                }
+                if (index == 9)
+                {
+                    color = "#571f01";
                 }
                 chartDataPoint.y = Math.Round((orderedDefectViewModel[index].DefectCount * 100) / totalDefectCount, 2);
                 chartDataPoint.name = orderedDefectViewModel[index].DefectName;
@@ -944,6 +944,26 @@ namespace RMGWebApi.Controllers
                 {
                     color = "#ae6800";
                 }
+                if (outIndex == 5)
+                {
+                    color = "#4eb523";
+                }
+                if (outIndex == 6)
+                {
+                    color = "#0060d7";
+                }
+                if (outIndex == 7)
+                {
+                    color = "#a43e50";
+                }
+                if (outIndex == 8)
+                {
+                    color = "#855f00";
+                }
+                if (outIndex == 9)
+                {
+                    color = "#571f01";
+                }
                 List<double> dataset = new List<double>();
                 for (int innerIndex =0; innerIndex<lineCategories.Count; innerIndex++)
                 {
@@ -980,5 +1000,14 @@ namespace RMGWebApi.Controllers
             public List<double> data { get; set; }
             public string color { get; set; }
         }
+
+        private class DHUTabularFormatViewModel 
+        {
+            public string Date { get; set; }
+            public string DefectName { get; set; }
+            public double TotalDefects { get; set; }
+            public double TotalPcs { get; set; }
+        }
+
     }
 }

@@ -95,20 +95,20 @@ export class MachinedowntimeComponent implements OnInit {
 
     $(function() {
         // Hide all lists except the outermost.
-        $('ul.tree ul').hide();
+        // $('ul.tree ul').hide();
       
-        $('.tree li > ul').each(function(i) {
-          var $subUl = $(this);
-          var $parentLi = $subUl.parent('li');
-          var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+        // $('.tree li > ul').each(function(i) {
+        //   var $subUl = $(this);
+        //   var $parentLi = $subUl.parent('li');
+        //   var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
       
-          $parentLi.addClass('has-children');
+        //   $parentLi.addClass('has-children');
           
-          $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-            $(this).text( $(this).text() == '+' ? '-' : '+' );
-            $subUl.slideToggle('fast');
-          });
-        });
+        //   $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+        //     $(this).text( $(this).text() == '+' ? '-' : '+' );
+        //     $subUl.slideToggle('fast');
+        //   });
+        // });
     });
     this.getFilterData();
     this.getMasterData();
@@ -119,6 +119,10 @@ export class MachinedowntimeComponent implements OnInit {
   headerTextValue : string;
   
   getFilterData(){
+    $('input[type=radio]').prop('checked',false);
+    $("#dropdownLocationMenuButton").html("Choose Option");
+    $("#dropdownUnitMenuButton").html("Choose Option");
+    $("#dropdownLineMenuButton").html("Choose Option");
     this.KPIView = {
       Line : [1,2],
       Location : [1,2],
@@ -283,18 +287,48 @@ export class MachinedowntimeComponent implements OnInit {
 
    machineCategory = "";
    calculateTopSpecialMachineDowntime(){
-    this.KPIView["StartDate"] = "2021-01-27 00:00:00.000";
+    var EndDate = new Date($('#endDate').val());
+    var last = new Date(EndDate.getTime() - (this.selectedPeriodValue * 24 * 60 * 60 * 1000));
+    var day =last.getDate();
+    var month=last.getMonth()+1;
+    var year=last.getFullYear();
+    var monthString = month.toString();
+    var dayString = day.toString();
+    if(month < 10){
+      monthString = "0" + month;
+    }
+    if(day < 10){
+      dayString = "0" + day;
+    }
+    var startDateTime = year + "-" + monthString + '-' + dayString + " 00:00:00.000";
+    this.KPIView["StartDate"] = startDateTime;
+    this.KPIView["MachineCount"] = this.selectedMachineValue.toString();
     var KPIView = this.KPIView;
     KPIView["MachineCategory"] = "Special";
-    //console.log("---------KPIView---------",KPIView);
+    this.machineCategory = "Special";
     this.calculateMachineDowntimeHistoricAnalysis(KPIView);
    }
 
    calculateTopGeneralMachineDowntime(){
-    this.KPIView["StartDate"] = "2021-01-27 00:00:00.000";
+    var EndDate = new Date($('#endDate').val());
+    var last = new Date(EndDate.getTime() - (this.selectedPeriodValue * 24 * 60 * 60 * 1000));
+    var day =last.getDate();
+    var month=last.getMonth()+1;
+    var year=last.getFullYear();
+    var monthString = month.toString();
+    var dayString = day.toString();
+    if(month < 10){
+      monthString = "0" + month;
+    }
+    if(day < 10){
+      dayString = "0" + day;
+    }
+    var startDateTime = year + "-" + monthString + '-' + dayString + " 00:00:00.000";
+    this.KPIView["StartDate"] = startDateTime;
+    this.KPIView["MachineCount"] = this.selectedMachineValue.toString();
     var KPIView = this.KPIView;
     KPIView["MachineCategory"] = "General";
-    //console.log("---------KPIView---------",KPIView);
+    this.machineCategory = "General";
     this.calculateMachineDowntimeHistoricAnalysis(KPIView);
    }
 
@@ -302,7 +336,6 @@ export class MachinedowntimeComponent implements OnInit {
     var _this = this;
     var url = environment.backendUrl + "MachineDailyDowntime";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
-      //console.log("---------Response Data---------",responsedata);
       _this.machineDowntimeLine = new Chart({
         chart: {
           type: 'spline'
@@ -481,13 +514,10 @@ export class MachinedowntimeComponent implements OnInit {
       // var StartDate = year + "-" + monthString + "-" + dayString;
       var startDateTime = year + "-" + monthString + '-' + dayString + " 00:00:00.000";
       this.KPIView["StartDate"] = startDateTime;
-      this.KPIView["MachineCount"] = this.selectedMachineValue;
-      if(this.machineCategory == "Special"){
-        this.calculateTopSpecialMachineDowntime();
-      }
-      else{
-        this.calculateTopGeneralMachineDowntime();
-      }
+      this.KPIView["MachineCount"] = this.selectedMachineValue.toString();
+      this.KPIView["MachineCategory"] = this.machineCategory;
+      this.calculateMachineDowntimeHistoricAnalysis(this.KPIView);
+      console.log(this.KPIView);
    }
    isEmpty(obj) {
     return Object.keys(obj).length === 0;

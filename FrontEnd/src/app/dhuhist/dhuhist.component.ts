@@ -31,6 +31,7 @@ Accessibility(Highcharts);
 })
 export class DhuhistComponent implements OnInit {
   @ViewChild('TABLE') TABLE: ElementRef;  
+  @ViewChild('DHUTABLE') DHUTABLE: ElementRef;  
   @ViewChild('dataTable') table;
   dataTable: any;
   recommendationData : any = [];
@@ -74,24 +75,25 @@ ngOnInit() {
   this.getFilterData();
   this.getMasterData();
   $(function() {
+    $("#defect_5").prop("checked", true);
+    $("#dropdownDefectButton").html("Top 5 Defects");
+    $("#period_5").prop("checked", true);
+    $("#dropdownLinePeriodButton").html("Last 5 days");
     // Hide all lists except the outermost.
-    $('ul.tree ul').hide();
+    // $('ul.tree ul').hide();
   
-    $('.tree li > ul').each(function(i) {
-      var $subUl = $(this);
-      var $parentLi = $subUl.parent('li');
-      var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+    // $('.tree li > ul').each(function(i) {
+    //   var $subUl = $(this);
+    //   var $parentLi = $subUl.parent('li');
+    //   var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
   
-      $parentLi.addClass('has-children');
-      $("#defect_5").prop("checked", true);
-      $("#dropdownDefectButton").html("Top 5 Defects");
-      $("#period_5").prop("checked", true);
-      $("#dropdownLinePeriodButton").html("Last 5 days");
-      $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-        $(this).text( $(this).text() == '+' ? '-' : '+' );
-        $subUl.slideToggle('fast');
-      });
-    });
+    //   $parentLi.addClass('has-children');
+      
+    //   $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+    //     $(this).text( $(this).text() == '+' ? '-' : '+' );
+    //     $subUl.slideToggle('fast');
+    //   });
+    // });
   });
 }
 
@@ -122,7 +124,18 @@ ExportToExcelDHU() {
   XLSX.writeFile(wb, 'DHU_Recommendations.xlsx');  
 }
 
+ExportToExcelDHUTabular() {  
+  const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.TABLE.nativeElement);  
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();  
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
+  XLSX.writeFile(wb, 'DHU_Overview.xlsx');  
+}
+
   getFilterData(){
+    $('input[type=radio]').prop('checked',false);
+    $("#dropdownLocationMenuButton").html("Choose Option");
+    $("#dropdownUnitMenuButton").html("Choose Option");
+    $("#dropdownLineMenuButton").html("Choose Option");
     var KPIView = {
       Line : [1,2],
       Location : [1,2],
@@ -155,72 +168,13 @@ ExportToExcelDHU() {
     var endDateTime = endDay + "." + endmonth + '.' + endyear;
     return {startDateTime : startDateTime, endDateTime : endDateTime}
   }
-  calculateDHU(KPIView){
-   var _this = this;
-    var url = environment.backendUrl + "SewingHistorical";
-    this.http.post<any>(url, KPIView).subscribe(responsedata => {
-      _this.dhuLine = new Chart({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: ''
-        },
-        exporting: {
-          enabled: false
-        },
-        credits: {enabled: false},
-        labels: {
-          enabled: false,
-        },
-        xAxis: {
-            categories: responsedata["DHUHistoricalCalculation"]["Value"]["categories"]
-          
-        },
-        yAxis: {
-            title: {
-                text: 'Defects Per Hundred Units (D.H.U.)	'
-            },
-            max:13,
-            min:0
-        },
-        tooltip: {
-            crosshairs: true,
-            shared: true
-        },
-        plotOptions: {
-            spline: {
-                marker: {
-                    radius: 2,
-                    lineColor: '#666666',
-                    lineWidth: 1
-                }
-            }
-        },
-        series: [{
-            name: 'Defects Per Hundred Units (D.H.U.)	',
-            showInLegend: false,
-            data: responsedata["DHUHistoricalCalculation"]["Value"]["data"],
-            color: '#175d2d'
-    
-        }]
-      });
-    })
-  }
-
+  dHUTabularFormatViews = [];
+  
   calculateDHUByDefect(KPIView){
     var _this = this;
     var url = environment.backendUrl + "SewingHistorical";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
-      console.log(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["lineWiseDefectChartViewModel"])
-      // console.log(responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"]);
-      // responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"].forEach(element => {
-      //   for(var index = 0; index < element["data"].length; index++){
-      //     if(element["data"][index] == 0){
-      //       element["data"][index] = null;
-      //     }
-      //   }
-      // });
+      _this.dHUTabularFormatViews = responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["dHUTabularFormatViews"];
       _this.defectDHULine = new Chart(
         {
           chart: {
@@ -264,7 +218,38 @@ ExportToExcelDHU() {
             },
             series: {
               // general options for all series
-              connectNulls: true
+              connectNulls: true,
+              // point: {
+              //   events: {
+              //       mouseOver: function () {
+              //           var chart = this.series.chart;
+              //           if (!chart.lbl) {
+              //               chart.lbl = chart.renderer.label('')
+              //                   .attr({
+              //                       padding: 10,
+              //                       r: 10,
+              //                       fill: Highcharts.getOptions().colors[1]
+              //                   })
+              //                   .css({
+              //                       color: '#FFFFFF'
+              //                   })
+              //                   .add();
+              //           }
+              //           chart.lbl
+              //             .show()
+              //             .attr({
+              //                 text: 'x: ' + this.x + ', y: ' + this.y
+              //           });
+              //       }
+              //   }
+              // },
+              events: {
+                  mouseOut: function () {
+                      if (this.chart.lbl) {
+                          this.chart.lbl.hide();
+                      }
+                  }
+              }
             }
         },
         series: responsedata["TopFiveDHUHistoricalCalculation"]["Value"]["data"]
@@ -300,10 +285,11 @@ ExportToExcelDHU() {
         align: 'left',
         verticalAlign: 'top',
         layout: 'vertical',
-        x: 10,
+        x: 50,
         y: 10,
-        style:{
-          fontSize:'8px'
+        itemStyle: {
+          color: '#000000',
+          fontSize:'10px'
         }
       },
       plotOptions: {
@@ -370,6 +356,10 @@ ExportToExcelDHU() {
         verticalAlign: 'top',
         y: maxOccurance,
         floating: true,
+        itemStyle: {
+          color: '#000000',
+          fontSize:'10px'
+        },
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || 'white',
         borderColor: '#CCC',
@@ -583,7 +573,22 @@ ExportToExcelDHU() {
               dayString = "0" + day;
             }
             var StartDate = year + "-" + monthString + "-" + dayString;
-            $('#startDate').val(StartDate)
+            $('#startDate').val(StartDate);
+            var KPIView = {
+              Line : [1,2,3,4],
+              Location : [1,2],
+              Unit : [1,2],
+              StartDate : (StartDate + " 00:00:00.000"),
+              EndDate : "2021-01-31 00:00:00.000",
+            }
+            this.calculateDHUByDefect(KPIView);
+            var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+            if($('#startDate').val() == $('#endDate').val()){
+              this.headerTextValue = environment.efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+            }
+            else{
+              this.headerTextValue = environment.efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+            }
           }
         }
       });
@@ -602,6 +607,22 @@ ExportToExcelDHU() {
       this.defectOptions.forEach(element => {
         if(element.Id == event.target.value){
           $("#dropdownDefectButton").html(element.Name);
+          var KPIView = {
+            Line : [1,2,3,4],
+            Location : [1,2],
+            Unit : [1,2],
+            StartDate : "2021-01-27 00:00:00.000",
+            EndDate : "2021-01-31 00:00:00.000",
+            DefectCount : element.Id
+          }
+          this.calculateDHUByDefect(KPIView);
+          var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+          if($('#startDate').val() == $('#endDate').val()){
+            this.headerTextValue = environment.efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+          }
+          else{
+            this.headerTextValue = environment.efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+          }
         }
       });
     }

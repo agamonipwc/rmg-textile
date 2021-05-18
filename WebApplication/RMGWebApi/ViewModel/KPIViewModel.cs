@@ -15,6 +15,7 @@ namespace RMGWebApi
         public List<double> Line { get; set; }
         public List<double> Unit{ get; set; }
         public List<double> Location { get; set; }
+        public List<double> Style { get; set; }
         public int DefectCount { get; set; }
         public string MachineCount { get; set; }
         public string MachineCategory { get; set; }

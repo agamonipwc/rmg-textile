@@ -17,7 +17,7 @@
       <div class="modal-body" style="height: 400px; overflow-y: scroll;">
         <div role="tabpanel">
           <!-- Nav tabs -->
-          <ul class="nav nav-pills nav-fill" role="tablist">
+          <ul  role="tablist">
               <li role="presentation" class="nav-item"><a class="nav-link active" data-toggle="tab" href="#lowEfficiency" aria-controls="lowEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation('206,207,208,209')"></a>
               </li>
               <!-- <li role="presentation" class="nav-item"><a class="nav-link" data-toggle="tab" href="#mediumEfficiency" aria-controls="mediumEfficiency" role="tab" data-toggle="tab" (click)="getRecommendation(7);">Medium Efficiency</a>
@@ -255,8 +255,11 @@
         <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
         <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="sewingNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
       </div>
-      <div class="col-9">
+      <div class="col-7">
         <h6 style="text-align: left; font-weight: bold;">{{headerTextValue}}</h6>
+      </div>
+      <div class="col-2">
+        <button type="button" class="btn" (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</button>
       </div>
     </div>
     <!-- <h5 style="text-align: center; font-weight: bold;">Historical Downtime Overview of last 30 days</h5> -->
@@ -396,7 +399,7 @@
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
               </li>
               <li class="nav-item mt-3">
-                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('206,207,208,209')">Recommendations</button>
+                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getRecommendation('206,207,208,209')"> More Analysis</button>
               </li>
             </ul>
           </nav>

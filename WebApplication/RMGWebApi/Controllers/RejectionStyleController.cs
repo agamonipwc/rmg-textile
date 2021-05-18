@@ -41,7 +41,7 @@ namespace RMGWebApi.Controllers
                              efficiency = Math.Round(((x.SumRejection / x.SumProduction) * 100)),
                              StyleName = x.Style
                          }).ToList();
-            query = query.OrderByDescending(x => x.efficiency).ToList();
+            query = query.OrderByDescending(x => x.efficiency).Take(Convert.ToInt32(kpiViewModel.Style[0])).ToList();
             List<string> categories = new List<string>();
             foreach(var element in query)
             {

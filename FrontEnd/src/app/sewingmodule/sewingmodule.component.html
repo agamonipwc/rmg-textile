@@ -23,7 +23,7 @@
               <div role="tabpanel" class="tab-pane active" id="lowEfficiency">
                 <div #TABLE #table class="mt-2">
                   <button (click)="ExportToExcelLowEfficiency()" style="font-size: small;" class="btn custom-button">Export To Excel</button>
-                  <table class="table table-striped mt-3" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
+                  <table class="table table-striped mt-1" style="background-color: #ffffff; height: 200px; overflow-y: scroll;">
                     <thead class="thead-dark">
                         <tr>
                             <th style="width: auto">
@@ -65,7 +65,7 @@
 </div>
 <nav class="col-3 col-3 d-none d-sm-block bg-light sidebar mt-5">
   <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
-  <ul class="tree cutom-treestructure mt-3">
+  <ul class="tree cutom-treestructure mt-1">
     <li (click)="dashboardNavigation()" id="dashbaord_href" style="cursor: pointer;">
       <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
     </li>
@@ -118,7 +118,7 @@
         <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
         <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="dashboardNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
       </div>
-      <div class="col-7">
+      <div class="col-6">
         <h6 style="text-align: center; font-weight: bold;">{{headerTextValue}}</h6>
         <h6 class="ml1">
           <span class="text-wrapper">
@@ -128,8 +128,8 @@
           </span>
         </h6>
       </div>
-      <div class="col-3 mt-2" style="text-align: start;">
-        <button class="custom-button ml-4" style="font-weight: bold;" (click)="navigateToSewingHistorical()">Last 30 days Data</button>
+      <div class="col-4 mt-2" style="text-align: center;">
+        <button class="custom-button ml-5" style="font-weight: bold;" (click)="navigateToSewingHistorical()">Last 30 days Data</button>
       </div>
     </div>
     
@@ -138,25 +138,25 @@
         <div class="row align-items-center mt-1">
           <div class="col-3" id="efficiencyVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" (click)="navigateEfficiency()" style="cursor: pointer;">Efficiency %</button></div>
+              <div class="pb-2"><button class="custom-button" (click)="navigateEfficiency()" style="cursor: pointer;">Efficiency(%)</button></div>
               <div class="ml-2" #efficiencyContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
           <div class="col-3" id="capacityVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer; font-size: 13px;"  (click)="navigateCapacityUtilization()"data-toggle="tooltip" data-placement="top" title="Capacity Utilisation(Actual Vs Planned Prodctn.)">Capacity Utilization%</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer; font-size: 13px;"  (click)="navigateCapacityUtilization()"data-toggle="tooltip" data-placement="top" title="Capacity Utilisation(Actual Vs Planned Prodctn.)">Capacity Utilization(%)</button></div>
               <div class="ml-2" #capacityUtilizationContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
           <div class="col-3" id="absentismVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" (click)="navigateAbsentismUtilization()">Absenteeism %</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" (click)="navigateAbsentismUtilization()">Absenteeism(%)</button></div>
               <div class="ml-2" #absentismContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
           <div class="col-3" id="defectVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" (click)="navigateDefectPercentage()" style="cursor: pointer;">Defect%</button></div>
+              <div class="pb-2"><button class="custom-button" (click)="navigateDefectPercentage()" style="cursor: pointer;">Defect(%)</button></div>
               <div class="ml-2" #defectContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
@@ -170,19 +170,19 @@
           </div>
           <div class="col-3" id="wipVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" (click)="navigateInlineWIP()" style="cursor: pointer;">Inline WIP Level</button></div>
+              <div class="pb-2"><button class="custom-button" (click)="navigateInlineWIP()" style="cursor: pointer;">WIP : Production</button></div>
               <div class="ml-2" #wipContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
           <div class="col-3" id="machineDowntimeVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" (click)="navigateMachineDowntime()" style="cursor: pointer;">Downtime%</button></div>
+              <div class="pb-2"><button class="custom-button" (click)="navigateMachineDowntime()" style="cursor: pointer;">Downtime(%)</button></div>
               <div class="ml-2" #machineDowntimeContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
           <div class="col-3" id="rejectionVisual" style="display: none; height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
-              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" (click)="navigateRejection()">Rejection%</button></div>
+              <div class="pb-2"><button class="custom-button" style="cursor: pointer;" (click)="navigateRejection()">Rejection(%)</button></div>
               <div class="ml-2" #rejectionContainer style="height: 190px; width: 151px;"></div>
             </div>
           </div>
@@ -216,7 +216,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
@@ -239,7 +239,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
@@ -276,7 +276,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
@@ -284,7 +284,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
@@ -292,10 +292,13 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
+                <a type="button" (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</a>
+              </li>
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select KPI</span>
@@ -306,7 +309,7 @@
                 </div>
               </li>
               <li class="nav-item">
-                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getAllRecommendations()">Recommendations</button>
+                <button class="custom-button ml-2" data-toggle="modal" data-target="#recommendationModal" (click)="getAllRecommendations()"> More Analysis</button>
               </li>
             </ul>
           </nav>

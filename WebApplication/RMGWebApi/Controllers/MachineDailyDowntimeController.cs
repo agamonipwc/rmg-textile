@@ -134,6 +134,26 @@ namespace RMGWebApi.Controllers
                 {
                     color = "#ae6800";
                 }
+                if (outerIndex == 5)
+                {
+                    color = "#4eb523";
+                }
+                if (outerIndex == 6)
+                {
+                    color = "#0060d7";
+                }
+                if (outerIndex == 7)
+                {
+                    color = "#a43e50";
+                }
+                if (outerIndex == 8)
+                {
+                    color = "#855f00";
+                }
+                if (outerIndex == 9)
+                {
+                    color = "#571f01";
+                }
                 double countDaysBreakage = 0;
                 for (int innerIndex = 0; innerIndex < dailyDates.Count; innerIndex++)
                 {

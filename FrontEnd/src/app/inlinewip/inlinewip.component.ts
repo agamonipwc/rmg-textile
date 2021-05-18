@@ -83,24 +83,28 @@ export class InlinewipComponent implements OnInit {
     this.getFilterData();
     $(function() {
         // Hide all lists except the outermost.
-        $('ul.tree ul').hide();
+        // $('ul.tree ul').hide();
       
-        $('.tree li > ul').each(function(i) {
-          var $subUl = $(this);
-          var $parentLi = $subUl.parent('li');
-          var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+        // $('.tree li > ul').each(function(i) {
+        //   var $subUl = $(this);
+        //   var $parentLi = $subUl.parent('li');
+        //   var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
       
-          $parentLi.addClass('has-children');
+        //   $parentLi.addClass('has-children');
           
-          $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-            $(this).text( $(this).text() == '+' ? '-' : '+' );
-            $subUl.slideToggle('fast');
-          });
-        });
+        //   $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+        //     $(this).text( $(this).text() == '+' ? '-' : '+' );
+        //     $subUl.slideToggle('fast');
+        //   });
+        // });
     });
   }
 
   getFilterData(){
+    $('input[type=radio]').prop('checked',false);
+    $("#dropdownLocationMenuButton").html("Choose Option");
+    $("#dropdownUnitMenuButton").html("Choose Option");
+    $("#dropdownLineMenuButton").html("Choose Option");
     this.KPIView = {
       Line : [1,2],
       Location : [1,2],
@@ -166,7 +170,7 @@ export class InlinewipComponent implements OnInit {
     this.StyleA4 = [];
     var url = environment.backendUrl + "InlineWIPOverview";
     this.http.post<any>(url, KPIView).subscribe(responsedata => {
-        console.log("-----------Response Data--------",responsedata);
+        //console.log("-----------Response Data--------",responsedata);
         if(responsedata["data"].length == 1){
             if(typeof(responsedata["data"][0] != -1)){
                 if(responsedata["data"][0]["StyleName"] == "Style A"){
@@ -486,7 +490,7 @@ export class InlinewipComponent implements OnInit {
                 }
             }
             if(typeof(responsedata["data"][2] != -1)){
-                console.log("--------Inside this-------");
+                //console.log("--------Inside this-------");
                 if(responsedata["data"][2]["StyleName"] == "Style A"){
                     _this.isShownStyleA1 = true;
                     _this.StyleA1Name = responsedata["data"][2]["StyleName"];
@@ -676,7 +680,7 @@ export class InlinewipComponent implements OnInit {
                 }
             }
             if(typeof(responsedata["data"][2] != -1)){
-                console.log("--------Inside this-------");
+                //console.log("--------Inside this-------");
                 if(responsedata["data"][2]["StyleName"] == "Style A"){
                     _this.isShownStyleA1 = true;
                     _this.StyleA1Name = responsedata["data"][2]["StyleName"];
@@ -739,7 +743,7 @@ export class InlinewipComponent implements OnInit {
                 }
             }
             if(typeof(responsedata["data"][3] != -1)){
-                console.log("--------Inside this-------");
+                //console.log("--------Inside this-------");
                 if(responsedata["data"][3]["StyleName"] == "Style A"){
                     _this.isShownStyleA1 = true;
                     _this.StyleA1Name = responsedata["data"][3]["StyleName"];
@@ -804,7 +808,7 @@ export class InlinewipComponent implements OnInit {
         }
         
         
-        console.log(_this.isShownStyleA1, _this.isShownStyleA2, _this.isShownStyleA3, _this.isShownStyleA4);
+        //console.log(_this.isShownStyleA1, _this.isShownStyleA2, _this.isShownStyleA3, _this.isShownStyleA4);
         // _this.StyleA2Name = responsedata["data"][1]["StyleName"];
         // _this.StyleA3Name = responsedata["data"][2]["StyleName"];
         // _this.StyleA4Name = responsedata["data"][3]["StyleName"];
@@ -851,7 +855,7 @@ export class InlinewipComponent implements OnInit {
 
   calculateOperatorWIPStyleA(styleName){
     var _this = this;
-    console.log("---------KPIView-----------",this.KPIView);
+    //console.log("---------KPIView-----------",this.KPIView);
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
     this.http.post<any>(url, this.KPIView).subscribe(responsedata => {
@@ -881,8 +885,10 @@ export class InlinewipComponent implements OnInit {
                 title: {
                     text: 'Operator Inline WIP'
                 },
+                visible: false,
                 stackLabels: {
                     enabled: false,
+                    visible : false,
                     style: {
                         fontWeight: 'bold',
                         color: ( // theme
@@ -905,6 +911,18 @@ export class InlinewipComponent implements OnInit {
                     dataLabels: {
                         enabled: false
                     }
+                },
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{series.name} <br> WIP Level : {point.y} ' ,
+                        useHTML: true,
+                        align: 'left',
+                        style: {
+                            fontSize:'10px',
+                            fontWeight: 'normal'
+                        }
+                    }
                 }
             },
             series: responsedata["inlineWIPOperatorsDataList"]
@@ -912,7 +930,7 @@ export class InlinewipComponent implements OnInit {
     })
    }
    calculateOperatorWIPStyleB(styleName){
-    console.log("---------KPIView-----------",this.KPIView);
+    //console.log("---------KPIView-----------",this.KPIView);
     var _this = this;
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
@@ -940,11 +958,12 @@ export class InlinewipComponent implements OnInit {
             credits: {enabled: false},
             yAxis: {
                 min: 0,
-                // visible : false,
                 title: {
                     text: 'Operator Inline WIP'
                 },
+                visible : false,
                 stackLabels: {
+                    visible : false,
                     enabled: false,
                     style: {
                         fontWeight: 'bold',
@@ -968,6 +987,18 @@ export class InlinewipComponent implements OnInit {
                     dataLabels: {
                         enabled: false
                     }
+                },
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{series.name} <br> WIP Level : {point.y} ' ,
+                        useHTML: true,
+                        align: 'left',
+                        style: {
+                            fontSize:'10px',
+                            fontWeight: 'normal'
+                        }
+                    }
                 }
             },
             series: responsedata["inlineWIPOperatorsDataList"]
@@ -976,7 +1007,7 @@ export class InlinewipComponent implements OnInit {
    }
 
    calculateOperatorWIPStyleC(styleName){
-    console.log("---------KPIView-----------",this.KPIView);
+    //console.log("---------KPIView-----------",this.KPIView);
     var _this = this;
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
@@ -1007,9 +1038,11 @@ export class InlinewipComponent implements OnInit {
                 title: {
                     text: 'Operator Inline WIP'
                 },
+                visible : false,
                 // visible : false,
                 stackLabels: {
                     enabled: false,
+                    visible : false,
                     style: {
                         fontWeight: 'bold',
                         color: ( // theme
@@ -1032,6 +1065,18 @@ export class InlinewipComponent implements OnInit {
                     dataLabels: {
                         enabled: false
                     }
+                },
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{series.name} <br> WIP Level : {point.y} ' ,
+                        useHTML: true,
+                        align: 'left',
+                        style: {
+                            fontSize:'10px',
+                            fontWeight: 'normal'
+                        }
+                    }
                 }
             },
             series: responsedata["inlineWIPOperatorsDataList"]
@@ -1040,7 +1085,7 @@ export class InlinewipComponent implements OnInit {
    }
 
    calculateOperatorWIPStyleD(styleName){
-    console.log("---------KPIView-----------",this.KPIView);
+    //console.log("---------KPIView-----------",this.KPIView);
     var _this = this;
     this.KPIView["StyleName"] = styleName;
     var url = environment.backendUrl + "OperatorWIP";
@@ -1071,9 +1116,11 @@ export class InlinewipComponent implements OnInit {
                 title: {
                     text: 'Operator Inline WIP'
                 },
+                visible : false,
                 // visible : false,
                 stackLabels: {
                     enabled: false,
+                    visible : false,
                     style: {
                         fontWeight: 'bold',
                         color: ( // theme
@@ -1096,6 +1143,18 @@ export class InlinewipComponent implements OnInit {
                     dataLabels: {
                         enabled: false
                     }
+                },
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{series.name} <br> WIP Level : {point.y} ' ,
+                        useHTML: true,
+                        align: 'left',
+                        style: {
+                            fontSize:'10px',
+                            fontWeight: 'normal'
+                        }
+                    }
                 }
             },
             series: responsedata["inlineWIPOperatorsDataList"]
@@ -1113,57 +1172,76 @@ export class InlinewipComponent implements OnInit {
     this._router.navigate(['process-overview']);
   }
   navigateWIPOperator(){
-    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
-        var locationId = parseFloat(this.value);
-        return locationId;
-        }).get();
-        var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
-        var unitId = parseFloat(this.value);
-        return unitId;
-        }).get();
-        var checkedLines = $('.option.justone.line:radio:checked').map(function() {
-        var lineId = parseFloat(this.value);
-        return lineId;
-        }).get();
-        var StartDate = new Date($('#startDate').val());
-        var EndDate = new Date($('#endDate').val());
-        if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
-            if(StartDate > EndDate){
-                Swal.fire({    
-                icon: 'error',  
-                title: 'Sorry...',  
-                text: 'StartDate can not be greater than EndDate',  
-                showConfirmButton: true
-                })  
-            }
-            else{
-                var startDay = StartDate.getDate();
-                var startmonth = StartDate.getMonth() + 1;
-                var startyear = StartDate.getFullYear();
-                var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
-                var endDay = EndDate.getDate();
-                var endmonth = EndDate.getMonth() + 1;
-                var endyear = EndDate.getFullYear();
-                var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-                var KPIView = {
-                    Line : checkedLines,
-                    Location : checkedLocations,
-                    Unit : checkedUnits,
-                    StartDate : startDateTime,
-                    EndDate : endDateTime
-                }
-                sessionStorage.setItem("KPIView",JSON.stringify(KPIView));
-                this._router.navigate(['wip-operator']);
-            }
-        }
-        else{
-            Swal.fire({    
-                icon: 'error',  
-                title: 'Sorry...',  
-                text: 'Please select location, unit ,line, start date and end date to view historical data',  
-                showConfirmButton: true
-            })  
-        }
+    var StartDate = new Date($('#startDate').val());
+    var EndDate = new Date($('#endDate').val());
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+    var KPIView = {
+        Line : [1,2],
+        Location : [1,2],
+        Unit : [1,2],
+        StartDate : startDateTime,
+        EndDate : endDateTime
+    }
+    sessionStorage.setItem("KPIView",JSON.stringify(KPIView));
+    this._router.navigate(['wip-operator']);
+    // var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
+    // var locationId = parseFloat(this.value);
+    // return locationId;
+    // }).get();
+    // var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
+    // var unitId = parseFloat(this.value);
+    // return unitId;
+    // }).get();
+    // var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+    // var lineId = parseFloat(this.value);
+    // return lineId;
+    // }).get();
+    // var StartDate = new Date($('#startDate').val());
+    // var EndDate = new Date($('#endDate').val());
+    // if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+    //     if(StartDate > EndDate){
+    //         Swal.fire({    
+    //         icon: 'error',  
+    //         title: 'Sorry...',  
+    //         text: 'StartDate can not be greater than EndDate',  
+    //         showConfirmButton: true
+    //         })  
+    //     }
+    //     else{
+    //         var startDay = StartDate.getDate();
+    //         var startmonth = StartDate.getMonth() + 1;
+    //         var startyear = StartDate.getFullYear();
+    //         var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+    //         var endDay = EndDate.getDate();
+    //         var endmonth = EndDate.getMonth() + 1;
+    //         var endyear = EndDate.getFullYear();
+    //         var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+    //         var KPIView = {
+    //             Line : checkedLines,
+    //             Location : checkedLocations,
+    //             Unit : checkedUnits,
+    //             StartDate : startDateTime,
+    //             EndDate : endDateTime
+    //         }
+    //         sessionStorage.setItem("KPIView",JSON.stringify(KPIView));
+    //         this._router.navigate(['wip-operator']);
+    //     }
+    // }
+    // else{
+    //     Swal.fire({    
+    //         icon: 'error',  
+    //         title: 'Sorry...',  
+    //         text: 'Please select location, unit ,line, start date and end date to view historical data',  
+    //         showConfirmButton: true
+    //     })  
+    // }
     // this._router.navigate(['wip-operator']);
   }
 
@@ -1214,57 +1292,52 @@ export class InlinewipComponent implements OnInit {
   }
 
   navigateWIPSummary(){
-    var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
-    var locationId = parseFloat(this.value);
-    return locationId;
-    }).get();
-    var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
-    var unitId = parseFloat(this.value);
-    return unitId;
-    }).get();
-    var checkedLines = $('.option.justone.line:radio:checked').map(function() {
-    var lineId = parseFloat(this.value);
-    return lineId;
-    }).get();
     var StartDate = new Date($('#startDate').val());
     var EndDate = new Date($('#endDate').val());
-    if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
-        if(StartDate > EndDate){
-            Swal.fire({    
-            icon: 'error',  
-            title: 'Sorry...',  
-            text: 'StartDate can not be greater than EndDate',  
-            showConfirmButton: true
-            })  
-        }
-        else{
-            var startDay = StartDate.getDate();
-            var startmonth = StartDate.getMonth() + 1;
-            var startyear = StartDate.getFullYear();
-            var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
-            var endDay = EndDate.getDate();
-            var endmonth = EndDate.getMonth() + 1;
-            var endyear = EndDate.getFullYear();
-            var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
-            var KPIView = {
-                Line : checkedLines,
-                Location : checkedLocations,
-                Unit : checkedUnits,
-                StartDate : startDateTime,
-                EndDate : endDateTime
-            }
-            sessionStorage.setItem("KPIView",JSON.stringify(KPIView));
-            this._router.navigate(['wip-summary']);
-        }
+    var startDay = StartDate.getDate();
+    var startmonth = StartDate.getMonth() + 1;
+    var startyear = StartDate.getFullYear();
+    var startDateTime = startyear + "-" + startmonth + '-' + startDay + " 00:00:00.000";
+    var endDay = EndDate.getDate();
+    var endmonth = EndDate.getMonth() + 1;
+    var endyear = EndDate.getFullYear();
+    var endDateTime = endyear + "-" + endmonth + '-' + endDay + " 00:00:00.000";
+    var KPIView = {
+        Line : [1,2],
+        Location : [1,2],
+        Unit : [1,2],
+        StartDate : startDateTime,
+        EndDate : endDateTime
     }
-    else{
-        Swal.fire({    
-            icon: 'error',  
-            title: 'Sorry...',  
-            text: 'Please select location, unit ,line, start date and end date to view historical data',  
-            showConfirmButton: true
-        })  
-    }
+    sessionStorage.setItem("KPIView",JSON.stringify(KPIView));
+    this._router.navigate(['wip-summary']);
+    
+    // var checkedLocations = $('.option.justone.location:radio:checked').map(function() {
+    // var locationId = parseFloat(this.value);
+    // return locationId;
+    // }).get();
+    // var checkedUnits = $('.option.justone.unit:radio:checked').map(function() {
+    // var unitId = parseFloat(this.value);
+    // return unitId;
+    // }).get();
+    // var checkedLines = $('.option.justone.line:radio:checked').map(function() {
+    // var lineId = parseFloat(this.value);
+    // return lineId;
+    // }).get();
+    // var StartDate = new Date($('#startDate').val());
+    // var EndDate = new Date($('#endDate').val());
+    // if(checkedLocations.length != 0 && checkedLines.length != 0 && checkedUnits.length != 0 && $('#startDate').val() != "" && $('#endDate').val() != ""){
+    //     // 
+        
+    // }
+    // else{
+    //     Swal.fire({    
+    //         icon: 'error',  
+    //         title: 'Sorry...',  
+    //         text: 'Please select location, unit ,line, start date and end date to view historical data',  
+    //         showConfirmButton: true
+    //     })  
+    // }
   }
   getSewingKPIAnalysis(){
     var checkedLocations = $('.option.justone.location:radio:checked').map(function() {

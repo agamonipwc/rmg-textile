@@ -54,6 +54,20 @@ export class AbsentismComponent implements OnInit {
   
   absentismScatter: Chart;
   headerTextValue : string;
+  periodOptions : any=[
+    {
+      Id : 5, Name:"Last 5 days"
+    },
+    {
+      Id : 10, Name:"Last 10 days"
+    },
+    {
+      Id : 15, Name:"Last 15 days"
+    },
+    {
+      Id : 20, Name:"Last 20 days"
+    }
+  ];
 
 constructor(private http: HttpClient,private _router: Router) { }
 
@@ -65,25 +79,31 @@ ngOnInit() {
   this.getFilterData();
   this.getMasterData();
   $(function() {
+    $("#period_5").prop("checked", true);
+    $("#dropdownLinePeriodButton").html("Last 5 days");
     // Hide all lists except the outermost.
-    $('ul.tree ul').hide();
+    // $('ul.tree ul').hide();
   
-    $('.tree li > ul').each(function(i) {
-      var $subUl = $(this);
-      var $parentLi = $subUl.parent('li');
-      var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+    // $('.tree li > ul').each(function(i) {
+    //   var $subUl = $(this);
+    //   var $parentLi = $subUl.parent('li');
+    //   var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
   
-      $parentLi.addClass('has-children');
+    //   $parentLi.addClass('has-children');
       
-      $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-        $(this).text( $(this).text() == '+' ? '-' : '+' );
-        $subUl.slideToggle('fast');
-      });
-    });
+    //   $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+    //     $(this).text( $(this).text() == '+' ? '-' : '+' );
+    //     $subUl.slideToggle('fast');
+    //   });
+    // });
   });
 }
 
   getFilterData(){
+    $('input[type=radio]').prop('checked',false);
+    $("#dropdownLocationMenuButton").html("Choose Option");
+    $("#dropdownUnitMenuButton").html("Choose Option");
+    $("#dropdownLineMenuButton").html("Choose Option");
     var KPIView = {
       Line : [],
       Location : [],
@@ -188,6 +208,52 @@ ngOnInit() {
             _this.lineOptions = responsedata["lineMasterData"];
         }
     })
+  }
+ 
+  onPeriodChange(event){
+    if (event.target.checked){
+      this.periodOptions.forEach(element => {
+        if(element.Id == event.target.value){
+          $("#dropdownLinePeriodButton").html(element.Name);
+          var checkedPeriod = $('.option.justone.period:radio:checked').map(function() {
+            var periodId = parseInt(this.value);
+            return periodId;
+          }).get();
+          if(checkedPeriod[0] != null){
+            var EndDate = new Date($('#endDate').val());
+            var last = new Date(EndDate.getTime() - (checkedPeriod[0] * 24 * 60 * 60 * 1000));
+            var day =last.getDate();
+            var month=last.getMonth()+1;
+            var year=last.getFullYear();
+            var monthString = month.toString();
+            var dayString = day.toString();
+            if(month < 10){
+              monthString = "0" + month;
+            }
+            if(day < 10){
+              dayString = "0" + day;
+            }
+            var StartDate = year + "-" + monthString + "-" + dayString;
+            $('#startDate').val(StartDate);
+            var KPIView = {
+              Line : [1,2,3,4],
+              Location : [1,2],
+              Unit : [1,2],
+              StartDate : (StartDate + " 00:00:00.000"),
+              EndDate : "2021-01-31 00:00:00.000",
+            }
+            this.calculateOperatorsAbsentism(KPIView);
+            var userFormattedDateOutput = this.formatUserInputDate($('#startDate').val(), $('#endDate').val())
+            if($('#startDate').val() == $('#endDate').val()){
+              this.headerTextValue = environment.efficiencyHeaderText + " on " + userFormattedDateOutput["startDateTime"];
+            }
+            else{
+              this.headerTextValue = environment.efficiencyHeaderText + " from " + userFormattedDateOutput["startDateTime"] + " to " + userFormattedDateOutput["endDateTime"];
+            }
+          }
+        }
+      });
+    }
   }
 
   formatUserInputDate(startDate, endDate){
@@ -343,11 +409,11 @@ ngOnInit() {
     var _this = this;
     this.http.post<any>(url, recommendationView).subscribe(responsedata =>{
       if(recommendationId == 22){
-        _this.recommendationModalTitle = "Recommendations for operators with low absenteeism"
+        _this.recommendationModalTitle = "Recommendations of low absenteeism"
         _this.getOperatorsName('Low')
       }
       else if(recommendationId == 23){
-        _this.recommendationModalTitle = "Recommendations for operators with medium absenteeism"
+        _this.recommendationModalTitle = "Recommendations of medium absenteeism"
         _this.getOperatorsName('Moderate');
       }
       else{
@@ -412,5 +478,24 @@ ngOnInit() {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();  
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');  
     XLSX.writeFile(wb, 'Moderate_Absentism_Operators.xlsx');  
+  }
+  recommendationLowDivShow(){
+    $("#Recommendations").show();
+    $("#Operators").hide();
+  }
+
+  operatorLowDivShow(){
+    $("#Recommendations").hide();
+    $("#Operators").show();
+  }
+
+  recommendationMediumDivShow(){
+    $("#MediumRecommendations").show();
+    $("#MediumOperators").hide();
+  }
+
+  recommendationMediumivShow(){
+    $("#MediumRecommendations").hide();
+    $("#MediumOperators").show();
   }
 }

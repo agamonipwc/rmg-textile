@@ -6,7 +6,7 @@
 </nav>
 <nav class="col-6 col-6 d-none d-sm-block bg-light sidebar mt-5">
   <span class="ml-4" style="text-align: center; font-weight: bold; font-size: 17px;">Quick Links</span>
-  <ul class="tree cutom-treestructure mt-3">
+  <ul class="tree cutom-treestructure mt-1">
     <li (click)="dashboardNavigation()" id="dashbaord_href" style="cursor: pointer;">
       <span id="dashboard_span" class="d-none d-md-inline">Factory Overview</span>
     </li>
@@ -59,7 +59,7 @@
         <a style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="backToPrevious()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
         <a class="ml-2" style="font-weight: bold; font-size: 15px; cursor: pointer;" (click)="dashboardNavigation()"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
       </div>
-      <div class="col-7">
+      <div class="col-6">
         <h6 style="text-align: center; font-weight: bold;">{{headerTextValue}}</h6>
         <h6 class="ml1">
           <span class="text-wrapper">
@@ -69,8 +69,8 @@
           </span>
         </h6>
       </div>
-      <div class="col-3 mt-2" style="text-align: start;">
-        <button class="custom-button ml-3" style="font-weight: bold;" (click)="sewingNavigation()">Back to KPI Data</button>
+      <div class="col-4 mt-2">
+        <button class="custom-button ml-5" style="font-weight: bold;" (click)="sewingNavigation()">Back to KPI Data</button>
       </div>
     </div>
     <div class="row">
@@ -79,7 +79,8 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Efficiency')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" (click)="navigateEfficiency()" id="efficiencyVisual" style="height: auto; min-height: max-content;">
+          <div class="col-1" style="font-size: smaller;">Efiiciency%</div>
+          <div class="col-11" (click)="navigateEfficiency()" id="efficiencyVisual" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div (click)="navigateEfficiency()" [chart] = "efficiencyHistoric" style="height: 58px; width:auto"></div>
             </div>
@@ -89,7 +90,8 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Defect')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" (click)="navigateDefectPercentage()" id="defectVisual" style=" height: auto; min-height: max-content;">
+          <div class="col-1" style="font-size: smaller;">Defect%</div>
+          <div class="col-11" (click)="navigateDefectPercentage()" id="defectVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart]="defectsHistoric" (click)="navigateDefectPercentage()" style="height: 58px; width:auto"></div>
             </div>
@@ -99,7 +101,8 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Reject')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" (click)="navigateRejection()" id="rejectionVisual" style=" height: auto; min-height: max-content;">
+          <div class="col-1" style="font-size: smaller;">Rejection%</div>
+          <div class="col-11" (click)="navigateRejection()" id="rejectionVisual" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart]="rejectionHistoric" (click)="navigateRejection()" style="height: 58px; width:auto"></div>
             </div>
@@ -109,7 +112,8 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('CapacityUtilization')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="capacityVisual" (click)="navigateCapacityUtilization()" style="height: auto; min-height: max-content;">
+          <div class="col-1" style="font-size: smaller;">Capacity%</div>
+          <div class="col-11" id="capacityVisual" (click)="navigateCapacityUtilization()" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart] = "capacityHistoric" (click)="navigateCapacityUtilization()" style="height: 58px; width:auto"></div>
             </div>
@@ -119,7 +123,8 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Absenteeism')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="absentismVisual" (click)="navigateAbsentismUtilization()" style=" height: auto; min-height: max-content;">
+          <div class="col-1" style="font-size: 10px;">Absenteeism%</div>
+          <div class="col-11" id="absentismVisual" (click)="navigateAbsentismUtilization()" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart]="absentismHistoric" (click)="navigateAbsentismUtilization()" style="height: 58px; width:auto"></div>
             </div>
@@ -129,7 +134,8 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('DHU')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="dhuVisual" (click)="navigateDHU()" style=" height: auto; min-height: max-content;">
+          <div class="col-1" style="font-size: smaller">DHU</div>
+          <div class="col-11" id="dhuVisual" (click)="navigateDHU()" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart]="dhuHistoric" style="height: 58px; width:auto" (click)="navigateDHU()"></div>
             </div>
@@ -139,7 +145,8 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('InlineWIP')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="wipVisual" (click)="navigateInlineWIP()" style="height: auto; min-height: max-content;">
+          <div class="col-1" style="font-size: smaller">WIP Level</div>
+          <div class="col-11" id="wipVisual" (click)="navigateInlineWIP()" style="height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart] = "wipHistoric" (click)="navigateInlineWIP()" style="height: 58px; width:auto"></div>
             </div>
@@ -149,18 +156,43 @@
           <!-- <div class="col-1">
             <a (click)="showKPIAverageValues('Downtime')"><i class="fa fa-info-circle" aria-hidden="true" style="color:#aa2417; font-size: 18px;"></i></a>
           </div> -->
-          <div class="col-12" id="machineDowntimeVisual" (click)="navigateMachineDowntime()" style=" height: auto; min-height: max-content;">
+          <div class="col-1" style="font-size: smaller">Downtime%</div>
+          <div class="col-11" id="machineDowntimeVisual" (click)="navigateMachineDowntime()" style=" height: auto; min-height: max-content;">
             <div class="d-flex flex-column">
               <div [chart]="machineDowntimeHistoric" (click)="navigateMachineDowntime()" style="height: 58px; width:auto"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-3 mt-5">
+      <div class="col-3 mt-1">
         <div class="d-flex flex-column mb-3">
           <nav class="col-sm-3 col-md-2 d-none d-sm-block">
             <ul class="nav nav-pills flex-column">
-              <li class="nav-item">
+              <li class="nav-item mt-1">
+                <div class="ml-2">
+                  <div class="d-flex flex-column">
+                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Options
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdownmenu"> 
+                          <li class="custom-li" *ngFor="let option of periodOptions">
+                            <a href="#" class="dropdown-label">
+                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
+                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
+                              </label>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item mt-5">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -36%;">Select Locations</span>
@@ -183,7 +215,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -54%;">Select Unit</span>
@@ -206,7 +238,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span class="text-align: left;" style="margin-left: -50%;">Select Lines</span>
@@ -236,30 +268,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
-                <div class="ml-2">
-                  <div class="d-flex flex-column">
-                    <span class="text-align: left;" style="margin-left: -50%;">Select Period</span>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle dropdown-button" type="button" id="dropdownLinePeriodButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose Options
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <ul class="dropdownmenu"> 
-                          <li class="custom-li" *ngFor="let option of periodOptions">
-                            <a href="#" class="dropdown-label">
-                              <label class="ml-2 period_label" [id]="'period_label_' + option.Id">
-                                <input name='options[period]' (change)="onPeriodChange($event)" type="radio" class="option justone period" [value]="option.Id" [id]="'period_' + option.Id"/> {{option.Name}}
-                              </label>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">Start Date</span>
@@ -267,7 +276,7 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <div class="ml-2">
                   <div class="d-flex flex-column">
                     <span style="text-align: left;">End Date</span>
@@ -275,8 +284,11 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item mt-3">
+              <li class="nav-item mt-1">
                 <button class="custom-button ml-2" (click)="getSewingKPIAnalysis()">Show Analysis</button>
+              </li>
+              <li class="nav-item mt-1">
+                <button type="button" class="btn" (click)="getFilterData()" style="font-size: smaller;"><i class="fa fa-refresh" aria-hidden="true"></i> Clear Filter</button>
               </li>
             </ul>
           </nav>

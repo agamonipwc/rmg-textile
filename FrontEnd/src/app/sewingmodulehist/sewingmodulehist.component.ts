@@ -78,26 +78,30 @@ export class SewingmodulehistComponent implements OnInit {
     $(function() {
       var _this = this;
       // Hide all lists except the outermost.
-      $('ul.tree ul').hide();
+      // $('ul.tree ul').hide();
       $("#period_5").prop("checked", true);
       $("#dropdownLinePeriodButton").html("Last 5 days");
-      $('.tree li > ul').each(function(i) {
-        var $subUl = $(this);
-        var $parentLi = $subUl.parent('li');
-        var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
+      // $('.tree li > ul').each(function(i) {
+      //   var $subUl = $(this);
+      //   var $parentLi = $subUl.parent('li');
+      //   var $toggleIcon = '<i class="js-toggle-icon" style="cursor:pointer;">+</i>';
     
-        $parentLi.addClass('has-children');
+      //   $parentLi.addClass('has-children');
         
-        $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
-          $(this).text( $(this).text() == '+' ? '-' : '+' );
-          $subUl.slideToggle('fast');
-        });
-      });
+      //   $parentLi.prepend( $toggleIcon ).find('.js-toggle-icon').on('click', function() {
+      //     $(this).text( $(this).text() == '+' ? '-' : '+' );
+      //     $subUl.slideToggle('fast');
+      //   });
+      // });
     });
   }
 
   averageKPIDataList = [];
   getFilterData(KPIView){
+    $('input[type=radio]').prop('checked',false);
+    $("#dropdownLocationMenuButton").html("Choose Option");
+    $("#dropdownUnitMenuButton").html("Choose Option");
+    $("#dropdownLineMenuButton").html("Choose Option");
     var _this = this ;
     var userBackendUrl = environment.backendUrl + "SewingHistorical";
     this.http.post<any>(userBackendUrl, KPIView).subscribe(responsedata => {
@@ -159,9 +163,11 @@ export class SewingmodulehistComponent implements OnInit {
         },
         yAxis: {
             gridLineWidth: 0,
+            visible: false,
             title: {
-              text: 'Efficiency%',
-              rotation: 0,
+              text:'',
+              // text: 'Efficiency%',
+              rotation: 90,
               style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             maxPadding: 0.2,
@@ -227,9 +233,11 @@ export class SewingmodulehistComponent implements OnInit {
         },
         yAxis: {
             gridLineWidth: 0,
+            visible: false,
             title: {
-              text: 'Capacity%',
-              rotation: 0,
+              text:'',
+              // text: 'Capacity%',
+              rotation: 90,
               style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:120,
@@ -295,9 +303,11 @@ export class SewingmodulehistComponent implements OnInit {
         },
         yAxis: {
             gridLineWidth: 0,
+            visible: false,
             title: {
-                text: 'WIP Level',
-                rotation: 0,
+                // text: 'WIPLevel',
+                text: '',
+                rotation: 90,
                 style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:5.0,
@@ -362,9 +372,11 @@ export class SewingmodulehistComponent implements OnInit {
         },
         yAxis: {
             gridLineWidth: 0,
+            visible: false,
             title: {
-                text: 'Downtime%',
-                rotation: 0,
+                text:'',
+                // text: 'Downtime%',
+                rotation: 90,
                 style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max: 20,
@@ -430,9 +442,11 @@ export class SewingmodulehistComponent implements OnInit {
         },
         yAxis: {
             gridLineWidth: 0,
+            visible: false,
             title: {
-                text: 'DHU',
-                rotation: 0,
+                text:'',
+                // text: 'DHU',
+                rotation: 90,
                 style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:13,
@@ -496,9 +510,11 @@ export class SewingmodulehistComponent implements OnInit {
         },
         yAxis: {
             gridLineWidth: 0,
+            visible: false,
             title: {
-                text: 'Defects%',
-                rotation: 0,
+                text:'',
+                // text: 'Defects%',
+                rotation: 90,
                 style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:50,
@@ -563,9 +579,11 @@ export class SewingmodulehistComponent implements OnInit {
         },
         yAxis: {
             gridLineWidth: 0,
+            visible: false,
             title: {
-              text: 'Rejection%',
-              rotation: 0,
+              text : '',
+              // text: 'Rejection%',
+              rotation: 90,
               style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:15,
@@ -630,9 +648,11 @@ export class SewingmodulehistComponent implements OnInit {
         },
         yAxis: {
             gridLineWidth: 0,
+            visible: false,
             title: {
-                text: 'Absenteeism%',
-                rotation: 0,
+                text:'',
+                // text: 'Absenteeism%',
+                rotation: 90,
                 style: {'font-family': 'Arial, Helvetica', 'font-size': '9px'}
             },
             max:20,
@@ -834,6 +854,14 @@ export class SewingmodulehistComponent implements OnInit {
             }
             var StartDate = year + "-" + monthString + "-" + dayString;
             $('#startDate').val(StartDate)
+            var KPIView = {
+              Line : [1,2,3,4],
+              Location : [1,2],
+              Unit : [1,2],
+              StartDate : (StartDate + " 00:00:00.000"),
+              EndDate : "2021-01-31 00:00:00.000",
+            }
+            this.getFilterData(KPIView)
           }
         }
       });
